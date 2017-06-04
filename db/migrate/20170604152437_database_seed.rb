@@ -33,7 +33,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
+      t.string    :name, :null => false
       t.integer   :role, :default => 0, :null => false
 
 
