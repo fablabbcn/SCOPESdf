@@ -50,13 +50,13 @@ development:
 
 production:
   adapter:  postgis
-#  host: <%= ENV['DATABASE_HOST'] %>
-#  encoding: unicode
-#  database: <%= ENV['DATABASE'] %>
-#  pool:     5
-#  username: <%= ENV['DATABASE_USERNAME'] %>
-#  password: <%= ENV['DATABASE_PASSWORD'] %>
-#  port: <%= ENV['DATABASE_PORT'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  encoding: unicode
+  database: <%= ENV['DATABASE'] %>
+  pool:     5
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
 
 test:
   adapter:  postgis
