@@ -15,6 +15,10 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
+
+gem 'materialize-sass'
+gem 'haml'
+
 gem 'devise'
 gem 'high_voltage'
 gem 'pundit'
@@ -31,6 +35,7 @@ group :development do
   gem 'rails_layout'
   gem 'spring-commands-rspec'
   gem 'foreman'
+  gem 'erb2haml'
 end
 group :development, :test do
   gem 'byebug', platform: :mri
