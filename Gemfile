@@ -16,8 +16,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass'
 
-gem 'materialize-sass'
 gem 'haml'
+gem 'rails_utils'
 
 gem 'devise'
 gem 'high_voltage'

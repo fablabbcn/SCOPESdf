@@ -5,11 +5,11 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
     create_table  :users, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
 
       ## Database authenticatable
-      t.string :email,              :null => false, :default => ""
-      t.string :encrypted_password, :null => false, :default => ""
+      t.string :email,              null: false, default: "", index: true, unique: true
+      t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
-      t.string   :reset_password_token
+      t.string   :reset_password_token, index: true, unique: true
       t.datetime :reset_password_sent_at
 
       ## Rememberable
@@ -19,8 +19,8 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.integer  :sign_in_count, :default => 0, :null => false
       t.datetime :current_sign_in_at
       t.datetime :last_sign_in_at
-      t.string   :current_sign_in_ip
-      t.string   :last_sign_in_ip
+      t.inet   :current_sign_in_ip
+      t.inet   :last_sign_in_ip
 
       ## Confirmable
       # t.string   :confirmation_token
@@ -33,15 +33,45 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-      t.string    :name, :default => "", :null => false
-      t.integer   :role, :default => 0, :null => false
+      ## SCOPES
+      t.string    :name, default: "", null: false
+      t.integer   :role, default: 0, null: false
+      t.string    :avatar_url
+      t.string    :bio, default: "", null:  false
+      t.integer   :kind, default: 0, null:  false
+      t.string    :phone_number
+      t.json      :social
       t.timestamps null: false
     end
-    add_index :users, :email,                :unique => true
-    add_index :users, :reset_password_token, :unique => true
 
+    create_table :organizations, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.string    :name, default: "", index: true, null: false
+      t.string    :desc, default: "", null: false
+      t.json      :social
 
+      t.integer   :teaching_range_start, default: 0, null: false
+      t.integer   :teaching_range_end, default: 0, null: false
 
+      t.string    :address_line1
+      t.string    :address_line2
+      t.string    :address_line3
+      t.string    :address_line4
+      t.string    :locality
+      t.string    :region
+      t.string    :post_code, index: true
+      t.string    :country
+      t.st_point  :lonlat, geographic: true, null: false, index: true, using: :gist
+
+      t.timestamps null: false
+    end
+
+    create_table :affiliations do |t|
+      t.uuid        :user_id,         index: true, null: false
+      t.uuid        :organization_id, index: true, null: false
+      t.timestamps null: false
+    end
+    add_foreign_key(:affiliations, :users, column: :user_id, primary_key: :id)
+    add_foreign_key(:affiliations, :organizations, column: :organization_id, primary_key: :id)
 
   end
 end
