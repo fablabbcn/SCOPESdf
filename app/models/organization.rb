@@ -39,6 +39,11 @@ class Organization < ApplicationRecord
   # TODO - add validations
   # TODO - check lonlat is real**  or handle...
   # TODO - make some address fields required?
+  # TODO - add creating user
+  # TODO - add pending_confirmation
+  # TODO - add confirmed_date
+  # TODO - add confirmed_user
+  # TODO - add flagged? to report
 
   def self.withId_(id)
     Option(Organization.find_by(id: id))
