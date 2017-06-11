@@ -43,6 +43,7 @@ class User < ApplicationRecord
 
   has_many :affiliations
   has_many :organizations, through: :affiliations
+  has_many :tags, as: :taggable
 
   def addOrg?(org_uuid)
     org = Organization.withId_(org_uuid).or_nil

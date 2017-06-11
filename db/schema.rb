@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.index ["user_id"], name: "index_affiliations_on_user_id", using: :btree
   end
 
+  create_table "lessons", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "organizations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string    "name",                                                                             default: "", null: false
     t.string    "desc",                                                                             default: "", null: false
@@ -46,6 +51,16 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.index ["lonlat"], name: "index_organizations_on_lonlat", using: :btree
     t.index ["name"], name: "index_organizations_on_name", using: :btree
     t.index ["post_code"], name: "index_organizations_on_post_code", using: :btree
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.uuid     "taggable_id",   null: false
+    t.integer  "taggable_type", null: false
+    t.uuid     "lesson_type",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["lesson_type"], name: "index_tags_on_lesson_type", using: :btree
+    t.index ["taggable_type", "taggable_id"], name: "index_tags_on_taggable_type_and_taggable_id", using: :btree
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

@@ -6,8 +6,8 @@
 #  name                 :string           default(""), not null
 #  desc                 :string           default(""), not null
 #  social               :json
-#  teaching_range_start :integer          default(0), not null
-#  teaching_range_end   :integer          default(0), not null
+#  teaching_range_start :integer          default("start_k"), not null
+#  teaching_range_end   :integer          default("end_k"), not null
 #  address_line1        :string
 #  address_line2        :string
 #  address_line3        :string
@@ -35,6 +35,7 @@ class Organization < ApplicationRecord
 
   has_many :affiliations
   has_many :users, through: :affiliations
+  has_many :tags, as: :taggable
 
   # TODO - add validations
   # TODO - check lonlat is real**  or handle...

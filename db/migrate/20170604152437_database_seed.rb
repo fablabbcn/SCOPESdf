@@ -44,6 +44,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.timestamps null: false
     end
 
+
     create_table :organizations, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       t.string    :name, default: "", index: true, null: false
       t.string    :desc, default: "", null: false
@@ -61,9 +62,9 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.string    :post_code, index: true
       t.string    :country
       t.st_point  :lonlat, geographic: true, null: false, index: true, using: :gist
-
       t.timestamps null: false
     end
+
 
     create_table :affiliations do |t|
       t.uuid        :user_id,         index: true, null: false
@@ -72,6 +73,25 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
     end
     add_foreign_key(:affiliations, :users, column: :user_id, primary_key: :id)
     add_foreign_key(:affiliations, :organizations, column: :organization_id, primary_key: :id)
+
+
+
+
+
+    create_table :tags do |t|
+      t.uuid        :taggable_id, null: false
+      t.integer     :taggable_type, null: false
+      t.uuid        :lesson_type, index: true, null: false
+      t.timestamps  null:false
+    end
+    add_index :tags, [:taggable_type, :taggable_id]
+
+
+    create_table :lessons, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      # TODO - finish me
+      t.timestamps null: false
+    end
+
 
   end
 end
