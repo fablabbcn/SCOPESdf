@@ -41,6 +41,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.integer   :kind, default: 0, null:  false
       t.string    :phone_number
       t.json      :social
+      t.json      :settings, null: false           # settings are not searchable and do not need any indexing :3 also this makes them easier to be editable
       t.timestamps null: false
     end
 
@@ -76,15 +77,13 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
 
 
 
-
-
-    create_table :tags do |t|
+    create_table :lesson_tags do |t|
       t.uuid        :taggable_id, null: false
       t.integer     :taggable_type, null: false
-      t.uuid        :lesson_type, index: true, null: false
+      t.uuid        :lesson_id, index: true, null: false
       t.timestamps  null:false
     end
-    add_index :tags, [:taggable_type, :taggable_id]
+    add_index :lesson_tags, [:taggable_type, :taggable_id]
 
 
     create_table :lessons, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|

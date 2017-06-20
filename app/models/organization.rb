@@ -45,6 +45,7 @@ class Organization < ApplicationRecord
   # TODO - add confirmed_date
   # TODO - add confirmed_user
   # TODO - add flagged? to report
+  # TODO - ATTR: add active / inactive
 
   def self.withId_(id)
     Option(Organization.find_by(id: id))

@@ -20,6 +20,7 @@
 #  kind                   :integer          default(0), not null
 #  phone_number           :string
 #  social                 :json
+#  settings               :json             not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

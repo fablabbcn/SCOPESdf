@@ -20,6 +20,7 @@
 #  kind                   :integer          default(0), not null
 #  phone_number           :string
 #  social                 :json
+#  settings               :json             not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -27,12 +28,26 @@
 class User < ApplicationRecord
   enum role: [:user, :admin]
   after_initialize :set_default_role, :if => :new_record?
+  before_create :set_default_notifications, :if => :new_record?
+
 
   def set_default_role
     self.role ||= :user
   end
 
+  def set_default_notifications
+    self.settings ||= {contact: { notifications: true, emails: true}, projects: {sort: "date_published"}, newsfeed:{ notifications: true, updated: true, likes: true}}
+  end
+
+
+
   # TODO - add validations
+  # TODO - ATTR: add active / inactive
+
+  # TODO - https://github.com/carrierwaveuploader/carrierwave ?? for files?? or just FOG?
+
+  # TODO - other interests, what do you do, subjects, skills required... talk with GUI
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -51,4 +66,9 @@ class User < ApplicationRecord
     self.organizations << org
     true
   end
+
+
+
+
+
 end

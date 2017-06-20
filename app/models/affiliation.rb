@@ -14,4 +14,6 @@ class Affiliation < ApplicationRecord
   belongs_to :organization
 
   # TODO - validates uniqueness on compound key?.. should add?
+  # TODO - ATTR: add active / inactive
+
 end
