@@ -22,12 +22,29 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy # Should users be allowed to be deleted??
     user = User.find(params[:id])
     authorize user
     user.destroy
     redirect_to users_path, :notice => "User deleted."
   end
+
+  # **************** Content
+
+  def set_and_authorize
+    @user = User.find(params[:id])
+    authorize @user
+  end
+
+  def affiliate_organization_id
+    set_and_authorize
+    response = @user.addOrgId?(params[:organization_id])
+    render :json => {status: response}, :status => 200
+  end
+
+
+
+
 
   private
 

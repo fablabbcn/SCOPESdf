@@ -8,6 +8,8 @@
 * `rails db:seed`
 * `foreman start`
 
+#### Passable Models - Used for documentation below
+Each model file has the required parameters. For bare minimums see CreateSeedService > //desired model//
 
 
 
@@ -43,8 +45,30 @@ Backend Flow: Devise, Validations on User. Activerecord.
 Interface Flow: User created, avatar added, one affiliations made (TODO - see if optional?), About You form fields (TODO - are these right?)
 
 
+##### _User Affiliate with Organization_: '+'
+UseCase: Affiliate a user with an organization, if already affiliated response will state
+Endpoint: `` users/affiliate' => 'users#affiliate_organization_id``
+Request Structure: base params[:id] ( for user ), params[:organization_id]
+Sample Structure:
+Backend Flow: @user.addOrgId?().
+Respones: "true" ( new association made), "already added" ( assocaition already made ), "failed", organiation.id incorrect
 
 
+
+
+
+
+
+
+
+
+
+##### _Lesson Creation_ doc: '++'
+UseCase: Create Lesson from form 
+Endpoint: `` POST \lesson``
+Request Structure: `` "lesson": { "attribute_name": value } ``
+Sample Structure: See `` "lesson": { "name": "Name here" } `` -- minimum  see paw for more & ``lesson_params``
+Backend Flow: Lesson(validated_params).save
 
 
 #### [Paw](https://paw.cloud/)

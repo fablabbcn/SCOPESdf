@@ -37,8 +37,22 @@ ActiveRecord::Schema.define(version: 20170604152437) do
   end
 
   create_table "lessons", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                             null: false
+    t.string   "topline",             default: "", null: false
+    t.string   "summary",             default: "", null: false
+    t.string   "learning_objectives",                           array: true
+    t.string   "description",         default: "", null: false
+    t.string   "assessment_criteria", default: "", null: false
+    t.string   "further_readings",                              array: true
+    t.integer  "difficulty_level"
+    t.string   "outcome_links",                                 array: true
+    t.uuid     "original_lesson"
+    t.integer  "state",               default: 1,  null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.index ["name"], name: "index_lessons_on_name", using: :btree
+    t.index ["original_lesson"], name: "index_lessons_on_original_lesson", using: :btree
+    t.index ["state"], name: "index_lessons_on_state", using: :btree
   end
 
   create_table "organizations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -61,6 +75,26 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.index ["lonlat"], name: "index_organizations_on_lonlat", using: :btree
     t.index ["name"], name: "index_organizations_on_name", using: :btree
     t.index ["post_code"], name: "index_organizations_on_post_code", using: :btree
+  end
+
+  create_table "steps", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid     "lesson_id",                        null: false
+    t.string   "name",                             null: false
+    t.string   "summary",             default: "", null: false
+    t.integer  "duration",            default: 0,  null: false
+    t.json     "supporting_images"
+    t.json     "materials"
+    t.json     "tools"
+    t.json     "supporting_material"
+    t.integer  "step_number",                      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.index ["lesson_id"], name: "index_steps_on_lesson_id", using: :btree
+  end
+
+  create_table "teaching_ranges", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.integer "range_start", default: 0, null: false
+    t.integer "range_end",   default: 0, null: false
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -90,4 +124,6 @@ ActiveRecord::Schema.define(version: 20170604152437) do
 
   add_foreign_key "affiliations", "organizations"
   add_foreign_key "affiliations", "users"
+  add_foreign_key "lesson_tags", "lessons"
+  add_foreign_key "steps", "lessons"
 end

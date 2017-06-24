@@ -35,13 +35,16 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 
-  def set_default_notifications
+  def set_default_notifications # SAVE USER before messing with settings
     self.settings ||= {contact: { notifications: true, emails: true}, projects: {sort: "date_published"}, newsfeed:{ notifications: true, updated: true, likes: true}}
   end
 
 
 
   # TODO - add validations
+
+  # TODO - validates presence of at least one association
+
   # TODO - ATTR: add active / inactive
 
   # TODO - https://github.com/carrierwaveuploader/carrierwave ?? for files?? or just FOG?
@@ -60,11 +63,16 @@ class User < ApplicationRecord
   has_many :organizations, through: :affiliations
   has_many :tags, as: :taggable
 
-  def addOrg?(org_uuid)
+  def addOrgId?(org_uuid)
+    return "already added" if self.affiliations.select{|x| x.organization_id == org_uuid}
     org = Organization.withId_(org_uuid).or_nil
     return "failed" if (org == nil)
     self.organizations << org
     true
+  end
+
+  def addOrg?(org)
+    addOrgId?(org.id)
   end
 
 

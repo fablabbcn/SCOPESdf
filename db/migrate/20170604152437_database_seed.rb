@@ -16,7 +16,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.datetime :remember_created_at
 
       ## Trackable
-      t.integer  :sign_in_count, :default => 0, :null => false
+      t.integer  :sign_in_count, default: 0, null: false
       t.datetime :current_sign_in_at
       t.datetime :last_sign_in_at
       t.inet   :current_sign_in_ip
@@ -47,7 +47,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
 
 
     create_table :organizations, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
-      t.string    :name, default: "", index: true, null: false
+      t.string    :name, default: "", null: false, index: true, unique: true
       t.string    :desc, default: "", null: false
       t.json      :social
 
@@ -66,8 +66,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.timestamps null: false
     end
 
-
-    create_table :affiliations do |t|
+    create_table :affiliations do |t| # association table
       t.uuid        :user_id,         index: true, null: false
       t.uuid        :organization_id, index: true, null: false
       t.timestamps null: false
@@ -76,6 +75,31 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
     add_foreign_key(:affiliations, :organizations, column: :organization_id, primary_key: :id)
 
 
+    create_table :lessons, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      # TODO - check me
+      # page 1
+      t.string      :name,       null: false, index: true
+      t.string      :topline,     default: "", null: false
+      t.string      :summary,     default: "", null: false
+      # user in tags
+      # place in tags
+      t.string      :learning_objectives, array: true # searchable? -- multiple added
+      t.string      :description, default: "", null: false
+      t.string      :assessment_criteria, default: "", null: false #maybe on lesson_tags??
+      t.string      :further_readings, array: true
+      # page 2 - details
+      # majority of these on lesson_tags table
+      t.integer     :difficulty_level # maybe lesson_tags -- mandatory?
+      # page 3 - instructions
+      # has many steps -- see table
+      # page 4 - outcomes
+      t.string        :outcome_links, array: true # json_ball and why?
+      # forking
+      t.uuid         :original_lesson, null: true, index: true
+      # state-machine
+      t.integer      :state, default: 1, null: false, index: true
+      t.timestamps   null: false
+    end
 
     create_table :lesson_tags do |t|
       t.uuid        :taggable_id, null: false
@@ -84,13 +108,32 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.timestamps  null:false
     end
     add_index :lesson_tags, [:taggable_type, :taggable_id]
+    add_foreign_key(:lesson_tags, :lessons, column: :lesson_id, primary_key: :id)
 
-
-    create_table :lessons, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
-      # TODO - finish me
-      t.timestamps null: false
+    create_table    :steps, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.uuid        :lesson_id, null: false, index: true
+      t.string      :name, null: false
+      t.string      :summary, default: "", null: false
+      t.integer     :duration, default: 0, null: false
+      t.json        :supporting_images
+      t.json        :materials          # are they searchable?
+      t.json        :tools              #links from fablabs.io ?
+      t.json        :supporting_material
+      t.integer     :step_number, null: false
+      t.timestamps  null: false
     end
+    add_foreign_key(:steps, :lessons, column: :lesson_id, primary_key: :id)
 
+
+
+
+
+    # Not Creator - Tag Tables:
+
+    create_table :teaching_ranges, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.integer   :range_start, default: 0, null: false
+      t.integer   :range_end, default: 0, null: false
+    end
 
   end
 end
