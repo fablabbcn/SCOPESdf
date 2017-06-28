@@ -35,7 +35,7 @@ class Organization < ApplicationRecord
 
   has_many :affiliations
   has_many :users, through: :affiliations
-  has_many :tags, as: :taggable
+  # has_many :tags, as: :taggable
 
   # TODO - add validations
   # TODO - check lonlat is real**  or handle...
@@ -57,6 +57,12 @@ class Organization < ApplicationRecord
 
   def self.getRangeByCurrent(range, currentlon, currentlat)
     Review.where("ST_Distance(lonlat, 'POINT(#{currentlon} #{currentlat})') < #{range}")
+  end
+
+
+  def associateWithLesson(lesson_id)
+    l = Lesson.find(lesson_id)
+    l.lesson_tags << LessonTag.new(taggable: self)
   end
 
 # ~~~~~~~~~~~~

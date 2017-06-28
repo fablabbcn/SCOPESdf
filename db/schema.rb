@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20170604152437) do
 
   create_table "lesson_tags", force: :cascade do |t|
     t.uuid     "taggable_id",   null: false
-    t.integer  "taggable_type", null: false
+    t.string   "taggable_type", null: false
     t.uuid     "lesson_id",     null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.string   "assessment_criteria", default: "", null: false
     t.string   "further_readings",                              array: true
     t.integer  "difficulty_level"
+    t.integer  "license",             default: 0,  null: false
     t.string   "outcome_links",                                 array: true
     t.uuid     "original_lesson"
     t.integer  "state",               default: 1,  null: false
@@ -90,6 +91,11 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.index ["lesson_id"], name: "index_steps_on_lesson_id", using: :btree
+  end
+
+  create_table "subjects", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.index ["name"], name: "index_subjects_on_name", using: :btree
   end
 
   create_table "teaching_ranges", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

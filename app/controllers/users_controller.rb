@@ -29,15 +29,13 @@ class UsersController < ApplicationController
     redirect_to users_path, :notice => "User deleted."
   end
 
-  # **************** Content
 
-  def set_and_authorize
-    @user = User.find(params[:id])
-    authorize @user
-  end
+
+
+  # Content ****************
 
   def affiliate_organization_id
-    set_and_authorize
+    authorize User              # todo - needs testing
     response = @user.addOrgId?(params[:organization_id])
     render :json => {status: response}, :status => 200
   end
@@ -49,7 +47,7 @@ class UsersController < ApplicationController
   private
 
   def secure_params
-    params.require(:user).permit(:role)
+    params.require(:user).permit(:role) #add other variables
   end
 
 end

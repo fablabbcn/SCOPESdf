@@ -90,6 +90,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       # page 2 - details
       # majority of these on lesson_tags table
       t.integer     :difficulty_level # maybe lesson_tags -- mandatory?
+      t.integer     :license,     default: 0, null: false
       # page 3 - instructions
       # has many steps -- see table
       # page 4 - outcomes
@@ -103,7 +104,8 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
 
     create_table :lesson_tags do |t|
       t.uuid        :taggable_id, null: false
-      t.integer     :taggable_type, null: false
+      t.string      :taggable_type, null: false
+      # potentially add type_enum for variation on models??
       t.uuid        :lesson_id, index: true, null: false
       t.timestamps  null:false
     end
@@ -128,11 +130,15 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
 
 
 
-    # Not Creator - Tag Tables:
+    # Tag Tables:
 
-    create_table :teaching_ranges, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+    create_table :teaching_ranges, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t| # lessons and creators
       t.integer   :range_start, default: 0, null: false
       t.integer   :range_end, default: 0, null: false
+    end
+
+    create_table :subjects, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.string    :name, null: false, index: true
     end
 
   end

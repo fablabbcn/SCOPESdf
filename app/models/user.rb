@@ -61,7 +61,9 @@ class User < ApplicationRecord
 
   has_many :affiliations
   has_many :organizations, through: :affiliations
-  has_many :tags, as: :taggable
+  # has_many :tags, as: :taggable
+
+  has_many :lesson_tags, as: :taggable
 
   def addOrgId?(org_uuid)
     return "already added" if self.affiliations.select{|x| x.organization_id == org_uuid}
