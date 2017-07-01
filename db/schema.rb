@@ -56,6 +56,15 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.index ["state"], name: "index_lessons_on_state", using: :btree
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.uuid     "lesson_id",  null: false
+    t.uuid     "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_likes_on_lesson_id", using: :btree
+    t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
+  end
+
   create_table "organizations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string    "name",                                                                             default: "", null: false
     t.string    "desc",                                                                             default: "", null: false
@@ -131,5 +140,7 @@ ActiveRecord::Schema.define(version: 20170604152437) do
   add_foreign_key "affiliations", "organizations"
   add_foreign_key "affiliations", "users"
   add_foreign_key "lesson_tags", "lessons"
+  add_foreign_key "likes", "lessons"
+  add_foreign_key "likes", "users"
   add_foreign_key "steps", "lessons"
 end

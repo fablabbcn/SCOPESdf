@@ -39,4 +39,13 @@ class Step < ApplicationRecord
   def next_step
     Step.where(lesson_id: lesson_id, step_number: step_number+1).first
   end
+
+  #~~~~ param helpers
+  def setArrayThroughSymbolWithTitle(symbol, array, title)
+    command = "#{symbol.to_s}="
+    self.send(command, { title => array })
+  end
+
+
+
 end

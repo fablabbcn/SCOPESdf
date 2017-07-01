@@ -90,6 +90,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       # page 2 - details
       # majority of these on lesson_tags table
       t.integer     :difficulty_level # maybe lesson_tags -- mandatory?
+      # TODO - mastery level... student vs educator
       t.integer     :license,     default: 0, null: false
       # page 3 - instructions
       # has many steps -- see table
@@ -127,6 +128,13 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
     add_foreign_key(:steps, :lessons, column: :lesson_id, primary_key: :id)
 
 
+    create_table    :likes do |t|
+      t.uuid        :lesson_id, null: false, index: true
+      t.uuid        :user_id, null: false, index: true
+      t.timestamps  null: false
+    end
+    add_foreign_key(:likes, :lessons, column: :lesson_id, primary_key: :id)
+    add_foreign_key(:likes, :users, column: :user_id, primary_key: :id)
 
 
 
