@@ -9,6 +9,11 @@ Rails.application.routes.draw do
 
 
 
+  get 'file_form'         => 'visitors#form'
+  post 'file_upload'      => 'visitors#file_form_upload'
+
+
+
   post 'users/affiliate' => 'users#affiliate_organization_id'
 
 end

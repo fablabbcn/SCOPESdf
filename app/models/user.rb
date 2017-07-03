@@ -14,6 +14,7 @@
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
 #  name                   :string           default(""), not null
+#  avatar                 :string           default(""), not null
 #  role                   :integer          default("user"), not null
 #  avatar_url             :string
 #  bio                    :string           default(""), not null
@@ -29,6 +30,9 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
   after_initialize :set_default_role, :if => :new_record?
   before_create :set_default_notifications, :if => :new_record?
+
+
+  mount_uploader :avatar, AvatarUploader
 
 
   def set_default_role

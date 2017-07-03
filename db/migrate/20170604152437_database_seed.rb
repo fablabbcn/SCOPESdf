@@ -35,6 +35,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
 
       ## SCOPES
       t.string    :name, default: "", null: false
+      t.string    :avatar, default: "", null: false
       t.integer   :role, default: 0, null: false
       t.string    :avatar_url
       t.string    :bio, default: "", null:  false

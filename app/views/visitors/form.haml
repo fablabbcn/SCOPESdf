@@ -1,0 +1,16 @@
+-#= form_tag("/file_upload", method: "post") do
+-#  = label_tag(:q, "Search for:")
+-#  = text_field_tag(:q)
+-#  = file_field :avatar
+-#  = submit_tag("Submit")
+
+
+-#= form_tag("/file_upload", method: "post", multipart: true) do
+-#  = file_field_tag 'avatar'
+-#= form_for @user do |f|
+-#  = f.file_field :avatar
+
+
+= form_tag("/file_upload", method: "post", multipart: true) do
+  = file_field_tag 'avatar'
+  = submit_tag("Submit")

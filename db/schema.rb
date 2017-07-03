@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.string   "name",                   default: "", null: false
+    t.string   "avatar",                 default: "", null: false
     t.integer  "role",                   default: 0,  null: false
     t.string   "avatar_url"
     t.string   "bio",                    default: "", null: false
