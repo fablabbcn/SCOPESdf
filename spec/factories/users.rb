@@ -14,9 +14,8 @@
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
 #  name                   :string           default(""), not null
-#  avatar                 :string           default(""), not null
+#  avatar                 :string           default("")
 #  role                   :integer          default("user"), not null
-#  avatar_url             :string
 #  bio                    :string           default(""), not null
 #  kind                   :integer          default(0), not null
 #  phone_number           :string

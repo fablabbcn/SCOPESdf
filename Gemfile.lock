@@ -432,6 +432,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fog
+  fog-aws
   foreman
   haml
   high_voltage

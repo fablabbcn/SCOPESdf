@@ -31,7 +31,7 @@ gem 'rb-readline'
 gem 'carrierwave', '~> 1.0' # file form
 gem 'mini_magick'
 gem 'fog'
-require 'fog/aws'
+gem 'fog-aws'
 
 group :development do
   gem 'web-console'
