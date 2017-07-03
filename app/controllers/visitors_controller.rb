@@ -7,7 +7,6 @@ class VisitorsController < ApplicationController
 
   def file_form_upload
     uploaded = file_params[:avatar]
-    puts "this"
     puts uploaded
     u = User.first
     u.attributes = file_params
