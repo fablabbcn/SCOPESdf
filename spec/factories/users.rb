@@ -21,6 +21,7 @@
 #  phone_number           :string
 #  social                 :json
 #  settings               :json             not null
+#  primary_org            :uuid             not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

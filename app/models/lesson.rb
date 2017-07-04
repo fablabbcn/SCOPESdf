@@ -94,6 +94,7 @@ class Lesson < ApplicationRecord
   end
 
 
+
   def setSubject(subject)
     Subject.setSubjectForLesson(self.id, subject)
   end

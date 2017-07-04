@@ -18,11 +18,13 @@ ActiveRecord::Schema.define(version: 20170604152437) do
   enable_extension "uuid-ossp"
 
   create_table "affiliations", force: :cascade do |t|
-    t.uuid     "user_id",         null: false
-    t.uuid     "organization_id", null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.uuid     "user_id",                         null: false
+    t.uuid     "organization_id",                 null: false
+    t.boolean  "primary",         default: false, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["organization_id"], name: "index_affiliations_on_organization_id", using: :btree
+    t.index ["primary"], name: "index_affiliations_on_primary", using: :btree
     t.index ["user_id"], name: "index_affiliations_on_user_id", using: :btree
   end
 
@@ -69,8 +71,10 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.string    "name",                                                                             default: "", null: false
     t.string    "desc",                                                                             default: "", null: false
     t.json      "social"
-    t.integer   "teaching_range_start",                                                             default: 0,  null: false
-    t.integer   "teaching_range_end",                                                               default: 0,  null: false
+    t.integer   "teaching_range_start",                                                             default: 0
+    t.integer   "teaching_range_end",                                                               default: 0
+    t.string    "contact_email"
+    t.integer   "state",                                                                            default: 0,  null: false
     t.string    "address_line1"
     t.string    "address_line2"
     t.string    "address_line3"
@@ -79,12 +83,14 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.string    "region"
     t.string    "post_code"
     t.string    "country"
-    t.geography "lonlat",               limit: {:srid=>4326, :type=>"st_point", :geographic=>true},              null: false
+    t.geography "lonlat",               limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
     t.datetime  "created_at",                                                                                    null: false
     t.datetime  "updated_at",                                                                                    null: false
+    t.index ["contact_email"], name: "index_organizations_on_contact_email", using: :btree
     t.index ["lonlat"], name: "index_organizations_on_lonlat", using: :btree
     t.index ["name"], name: "index_organizations_on_name", using: :btree
     t.index ["post_code"], name: "index_organizations_on_post_code", using: :btree
+    t.index ["state"], name: "index_organizations_on_state", using: :btree
   end
 
   create_table "steps", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -124,17 +130,18 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.string   "name",                   default: "", null: false
-    t.string   "avatar",                 default: "", null: false
+    t.string   "avatar",                 default: ""
     t.integer  "role",                   default: 0,  null: false
-    t.string   "avatar_url"
     t.string   "bio",                    default: "", null: false
     t.integer  "kind",                   default: 0,  null: false
     t.string   "phone_number"
     t.json     "social"
     t.json     "settings",                            null: false
+    t.uuid     "primary_org",                         null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", using: :btree
+    t.index ["primary_org"], name: "index_users_on_primary_org", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
   end
 

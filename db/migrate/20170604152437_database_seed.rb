@@ -42,6 +42,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.string    :phone_number
       t.json      :social
       t.json      :settings, null: false           # settings are not searchable and do not need any indexing :3 also this makes them easier to be editable
+      t.uuid  :primary_org, null: false, index: true
       t.timestamps null: false
     end
 
@@ -51,8 +52,11 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.string    :desc, default: "", null: false
       t.json      :social
 
-      t.integer   :teaching_range_start, default: 0, null: false
-      t.integer   :teaching_range_end, default: 0, null: false
+      t.integer   :teaching_range_start, default: 0, null: true
+      t.integer   :teaching_range_end, default: 0, null: true
+
+      t.string    :contact_email, null: true, index: true
+      t.integer   :state, default: 0, null: false, index: true
 
       t.string    :address_line1
       t.string    :address_line2
@@ -62,13 +66,14 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.string    :region
       t.string    :post_code, index: true
       t.string    :country
-      t.st_point  :lonlat, geographic: true, null: false, index: true, using: :gist
+      t.st_point  :lonlat, geographic: true, null: true, index: true, using: :gist
       t.timestamps null: false
     end
 
     create_table :affiliations do |t| # association table
       t.uuid        :user_id,         index: true, null: false
       t.uuid        :organization_id, index: true, null: false
+      t.boolean     :primary, index: true, default: false, null: false
       t.timestamps null: false
     end
     add_foreign_key(:affiliations, :users, column: :user_id, primary_key: :id)

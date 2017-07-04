@@ -1,4 +1,4 @@
-class CreateSeedService
+class SeedService
   class << self
     def l_tags
       TeachingRange.seed
@@ -23,7 +23,7 @@ class CreateSeedService
         x.country = "USA"
         x.setPoints(40.748440,-73.985643)
       end
-      User.first.addOrgId?(Organization.first.id)
+      # User.first.addOrgId?(Organization.first.id)
     end
 
     def lesson
