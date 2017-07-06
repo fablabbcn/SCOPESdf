@@ -9,7 +9,7 @@
 #  teaching_range_start :integer          default("start_k")
 #  teaching_range_end   :integer          default("end_k")
 #  contact_email        :string
-#  state                :integer          default(1), not null
+#  state                :integer          default("unvalidated"), not null
 #  address_line1        :string
 #  address_line2        :string
 #  address_line3        :string

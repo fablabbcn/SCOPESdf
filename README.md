@@ -63,6 +63,7 @@ Respones: "true" ( new association made), "already added" ( assocaition already 
 
 
 
+
 #### _Lessons_
 
 ##### Creation doc: '++'
@@ -72,6 +73,11 @@ Controller: ``lessons#create``
 Request Structure: `` "lesson": { "attribute_name": value }  ``
 Sample Structure: See `` "lesson": { "name": "Name here" } `` -- minimum  see paw for more & ``lesson_params``
 Backend Flow: Lesson(validated_params).save, and associating user with user.
+Notes:
+
+Modal flow accepts user_email, if doesnt exists.. invite them
+
+
 
 ##### Update doc: '++'
 UseCase: Checks to see if user associated with given lesson id, then updates
@@ -88,6 +94,25 @@ Controller: ``lessons#add_step``
 Request Structure: `` "steps": [ {"attribute_name": value }, ... ] `` 
 Sample Structure: See paw - and note structure of JSON attributes accepting arrays in their place
 Backend Flow: Pundit - lesson policy to ensure author, set attributes. steps are appended in the order they are given ( todo - can they be re-ordered? ) to the lesson UUID given
+
+
+
+
+### Search: '++'
+UserCase: To Search Objects
+Endpoint: `` POST search/:entity `` where ``:entity`` is the name of the model you are querying
+Controller: ``search#main``
+Request Structure:
+```json
+ "search": {
+     "filter": {
+       "name": "VALUE"          // See controller for acceptable keys in filter
+     },
+     "format_response": "VALUE" // See controller for acceptable value in format_response
+   }
+ 
+```
+
 
 
 

@@ -13,15 +13,12 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
+#  role                   :integer          default("user"), not null
 #  name                   :string           default(""), not null
 #  avatar                 :string           default("")
-#  role                   :integer          default("user"), not null
 #  bio                    :string           default(""), not null
-#  kind                   :integer          default(0), not null
-#  phone_number           :string
 #  social                 :json
 #  settings               :json             not null
-#  primary_org            :uuid             not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -47,11 +44,9 @@ class User < ApplicationRecord
 
   # TODO - add validations
 
-  # TODO - validates presence of at least one association
+  # TODO - validates presence of at least one association which is primary!!!
 
   # TODO - ATTR: add active / inactive
-
-  # TODO - https://github.com/carrierwaveuploader/carrierwave ?? for files?? or just FOG?
 
   # TODO - other interests, what do you do, subjects, skills required... talk with GUI
 
@@ -63,23 +58,76 @@ class User < ApplicationRecord
 
 
 
-  has_many :affiliations
+  has_many :affiliations, dependent: :destroy
   has_many :organizations, through: :affiliations
   # has_many :tags, as: :taggable
 
-  has_many :lesson_tags, as: :taggable
+  has_many :user_tags, as: :taggable
 
-  def addOrgId?(org_uuid)
-    return "already added" if self.affiliations.select{|x| x.organization_id == org_uuid}
+  def addOrg_id(org_uuid, primary)
+    # org = Organization.withId_(org_uuid).or_nil
+    # return "failed" if (org == nil)
+    #
+    # affiliation = Affiliation.where(user_id: self.id, organization_id: org_uuid, primary: primary)
+    # return "already added" if affiliation.present? && !primary
+    #
+    # already_primary = Affiliation.where(user_id: self.id, organization_id: org_uuid, primary: false)
+    #
+    # if primary || self.organizations.count == 0
+    #   removePrimaryOrg
+    #   Affiliation.new(user_id: self.id, primary: true, organization_id: org_uuid).save
+    # elsif already_primary.present? && primary
+    #   affiliation = already_primary.first
+    #   affiliation[:primary] = true
+    #   affiliation.save
+    # else
+    #   self.organizations << org
+    # end
+
+
+
     org = Organization.withId_(org_uuid).or_nil
     return "failed" if (org == nil)
-    self.organizations << org
-    true
+
+    unless Affiliation.exists?(user_id: self.id, organization_id: org.id)
+      af = Affiliation.new(user_id: self.id, organization_id: org.id)
+      af.save
+    end
+
+    if self.affiliations.count == 1 || primary
+      removePrimaryOrg
+      x = Affiliation.where(user_id: self.id, organization_id: org.id).first
+      x.primary = true
+      x.save!
+    end
+
+    
+    # if primary is true  OR count == 0, remove all primaries and set this
+    # else just continu
   end
 
-  def addOrg?(org)
-    addOrgId?(org.id)
+
+  def addOrg(org, primary)
+    addOrg_id(org.id, primary)
   end
+  def primaryOrg
+    Affiliation.where(user_id: self.id, primary: true).first.organization
+  end
+  def removePrimaryOrg
+    if self.affiliations.count > 0
+      self.affiliations.map{ |af| af[:primary] = false; af.save!}
+      # false  # cannot remove primary if just one organization
+    end
+  end
+  def removeOrg(org)
+    org = Organization.find(org.id)
+    return false if self.primaryOrg == org # cannot remove if just one
+    Affiliation.where(user_id: self.id, organization_id: org.id).destroy_all
+  end
+
+  private
+
+
 
 
 

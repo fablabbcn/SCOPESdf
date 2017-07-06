@@ -13,15 +13,12 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
+#  role                   :integer          default("user"), not null
 #  name                   :string           default(""), not null
 #  avatar                 :string           default("")
-#  role                   :integer          default("user"), not null
 #  bio                    :string           default(""), not null
-#  kind                   :integer          default(0), not null
-#  phone_number           :string
 #  social                 :json
 #  settings               :json             not null
-#  primary_org            :uuid             not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

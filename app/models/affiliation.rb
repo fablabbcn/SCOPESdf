@@ -14,7 +14,8 @@ class Affiliation < ApplicationRecord
   belongs_to :user
   belongs_to :organization
 
-  # TODO - validates uniqueness on compound key?.. should add?
+  validates_uniqueness_of :user_id, :scope => :organization_id
+
   # TODO - ATTR: add active / inactive
 
 end

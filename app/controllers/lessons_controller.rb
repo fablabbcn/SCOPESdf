@@ -5,15 +5,41 @@ class LessonsController < ApplicationController
   skip_before_filter :verify_authenticity_token # REMOVE THIS OBVIOUSLY
 
   def create
-    @lesson =  Lesson.new(lesson_params)
+    @lesson =  Lesson.new(lesson_params[:lesson])
     response = @lesson.save
     @lesson.reload
-    # uncomment below for functionality
-    # response = response && @lesson..lesson_tags << LessonTag.new(taggable: @current_user) # adding author
-    # copy and do the same for organization after validation
+
+
+    SeedService.admin # remove me      <<<<<<<    Get from current user
+    user_id = User.first.id # faked...
+    @lesson.addAuthor(user_id)
+
+
+
+    # TODO - see if we differentiate between authors and contributors
+    lesson_params[:users].map{ |x|
+      #add author or invite user
+      if User.exists?(email: x)
+        User.where(email: x).map{ |u|
+          @lesson.addAuthor(u.id)
+        }
+      else
+        InviteUserService.invite(x) # TODO - see how to handle lesson
+      end
+    }
+
 
     @lesson.destroy unless response # make sure added author, unless fail... update status
     # TODO - add organization
+
+    SeedService.place # remove me      <<<<<<<    Get from place given
+    org_id = Organization.first.id # faked...
+    puts @lesson.getAuthors_id.map{ |x| x.organizations }
+
+
+
+    # lesson_user_params.map{ |x| puts x}
+
     render :json => {status: response, lesson: @lesson.id}, :status => 200
   end
   def update
@@ -50,7 +76,12 @@ class LessonsController < ApplicationController
 
   private
   def lesson_params
-    params.require(:lesson).permit(:name, :topline, :summary, :description, :assessment_criteria, :difficulty_level, :state, :learning_objectives =>[], :further_readings =>[], :outcome_links =>[])
+    returnable = params.require(:lesson).permit(:name, :topline, :summary, :description, :assessment_criteria, :difficulty_level, :state, :other_users => [], :learning_objectives =>[], :further_readings =>[], :outcome_links =>[])
+    other_users = returnable.delete(:other_users)
+    {lesson: returnable, users: other_users}
+  end
+  def lesson_user_params
+    params.require(:lesson).permit(:user=>[])
   end
   def step_params
     params.permit(steps: [ :name, :summary, :duration, :supporting_images =>[], :materials   => [], :tools => [], :supporting_material => [],  ]) #TODO - supporting materials vs materials... add materials

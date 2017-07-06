@@ -16,4 +16,10 @@ Rails.application.routes.draw do
 
   post 'users/affiliate' => 'users#affiliate_organization_id'
 
+
+  get 'api/users/exists'   =>  'secured_api#user_presence'
+
+  post 'search/:entity', :to => 'search#main', :as => :search
+
+
 end

@@ -33,19 +33,18 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-      ## SCOPES
+      t.integer   :role, default: 0, null: false
+      ## SCOPES p1
       t.string    :name, default: "", null: false
       t.string    :avatar, default: ""
-      t.integer   :role, default: 0, null: false
+
+      # p2
+
       t.string    :bio, default: "", null:  false
-      t.integer   :kind, default: 0, null:  false
-      t.string    :phone_number
       t.json      :social
       t.json      :settings, null: false           # settings are not searchable and do not need any indexing :3 also this makes them easier to be editable
-      t.uuid  :primary_org, null: false, index: true
       t.timestamps null: false
     end
-
 
     create_table :organizations, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       t.string    :name, default: "", null: false, index: true, unique: true
@@ -94,8 +93,6 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.string      :further_readings, array: true
       # page 2 - details
       # majority of these on lesson_tags table
-      t.integer     :difficulty_level # maybe lesson_tags -- mandatory?
-      # TODO - mastery level... student vs educator
       t.integer     :license,     default: 0, null: false
       # page 3 - instructions
       # has many steps -- see table
@@ -108,15 +105,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.timestamps   null: false
     end
 
-    create_table :lesson_tags do |t|
-      t.uuid        :taggable_id, null: false
-      t.string      :taggable_type, null: false
-      # potentially add type_enum for variation on models??
-      t.uuid        :lesson_id, index: true, null: false
-      t.timestamps  null:false
-    end
-    add_index :lesson_tags, [:taggable_type, :taggable_id]
-    add_foreign_key(:lesson_tags, :lessons, column: :lesson_id, primary_key: :id)
+
 
     create_table    :steps, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       t.uuid        :lesson_id, null: false, index: true
@@ -143,16 +132,92 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
 
 
 
-    # Tag Tables:
 
-    create_table :teaching_ranges, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t| # lessons and creators
+
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # Tag Tables -> Parents
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    create_table :lesson_tags do |t|
+      t.uuid        :taggable_id, null: false
+      t.string      :taggable_type, null: false
+      # potentially add type_enum for variation on models??
+      t.uuid        :lesson_id, index: true, null: false
+      t.timestamps  null:false
+    end
+    add_index :lesson_tags, [:taggable_type, :taggable_id]
+    add_foreign_key(:lesson_tags, :lessons, column: :lesson_id, primary_key: :id)
+
+    create_table :user_tags do |t|
+      t.uuid        :taggable_id, null: false
+      t.string      :taggable_type, null: false
+      t.uuid        :user_id, index: true, null: false
+      t.timestamps  null:false
+    end
+    add_index :user_tags, [:taggable_type, :taggable_id]
+    add_foreign_key(:user_tags, :users, column: :user_id, primary_key: :id)
+
+    create_table :org_tags do |t|
+      t.uuid        :taggable_id, null: false
+      t.string      :taggable_type, null: false
+      t.uuid        :organization_id, index: true, null: false
+      t.timestamps  null:false
+    end
+    add_index :org_tags, [:taggable_type, :taggable_id]
+    add_foreign_key(:org_tags, :organizations, column: :organization_id, primary_key: :id)
+
+
+    create_table  :skills do |t|    # exclusive to skills_tags tag
+      t.string    :name, null: false, index: true
+    end
+    create_table  :skill_tags do |t|
+      t.uuid        :taggable_id, null: false
+      t.string      :taggable_type, null: false
+      t.integer     :skill_id, index: true, null: false
+      t.integer     :level, null: false, index: true
+    end
+    add_index :skill_tags, [:taggable_type, :taggable_id]
+    add_foreign_key(:skill_tags, :skills, column: :skill_id, primary_key: :id)
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # Tag Tables -> Children
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    create_table  :teaching_ranges, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t| # lessons and creators
       t.integer   :range_start, default: 0, null: false
       t.integer   :range_end, default: 0, null: false
     end
 
-    create_table :subjects, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+    create_table  :subjects, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       t.string    :name, null: false, index: true
     end
+
+    create_table  :involvements, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.string    :name, null: false, index: true
+    end
+
+    create_table  :other_interests, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.string    :name, null: false, index: true
+    end
+
+    create_table  :difficulty_levels, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.integer    :level, default: 0, null: false, index: true
+      t.integer     :metric, default: 0, null: false, index: true
+    end
+
+    create_table  :invited_users, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.string      :email, null: false, index: true
+      t.string      :invite_link, null: false, index: true
+      t.datetime    :confirmed_at, null: true
+      t.datetime    :created_at, null: false
+    end
+  
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 
   end
 end

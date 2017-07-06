@@ -1,16 +1,23 @@
 class SeedService
   class << self
-    def l_tags
+    def essentials
       TeachingRange.seed
-      Subject.new(name:"Technology").save!
+      DifficultyLevel.seed
+    end
 
+    def l_tags
+      self.essentials
+      Subject.new(name:"Technology").save!
     end
     def admin
       user = User.find_or_create_by!(email: Rails.application.secrets.admin_email) do |user|
           user.password = Rails.application.secrets.admin_password
           user.password_confirmation = Rails.application.secrets.admin_password
           user.admin!
-        end
+      end
+      self.place()
+      user.addOrg(Organization.first, false)
+      user
     end
     def place
       place = Organization.find_or_create_by!(name: "Fab Kindergarden") do |x|

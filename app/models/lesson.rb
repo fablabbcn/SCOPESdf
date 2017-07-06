@@ -10,7 +10,6 @@
 #  description         :string           default(""), not null
 #  assessment_criteria :string           default(""), not null
 #  further_readings    :string           is an Array
-#  difficulty_level    :integer
 #  license             :integer          default(0), not null
 #  outcome_links       :string           is an Array
 #  original_lesson     :uuid
@@ -28,7 +27,6 @@ class Lesson < ApplicationRecord
   # TODO - top right buttons..
   # TODO - activity feed == history of lesson_tags
 
-  # TODO - mastery level... student vs educator
   # TODO - assessment criteria - input field and file format... ( assessment_criteria_docs :: JSON )
 
 
@@ -36,14 +34,12 @@ class Lesson < ApplicationRecord
   def author_exists         # TODO - validate existence of user from lesson_tags
     # not saved yet... so checking against query doesn't work *
   end
-
   #   validates :organization_exists
   def organization_exists   # TODO - validate existence of organization from lesson_tags
     # not saved yet... so checking against query doesn't work *
   end
 
 
-  # Content ****************
 
   def totalDuration
     sum = 0
@@ -53,7 +49,7 @@ class Lesson < ApplicationRecord
 
 
   has_many :steps
-  has_many :lesson_tags
+  has_many :lesson_tags, dependent: :destroy
 
   # TODO - search for filter on lesson_tags
 
@@ -64,6 +60,9 @@ class Lesson < ApplicationRecord
   end
   def getAuthors_id
     self.lesson_tags.where(taggable_type: "User").map{|x| y = x.taggable; y.id}
+  end
+  def getAuthors
+    self.lesson_tags.where(taggable_type: "User").map{|x| y = x.taggable; y}
   end
   def removeAuthor(user_uuid)
     self.lesson_tags.where(taggable_type: "User", taggable_id: user_uuid).destroy_all
