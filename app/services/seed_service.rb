@@ -13,11 +13,18 @@ class SeedService
       user = User.find_or_create_by!(email: Rails.application.secrets.admin_email) do |user|
           user.password = Rails.application.secrets.admin_password
           user.password_confirmation = Rails.application.secrets.admin_password
-          user.admin!
+          user.user!
       end
       self.place()
-      user.addOrg(Organization.first, false)
+      ##user.addOrg(Organization.first, false)
       user
+    end
+    def user
+      user = User.find_or_create_by!(email: "otherUser@gmail.com") do |user|
+        user.password = "somepassword"
+        user.password_confirmation = "somepassword"
+        user.user!
+      end
     end
     def place
       place = Organization.find_or_create_by!(name: "Fab Kindergarden") do |x|

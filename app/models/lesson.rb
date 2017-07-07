@@ -2,20 +2,21 @@
 #
 # Table name: lessons
 #
-#  id                  :uuid             not null, primary key
-#  name                :string           not null
-#  topline             :string           default(""), not null
-#  summary             :string           default(""), not null
-#  learning_objectives :string           is an Array
-#  description         :string           default(""), not null
-#  assessment_criteria :string           default(""), not null
-#  further_readings    :string           is an Array
-#  license             :integer          default(0), not null
-#  outcome_links       :string           is an Array
-#  original_lesson     :uuid
-#  state               :integer          default("draft"), not null
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
+#  id                        :uuid             not null, primary key
+#  name                      :string           default(""), not null
+#  topline                   :string           default(""), not null
+#  summary                   :string           default(""), not null
+#  learning_objectives       :string           is an Array
+#  description               :string           default(""), not null
+#  assessment_criteria       :string           default(""), not null
+#  assessment_criteria_files :json
+#  further_readings          :string           is an Array
+#  license                   :integer          default(0), not null
+#  outcome_links             :string           is an Array
+#  original_lesson           :uuid
+#  state                     :integer          default("draft"), not null
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
 #
 
 class Lesson < ApplicationRecord
@@ -43,13 +44,6 @@ class Lesson < ApplicationRecord
 
 
 
-  def totalDuration
-    sum = 0
-    self.steps.map{|x| sum += x.duration}
-    sum
-  end
-
-
   has_many :steps
   has_many :lesson_tags, dependent: :destroy
 
@@ -69,6 +63,9 @@ class Lesson < ApplicationRecord
   def removeAuthor(user_uuid)
     self.lesson_tags.where(taggable_type: "User", taggable_id: user_uuid).destroy_all
   end
+  def hasAuthor?(u_obj)
+    self.lesson_tags.where(taggable_type: "User", taggable_id: u_obj.id).map{|x| y = x.taggable; y if u_obj.id == y.id }.compact.count > 0 ? true : false
+  end
 
 
   def addOrg(organization_uuid)
@@ -77,6 +74,9 @@ class Lesson < ApplicationRecord
   end
   def getOrgs_id
     self.lesson_tags.where(taggable_type: "Organization").map{|x| y = x.taggable; y.id}
+  end
+  def getOrgs
+    self.lesson_tags.where(taggable_type: "Organization").map{|x| y = x.taggable; y}
   end
   def removeOrg(organization_uuid)
     self.lesson_tags.where(taggable_type: "Organization", taggable_id: organization_uuid).destroy_all
@@ -126,11 +126,38 @@ class Lesson < ApplicationRecord
   end
 
 
+  mount_uploaders :assessment_criteria_files, SupportingFileUploader
+
+  def addFiles(file, sym)
+    returnable =""
+    puts file
+    case sym
+      when :assessment_criteria
+        self.assessment_criteria_files = file
+        returnable = self.assessment_criteria_files.map{|x| x.url}
+        self.save!
+    end
+    returnable
+  end
+  def removeFiles(sym)
+    returnable = false
+    case sym
+      when :assessment_criteria
+        self.remove_assessment_criteria_files!
+        self.save!
+        returnable = true
+    end
+    returnable
+  end
 
 
   # todo - make search ( for visible only )
 
   # todo - add accessors to all of the children
+
+
+
+  # sole viewing data --
 
   def furtherReadings_data
     self.further_readings.map{ |x|
@@ -143,6 +170,12 @@ class Lesson < ApplicationRecord
         { url: x }
       end
     }
+  end
+
+  def totalDuration
+    sum = 0
+    self.steps.map{|x| sum += x.duration}
+    sum
   end
 
 

@@ -82,14 +82,15 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
     create_table :lessons, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       # TODO - check me
       # page 1
-      t.string      :name,       null: false, index: true
+      t.string      :name,        default: "", null: false, index: true
       t.string      :topline,     default: "", null: false
       t.string      :summary,     default: "", null: false
       # user in tags
       # place in tags
-      t.string      :learning_objectives, array: true # searchable? -- multiple added
+      t.string      :learning_objectives, array: true # searchable?
       t.string      :description, default: "", null: false
       t.string      :assessment_criteria, default: "", null: false #maybe on lesson_tags??
+      t.json        :assessment_criteria_files
       t.string      :further_readings, array: true
       # page 2 - details
       # majority of these on lesson_tags table

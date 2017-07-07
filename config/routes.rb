@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'lessons'            => 'lessons#create'
   put  'lessons/:id'        => 'lessons#update'
   post 'lessons/:id/steps'   => 'lessons#add_step'
+  post 'lessons/:id/file/:atr', to: 'lessons#fileUpload', as: :lesson_file
 
 
 

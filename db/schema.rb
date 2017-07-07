@@ -60,19 +60,20 @@ ActiveRecord::Schema.define(version: 20170604152437) do
   end
 
   create_table "lessons", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "name",                             null: false
-    t.string   "topline",             default: "", null: false
-    t.string   "summary",             default: "", null: false
-    t.string   "learning_objectives",                           array: true
-    t.string   "description",         default: "", null: false
-    t.string   "assessment_criteria", default: "", null: false
-    t.string   "further_readings",                              array: true
-    t.integer  "license",             default: 0,  null: false
-    t.string   "outcome_links",                                 array: true
+    t.string   "name",                      default: "", null: false
+    t.string   "topline",                   default: "", null: false
+    t.string   "summary",                   default: "", null: false
+    t.string   "learning_objectives",                                 array: true
+    t.string   "description",               default: "", null: false
+    t.string   "assessment_criteria",       default: "", null: false
+    t.json     "assessment_criteria_files"
+    t.string   "further_readings",                                    array: true
+    t.integer  "license",                   default: 0,  null: false
+    t.string   "outcome_links",                                       array: true
     t.uuid     "original_lesson"
-    t.integer  "state",               default: 1,  null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.integer  "state",                     default: 1,  null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.index ["name"], name: "index_lessons_on_name", using: :btree
     t.index ["original_lesson"], name: "index_lessons_on_original_lesson", using: :btree
     t.index ["state"], name: "index_lessons_on_state", using: :btree
