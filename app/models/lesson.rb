@@ -19,6 +19,8 @@
 #
 
 class Lesson < ApplicationRecord
+  enum state: [:hidden, :draft, :visible]
+
 
   # TODO - validate publishing only when all content is set
 
@@ -125,13 +127,23 @@ class Lesson < ApplicationRecord
 
 
 
-  enum state: [:hidden, :draft, :visible]
-
 
   # todo - make search ( for visible only )
 
   # todo - add accessors to all of the children
 
+  def furtherReadings_data
+    self.further_readings.map{ |x|
+      begin
+        lt = LinkThumbnailer.generate(x)
+        image = VideoThumb::get(x)
+        image ||= lt.images.first.src.to_s
+        { url: x, title: lt.title, description: lt.description, thumnail: image }
+      rescue LinkThumbnailer::Exceptions => e
+        { url: x }
+      end
+    }
+  end
 
 
 end

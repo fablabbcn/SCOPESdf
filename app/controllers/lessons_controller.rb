@@ -32,9 +32,16 @@ class LessonsController < ApplicationController
     @lesson.destroy unless response # make sure added author, unless fail... update status
     # TODO - add organization
 
-    SeedService.place # remove me      <<<<<<<    Get from place given
-    org_id = Organization.first.id # faked...
-    puts @lesson.getAuthors_id.map{ |x| x.organizations }
+    #SeedService.place # remove me      <<<<<<<    Get from place given
+    org = Organization.first # faked...
+    orgs = []
+    @lesson.getAuthors.map{ |x| puts x; orgs = (orgs << x.organizations.to_a).flatten! }
+    # puts "sdf"
+    # puts orgs.inspect
+    ## make sure given location is in group
+    exists = orgs.any? {|x| x.id == org.id }
+    response = response && exists
+
 
 
 

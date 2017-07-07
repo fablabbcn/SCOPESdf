@@ -33,6 +33,9 @@ gem 'mini_magick'
 gem 'fog'
 gem 'fog-aws'
 
+gem 'link_thumbnailer'
+gem 'video_thumb'
+
 group :development do
   gem 'web-console'
   gem 'listen', '~> 3.0.5'

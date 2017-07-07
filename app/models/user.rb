@@ -65,27 +65,6 @@ class User < ApplicationRecord
   has_many :user_tags, as: :taggable
 
   def addOrg_id(org_uuid, primary)
-    # org = Organization.withId_(org_uuid).or_nil
-    # return "failed" if (org == nil)
-    #
-    # affiliation = Affiliation.where(user_id: self.id, organization_id: org_uuid, primary: primary)
-    # return "already added" if affiliation.present? && !primary
-    #
-    # already_primary = Affiliation.where(user_id: self.id, organization_id: org_uuid, primary: false)
-    #
-    # if primary || self.organizations.count == 0
-    #   removePrimaryOrg
-    #   Affiliation.new(user_id: self.id, primary: true, organization_id: org_uuid).save
-    # elsif already_primary.present? && primary
-    #   affiliation = already_primary.first
-    #   affiliation[:primary] = true
-    #   affiliation.save
-    # else
-    #   self.organizations << org
-    # end
-
-
-
     org = Organization.withId_(org_uuid).or_nil
     return "failed" if (org == nil)
 
@@ -101,12 +80,7 @@ class User < ApplicationRecord
       x.save!
     end
 
-    
-    # if primary is true  OR count == 0, remove all primaries and set this
-    # else just continu
   end
-
-
   def addOrg(org, primary)
     addOrg_id(org.id, primary)
   end

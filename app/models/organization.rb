@@ -36,7 +36,7 @@ class Organization < ApplicationRecord
 
   enum state: [:unvalidated, :validated]
 
-  has_many :affiliations
+  has_many :affiliations, dependent: :destroy
   has_many :users, through: :affiliations
   # has_many :tags, as: :taggable
 
