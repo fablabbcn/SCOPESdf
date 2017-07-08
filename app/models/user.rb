@@ -170,7 +170,8 @@ class User < ApplicationRecord
      x.destroy if string.downcase == x.skill.name
     } if skill.present?
   end
-  
+
+
 
   private
 
