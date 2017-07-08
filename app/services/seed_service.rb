@@ -3,6 +3,9 @@ class SeedService
     def essentials
       TeachingRange.seed
       DifficultyLevel.seed
+      Subject.seed
+      Involvement.seed
+      Skill.seed
     end
 
     def l_tags

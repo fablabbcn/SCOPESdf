@@ -208,16 +208,18 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.integer     :metric, default: 0, null: false, index: true
     end
 
+  
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
     create_table  :invited_users, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       t.string      :email, null: false, index: true
       t.string      :invite_link, null: false, index: true
       t.datetime    :confirmed_at, null: true
       t.datetime    :created_at, null: false
     end
-  
-
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 
   end

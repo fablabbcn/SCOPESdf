@@ -19,6 +19,9 @@ class UserTag < ApplicationRecord
 
   validates_uniqueness_of :taggable_id, :scope => [:taggable_type, :user_id]
 
-  # links to the following:
+  # Currently links to the following:
+  # Involvement
+  # Subject
+  # OtherInterests
 
 end

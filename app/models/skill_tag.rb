@@ -11,4 +11,17 @@
 
 class SkillTag < ApplicationRecord
 
+  belongs_to :taggable, polymorphic: true
+  belongs_to :skill
+  validates :taggable_id, presence: true
+  validates :taggable_type, presence: true
+
+  validates :skill_id, presence: true
+
+  validates_uniqueness_of :taggable_id, :scope => [:taggable_type, :skill_id]
+
+  # Currently links to the following:
+  #
+  #
+
 end

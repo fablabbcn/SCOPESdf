@@ -62,7 +62,12 @@ class User < ApplicationRecord
   has_many :organizations, through: :affiliations
   # has_many :tags, as: :taggable
 
-  has_many :user_tags, as: :taggable
+  has_many :user_tags, dependent: :destroy
+
+
+  has_many :skill_tags, as: :taggable
+
+
 
   def addOrg_id(org_uuid, primary)
     org = Organization.withId_(org_uuid).or_nil
@@ -98,6 +103,74 @@ class User < ApplicationRecord
     return false if self.primaryOrg == org # cannot remove if just one
     Affiliation.where(user_id: self.id, organization_id: org.id).destroy_all
   end
+
+
+  def setInvolvements(string_array)
+    string_array.map{ |n|
+      i = Involvement.find_or_create_by(name: n.downcase)
+      self.user_tags << UserTag.new(taggable: i)
+    }
+  end
+  def getInvolvements
+    self.user_tags.where(taggable_type: "Involvement").map{|x| y = x.taggable; y.name}
+  end
+  def removeInvolvement(string)
+    self.user_tags.where(taggable_type: "Involvement").map{ |x|y = x.taggable; x.destroy if string.downcase == y.name}
+  end
+
+
+  def setSubjects(string_array)
+    string_array.map{ |n|
+      s = Subject.find_or_create_by(name: n.downcase)
+      self.user_tags << UserTag.new(taggable: s)
+    }
+  end
+  def getSubjects
+    self.user_tags.where(taggable_type: "Subject").map{|x| y = x.taggable; y.name}
+  end
+  def removeSubject(string)
+    self.user_tags.where(taggable_type: "Subject").map{ |x|y = x.taggable; x.destroy if string.downcase == y.name}
+  end
+
+
+  def setOtherInterests(string_array)
+    string_array.map{ |n|
+      oi = OtherInterest.find_or_create_by(name: n.downcase)
+      self.user_tags << UserTag.new(taggable: oi)
+    }
+  end
+  def getOtherInterests
+    self.user_tags.where(taggable_type: "OtherInterest").map{|x| y = x.taggable; y.name}
+  end
+  def removeOtherInterest(string)
+    self.user_tags.where(taggable_type: "OtherInterest").map{ |x|y = x.taggable; x.destroy if string.downcase == y.name}
+  end
+
+
+  def setSkillsLevels(hash_array) # [{name: level}]
+    hash_array.map{ |h|
+      skill = Skill.find_or_create_by(name: h[:name].downcase)
+      skill.skill_tags << SkillTag.new(taggable: self, level: h[:level])
+    }
+  end
+  def getSkillsLevels
+    SkillTag.where(taggable_type: "User", taggable_id: self.id).map{|x| y = x.skill; {name: y.name, level: x.level}}
+  end
+  def changeSkillLevel(name, skill_level)
+    SkillTag.where(taggable_type: "User", taggable_id: self.id).map{|x|
+      if name == x.skill.name
+        x.level = skill_level
+        x.save!
+      end
+    }
+  end
+  def removeSkill(string)
+    skill = Skill.where(name: string.downcase).first
+    skill.skill_tags.where(taggable_type: "User", taggable_id: self.id).map{ |x|
+     x.destroy if string.downcase == x.skill.name
+    } if skill.present?
+  end
+  
 
   private
 
