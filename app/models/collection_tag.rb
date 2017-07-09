@@ -1,15 +1,13 @@
 # == Schema Information
 #
-# Table name: subjects
+# Table name: collection_tags
 #
 #  id   :uuid             not null, primary key
 #  name :string           not null
 #
 
-class Subject < ApplicationRecord
+class CollectionTag < ApplicationRecord
   has_many :lesson_tags, as: :taggable
-  has_many :user_tags, as: :taggable
-
 
   validates_uniqueness_of :name
 
@@ -20,9 +18,10 @@ class Subject < ApplicationRecord
   end
 
   def self.seed
-    ["science", "mathematics", "arts", "technology", "engineering"].map{ |s|
-      new(name: s).save!
+    ["Gold Standard Lesson"].map{ |i|
+      new(name: i).save!
     }
   end
+
 
 end

@@ -147,7 +147,7 @@ class User < ApplicationRecord
   end
 
 
-  def setSkillsLevels(hash_array) # [{name: level}]
+  def setSkillsLevels(hash_array) # [{:name, :level}]
     hash_array.map{ |h|
       skill = Skill.find_or_create_by(name: h[:name].downcase)
       skill.skill_tags << SkillTag.new(taggable: self, level: h[:level])

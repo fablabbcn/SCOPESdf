@@ -92,13 +92,13 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.string      :assessment_criteria, default: "", null: false #maybe on lesson_tags??
       t.json        :assessment_criteria_files
       t.string      :further_readings, array: true
-      # page 2 - details
-      # majority of these on lesson_tags table
-      t.integer     :license,     default: 0, null: false
+      # page 2 - standards
+      t.json        :standards
+
       # page 3 - instructions
       # has many steps -- see table
       # page 4 - outcomes
-      t.string        :outcome_links, array: true # json_ball and why?
+      t.json        :outcome_files
       # forking
       t.uuid         :original_lesson, null: true, index: true
       # state-machine
@@ -208,6 +208,13 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.integer     :metric, default: 0, null: false, index: true
     end
 
+    create_table  :contexts, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.string    :name, null: false, index: true
+    end
+
+    create_table  :collection_tags, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.string    :name, null: false, index: true
+    end
   
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

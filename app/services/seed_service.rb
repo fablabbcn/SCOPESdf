@@ -6,6 +6,8 @@ class SeedService
       Subject.seed
       Involvement.seed
       Skill.seed
+      Context.seed
+      CollectionTag.seed
     end
 
     def l_tags
@@ -56,6 +58,69 @@ class SeedService
         # x.outcome_links = {}
         ## x.original_lesson = nil
       end
+    end
+
+    def lesson_service
+      self.place
+        lesson =
+            {
+                # TAB 1 - Overview
+                # Basic Information
+                name: "Name here",
+                topline: "Here is topline",
+                summary: "Here is summary",
+
+                # Authors
+                other_users_emails:
+                    ["user2@example.com" ], #will call create user <<
+                associated_places_ids:
+                    [ Organization.first.id ],
+
+                # Objectives
+                learning_objectives:
+                    [ "Learn how to build something", "Learn how to build this other thing"],
+
+                # Lesson Ambitions
+                description: "Here is description",
+                assessment_criteria: "Here is criteria",
+                # assessment_criteria_files get set on another form!!
+
+                further_readings:
+                    ["https://www.youtube.com/watch?v=P2r9U4wkjcc", "http://mit.org"],
+
+
+                # TAB 2 - Standards
+
+                standards:
+                    [{
+                        name: "standard name is here",
+                        descriptions: [ "some description here", "and another here" ]
+                    },
+                    {
+                        name: "other standard",
+                        descriptions: [ "other standard desc", "yet another for other standard" ]
+                    }],
+
+                # Tab 3 - Details
+                grade_range: {start: 0, end: 12},
+                subjects:
+                    ["technology", "science"],
+                difficulty_level:
+                    { student: "1", educator: "2" },
+                skills: [
+                    { name: "CNC", level: "4" },
+                    { name: "Welding", level: "3" }
+                ],
+                context:
+                    ["In Classroom", "Outdoors"],
+
+
+                tags:
+                    ["Pinball"]
+            }
+
+      LessonService.find_or_create_and_update(nil, lesson, User.first)
+
     end
 
     def step

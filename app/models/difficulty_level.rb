@@ -27,4 +27,6 @@ class DifficultyLevel < ApplicationRecord
     end
   end
 
+
+
 end

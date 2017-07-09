@@ -11,8 +11,8 @@
 #  assessment_criteria       :string           default(""), not null
 #  assessment_criteria_files :json
 #  further_readings          :string           is an Array
-#  license                   :integer          default(0), not null
-#  outcome_links             :string           is an Array
+#  standards                 :json
+#  outcome_files             :json
 #  original_lesson           :uuid
 #  state                     :integer          default("draft"), not null
 #  created_at                :datetime         not null
@@ -57,7 +57,7 @@ class Lesson < ApplicationRecord
   def getAuthors_id
     self.lesson_tags.where(taggable_type: "User").map{|x| y = x.taggable; y.id}
   end
-  def getAuthors
+  def authors
     self.lesson_tags.where(taggable_type: "User").map{|x| y = x.taggable; y}
   end
   def removeAuthor(user_uuid)
@@ -85,22 +85,116 @@ class Lesson < ApplicationRecord
 
 
   def setTeachingRange(start_range, end_range)
-    return false if start_range > end_range             #needed to handle higher...  in call stack :(
-    self.lesson_tags.where(taggable_type: "TeachingRange").map{|x| x.destroy}
+    self.lesson_tags.where(taggable_type: "TeachingRange").map{|x| x.destroy} #sanitize
     TeachingRange.setRangesForLesson(self.id, start_range, end_range)
   end
   def getTeachingRange
-    range = self.lesson_tags.where(taggable_type: "TeachingRange").first.taggable
-    {range_start: range.range_start, range_end: range.range_end}
+    range = self.lesson_tags.where(taggable_type: "TeachingRange").first
+    {range_start: range.taggable.range_start, range_end: range.taggable.range_end} if range.present? && range.taggable.present?
+  end
+  def removeTeachingRange
+    self.lesson_tags.where(taggable_type: "TeachingRange").destroy_all
   end
 
 
 
-  def setSubject(subject)
-    Subject.setSubjectForLesson(self.id, subject)
+  def setSubjects(string_array)
+    string_array.map{ |n|
+      s = Subject.find_or_create_by(name: n.downcase)
+      self.lesson_tags << LessonTag.new(taggable: s)
+    }
   end
-  def getSubjects_name
+  def getSubjects
     self.lesson_tags.where(taggable_type: "Subject").map{|x| y = x.taggable; y.name}
+  end
+  def removeSubject(string)
+    self.lesson_tags.where(taggable_type: "Subject").map{ |x|y = x.taggable; x.destroy if string.downcase == y.name}
+  end
+  def removeSubjects
+    self.lesson_tags.where(taggable_type: "Subject").destroy_all
+  end
+
+
+  def setDifficultyLevel(obj_hash)
+    student = DifficultyLevel.find_or_create_by(metric: 0, level: obj_hash[:student])
+    educator = DifficultyLevel.find_or_create_by(metric: 1, level: obj_hash[:educator])
+    self.lesson_tags << LessonTag.new(taggable: student)
+    self.lesson_tags << LessonTag.new(taggable: educator)
+  end
+  def getDifficultyLevel
+    self.lesson_tags.where(taggable_type: "DifficultyLevel").map{|x| y = x.taggable; { metric: y.metric, level: y.level} }
+  end
+  def removeDifficultyLevels
+    self.lesson_tags.where(taggable_type: "DifficultyLevel").destroy_all
+  end
+
+
+
+  def setSkillsLevels(hash_array) # [{name, level}]
+    hash_array.map{ |h|
+      skill = Skill.find_or_create_by(name: h[:name])
+      skill.skill_tags << SkillTag.new(taggable: self, level: h[:level])
+    }
+  end
+  def getSkillsLevels
+    SkillTag.where(taggable_type: "Lesson", taggable_id: self.id).map{|x| y = x.skill; {name: y.name, level: x.level}}
+  end
+  def changeSkillLevel(name, skill_level)
+    SkillTag.where(taggable_type: "Lesson", taggable_id: self.id).map{|x|
+      if name == x.skill.name
+        x.level = skill_level
+        x.save!
+      end
+    }
+  end
+  def removeSkill(string)
+    skill = Skill.where(name: string.downcase).first
+    skill.skill_tags.where(taggable_type: "Lesson", taggable_id: self.id).map{ |x|
+      x.destroy if string.downcase == x.skill.name
+    } if skill.present?
+  end
+  def removeSkills
+    SkillTag.where(taggable_type: "Lesson", taggable_id: self.id).destroy_all
+  end
+
+
+  def setContext(string_array)
+    string_array.map{ |n|
+      c = Context.find_or_create_by(name: n.downcase)
+      self.lesson_tags << LessonTag.new(taggable: c)
+    }
+  end
+  def getContext
+    self.lesson_tags.where(taggable_type: "Context").map{|x| y = x.taggable; y.name}
+  end
+  def removeContext
+    self.lesson_tags.where(taggable_type: "Context").destroy_all
+  end
+
+
+  def setOtherInterests(string_array)
+    string_array.map{ |n|
+      oi = OtherInterest.find_or_create_by(name: n.downcase)
+      self.lesson_tags << LessonTag.new(taggable: oi)
+    }
+  end
+  def getOtherInterests
+    self.lesson_tags.where(taggable_type: "OtherInterest").map{|x| y = x.taggable; y.name}
+  end
+  def removeOtherInterest
+    self.lesson_tags.where(taggable_type: "OtherInterest").destroy_all
+  end
+
+
+  def setCollectionTag(string)
+    ct = CollectionTag.find_or_create_by(name: string.downcase)
+    self.lesson_tags << LessonTag.new(taggable: ct)
+  end
+  def getCollectionTags
+    self.lesson_tags.where(taggable_type: "CollectionTag").map{|x| y = x.taggable; y.name}
+  end
+  def removeCollectionTags
+    self.lesson_tags.where(taggable_type: "CollectionTag").destroy_all
   end
 
 
@@ -111,7 +205,7 @@ class Lesson < ApplicationRecord
     u = User.find(user_uuid)
     Like.new(user_id: u.id, lesson_id: self.id).save
   end
-  def getLikes_obj
+  def likes
     Like.where(lesson_id: self.id)
   end
   def getLikes_id
@@ -127,6 +221,8 @@ class Lesson < ApplicationRecord
 
 
   mount_uploaders :assessment_criteria_files, SupportingFileUploader
+  mount_uploaders :outcome_files, SupportingFileUploader
+
 
   def addFiles(file, sym)
     returnable =""
@@ -136,6 +232,10 @@ class Lesson < ApplicationRecord
         self.assessment_criteria_files = file
         returnable = self.assessment_criteria_files.map{|x| x.url}
         self.save!
+      when :outcome
+        self.outcome_files = file
+        returnable = self.outcome_files.map{|x| x.url}
+        self.save!
     end
     returnable
   end
@@ -144,6 +244,10 @@ class Lesson < ApplicationRecord
     case sym
       when :assessment_criteria
         self.remove_assessment_criteria_files!
+        self.save!
+        returnable = true
+      when :outcome
+        self.remove_outcome_files!
         self.save!
         returnable = true
     end
@@ -159,7 +263,7 @@ class Lesson < ApplicationRecord
 
   # sole viewing data --
 
-  def furtherReadings_data
+  def further_readings_data
     self.further_readings.map{ |x|
       begin
         lt = LinkThumbnailer.generate(x)
@@ -176,6 +280,10 @@ class Lesson < ApplicationRecord
     sum = 0
     self.steps.map{|x| sum += x.duration}
     sum
+  end
+
+  def standards_array
+    self.standards["standards"]
   end
 
 

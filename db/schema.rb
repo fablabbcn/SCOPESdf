@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.index ["user_id"], name: "index_affiliations_on_user_id", using: :btree
   end
 
+  create_table "collection_tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.index ["name"], name: "index_collection_tags_on_name", using: :btree
+  end
+
+  create_table "contexts", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.index ["name"], name: "index_contexts_on_name", using: :btree
+  end
+
   create_table "difficulty_levels", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.integer "level",  default: 0, null: false
     t.integer "metric", default: 0, null: false
@@ -68,8 +78,8 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.string   "assessment_criteria",       default: "", null: false
     t.json     "assessment_criteria_files"
     t.string   "further_readings",                                    array: true
-    t.integer  "license",                   default: 0,  null: false
-    t.string   "outcome_links",                                       array: true
+    t.json     "standards"
+    t.json     "outcome_files"
     t.uuid     "original_lesson"
     t.integer  "state",                     default: 1,  null: false
     t.datetime "created_at",                             null: false

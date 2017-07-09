@@ -13,16 +13,58 @@ class LessonService
       prepParams(calling_user, params)
       @lesson = find_or_createHidden(id)
       associateAuthors!
-      updateData!
       associatePlaces!
+      updateData!
       #~
+      updateStandards!
+      updateTeachingRange!
+      updateSubjects!
+      updateDifficultyLevel!
+      updateSkills!
+      updateContext!
+      updateOtherInterests!
+      updateCollectionTag!
       @lesson
     end
-    def prepParams(usr, params)
+    def prepParams(usr, given)
+      other_users = given.delete(:other_users_emails)
+      associated_places = given.delete(:associated_places_ids)
+      standards = given.delete(:standards)
+      teaching_range = given.delete(:grade_range)
+      subjects = given.delete(:subjects)
+      difficulty_level = given.delete(:difficulty_level)
+      skills = given.delete(:skills)
+      context = given.delete(:context)
+      other_interests = given.delete(:tags)
+      collection = given.delete(:collection_tag)
+
+      params = {
+          lesson: given,
+          users: other_users,
+          places: associated_places,
+          standards: standards,
+          range: teaching_range,
+          subjects: subjects,
+          difficulty_level: difficulty_level,
+          skills: skills
+      }
+
+      # puts skills.inspect
+
       @calling_user = usr
       @lesson_params = params[:lesson]
       @other_authors = params[:users]
       @places = params[:places]
+      @standards = params[:standards]
+      @teaching_range = params[:range]
+      @subjects = params[:subjects]
+
+      @difficulty_level = difficulty_level
+      @skills = skills
+      @context = context
+      @other_interests = other_interests
+
+      @collection = collection
     end
 
 
@@ -71,7 +113,7 @@ class LessonService
     def updateData!
       @lesson.state = 1   # draft state
       @lesson.attributes = @lesson_params
-      @lesson.inspect
+      # puts @lesson.inspect
       @lesson.save!
       @lesson.reload
     end
@@ -86,6 +128,69 @@ class LessonService
       @lesson.reload
     end
 
+    def updateStandards!
+      @lesson.standards = {standards: []}; @lesson.save! #sanitize
+      return unless @standards.present?
+      @lesson.standards = {standards: @standards}
+      @lesson.save!
+      @lesson.reload
+    end
+
+    def updateTeachingRange!
+      return unless @teaching_range.present? && @teaching_range[:start].present? && @teaching_range[:end].present?
+      @lesson.removeTeachingRange # sanitize
+      @lesson.setTeachingRange(@teaching_range[:start], @teaching_range[:end])
+      @lesson.save!
+      @lesson.reload
+    end
+
+    def updateSubjects!
+      return unless @subjects.present?
+      @lesson.removeSubjects
+      @lesson.setSubjects(@subjects)
+      @lesson.save! 
+      @lesson.reload
+    end
+
+    def updateDifficultyLevel!
+      return unless @difficulty_level.present?
+      @lesson.removeDifficultyLevels # sanitize
+      @lesson.setDifficultyLevel(@difficulty_level)
+      @lesson.save!
+      @lesson.reload
+    end
+
+    def updateSkills!
+      return unless @skills.present?
+      @lesson.removeSkills # sanitize
+      @lesson.setSkillsLevels(@skills)
+      @lesson.save!
+      @lesson.reload
+    end
+
+    def updateContext!
+      return unless @context.present?
+      @lesson.removeContext # sanitize
+      @lesson.setContext(@context)
+      @lesson.save!
+      @lesson.reload
+    end
+
+    def updateOtherInterests!
+      return unless @other_interests.present?
+      @lesson.removeOtherInterest # sanitize
+      @lesson.setOtherInterests(@other_interests)
+      @lesson.save!
+      @lesson.reload
+    end
+
+    def updateCollectionTag!
+      return unless @collection.present?
+      @lesson.removeCollectionTags # sanitize
+      @lesson.setCollectionTag(@collection)
+      @lesson.save!
+      @lesson.reload
+    end
 
   end
 end

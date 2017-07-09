@@ -56,11 +56,7 @@ class LessonsController < ApplicationController
 
   private
   def lesson_params
-    returnable = params.require(:lesson).permit(:name, :topline, :summary, :description, :assessment_criteria, :state, :other_users_emails => [], :learning_objectives =>[], :further_readings =>[], :outcome_links =>[], :associated_places_ids => [])
-    other_users = returnable.delete(:other_users_emails)
-    associated_places = returnable.delete(:associated_places_ids)
-    # supporting_files = returnable.delete(:supporting_files) TODO
-    {lesson: returnable, users: other_users, places: associated_places}
+    params.require(:lesson).permit(:name, :topline, :summary, :description, :assessment_criteria, :state, :collection_tag, other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids:  [], standards: [ :name, descriptions: [] ], grade_range: [:start, :end ], subjects:[], difficulty_level: [:student ,:educator ], skills:[:name, :level], context: [], tags: [])
   end
 
   def step_params
