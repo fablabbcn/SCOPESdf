@@ -1,0 +1,14 @@
+body {
+  padding:0;
+  margin:0;
+}
+
+.wrapped {
+  padding:0 $site-inner-padding;
+  margin:0 auto;
+
+  @include breakpoint($desktop-breakpoint) {
+    max-width:$site-max-width;
+    box-sizing:border-box;
+  }
+}

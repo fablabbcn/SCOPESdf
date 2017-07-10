@@ -1,0 +1,15 @@
+.button {
+  @include button;
+
+  &.button--flat {
+    @include button(#fff,$color-text,lighten($color-text,50%));
+    font-size:.8em;
+  }
+
+  &.button--highlight {
+    @include button($color-highlight,$color-text);
+    font-size:.8em;
+  }
+
+
+}

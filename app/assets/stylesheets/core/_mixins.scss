@@ -1,0 +1,56 @@
+/**
+  Mixins
+**/
+
+@mixin old-clearfix {
+  &:before,
+  &:after {
+    content: “”;
+    display: block;
+    height: 0;
+  }
+
+ &:after { clear: both; }
+  zoom: 1; /* IE < 8 */
+}
+
+@mixin ul-reset {
+
+ list-style:none;
+  padding:0;
+  margin:0;
+
+  li {
+    margin:0;
+    padding:0;
+  }
+}
+
+@mixin button($background: $color-link , $color: #fff, $border: false) {
+
+  background:$background;
+  color:$color;
+  display:inline-block;
+  padding:.5rem 1rem;
+  margin:0;
+  font-family:$font-base;
+  text-decoration:none;
+  font-size:1em;
+  border-radius:2px;
+  border:none;
+  @if $border {
+    border:$border 1px solid;
+  }
+
+  text-align: center;
+  cursor:pointer;
+  transition:background .2s ease;
+
+ &:hover, &:focus {
+    background:darken($background, 2%);
+    @if $border {
+      border-color:darken($border,5%);
+    }
+  }
+
+}

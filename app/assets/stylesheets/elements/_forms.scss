@@ -1,0 +1,33 @@
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  border:darken(#fff,10%) 1px solid;
+  border-radius:2px;
+  font-family:$font-base;
+  font-size:.7em;
+  @include breakpoint($desktop-breakpoint) {
+    font-size:1em;
+  }
+  padding:.5rem;
+  color:#62686C;
+  transition: border-color .2s ease;
+
+  &:hover {
+    border-color:$color-link;
+  }
+
+
+  &:focus {
+    outline:none;
+    background:darken(#fff,2%);
+  }
+
+  &.large {
+    font-size:1.2em;
+  }
+
+}
+
+input[type="submit"] {
+  @include button;
+}

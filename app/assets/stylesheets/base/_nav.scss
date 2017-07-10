@@ -1,0 +1,53 @@
+/**
+  Navigation styles
+**/
+
+nav[role="navigation"] {
+  .navbar-toggle {
+    @include breakpoint($desktop-breakpoint) {
+      display:none;
+    }
+  }
+}
+
+ul.nav {
+  @include ul-reset;
+
+  li {
+    display:inline-block;
+  }
+
+  a {
+    color:$color-text;
+    text-decoration: none;
+    margin:.5em 1em;
+    padding:.5em 0;
+    position:relative;
+  }
+
+  &.navbar-nav {
+    a:not(.button) {
+      &:after {
+        width:0;
+        display:block;
+        content:"";
+        height:2px;
+        position:absolute;
+        opacity:0;
+        bottom:0;
+        left:0;
+      }
+
+      &:hover,
+      &.current {
+
+        &:after {
+          background:$color-highlight;
+          width:100%;
+          opacity:1;
+        }
+      }
+
+    }
+  }
+}
