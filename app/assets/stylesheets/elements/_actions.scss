@@ -1,14 +1,47 @@
-.button {
-  @include button;
 
-  &.button--flat {
-    @include button(#fff,$color-text,lighten($color-text,50%));
-    font-size:.8em;
+.button {
+  @include button-base;
+
+  &:disabled {
+    cursor:default;
+    pointer-events:none;
   }
 
-  &.button--highlight {
-    @include button($color-highlight,$color-text);
+  &.button--flat {
+    @include button($color-white,$color-dark-hi,$color-gray-outlines,1);
     font-size:.8em;
+
+    &:hover {
+      @include button($color-white,$color-dark-hi,$color-blue-hi,2);
+    }
+
+    &:disabled {
+      @include button($color-gray-low,$color-mid-gray,$color-mid-gray,1);
+    }
+  }
+
+  &.button--call {
+    @include button($color-yellow,$color-dark);
+    font-size:.8em;
+
+    &:hover {
+      @include button($color-yellow-dark,$color-dark);
+    }
+
+    &:disabled {
+      @include button($color-gray-low,$color-mid-gray);
+    }
+
+  }
+
+  &.button--large {
+    font-size:1em;
+    padding:1rem 1.2rem;
+  }
+
+  &.button--small {
+    font-size:.7em;
+    padding:.6rem 1.2rem .7rem 1.2rem;
   }
 
 

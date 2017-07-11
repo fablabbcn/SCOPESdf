@@ -26,31 +26,31 @@
   }
 }
 
-@mixin button($background: $color-link , $color: #fff, $border: false) {
 
-  background:$background;
-  color:$color;
+@mixin button-base(){
   display:inline-block;
-  padding:.5rem 1rem;
+  box-sizing:border-box;
+  padding:.9rem 1.2rem .8rem 1.2rem;
   margin:0;
-  font-family:$font-base;
-  text-decoration:none;
+  font-family: $font-base;
   font-size:1em;
-  border-radius:2px;
+  line-height: 1em;
+  font-weight:600;
+  text-decoration: none;
   border:none;
-  @if $border {
-    border:$border 1px solid;
-  }
-
+  border-radius:2px;
   text-align: center;
   cursor:pointer;
-  transition:background .2s ease;
+  transition: all .2s;
+}
 
- &:hover, &:focus {
-    background:darken($background, 2%);
-    @if $border {
-      border-color:darken($border,5%);
-    }
+/** Use button mixin to define action modifiers **/
+
+@mixin button($background: $color-link , $color: #fff, $border-color: false, $border-thickness: false) {
+  background:$background;
+  color:$color;
+
+  @if $border-thickness {
+    box-shadow:inset 0 0 0 $border-thickness * 1px $border-color;
   }
-
 }

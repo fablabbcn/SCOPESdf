@@ -17,7 +17,7 @@ ul.nav {
     display:inline-block;
   }
 
-  a {
+  a:not(.button) {
     color:$color-text;
     text-decoration: none;
     margin:.5em 1em;
