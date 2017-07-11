@@ -47,6 +47,7 @@
   Elements
 **/
 
+@import "elements/text";
 @import "elements/forms";
 @import "elements/buttons";
 
@@ -55,10 +56,13 @@
 **/
 
 @import "layout/base";
+@import "layout/lesson";
 
 /**
   Components
 **/
+
+@import "components/lesson--teaser";
 
 //@import "component/whatever";
 

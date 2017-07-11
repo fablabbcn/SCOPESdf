@@ -5,7 +5,8 @@
 body {
   font-size:1em;
   font-family:$font-base;
-  line-height:1.4em;
+  line-height:150%;
+  font-weight:200;
   -webkit-font-smoothing: subpixel-antialiased;
   color:$color-dark;
   word-break: none;
@@ -24,9 +25,9 @@ a {
   }
 }
 
-h1, h2, h3, h4, h5, h6, .headlines {
+h1, h2, h3, h4, h5, .headlines {
   font-family: $font-headlines;
-  font-weight:bold;
+  font-weight:500;
   line-height:1em;
 }
 
@@ -35,21 +36,17 @@ h1 {
 }
 
 h2 {
-  font-size:2.4em;
-}
-
-h3 {
   font-size:2em;
 }
 
-h4 {
+h3 {
   font-size:1.5em;
 }
 
-h5 {
-  font-size:1.2em;
+h4 {
+  font-size:1.1em;
 }
 
-h6 {
+h5 {
   font-size:1em;
 }

@@ -1,0 +1,6 @@
+.lesson--list {
+  article {
+    @include gallery(3 of 12);
+    margin-bottom:1rem;
+  }
+}
