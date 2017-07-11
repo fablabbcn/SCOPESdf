@@ -1,10 +1,12 @@
 .lesson--call
-  %p.text--intro Share your lesson with other educators around the world!
-  = link_to 'Add a lesson', page_path('static/lessons/new.html.haml', step: '1'), class: 'button'
+  .wrapped
+    %p.text--intro Share your lesson with other educators around the world!
+    = link_to 'Add a lesson', page_path('static/lessons/new.html.haml', step: '1'), class: 'button'
 
-%p [call to action]
-%p [actions]
+.wrapped
+  %p [filters]
 
-.item--list.lesson--list
-  - (1..12).each do
-    = render 'pages/static/lessons/lesson'
+.wrapped
+  .item--list.lesson--list
+    - (1..12).each do
+      = render 'pages/static/lessons/lesson'

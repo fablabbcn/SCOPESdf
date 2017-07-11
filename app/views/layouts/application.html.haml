@@ -12,9 +12,8 @@
     %header{:role => "banner" }
       = render 'layouts/navigation'
     %main{:role => "main"}
-      .wrapped
-        = render 'layouts/messages'
-        = yield
+      = render 'layouts/messages'
+      = yield
     %footer{:role => "contentinfo"}
       .wrapped
         = render 'layouts/footer'

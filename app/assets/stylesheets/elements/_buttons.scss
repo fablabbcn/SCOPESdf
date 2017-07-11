@@ -10,6 +10,7 @@ category: Elements
 | Element                                           | Code snippet                                 | Modifier class             |
 |---------------------------------------------------|----------------------------------------------|----------------------------|
 | <a class="button">Link button</a>                 | `<a class="button">Action</a>`               | default state              |
+| <a class="button button--highlight">Link Highlight</a>      | `<a class="button button--highlight">Action</a>`  | `.button--highlight`            |
 | <a class="button button--call">Link Call</a>      | `<a class="button button--call">Action</a>`  | `.button--call`            |
 
 ## Size modifiers
@@ -57,6 +58,18 @@ Notice that disabled buttons have **cursor:default** and **pointer-events:none**
   }
 
   &.button--call {
+    @include button($color-blue-hi,$color-white);
+
+    &:hover {
+      @include button(darken($color-blue-hi,5%),$color-white);
+    }
+
+    &:disabled, &.button--disabled {
+      @include button($color-gray-low,$color-mid-gray);
+    }
+  }
+
+  &.button--highlight {
     @include button($color-yellow,$color-dark);
 
     &:hover {
@@ -66,7 +79,6 @@ Notice that disabled buttons have **cursor:default** and **pointer-events:none**
     &:disabled, &.button--disabled {
       @include button($color-gray-low,$color-mid-gray);
     }
-
   }
 
   &.button--large {
