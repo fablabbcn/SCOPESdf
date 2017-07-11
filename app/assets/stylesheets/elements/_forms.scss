@@ -27,7 +27,8 @@ Also, a general style modifier is defined for inputs to behave like a single lin
 
 input[type="text"],
 input[type="password"],
-input[type="email"] {
+input[type="email"],
+textarea {
   border:darken(#fff,10%) 1px solid;
   border-radius:2px;
   font-family:$font-base;
@@ -100,9 +101,12 @@ input[type="email"] {
       box-shadow:0 1px 0px $color-red;
     }
 
-
   }
 
+}
+
+textarea {
+  height:250px;
 }
 
 input[type="submit"] {
