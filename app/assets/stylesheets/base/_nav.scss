@@ -8,6 +8,13 @@ nav[role="navigation"] {
       display:none;
     }
   }
+
+  .navbar-collapse {
+    @include breakpoint($desktop-breakpoint) {
+      float:right;
+      padding:2.4rem 0;
+    }
+  }
 }
 
 ul.nav {
@@ -20,7 +27,7 @@ ul.nav {
   a:not(.button) {
     color:$color-dark;
     text-decoration: none;
-    margin:.5em 1em;
+    margin:.5em .5em;
     padding:.5em 0;
     position:relative;
   }

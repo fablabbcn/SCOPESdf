@@ -4,9 +4,15 @@
 
 header[role="banner"] {
 
+  @include clearfix;
+
   h1.brand {
     padding:1rem 0;
     margin:0;
+    @include breakpoint($desktop-breakpoint) {
+      padding:2rem 0;
+      float:left;
+    }
 
     a {
       display:block;

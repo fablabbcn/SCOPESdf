@@ -1,3 +1,30 @@
+/*doc
+---
+title: Inputs
+name: input
+category: Elements
+---
+
+Each `<input>` has a number of built-in states and modifiers. This applies to `[type="text"]`, `[type="password"]` and `[type="email"]`
+
+| Element                                               | Code snippet                                              | Modifier class             |
+|-------------------------------------------------------|-----------------------------------------------------------|----------------------------|
+| <input type="text" placeholder="Text input">          | `<input type="text" placeholder="Text input">`            | default state              |
+| <input type="text" placeholder="Disabled input" disabled> | `<input type="text" placeholder="Text input" disabled>`   | disabled state             |
+| <input type="text" class="input--error" placeholder="Error input"> | `<input type="text" class="input--error" placeholder="Error input">`   | `.input--error`             |
+
+Also, a general style modifier is defined for inputs to behave like a single line. Just add `.input--line` and there you go.
+
+## Modifiers
+
+| Element                                               | Code snippet                                              | Modifier class             |
+|-------------------------------------------------------|-----------------------------------------------------------|----------------------------|
+| <input type="text" class="input--line" placeholder="Text input">          | `<input class="input--line" type="text" placeholder="Text input">`            | `input--line`             |
+| <input type="text" class="input--line" placeholder="Disabled input" disabled> | `<input class="input--line" type="text" placeholder="Text input" disabled>`   | `input--line` disabled state            |
+| <input type="text" class="input--line input--error" placeholder="Error input"> | `<input type="text" class="input--line input--error" placeholder="Error input">`   | `input--line input--error`             |
+
+*/
+
 input[type="text"],
 input[type="password"],
 input[type="email"] {
@@ -5,25 +32,75 @@ input[type="email"] {
   border-radius:2px;
   font-family:$font-base;
   font-size:.7em;
+
   @include breakpoint($desktop-breakpoint) {
     font-size:1em;
   }
+
+  box-sizing:border-box;
+  width:100%;
   padding:.5rem;
   color:#62686C;
-  transition: border-color .2s ease;
+  transition: all .2s ease;
+  background:darken(#fff,2%);
 
   &:hover {
     border-color:$color-blue-hi;
+    box-shadow: inset 0 0 0 1px $color-blue-hi;
   }
-
 
   &:focus {
     outline:none;
-    background:darken(#fff,2%);
   }
 
-  &.large {
-    font-size:1.2em;
+  &:placeholder-shown {
+    background:$color-white;
+  }
+
+  &:disabled {
+    border-style:dashed;
+    border-color:$color-mid-gray;
+    cursor:default;
+    pointer-events:none;
+  }
+
+  &.input--error {
+    border:$color-red 1px solid;
+    box-shadow: inset 0 0 1px $color-red;
+    background:$color-alert-red;
+    color:$color-red;
+
+    &::placeholder {
+      color:$color-red;
+    }
+  }
+
+  &.input--line {
+    background:none;
+    box-shadow:none;
+    border-width:0;
+    border-radius: 0;
+    border-bottom:1px solid $color-dark-hi;
+    box-sizing:border-box;
+    padding-left:0;
+    padding-right:0;
+    font-size:.9em;
+
+    &:placeholder-shown {
+      border-bottom: $color-gray-outlines 1px solid;
+    }
+
+    &:hover {
+      border-bottom:1px solid $color-yellow;
+      box-shadow:0 1px 0  $color-yellow;
+    }
+
+    &.input--error {
+      border-bottom:1px solid $color-red;
+      box-shadow:0 1px 0px $color-red;
+    }
+
+
   }
 
 }
