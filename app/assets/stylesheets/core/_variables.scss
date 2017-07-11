@@ -25,14 +25,46 @@ $font-base: -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", 
     "Fira Sans", "Droid Sans", "Helvetica Neue", 
     sans-serif;
-$font-headlines: -apple-system-headline, sans-serif;
+$font-headlines: -apple-system-headline, BlinkMacSystemFont, 
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", 
+    "Fira Sans", "Droid Sans", "Helvetica Neue", 
+    sans-serif;
 
-// Colors
+// Base Colors
+
+$color-white:#fff;
+
+$color-gray:#F9FAFB;
+$color-gray-low:#F4F4F4;
+$color-gray-outlines:#E2E2E2;
+
+$color-dark: #414042;
+$color-dark-hi:#62686C;
+$color-mid-gray:#B6B6B6;
+
+$color-green:#208D66;
+$color-green-hi:#0BBA77;
+
+$colors-blue:#2E5478;
+$colors-blue-high:#14C9C9;
+
+$color-red:#FF6B6B;
+$color-red-hi:#FFA0A0;
+
+$color-yellow:#E9E500;
+$color-yellow-dark:#F4D100;
+$color-yellow-hi:#F7EF52;
+
+$color-alert-yellow:#FFFCC6;
+$color-alert-red:#FFDCDC;
+$color-alert-green:#DAFFF2;
+$color-alert-blue:#C3F5F5;
 
 $color-text:#4A4A4A;
 $color-link:#14C9C9;
 $color-link-selected:#2E5478;
 $color-highlight:#F4D100;
-$color-light: #eeeeee;
-$color-input: #62686C;
-$color-dark: #4b4b4b;
+$color-light:#eeeeee;
+$color-input:#62686C;
+
+
