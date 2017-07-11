@@ -5,13 +5,13 @@
     = link_to 'Save as draft', '#'
     = link_to 'Publish lesson', '#'
 
-%nav
+%nav.nav-secondary
   .wrapped
-    %ul
-    %li= link_to 'Overview', page_path('static/lessons/new.html.haml', step: '1')
-    %li= link_to 'Standards', page_path('static/lessons/new.html.haml', step: '2')
-    %li= link_to 'Details', page_path('static/lessons/new.html.haml', step: '3')
-    %li= link_to 'Instructions', page_path('static/lessons/new.html.haml', step: '4')
-    %li= link_to 'Outcomes', page_path('static/lessons/new.html.haml', step: '5')
+    %ul.nav
+      %li= link_to 'Overview', page_path('static/lessons/new.html.haml', step: '1')
+      %li= link_to 'Standards', page_path('static/lessons/new.html.haml', step: '2')
+      %li= link_to 'Details', page_path('static/lessons/new.html.haml', step: '3')
+      %li= link_to 'Instructions', page_path('static/lessons/new.html.haml', step: '4')
+      %li= link_to 'Outcomes', page_path('static/lessons/new.html.haml', step: '5')
 
     [progress]

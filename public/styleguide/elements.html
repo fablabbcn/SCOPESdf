@@ -25,6 +25,8 @@
             
               <li><a href="variables.html">Variables</a></li>
             
+              <li><a href="forms.html">Forms</a></li>
+            
           </ul>
         </div>
       </div>
@@ -33,14 +35,16 @@
 
   <main role="main">
       <section class="content">
-        <div class="wrapped">
-        <ul>
-        
-          <li><a href="#button">Buttons</a></li>
-        
-          <li><a href="#input">Inputs</a></li>
-        
-        </ul><h1 id="button" class="styleguide">Buttons</h1>
+        <nav class="nav-secondary">
+          <div class="wrapped">
+            <ul class="nav">
+            
+              <li><a href="#button">Buttons</a></li>
+            
+            </ul>
+          </div>
+        </nav>
+        <div class="wrapped"><h1 id="button" class="styleguide">Buttons</h1>
 <p class="styleguide"><code class="styleguide">&lt;button&gt;</code> has a default definition. You can use the class <code class="styleguide">.button</code> on any <code class="styleguide">&lt;a&gt;</code> tag to make a link look like a call to action. By using modifiers you can generate flat and call to action buttons.</p><table class="styleguide"> <tr>
 <th>Element</th>
 <th>Code snippet</th>
@@ -99,50 +103,6 @@
 <td><button class="button button--disabled">Disabled button</button></td>
 <td><code class="styleguide">&lt;button class=&quot;button button--flat button--disabled&quot;&gt;No action&lt;/button&gt;</code></td>
 <td><code class="styleguide">.button--disabled</code></td>
-</tr>
- </table>
-<h1 id="input" class="styleguide">Inputs</h1>
-<p class="styleguide">Each <code class="styleguide">&lt;input&gt;</code> has a number of built-in states and modifiers. This applies to <code class="styleguide">[type=&quot;text&quot;]</code>, <code class="styleguide">[type=&quot;password&quot;]</code> and <code class="styleguide">[type=&quot;email&quot;]</code></p><table class="styleguide"> <tr>
-<th>Element</th>
-<th>Code snippet</th>
-<th>Modifier class</th>
-</tr>
- <tr>
-<td><input type="text" placeholder="Text input"></td>
-<td><code class="styleguide">&lt;input type=&quot;text&quot; placeholder=&quot;Text input&quot;&gt;</code></td>
-<td>default state</td>
-</tr>
-<tr>
-<td><input type="text" placeholder="Disabled input" disabled></td>
-<td><code class="styleguide">&lt;input type=&quot;text&quot; placeholder=&quot;Text input&quot; disabled&gt;</code></td>
-<td>disabled state</td>
-</tr>
-<tr>
-<td><input type="text" class="input--error" placeholder="Error input"></td>
-<td><code class="styleguide">&lt;input type=&quot;text&quot; class=&quot;input--error&quot; placeholder=&quot;Error input&quot;&gt;</code></td>
-<td><code class="styleguide">.input--error</code></td>
-</tr>
- </table><p class="styleguide">Also, a general style modifier is defined for inputs to behave like a single line. Just add <code class="styleguide">.input--line</code> and there you go.</p>
-<h2>Modifiers</h2>
-<table class="styleguide"> <tr>
-<th>Element</th>
-<th>Code snippet</th>
-<th>Modifier class</th>
-</tr>
- <tr>
-<td><input type="text" class="input--line" placeholder="Text input"></td>
-<td><code class="styleguide">&lt;input class=&quot;input--line&quot; type=&quot;text&quot; placeholder=&quot;Text input&quot;&gt;</code></td>
-<td><code class="styleguide">input--line</code></td>
-</tr>
-<tr>
-<td><input type="text" class="input--line" placeholder="Disabled input" disabled></td>
-<td><code class="styleguide">&lt;input class=&quot;input--line&quot; type=&quot;text&quot; placeholder=&quot;Text input&quot; disabled&gt;</code></td>
-<td><code class="styleguide">input--line</code> disabled state</td>
-</tr>
-<tr>
-<td><input type="text" class="input--line input--error" placeholder="Error input"></td>
-<td><code class="styleguide">&lt;input type=&quot;text&quot; class=&quot;input--line input--error&quot; placeholder=&quot;Error input&quot;&gt;</code></td>
-<td><code class="styleguide">input--line input--error</code></td>
 </tr>
  </table>        </div>
       </main>      

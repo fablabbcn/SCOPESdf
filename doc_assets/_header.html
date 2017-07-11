@@ -31,9 +31,13 @@
 
   <main role="main">
       <section class="content">
+        <nav class="nav-secondary">
+          <div class="wrapped">
+            <ul class="nav">
+            <% @blocks.each do |b| %>
+              <li><a href="#<%= b[:name] %>"><%= b[:title] %></a></li>
+            <% end %>
+            </ul>
+          </div>
+        </nav>
         <div class="wrapped">
-        <ul>
-        <% @blocks.each do |b| %>
-          <li><a href="#<%= b[:name] %>"><%= b[:title] %></a></li>
-        <% end %>
-        </ul>

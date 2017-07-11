@@ -23,38 +23,46 @@ ul.nav {
   li {
     display:inline-block;
   }
-
   a:not(.button) {
     color:$color-dark;
     text-decoration: none;
-    margin:.5em .5em;
-    padding:.5em 0;
+    padding:.5em;
     position:relative;
-  }
+    &:after {
+      width:0;
+      display:block;
+      content:"";
+      height:2px;
+      position:absolute;
+      opacity:0;
+      bottom:0;
+      left:0;
+    }
 
-  &.navbar-nav {
-    a:not(.button) {
+    &:hover,
+    &.current {
       &:after {
-        width:0;
-        display:block;
-        content:"";
-        height:2px;
-        position:absolute;
-        opacity:0;
-        bottom:0;
-        left:0;
+        background:$color-yellow-dark;
+        width:100%;
+        opacity:1;
       }
+    }
+  }
+}
 
-      &:hover,
-      &.current {
-
-        &:after {
-          background:$color-yellow-dark;
-          width:100%;
-          opacity:1;
-        }
-      }
-
+.nav-secondary {
+  background:$color-gray;
+  @include clearfix;
+  ul.nav {
+    float:left;
+    li {
+      display:inline-block;
+    }
+    a {
+      display: block;
+      font-size:.8em;
+      padding:.8em;
+      margin:0;
     }
   }
 }
