@@ -1,3 +1,47 @@
+/*doc
+---
+title: Colors
+name: Colors
+category: Variables
+---
+
+Here you will find the colors defined in the variables file. There is no class defined for each color so you can use the variable anywhere you want, no matter if a background, color, border color or even a shadow.
+
+| Variable name | HEX Value | Preview |
+|---------------|-----------|---------|
+|$color-white|#FFFFFF|<div style="background:#ffffff; width:50px; height:50px;"></div>
+|$color-gray|#F9FAFB|<div style="background:#F9FAFB; width:50px; height:50px;"></div>
+|$color-gray-low|#F4F4F4|<div style="background:#F4F4F4; width:50px; height:50px;"></div>
+|$color-gray-outlines|#E2E2E2|<div style="background:#E2E2E2; width:50px; height:50px;"></div>
+|$color-dark:|#414042|<div style="background:#414042; width:50px; height:50px;"></div>
+|$color-dark-hi|#62686C|<div style="background:#62686C; width:50px; height:50px;"></div>
+|$color-mid-gray|#B6B6B6|<div style="background:#B6B6B6; width:50px; height:50px;"></div>
+|$color-green|#208D66|<div style="background:#208D66; width:50px; height:50px;"></div>
+|$color-green-hi|#0BBA77|<div style="background:#0BBA77; width:50px; height:50px;"></div>
+|$color-blue|#2E5478|<div style="background:#2E5478; width:50px; height:50px;"></div>
+|$color-blue-hi|#14C9C9|<div style="background:#14C9C9; width:50px; height:50px;"></div>
+|$color-red|#FF6B6B|<div style="background:#FF6B6B; width:50px; height:50px;"></div>
+|$color-red-hi|#FFA0A0|<div style="background:#FFA0A0; width:50px; height:50px;"></div>
+|$color-yellow|#E9E500|<div style="background:#E9E500; width:50px; height:50px;"></div>
+|$color-yellow-dark|#F4D100|<div style="background:#F4D100; width:50px; height:50px;"></div>
+|$color-yellow-hi|#F7EF52|<div style="background:#F7EF52; width:50px; height:50px;"></div>
+|$color-alert-yellow|#FFFCC6|<div style="background:#FFFCC6; width:50px; height:50px;"></div>
+|$color-alert-red|#FFDCDC|<div style="background:#FFDCDC; width:50px; height:50px;"></div>
+|$color-alert-green|#DAFFF2|<div style="background:#DAFFF2; width:50px; height:50px;"></div>
+|$color-alert-blue|#C3F5F5|<div style="background:#C3F5F5; width:50px; height:50px;"></div>
+|$color-text|#4A4A4A|<div style="background:#4A4A4A; width:50px; height:50px;"></div>
+|$color-link|#14C9C9|<div style="background:#14C9C9; width:50px; height:50px;"></div>
+|$color-link-selected|#2E5478|<div style="background:#2E5478; width:50px; height:50px;"></div>
+|$color-highlight|#F4D100|<div style="background:#F4D100; width:50px; height:50px;"></div>
+|$color-light|#eeeeee|<div style="background:#eeeeee; width:50px; height:50px;"></div>
+|$color-input|#62686C|<div style="background:#62686C; width:50px; height:50px;"></div>
+
+
+*/
+
+
+
+
 /**
   General variables
 **/
