@@ -7,35 +7,32 @@ category: Variables
 
 Here you will find the colors defined in the variables file. There is no class defined for each color so you can use the variable anywhere you want, no matter if a background, color, border color or even a shadow.
 
-| Variable name | HEX Value | Preview |
-|---------------|-----------|---------|
-|$color-white|#FFFFFF|<div style="background:#ffffff; width:50px; height:50px;"></div>
-|$color-gray|#F9FAFB|<div style="background:#F9FAFB; width:50px; height:50px;"></div>
-|$color-gray-low|#F4F4F4|<div style="background:#F4F4F4; width:50px; height:50px;"></div>
-|$color-gray-outlines|#E2E2E2|<div style="background:#E2E2E2; width:50px; height:50px;"></div>
-|$color-dark:|#414042|<div style="background:#414042; width:50px; height:50px;"></div>
-|$color-dark-hi|#62686C|<div style="background:#62686C; width:50px; height:50px;"></div>
-|$color-mid-gray|#B6B6B6|<div style="background:#B6B6B6; width:50px; height:50px;"></div>
-|$color-green|#208D66|<div style="background:#208D66; width:50px; height:50px;"></div>
-|$color-green-hi|#0BBA77|<div style="background:#0BBA77; width:50px; height:50px;"></div>
-|$color-blue|#2E5478|<div style="background:#2E5478; width:50px; height:50px;"></div>
-|$color-blue-hi|#14C9C9|<div style="background:#14C9C9; width:50px; height:50px;"></div>
-|$color-red|#FF6B6B|<div style="background:#FF6B6B; width:50px; height:50px;"></div>
-|$color-red-hi|#FFA0A0|<div style="background:#FFA0A0; width:50px; height:50px;"></div>
-|$color-yellow|#E9E500|<div style="background:#E9E500; width:50px; height:50px;"></div>
-|$color-yellow-dark|#F4D100|<div style="background:#F4D100; width:50px; height:50px;"></div>
-|$color-yellow-hi|#F7EF52|<div style="background:#F7EF52; width:50px; height:50px;"></div>
-|$color-alert-yellow|#FFFCC6|<div style="background:#FFFCC6; width:50px; height:50px;"></div>
-|$color-alert-red|#FFDCDC|<div style="background:#FFDCDC; width:50px; height:50px;"></div>
-|$color-alert-green|#DAFFF2|<div style="background:#DAFFF2; width:50px; height:50px;"></div>
-|$color-alert-blue|#C3F5F5|<div style="background:#C3F5F5; width:50px; height:50px;"></div>
-|$color-text|#4A4A4A|<div style="background:#4A4A4A; width:50px; height:50px;"></div>
-|$color-link|#14C9C9|<div style="background:#14C9C9; width:50px; height:50px;"></div>
-|$color-link-selected|#2E5478|<div style="background:#2E5478; width:50px; height:50px;"></div>
-|$color-highlight|#F4D100|<div style="background:#F4D100; width:50px; height:50px;"></div>
-|$color-light|#eeeeee|<div style="background:#eeeeee; width:50px; height:50px;"></div>
-|$color-input|#62686C|<div style="background:#62686C; width:50px; height:50px;"></div>
-
+ <ul class="color-definition-wrapper">
+  <li><div style="background:#ffffff;"></div><code>$color-white</code><br>#FFFFFF</li>
+  <li><div style="background:#F9FAFB;"></div><code>$color-gray</code><br>#F9FAFB</li>
+  <li><div style="background:#F4F4F4;"></div><code>$color-gray-low</code><br>#F4F4F4</li>
+  <li><div style="background:#E2E2E2;"></div><code>$color-gray-outlines</code><br>#E2E2E2</li>
+  <li><div style="background:#B6B6B6;"></div><code>$color-mid-gray</code><br>#B6B6B6</li>
+  <li class="clear"></li>
+  <li><div style="background:#62686C;"></div><code>$color-dark-hi</code><br>#62686C</li>
+  <li><div style="background:#414042;"></div><code>$color-dark</code><br>#414042</li>
+  <li class="clear"></li>
+  <li><div style="background:#208D66;"></div><code>$color-green</code><br>#208D66</li>
+  <li><div style="background:#0BBA77;"></div><code>$color-green-hi</code><br>#0BBA77</li>
+  <li><div style="background:#2E5478;"></div><code>$color-blue</code><br>#2E5478</li>
+  <li><div style="background:#14C9C9;"></div><code>$color-blue-hi</code><br>#14C9C9</li>
+  <li class="clear"></li>
+  <li><div style="background:#FF6B6B;"></div><code>$color-red</code><br>#FF6B6B</li>
+  <li><div style="background:#FFA0A0;"></div><code>$color-red-hi</code><br>#FFA0A0</li>
+  <li><div style="background:#E9E500;"></div><code>$color-yellow</code><br>#E9E500</li>
+  <li><div style="background:#F4D100;"></div><code>$color-yellow-dark</code><br>#F4D100</li>
+  <li><div style="background:#F7EF52;"></div><code>$color-yellow-hi</code><br>#F7EF52</li>
+  <li class="clear"></li>
+  <li><div style="background:#FFFCC6;"></div><code>$color-alert-yellow</code><br>#FFFCC6</li>
+  <li><div style="background:#FFDCDC;"></div><code>$color-alert-red</code><br>#FFDCDC</li>
+  <li><div style="background:#DAFFF2;"></div><code>$color-alert-green</code><br>#DAFFF2</li>
+  <li><div style="background:#C3F5F5;"></div><code>$color-alert-blue</code><br>#C3F5F5</li>
+</ul>
 
 */
 
@@ -104,11 +101,6 @@ $color-alert-red:#FFDCDC;
 $color-alert-green:#DAFFF2;
 $color-alert-blue:#C3F5F5;
 
-$color-text:#4A4A4A;
-$color-link:#14C9C9;
-$color-link-selected:#2E5478;
-$color-highlight:#F4D100;
-$color-light:#eeeeee;
-$color-input:#62686C;
-
+$color-yellow-dark:#F4D100;
+$color-gray-outlines:#eeeeee;
 

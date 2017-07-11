@@ -46,11 +46,13 @@
 
 /** Use button mixin to define action modifiers **/
 
-@mixin button($background: $color-link , $color: #fff, $border-color: false, $border-thickness: false) {
+@mixin button($background: $color-blue-hi , $color: #fff, $border-thickness: 0, $border-color: false) {
   background:$background;
   color:$color;
 
-  @if $border-thickness {
+  @if $border-thickness > 0 {
     box-shadow:inset 0 0 0 $border-thickness * 1px $border-color;
+  } @else {
+    box-shadow:none;
   }
 }

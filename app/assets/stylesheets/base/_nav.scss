@@ -18,7 +18,7 @@ ul.nav {
   }
 
   a:not(.button) {
-    color:$color-text;
+    color:$color-dark;
     text-decoration: none;
     margin:.5em 1em;
     padding:.5em 0;
@@ -42,7 +42,7 @@ ul.nav {
       &.current {
 
         &:after {
-          background:$color-highlight;
+          background:$color-yellow-dark;
           width:100%;
           opacity:1;
         }

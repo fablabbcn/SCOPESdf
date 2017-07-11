@@ -2,29 +2,26 @@
 ---
 title: Buttons
 name: button
-category: Base CSS
+category: Elements
 ---
 
 `<button>` has a default definition. You can use the class `.button` on any `<a>` tag to make a link look like a call to action. By using modifiers you can generate flat and call to action buttons.
 
-Also, hover and disabled styles are defined.
-
-| Element                                                                                 | Code snippet                                              | Modifier class             |
-|-----------------------------------------------------------------------------------------|-----------------------------------------------------------|----------------------------|
-| <button>Unstyled button</button>                                                        | `<button>Action</button>`                                 | none (default state)      |
-| <button class="button button--flat">Flat button</button>                                | `<button class="button button--flat">Action</button>`     | `button--flat`            |
-| <button class="button button--call">Button Call</button>                                | `<button class="button button--call">Action</button>`| `button--call`            |
+| Element                                           | Code snippet                                 | Modifier class             |
+|---------------------------------------------------|----------------------------------------------|----------------------------|
+| <a class="button">Link button</a>                 | `<a class="button">Action</a>`               | default state              |
+| <a class="button button--call">Link Call</a>      | `<a class="button button--call">Action</a>`  | `.button--call`            |
 
 ## Size modifiers
 
 Add `.button--small` or `.button--large` to modify button appearance. This just changes font-size and paddings, so you can use it on any button/action.
 
 
-| Element                                                                                 | Code snippet                                              | Modifier class                  |
-|-----------------------------------------------------------------------------------------|-----------------------------------------------------------|----------------------------|
-| <button class="button button--flat button--large">Flat large button</button>            | `<button class="button button--flat button--large">Action</button>`     | `button--large`      |
-| <button class="button button--flat">Normal button</button>                              | `<button class="button button--call">Action</button>`| no size modifier            |
-| <button class="button button--flat button--small">Small button</button>                 | `<button class="button button--call button--small">Action</button>`| `button--small`            |
+| Element                                                             | Code snippet                                                | Modifier class             |
+|---------------------------------------------------------------------|-------------------------------------------------------------|----------------------------|
+| <button class="button--large">Flat large button</button>            | `<button class="button--large">Action</button>`             | `.button--large`           |
+| <button>Normal button</button>                                      | `<button class="button--call">Action</button>`              | no size modifier           |
+| <button class="button--small">Small button</button>                 | `<button class="button--call button--small">Action</button>`| `.button--small`           |
 
 
 ## State modifiers
@@ -36,30 +33,27 @@ Notice that disabled buttons have **cursor:default** and **pointer-events:none**
 
 | Element                                                                                 | Code snippet                                              | Modifier class                  |
 |-----------------------------------------------------------------------------------------|-----------------------------------------------------------|----------------------------|
-| <button class="button button--flat" disabled>Disabled button</button>                   | `<button class="button button--flat" disabled>No action</button>`| no modifier (disabled via attribute)            |
-| <button class="button button--flat button--disabled">Disabled button</button>           | `<button class="button button--flat button--disabled">No action</button>` |  button--disabled` |
+| <button class="button" disabled>Disabled button</button>                   | `<button class="button button--flat" disabled>No action</button>`| no modifier (disabled via attribute)            |
+| <button class="button button--disabled">Disabled button</button>           | `<button class="button button--flat button--disabled">No action</button>` |  `.button--disabled` |
 
 
 */
 
 .button, button {
   @include button-base;
+  @include button($color-white,$color-dark-hi,1,$color-gray-outlines);
 
   &:disabled, &.button--disabled {
     cursor:default;
     pointer-events:none;
   }
 
-  &.button--flat {
-    @include button($color-white,$color-dark-hi,$color-gray-outlines,1);
+  &:hover {
+    @include button($color-white,$color-dark-hi,2,$color-blue-hi);
+  }
 
-    &:hover {
-      @include button($color-white,$color-dark-hi,$color-blue-hi,2);
-    }
-
-    &:disabled, &.button--disabled {
-      @include button($color-gray-low,$color-mid-gray,$color-mid-gray,1);
-    }
+  &:disabled, &.button--disabled {
+    @include button($color-gray-low,$color-mid-gray,1,$color-mid-gray);
   }
 
   &.button--call {

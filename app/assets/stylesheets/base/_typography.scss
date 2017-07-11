@@ -7,19 +7,19 @@ body {
   font-family:$font-base;
   line-height:1.4em;
   -webkit-font-smoothing: subpixel-antialiased;
-  color:$color-text;
+  color:$color-dark;
   word-break: none;
   hyphens: none;
 }
 
 a {
-  color:$color-link;
+  color:$color-blue-hi;
   text-decoration:underline;
 
  &:hover,
   &:focus {
     outline:0;
-    color:darken($color-link,10%);
+    color:darken($color-blue-hi,10%);
     text-decoration: none;
   }
 }
