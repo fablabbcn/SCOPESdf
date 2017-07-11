@@ -46,6 +46,9 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'guard'
+  gem 'hologram', github: 'trulia/hologram'
+  gem 'guard-hologram', require: false
   gem 'rspec-rails'
 end
 group :test do

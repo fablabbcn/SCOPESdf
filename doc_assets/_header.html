@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <title>SCOPESdf styleguide: <%= title %></title>
+    <link rel="stylesheet" href="styles/doc.css">
+    <link rel="stylesheet" href="/assets/application.css">
+  </head>
+  <body>
+
+  <header role="banner">
+    <nav role="navigation">
+      <div class="wrapped">
+        <div class="navbar-header">
+          <h1 class="brand"><a href="/">SCOPESdf</a></h1>
+            <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <% @categories.each do |category, file_name| %>
+              <li><a href="<%= file_name %>"><%= category %></a></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main role="main">
+      <section class="content">
+        <div class="wrapped">
+        <ul>
+        <% @blocks.each do |b| %>
+          <li><a href="#<%= b[:name] %>"><%= b[:title] %></a></li>
+        <% end %>
+        </ul>
