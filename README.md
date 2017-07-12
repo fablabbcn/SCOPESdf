@@ -97,7 +97,6 @@ Backend Flow: Pundit - lesson policy to ensure author, set attributes. steps are
 
 
 
-
 ### Search: '++'
 UserCase: To Search Objects
 Endpoint: `` POST search/:entity `` where ``:entity`` is the name of the model you are querying
@@ -112,11 +111,6 @@ Request Structure:
    }
  
 ```
-
-
-
-
-
 #### [Paw](https://paw.cloud/)
 Key things to keep note:
 * Cookie window OPT + CMD + 2 to see session cookies
@@ -128,3 +122,10 @@ Key things to keep note:
         end
         
 * Enjoy this amazing tool 🙂
+
+
+#### The styleguide
+
+You will need to bundle install for this. The styleguide is built on top of [Hologram](https://github.com/trulia/hologram). Just run `foreman start` as you would do and point the browser to your server address **/styleguide**.
+
+It takes the real site styleguide and adds some (still) cheesy formatting.

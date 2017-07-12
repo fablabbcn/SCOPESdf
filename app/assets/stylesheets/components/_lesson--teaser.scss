@@ -1,0 +1,18 @@
+article.lesson--teaser {
+  background:$color-white;
+  border:1px solid $color-gray-outlines;
+
+  .detail {
+    padding:2rem;
+  }
+
+  h3 {
+    font-size:1rem;
+    margin:0;
+  }
+
+  p {
+    font-size:.9em;
+  }
+
+}

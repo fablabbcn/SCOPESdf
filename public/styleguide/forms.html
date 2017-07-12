@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <title>SCOPESdf styleguide: Forms</title>
+    <link rel="stylesheet" href="styles/doc.css">
+    <link rel="stylesheet" href="/assets/application.css">
+  </head>
+  <body>
+
+  <header role="banner">
+    <nav role="navigation">
+      <div class="wrapped">
+        <div class="navbar-header">
+          <h1 class="brand"><a href="/">SCOPESdf</a></h1>
+            <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+              <li><a href="elements.html">Elements</a></li>
+            
+              <li><a href="variables.html">Variables</a></li>
+            
+              <li><a href="forms.html">Forms</a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main role="main">
+      <section class="content">
+        <nav class="nav-secondary">
+          <div class="wrapped">
+            <ul class="nav">
+            
+              <li><a href="#input">Inputs</a></li>
+            
+            </ul>
+          </div>
+        </nav>
+        <div class="wrapped"><h1 id="input" class="styleguide">Inputs</h1>
+<p class="styleguide">Each <code class="styleguide">&lt;input&gt;</code> has a number of built-in states and modifiers. This applies to <code class="styleguide">[type=&quot;text&quot;]</code>, <code class="styleguide">[type=&quot;password&quot;]</code> and <code class="styleguide">[type=&quot;email&quot;]</code></p><table class="styleguide"> <tr>
+<th>Element</th>
+<th>Code snippet</th>
+<th>Modifier class</th>
+</tr>
+ <tr>
+<td><input type="text" placeholder="Text input"></td>
+<td><code class="styleguide">&lt;input type=&quot;text&quot; placeholder=&quot;Text input&quot;&gt;</code></td>
+<td>default state</td>
+</tr>
+<tr>
+<td><input type="text" placeholder="Disabled input" disabled></td>
+<td><code class="styleguide">&lt;input type=&quot;text&quot; placeholder=&quot;Text input&quot; disabled&gt;</code></td>
+<td>disabled state</td>
+</tr>
+<tr>
+<td><input type="text" class="input--error" placeholder="Error input"></td>
+<td><code class="styleguide">&lt;input type=&quot;text&quot; class=&quot;input--error&quot; placeholder=&quot;Error input&quot;&gt;</code></td>
+<td><code class="styleguide">.input--error</code></td>
+</tr>
+ </table><p class="styleguide">Also, a general style modifier is defined for inputs to behave like a single line. Just add <code class="styleguide">.input--line</code> and there you go.</p>
+<h2>Modifiers</h2>
+<table class="styleguide"> <tr>
+<th>Element</th>
+<th>Code snippet</th>
+<th>Modifier class</th>
+</tr>
+ <tr>
+<td><input type="text" class="input--line" placeholder="Text input"></td>
+<td><code class="styleguide">&lt;input class=&quot;input--line&quot; type=&quot;text&quot; placeholder=&quot;Text input&quot;&gt;</code></td>
+<td><code class="styleguide">input--line</code></td>
+</tr>
+<tr>
+<td><input type="text" class="input--line" placeholder="Disabled input" disabled></td>
+<td><code class="styleguide">&lt;input class=&quot;input--line&quot; type=&quot;text&quot; placeholder=&quot;Text input&quot; disabled&gt;</code></td>
+<td><code class="styleguide">input--line</code> disabled state</td>
+</tr>
+<tr>
+<td><input type="text" class="input--line input--error" placeholder="Error input"></td>
+<td><code class="styleguide">&lt;input type=&quot;text&quot; class=&quot;input--line input--error&quot; placeholder=&quot;Error input&quot;&gt;</code></td>
+<td><code class="styleguide">input--line input--error</code></td>
+</tr>
+ </table>        </div>
+      </main>      
+      </section>
+      <footer role="contentinfo">
+        <div class="wrapped">
+          <p>This documentation generated using <a href="http://github.com/trulia/hologram">Hologram</a></p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

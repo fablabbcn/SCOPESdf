@@ -1,0 +1,10 @@
+%article
+  .wrapped
+    %fieldset
+      %h3 
+        How does this lesson unfold? 
+        %p [steps with instructions]
+  %footer
+    .wrapped
+      =link_to 'Back to details', page_path('static/lessons/new.html.haml',step:'3'), class: 'button button--call'
+      =link_to 'Add some outcomes', page_path('static/lessons/new.html.haml',step:'5'), class: 'button button--call'

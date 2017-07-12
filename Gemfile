@@ -6,9 +6,12 @@ gem 'pg'
 gem 'activerecord-postgis-adapter'
 
 gem 'puma', '~> 3.0'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
+gem 'breakpoint'
+gem 'bourbon'
+gem 'susy', '>= 2.2.12'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
@@ -51,6 +54,9 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'guard'
+  gem 'hologram', github: 'trulia/hologram'
+  gem 'guard-hologram', require: false
   gem 'rspec-rails'
 end
 group :test do
