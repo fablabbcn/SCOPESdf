@@ -3,7 +3,49 @@
     %fieldset
       %h3 
         How does this lesson unfold? 
-        %p [steps with instructions]
+    
+      .lesson-step
+        %h4 Instructions
+
+        .field-group
+          %label.field-description
+            Subjects
+            %small Add one or more
+
+        .field-group
+          %label
+            Grade Range
+            %small Specify one or more
+            %input{type: 'text', id: 'grade', readonly: 'readonly'}
+              %div#slider-range
+
+        .field-group
+          %label
+            Descriotion *
+            %small
+              %p Describe all the actions in this step. 
+              %p If there are lot of actions, please consider breaking it down into multiple steps!
+            %textarea
+            .field-group
+              %label 
+                Supporting files
+                %input{type: 'file'}
+
+        .field-group
+          %h4 What is needed for this step?
+          %label
+            Materials
+            %small What do they need?
+          %input{type: 'text', placeholder: 'Qty'}
+          %input{type: 'text', placeholder: 'Enter item here'}
+          %small Press ↵ Return to add
+
+
+        %h3 Step 2
+        = link_to 'Add new Step', '#', class: 'button button--highlight'
+
+
+
   %footer
     .wrapped
       =link_to 'Back to details', page_path('static/lessons/new.html.haml',step:'3'), class: 'button button--call'
