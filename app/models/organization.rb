@@ -6,8 +6,10 @@
 #  name                 :string           default(""), not null
 #  desc                 :string           default(""), not null
 #  social               :json
-#  teaching_range_start :integer          default("start_k"), not null
-#  teaching_range_end   :integer          default("end_k"), not null
+#  teaching_range_start :integer          default("start_k")
+#  teaching_range_end   :integer          default("end_k")
+#  contact_email        :string
+#  state                :integer          default("unvalidated"), not null
 #  address_line1        :string
 #  address_line2        :string
 #  address_line3        :string
@@ -16,7 +18,7 @@
 #  region               :string
 #  post_code            :string
 #  country              :string
-#  lonlat               :geography({:srid not null, point, 4326
+#  lonlat               :geography({:srid point, 4326
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #
@@ -32,8 +34,9 @@ class Organization < ApplicationRecord
             :end_grade_6, :end_grade_7, :end_grade_8,
             :end_grade_9, :end_grade_10, :end_grade_11, :end_grade_12 ]
 
+  enum state: [:unvalidated, :validated]
 
-  has_many :affiliations
+  has_many :affiliations, dependent: :destroy
   has_many :users, through: :affiliations
   # has_many :tags, as: :taggable
 

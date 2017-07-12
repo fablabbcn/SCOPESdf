@@ -5,23 +5,15 @@ class LessonsController < ApplicationController
   skip_before_filter :verify_authenticity_token # REMOVE THIS OBVIOUSLY
 
   def create
-    @lesson =  Lesson.new(lesson_params)
-    response = @lesson.save
-    @lesson.reload
-    # uncomment below for functionality
-    # response = response && @lesson..lesson_tags << LessonTag.new(taggable: @current_user) # adding author
-    # copy and do the same for organization after validation
-
-    @lesson.destroy unless response # make sure added author, unless fail... update status
-    # TODO - add organization
-    render :json => {status: response, lesson: @lesson.id}, :status => 200
+    # id = params[:id]
+    # user = @current_user
+    @lesson = LessonService.find_or_create_and_update(nil, lesson_params, User.first)
+    # puts @lesson.inspect
+    render :json => {lesson: @lesson.id}, :status => 200
   end
   def update
-    @lesson = Lesson.find(params[:id])
-    # authorize @lesson -- check to see if user authored
-    @lesson.attributes = lesson_params
-    @lesson.save!
-    render :json => {status: response, lesson: @lesson.id}, :status => 200
+    # not different from above ...
+    render :json => {status: true, lesson: @lesson.id}, :status => 200
   end
 
   def add_step
@@ -48,12 +40,34 @@ class LessonsController < ApplicationController
 
   end
 
+  def fileUpload
+    # puts params[:id]
+    # puts file_params.inspect
+    # puts file_params[:files]
+    puts "D"
+    x = file_params[:files]
+     puts x.count
+
+    id = Lesson.first.id
+    r = LessonService.add_file_by_type_to_id(id, file_params[:files], params[:atr], User.second)
+    render :json => {response: r}, :status => 200
+
+  end
+
   private
   def lesson_params
-    params.require(:lesson).permit(:name, :topline, :summary, :description, :assessment_criteria, :difficulty_level, :state, :learning_objectives =>[], :further_readings =>[], :outcome_links =>[])
+    params.require(:lesson).permit(:name, :topline, :summary, :description, :assessment_criteria, :state, :collection_tag, other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids:  [], standards: [ :name, descriptions: [] ], grade_range: [:start, :end ], subjects:[], difficulty_level: [:student ,:educator ], skills:[:name, :level], context: [], tags: [])
   end
+
   def step_params
-    params.permit(steps: [ :name, :summary, :duration, :supporting_images =>[], :materials   => [], :tools => [], :supporting_material => [],  ]) #TODO - supporting materials vs materials... add materials
+    params.permit(steps: [ :name, :summary, :duration, :supporting_images =>[], :materials   => [], :tools => [], :supporting_material => []  ]) #TODO - supporting materials vs materials... add materials
+  end
+  def step_param
+    params.require(:step).permit(:summary, :duration, materials: [:number, :name], tools: [])
+  end
+
+  def file_params
+    params.permit(:files => [])
   end
 
 end

@@ -22,5 +22,11 @@ class LessonTag < ApplicationRecord
 
   validates_uniqueness_of :taggable_id, :scope => [:taggable_type, :lesson_id]
 
+  # links to the following:
+  # User
+  # Organization
+  # TeachingRange
+  # Subject
+  # Difficulty Level
 
 end

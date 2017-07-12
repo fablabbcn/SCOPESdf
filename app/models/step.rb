@@ -4,12 +4,12 @@
 #
 #  id                  :uuid             not null, primary key
 #  lesson_id           :uuid             not null
-#  name                :string           not null
-#  summary             :string           default(""), not null
+#  summary             :string           not null
 #  duration            :integer          default(0), not null
-#  supporting_images   :json
+#  description         :string           default(""), not null
+#  supporting_files    :json
 #  materials           :json
-#  tools               :json
+#  tools               :string           is an Array
 #  supporting_material :json
 #  step_number         :integer          not null
 #  created_at          :datetime         not null
@@ -19,7 +19,6 @@
 class Step < ApplicationRecord
 
   validates :lesson_id, presence: true
-  validates :name, presence: true
 
   before_create :check_step_number, :if => :new_record?
   def check_step_number
@@ -47,5 +46,30 @@ class Step < ApplicationRecord
   end
 
 
+  # move the following to its own service:
+  def self.find_or_create_and_update(step_id, lesson_id, params, calling_user)
+    @lesson = Lesson.find(lesson_id)
+    return unless @lesson.hasAuthor?(calling_user)
+
+    # filter params if need be
+
+    @step = Step.new(params)
+    @lesson.steps << @step
+    @step.save!
+    @step.reload
+
+    # find or create
+    # if creating add new lesson
+
+    {id: @step.id, files:{supporting_files: @step.supporting_files, supporting_materials: @step.supporting_materials } }
+  end
+
+  def reorder(order_number)
+
+  end
+
+  def deleteAndUpdateLesson
+
+  end
 
 end

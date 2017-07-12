@@ -13,12 +13,10 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
-#  name                   :string           default(""), not null
 #  role                   :integer          default("user"), not null
-#  avatar_url             :string
+#  name                   :string           default(""), not null
+#  avatar                 :string           default("")
 #  bio                    :string           default(""), not null
-#  kind                   :integer          default(0), not null
-#  phone_number           :string
 #  social                 :json
 #  settings               :json             not null
 #  created_at             :datetime         not null
@@ -29,6 +27,9 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
   after_initialize :set_default_role, :if => :new_record?
   before_create :set_default_notifications, :if => :new_record?
+
+
+  mount_uploader :avatar, AvatarUploader
 
 
   def set_default_role
@@ -43,11 +44,9 @@ class User < ApplicationRecord
 
   # TODO - add validations
 
-  # TODO - validates presence of at least one association
+  # TODO - validates presence of at least one association which is primary!!!
 
   # TODO - ATTR: add active / inactive
-
-  # TODO - https://github.com/carrierwaveuploader/carrierwave ?? for files?? or just FOG?
 
   # TODO - other interests, what do you do, subjects, skills required... talk with GUI
 
@@ -59,23 +58,124 @@ class User < ApplicationRecord
 
 
 
-  has_many :affiliations
+  has_many :affiliations, dependent: :destroy
   has_many :organizations, through: :affiliations
   # has_many :tags, as: :taggable
 
-  has_many :lesson_tags, as: :taggable
+  has_many :user_tags, dependent: :destroy
 
-  def addOrgId?(org_uuid)
-    return "already added" if self.affiliations.select{|x| x.organization_id == org_uuid}
+
+  has_many :skill_tags, as: :taggable
+
+
+
+  def addOrg_id(org_uuid, primary)
     org = Organization.withId_(org_uuid).or_nil
     return "failed" if (org == nil)
-    self.organizations << org
-    true
+
+    unless Affiliation.exists?(user_id: self.id, organization_id: org.id)
+      af = Affiliation.new(user_id: self.id, organization_id: org.id)
+      af.save
+    end
+
+    if self.affiliations.count == 1 || primary
+      removePrimaryOrg
+      x = Affiliation.where(user_id: self.id, organization_id: org.id).first
+      x.primary = true
+      x.save!
+    end
+
+  end
+  def addOrg(org, primary)
+    addOrg_id(org.id, primary)
+  end
+  def primaryOrg
+    Affiliation.where(user_id: self.id, primary: true).first.organization
+  end
+  def removePrimaryOrg
+    if self.affiliations.count > 0
+      self.affiliations.map{ |af| af[:primary] = false; af.save!}
+      # false  # cannot remove primary if just one organization
+    end
+  end
+  def removeOrg(org)
+    org = Organization.find(org.id)
+    return false if self.primaryOrg == org # cannot remove if just one
+    Affiliation.where(user_id: self.id, organization_id: org.id).destroy_all
   end
 
-  def addOrg?(org)
-    addOrgId?(org.id)
+
+  def setInvolvements(string_array)
+    string_array.map{ |n|
+      i = Involvement.find_or_create_by(name: n.downcase)
+      self.user_tags << UserTag.new(taggable: i)
+    }
   end
+  def getInvolvements
+    self.user_tags.where(taggable_type: "Involvement").map{|x| y = x.taggable; y.name}
+  end
+  def removeInvolvement(string)
+    self.user_tags.where(taggable_type: "Involvement").map{ |x|y = x.taggable; x.destroy if string.downcase == y.name}
+  end
+
+
+  def setSubjects(string_array)
+    string_array.map{ |n|
+      s = Subject.find_or_create_by(name: n.downcase)
+      self.user_tags << UserTag.new(taggable: s)
+    }
+  end
+  def getSubjects
+    self.user_tags.where(taggable_type: "Subject").map{|x| y = x.taggable; y.name}
+  end
+  def removeSubject(string)
+    self.user_tags.where(taggable_type: "Subject").map{ |x|y = x.taggable; x.destroy if string.downcase == y.name}
+  end
+
+
+  def setOtherInterests(string_array)
+    string_array.map{ |n|
+      oi = OtherInterest.find_or_create_by(name: n.downcase)
+      self.user_tags << UserTag.new(taggable: oi)
+    }
+  end
+  def getOtherInterests
+    self.user_tags.where(taggable_type: "OtherInterest").map{|x| y = x.taggable; y.name}
+  end
+  def removeOtherInterest(string)
+    self.user_tags.where(taggable_type: "OtherInterest").map{ |x|y = x.taggable; x.destroy if string.downcase == y.name}
+  end
+
+
+  def setSkillsLevels(hash_array) # [{:name, :level}]
+    hash_array.map{ |h|
+      skill = Skill.find_or_create_by(name: h[:name].downcase)
+      skill.skill_tags << SkillTag.new(taggable: self, level: h[:level])
+    }
+  end
+  def getSkillsLevels
+    SkillTag.where(taggable_type: "User", taggable_id: self.id).map{|x| y = x.skill; {name: y.name, level: x.level}}
+  end
+  def changeSkillLevel(name, skill_level)
+    SkillTag.where(taggable_type: "User", taggable_id: self.id).map{|x|
+      if name == x.skill.name
+        x.level = skill_level
+        x.save!
+      end
+    }
+  end
+  def removeSkill(string)
+    skill = Skill.where(name: string.downcase).first
+    skill.skill_tags.where(taggable_type: "User", taggable_id: self.id).map{ |x|
+     x.destroy if string.downcase == x.skill.name
+    } if skill.present?
+  end
+
+
+
+  private
+
+
 
 
 
