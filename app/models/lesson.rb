@@ -226,9 +226,10 @@ class Lesson < ApplicationRecord
 
   def addFiles(file, sym)
     returnable =""
-    puts file
+    # puts file
     case sym
       when :assessment_criteria
+        puts "assessment saving"
         self.assessment_criteria_files = file
         self.save!
         self.reload

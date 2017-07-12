@@ -27,16 +27,19 @@ class LessonService
       @lesson
     end
     def prepParams(usr, given)
-      other_users = given.delete(:other_users_emails)
-      associated_places = given.delete(:associated_places_ids)
-      standards = given.delete(:standards)
-      teaching_range = given.delete(:grade_range)
-      subjects = given.delete(:subjects)
-      difficulty_level = given.delete(:difficulty_level)
-      skills = given.delete(:skills)
-      context = given.delete(:context)
-      other_interests = given.delete(:tags)
-      collection = given.delete(:collection_tag)
+      if given
+        other_users = given.delete(:other_users_emails)
+        associated_places = given.delete(:associated_places_ids)
+        standards = given.delete(:standards)
+        teaching_range = given.delete(:grade_range)
+        subjects = given.delete(:subjects)
+        difficulty_level = given.delete(:difficulty_level)
+        skills = given.delete(:skills)
+        context = given.delete(:context)
+        other_interests = given.delete(:tags)
+        collection = given.delete(:collection_tag)
+      end
+
 
       params = {
           lesson: given,
@@ -69,11 +72,21 @@ class LessonService
 
 
     # acceptable types: assessment_criteria
-    def add_file_by_type_to_id(id, file, type, calling_user)
+    #file_params : {assessment_criteria_files: [], ...}
+    def add_file_by_type_to_id(id, file_params, calling_user)
+      # puts "PARAMS BELOW"
+      # puts file_params.inspect
       @lesson = Lesson.find(id)
       return false unless @lesson.hasAuthor?(calling_user)
 
-      url = @lesson.addFiles(file, type.to_sym)
+
+      url = file_params.each {|k,v|
+        file_type = k.to_s
+        file_type.gsub!("_files","")
+        @lesson.addFiles(v, file_type.to_sym)
+      }
+      puts url
+
       url
     end
     def remove_file_by_type_to_id(id, file, type, calling_user)
@@ -111,6 +124,7 @@ class LessonService
     end
 
     def updateData!
+      return unless @lesson_params.present?
       @lesson.state = 1   # draft state
       @lesson.attributes = @lesson_params
       # puts @lesson.inspect

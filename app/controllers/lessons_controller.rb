@@ -2,21 +2,30 @@ class LessonsController < ApplicationController
   #before_action :authenticate_user! # ADD THIS OBVIOUSLY
   #after_action :verify_authorized # pundit
 
-  #skip_before_filter :verify_authenticity_token # REMOVE THIS OBVIOUSLY
+  skip_before_filter :verify_authenticity_token # REMOVE THIS OBVIOUSLY
 
   def create
     # id = params[:id]
     # user = @current_user
+
     @lesson = LessonService.find_or_create_and_update(nil, lesson_params, User.first)
 
-    urls = {assessment_criteria_files:
-                params[:assessment_criteria_files].map {|f|
-                  LessonService.add_file_by_type_to_id(@lesson.id, params[:assessment_criteria_files], "assessment_criteria", User.first)
-                }
-    }
+    # puts params[:assessment_criteria_files].inspect
+
+    urls = params[:assessment_criteria_files].inspect
+
+    files_hash = {}
+    files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
+    files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
+
+
+    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first)
+    @lesson.reload
+
+
 
     # puts @lesson.inspect
-    render :json => {lesson: @lesson.id, files: urls}, :status => 200
+    render :json => {lesson: @lesson.id, files: urls, lesson_obj: @lesson.inspect}, :status => 200
   end
 
   def update
@@ -49,7 +58,7 @@ class LessonsController < ApplicationController
 
   end
 
-  def fileUpload
+  def fileUpload #breaking this
     # puts params[:id]
     # puts file_params.inspect
     # puts file_params[:files]
@@ -58,7 +67,7 @@ class LessonsController < ApplicationController
     puts x.count
 
     id = Lesson.first.id
-    r = LessonService.add_file_by_type_to_id(id, file_params[:files], params[:atr], User.second)
+    #r = LessonService.add_file_by_type_to_id(id, file_params[:files], params[:atr], User.second)  # this is broken due to refactor
     render :json => {response: r}, :status => 200
 
   end
@@ -77,7 +86,7 @@ class LessonsController < ApplicationController
   end
 
   def file_params
-    params.permit(:files => [])
+    #params.permit(:files => [])
   end
 
 end

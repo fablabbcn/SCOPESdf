@@ -65,7 +65,7 @@ class SeedService
       self.admin
         lesson =
             {
-                # TAB 1 - Overview
+                # TAB 1 - Overviewr
                 # Basic Information
                 name: "Name here",
                 topline: "Here is topline",
