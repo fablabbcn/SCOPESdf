@@ -1,0 +1,83 @@
+%article
+  .wrapped
+    %fieldset
+      %h3 
+        Basic information
+      %small 
+        *Mandatory information 
+        .field-group
+          %label 
+            Name of Lesson
+            %small 50 chars max
+          %input{type: 'text', class: 'input--large'}
+        .field-group
+          %label 
+            Topline description
+            %small Describe it in a sentence
+          %input{type: 'text'}
+        .field-group
+          %label
+            Summary of lesson *
+            %small
+              %p Keep it short and snappy.
+              %p Try to include:
+              %p 
+                • Why the lesson is interesting
+                %br
+                • The types of activities students will do.
+              %p You can format using markdown
+            %textarea
+
+    %fieldset
+      %h3 
+        Objectives
+      .field-group
+        %label 
+          Learning objectives
+          %small What will the students learn
+        %input{type: 'text'}
+
+    %fieldset
+      %h3
+        Lesson ambitions
+      .field-group
+        %label
+          Lesson ambition *
+          %small
+            %p Keep it short and snappy.
+            %p Try to include:
+            %p 
+              • Why the lesson is interesting
+              %br
+              • The types of activities students will do.
+            %p You can format using markdown
+          %textarea
+
+      .field-group
+        %label
+          Assessment Criteria *
+          %small
+            %p Keep it short and snappy.
+            %p Try to include:
+            %p 
+              • Why the lesson is interesting
+              %br
+              • The types of activities students will do.
+            %p You can format using markdown
+          %textarea
+          .field-group
+            %label 
+              Supporting files
+              %input{type: 'file'}
+
+    %fieldset
+      .field-group
+        %label 
+          Further reading
+          %small Anymore useful links
+        %input{type: 'text'}
+
+  %footer
+    .wrapped
+      %p Next up...
+      =link_to 'Add some more details', page_path('static/lessons/new.html.haml',step:'2'), class: 'button button--call'

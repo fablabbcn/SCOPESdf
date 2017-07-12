@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/trulia/hologram.git
+  revision: 8b22a2e0d7a4859d5ba5c8bf599f48b500576743
+  specs:
+    hologram (1.4.0)
+      redcarpet (>= 2.2, < 4.0)
+      rouge (>= 1.5, != 1.9.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -55,6 +63,12 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bourbon (4.3.4)
+      sass (~> 3.4)
+      thor (~> 0.19)
+    breakpoint (2.7.1)
+      sass (~> 3.3)
+      sassy-maps (< 1.0.0)
     builder (3.2.3)
     byebug (9.0.6)
     capybara (2.14.2)
@@ -101,8 +115,21 @@ GEM
     ffi (1.9.18)
     foreman (0.84.0)
       thor (~> 0.19.1)
+    formatador (0.2.5)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    guard (2.14.1)
+      formatador (>= 0.2.4)
+      listen (>= 2.7, < 4.0)
+      lumberjack (~> 1.0)
+      nenv (~> 0.1)
+      notiffany (~> 0.0)
+      pry (>= 0.9.12)
+      shellany (~> 0.0)
+      thor (>= 0.18.1)
+    guard-hologram (1.0.0)
+      guard (~> 2.0)
+      hologram
     haml (5.0.1)
       temple (>= 0.8.0)
       tilt
@@ -127,6 +154,7 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
+    lumberjack (1.0.12)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
@@ -136,12 +164,20 @@ GEM
     mini_portile2 (2.2.0)
     minitest (5.10.2)
     multi_json (1.12.1)
+    nenv (0.3.0)
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
+    notiffany (0.1.1)
+      nenv (~> 0.1)
+      shellany (~> 0.0)
     option (1.2.0)
     orm_adapter (0.5.0)
     pg (0.20.0)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     public_suffix (2.0.5)
     puma (3.9.1)
     pundit (1.1.0)
@@ -180,6 +216,7 @@ GEM
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
     rb-readline (0.5.4)
+    redcarpet (3.4.0)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -187,6 +224,7 @@ GEM
     rgeo-activerecord (5.0.1)
       activerecord (~> 5.0.0)
       rgeo (~> 0.3)
+    rouge (2.1.1)
     rspec-core (3.6.0)
       rspec-support (~> 3.6.0)
     rspec-expectations (3.6.0)
@@ -214,11 +252,15 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassy-maps (0.4.0)
+      sass (~> 3.3)
     selenium-webdriver (3.4.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     sexp_processor (4.9.0)
+    shellany (0.0.1)
+    slop (3.6.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-commands-rspec (1.0.4)
@@ -233,6 +275,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    susy (2.2.12)
+      sass (>= 3.3.0, < 3.5)
     temple (0.8.0)
     thor (0.19.4)
     thread_safe (0.3.6)
@@ -265,6 +309,8 @@ DEPENDENCIES
   activerecord-postgis-adapter
   better_errors
   bootstrap-sass
+  bourbon
+  breakpoint
   byebug
   capybara
   coffee-rails (~> 4.2)
@@ -275,8 +321,11 @@ DEPENDENCIES
   factory_girl_rails
   faker
   foreman
+  guard
+  guard-hologram
   haml
   high_voltage
+  hologram!
   jbuilder (~> 2.5)
   jquery-rails
   launchy
@@ -290,11 +339,12 @@ DEPENDENCIES
   rails_utils
   rb-readline
   rspec-rails
-  sass-rails (~> 5.0)
+  sass-rails
   selenium-webdriver
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
+  susy (>= 2.2.12)
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)

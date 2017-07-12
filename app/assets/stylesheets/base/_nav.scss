@@ -1,0 +1,68 @@
+/**
+  Navigation styles
+**/
+
+nav[role="navigation"] {
+  .navbar-toggle {
+    @include breakpoint($desktop-breakpoint) {
+      display:none;
+    }
+  }
+
+  .navbar-collapse {
+    @include breakpoint($desktop-breakpoint) {
+      float:right;
+      padding:2.4rem 0;
+    }
+  }
+}
+
+ul.nav {
+  @include ul-reset;
+
+  li {
+    display:inline-block;
+  }
+  a:not(.button) {
+    color:$color-dark;
+    text-decoration: none;
+    padding:.5em;
+    position:relative;
+    &:after {
+      width:0;
+      display:block;
+      content:"";
+      height:2px;
+      position:absolute;
+      opacity:0;
+      bottom:0;
+      left:0;
+    }
+
+    &:hover,
+    &.current {
+      &:after {
+        background:$color-yellow-dark;
+        width:100%;
+        opacity:1;
+      }
+    }
+  }
+}
+
+.nav-secondary {
+  background:$color-gray;
+  @include clearfix;
+  ul.nav {
+    float:left;
+    li {
+      display:inline-block;
+    }
+    a {
+      display: block;
+      font-size:.8em;
+      padding:.8em;
+      margin:0;
+    }
+  }
+}
