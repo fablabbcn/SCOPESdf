@@ -107,6 +107,9 @@ textarea {
 
 textarea {
   height:250px;
+  &.textarea--short {
+    height:90px;
+  }
 }
 
 input[type="submit"] {

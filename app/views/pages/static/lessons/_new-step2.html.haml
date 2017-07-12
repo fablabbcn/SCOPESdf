@@ -2,9 +2,27 @@
   .wrapped
     %fieldset
       %h3 
-        How does this align to standards
+        How does this align to standards?
 
-      %p [repeteable standards]
+      .lesson--standard-wrapper
+        .lesson--standard-header
+          %h4
+            Standard 1
+          .actions
+            = link_to 'Delete', '#'
+          .field-group
+            %label 
+              Standard name
+              %small What is the overarching standard
+            %input{type: 'text'}
+          .field-group
+            %label 
+              Description
+              %small Add one or more
+            %textarea{class: 'textarea--short'}
+            = link_to 'Add new standard', '#'
+      %h3 New standard
+      = link_to 'Add new Standard', '#', class: 'button button--highlight'
 
   %footer
     .wrapped
