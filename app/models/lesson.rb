@@ -44,7 +44,7 @@ class Lesson < ApplicationRecord
 
 
 
-  has_many :steps
+  has_many :steps, dependent: :destroy
   has_many :lesson_tags, dependent: :destroy
 
   # TODO - search for filter on lesson_tags
@@ -230,12 +230,14 @@ class Lesson < ApplicationRecord
     case sym
       when :assessment_criteria
         self.assessment_criteria_files = file
-        returnable = self.assessment_criteria_files.map{|x| x.url}
         self.save!
+        self.reload
+        returnable = self.assessment_criteria_files.map{|x| x.url}
       when :outcome
         self.outcome_files = file
-        returnable = self.outcome_files.map{|x| x.url}
         self.save!
+        self.reload
+        returnable = self.outcome_files.map{|x| x.url}
     end
     returnable
   end

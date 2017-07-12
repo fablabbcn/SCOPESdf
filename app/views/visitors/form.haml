@@ -6,3 +6,7 @@
 -#  = file_field_tag 'files[]', multiple: true
 -#  = submit_tag("Submit")
 
+= form_tag(lesson_create_path, method: "post", multipart: true) do
+  = text_field(:lesson, :name)
+  = file_field_tag 'assessment_criteria_files[]', multiple: true
+  = submit_tag("Submit")
