@@ -62,6 +62,9 @@ class LessonsController < ApplicationController
   def step_params
     params.permit(steps: [ :name, :summary, :duration, :supporting_images =>[], :materials   => [], :tools => [], :supporting_material => []  ]) #TODO - supporting materials vs materials... add materials
   end
+  def step_param
+    params.require(:step).permit(:summary, :duration, materials: [:number, :name], tools: [])
+  end
 
   def file_params
     params.permit(:files => [])

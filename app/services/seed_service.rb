@@ -62,6 +62,7 @@ class SeedService
 
     def lesson_service
       self.place
+      self.admin
         lesson =
             {
                 # TAB 1 - Overview
@@ -113,8 +114,6 @@ class SeedService
                 ],
                 context:
                     ["In Classroom", "Outdoors"],
-
-
                 tags:
                     ["Pinball"]
             }
@@ -136,6 +135,25 @@ class SeedService
         ## x.original_lesson = nil
         #step_number: 1
       Lesson.first.steps << step
+    end
+
+    def step_service
+      self.lesson_service
+      step = {
+          summary: "Step Subject Here",
+          duration: "1508",
+          description: "description of my step here",
+          # supporting_files  >> has its own endpoint
+          materials: [
+              {number: "4",   name: "Computers" },
+              {number: "35",  name: "Beakers" }
+          ],
+          tools:
+              ["3D Printer"],
+          # supporting_material >> has own endpoint
+      }
+      self.lesson_service
+      Step.find_or_create_and_update(nil, Lesson.first.id, step, User.first)
     end
   end
 end

@@ -110,13 +110,13 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
 
     create_table    :steps, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       t.uuid        :lesson_id, null: false, index: true
-      t.string      :name, null: false
-      t.string      :summary, default: "", null: false
+      t.string      :summary, null: false
       t.integer     :duration, default: 0, null: false
-      t.json        :supporting_images
+      t.string      :description, default: "", null: false
+      t.json        :supporting_files       # files
       t.json        :materials          # are they searchable?
-      t.json        :tools              #links from fablabs.io ?
-      t.json        :supporting_material
+      t.string      :tools, array: true # searchable?
+      t.json        :supporting_materials   # files
       t.integer     :step_number, null: false
       t.timestamps  null: false
     end

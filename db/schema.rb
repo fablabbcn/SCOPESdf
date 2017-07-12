@@ -155,17 +155,17 @@ ActiveRecord::Schema.define(version: 20170604152437) do
   end
 
   create_table "steps", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "lesson_id",                        null: false
-    t.string   "name",                             null: false
-    t.string   "summary",             default: "", null: false
-    t.integer  "duration",            default: 0,  null: false
-    t.json     "supporting_images"
+    t.uuid     "lesson_id",                         null: false
+    t.string   "summary",                           null: false
+    t.integer  "duration",             default: 0,  null: false
+    t.string   "description",          default: "", null: false
+    t.json     "supporting_files"
     t.json     "materials"
-    t.json     "tools"
-    t.json     "supporting_material"
-    t.integer  "step_number",                      null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.string   "tools",                                          array: true
+    t.json     "supporting_materials"
+    t.integer  "step_number",                       null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.index ["lesson_id"], name: "index_steps_on_lesson_id", using: :btree
   end
 

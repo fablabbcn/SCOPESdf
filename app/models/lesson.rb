@@ -116,8 +116,8 @@ class Lesson < ApplicationRecord
 
 
   def setDifficultyLevel(obj_hash)
-    student = DifficultyLevel.find_or_create_by(metric: 0, level: obj_hash[:student])
-    educator = DifficultyLevel.find_or_create_by(metric: 1, level: obj_hash[:educator])
+    student = DifficultyLevel.find_or_create_by(metric: 0, level: obj_hash[:student].to_i)
+    educator = DifficultyLevel.find_or_create_by(metric: 1, level: obj_hash[:educator].to_i)
     self.lesson_tags << LessonTag.new(taggable: student)
     self.lesson_tags << LessonTag.new(taggable: educator)
   end
