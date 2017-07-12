@@ -1,7 +1,6 @@
 class DatabaseSeed < ActiveRecord::Migration[5.0]
   def change
     enable_extension 'uuid-ossp' # enabled for UUID
-
     create_table  :users, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
 
       ## Database authenticatable
