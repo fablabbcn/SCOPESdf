@@ -164,6 +164,15 @@ fieldset {
 
     }
 
+    .field-wrapper {
+      small {
+        display:block;
+        text-align: right;
+        font-size:.7em;
+        color:$color-mid-gray;
+      }
+    }
+
 
   }
 
@@ -193,6 +202,20 @@ fieldset {
     @include breakpoint($tablet-breakpoint) {
       @include span(9 of 12 last);
     }
+  }
+}
+
+.lesson--standard-header {
+  @include clearfix;
+  margin-bottom:2em;
+
+  h4 {
+    float:left;
+    margin:0;
+  }
+
+  .actions {
+    float:right;
   }
 
 }
