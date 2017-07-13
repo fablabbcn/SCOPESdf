@@ -1,48 +1,62 @@
 %article
   .wrapped
     %fieldset
-      %h3 
-        How does this lesson unfold? 
+      %legend
+        %h3 How does this lesson unfold? 
+        %small * Mandatory information 
     
-      .lesson-step
-        %h4 Instructions
+    .lesson-step
+
+      %fieldset
+        %legend
+          %h4 Instructions
 
         .field-group
-          %label.field-description
+          %label
             Subjects
             %small Add one or more
+          .field-wrapper
+            %input{type: 'text'}
 
         .field-group
           %label
             Grade Range
             %small Specify one or more
+          .field-wrapper
             %input{type: 'text', id: 'grade', readonly: 'readonly'}
               %div#slider-range
 
         .field-group
           %label
-            Descriotion *
+            Description *
             %small
               %p Describe all the actions in this step. 
               %p If there are lot of actions, please consider breaking it down into multiple steps!
+          .field-wrapper
             %textarea
-            .field-group
-              %label 
+
+            .field-group.field-group--support
+              %label.label--small 
                 Supporting files
+              .field-wrapper
                 %input{type: 'file'}
 
+      %fieldset
         .field-group
           %h4 What is needed for this step?
           %label
             Materials
             %small What do they need?
-          %input{type: 'text', placeholder: 'Qty'}
-          %input{type: 'text', placeholder: 'Enter item here'}
-          %small Press ↵ Return to add
+          .field-wrapper
+            .field--xs
+              %input{type: 'text', placeholder: 'Qty'}
+            .field--xl
+              %input{type: 'text', placeholder: 'Enter item here'}
+            %small Press ↵ Return to add
 
 
-        %h3 Step 2
-        = link_to 'Add new Step', '#', class: 'button button--highlight'
+      %h3 Step 2
+      = link_to 'Add new Step', '#', class: 'button button--highlight'
 
 
 

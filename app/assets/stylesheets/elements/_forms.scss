@@ -33,6 +33,7 @@ textarea {
   border-radius:2px;
   font-family:$font-base;
   font-size:.8em;
+  display:inline-block;
 
   box-sizing:border-box;
   width:100%;
@@ -103,6 +104,17 @@ textarea {
 
 }
 
+.field--xs {
+  width:6%;
+  float:left;
+  padding-right:2%;
+}
+
+.field--xl {
+  width:92%;
+  float:left;
+}
+
 textarea {
   height:250px;
   &.textarea--short {
@@ -150,6 +162,8 @@ fieldset {
       color:$color-dark;
       line-height:1.2em;
       font-weight:400;
+      opacity:.6;
+      transition:opacity .2s;
 
       @include breakpoint($tablet-breakpoint){
         @include span(3 of 12);
@@ -162,6 +176,12 @@ fieldset {
         font-weight:200;
       }   
 
+    }
+
+    &:hover {
+      label {
+        opacity:1;
+      }
     }
 
     .field-wrapper {
