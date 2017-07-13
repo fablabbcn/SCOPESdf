@@ -21,6 +21,8 @@ Here you will find the colors defined in the variables file. There is no class d
   <li><div style="background:#0BBA77;"></div><code>$color-green-hi</code><br>#0BBA77</li>
   <li><div style="background:#2E5478;"></div><code>$color-blue</code><br>#2E5478</li>
   <li><div style="background:#14C9C9;"></div><code>$color-blue-hi</code><br>#14C9C9</li>
+  <li><div style="background:#19B8B9;"></div><code>$color-blue-hi-dark</code><br>#19B8B9</li>
+  <li><div style="background:#259495;"></div><code>$color-blue-hi-darker</code><br>#259495</li>
   <li class="clear"></li>
   <li><div style="background:#FF6B6B;"></div><code>$color-red</code><br>#FF6B6B</li>
   <li><div style="background:#FFA0A0;"></div><code>$color-red-hi</code><br>#FFA0A0</li>
@@ -55,6 +57,8 @@ $large-breakpoint: 80rem;
 $site-max-width:72rem;
 $site-inner-padding:1rem;
 
+$gutter-base:2rem;
+
 // Box variables
 
 $border-radius:0;
@@ -71,18 +75,9 @@ $font-headlines: -apple-system-headline, BlinkMacSystemFont,
     "Fira Sans", "Droid Sans", "Helvetica Neue", 
     sans-serif;
 
-/** Icon fonts **/
+/** Icon font defined in _icons.scss file, so you can easily get rid of it. Here just assign the variable */
 
-@font-face {
-  font-family: 'icons-scopes';
-  src:  url('fonts/icons-scopes.eot?yssqup');
-  src:  url('fonts/icons-scopes.eot?yssqup#iefix') format('embedded-opentype'),
-    url('fonts/icons-scopes.ttf?yssqup') format('truetype'),
-    url('fonts/icons-scopes.woff?yssqup') format('woff'),
-    url('fonts/icons-scopes.svg?yssqup#icons-scopes') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
+$font-icons: 'sco-icon-font';
 
 /** 
 
@@ -131,6 +126,8 @@ $color-green-hi:#0BBA77;
 
 $color-blue:#2E5478;
 $color-blue-hi:#14C9C9;
+$color-blue-hi-dark:#19B8B9;
+$color-blue-hi-darker:#259495;
 
 $color-red:#FF6B6B;
 $color-red-hi:#FFA0A0;

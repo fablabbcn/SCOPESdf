@@ -47,6 +47,7 @@
   Elements
 **/
 
+@import "elements/icons";
 @import "elements/text";
 @import "elements/forms";
 @import "elements/buttons";
@@ -62,6 +63,7 @@
   Components
 **/
 
+@import "components/lesson--actions";
 @import "components/lesson--teaser";
 
 //@import "component/whatever";
