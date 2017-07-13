@@ -1,0 +1,26 @@
+= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:5), method: "post", multipart: true, id:"form") do
+  %article
+    .wrapped
+      %fieldset
+        %legend
+          %h3 Examples of finished work
+
+        .field-group
+          %label
+            Add images
+            %small Guideliens for images
+          = file_field_tag 'outcome_files[]', multiple: true
+
+
+        .field-group
+          .field--image-gallery
+            -(1..4).each do
+              %figure
+                = image_tag 'https://www.fillmurray.com/270/200'
+                %figcaption DSCF-0124.jpg
+
+    %footer
+      .wrapped
+        =link_to 'Back to instructions', lesson_new_path(id: @lesson_obj.id, form_step:4), class: 'button button--call'
+        -#=link_to 'Publish lesson', '#', class: 'button button--highlight'
+        = submit_tag('Publish lesson', class: 'button button--call')

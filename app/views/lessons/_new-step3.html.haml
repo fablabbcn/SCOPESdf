@@ -1,0 +1,132 @@
+= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:4), method: "post", multipart: true, id:"form") do
+  %article
+    .wrapped
+      %fieldset
+        %legend
+          %h3 Who is this for?
+
+        -# Grade range
+        .field-group
+          %label
+            Grade Range
+            %small Specify one or more
+          .field-wrapper
+            %input{type: 'text', id: 'grade', readonly: 'readonly'}
+              %div#slider-range
+
+      -# Subject
+      %fieldset
+        .field-group
+          %label.field-description
+            Subjects
+            %small Add one or more
+          .field-wrapper
+            .radio
+              %label
+                %input{name: 'subject', type: 'radio', value: 'technology'}
+                Technology
+            .radio
+              %label
+                %input{name: 'subject', type: 'radio', value: 'arts'}
+                Arts and humanities
+            .radio
+              %label
+                %input{name: 'subject', type: 'radio', value: 'engineering'}
+                Engineering
+            .radio
+              %label
+                %input{name: 'subject', type: 'radio', value: 'maths'}
+                Maths
+            .radio
+              %label
+                %input{name: 'subject', type: 'radio', value: 'science'}
+                Science
+
+      -# Difficulty level
+      %fieldset
+        .field-group
+          %label
+            Difficulty Level
+            %small How hard is this lesson
+          .field-wrapper
+            .radio-group
+              .radio
+                %label
+                  %input{name: 'difficulty-student', type: 'radio', value: 'easy'}
+                  Easy
+              .radio
+                %label
+                  %input{name: 'difficulty-student', type: 'radio', value: 'medium'}
+                  Medium
+              .radio
+                %label
+                  %input{name: 'difficulty-student', type: 'radio', value: 'hard'}
+                  Hard
+            %small For student
+
+            .radio-group
+              .radio
+                %label
+                  %input{name: 'difficulty-educator', type: 'radio', value: 'easy'}
+                  Easy
+              .radio
+                %label
+                  %input{name: 'difficulty-educator', type: 'radio', value: 'medium'}
+                  Medium
+              .radio
+                %label
+                  %input{name: 'difficulty-educator', type: 'radio', value: 'hard'}
+                  Hard
+            %small For educator
+
+
+
+
+      -# Context
+      %fieldset
+        .field-group
+          %label
+            Context
+            %small What kind of project is this?
+
+          .field-wrapper
+            %label
+              In classroom
+              %input{type:'checkbox'}
+
+            %label
+              In Fablab
+              %input{type:'checkbox'}
+
+            %label
+              Capstone
+              %input{type:'checkbox'}
+
+
+
+      -# Collection
+      %fieldset
+        .field-group
+          %label
+            Collection
+            %small Does this belong to a collection?
+          .field-wrapper
+            =select(:lesson, :collection_tag, options_for_select(@collections))
+
+      -# Tags
+      %fieldset
+        .field-group
+          %label
+            Tags
+            %small Enter, comma, separated, tags
+          .field-wrapper
+            .tags-input
+              = text_field(:lesson, :tags, multiple: true)
+
+
+    %footer
+      .wrapped
+        =link_to 'Back to standards', lesson_new_path(id: @lesson_obj.id, form_step:2), class: 'button button--call'
+        -#=link_to 'Add some instructions', lesson_new_path(step:4), class: 'button button--call'
+        -#=link_to 'Add some instructions', '', class: 'button button--call', onclick: "$('#form').submit()"
+        = submit_tag('Add some instructions', class: 'button button--call')

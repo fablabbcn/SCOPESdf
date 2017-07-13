@@ -1,2 +1,2 @@
 web: bundle exec puma -C config/puma.rb -p $PORT
-guard: bundle exec guard
+# guard: bundle exec guard

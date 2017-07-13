@@ -4,13 +4,51 @@ class LessonsController < ApplicationController
 
   skip_before_filter :verify_authenticity_token # REMOVE THIS OBVIOUSLY
 
+  def new
+    @collections = CollectionTag.all.to_a.map{|x| x.name.titleize}
+    @form_step = params[:form_step].present? ? params[:form_step] : 1
+
+    # the below is strictly used for the weekend of the 13/7/2017 for submit on new page loads
+    if params[:id].present?
+      @lesson_obj = Lesson.find(params[:id])
+    end
+
+    puts "running"
+    if params[:id].present? && !params[:step].present?
+      @lesson_obj = Lesson.find(params[:id])
+      # same as create endpoint
+      puts "appending"
+
+      if params[:lesson].present?
+        @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
+      end
+      files_hash = {}
+      files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
+      files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
+
+      LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash, User.first)
+      @lesson_obj.reload
+
+    elsif params[:id].present? && params[:step].present? # making a step
+      puts "makng a step"
+      Step.find_or_create_and_update(nil, params[:id], step_param, User.first).set_files(params)
+    else
+      puts "creating"
+      @lesson_obj = LessonService.find_or_create_and_update(nil, {}, User.first)
+      @lesson_obj.reload
+    end
+
+  end
+
+
+
+
   def create
     # id = params[:id]
     # user = @current_user
-
     @lesson = LessonService.find_or_create_and_update(nil, lesson_params, User.first)
 
-    # puts params[:assessment_criteria_files].inspect
+    puts lesson_params[:collection_tag]
 
     urls = params[:assessment_criteria_files].inspect
 
@@ -21,7 +59,6 @@ class LessonsController < ApplicationController
 
     LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first)
     @lesson.reload
-
 
 
     # puts @lesson.inspect
@@ -40,7 +77,7 @@ class LessonsController < ApplicationController
     step_params[:steps].map {|x|
       puts x
       s = Step.new(x)
-      s.setArrayThroughSymbolWithTitle(:supporting_images, x[:supporting_images], "images")
+      s.setArrayThroughSymbolWithTitle(:supporting_files, x[:supporting_images], "images")
       s.setArrayThroughSymbolWithTitle(:supporting_material, x[:supporting_material], "materials")
 
 

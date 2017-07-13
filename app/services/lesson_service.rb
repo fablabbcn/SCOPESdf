@@ -86,7 +86,7 @@ class LessonService
         file_type.gsub!("_files","")
         @lesson.addFiles(v, file_type.to_sym)
       }
-      puts url
+      # puts url
 
       url
     end
