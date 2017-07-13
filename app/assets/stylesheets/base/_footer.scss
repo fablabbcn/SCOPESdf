@@ -3,7 +3,6 @@
 **/
 
 footer[role="contentinfo"] {
-  background:darken(#fff,2%);
   @include breakpoint($desktop-breakpoint) {
     padding:5rem 0;
   }
