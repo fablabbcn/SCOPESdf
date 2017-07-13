@@ -1,149 +1,164 @@
 %article
   .wrapped
     %fieldset
-      %h3 
-        Who is this for?
+      %legend
+        %h3 Who is this for?
 
       -# Grade range
       .field-group
         %label
           Grade Range
           %small Specify one or more
-        %input{type: 'text', id: 'grade', readonly: 'readonly'}
-          %div#slider-range
+        .field-wrapper
+          %input{type: 'text', id: 'grade', readonly: 'readonly'}
+            %div#slider-range
 
+    %fieldset
       .field-group
         %label.field-description
           Subjects
           %small Add one or more
-        .radio
-          %label
-            %input{name: 'subject', type: 'radio', value: 'technology'}
-            Technology    
-        .radio
-          %label
-            %input{name: 'subject', type: 'radio', value: 'arts'}
-            Arts and humanities
-        .radio
-          %label
-            %input{name: 'subject', type: 'radio', value: 'engineering'}
-            Engineering
-        .radio
-          %label
-            %input{name: 'subject', type: 'radio', value: 'maths'}
-            Maths
-        .radio
-          %label
-            %input{name: 'subject', type: 'radio', value: 'science'}
-            Science
+        .field-wrapper
+          .radio
+            %label
+              %input{name: 'subject', type: 'radio', value: 'technology'}
+              Technology    
+          .radio
+            %label
+              %input{name: 'subject', type: 'radio', value: 'arts'}
+              Arts and humanities
+          .radio
+            %label
+              %input{name: 'subject', type: 'radio', value: 'engineering'}
+              Engineering
+          .radio
+            %label
+              %input{name: 'subject', type: 'radio', value: 'maths'}
+              Maths
+          .radio
+            %label
+              %input{name: 'subject', type: 'radio', value: 'science'}
+              Science
 
       -# Difficulty level
+    %fieldset
       .field-group
         %label
           Difficulty Level
           %small How hard is this lesson
-        .radio-group
-          .radio
-            %label
-              %input{name: 'difficulty-student', type: 'radio', value: 'easy'}
-              Easy
-          .radio
-            %label
-              %input{name: 'difficulty-student', type: 'radio', value: 'medium'}
-              Medium
-          .radio
-            %label
-              %input{name: 'difficulty-student', type: 'radio', value: 'hard'}
-              Hard
-        %small For student
+        .field-wrapper
+          .radio-group
+            .radio
+              %label
+                %input{name: 'difficulty-student', type: 'radio', value: 'easy'}
+                Easy
+            .radio
+              %label
+                %input{name: 'difficulty-student', type: 'radio', value: 'medium'}
+                Medium
+            .radio
+              %label
+                %input{name: 'difficulty-student', type: 'radio', value: 'hard'}
+                Hard
+          %small For student
 
-        .radio-group
-          .radio
-            %label
-              %input{name: 'difficulty-educator', type: 'radio', value: 'easy'}
-              Easy
-          .radio
-            %label
-              %input{name: 'difficulty-educator', type: 'radio', value: 'medium'}
-              Medium
-          .radio
-            %label
-              %input{name: 'difficulty-educator', type: 'radio', value: 'hard'}
-              Hard
-        %small For educator
+          .radio-group
+            .radio
+              %label
+                %input{name: 'difficulty-educator', type: 'radio', value: 'easy'}
+                Easy
+            .radio
+              %label
+                %input{name: 'difficulty-educator', type: 'radio', value: 'medium'}
+                Medium
+            .radio
+              %label
+                %input{name: 'difficulty-educator', type: 'radio', value: 'hard'}
+                Hard
+          %small For educator
+
 
       -# Skills required
+    %fieldset
       .field-group
         %label
           Skills required
           %small How hard is this lesson
 
-        .skills-group
-          .skill 
-            %label
-              Hardware
-              %input{type:'checkbox'}
-            .stars
-              -(1..5).each do |i|
-                %input{name: 'skill-hardware', type: 'radio', value: i}
+        .field-wrapper
 
-          .skill 
-            %label
-              Design
-              %input{type:'checkbox'}
-            .stars
-              -(1..5).each do |i|
-                %input{name: 'skill-design', type: 'radio', value: i}
+          .skills-group
+            .skill 
+              %label
+                Hardware
+                %input{type:'checkbox'}
+              .stars
+                -(1..5).each do |i|
+                  %input{name: 'skill-hardware', type: 'radio', value: i}
 
-          .skill 
-            %label
-              Software
-              %input{type:'checkbox'}
-            .stars
-              -(1..5).each do |i|
-                %input{name: 'skill-software', type: 'radio', value: i}
+            .skill 
+              %label
+                Design
+                %input{type:'checkbox'}
+              .stars
+                -(1..5).each do |i|
+                  %input{name: 'skill-design', type: 'radio', value: i}
+
+            .skill 
+              %label
+                Software
+                %input{type:'checkbox'}
+              .stars
+                -(1..5).each do |i|
+                  %input{name: 'skill-software', type: 'radio', value: i}
 
 
 
       -# Context
+    %fieldset
       .field-group
         %label
           Context
           %small What kind of project is this?
 
-        %label
-          In classroom
-          %input{type:'checkbox'}
+        .field-wrapper
+          %label
+            In classroom
+            %input{type:'checkbox'}
 
-        %label
-          In Fablab
-          %input{type:'checkbox'}
+          %label
+            In Fablab
+            %input{type:'checkbox'}
 
-        %label
-          Capstone
-          %input{type:'checkbox'}
+          %label
+            Capstone
+            %input{type:'checkbox'}
 
 
 
       -# Collection
+    %fieldset
       .field-group
         %label
           Collection
           %small Does this belong to a collection?
-        %select
-          %option Gold Standard Lesson
+        .field-wrapper
+          %select
+            %option Gold Standard Lesson
 
       -# Tags
+    %fieldset
       .field-group
         %label
           Tags
           %small Enter, comma, separated, tags
-        .tags-input
-          %span.tag
-            Innovation
-          %span.tag
-            Science
-        %input{type: 'text'}
+        .field-wrapper
+          .tags-input
+            %span.tag
+              Innovation
+            %span.tag
+              Science
+          %input{type: 'text'}
 
 
   %footer
