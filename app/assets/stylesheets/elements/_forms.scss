@@ -121,19 +121,78 @@ fieldset {
   margin:2em 0;
 
   legend {
-    font-size:1.5em;
-    font-weight:500;
+    @include clearfix;
+    padding:0;
+    margin:0;
+    margin-bottom:1rem;
     width:100%;
-    display:flex;
-    justify-content: space-between;
+
+    h3 {
+      margin:0;
+      float:left;
+    }
 
     small {
       color:$color-blue-hi;
       font-weight:200;
       font-size:.8rem;
-      margin-left:auto;
+      float:right;
+      display:block;
+      padding-top:.3rem;
     }
 
   } 
+
+  .field-group {
+    @include clearfix;
+
+    label {
+      color:$color-dark;
+      line-height:1.2em;
+      font-weight:400;
+
+      @include breakpoint($tablet-breakpoint){
+        @include span(3 of 12);
+      }
+
+      small {
+        color:$color-mid-gray;
+        display:block;
+        font-size:.7em;
+        font-weight:200;
+      }   
+
+    }
+
+
+  }
+
+  .field-group--support {
+
+    margin-top:2em;
+
+    label {
+      float:none;
+      width:100%;
+      margin:auto;
+      font-size:.7em;
+      color:$color-mid-gray;
+    }
+
+    .field-wrapper {
+      float:none;
+      width:100%;
+      margin:auto;
+    }
+  }
+
+  .field-wrapper {
+
+    margin-bottom:2rem;
+
+    @include breakpoint($tablet-breakpoint) {
+      @include span(9 of 12 last);
+    }
+  }
 
 }
