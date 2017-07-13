@@ -1,7 +1,6 @@
 class DatabaseSeed < ActiveRecord::Migration[5.0]
   def change
     enable_extension 'uuid-ossp' # enabled for UUID
-
     create_table  :users, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
 
       ## Database authenticatable
@@ -33,26 +32,29 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-      ## SCOPES
-      t.string    :name, default: "", null: false
       t.integer   :role, default: 0, null: false
-      t.string    :avatar_url
+      ## SCOPES p1
+      t.string    :name, default: "", null: false
+      t.string    :avatar, default: ""
+
+      # p2
+
       t.string    :bio, default: "", null:  false
-      t.integer   :kind, default: 0, null:  false
-      t.string    :phone_number
       t.json      :social
       t.json      :settings, null: false           # settings are not searchable and do not need any indexing :3 also this makes them easier to be editable
       t.timestamps null: false
     end
-
 
     create_table :organizations, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       t.string    :name, default: "", null: false, index: true, unique: true
       t.string    :desc, default: "", null: false
       t.json      :social
 
-      t.integer   :teaching_range_start, default: 0, null: false
-      t.integer   :teaching_range_end, default: 0, null: false
+      t.integer   :teaching_range_start, default: 0, null: true
+      t.integer   :teaching_range_end, default: 0, null: true
+
+      t.string    :contact_email, null: true, index: true
+      t.integer   :state, default: 0, null: false, index: true
 
       t.string    :address_line1
       t.string    :address_line2
@@ -62,13 +64,14 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.string    :region
       t.string    :post_code, index: true
       t.string    :country
-      t.st_point  :lonlat, geographic: true, null: false, index: true, using: :gist
+      t.st_point  :lonlat, geographic: true, null: true, index: true, using: :gist
       t.timestamps null: false
     end
 
     create_table :affiliations do |t| # association table
       t.uuid        :user_id,         index: true, null: false
       t.uuid        :organization_id, index: true, null: false
+      t.boolean     :primary, index: true, default: false, null: false
       t.timestamps null: false
     end
     add_foreign_key(:affiliations, :users, column: :user_id, primary_key: :id)
@@ -78,24 +81,23 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
     create_table :lessons, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       # TODO - check me
       # page 1
-      t.string      :name,       null: false, index: true
+      t.string      :name,        default: "", null: false, index: true
       t.string      :topline,     default: "", null: false
       t.string      :summary,     default: "", null: false
       # user in tags
       # place in tags
-      t.string      :learning_objectives, array: true # searchable? -- multiple added
+      t.string      :learning_objectives, array: true # searchable?
       t.string      :description, default: "", null: false
       t.string      :assessment_criteria, default: "", null: false #maybe on lesson_tags??
+      t.json        :assessment_criteria_files
       t.string      :further_readings, array: true
-      # page 2 - details
-      # majority of these on lesson_tags table
-      t.integer     :difficulty_level # maybe lesson_tags -- mandatory?
-      # TODO - mastery level... student vs educator
-      t.integer     :license,     default: 0, null: false
+      # page 2 - standards
+      t.json        :standards
+
       # page 3 - instructions
       # has many steps -- see table
       # page 4 - outcomes
-      t.string        :outcome_links, array: true # json_ball and why?
+      t.json        :outcome_files
       # forking
       t.uuid         :original_lesson, null: true, index: true
       # state-machine
@@ -103,25 +105,17 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.timestamps   null: false
     end
 
-    create_table :lesson_tags do |t|
-      t.uuid        :taggable_id, null: false
-      t.string      :taggable_type, null: false
-      # potentially add type_enum for variation on models??
-      t.uuid        :lesson_id, index: true, null: false
-      t.timestamps  null:false
-    end
-    add_index :lesson_tags, [:taggable_type, :taggable_id]
-    add_foreign_key(:lesson_tags, :lessons, column: :lesson_id, primary_key: :id)
+
 
     create_table    :steps, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       t.uuid        :lesson_id, null: false, index: true
-      t.string      :name, null: false
-      t.string      :summary, default: "", null: false
+      t.string      :summary, null: false
       t.integer     :duration, default: 0, null: false
-      t.json        :supporting_images
+      t.string      :description, default: "", null: false
+      t.json        :supporting_files       # files
       t.json        :materials          # are they searchable?
-      t.json        :tools              #links from fablabs.io ?
-      t.json        :supporting_material
+      t.string      :tools, array: true # searchable?
+      t.json        :supporting_materials   # files
       t.integer     :step_number, null: false
       t.timestamps  null: false
     end
@@ -138,16 +132,101 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
 
 
 
-    # Tag Tables:
 
-    create_table :teaching_ranges, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t| # lessons and creators
+
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # Tag Tables -> Parents
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    create_table :lesson_tags do |t|
+      t.uuid        :taggable_id, null: false
+      t.string      :taggable_type, null: false
+      # potentially add type_enum for variation on models??
+      t.uuid        :lesson_id, index: true, null: false
+      t.timestamps  null:false
+    end
+    add_index :lesson_tags, [:taggable_type, :taggable_id]
+    add_foreign_key(:lesson_tags, :lessons, column: :lesson_id, primary_key: :id)
+
+    create_table :user_tags do |t|
+      t.uuid        :taggable_id, null: false
+      t.string      :taggable_type, null: false
+      t.uuid        :user_id, index: true, null: false
+      t.timestamps  null:false
+    end
+    add_index :user_tags, [:taggable_type, :taggable_id]
+    add_foreign_key(:user_tags, :users, column: :user_id, primary_key: :id)
+
+    create_table :org_tags do |t|
+      t.uuid        :taggable_id, null: false
+      t.string      :taggable_type, null: false
+      t.uuid        :organization_id, index: true, null: false
+      t.timestamps  null:false
+    end
+    add_index :org_tags, [:taggable_type, :taggable_id]
+    add_foreign_key(:org_tags, :organizations, column: :organization_id, primary_key: :id)
+
+
+    create_table  :skills do |t|    # exclusive to skills_tags tag
+      t.string    :name, null: false, index: true
+    end
+    create_table  :skill_tags do |t|
+      t.uuid        :taggable_id, null: false
+      t.string      :taggable_type, null: false
+      t.integer     :skill_id, index: true, null: false
+      t.integer     :level, null: false, index: true
+    end
+    add_index :skill_tags, [:taggable_type, :taggable_id]
+    add_foreign_key(:skill_tags, :skills, column: :skill_id, primary_key: :id)
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # Tag Tables -> Children
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    create_table  :teaching_ranges, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t| # lessons and creators
       t.integer   :range_start, default: 0, null: false
       t.integer   :range_end, default: 0, null: false
     end
 
-    create_table :subjects, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+    create_table  :subjects, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       t.string    :name, null: false, index: true
     end
+
+    create_table  :involvements, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.string    :name, null: false, index: true
+    end
+
+    create_table  :other_interests, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.string    :name, null: false, index: true
+    end
+
+    create_table  :difficulty_levels, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.integer    :level, default: 0, null: false, index: true
+      t.integer     :metric, default: 0, null: false, index: true
+    end
+
+    create_table  :contexts, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.string    :name, null: false, index: true
+    end
+
+    create_table  :collection_tags, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.string    :name, null: false, index: true
+    end
+  
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+    create_table  :invited_users, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
+      t.string      :email, null: false, index: true
+      t.string      :invite_link, null: false, index: true
+      t.datetime    :confirmed_at, null: true
+      t.datetime    :created_at, null: false
+    end
+
 
   end
 end

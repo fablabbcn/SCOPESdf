@@ -55,6 +55,5 @@ class TeachingRange < ApplicationRecord
     r = self.where(range_start: translate(s) , range_end: translate(e)).first
     l.lesson_tags << LessonTag.new(taggable: r)
   end
-  # TODO - add remove
 
 end

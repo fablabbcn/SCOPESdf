@@ -1,15 +1,13 @@
 # == Schema Information
 #
-# Table name: subjects
+# Table name: involvements
 #
 #  id   :uuid             not null, primary key
 #  name :string           not null
 #
 
-class Subject < ApplicationRecord
-  has_many :lesson_tags, as: :taggable
+class Involvement < ApplicationRecord
   has_many :user_tags, as: :taggable
-
 
   validates_uniqueness_of :name
 
@@ -20,8 +18,8 @@ class Subject < ApplicationRecord
   end
 
   def self.seed
-    ["science", "mathematics", "arts", "technology", "engineering"].map{ |s|
-      new(name: s).save!
+    ["classroom teacher", "maker / fabber", "youth", "cirriculum developer", "informal educator", "wolunteer", "makerspace staff"].map{ |i|
+      new(name: i).save!
     }
   end
 
