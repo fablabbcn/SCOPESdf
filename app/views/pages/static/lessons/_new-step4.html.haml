@@ -1,9 +1,81 @@
 %article
   .wrapped
     %fieldset
-      %h3 
-        How does this lesson unfold? 
-        %p [steps with instructions]
+      %legend
+        %h3 How does this lesson unfold? 
+        %small * Mandatory information 
+    
+    .lesson-step
+
+      %fieldset
+        %legend
+          %h4 Instructions
+
+        .field-group
+          %label
+            Subjects
+            %small Add one or more
+          .field-wrapper
+            %input{type: 'text'}
+
+        .field-group
+          %label
+            Time needed
+            %small A reference on the time that will take to complete the step
+          .field-wrapper
+            %input{type: 'text', id: 'grade', readonly: 'readonly'}
+              %div#slider-range
+
+        .field-group
+          %label
+            Description *
+            %small
+              %p Describe all the actions in this step. 
+              %p If there are lot of actions, please consider breaking it down into multiple steps!
+          .field-wrapper
+            %textarea
+
+            .field-group.field-group--support
+              %label.label--small 
+                Supporting files
+              .field-wrapper
+                %input{type: 'file'}
+
+      %fieldset
+        %legend
+          %h4 What is needed for this step?
+        .field-group
+          %label
+            Materials
+            %small What do they need?
+          .field-wrapper
+            .field--xs
+              %input{type: 'text', placeholder: 'Qty'}
+            .field--xl
+              %input{type: 'text', placeholder: 'Enter item here'}
+            %small Press ↵ Return to add
+
+        .field-group
+          %label
+            Tools
+            %small List as many as needed
+          .field-wrapper
+            %input{type: 'text', placeholder: 'Enter item here'}
+            %small Press ↵ Return to add
+
+        .field-group
+          %label
+            Supporting Materials
+            %small Design files, handouts needed for this step
+          .field-wrapper
+            %input{type: 'file'}
+
+
+      %h3 Step 2
+      = link_to 'Add new Step', '#', class: 'button button--highlight'
+
+
+
   %footer
     .wrapped
       =link_to 'Back to details', page_path('static/lessons/new.html.haml',step:'3'), class: 'button button--call'

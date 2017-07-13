@@ -1,9 +1,22 @@
 %article
   .wrapped
     %fieldset
-      %h3 
-        Examples of finished work
-        %p [steps with instructions]
+      %legend
+        %h3 Examples of finished work
+        
+      .field-group
+        %label 
+          Add images
+          %small Guideliens for images
+        %input{type: 'file'}
+
+      .field-group
+        .field--image-gallery
+          -(1..4).each do
+            %figure
+              = image_tag 'https://www.fillmurray.com/270/200'
+              %figcaption DSCF-0124.jpg
+
   %footer
     .wrapped
       =link_to 'Back to instructions', page_path('static/lessons/new.html.haml',step:'4'), class: 'button button--call'

@@ -29,21 +29,18 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 textarea {
-  border:darken(#fff,10%) 1px solid;
+  border:$color-gray-outlines 1px solid;
   border-radius:2px;
   font-family:$font-base;
-  font-size:.7em;
-
-  @include breakpoint($desktop-breakpoint) {
-    font-size:1em;
-  }
+  font-size:.8em;
+  display:inline-block;
 
   box-sizing:border-box;
   width:100%;
-  padding:.5rem;
+  padding:.7rem .8rem .6rem .8rem;
   color:#62686C;
   transition: all .2s ease;
-  background:darken(#fff,2%);
+  background:$color-white;
 
   &:hover {
     border-color:$color-blue-hi;
@@ -55,14 +52,16 @@ textarea {
   }
 
   &:placeholder-shown {
-    background:$color-white;
+    background:darken($color-white,2%);
   }
 
   &:disabled {
-    border-style:dashed;
-    border-color:$color-mid-gray;
+    border-color:$color-gray-outlines;
     cursor:default;
     pointer-events:none;
+    background:url(icons/icon_lock_black.svg) .6rem no-repeat;
+    padding-left:2rem;
+    background-size:12px;
   }
 
   &.input--error {
@@ -105,10 +104,169 @@ textarea {
 
 }
 
+.field--xs {
+  width:6%;
+  float:left;
+  padding-right:2%;
+}
+
+.field--xl {
+  width:92%;
+  float:left;
+}
+
 textarea {
   height:250px;
+  &.textarea--short {
+    height:90px;
+  }
 }
 
 input[type="submit"] {
   @include button;
+}
+
+fieldset {
+  @include clearfix;
+  border-bottom:1px solid $color-gray-outlines;
+  padding:2em 0;
+  margin:2em 0;
+
+  legend {
+    @include clearfix;
+    padding:0;
+    margin:0;
+    margin-bottom:1rem;
+    width:100%;
+
+    h3 {
+      margin:0;
+      float:left;
+    }
+
+    h4 {
+      margin:0;
+    }
+
+    small {
+      color:$color-blue-hi;
+      font-weight:200;
+      font-size:.8rem;
+      float:right;
+      display:block;
+      padding-top:.3rem;
+    }
+
+  } 
+
+  .field-group {
+    @include clearfix;
+    margin:1em 0;
+
+    label {
+      color:$color-dark;
+      line-height:1.2em;
+      font-weight:400;
+      opacity:.6;
+      transition:opacity .2s;
+
+      @include breakpoint($tablet-breakpoint){
+        @include span(3 of 12);
+      }
+
+      small {
+        color:$color-mid-gray;
+        display:block;
+        font-size:.7em;
+        font-weight:200;
+      }   
+
+    }
+
+    &:hover {
+      label {
+        opacity:1;
+      }
+    }
+
+    .field-wrapper {
+      small {
+        display:block;
+        text-align: right;
+        font-size:.7em;
+        color:$color-mid-gray;
+      }
+    }
+
+
+  }
+
+  .field-group--support {
+
+    margin-top:2em;
+
+    label {
+      float:none;
+      width:100%;
+      margin:auto;
+      font-size:.7em;
+      color:$color-mid-gray;
+    }
+
+    .field-wrapper {
+      float:none;
+      width:100%;
+      margin:auto;
+    }
+  }
+
+  .field-wrapper {
+
+    margin-bottom:2rem;
+    @include clearfix;
+
+    @include breakpoint($tablet-breakpoint) {
+      @include span(9 of 12 last);
+    }
+  }
+}
+
+.field--image-gallery {
+  margin-top:2em;
+  @include clearfix;
+  figure {
+    @include gallery(3 of 12);
+    figcaption {
+      margin-top:1em;
+      font-size:.8em;
+      color:$color-mid-gray;
+    }
+
+    img {
+      border-radius:2px;
+      transition: box-shadow .2s;
+    }
+
+    &:hover {
+      img {
+        box-shadow:0 0 0px 2px $color-yellow;
+      }
+    }
+
+  }
+}
+
+.lesson--standard-header {
+  @include clearfix;
+  margin-bottom:2em;
+
+  h4 {
+    float:left;
+    margin:0;
+  }
+
+  .actions {
+    float:right;
+  }
+
 }

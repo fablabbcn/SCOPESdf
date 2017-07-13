@@ -1,48 +1,24 @@
 %article
   .wrapped
     %fieldset
-      %h3 
-        Basic information
-      %small 
-        *Mandatory information 
-        .field-group
-          %label 
-            Name of Lesson
-            %small 50 chars max
-          %input{type: 'text', class: 'input--large'}
-        .field-group
-          %label 
-            Topline description
-            %small Describe it in a sentence
-          %input{type: 'text'}
-        .field-group
-          %label
-            Summary of lesson *
-            %small
-              %p Keep it short and snappy.
-              %p Try to include:
-              %p 
-                • Why the lesson is interesting
-                %br
-                • The types of activities students will do.
-              %p You can format using markdown
-            %textarea
-
-    %fieldset
-      %h3 
-        Objectives
+      %legend 
+        %h3 Basic information
+        %small * Mandatory information 
       .field-group
         %label 
-          Learning objectives
-          %small What will the students learn
-        %input{type: 'text'}
-
-    %fieldset
-      %h3
-        Lesson ambitions
+          Name of Lesson *
+          %small 50 chars max
+        .field-wrapper
+          %input{type: 'text', class: 'input--large'}
+      .field-group
+        %label 
+          Topline description *
+          %small Describe it in a sentence
+        .field-wrapper
+          %input{type: 'text'}
       .field-group
         %label
-          Lesson ambition *
+          Summary of lesson *
           %small
             %p Keep it short and snappy.
             %p Try to include:
@@ -51,6 +27,51 @@
               %br
               • The types of activities students will do.
             %p You can format using markdown
+        .field-wrapper
+          %textarea
+
+    %fieldset
+      %legend 
+        %h3 Objectives
+      .field-group
+        %label 
+          Learning objectives *
+          %small What will the students learn
+        .field-wrapper
+          %input{type: 'text'}
+
+    %fieldset
+      %legend 
+        %h3 Authors
+      .field-group
+        %label 
+          Who made this *
+          %small Enter one or more authors
+        .field-wrapper
+          %input{type: 'text', placeholder: 'Add new person'}
+
+      .field-group
+        %label 
+          Where was this made *
+          %small Enter one or more places
+        .field-wrapper
+          %input{type: 'text', placeholder: 'Add new place'}
+
+    %fieldset
+      %legend 
+        %h3 Lesson ambitions
+      .field-group
+        %label
+          Lesson Description *
+          %small
+            %p Keep it short and snappy.
+            %p Try to include:
+            %p 
+              • Why the lesson is interesting
+              %br
+              • The types of activities students will do.
+            %p You can format using markdown
+        .field-wrapper
           %textarea
 
       .field-group
@@ -64,10 +85,12 @@
               %br
               • The types of activities students will do.
             %p You can format using markdown
+        .field-wrapper
           %textarea
-          .field-group
-            %label 
+          .field-group.field-group--support
+            %label.label--small 
               Supporting files
+            .field-wrapper
               %input{type: 'file'}
 
     %fieldset
@@ -75,7 +98,8 @@
         %label 
           Further reading
           %small Anymore useful links
-        %input{type: 'text'}
+        .field-wrapper
+          %input{type: 'text'}
 
   %footer
     .wrapped

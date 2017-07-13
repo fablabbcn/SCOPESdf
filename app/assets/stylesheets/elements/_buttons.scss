@@ -12,6 +12,7 @@ category: Elements
 | <a class="button">Link button</a>                 | `<a class="button">Action</a>`               | default state              |
 | <a class="button button--highlight">Link Highlight</a>      | `<a class="button button--highlight">Action</a>`  | `.button--highlight`            |
 | <a class="button button--call">Link Call</a>      | `<a class="button button--call">Action</a>`  | `.button--call`            |
+| <a class="button button--inverse">Link Inverse</a>      | `<a class="button button--inverse">Action</a>`  | `.button--negative`            |
 
 ## Size modifiers
 
@@ -79,6 +80,20 @@ Notice that disabled buttons have **cursor:default** and **pointer-events:none**
     &:disabled, &.button--disabled {
       @include button($color-gray-low,$color-mid-gray);
     }
+  }
+
+  &.button--inverse {
+
+    @include button($color-blue-hi,$color-white,2,$color-white);
+
+    &:hover {
+      @include button($color-white,$color-blue-hi-dark,2,$color-white);
+    }
+
+    &:disabled, &.button--disabled {
+      @include button($color-blue-hi-dark,$color-blue-hi-darker);
+    }
+
   }
 
   &.button--large {

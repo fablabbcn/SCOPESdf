@@ -1,0 +1,620 @@
+/*doc
+---
+title: Icons
+name: icons
+category: Elements
+---
+|Element | Code snippet | Class | SVG File |
+|--------|--------------|-------|----------|
+|<i class="icon_add_box_black"></i>|`<i class="icon_add_box_black"></i>`              | `.icon_add_box_black`              | `icon_add_box_black.svg`              
+|<i class="icon_add_circle_black"></i>|`<i class="icon_add_circle_black"></i>`             | `.icon_add_circle_black`             | `icon_add_circle_black.svg`             
+|<i class="icon_add_circle_outline_black"></i>|`<i class="icon_add_circle_outline_black"></i>`             | `.icon_add_circle_outline_black`             | `icon_add_circle_outline_black.svg`             
+|<i class="icon_add_to_photos_black"></i>|`<i class="icon_add_to_photos_black"></i>`              | `.icon_add_to_photos_black`              | `icon_add_to_photos_black.svg`              
+|<i class="icon_add_location_black"></i>|`<i class="icon_add_location_black"></i>`             | `.icon_add_location_black`             | `icon_add_location_black.svg`             
+|<i class="icon_announcement_black"></i>|`<i class="icon_announcement_black"></i>`             | `.icon_announcement_black`             | `icon_announcement_black.svg`             
+|<i class="icon_publish_black"></i>|`<i class="icon_publish_black"></i>`              | `.icon_publish_black`              | `icon_publish_black.svg`              
+|<i class="icon_file_upload_black"></i>|`<i class="icon_file_upload_black"></i>`              | `.icon_file_upload_black`              | `icon_file_upload_black.svg`              
+|<i class="icon_vertical_align_bottom_black"></i>|`<i class="icon_vertical_align_bottom_black"></i>`              | `.icon_vertical_align_bottom_black`              | `icon_vertical_align_bottom_black.svg`              
+|<i class="icon_arrow_downward_black"></i>|`<i class="icon_arrow_downward_black"></i>`             | `.icon_arrow_downward_black`             | `icon_arrow_downward_black.svg`             
+|<i class="icon_arrow_drop_down_black"></i>|`<i class="icon_arrow_drop_down_black"></i>`              | `.icon_arrow_drop_down_black`              | `icon_arrow_drop_down_black.svg`              
+|<i class="icon_attach_file_black"></i>|`<i class="icon_attach_file_black"></i>`              | `.icon_attach_file_black`              | `icon_attach_file_black.svg`              
+|<i class="icon_autorenew_black"></i>|`<i class="icon_autorenew_black"></i>`              | `.icon_autorenew_black`              | `icon_autorenew_black.svg`              
+|<i class="icon_backspace_black"></i>|`<i class="icon_backspace_black"></i>`              | `.icon_backspace_black`              | `icon_backspace_black.svg`              
+|<i class="icon_backup_black"></i>|`<i class="icon_backup_black"></i>`             | `.icon_backup_black`             | `icon_backup_black.svg`             
+|<i class="icon_bookmark_black"></i>|`<i class="icon_bookmark_black"></i>`             | `.icon_bookmark_black`             | `icon_bookmark_black.svg`             
+|<i class="icon_cancel_black"></i>|`<i class="icon_cancel_black"></i>`             | `.icon_cancel_black`             | `icon_cancel_black.svg`             
+|<i class="icon_chat_black"></i>|`<i class="icon_chat_black"></i>`             | `.icon_chat_black`             | `icon_chat_black.svg`             
+|<i class="icon_chat_bubble_black"></i>|`<i class="icon_chat_bubble_black"></i>`              | `.icon_chat_bubble_black`              | `icon_chat_bubble_black.svg`              
+|<i class="icon_check_box_black"></i>|`<i class="icon_check_box_black"></i>`              | `.icon_check_box_black`              | `icon_check_box_black.svg`              
+|<i class="icon_check_box_outline_blank_black"></i>|`<i class="icon_check_box_outline_blank_black"></i>`              | `.icon_check_box_outline_blank_black`              | `icon_check_box_outline_blank_black.svg`              
+|<i class="icon_keyboard_arrow_up_black"></i>|`<i class="icon_keyboard_arrow_up_black"></i>`              | `.icon_keyboard_arrow_up_black`              | `icon_keyboard_arrow_up_black.svg`              
+|<i class="icon_chevron_left_black"></i>|`<i class="icon_chevron_left_black"></i>`             | `.icon_chevron_left_black`             | `icon_chevron_left_black.svg`             
+|<i class="icon_chevron_right_black"></i>|`<i class="icon_chevron_right_black"></i>`              | `.icon_chevron_right_black`              | `icon_chevron_right_black.svg`              
+|<i class="icon_first_page_black"></i>|`<i class="icon_first_page_black"></i>`             | `.icon_first_page_black`             | `icon_first_page_black.svg`             
+|<i class="icon_last_page_black"></i>|`<i class="icon_last_page_black"></i>`              | `.icon_last_page_black`              | `icon_last_page_black.svg`              
+|<i class="icon_cloud_black"></i>|`<i class="icon_cloud_black"></i>`              | `.icon_cloud_black`              | `icon_cloud_black.svg`              
+|<i class="icon_create_new_folder_black"></i>|`<i class="icon_create_new_folder_black"></i>`              | `.icon_create_new_folder_black`              | `icon_create_new_folder_black.svg`              
+|<i class="icon_delete_black"></i>|`<i class="icon_delete_black"></i>`             | `.icon_delete_black`             | `icon_delete_black.svg`             
+|<i class="icon_email_black"></i>|`<i class="icon_email_black"></i>`              | `.icon_email_black`              | `icon_email_black.svg`              
+|<i class="icon_exit_to_app_black"></i>|`<i class="icon_exit_to_app_black"></i>`              | `.icon_exit_to_app_black`              | `icon_exit_to_app_black.svg`              
+|<i class="icon_feedback_black"></i>|`<i class="icon_feedback_black"></i>`             | `.icon_feedback_black`             | `icon_feedback_black.svg`             
+|<i class="icon_group_add_black"></i>|`<i class="icon_group_add_black"></i>`              | `.icon_group_add_black`              | `icon_group_add_black.svg`              
+|<i class="icon_group_black"></i>|`<i class="icon_group_black"></i>`              | `.icon_group_black`              | `icon_group_black.svg`              
+|<i class="icon_help_black"></i>|`<i class="icon_help_black"></i>`             | `.icon_help_black`             | `icon_help_black.svg`             
+|<i class="icon_info_black"></i>|`<i class="icon_info_black"></i>`             | `.icon_info_black`             | `icon_info_black.svg`             
+|<i class="icon_language_black"></i>|`<i class="icon_language_black"></i>`             | `.icon_language_black`             | `icon_language_black.svg`             
+|<i class="icon_lightbulb_outline_black"></i>|`<i class="icon_lightbulb_outline_black"></i>`              | `.icon_lightbulb_outline_black`              | `icon_lightbulb_outline_black.svg`              
+|<i class="icon_link_black"></i>|`<i class="icon_link_black"></i>`             | `.icon_link_black`             | `icon_link_black.svg`             
+|<i class="icon_list_black"></i>|`<i class="icon_list_black"></i>`             | `.icon_list_black`             | `icon_list_black.svg`             
+|<i class="icon_local_offer_black"></i>|`<i class="icon_local_offer_black"></i>`              | `.icon_local_offer_black`              | `icon_local_offer_black.svg`              
+|<i class="icon_lock_black"></i>|`<i class="icon_lock_black"></i>`             | `.icon_lock_black`             | `icon_lock_black.svg`             
+|<i class="icon_lock_open_black"></i>|`<i class="icon_lock_open_black"></i>`              | `.icon_lock_open_black`              | `icon_lock_open_black.svg`              
+|<i class="icon_lock_open_line_black"></i>|`<i class="icon_lock_open_line_black"></i>`             | `.icon_lock_open_line_black`             | `icon_lock_open_line_black.svg`             
+|<i class="icon_loop_black"></i>|`<i class="icon_loop_black"></i>`             | `.icon_loop_black`             | `icon_loop_black.svg`             
+|<i class="icon_mail_outline_black"></i>|`<i class="icon_mail_outline_black"></i>`             | `.icon_mail_outline_black`             | `icon_mail_outline_black.svg`             
+|<i class="icon_menu_black-copy"></i>|`<i class="icon_menu_black-copy"></i>`              | `.icon_menu_black-copy`              |`icon_menu_black-copy.svg`              
+|<i class="icon_menu_black"></i>|`<i class="icon_menu_black"></i>`             | `.icon_menu_black`             | `icon_menu_black.svg`             
+|<i class="icon_more_horiz_black"></i>|`<i class="icon_more_horiz_black"></i>`             | `.icon_more_horiz_black`             | `icon_more_horiz_black.svg`             
+|<i class="icon_more_vert_black"></i>|`<i class="icon_more_vert_black"></i>`              | `.icon_more_vert_black`              | `icon_more_vert_black.svg`              
+|<i class="icon_near_me_black"></i>|`<i class="icon_near_me_black"></i>`              | `.icon_near_me_black`              | `icon_near_me_black.svg`              
+|<i class="icon_new_releases_black"></i>|`<i class="icon_new_releases_black"></i>`             | `.icon_new_releases_black`             | `icon_new_releases_black.svg`             
+|<i class="icon_notifications_active_black"></i>|`<i class="icon_notifications_active_black"></i>`             | `.icon_notifications_active_black`             | `icon_notifications_active_black.svg`             
+|<i class="icon_notifications_black"></i>|`<i class="icon_notifications_black"></i>`              | `.icon_notifications_black`              | `icon_notifications_black.svg`              
+|<i class="icon_notifications_off_black"></i>|`<i class="icon_notifications_off_black"></i>`              | `.icon_notifications_off_black`              | `icon_notifications_off_black.svg`              
+|<i class="icon_pause_black"></i>|`<i class="icon_pause_black"></i>`              | `.icon_pause_black`              | `icon_pause_black.svg`              
+|<i class="icon_pause_circle_outline_black"></i>|`<i class="icon_pause_circle_outline_black"></i>`             | `.icon_pause_circle_outline_black`             | `icon_pause_circle_outline_black.svg`             
+|<i class="icon_person_add_black"></i>|`<i class="icon_person_add_black"></i>`             | `.icon_person_add_black`             | `icon_person_add_black.svg`             
+|<i class="icon_person_black"></i>|`<i class="icon_person_black"></i>`             | `.icon_person_black`             | `icon_person_black.svg`             
+|<i class="icon_play_arrow_black"></i>|`<i class="icon_play_arrow_black"></i>`             | `.icon_play_arrow_black`             | `icon_play_arrow_black.svg`             
+|<i class="icon_play_circle_outline_black"></i>|`<i class="icon_play_circle_outline_black"></i>`              | `.icon_play_circle_outline_black`              | `icon_play_circle_outline_black.svg`              
+|<i class="icon_question_answer_black"></i>|`<i class="icon_question_answer_black"></i>`              | `.icon_question_answer_black`              | `icon_question_answer_black.svg`              
+|<i class="icon_radio_button_checked_black"></i>|`<i class="icon_radio_button_checked_black"></i>`             | `.icon_radio_button_checked_black`             | `icon_radio_button_checked_black.svg`             
+|<i class="icon_radio_button_unchecked_black"></i>|`<i class="icon_radio_button_unchecked_black"></i>`             | `.icon_radio_button_unchecked_black`             | `icon_radio_button_unchecked_black.svg`             
+|<i class="icon_remove_black"></i>|`<i class="icon_remove_black"></i>`             | `.icon_remove_black`             | `icon_remove_black.svg`             
+|<i class="icon_remove_circle_black"></i>|`<i class="icon_remove_circle_black"></i>`              | `.icon_remove_circle_black`              | `icon_remove_circle_black.svg`              
+|<i class="icon_report_black"></i>|`<i class="icon_report_black"></i>`             | `.icon_report_black`             | `icon_report_black.svg`             
+|<i class="icon_settings_black"></i>|`<i class="icon_settings_black"></i>`             | `.icon_settings_black`             | `icon_settings_black.svg`             
+|<i class="icon_skip_previous_black"></i>|`<i class="icon_skip_previous_black"></i>`              | `.icon_skip_previous_black`              | `icon_skip_previous_black.svg`              
+|<i class="icon_skip_next_black"></i>|`<i class="icon_skip_next_black"></i>`              | `.icon_skip_next_black`              | `icon_skip_next_black.svg`              
+|<i class="icon_sms_failed_black"></i>|`<i class="icon_sms_failed_black"></i>`             | `.icon_sms_failed_black`             | `icon_sms_failed_black.svg`             
+|<i class="icon_star_border_black"></i>|`<i class="icon_star_border_black"></i>`              | `.icon_star_border_black`              | `icon_star_border_black.svg`              
+|<i class="icon_star_half_black"></i>|`<i class="icon_star_half_black"></i>`              | `.icon_star_half_black`              | `icon_star_half_black.svg`              
+|<i class="icon_stop_black"></i>|`<i class="icon_stop_black"></i>`             | `.icon_stop_black`             | `icon_stop_black.svg`             
+|<i class="icon_thumb_down_black"></i>|`<i class="icon_thumb_down_black"></i>`             | `.icon_thumb_down_black`             | `icon_thumb_down_black.svg`             
+|<i class="icon_thumb_up_black"></i>|`<i class="icon_thumb_up_black"></i>`             | `.icon_thumb_up_black`             | `icon_thumb_up_black.svg`             
+|<i class="icon_view_list_black"></i>|`<i class="icon_view_list_black"></i>`              | `.icon_view_list_black`              | `icon_view_list_black.svg`              
+|<i class="icon_visibility_black"></i>|`<i class="icon_visibility_black"></i>`             | `.icon_visibility_black`             | `icon_visibility_black.svg`             
+|<i class="icon_visibility_off_black"></i>|`<i class="icon_visibility_off_black"></i>`             | `.icon_visibility_off_black`             | `icon_visibility_off_black.svg`             
+|<i class="icon_volume_off_black"></i>|`<i class="icon_volume_off_black"></i>`             | `.icon_volume_off_black`             | `icon_volume_off_black.svg`             
+|<i class="icon_volume_up_black"></i>|`<i class="icon_volume_up_black"></i>`              | `.icon_volume_up_black`              | `icon_volume_up_black.svg`              
+|<i class="icon_warning_black"></i>|`<i class="icon_warning_black"></i>`              | `.icon_warning_black`              |`.icon_warning_black.svg`              |
+
+
+*/
+
+@font-face {
+  font-family: 'sco-icon-font';
+  src:  url('sco-icon-font.eot?fu578m');
+  src:  url('sco-icon-font.eot?fu578m#iefix') format('embedded-opentype'),
+    url('sco-icon-font.ttf?fu578m') format('truetype'),
+    url('sco-icon-font.woff?fu578m') format('woff'),
+    url('sco-icon-font.svg?fu578m#sco-icon-font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+$icon_add_box_black: "\e900";
+$icon_add_circle_black: "\e901";
+$icon_add_circle_outline_black: "\e902";
+$icon_add_to_photos_black: "\e903";
+$icon_add_location_black: "\e904";
+$icon_announcement_black: "\e905";
+$icon_publish_black: "\e906";
+$icon_file_upload_black: "\e907";
+$icon_vertical_align_bottom_black: "\e908";
+$icon_arrow_downward_black: "\e909";
+$icon_arrow_drop_down_black: "\e90a";
+$icon_attach_file_black: "\e90b";
+$icon_autorenew_black: "\e90c";
+$icon_backspace_black: "\e90d";
+$icon_backup_black: "\e90e";
+$icon_bookmark_black: "\e90f";
+$icon_cancel_black: "\e910";
+$icon_chat_black: "\e911";
+$icon_chat_bubble_black: "\e912";
+$icon_check_box_black: "\e913";
+$icon_check_box_outline_blank_black: "\e914";
+$icon_keyboard_arrow_up_black: "\e915";
+$icon_chevron_left_black: "\e916";
+$icon_chevron_right_black: "\e917";
+$icon_first_page_black: "\e918";
+$icon_last_page_black: "\e919";
+$icon_cloud_black: "\e91a";
+$icon_create_new_folder_black: "\e91b";
+$icon_delete_black: "\e91c";
+$icon_email_black: "\e91d";
+$icon_exit_to_app_black: "\e91e";
+$icon_feedback_black: "\e91f";
+$icon_group_add_black: "\e920";
+$icon_group_black: "\e921";
+$icon_help_black: "\e922";
+$icon_info_black: "\e923";
+$icon_language_black: "\e924";
+$icon_lightbulb_outline_black: "\e925";
+$icon_link_black: "\e926";
+$icon_list_black: "\e927";
+$icon_local_offer_black: "\e928";
+$icon_lock_black: "\e929";
+$icon_lock_open_black: "\e92a";
+$icon_lock_open_line_black: "\e92b";
+$icon_loop_black: "\e92c";
+$icon_mail_outline_black: "\e92d";
+$icon_menu_black-copy: "\e92e";
+$icon_menu_black: "\e92f";
+$icon_more_horiz_black: "\e930";
+$icon_more_vert_black: "\e931";
+$icon_near_me_black: "\e932";
+$icon_new_releases_black: "\e933";
+$icon_notifications_active_black: "\e934";
+$icon_notifications_black: "\e935";
+$icon_notifications_off_black: "\e936";
+$icon_pause_black: "\e937";
+$icon_pause_circle_outline_black: "\e938";
+$icon_person_add_black: "\e939";
+$icon_person_black: "\e93a";
+$icon_play_arrow_black: "\e93b";
+$icon_play_circle_outline_black: "\e93c";
+$icon_question_answer_black: "\e93d";
+$icon_radio_button_checked_black: "\e93e";
+$icon_radio_button_unchecked_black: "\e93f";
+$icon_remove_black: "\e940";
+$icon_remove_circle_black: "\e941";
+$icon_report_black: "\e942";
+$icon_settings_black: "\e943";
+$icon_skip_previous_black: "\e944";
+$icon_skip_next_black: "\e945";
+$icon_sms_failed_black: "\e946";
+$icon_star_border_black: "\e947";
+$icon_star_half_black: "\e948";
+$icon_stop_black: "\e949";
+$icon_thumb_down_black: "\e94a";
+$icon_thumb_up_black: "\e94b";
+$icon_view_list_black: "\e94c";
+$icon_visibility_black: "\e94d";
+$icon_visibility_off_black: "\e94e";
+$icon_volume_off_black: "\e94f";
+$icon_volume_up_black: "\e950";
+$icon_warning_black: "\e951";
+
+
+
+
+
+[class*="icon_"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'sco-icon-font' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  font-size:24px;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon_add_box_black {
+  &:before {
+    content: $icon_add_box_black;
+  }
+}
+.icon_add_circle_black {
+  &:before {
+    content: $icon_add_circle_black;
+  }
+}
+.icon_add_circle_outline_black {
+  &:before {
+    content: $icon_add_circle_outline_black;
+  }
+}
+.icon_add_to_photos_black {
+  &:before {
+    content: $icon_add_to_photos_black;
+  }
+}
+.icon_add_location_black {
+  &:before {
+    content: $icon_add_location_black;
+  }
+}
+.icon_announcement_black {
+  &:before {
+    content: $icon_announcement_black;
+  }
+}
+.icon_publish_black {
+  &:before {
+    content: $icon_publish_black;
+  }
+}
+.icon_file_upload_black {
+  &:before {
+    content: $icon_file_upload_black;
+  }
+}
+.icon_vertical_align_bottom_black {
+  &:before {
+    content: $icon_vertical_align_bottom_black;
+  }
+}
+.icon_arrow_downward_black {
+  &:before {
+    content: $icon_arrow_downward_black;
+  }
+}
+.icon_arrow_drop_down_black {
+  &:before {
+    content: $icon_arrow_drop_down_black;
+  }
+}
+.icon_attach_file_black {
+  &:before {
+    content: $icon_attach_file_black;
+  }
+}
+.icon_autorenew_black {
+  &:before {
+    content: $icon_autorenew_black;
+  }
+}
+.icon_backspace_black {
+  &:before {
+    content: $icon_backspace_black;
+  }
+}
+.icon_backup_black {
+  &:before {
+    content: $icon_backup_black;
+  }
+}
+.icon_bookmark_black {
+  &:before {
+    content: $icon_bookmark_black;
+  }
+}
+.icon_cancel_black {
+  &:before {
+    content: $icon_cancel_black;
+  }
+}
+.icon_chat_black {
+  &:before {
+    content: $icon_chat_black;
+  }
+}
+.icon_chat_bubble_black {
+  &:before {
+    content: $icon_chat_bubble_black;
+  }
+}
+.icon_check_box_black {
+  &:before {
+    content: $icon_check_box_black;
+  }
+}
+.icon_check_box_outline_blank_black {
+  &:before {
+    content: $icon_check_box_outline_blank_black;
+  }
+}
+.icon_keyboard_arrow_up_black {
+  &:before {
+    content: $icon_keyboard_arrow_up_black;
+  }
+}
+.icon_chevron_left_black {
+  &:before {
+    content: $icon_chevron_left_black;
+  }
+}
+.icon_chevron_right_black {
+  &:before {
+    content: $icon_chevron_right_black;
+  }
+}
+.icon_first_page_black {
+  &:before {
+    content: $icon_first_page_black;
+  }
+}
+.icon_last_page_black {
+  &:before {
+    content: $icon_last_page_black;
+  }
+}
+.icon_cloud_black {
+  &:before {
+    content: $icon_cloud_black;
+  }
+}
+.icon_create_new_folder_black {
+  &:before {
+    content: $icon_create_new_folder_black;
+  }
+}
+.icon_delete_black {
+  &:before {
+    content: $icon_delete_black;
+  }
+}
+.icon_email_black {
+  &:before {
+    content: $icon_email_black;
+  }
+}
+.icon_exit_to_app_black {
+  &:before {
+    content: $icon_exit_to_app_black;
+  }
+}
+.icon_feedback_black {
+  &:before {
+    content: $icon_feedback_black;
+  }
+}
+.icon_group_add_black {
+  &:before {
+    content: $icon_group_add_black;
+  }
+}
+.icon_group_black {
+  &:before {
+    content: $icon_group_black;
+  }
+}
+.icon_help_black {
+  &:before {
+    content: $icon_help_black;
+  }
+}
+.icon_info_black {
+  &:before {
+    content: $icon_info_black;
+  }
+}
+.icon_language_black {
+  &:before {
+    content: $icon_language_black;
+  }
+}
+.icon_lightbulb_outline_black {
+  &:before {
+    content: $icon_lightbulb_outline_black;
+  }
+}
+.icon_link_black {
+  &:before {
+    content: $icon_link_black;
+  }
+}
+.icon_list_black {
+  &:before {
+    content: $icon_list_black;
+  }
+}
+.icon_local_offer_black {
+  &:before {
+    content: $icon_local_offer_black;
+  }
+}
+.icon_lock_black {
+  &:before {
+    content: $icon_lock_black;
+  }
+}
+.icon_lock_open_black {
+  &:before {
+    content: $icon_lock_open_black;
+  }
+}
+.icon_lock_open_line_black {
+  &:before {
+    content: $icon_lock_open_line_black;
+  }
+}
+.icon_loop_black {
+  &:before {
+    content: $icon_loop_black;
+  }
+}
+.icon_mail_outline_black {
+  &:before {
+    content: $icon_mail_outline_black;
+  }
+}
+.icon_menu_black-copy {
+  &:before {
+    content: $icon_menu_black-copy;
+  }
+}
+.icon_menu_black {
+  &:before {
+    content: $icon_menu_black;
+  }
+}
+.icon_more_horiz_black {
+  &:before {
+    content: $icon_more_horiz_black;
+  }
+}
+.icon_more_vert_black {
+  &:before {
+    content: $icon_more_vert_black;
+  }
+}
+.icon_near_me_black {
+  &:before {
+    content: $icon_near_me_black;
+  }
+}
+.icon_new_releases_black {
+  &:before {
+    content: $icon_new_releases_black;
+  }
+}
+.icon_notifications_active_black {
+  &:before {
+    content: $icon_notifications_active_black;
+  }
+}
+.icon_notifications_black {
+  &:before {
+    content: $icon_notifications_black;
+  }
+}
+.icon_notifications_off_black {
+  &:before {
+    content: $icon_notifications_off_black;
+  }
+}
+.icon_pause_black {
+  &:before {
+    content: $icon_pause_black;
+  }
+}
+.icon_pause_circle_outline_black {
+  &:before {
+    content: $icon_pause_circle_outline_black;
+  }
+}
+.icon_person_add_black {
+  &:before {
+    content: $icon_person_add_black;
+  }
+}
+.icon_person_black {
+  &:before {
+    content: $icon_person_black;
+  }
+}
+.icon_play_arrow_black {
+  &:before {
+    content: $icon_play_arrow_black;
+  }
+}
+.icon_play_circle_outline_black {
+  &:before {
+    content: $icon_play_circle_outline_black;
+  }
+}
+.icon_question_answer_black {
+  &:before {
+    content: $icon_question_answer_black;
+  }
+}
+.icon_radio_button_checked_black {
+  &:before {
+    content: $icon_radio_button_checked_black;
+  }
+}
+.icon_radio_button_unchecked_black {
+  &:before {
+    content: $icon_radio_button_unchecked_black;
+  }
+}
+.icon_remove_black {
+  &:before {
+    content: $icon_remove_black;
+  }
+}
+.icon_remove_circle_black {
+  &:before {
+    content: $icon_remove_circle_black;
+  }
+}
+.icon_report_black {
+  &:before {
+    content: $icon_report_black;
+  }
+}
+.icon_settings_black {
+  &:before {
+    content: $icon_settings_black;
+  }
+}
+.icon_skip_previous_black {
+  &:before {
+    content: $icon_skip_previous_black;
+  }
+}
+.icon_skip_next_black {
+  &:before {
+    content: $icon_skip_next_black;
+  }
+}
+.icon_sms_failed_black {
+  &:before {
+    content: $icon_sms_failed_black;
+  }
+}
+.icon_star_border_black {
+  &:before {
+    content: $icon_star_border_black;
+  }
+}
+.icon_star_half_black {
+  &:before {
+    content: $icon_star_half_black;
+  }
+}
+.icon_stop_black {
+  &:before {
+    content: $icon_stop_black;
+  }
+}
+.icon_thumb_down_black {
+  &:before {
+    content: $icon_thumb_down_black;
+  }
+}
+.icon_thumb_up_black {
+  &:before {
+    content: $icon_thumb_up_black;
+  }
+}
+.icon_view_list_black {
+  &:before {
+    content: $icon_view_list_black;
+  }
+}
+.icon_visibility_black {
+  &:before {
+    content: $icon_visibility_black;
+  }
+}
+.icon_visibility_off_black {
+  &:before {
+    content: $icon_visibility_off_black;
+  }
+}
+.icon_volume_off_black {
+  &:before {
+    content: $icon_volume_off_black;
+  }
+}
+.icon_volume_up_black {
+  &:before {
+    content: $icon_volume_up_black;
+  }
+}
+.icon_warning_black {
+  &:before {
+    content: $icon_warning_black;
+  }
+}
+
