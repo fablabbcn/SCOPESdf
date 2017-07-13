@@ -1,0 +1,34 @@
+%article
+  .wrapped
+    %fieldset
+      %legend
+        %h3 How does this align to standards?
+        %small * Mandatory information
+
+      .lesson--standard-wrapper
+        .lesson--standard-header
+          %h4
+            Standard 1
+          .actions
+            = link_to 'Delete', '#'
+        .field-group
+          %label
+            Standard name
+            %small What is the overarching standard
+          .field-wrapper
+            %input{type: 'text'}
+            -#    need to take some time and see how to pass lessons: { standards: [{:name, :description}] }
+        .field-group
+          %label
+            Description
+            %small Add one or more
+          .field-wrapper
+            %textarea{class: 'textarea--short'}
+
+      %h3 New standard
+      = link_to 'Add new Standard', '#', class: 'button button--highlight'
+
+  %footer
+    .wrapped
+      =link_to 'Back to overview', lesson_new_path(id: @lesson_obj.id, form_step:1), class: 'button button--call'
+      =link_to 'Add some details', lesson_new_path(id: @lesson_obj.id, form_step:3), class: 'button button--call'
