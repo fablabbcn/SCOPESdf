@@ -144,6 +144,10 @@ fieldset {
       float:left;
     }
 
+    h4 {
+      margin:0;
+    }
+
     small {
       color:$color-blue-hi;
       font-weight:200;
@@ -157,6 +161,7 @@ fieldset {
 
   .field-group {
     @include clearfix;
+    margin:1em 0;
 
     label {
       color:$color-dark;
@@ -218,10 +223,36 @@ fieldset {
   .field-wrapper {
 
     margin-bottom:2rem;
+    @include clearfix;
 
     @include breakpoint($tablet-breakpoint) {
       @include span(9 of 12 last);
     }
+  }
+}
+
+.field--image-gallery {
+  margin-top:2em;
+  @include clearfix;
+  figure {
+    @include gallery(3 of 12);
+    figcaption {
+      margin-top:1em;
+      font-size:.8em;
+      color:$color-mid-gray;
+    }
+
+    img {
+      border-radius:2px;
+      transition: box-shadow .2s;
+    }
+
+    &:hover {
+      img {
+        box-shadow:0 0 0px 2px $color-yellow;
+      }
+    }
+
   }
 }
 

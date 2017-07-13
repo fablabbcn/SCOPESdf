@@ -1,21 +1,21 @@
 %article
   .wrapped
     %fieldset
-      %h3 
-        Examples of finished work
+      %legend
+        %h3 Examples of finished work
         
-        .field-group
-          %label 
-            Add images
-            %small Guideliens for images
-          %input{type: 'file'}
+      .field-group
+        %label 
+          Add images
+          %small Guideliens for images
+        %input{type: 'file'}
 
-        .field-group
-          .image-gallery
-            -(1..4).each do
-              %figure
-                = image_tag 'https://www.fillmurray.com/270/200'
-                %figcaption DSCF-0124.jpg
+      .field-group
+        .field--image-gallery
+          -(1..4).each do
+            %figure
+              = image_tag 'https://www.fillmurray.com/270/200'
+              %figcaption DSCF-0124.jpg
 
   %footer
     .wrapped

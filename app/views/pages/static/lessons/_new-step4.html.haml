@@ -20,8 +20,8 @@
 
         .field-group
           %label
-            Grade Range
-            %small Specify one or more
+            Time needed
+            %small A reference on the time that will take to complete the step
           .field-wrapper
             %input{type: 'text', id: 'grade', readonly: 'readonly'}
               %div#slider-range
@@ -42,8 +42,9 @@
                 %input{type: 'file'}
 
       %fieldset
-        .field-group
+        %legend
           %h4 What is needed for this step?
+        .field-group
           %label
             Materials
             %small What do they need?
@@ -53,6 +54,21 @@
             .field--xl
               %input{type: 'text', placeholder: 'Enter item here'}
             %small Press ↵ Return to add
+
+        .field-group
+          %label
+            Tools
+            %small List as many as needed
+          .field-wrapper
+            %input{type: 'text', placeholder: 'Enter item here'}
+            %small Press ↵ Return to add
+
+        .field-group
+          %label
+            Supporting Materials
+            %small Design files, handouts needed for this step
+          .field-wrapper
+            %input{type: 'file'}
 
 
       %h3 Step 2
