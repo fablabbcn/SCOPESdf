@@ -163,7 +163,7 @@ fieldset {
     @include clearfix;
     margin:1em 0;
 
-    label {
+    & > label {
       color:$color-dark;
       line-height:1.2em;
       font-weight:400;

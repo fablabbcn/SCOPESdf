@@ -1,0 +1,10 @@
+/* specific hacks for lesson forms, that may not apply to any other form **/
+
+fieldset#lesson-difficulty-level {
+  .radio-group {
+    @include gallery(6 of 12);
+    small {
+      text-align:left;
+    }
+  }
+}
