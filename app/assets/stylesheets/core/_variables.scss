@@ -71,6 +71,49 @@ $font-headlines: -apple-system-headline, BlinkMacSystemFont,
     "Fira Sans", "Droid Sans", "Helvetica Neue", 
     sans-serif;
 
+/** Icon fonts **/
+
+@font-face {
+  font-family: 'icons-scopes';
+  src:  url('fonts/icons-scopes.eot?yssqup');
+  src:  url('fonts/icons-scopes.eot?yssqup#iefix') format('embedded-opentype'),
+    url('fonts/icons-scopes.ttf?yssqup') format('truetype'),
+    url('fonts/icons-scopes.woff?yssqup') format('woff'),
+    url('fonts/icons-scopes.svg?yssqup#icons-scopes') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/** 
+
+A message for the future 
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ic_lock_black:before {
+  content: "\e900";
+}
+.icon-ic_lock_white_open:before {
+  content: "\e901";
+}
+.icon-ic_lock_black_open:before {
+  content: "\e902";
+}
+**/
+
+
+$font-icons: 'icons-scopes';
+
 // Base Colors
 
 $color-white:#fff;

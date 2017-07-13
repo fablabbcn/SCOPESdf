@@ -36,7 +36,7 @@ textarea {
 
   box-sizing:border-box;
   width:100%;
-  padding:.6rem .8rem;
+  padding:.7rem .8rem .6rem .8rem;
   color:#62686C;
   transition: all .2s ease;
   background:$color-white;
@@ -58,6 +58,9 @@ textarea {
     border-color:$color-gray-outlines;
     cursor:default;
     pointer-events:none;
+    background:url(icons/icon_lock_black.svg) .6rem no-repeat;
+    padding-left:2rem;
+    background-size:12px;
   }
 
   &.input--error {
