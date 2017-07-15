@@ -10,6 +10,7 @@ class LessonService
     def find_or_create_and_update(id, params, calling_user)
       # puts params << for testing internally
 
+
       prepParams(calling_user, params)
       @lesson = find_or_createHidden(id)
       associateAuthors!
