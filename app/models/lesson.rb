@@ -15,6 +15,7 @@
 #  outcome_files             :json
 #  original_lesson           :uuid
 #  state                     :integer          default("draft"), not null
+#  published_at              :datetime
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #
@@ -90,6 +91,10 @@ class Lesson < ApplicationRecord
   end
   def removeTeachingRange
     self.lesson_tags.where(taggable_type: "TeachingRange").destroy_all
+  end
+  def getTeachingRange_formatted
+    range = getTeachingRange
+    range = { range_start: TeachingRange.format(range[:range_start].gsub("start_","")), range_end: TeachingRange.format(range[:range_end].gsub("end_",""))}
   end
 
 
@@ -291,11 +296,11 @@ class Lesson < ApplicationRecord
         topline: self.topline.present?,
         summary: self.summary.present?,
         authors: self.authors.present?,
-        organizations: self.getOrgs.present?,
+        # organizations: self.getOrgs.present?,
         learning_objectives: self.learning_objectives.present?,
         description: self.description.present?,
-        assessment_criteria: self.assessment_criteria.present?,
-        further_readings: self.further_readings.present?,
+        # assessment_criteria: self.assessment_criteria.present?,
+        # further_readings: self.further_readings.present?,
 
         standards:
             ( self.standards.present? && self.standards["standards"].present? && self.standards["standards"].count > 0 && self.standards["standards"].first["name"].present? && self.standards["standards"].first["descriptions"].present? ),
@@ -315,6 +320,7 @@ class Lesson < ApplicationRecord
   end
   def publish!
     if publishable?
+      self.published_at = Time.now
       self.visible!
       return true
     end
