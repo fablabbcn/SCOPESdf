@@ -8,3 +8,36 @@ fieldset#lesson-difficulty-level {
     }
   }
 }
+
+.form-step {
+  .user--teaser-wrapper {
+    border:1px solid $color-gray-outlines;
+    padding:1rem;
+    margin-bottom:1rem;
+
+    img {
+      width:50px;
+      height:50px;
+    }
+    
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+
+}
+
+.lesson--standard-header {
+  @include clearfix;
+  margin-bottom:2em;
+
+  h4 {
+    float:left;
+    margin:0;
+  }
+  .actions {
+    float:right;
+  }
+}

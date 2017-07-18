@@ -256,17 +256,25 @@ fieldset {
   }
 }
 
-.lesson--standard-header {
-  @include clearfix;
-  margin-bottom:2em;
+.form--actions-related {
+  display:flex;
+  align-items: center;
+}
 
-  h4 {
-    float:left;
-    margin:0;
+
+a.form--remove-element {
+
+  color:$color-mid-gray;
+  text-decoration: none;
+  font-size:.9em;
+  line-height:1em;
+  margin-left:1em;
+
+  &:hover {
+    color:$color-dark-hi;
   }
 
-  .actions {
-    float:right;
+  span {
+    display:none;
   }
-
 }

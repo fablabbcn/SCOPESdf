@@ -48,6 +48,15 @@
               Who made this *
               %small Enter one or more authors
             .field-wrapper
+
+              .user--teaser-wrapper
+                = render '/users/user-teaser';
+                .form--actions-related
+                  %button.button--highlight Invite to SCOPES
+                  %a.form--remove-element{href:'#'}
+                    %i.icon_delete_black
+                    %span Delete
+
               %input{id:'other-user-emails', name: 'other_user_emails', type: 'text', placeholder: 'Add new person'}
           .field-group
             %label
