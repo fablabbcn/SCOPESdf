@@ -1,0 +1,25 @@
+.modal.fade#new-user-modal{ aria: { labelledby: 'new-user-modal', hidden: 'true'}, tabindex: '-1' }
+  .modal-dialog{role:'document'}
+    .modal-content
+      %a.icon--close{ data: {dismiss:'modal'}, aria: { label: 'Close'} }
+      = form_tag do
+        %fieldset
+          %legend
+            %h3 
+              Add author
+          .field-group
+            %label
+              Email
+              %small To invite this person to the platform
+            = text_field(:user_email, :name)
+          .field-group
+            %label
+              Name
+            = text_field(:user_name, :name)
+          .field-group
+            %label
+              Organisation
+            = text_field(:organization_name, :name)
+          .field-group.field-group--actions
+            %button.button--action{data:{dismiss:'modal'}} Cancel
+            %button.button--highlight Add Autor
