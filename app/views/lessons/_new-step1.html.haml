@@ -1,106 +1,109 @@
-= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:2), method: "post", multipart: true, id:"form") do
-  %article
-    .wrapped
-      %fieldset
-        %legend
-          %h3 Basic information
-          %small * Mandatory information
-        .field-group
-          %label
-            Name of Lesson *
-            %small 50 chars max
-          .field-wrapper
-            = text_field(:lesson, :name, class:'input--large')
-        .field-group
-          %label
-            Topline description *
-            %small Describe it in a sentence
-          .field-wrapper
-            = text_field(:lesson, :topline)
-        .field-group
-          %label
-            Summary of lesson *
-            %small
-              %p Keep it short and snappy.
-              %p Try to include:
-              %p
-                • Why the lesson is interesting
-                %br
-                • The types of activities students will do.
-              %p You can format using markdown
-          .field-wrapper
-            = text_area(:lesson, :summary)
-      %fieldset
-        %legend
-          %h3 Objectives
-        .field-group
-          %label
-            Learning objectives *
-            %small What will the students learn
-          .field-wrapper
-            = text_field(:lesson, :learning_objectives, multiple: true)
-      %fieldset
-        %legend
-          %h3 Authors
-        .field-group
-          %label
-            Who made this *
-            %small Enter one or more authors
-          .field-wrapper
-            %input{type: 'text', placeholder: 'Add new person'}
-        .field-group
-          %label
-            Where was this made *
-            %small Enter one or more places
-          .field-wrapper
-            %input{type: 'text', placeholder: 'Add new place'}
-
-      %fieldset
-        %legend
-          %h3 Lesson ambitions
-        .field-group
-          %label
-            Lesson Description *
-            %small
-              %p Keep it short and snappy.
-              %p Try to include:
-              %p
-                • Why the lesson is interesting
-                %br
-                • The types of activities students will do.
-              %p You can format using markdown
-          .field-wrapper
-            = text_area(:lesson, :description)
-        .field-group
-          %label
-            Assessment Criteria *
-            %small
-              %p Keep it short and snappy.
-              %p Try to include:
-              %p
-                • Why the lesson is interesting
-                %br
-                • The types of activities students will do.
-              %p You can format using markdown
-          .field-wrapper
-            = text_area(:lesson, :assessment_criteria)
-            .field-group.field-group--support
-              %label.label--small
-                Supporting files
-              .field-wrapper
-                = file_field_tag 'assessment_criteria_files[]', multiple: true
-
-      %fieldset
-        .field-group
-          %label
-            Further reading
-            %small Anymore useful links
-          .field-wrapper
-            = text_field(:lesson, :further_readings, multiple: true)
-
-    %footer
+.form-step
+  = form_tag(lesson_create_path(id: @lesson_obj.id, form_step:2), method: "post", multipart: true, id:"form") do
+    %article
       .wrapped
-        %p Next up...
-        -#=link_to 'Add some more details',lesson_new_path(step:2), class: 'button button--call'
-        -#=link_to 'Add some more details', '', class: 'button button--call', onclick: "$('#form').submit()"
-        = submit_tag('Add some more details', class: 'button button--call')
+        %fieldset
+          %legend
+            %h3 Basic information
+            %small * Mandatory information
+          .field-group
+            %label
+              Name of Lesson *
+              %small 50 chars max
+            .field-wrapper
+              = text_field(:lesson, :name, class:'input--large')
+          .field-group
+            %label
+              Topline description *
+              %small Describe it in a sentence
+            .field-wrapper
+              = text_field(:lesson, :topline)
+          .field-group
+            %label
+              Summary of lesson *
+              %small
+                %p Keep it short and snappy.
+                %p Try to include:
+                %p
+                  • Why the lesson is interesting
+                  %br
+                  • The types of activities students will do.
+                %p You can format using markdown
+            .field-wrapper
+              = text_area(:lesson, :summary)
+        %fieldset
+          %legend
+            %h3 Objectives
+          .field-group
+            %label
+              Learning objectives *
+              %small What will the students learn
+            .field-wrapper
+              = text_field(:lesson, :learning_objectives, multiple: true)
+        %fieldset
+          %legend
+            %h3 Authors
+          .field-group
+            %label
+              Who made this *
+              %small Enter one or more authors
+            .field-wrapper
+              %input{id:'other-user-emails', name: 'other_user_emails', type: 'text', placeholder: 'Add new person'}
+          .field-group
+            %label
+              Where was this made *
+              %small Enter one or more places
+            .field-wrapper
+              %input{type: 'text', placeholder: 'Add new place'}
+
+        %fieldset
+          %legend
+            %h3 Lesson ambitions
+          .field-group
+            %label
+              Lesson Description *
+              %small
+                %p Keep it short and snappy.
+                %p Try to include:
+                %p
+                  • Why the lesson is interesting
+                  %br
+                  • The types of activities students will do.
+                %p You can format using markdown
+            .field-wrapper
+              = text_area(:lesson, :description)
+          .field-group
+            %label
+              Assessment Criteria *
+              %small
+                %p Keep it short and snappy.
+                %p Try to include:
+                %p
+                  • Why the lesson is interesting
+                  %br
+                  • The types of activities students will do.
+                %p You can format using markdown
+            .field-wrapper
+              = text_area(:lesson, :assessment_criteria)
+              .field-group.field-group--support
+                %label.label--small
+                  Supporting files
+                .field-wrapper
+                  = file_field_tag 'assessment_criteria_files[]', multiple: true
+
+        %fieldset
+          .field-group
+            %label
+              Further reading
+              %small Anymore useful links
+            .field-wrapper
+              = text_field(:lesson, :further_readings, multiple: true)
+
+      %footer
+        .wrapped
+          %p Next up...
+          -#=link_to 'Add some more details',lesson_new_path(step:2), class: 'button button--call'
+          -#=link_to 'Add some more details', '', class: 'button button--call', onclick: "$('#form').submit()"
+          = submit_tag('Add some more details', class: 'button button--call')
+
+= render '/users/new-modal';
