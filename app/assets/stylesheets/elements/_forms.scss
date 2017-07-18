@@ -28,6 +28,7 @@ Also, a general style modifier is defined for inputs to behave like a single lin
 input[type="text"],
 input[type="password"],
 input[type="email"],
+select,
 textarea {
   border:$color-gray-outlines 1px solid;
   border-radius:2px;
@@ -113,6 +114,23 @@ textarea {
 .field--xl {
   width:92%;
   float:left;
+}
+
+select {
+  outline: none;
+  background: #fff;
+  -moz-appearance: window;
+  -webkit-appearance: none;
+  border-radius: 0px;
+  text-overflow: "";
+  background-image: url('icons/icon_keyboard_arrow_down_black.svg');
+  background-size: auto 8px;
+  background-repeat: no-repeat;
+  background-position: 98% 15px;
+  cursor: pointer;
+  width: 100%;
+  padding: .7rem .8rem .6rem .8rem;
+  padding-right: .7rem .8rem .6rem .8rem\9;      /* This will be apllied only to IE 7, IE 8 and IE 9 as */
 }
 
 textarea {
