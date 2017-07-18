@@ -1,0 +1,32 @@
+.modal {
+  fieldset {
+    legend h3 {
+      font-size:1.1em;
+      color:$color-dark-hi;
+    }
+
+    .field-group {
+      label {
+        float:none;
+        width:100%;
+        margin:0;
+        margin-bottom:.5rem;
+        display:block;
+
+        small {
+          float:none;
+          line-height:1em;
+        }
+
+      }
+    }
+
+    .field-group--actions {
+      text-align: right;
+    }
+
+    margin:0;
+    padding:0;
+    border:none;
+  }
+}

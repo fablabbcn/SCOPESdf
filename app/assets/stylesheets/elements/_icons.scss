@@ -11,6 +11,7 @@ category: Elements
 |<i class="icon_add_circle_outline_black"></i>|`<i class="icon_add_circle_outline_black"></i>`             | `.icon_add_circle_outline_black`             | `icon_add_circle_outline_black.svg`             
 |<i class="icon_add_to_photos_black"></i>|`<i class="icon_add_to_photos_black"></i>`              | `.icon_add_to_photos_black`              | `icon_add_to_photos_black.svg`              
 |<i class="icon_add_location_black"></i>|`<i class="icon_add_location_black"></i>`             | `.icon_add_location_black`             | `icon_add_location_black.svg`             
+|<i class="icon_close_black"></i>|`<i class="icon_close_black"></i>`             | `.icon_close_black`             | `icon_close_black.svg`             
 |<i class="icon_announcement_black"></i>|`<i class="icon_announcement_black"></i>`             | `.icon_announcement_black`             | `icon_announcement_black.svg`             
 |<i class="icon_publish_black"></i>|`<i class="icon_publish_black"></i>`              | `.icon_publish_black`              | `icon_publish_black.svg`              
 |<i class="icon_file_upload_black"></i>|`<i class="icon_file_upload_black"></i>`              | `.icon_file_upload_black`              | `icon_file_upload_black.svg`              
@@ -615,6 +616,19 @@ $icon_warning_black: "\e951";
 .icon_warning_black {
   &:before {
     content: $icon_warning_black;
+  }
+}
+
+.icon--close {
+
+  &:before {
+    content:"";
+    display:block;
+    background:url(icons/icon_close_black.svg) top left no-repeat;
+    background-size:100%;
+    width:18px;
+    height:18px;
+
   }
 }
 
