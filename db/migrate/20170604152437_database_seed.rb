@@ -89,7 +89,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.string      :learning_objectives, array: true # searchable?
       t.string      :description, default: "", null: false
       t.string      :assessment_criteria, default: "", null: false #maybe on lesson_tags??
-      t.json        :assessment_criteria_files
+      t.string      :assessment_criteria_files, array: true, default: []
       t.string      :further_readings, array: true
       # page 2 - standards
       t.json        :standards
@@ -97,7 +97,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       # page 3 - instructions
       # has many steps -- see table
       # page 4 - outcomes
-      t.json        :outcome_files
+      t.string       :outcome_files, array: true, default: []
       # forking
       t.uuid         :original_lesson, null: true, index: true
       # state-machine
@@ -113,10 +113,10 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.string      :summary, null: false
       t.integer     :duration, default: 0, null: false
       t.string      :description, default: "", null: false
-      t.json        :supporting_files       # files
+      t.string      :supporting_files, array: true, default: []       # files
       t.json        :materials          # are they searchable?
       t.string      :tools, array: true # searchable?
-      t.json        :supporting_materials   # files
+      t.string      :supporting_materials, array: true, default: []   # files
       t.integer     :step_number, null: false
       t.timestamps  null: false
     end

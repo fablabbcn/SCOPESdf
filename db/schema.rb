@@ -76,10 +76,10 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.string   "learning_objectives",                                 array: true
     t.string   "description",               default: "", null: false
     t.string   "assessment_criteria",       default: "", null: false
-    t.json     "assessment_criteria_files"
+    t.string   "assessment_criteria_files", default: [],              array: true
     t.string   "further_readings",                                    array: true
     t.json     "standards"
-    t.json     "outcome_files"
+    t.string   "outcome_files",             default: [],              array: true
     t.uuid     "original_lesson"
     t.integer  "state",                     default: 1,  null: false
     t.datetime "published_at"
@@ -160,10 +160,10 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.string   "summary",                           null: false
     t.integer  "duration",             default: 0,  null: false
     t.string   "description",          default: "", null: false
-    t.json     "supporting_files"
+    t.string   "supporting_files",     default: [],              array: true
     t.json     "materials"
     t.string   "tools",                                          array: true
-    t.json     "supporting_materials"
+    t.string   "supporting_materials", default: [],              array: true
     t.integer  "step_number",                       null: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
