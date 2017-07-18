@@ -16,11 +16,9 @@ class LessonsController < ApplicationController
       @lesson_obj = Lesson.find(params[:id])
     end
 
-    puts "running"
     if params[:id].present? && !params[:step].present?
       @lesson_obj = Lesson.find(params[:id])
       # same as create endpoint
-      puts "appending"
 
       if params[:lesson].present?
         @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
@@ -33,18 +31,13 @@ class LessonsController < ApplicationController
       @lesson_obj.reload
 
     elsif params[:id].present? && params[:step].present? # making a step
-      puts "makng a step"
       Step.find_or_create_and_update(nil, params[:id], step_param, User.first).set_files(params)
     else
-      puts "creating"
       @lesson_obj = LessonService.find_or_create_and_update(nil, {}, User.first)
       @lesson_obj.reload
     end
 
   end
-
-
-
 
   def create
     # id = params[:id]
@@ -79,15 +72,24 @@ class LessonsController < ApplicationController
     render :json => {success: Lesson.find(params[:id]).publish!}, :status => 200
   end
 
+  def show
+    @lesson = Lesson.find(params[:id])
+  end
 
-  def step_create
+
+  def list_json
+    returnable = []
+    returnable.append({name: "Place 1", id: 1, lon: "2.173403",lat: "41.385064" })
+    returnable.append({name: "Place 2", id: 2, lon: "2.273403",lat: "41.385064" })
+    returnable.append({name: "Place 3", id: 3, lon: "2.373403",lat: "41.325064" })
+    returnable.append({name: "Place 4", id: 4, lon: "2.473403",lat: "41.424064" })
+    returnable.append({name: "Place 5", id: 5, lon: "2.573403",lat: "41.425064" })
+    render :json => {data: returnable}, :status => 200
 
   end
 
-  # def update
-  #   # not different from above ...
-  #   render :json => {status: true, lesson: @lesson.id}, :status => 200
-  # end
+
+
 
   def add_step
     @lesson = Lesson.first

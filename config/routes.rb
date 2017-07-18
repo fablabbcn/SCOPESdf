@@ -19,6 +19,11 @@ Rails.application.routes.draw do
 
 
 
+  get 'lessons/:id'        => 'lessons#show', as: :lesson_view
+
+  get 'list/lessons' => 'lessons#list_json'
+
+
   get 'file_form'         => 'visitors#form'
   post 'file_upload'      => 'visitors#file_form_upload'
 

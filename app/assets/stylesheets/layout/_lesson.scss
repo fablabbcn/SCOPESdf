@@ -1,25 +1,85 @@
 .lesson--list {
   article {
     @include gallery(3 of 12);
-    margin-bottom:1rem;
+    margin-bottom: 1rem;
   }
 }
 
 .lesson--steps {
   footer {
-    background:$color-gray-low;
-    padding:4em 0;
-    margin-top:4em;
+    background: $color-gray-low;
+    padding: 4em 0;
+    margin-top: 4em;
     @include clearfix;
 
     p {
-      float:left;
-      font-size:1.5em;
-      font-weight:300;
+      float: left;
+      font-size: 1.5em;
+      font-weight: 300;
     }
 
     a.button:last-child {
-      float:right;
+      float: right;
     }
-  } 
+  }
+}
+
+.lesson--view {
+
+  .view--top-content {
+    display: block;
+    .top-content-title, .top-content-images {
+      width: 100vw;
+      height: 300px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      hr {
+        margin: 2rem 0;
+        background-color: $color-yellow-dark;
+        width: 5em;
+        height: 3px
+      }
+    }
+    .top-content-images {
+      background-color: black;
+      justify-content: flex-end;
+    }
+    @include breakpoint($desktop-breakpoint) {
+      display: flex;
+      .top-content-title, .top-content-images {
+        width: 50vw;
+        height: 400px;
+      }
+    }
+  }
+  .view--details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    background-color: $color-gray;
+    .detail{
+      padding: 2em;
+    }
+    @include breakpoint($tablet-breakpoint) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+  .overview{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .overview--right{
+      width: 375px;
+    }
+    .overview--left{
+
+    }
+  }
+
 }

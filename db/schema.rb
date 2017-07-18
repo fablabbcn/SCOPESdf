@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.json     "outcome_files"
     t.uuid     "original_lesson"
     t.integer  "state",                     default: 1,  null: false
+    t.datetime "published_at"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.index ["name"], name: "index_lessons_on_name", using: :btree

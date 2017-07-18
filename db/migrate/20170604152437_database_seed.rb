@@ -102,6 +102,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.uuid         :original_lesson, null: true, index: true
       # state-machine
       t.integer      :state, default: 1, null: false, index: true
+      t.timestamp    :published_at, null: true
       t.timestamps   null: false
     end
 
