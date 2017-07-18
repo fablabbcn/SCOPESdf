@@ -114,6 +114,7 @@ class SeedService
                 ],
                 context:
                     ["In Classroom", "Outdoors"],
+                collection_tag: "Gold Standard Lesson",
                 tags:
                     ["Pinball"]
             }

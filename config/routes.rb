@@ -3,11 +3,25 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {sessions: 'sessions', registrations: 'registrations'} # CSRF_forgery makes this fail :3
   resources :users
 
-  post 'lessons'            => 'lessons#create', as: :lesson_create
+  get  'lessons/new' => 'lessons#new', as: :lesson_new
+  post 'lessons'            => 'lessons#create'#, as: :lesson_create
+  post 'lessons/new'            => 'lessons#new', as: :lesson_create
+  # the above line is strictly used for the weekend of the 13/7/2017 for submit on new page loads
+
+  post '/lessons/:id/publish' => 'lessons#publish'
+
+
   put  'lessons/:id'        => 'lessons#update'
-  post 'lessons/:id/steps'   => 'lessons#add_step'
+  post 'lessons/:id/step'   => 'lessons#add_step'
+  delete 'lessons/:id/step/:step_id'   => 'lessons#delete_step'
+
   post 'lessons/:id/file/:atr', to: 'lessons#fileUpload', as: :lesson_file
 
+
+
+  get 'lessons/:id'        => 'lessons#show', as: :lesson_view
+
+  get 'list/lessons' => 'lessons#list_json'
 
 
   get 'file_form'         => 'visitors#form'

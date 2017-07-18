@@ -15,6 +15,7 @@
 #  outcome_files             :json
 #  original_lesson           :uuid
 #  state                     :integer          default("draft"), not null
+#  published_at              :datetime
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #
@@ -33,10 +34,6 @@ class Lesson < ApplicationRecord
   # TODO - assessment criteria - input field and file format... ( assessment_criteria_docs :: JSON )
 
 
-  #   validates :author_exists
-  def author_exists         # TODO - validate existence of user from lesson_tags
-    # not saved yet... so checking against query doesn't work *
-  end
   #   validates :organization_exists
   def organization_exists   # TODO - validate existence of organization from lesson_tags
     # not saved yet... so checking against query doesn't work *
@@ -94,6 +91,10 @@ class Lesson < ApplicationRecord
   end
   def removeTeachingRange
     self.lesson_tags.where(taggable_type: "TeachingRange").destroy_all
+  end
+  def getTeachingRange_formatted
+    range = getTeachingRange
+    range = { range_start: TeachingRange.format(range[:range_start].gsub("start_","")), range_end: TeachingRange.format(range[:range_end].gsub("end_",""))}
   end
 
 
@@ -289,5 +290,41 @@ class Lesson < ApplicationRecord
     self.standards["standards"]
   end
 
+  def publishable_values
+    check_against = {
+        name: self.name.present?,
+        topline: self.topline.present?,
+        summary: self.summary.present?,
+        authors: self.authors.present?,
+        # organizations: self.getOrgs.present?,
+        learning_objectives: self.learning_objectives.present?,
+        description: self.description.present?,
+        # assessment_criteria: self.assessment_criteria.present?,
+        # further_readings: self.further_readings.present?,
+
+        standards:
+            ( self.standards.present? && self.standards["standards"].present? && self.standards["standards"].count > 0 && self.standards["standards"].first["name"].present? && self.standards["standards"].first["descriptions"].present? ),
+
+        subjects: self.getSubjects.present?,
+        difficulty_level: self.getDifficultyLevel.present? && self.getDifficultyLevel.count == 2,
+
+        steps: self.steps.present? && self.steps.first.summary.present? && self.steps.first.description.present?
+    }
+  end
+  def publishable?
+    ready = true
+    self.publishable_values.each{|k,v|
+      ready = v && ready
+    }
+    ready
+  end
+  def publish!
+    if publishable?
+      self.published_at = Time.now
+      self.visible!
+      return true
+    end
+    return false
+  end
 
 end

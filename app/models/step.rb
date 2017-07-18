@@ -2,18 +2,18 @@
 #
 # Table name: steps
 #
-#  id                  :uuid             not null, primary key
-#  lesson_id           :uuid             not null
-#  summary             :string           not null
-#  duration            :integer          default(0), not null
-#  description         :string           default(""), not null
-#  supporting_files    :json
-#  materials           :json
-#  tools               :string           is an Array
-#  supporting_material :json
-#  step_number         :integer          not null
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
+#  id                   :uuid             not null, primary key
+#  lesson_id            :uuid             not null
+#  summary              :string           not null
+#  duration             :integer          default(0), not null
+#  description          :string           default(""), not null
+#  supporting_files     :json
+#  materials            :json
+#  tools                :string           is an Array
+#  supporting_materials :json
+#  step_number          :integer          not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #
 
 class Step < ApplicationRecord
@@ -46,30 +46,49 @@ class Step < ApplicationRecord
   end
 
 
+  mount_uploaders :supporting_files, SupportingFileUploader
+  mount_uploaders :supporting_materials, SupportingFileUploader
+  def set_files(files)
+    puts files.inspect
+    self.supporting_files = files[:supporting_files] if files[:supporting_files].present?
+    self.supporting_materials = files[:supporting_materials] if files[:supporting_materials].present?
+    save!
+    reload
+  end
+
+
   # move the following to its own service:
   def self.find_or_create_and_update(step_id, lesson_id, params, calling_user)
     @lesson = Lesson.find(lesson_id)
     return unless @lesson.hasAuthor?(calling_user)
 
-    # filter params if need be
-
-    @step = Step.new(params)
+    puts "PARASDF\n\n\n\n\n"
+    puts params
+    @step = Step.where(id: step_id)
+    @step = Step.new() unless @step.present?
+    @step.attributes = params
     @lesson.steps << @step
     @step.save!
     @step.reload
-
-    # find or create
-    # if creating add new lesson
-
-    {id: @step.id, files:{supporting_files: @step.supporting_files, supporting_materials: @step.supporting_materials } }
+    @step
   end
 
   def reorder(order_number)
 
   end
 
-  def deleteAndUpdateLesson
-
+  def self.delete_and_update_sibilings(step_id, lesson_id, calling_user)
+    @lesson = Lesson.find(lesson_id)
+    return false unless @lesson.hasAuthor?(calling_user)
+    Step.find(step_id).delete
+    siblings = @lesson.steps.order(:created_at)
+    num = 1
+    for s in siblings
+      s.step_number = num
+      s.save!
+      num +=1
+    end
+    true
   end
 
 end

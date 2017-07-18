@@ -56,4 +56,36 @@ class TeachingRange < ApplicationRecord
     l.lesson_tags << LessonTag.new(taggable: r)
   end
 
+  def self.format(value)
+    case
+      when value == "grade_1"
+        return "1st"
+      when value == "grade_2"
+        return "2nd"
+      when value == "grade_3"
+        return "3rd"
+      when value == "grade_4"
+        return "4th"
+      when value == "grade_5"
+        return "5th"
+      when value == "grade_6"
+        return "6th"
+      when value == "grade_7"
+        return "7th"
+      when value == "grade_8"
+        return "8th"
+      when value == "grade_9"
+        return "9th"
+      when value == "grade_10"
+        return "10th"
+      when value == "grade_11"
+        return "11th"
+      when value == "grade_12"
+        return "12th"
+      else
+        return value
+    end
+  end
+
+
 end

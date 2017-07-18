@@ -4,13 +4,53 @@ class LessonsController < ApplicationController
 
   skip_before_filter :verify_authenticity_token # REMOVE THIS OBVIOUSLY
 
+  def new
+    @collections = CollectionTag.all.to_a.map{|x| x.name.titleize}
+    @subjects = Subject.all.to_a.map{|x| x.name.titleize}
+    @context = Context.all.to_a.map{|x| x.name.titleize}
+
+    @form_step = params[:form_step].present? ? params[:form_step] : 1
+
+    # the below is strictly used for the weekend of the 13/7/2017 for submit on new page loads
+    if params[:id].present?
+      @lesson_obj = Lesson.find(params[:id])
+    end
+
+    if params[:id].present? && !params[:step].present?
+      @lesson_obj = Lesson.find(params[:id])
+      # same as create endpoint
+
+      if params[:lesson].present?
+        @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
+      end
+      files_hash = {}
+      files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
+      files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
+
+      LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash, User.first)
+      @lesson_obj.reload
+
+    elsif params[:id].present? && params[:step].present? # making a step
+      Step.find_or_create_and_update(nil, params[:id], step_param, User.first).set_files(params)
+    else
+      @lesson_obj = LessonService.find_or_create_and_update(nil, {}, User.first)
+      @lesson_obj.reload
+    end
+
+  end
+
   def create
     # id = params[:id]
     # user = @current_user
 
-    @lesson = LessonService.find_or_create_and_update(nil, lesson_params, User.first)
 
-    # puts params[:assessment_criteria_files].inspect
+    # authorize IN PUNDIT
+    # id = params[:id]
+    # if id
+    #   Lesson.find(id).hasAuthor?(@current.User)
+    # end
+
+    @lesson = LessonService.find_or_create_and_update(nil, lesson_params, User.first)
 
     urls = params[:assessment_criteria_files].inspect
 
@@ -23,36 +63,48 @@ class LessonsController < ApplicationController
     @lesson.reload
 
 
-
     # puts @lesson.inspect
-    render :json => {lesson: @lesson.id, files: urls, lesson_obj: @lesson.inspect}, :status => 200
+    render :json => {lesson_id: @lesson.id, files: urls, lesson_obj: @lesson.inspect, publishable: @lesson.publishable?, publishable_details: @lesson.publishable_values}, :status => 200
   end
 
-  def update
-    # not different from above ...
-    render :json => {status: true, lesson: @lesson.id}, :status => 200
+
+  def publish
+    render :json => {success: Lesson.find(params[:id]).publish!}, :status => 200
   end
+
+  def show
+    @lesson = Lesson.find(params[:id])
+  end
+
+
+  def list_json
+    returnable = []
+    returnable.append({name: "Place 1", id: 1, lon: "2.173403",lat: "41.385064" })
+    returnable.append({name: "Place 2", id: 2, lon: "2.273403",lat: "41.385064" })
+    returnable.append({name: "Place 3", id: 3, lon: "2.373403",lat: "41.325064" })
+    returnable.append({name: "Place 4", id: 4, lon: "2.473403",lat: "41.424064" })
+    returnable.append({name: "Place 5", id: 5, lon: "2.573403",lat: "41.425064" })
+    render :json => {data: returnable}, :status => 200
+
+  end
+
+
+
 
   def add_step
     @lesson = Lesson.first
-    # @lesson = Lesson.find(params[:id])
-    # authorize @lesson, update? -- check to see if user authored
-    step_params[:steps].map {|x|
-      puts x
-      s = Step.new(x)
-      s.setArrayThroughSymbolWithTitle(:supporting_images, x[:supporting_images], "images")
-      s.setArrayThroughSymbolWithTitle(:supporting_material, x[:supporting_material], "materials")
-
-
-      puts s.inspect
-      #@lesson.steps << s
-    }
-    render :json => {status: "OKEY", lesson: @lesson.id}, :status => 200
+    id = nil
+    id = step_param[:id] if step_param[:id].present? # updates
+    @step = Step.find_or_create_and_update(id, params[:id], step_param, User.first).set_files(params)
+    render :json => {success: "OKEY", lesson: @step.id}, :status => 200
   end
 
-  def publish
+  def delete_step
+    r = Step.delete_and_update_sibilings(params[:step_id], params[:id], User.first)
+    render :json => {success: r}, :status => 200
 
   end
+
 
   def draft
 
@@ -82,7 +134,7 @@ class LessonsController < ApplicationController
   end
 
   def step_param
-    params.require(:step).permit(:summary, :duration, materials: [:number, :name], tools: [])
+    params.require(:step).permit(:id, :summary, :duration, materials: [:number, :name], tools: [])
   end
 
   def file_params

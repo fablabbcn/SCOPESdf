@@ -10,6 +10,7 @@ class LessonService
     def find_or_create_and_update(id, params, calling_user)
       # puts params << for testing internally
 
+
       prepParams(calling_user, params)
       @lesson = find_or_createHidden(id)
       associateAuthors!
@@ -79,13 +80,14 @@ class LessonService
       @lesson = Lesson.find(id)
       return false unless @lesson.hasAuthor?(calling_user)
 
+      #check https://github.com/dwilkie/carrierwave_direct
 
       url = file_params.each {|k,v|
         file_type = k.to_s
         file_type.gsub!("_files","")
         @lesson.addFiles(v, file_type.to_sym)
       }
-      puts url
+      # puts url
 
       url
     end
