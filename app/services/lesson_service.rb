@@ -91,10 +91,9 @@ class LessonService
 
       url
     end
-    def remove_file_by_type_to_id(id, file, type, calling_user)
+    def remove_file_by_name_type_on_id(id, file, type, calling_user)
       @lesson = Lesson.find(id)
       return false unless @lesson.isAuthor?(calling_user.id)
-
 
       true
     end

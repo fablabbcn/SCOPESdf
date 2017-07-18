@@ -110,19 +110,64 @@ class LessonsController < ApplicationController
 
   end
 
-  def fileUpload #breaking this
+  def file_upload #breaking this
     # puts params[:id]
-    # puts file_params.inspect
-    # puts file_params[:files]
-    puts "D"
-    x = file_params[:files]
-    puts x.count
+    # x = file_params[:assessment_criteria_files]
+    # puts x.inspect
+    # puts x.first.original_filename
 
-    id = Lesson.first.id
-    #r = LessonService.add_file_by_type_to_id(id, file_params[:files], params[:atr], User.second)  # this is broken due to refactor
-    render :json => {response: r}, :status => 200
+    #id = Lesson.first.id
+    @lesson = Lesson.first
 
+    files_hash = {}
+    files_hash.merge!({assessment_criteria_files: file_params[:assessment_criteria_files]}) if file_params[:assessment_criteria_files].present?
+    files_hash.merge!({outcome_files: file_params[:outcome_files]}) if file_params[:outcome_files].present?
+
+    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first)
+
+
+    # return_array = file_params[:assessment_criteria_files]
+
+    @lesson.reload
+    uploaded_acf = file_params[:assessment_criteria_files].each{|x|
+      @lesson.find_carrier_wave_with_original_name(x.original_filename, :assessment_criteria)
+    }
+
+    # returning = uploaded_acf.each{|x|
+    #   JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria")
+    # }
+
+    puts uploaded_acf.count
+
+    returning = []
+    for i in 0..uploaded_acf.count-1
+      x = @lesson.assessment_criteria_files[i]
+      returning.append (JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
+    end
+
+
+    puts "carriers below"
+    puts returning
+    puts returning.inspect
+
+    respond_to do |format|
+      format.html {
+        render :json => returning.to_json,
+               :content_type => 'text/html',
+               :layout => false
+      }
+      format.json {
+        render :json => { :files => returning }
+      }
+    end
   end
+
+  def remove_file_upload
+    puts params.inspect
+    @lesson = Lesson.find(params[:id])
+    @lesson.removeFileWithName(params[:attr].to_sym, params[:name])
+  end
+
 
   private
   def lesson_params
@@ -138,7 +183,10 @@ class LessonsController < ApplicationController
   end
 
   def file_params
-    #params.permit(:files => [])
+    params.permit(:assessment_criteria_files => [])
   end
+  # def remove_file_params
+  #   params.require(:id).permit(:name, :attr)
+  # end
 
 end

@@ -15,11 +15,12 @@ class VisitorsController < ApplicationController
     render :json => {status: "GUCCI"}, :status => 200
   end
 
+
+
   private
   def file_params
     params.permit(:avatar)
   end
-
 
 
 
