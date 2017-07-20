@@ -10,13 +10,14 @@
           %h4
             Standard 1
           .actions
-            = link_to 'Delete', '#'
+            -#= link_to 'Delete', '#'
+            = button_tag 'Delete Standard', class: "delete-standard", data: { order: 0}
         .field-group
           %label
             Standard name
             %small What is the overarching standard
           .field-wrapper
-            = select(:standard_name, :standard_id, [['Select one...',0],['Standard name 1', 1], ['Standard name 2', 2]])
+            = select(:standard_name, :standard_id, options_for_select(@standards))
             -#need to take some time and see how to pass lessons: { standards: [{:name, :description}] }
         .field-group
           %label
@@ -27,9 +28,53 @@
             %small Press ↵ Return to add
 
       %h3 New standard
-      = link_to 'Add new Standard', '#', class: 'button button--highlight'
+      = button_tag 'Add new Standard', class: 'button button--highlight add-standard'
 
   %footer
     .wrapped
       =link_to 'Back to overview', lesson_new_path(id: @lesson_obj.id, form_step:1), class: 'button button--call'
-      =link_to 'Add some details', lesson_new_path(id: @lesson_obj.id, form_step:3), class: 'button button--call'
+      =link_to 'Add some details', lesson_new_path(id: @lesson_obj.id, form_step:3), class: 'button button--call ajax-standards'
+
+
+:javascript
+     /**
+     * AJAX BELOW
+     */
+    $('.ajax-standards').hover(function() {
+
+        console.log('submit standards');
+        parameters = {};
+        standards_data = [];
+        $('.lesson--standard-wrapper').each(function(){
+            $(this).find('select').val();
+            descriptions_data = [];
+            $(this).find('textarea').each(function(){
+              if ( $(this).val() != "" ){
+                descriptions_data.push($(this).val());
+              }
+            });
+            standards_data.push(
+                {
+                    name: $(this).find('select').val(),
+                    descriptions:  descriptions_data
+                }
+            )
+        });
+        parameters = {lesson: {standards: standards_data}};
+        console.log(parameters);
+
+
+
+        $.ajax({
+            type: "PUT",
+            url: "/lessons/#{@lesson_obj.id}",
+            // The key needs to match your method's input parameter (case-sensitive).
+            data: JSON.stringify(parameters),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data){alert(data);},
+            failure: function(errMsg) {
+                alert(errMsg);
+            }
+        });
+    });

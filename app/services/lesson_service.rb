@@ -127,6 +127,12 @@ class LessonService
     def updateData!
       return unless @lesson_params.present?
       @lesson.state = 1   # draft state
+
+      # cleaning - from form
+      @lesson_params[:learning_objectives].delete("")
+      @lesson_params[:further_readings].delete("")
+
+
       @lesson.attributes = @lesson_params
       # puts @lesson.inspect
       @lesson.save!

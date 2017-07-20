@@ -247,6 +247,7 @@ fieldset {
       @include span(9 of 12 last);
     }
   }
+
 }
 
 .field--image-gallery {
@@ -294,5 +295,11 @@ a.form--remove-element {
 
   span {
     display:none;
+  }
+}
+
+.clone-container{
+  input{
+    margin-bottom: 1em;
   }
 }

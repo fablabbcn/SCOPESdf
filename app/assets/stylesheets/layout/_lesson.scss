@@ -18,7 +18,7 @@
       font-weight: 300;
     }
 
-    a.button:last-child {
+    a.button:last-child, input.button--call:last-child {
       float: right;
     }
   }

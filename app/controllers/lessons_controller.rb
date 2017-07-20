@@ -2,12 +2,13 @@ class LessonsController < ApplicationController
   #before_action :authenticate_user! # ADD THIS OBVIOUSLY
   #after_action :verify_authorized # pundit
 
-  skip_before_filter :verify_authenticity_token # REMOVE THIS OBVIOUSLY
+  # skip_before_filter :verify_authenticity_token # REMOVE THIS OBVIOUSLY
 
   def new
     @collections = CollectionTag.all.to_a.map{|x| x.name.titleize}
     @subjects = Subject.all.to_a.map{|x| x.name.titleize}
     @context = Context.all.to_a.map{|x| x.name.titleize}
+    @standards = Lesson.standards_list
 
     @form_step = params[:form_step].present? ? params[:form_step] : 1
 
@@ -67,6 +68,24 @@ class LessonsController < ApplicationController
     render :json => {lesson_id: @lesson.id, files: urls, lesson_obj: @lesson.inspect, publishable: @lesson.publishable?, publishable_details: @lesson.publishable_values}, :status => 200
   end
 
+  def update # used for AJAX
+    # CONFIRM USER IS OWNER
+    puts params[:id].inspect
+    puts lesson_params[:standards].inspect
+
+    @lesson = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
+
+
+    files_hash = {}
+    files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
+    files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
+
+    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first)
+    @lesson.reload
+    # puts @lesson.inspect
+    render :json => {lesson_id: @lesson.id, lesson_obj: @lesson.inspect, publishable: @lesson.publishable?, publishable_details: @lesson.publishable_values}, :status => 200
+  end
+
 
   def publish
     render :json => {success: Lesson.find(params[:id]).publish!}, :status => 200
@@ -110,7 +129,7 @@ class LessonsController < ApplicationController
 
   end
 
-  def file_upload #breaking this
+  def file_upload # https://github.com/blueimp/jQuery-File-Upload/wiki/Rails-setup-for-V6-(multiple)
     # puts params[:id]
     # x = file_params[:assessment_criteria_files]
     # puts x.inspect

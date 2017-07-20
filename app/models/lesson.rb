@@ -23,6 +23,10 @@
 class Lesson < ApplicationRecord
   enum state: [:hidden, :draft, :visible]
 
+  def self.standards_list
+    ["NGCSS", "Common Core ELA", "I Can Statements"]
+  end
+
 
   # TODO - validate publishing only when all content is set
 
