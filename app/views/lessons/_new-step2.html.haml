@@ -16,14 +16,15 @@
             Standard name
             %small What is the overarching standard
           .field-wrapper
-            %input{type: 'text'}
-            -#    need to take some time and see how to pass lessons: { standards: [{:name, :description}] }
+            = select(:standard_name, :standard_id, [['Select one...',0],['Standard name 1', 1], ['Standard name 2', 2]])
+            -#need to take some time and see how to pass lessons: { standards: [{:name, :description}] }
         .field-group
           %label
             Description
             %small Add one or more
           .field-wrapper
-            %textarea{class: 'textarea--short'}
+            %textarea.textarea--short{{data: { control:'key'} } }
+            %small Press ↵ Return to add
 
       %h3 New standard
       = link_to 'Add new Standard', '#', class: 'button button--highlight'

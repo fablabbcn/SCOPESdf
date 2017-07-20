@@ -21,6 +21,9 @@
   Vendor files
 **/
 
+//@import "bootstrap-sprockets";
+//@import "bootstrap";
+
 @import "bourbon";
 @import "breakpoint";
 @import "susy";
@@ -51,6 +54,8 @@
 @import "elements/text";
 @import "elements/forms";
 @import "elements/buttons";
+@import "elements/modal";
+@import "elements/modal--forms";
 
 /**
   Layout
@@ -58,6 +63,7 @@
 
 @import "layout/base";
 @import "layout/lesson";
+@import "layout/lesson--forms";
 
 /**
   Components
@@ -65,6 +71,7 @@
 
 @import "components/lesson--actions";
 @import "components/lesson--teaser";
+@import "components/user--teaser";
 
 //@import "component/whatever";
 

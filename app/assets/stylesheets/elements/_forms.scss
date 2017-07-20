@@ -28,6 +28,7 @@ Also, a general style modifier is defined for inputs to behave like a single lin
 input[type="text"],
 input[type="password"],
 input[type="email"],
+select,
 textarea {
   border:$color-gray-outlines 1px solid;
   border-radius:2px;
@@ -115,6 +116,23 @@ textarea {
   float:left;
 }
 
+select {
+  outline: none;
+  background: #fff;
+  -moz-appearance: window;
+  -webkit-appearance: none;
+  border-radius: 0px;
+  text-overflow: "";
+  background-image: url('icons/icon_keyboard_arrow_down_black.svg');
+  background-size: auto 8px;
+  background-repeat: no-repeat;
+  background-position: 98% 15px;
+  cursor: pointer;
+  width: 100%;
+  padding: .7rem .8rem .6rem .8rem;
+  padding-right: .7rem .8rem .6rem .8rem\9;      /* This will be apllied only to IE 7, IE 8 and IE 9 as */
+}
+
 textarea {
   height:250px;
   &.textarea--short {
@@ -163,7 +181,7 @@ fieldset {
     @include clearfix;
     margin:1em 0;
 
-    label {
+    & > label {
       color:$color-dark;
       line-height:1.2em;
       font-weight:400;
@@ -256,17 +274,25 @@ fieldset {
   }
 }
 
-.lesson--standard-header {
-  @include clearfix;
-  margin-bottom:2em;
+.form--actions-related {
+  display:flex;
+  align-items: center;
+}
 
-  h4 {
-    float:left;
-    margin:0;
+
+a.form--remove-element {
+
+  color:$color-mid-gray;
+  text-decoration: none;
+  font-size:.9em;
+  line-height:1em;
+  margin-left:1em;
+
+  &:hover {
+    color:$color-dark-hi;
   }
 
-  .actions {
-    float:right;
+  span {
+    display:none;
   }
-
 }
