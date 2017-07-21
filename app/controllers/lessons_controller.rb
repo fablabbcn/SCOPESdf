@@ -2,14 +2,8 @@ class LessonsController < ApplicationController
   #before_action :authenticate_user! # ADD THIS OBVIOUSLY
   #after_action :verify_authorized # pundit
 
-  # skip_before_filter :verify_authenticity_token # REMOVE THIS OBVIOUSLY
 
   def new
-    @collections = CollectionTag.all.to_a.map{|x| x.name.titleize}
-    @subjects = Subject.all.to_a.map{|x| x.name.titleize}
-    @context = Context.all.to_a.map{|x| x.name.titleize}
-    @standards = Lesson.standards_list
-
     @form_step = params[:form_step].present? ? params[:form_step] : 1
 
     # the below is strictly used for the weekend of the 13/7/2017 for submit on new page loads
@@ -17,27 +11,47 @@ class LessonsController < ApplicationController
       @lesson_obj = Lesson.find(params[:id])
     end
 
-    if params[:id].present? && !params[:step].present?
+    if params[:id].present?
       @lesson_obj = Lesson.find(params[:id])
       # same as create endpoint
 
       if params[:lesson].present?
-        @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
+        @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first) # should not be user first
       end
       files_hash = {}
       files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
       files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
 
-      LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash, User.first)
+      LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash, User.first) # should not be user first
       @lesson_obj.reload
 
-    elsif params[:id].present? && params[:step].present? # making a step
-      Step.find_or_create_and_update(nil, params[:id], step_param, User.first).set_files(params)
+
+      if @form_step == '4'
+        @steps = @lesson_obj.steps.to_a
+        unless @steps.present?
+          @lesson_obj.steps << Step.new(summary: "")
+          @lesson_obj.save!
+          puts @lesson_obj.steps
+          @steps = @lesson_obj.steps.to_a
+        end
+        @steps_array = @steps.map{|s| s.id}
+      end
+
+
+    # elsif params[:id].present? && params[:step].present? # making a step
+    #   Step.find_or_create_and_update(nil, params[:id], step_param, User.first).set_files(params)
     else
-      @lesson_obj = LessonService.find_or_create_and_update(nil, {}, User.first)
+      @lesson_obj = LessonService.find_or_create_and_update(nil, {}, User.first) # should not be user first
       @lesson_obj.reload
     end
 
+
+    @collections = CollectionTag.all.to_a.map{|x| x.name.titleize}
+    @subjects = Subject.all.to_a.map{|x| x.name.titleize}
+    @context = Context.all.to_a.map{|x| x.name.titleize}
+    @standards = Lesson.standards_list
+    @standards_array = @lesson_obj.standards_array
+    @difficulty_helper = DifficultyLevel.form_helper
   end
 
   def create
@@ -51,7 +65,7 @@ class LessonsController < ApplicationController
     #   Lesson.find(id).hasAuthor?(@current.User)
     # end
 
-    @lesson = LessonService.find_or_create_and_update(nil, lesson_params, User.first)
+    @lesson = LessonService.find_or_create_and_update(nil, lesson_params, User.first) # should not be user first
 
     urls = params[:assessment_criteria_files].inspect
 
@@ -60,7 +74,7 @@ class LessonsController < ApplicationController
     files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
 
 
-    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first)
+    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first) # should not be user first
     @lesson.reload
 
 
@@ -73,14 +87,14 @@ class LessonsController < ApplicationController
     puts params[:id].inspect
     puts lesson_params[:standards].inspect
 
-    @lesson = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
+    @lesson = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first) # should not be user first
 
 
     files_hash = {}
     files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
     files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
 
-    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first)
+    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first) # should not be user first
     @lesson.reload
     # puts @lesson.inspect
     render :json => {lesson_id: @lesson.id, lesson_obj: @lesson.inspect, publishable: @lesson.publishable?, publishable_details: @lesson.publishable_values}, :status => 200
@@ -114,15 +128,38 @@ class LessonsController < ApplicationController
     @lesson = Lesson.first
     id = nil
     id = step_param[:id] if step_param[:id].present? # updates
-    @step = Step.find_or_create_and_update(id, params[:id], step_param, User.first).set_files(params)
+    @step = Step.find_or_create_and_update(id, params[:id], step_param, User.first).set_files(params) # should not be user first
     render :json => {success: "OKEY", lesson: @step.id}, :status => 200
   end
 
   def delete_step
-    r = Step.delete_and_update_sibilings(params[:step_id], params[:id], User.first)
+    r = Step.delete_and_update_sibilings(params[:step_id], params[:id], User.first) # should not be user first
     render :json => {success: r}, :status => 200
 
   end
+
+  
+  
+  # ~~~~~~~~~~~~~~~
+  # STEPS HERE
+  # ~~~~~~~~~~~~~~~
+  def set_steps
+    step_params[:steps].map{|s|
+      id = nil
+      puts s.inspect
+      id = s[:id] if s[:id].present?
+      Step.find_or_create_and_update(id, params[:id], s, User.first).id # should not be user first
+    }
+    ids = Lesson.find(params[:id]).steps.order(:created_at).map{|x| x.id}
+    render :json => {ids: ids}, :status => 200
+  end
+  def remove_step
+    Step.delete_and_update_sibilings(step_param[:id], params[:id], User.first) # should not be user first
+    ids = Lesson.find(params[:id]).steps.order(:created_at).map{|x| x.id}
+    render :json => {ids: ids}, :status => 200
+  end
+
+  
 
 
   def draft
@@ -194,7 +231,7 @@ class LessonsController < ApplicationController
   end
 
   def step_params
-    params.permit(steps: [:name, :summary, :duration, :supporting_images => [], :materials => [], :tools => [], :supporting_material => []]) #TODO - supporting materials vs materials... add materials
+    params.permit(steps: [:id, :name, :summary, :duration, :description, :supporting_images => [], :materials => [], :tools => [], :supporting_material => []]) #TODO - supporting materials vs materials... add materials
   end
 
   def step_param

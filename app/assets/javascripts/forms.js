@@ -52,4 +52,8 @@ $(document).ready(function(){
         $elem.insertAfter($('.lesson--standard-wrapper').last());
     });
 
+
+
+
+
 });

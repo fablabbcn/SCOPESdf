@@ -303,3 +303,25 @@ a.form--remove-element {
     margin-bottom: 1em;
   }
 }
+
+.checkbox{
+  float: left;
+  margin: 25px;
+}
+#difficulty{
+  .field-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .radio{
+      float: left;
+      margin: 5px;
+    }
+    .radio-group {
+      small {
+        text-align: left;
+      }
+    }
+  }
+}

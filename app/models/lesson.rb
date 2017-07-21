@@ -9,10 +9,10 @@
 #  learning_objectives       :string           is an Array
 #  description               :string           default(""), not null
 #  assessment_criteria       :string           default(""), not null
-#  assessment_criteria_files :json
+#  assessment_criteria_files :string           default([]), is an Array
 #  further_readings          :string           is an Array
 #  standards                 :json
-#  outcome_files             :json
+#  outcome_files             :string           default([]), is an Array
 #  original_lesson           :uuid
 #  state                     :integer          default("draft"), not null
 #  published_at              :datetime
@@ -136,14 +136,25 @@ class Lesson < ApplicationRecord
     self.lesson_tags << LessonTag.new(taggable: student)
     self.lesson_tags << LessonTag.new(taggable: educator)
   end
-
   def getDifficultyLevel
     self.lesson_tags.where(taggable_type: "DifficultyLevel").map {|x| y = x.taggable; {metric: y.metric, level: y.level}}
   end
-
   def removeDifficultyLevels
     self.lesson_tags.where(taggable_type: "DifficultyLevel").destroy_all
   end
+  def student_difficulty
+    student = {}
+    self.getDifficultyLevel.map{|x| student = x if x[:metric] == "students"}
+    return student
+  end
+  def educator_difficulty
+    educator = {}
+    self.getDifficultyLevel.map{|x| educator = x if x[:metric] == "educator"}
+    return educator
+  end
+
+
+
 
 
   def setSkillsLevels(hash_array) # [{name, level}]
@@ -381,7 +392,7 @@ class Lesson < ApplicationRecord
   end
 
   def standards_array
-    self.standards["standards"]
+    self.standards["standards"] if self.standards.present?
   end
 
   def publishable_values

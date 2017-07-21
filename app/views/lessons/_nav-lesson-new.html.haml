@@ -1,0 +1,18 @@
+.lesson-nav-actions
+  .wrapped
+    %h3 New lesson
+    .actions
+      = link_to 'Delete', '#', class: 'button button--inverse'
+      = link_to 'Save as draft', '#', class: 'button button--inverse'
+      = link_to 'Publish lesson', '#', class: 'button button--inverse button--disabled'
+
+%nav.nav-secondary
+  .wrapped
+    %ul.nav
+      %li= link_to 'Overview', lesson_new_path(id: @lesson_obj.id, form_step:1)
+      %li= link_to 'Standards', lesson_new_path(id: @lesson_obj.id, form_step:2)
+      %li= link_to 'Details', lesson_new_path(id: @lesson_obj.id, form_step:3)
+      %li= link_to 'Instructions', lesson_new_path(id: @lesson_obj.id, form_step:4)
+      %li= link_to 'Outcomes', lesson_new_path(id: @lesson_obj.id, form_step:5)
+
+    [progress]

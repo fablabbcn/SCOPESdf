@@ -5,27 +5,60 @@
         %h3 How does this align to standards?
         %small * Mandatory information
 
-      .lesson--standard-wrapper
-        .lesson--standard-header
-          %h4
-            Standard 1
-          .actions
-            -#= link_to 'Delete', '#'
-            = button_tag 'Delete Standard', class: "delete-standard", data: { order: 0}
-        .field-group
-          %label
-            Standard name
-            %small What is the overarching standard
-          .field-wrapper
-            = select(:standard_name, :standard_id, options_for_select(@standards))
-            -#need to take some time and see how to pass lessons: { standards: [{:name, :description}] }
-        .field-group
-          %label
-            Description
-            %small Add one or more
-          .field-wrapper
-            %textarea.textarea--short{{data: { control:'key'} } }
-            %small Press ↵ Return to add
+      - if @standards_array.present?
+        - @standards_array.each_with_index do |standard, index |
+          .lesson--standard-wrapper
+            .lesson--standard-header
+              %h4
+                Standard 1
+              .actions
+                -#= link_to 'Delete', '#'
+                = button_tag 'Delete Standard', class: "delete-standard", data: { order: index}
+            .field-group
+              %label
+                Standard name
+                %small What is the overarching standard
+              .field-wrapper
+                = select(:standard_name, :standard_id, options_for_select(@standards, standard["name"]))
+            .field-group
+              %label
+                Description
+                %small Add one or more
+              .field-wrapper
+                - if standard["descriptions"].present?
+                  - standard["descriptions"].each do |desc|
+                    %p
+                    %textarea.textarea--short{{data: { control:'key'} }}
+                      = desc
+                - else
+                  = standard
+                  %textarea.textarea--short{{data: { control:'key'} }}
+                %small Press ↵ Return to add
+      - else
+        .lesson--standard-wrapper
+          .lesson--standard-header
+            %h4
+              Standard 1
+            .actions
+              -#= link_to 'Delete', '#'
+              = button_tag 'Delete Standard', class: "delete-standard", data: { order: 0}
+          .field-group
+            %label
+              Standard name
+              %small What is the overarching standard
+            .field-wrapper
+              = select(:standard_name, :standard_id, options_for_select(@standards))
+              -#need to take some time and see how to pass lessons: { standards: [{:name, :description}] }
+          .field-group
+            %label
+              Description
+              %small Add one or more
+            .field-wrapper
+              %textarea.textarea--short{{data: { control:'key'} } }
+              %small Press ↵ Return to add
+
+
+
 
       %h3 New standard
       = button_tag 'Add new Standard', class: 'button button--highlight add-standard'
@@ -72,7 +105,7 @@
             data: JSON.stringify(parameters),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function(data){alert(data);},
+            success: function(data){console.log(data);},
             failure: function(errMsg) {
                 alert(errMsg);
             }

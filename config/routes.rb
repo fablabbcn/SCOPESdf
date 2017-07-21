@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   put  'lessons/:id'        => 'lessons#update'
   post 'lessons/:id/step'   => 'lessons#add_step'
+
   delete 'lessons/:id/step/:step_id'   => 'lessons#delete_step'
 
   post 'lessons/:id/file/:atr', to: 'lessons#file_upload', as: :lesson_file
@@ -40,4 +41,11 @@ Rails.application.routes.draw do
   post 'search/:entity', :to => 'search#main', :as => :search
 
 
+
+
+
+  #~~~~ Steps Ajax
+  put     'lessons/:id/steps' => 'lessons#set_steps'
+  delete  'lessons/:id/steps' => 'lessons#remove_step'
+  #~~~~~~~~~~
 end
