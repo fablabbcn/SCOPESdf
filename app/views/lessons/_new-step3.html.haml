@@ -40,7 +40,8 @@
               - @difficulty_helper[:students].each do |dl|
                 .radio
                   %label
-                    - if @lesson_obj.student_difficulty[:level].titleize == dl[:name]
+
+                    - if @lesson_obj.student_difficulty.present? && @lesson_obj.student_difficulty[:level].titleize == dl[:name]
                       %input{name: 'difficulty-student', type: 'radio', value: dl[:value], checked: true}
                     -else
                       %input{name: 'difficulty-student', type: 'radio', value: dl[:value]}
@@ -51,7 +52,7 @@
               - @difficulty_helper[:teachers].each do |dl|
                 .radio
                   %label
-                    - if @lesson_obj.educator_difficulty[:level].titleize == dl[:name]
+                    - if @lesson_obj.educator_difficulty.present? && @lesson_obj.educator_difficulty[:level].titleize == dl[:name]
                       %input{name: 'difficulty-educator', type: 'radio', value: dl[:value], checked: true}
                     -else
                       %input{name: 'difficulty-educator', type: 'radio', value: dl[:value]}
