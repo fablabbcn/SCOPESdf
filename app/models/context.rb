@@ -19,7 +19,7 @@ class Context < ApplicationRecord
 
   def self.seed
     ["In Classroom", "In Fablab", "Capstone", "Group", "Homework", "Other"].map{ |i|
-      new(name: i).save!
+      new(name: i).save
     }
   end
 end

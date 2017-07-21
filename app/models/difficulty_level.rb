@@ -3,14 +3,14 @@
 # Table name: difficulty_levels
 #
 #  id     :uuid             not null, primary key
-#  level  :integer          default("beginner"), not null
+#  level  :integer          default("easy"), not null
 #  metric :integer          default("students"), not null
 #
 
 class DifficultyLevel < ApplicationRecord
   has_many :lesson_tags, as: :taggable
 
-  enum level: [ :beginner, :intermediate, :advanced ]
+  enum level: [ :easy, :medium, :hard ]
   enum metric: [ :students, :educator ]
 
   validates_uniqueness_of :metric, :scope => :level
@@ -27,6 +27,36 @@ class DifficultyLevel < ApplicationRecord
     end
   end
 
+  def self.form_helper
+    {
+        students:
+            [{
+                name: "Easy",
+                value: 0
+            },
+            {
+                name: "Medium",
+                value: 1
+            },
+            {
+                name: "Hard",
+                value: 2
+            }],
+        teachers:
+            [{
+                 name: "Easy",
+                 value: 0
+             },
+             {
+                 name: "Medium",
+                 value: 1
+             },
+             {
+                 name: "Hard",
+                 value: 2
+             }]
+    }
+  end
 
 
 end

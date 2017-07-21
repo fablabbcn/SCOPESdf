@@ -21,7 +21,7 @@ class Subject < ApplicationRecord
 
   def self.seed
     ["science", "mathematics", "arts", "technology", "engineering"].map{ |s|
-      new(name: s).save!
+      new(name: s).save
     }
   end
 

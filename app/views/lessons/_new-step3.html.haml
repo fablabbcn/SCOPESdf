@@ -21,63 +21,41 @@
             Subjects
             %small Add one or more
           .field-wrapper
-            .radio
-              %label
-                %input{name: 'subject', type: 'radio', value: 'technology'}
-                Technology
-            .radio
-              %label
-                %input{name: 'subject', type: 'radio', value: 'arts'}
-                Arts and humanities
-            .radio
-              %label
-                %input{name: 'subject', type: 'radio', value: 'engineering'}
-                Engineering
-            .radio
-              %label
-                %input{name: 'subject', type: 'radio', value: 'maths'}
-                Maths
-            .radio
-              %label
-                %input{name: 'subject', type: 'radio', value: 'science'}
-                Science
+            - @subjects.each do |s|
+              .checkbox
+                %label
+                  - @checked = @lesson_obj.getSubjects.any? { |a| s.titleize.include?(a.titleize) }
+                  %input{name: 'subject', type: 'checkbox', value: s, checked: @checked}
+                  =s.titleize
 
       -# Difficulty level
       %fieldset
-        .field-group
+        .field-group#difficulty
           %label
             Difficulty Level
             %small How hard is this lesson
           .field-wrapper
             .radio-group
-              .radio
-                %label
-                  %input{name: 'difficulty-student', type: 'radio', value: 'easy'}
-                  Easy
-              .radio
-                %label
-                  %input{name: 'difficulty-student', type: 'radio', value: 'medium'}
-                  Medium
-              .radio
-                %label
-                  %input{name: 'difficulty-student', type: 'radio', value: 'hard'}
-                  Hard
-            %small For student
+              %small For student
+              - @difficulty_helper[:students].each do |dl|
+                .radio
+                  %label
+                    - if @lesson_obj.student_difficulty[:level].titleize == dl[:name]
+                      %input{name: 'difficulty-student', type: 'radio', value: dl[:value], checked: true}
+                    -else
+                      %input{name: 'difficulty-student', type: 'radio', value: dl[:value]}
+                    = dl[:name]
 
             .radio-group
-              .radio
-                %label
-                  %input{name: 'difficulty-educator', type: 'radio', value: 'easy'}
-                  Easy
-              .radio
-                %label
-                  %input{name: 'difficulty-educator', type: 'radio', value: 'medium'}
-                  Medium
-              .radio
-                %label
-                  %input{name: 'difficulty-educator', type: 'radio', value: 'hard'}
-                  Hard
-            %small For educator
+              %small For educator
+              - @difficulty_helper[:teachers].each do |dl|
+                .radio
+                  %label
+                    - if @lesson_obj.educator_difficulty[:level].titleize == dl[:name]
+                      %input{name: 'difficulty-educator', type: 'radio', value: dl[:value], checked: true}
+                    -else
+                      %input{name: 'difficulty-educator', type: 'radio', value: dl[:value]}
+                    = dl[:name]
 
 
 
@@ -88,20 +66,13 @@
           %label
             Context
             %small What kind of project is this?
-
           .field-wrapper
-            %label
-              In classroom
-              %input{type:'checkbox'}
-
-            %label
-              In Fablab
-              %input{type:'checkbox'}
-
-            %label
-              Capstone
-              %input{type:'checkbox'}
-
+            - @context.each do |c|
+              .checkbox
+                %label
+                  - @checked = @lesson_obj.getContext.any? { |a| c.titleize.include?(a.titleize) }
+                  %input{name: 'subject', type: 'checkbox', value: c, checked: @checked}
+                  =c.titleize
 
 
       -# Collection
@@ -123,10 +94,57 @@
             .tags-input
               = text_field(:lesson, :tags, multiple: true)
 
-
     %footer
       .wrapped
         =link_to 'Back to standards', lesson_new_path(id: @lesson_obj.id, form_step:2), class: 'button button--call'
         -#=link_to 'Add some instructions', lesson_new_path(step:4), class: 'button button--call'
         -#=link_to 'Add some instructions', '', class: 'button button--call', onclick: "$('#form').submit()"
-        = submit_tag('Add some instructions', class: 'button button--call')
+        = submit_tag('Add some instructions', class: 'button button--call ajax-details')
+
+
+
+:javascript
+     /**
+     * AJAX BELOW
+     */
+    $('.ajax-details').hover(function() {
+
+        console.log('submit details');
+        parameters = {};
+        standards_data = [];
+
+         // TODO --
+        // grade_range= {start: , end: }
+        // tags = ...
+
+        subjects_data= [];
+        $('input[name=subject]:checked').each(function(){
+          subjects_data.push($(this).val());
+        });
+
+        context_data= [];
+        $('input[name=context]:checked').each(function(){
+          context_data.push($(this).val());
+        });
+
+        difficulty_level_data = { student: $('input[name=difficulty-student]:checked').val() , educator: $('input[name=difficulty-educator]:checked').val() }
+
+
+        parameters = {lesson: {subjects: subjects_data, context: context_data, difficulty_level: difficulty_level_data} };
+        console.log(parameters);
+
+
+
+        $.ajax({
+            type: "PUT",
+            url: "/lessons/#{@lesson_obj.id}",
+            // The key needs to match your method's input parameter (case-sensitive).
+           data: JSON.stringify(parameters),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data){console.log(data);},
+            failure: function(errMsg) {
+                alert(errMsg);
+            }
+        });
+    });

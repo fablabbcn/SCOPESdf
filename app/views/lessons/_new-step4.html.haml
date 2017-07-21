@@ -1,15 +1,14 @@
-= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:5), method: "post", multipart: true, id:"form") do
+%article
+  .wrapped
+    %fieldset
+      %legend
+        %h3 How does this lesson unfold?
+        %small * Mandatory information
 
 
-  %article
-    .wrapped
-      %fieldset
-        %legend
-          %h3 How does this lesson unfold?
-          %small * Mandatory information
-
-      .lesson-step
-
+    - @steps.each_with_index do |s,i|
+      .lesson-step{data: {id: s.id} }
+        = button_tag 'Remove Step', class: "button remove-step", data:{index: i}
         %fieldset
           %legend
             %h4 Instructions
@@ -19,14 +18,14 @@
               Summary
               %small Add one or more
             .field-wrapper
-              = text_field(:step, :summary, class:'input--large')
+              = text_field(:step, :summary, class:'input--large', value: s.summary, data:{index: i})
 
           .field-group
             %label
               Time needed
               %small A reference on the time that will take to complete the step
             .field-wrapper
-              %input{type: 'text', id: 'grade', readonly: 'readonly'}
+              %input{type: 'text', id: 'grade', data: {index: i}, readonly: 'readonly'}
                 %div#slider-range
 
           .field-group
@@ -36,7 +35,7 @@
                 %p Describe all the actions in this step.
                 %p If there are lot of actions, please consider breaking it down into multiple steps!
             .field-wrapper
-              = text_field(:step, :description)
+              = text_field(:step, :description, value: s.description, data:{index: i})
               .field-group.field-group--support
                 %label.label--small
                   Supporting files
@@ -62,7 +61,7 @@
               Tools
               %small List as many as needed
             .field-wrapper
-              %input{type: 'text', placeholder: 'Enter item here'}
+              %input{type: 'text', placeholder: 'Enter item here', data:{index: i}}
               %small Press ↵ Return to add
 
           .field-group
@@ -73,13 +72,126 @@
               = file_field_tag 'supporting_materials[]', multiple: true
 
 
-        %h3 Step 2
-        = link_to 'Add new Step', '#', class: 'button button--highlight'
+    %h3="Step #{@steps_array.count+1}"
+    = button_tag 'Add new Step', class: "button button--highlight add-step"
 
-r
 
-    %footer
-      .wrapped
-        =link_to 'Back to details', lesson_new_path(id: @lesson_obj.id, form_step:3), class: 'button button--call'
-        -#=link_to 'Add some outcomes', lesson_new_path(form_step:5), class: 'button button--call'
-        = submit_tag('Add some more details', class: 'button button--call')
+  %footer
+    .wrapped
+      =link_to 'Back to details', lesson_new_path(id: @lesson_obj.id, form_step:3), class: 'button button--call'
+      =link_to 'Add some outcomes', lesson_new_path(id: @lesson_obj.id, form_step:5), class: 'button button--call'
+
+:javascript
+
+  $(document).ready(function(){
+    $(document).on('focusout','input',function() {
+      updateStep($(this).data("index"));
+    });
+
+  });
+
+  /**
+   * AJAX BELOW
+   */
+
+
+   var ID_ARRAY = "#{@steps_array.to_json}";
+   function setSections(){
+    for(i = 0; i <= ID_ARRAY.length; i++){
+      // console.log(ID_ARRAY[i]);
+      $('.lesson-step').eq(i).data("id", ID_ARRAY[i]);
+      // console.log('updating');
+    }
+   }
+
+   $('.add-step').click(function() {
+      continueable = true;
+      for(i = 0; i < $("[name='step[description]']").length; i++){
+        if ($("[name='step[description]']").eq(i).val() == ""){
+        continueable = false;
+        }
+      }  //return unless legnth of objects objects
+      if (continueable == false) {
+        return;
+      }
+
+      lst_index = $('.lesson-step').length;
+      $elem = $('.lesson-step').last().clone(false,false);
+      $elem.find("input").val('');
+      $elem.find("input").attr("data-index", ($('.lesson-step').length));
+      $elem.find(".remove-step").attr("data-index", ($('.lesson-step').length));
+      $elem.attr("data-id", "");
+      $elem.insertAfter($('.lesson-step').last());
+
+      $('.add-step').siblings('h3').text('Step ' + ($('.lesson-step').length + 2));
+
+  });
+
+  function removeSectionAndUpdate(index){
+    $('.lesson-step').eq(index).remove();
+    for(i = 0; i < ID_ARRAY.length; i++){
+      $elem = $('.lesson-step').eq(i);
+      $elem.find("input").attr("data-index", i);
+      $elem.find(".remove-step").attr("data-index", i);
+      $elem.attr("data-id", ID_ARRAY[i]);
+
+      $('.add-step').siblings('h3').text('Step ' + ($('.lesson-step').length + 2));
+    }
+  }
+
+  $('article').on("click", '.remove-step', function(){
+        index = $(this).data('index');
+        id_data = $('.lesson-step').eq(index).data('id');
+        step_data = {id: id_data};
+        parameters = {step: step_data};
+
+        $.ajax({
+          type: "DELETE",
+          url: "/lessons/#{@lesson_obj.id}/steps",
+          // The key needs to match your method's input parameter (case-sensitive).
+         data: JSON.stringify(parameters),
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function(data){
+            console.log(data);
+            ID_ARRAY = data['ids'];
+            removeSectionAndUpdate(index);
+          },
+          failure: function(errMsg) {
+              alert(errMsg);
+          }
+      });
+    });
+   function updateStep(index){
+      console.log('submit data for step: ' + index);
+      // console.log(ID_ARRAY);
+
+      summary_data = $("[name='step[summary]']").eq(index).val();
+      //duration_data =
+      description_data = $("[name='step[description]']").eq(index).val();
+      // materials=
+      // tools=
+      id_data = $('.lesson-step').eq(index).data("id");
+
+      step_data = [{id: id_data, summary: summary_data, description: description_data}];
+      paramaters = {steps: step_data};
+      console.log(step_data);
+
+
+      $.ajax({
+          type: "PUT",
+          url: "/lessons/#{@lesson_obj.id}/steps",
+          // The key needs to match your method's input parameter (case-sensitive).
+         data: JSON.stringify(paramaters),
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function(data){
+            console.log(data);
+            ID_ARRAY = data['ids'];
+            setSections();
+          },
+          failure: function(errMsg) {
+              alert(errMsg);
+          }
+      });
+  };

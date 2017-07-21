@@ -7,10 +7,10 @@
 #  summary              :string           not null
 #  duration             :integer          default(0), not null
 #  description          :string           default(""), not null
-#  supporting_files     :json
+#  supporting_files     :string           default([]), is an Array
 #  materials            :json
 #  tools                :string           is an Array
-#  supporting_materials :json
+#  supporting_materials :string           default([]), is an Array
 #  step_number          :integer          not null
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
@@ -61,13 +61,15 @@ class Step < ApplicationRecord
   def self.find_or_create_and_update(step_id, lesson_id, params, calling_user)
     @lesson = Lesson.find(lesson_id)
     return unless @lesson.hasAuthor?(calling_user)
-
-    puts "PARASDF\n\n\n\n\n"
     puts params
-    @step = Step.where(id: step_id)
-    @step = Step.new() unless @step.present?
+    params[:summary] = "" unless params[:summary].present?
+    @step = Step.where(id: step_id).first
+    unless @step.present?
+      @step = Step.new(summary:"")
+      @lesson.steps << @step
+    end
+    params.delete(:id)
     @step.attributes = params
-    @lesson.steps << @step
     @step.save!
     @step.reload
     @step
@@ -80,6 +82,7 @@ class Step < ApplicationRecord
   def self.delete_and_update_sibilings(step_id, lesson_id, calling_user)
     @lesson = Lesson.find(lesson_id)
     return false unless @lesson.hasAuthor?(calling_user)
+    return unless Step.where(id: step_id).exists?
     Step.find(step_id).delete
     siblings = @lesson.steps.order(:created_at)
     num = 1

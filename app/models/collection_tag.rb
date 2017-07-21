@@ -18,8 +18,8 @@ class CollectionTag < ApplicationRecord
   end
 
   def self.seed
-    ["Gold Standard Lesson"].map{ |i|
-      new(name: i).save!
+    ["Fab Certified/Tested", "Big Ideas", "Games", "Environmental","World Culture","Chevron STEM Award"].map{ |i|
+      new(name: i).save
     }
   end
 
