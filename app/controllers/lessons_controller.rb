@@ -27,7 +27,7 @@ class LessonsController < ApplicationController
 
 
       if @form_step == '4'
-        @steps = @lesson_obj.steps.to_a
+        @steps = @lesson_obj.steps.order(:created_at).to_a
         unless @steps.present?
           @lesson_obj.steps << Step.new(summary: "")
           @lesson_obj.save!
