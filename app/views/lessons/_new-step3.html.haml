@@ -85,15 +85,15 @@
           .field-wrapper
             =select(:lesson, :collection_tag, options_for_select(@collections))
 
-      -# Tags
-      %fieldset
-        .field-group
-          %label
-            Tags
-            %small Enter, comma, separated, tags
-          .field-wrapper
-            .tags-input
-              = text_field(:lesson, :tags, multiple: true)
+      -#-# Tags
+      -#%fieldset
+      -#  .field-group
+      -#    %label
+      -#      Tags
+      -#      %small Enter, comma, separated, tags
+      -#    .field-wrapper
+      -#      .tags-input
+      -#        = text_field(:lesson, :tags, multiple: true)
 
     %footer
       .wrapped

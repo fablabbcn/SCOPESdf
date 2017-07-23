@@ -31,30 +31,30 @@
                 %p You can format using markdown
             .field-wrapper
               = text_area(:lesson, :summary, value: @lesson_obj.summary)
-        %fieldset
-          %legend
-            %h3 Authors
-          .field-group
-            %label
-              Who made this *
-              %small Enter one or more authors
-            .field-wrapper
-
-              .user--teaser-wrapper
-                = render '/users/user-teaser';
-                .form--actions-related
-                  %button.button--highlight Invite to SCOPES
-                  %a.form--remove-element{href:'#'}
-                    %i.icon_delete_black
-                    %span Delete
-
-              %input{id:'other-user-emails', name: 'other_user_emails', type: 'text', placeholder: 'Add new person' }
-          .field-group
-            %label
-              Where was this made *
-              %small Enter one or more places
-            .field-wrapper
-              %input{type: 'text', placeholder: 'Add new place'}
+        -#%fieldset
+        -#  %legend
+        -#    %h3 Authors
+        -#  .field-group
+        -#    %label
+        -#      Who made this *
+        -#      %small Enter one or more authors
+        -#    .field-wrapper
+        -#
+        -#      .user--teaser-wrapper
+        -#        = render '/users/user-teaser';
+        -#        .form--actions-related
+        -#          %button.button--highlight Invite to SCOPES
+        -#          %a.form--remove-element{href:'#'}
+        -#            %i.icon_delete_black
+        -#            %span Delete
+        -#
+        -#      %input{id:'other-user-emails', name: 'other_user_emails', type: 'text', placeholder: 'Add new person' }
+        -#  .field-group
+        -#    %label
+        -#      Where was this made *
+        -#      %small Enter one or more places
+        -#    .field-wrapper
+        -#      %input{type: 'text', placeholder: 'Add new place'}
         %fieldset
           %legend
             %h3 Objectives
@@ -63,11 +63,12 @@
               Learning objectives *
               %small What will the students learn
             .field-wrapper
-              - if @lesson_obj.learning_objectives.present?
-                - @lesson_obj.learning_objectives.each do |objective|
-                  = text_field(:lesson, :learning_objectives, multiple: true, data: { control:'key'}, value: objective )
-              - else
-                = text_field(:lesson, :learning_objectives, multiple: true, data: { control:'key'})
+              .clone-container
+                - if @lesson_obj.learning_objectives.present?
+                  - @lesson_obj.learning_objectives.each do |objective|
+                    = text_field(:lesson, :learning_objectives, multiple: true, data: { control:'key'}, value: objective )
+                - else
+                  = text_field(:lesson, :learning_objectives, multiple: true, data: { control:'key'})
               %small Press ↵ Return to add
         %fieldset
           %legend
@@ -84,7 +85,7 @@
                   • The types of activities students will do.
                 %p You can format using markdown
             .field-wrapper
-              = text_area(:lesson, :description, value: @lesson_obj.summary)
+              = text_area(:lesson, :description, value: @lesson_obj.description)
           .field-group
             %label
               Assessment Criteria *
@@ -110,11 +111,12 @@
               Further reading
               %small Anymore useful links
             .field-wrapper
-              - if @lesson_obj.further_readings.present?
-                - @lesson_obj.further_readings.each do |further|
-                  = text_field(:lesson, :further_readings, multiple: true, data: { control:'key'}, value: further )
-              - else
-                = text_field(:lesson, :further_readings, multiple: true, data: { control:'key'})
+              .clone-container
+                - if @lesson_obj.further_readings.present?
+                  - @lesson_obj.further_readings.each do |further|
+                    = text_field(:lesson, :further_readings, multiple: true, data: { control:'key'}, value: further )
+                - else
+                  = text_field(:lesson, :further_readings, multiple: true, data: { control:'key'})
               %small Press ↵ Return to add
 
       %footer

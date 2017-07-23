@@ -64,6 +64,8 @@
 @import "layout/base";
 @import "layout/lesson";
 @import "layout/lesson--forms";
+@import "layout/landing";
+
 
 /**
   Components
@@ -72,6 +74,12 @@
 @import "components/lesson--actions";
 @import "components/lesson--teaser";
 @import "components/user--teaser";
+@import "components/lesson--learning_objective";
+@import "components/lesson--authors";
+@import "components/lesson--standard";
+@import "components/lesson--organizations";
+@import "components/steps--view";
+
 
 //@import "component/whatever";
 

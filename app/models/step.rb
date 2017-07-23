@@ -11,6 +11,7 @@
 #  materials            :json
 #  tools                :string           is an Array
 #  supporting_materials :string           default([]), is an Array
+#  external_links       :string           is an Array
 #  step_number          :integer          not null
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
@@ -69,6 +70,7 @@ class Step < ApplicationRecord
       @lesson.steps << @step
     end
     params.delete(:id)
+    params[:external_links].delete("")
     @step.attributes = params
     @step.save!
     @step.reload

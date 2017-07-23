@@ -117,6 +117,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.json        :materials          # are they searchable?
       t.string      :tools, array: true # searchable?
       t.string      :supporting_materials, array: true, default: []   # files
+      t.string      :external_links, array: true
       t.integer     :step_number, null: false
       t.timestamps  null: false
     end
@@ -215,6 +216,8 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
     create_table  :collection_tags, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       t.string    :name, null: false, index: true
     end
+
+
   
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

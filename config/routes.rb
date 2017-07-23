@@ -21,9 +21,9 @@ Rails.application.routes.draw do
 
 
 
+  get 'lessons/:id'        => 'lessons_public#show', as: :lesson_view
 
 
-  get 'lessons/:id'        => 'lessons#show', as: :lesson_view
 
   get 'list/lessons' => 'lessons#list_json'
 

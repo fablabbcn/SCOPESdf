@@ -1,0 +1,7 @@
+%nav.nav-secondary
+  .wrapped
+    %ul.nav
+      %li= link_to 'Overview', lesson_view_path(id: @lesson.id, step:1)
+      %li= link_to 'Standards', lesson_view_path(id: @lesson.id, step:2)
+      %li= link_to 'Steps', lesson_view_path(id: @lesson.id, step:3)
+      %li= link_to 'Outcomes', lesson_view_path(id: @lesson.id, step:4)

@@ -1,0 +1,135 @@
+
+.view--top-content
+  .top-content-title
+    .badges
+      [ make badge partial / component ]
+    %h2
+      =@lesson.name
+    %p.text--intro
+      =@lesson.topline
+    %hr
+    .author-section
+      [ make badge partial / component ]
+
+  .top-content-images
+    [ view more images button ]
+
+%section.view--details
+  #range-teaching.detail
+    %h5.header--section
+      Teaching Range
+    = "#{@lesson.getTeachingRange_formatted[:range_start].titleize} - #{@lesson.getTeachingRange_formatted[:range_end].titleize} Grade"
+  #subjects-covered.detail
+    %h5.header--section
+      Subject Covered
+    -@lesson.getSubjects.each do |s|
+      =s.titleize
+      %br
+  #difficulty.detail
+    %h5.header--section
+      Difficulty
+    [ difficulty ]
+    for teachers
+    %br
+    [ difficulty ]
+    for students
+  #standards.detail
+    %h5.header--section
+      Alignment to Standards
+    [ standards here ]
+    %br
+    [more][ view all >]
+
+.wrapped
+  -#[view more lesson details >]
+  .overview
+    .overview--left
+      %section#summary
+        %h5.header--section
+          Summary
+        %p
+          =@lesson.summary
+      -#%section#download
+      -#  %h5.header--section
+      -#    Download Lesson Plan
+      -#  [ button to view print friendlyle version here ]
+      %section#objectives
+        %h5.header--section
+          Objectives
+        - @lesson.learning_objectives.each do |lo|
+          = render 'shared/lesson_objective', content: lo
+      %section#description
+        %h5.header--section
+          Lesson Description
+        %p
+          =@lesson.summary
+      %section#outcomes
+        %h5.header--section
+          Expected Outcomes
+        [ image gallery here]
+        [view all button]
+      %section#assessment
+        %h5.header--section
+          Assessment Criteria
+        %p Your students should know the following things:
+        %p
+          =@lesson.assessment_criteria.gsub(/\n/, '<br>').html_safe
+        %h5.header--section
+          Supporting Files
+        [links to files here]
+    .overview--right
+      %section#wherewhen
+        %h5.header--section
+          Where and When
+        .flex-wrapper--fullrow
+          .sub-section--full
+            %h5.header--section
+              Duration:
+            %p
+              = "#{@lesson.totalDuration.minutes} minutes"
+          .sub-section--full
+            %h5.header--section
+              Setting:
+            %ul
+              - @lesson.getContext.each do |c|
+                %li
+                  =c.titleize
+
+      %section#skills
+        %h5.header--section
+          Skills Needed
+        %ul
+          - @lesson.getSkillsLevels.each do |sl|
+            %li
+              = sl[:name]
+      -#%section#stats
+      -#  %h5.header--section
+      -#    Stats
+      -#  %p
+      -#    = "ICON - #{@lesson.stats[:likes]} - Likes <br> ICON - #{@lesson.stats[:forks]} - Forkes".html_safe
+      -#%section#Details
+      -#  %h5.header--section
+      -#    Details
+      -#  %p
+      -#    ="Publish date: #{@lesson.created_at.strftime('%m/%d/%Y')} <br> Last updated: #{@lesson.updated_at.strftime('%m/%d/%Y')}".html_safe
+      -#%section#Contributors
+      -#  %h5.header--section
+      -#    Authors
+      -#  - @lesson.authors.each do |a|
+      -#    = render 'shared/lesson_author', user: a
+      -#%section#Orgs
+      -#  %h5.header--section
+      -#    Developed At
+      -#  - @lesson.authors.each do |a|
+      -#    = render 'shared/lesson_organizations', org: a
+      -#%section#Tags
+      -#  %h5.header--section
+      -#    Tags
+      -#  [OTHER TAGS]
+
+%footer
+  .wrapped
+    %p Interested in this lesson?
+    =link_to 'Check out the standards',lesson_view_path(step:2), class: 'button button--call'
+
+

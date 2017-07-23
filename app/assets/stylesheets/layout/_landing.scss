@@ -1,0 +1,183 @@
+.landing-page {
+  section {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    &:nth-of-type(odd) {
+      background-color: $color-blue;
+      color: $color-white;
+    }
+
+    &#top {
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+      }
+      h1 {
+        margin: 1.5rem;
+      }
+      h3 {
+        font-weight: 400;
+      }
+      p {
+        font-size: 18px;
+        font-weight: 300;
+      }
+      min-height: 85vh;
+    }
+
+    &#white1 {
+      .landing-contents-columns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        .svg-wrapper {
+          display: none;
+          &.mobile {
+            display: block;
+          }
+        }
+      }
+      min-height: 50vh;
+      text-align: center;
+      p {
+        color: $color-blue-hi;
+        font-size: 18px;
+      }
+
+      @include breakpoint($tablet-breakpoint) {
+        .landing-contents-columns {
+          flex-direction: row;
+          .svg-wrapper {
+            display: block;
+            &.mobile {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    &#grey1 {
+      color: $color-dark;
+      background-color: $color-gray-low;
+      min-height: 70vh;
+      p {
+        color: $color-dark-hi-landing;
+      }
+      .slider {
+        height: 450px;
+        background: red;
+      }
+    }
+
+    &#white2 {
+      color: $color-dark-landing;
+      min-height: 85vh;
+      .landing-contents-columns {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        text-align: center;
+
+        @include breakpoint($tablet-breakpoint) {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+
+          .landing-content {
+          h4 {
+            color: $color-blue-hi;
+          }
+          width: 220px;
+          margin: 2rem;
+          .svg-wrapper {
+            height: 140px;
+          }
+        }
+      }
+
+    }
+
+    &#blue1 {
+      min-height: 70vh;
+      .content {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+      }
+    }
+
+    &#white3 {
+      min-height: 70vh;
+      .landing-contents-columns {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 3rem;
+        justify-content: space-around;
+        .svg-wrapper {
+          margin: 0 3rem;
+        }
+        @include breakpoint($tablet-breakpoint) {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+      }
+    }
+  }
+
+  footer {
+    #footer {
+      background-color: transparent;
+      p {
+        color: $color-white;
+      }
+      .landing-contents-columns {
+        display: flex;
+        flex-direction: column;
+        @include breakpoint($tablet-breakpoint) {
+          flex-direction: row;
+          .content:last-of-type{
+            width: inherit;
+          }
+        }
+          align-items: center;
+        justify-content: center;
+      }
+
+      .content {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        &:first-of-type {
+          flex-grow: 1;
+        }
+        &:last-of-type{
+          width: 100%;
+        }
+      }
+    }
+    background-color: $color-blue-hi;
+    color: $color-white;
+
+  }
+
+  .content {
+    padding: 2rem 1rem;
+    @include breakpoint($tablet-breakpoint) {
+      padding: 3rem;
+    }
+  }
+
+}

@@ -18,8 +18,8 @@ class Involvement < ApplicationRecord
   end
 
   def self.seed
-    ["classroom teacher", "maker / fabber", "youth", "cirriculum developer", "informal educator", "wolunteer", "makerspace staff"].map{ |i|
-      new(name: i).save!
+    ["classroom teacher", "maker / fabber", "youth", "cirriculum developer", "informal educator", "volunteer", "makerspace staff"].map{ |i|
+      new(name: i).save
     }
   end
 
