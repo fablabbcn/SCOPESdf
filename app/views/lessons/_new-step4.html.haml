@@ -39,6 +39,7 @@
                 %p If there are lot of actions, please consider breaking it down into multiple steps!
             .field-wrapper
               = text_area(:step, :description, value: s.description, data:{index: i})
+            .field-wrapper
               .field-group.field-group--support
                 %label.label--small
                   Supporting files
@@ -53,6 +54,7 @@
               Materials
               %small What do they need?
             .field-wrapper
+              -#@TODO repeat both
               .field--xs
                 %input{type: 'text', placeholder: 'Qty'}
               .field--xl
@@ -64,7 +66,7 @@
               Tools
               %small List as many as needed
             .field-wrapper
-              %input{type: 'text', placeholder: 'Enter item here', data:{index: i}}
+              %input{type: 'text', placeholder: 'Enter item here',data:{index: i, control:'key'}}
               %small Press ↵ Return to add
 
           .field-group
