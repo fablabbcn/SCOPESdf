@@ -6,54 +6,54 @@
   = render 'lessons/new-step' + @form_step.to_s
   -#= submit_tag("Submit", class: 'button button--call')
 
-  = @lesson_obj.inspect
-  %br
-  %br
-
-  = @lesson_obj.steps.map{|s| s.inspect}
-  %br
-  %br
-
-  authors:
-  = @lesson_obj.authors
-  %br
-  %br
-
-  organizations:
-  = @lesson_obj.getOrgs
-  %br
-  %br
-
-  teaching_range:
-  = @lesson_obj.getTeachingRange
-  %br
-  %br
-
-  subjects:
-  = @lesson_obj.getSubjects
-  %br
-  %br
-
-  difficulty_level:
-  = @lesson_obj.getDifficultyLevel
-  %br
-  %br
-
-  skills:
-  = @lesson_obj.getSkillsLevels
-  %br
-  %br
-
-  context:
-  = @lesson_obj.getContext
-  %br
-  %br
-
-  tags:
-  = @lesson_obj.getOtherInterests
-  %br
-  %br
-
-  collection:
-  = @lesson_obj.getCollectionTags
+  -#= @lesson_obj.inspect
+  -#%br
+  -#%br
+  -#
+  -#= @lesson_obj.steps.map{|s| s.inspect}
+  -#%br
+  -#%br
+  -#
+  -#authors:
+  -#= @lesson_obj.authors
+  -#%br
+  -#%br
+  -#
+  -#organizations:
+  -#= @lesson_obj.getOrgs
+  -#%br
+  -#%br
+  -#
+  -#teaching_range:
+  -#= @lesson_obj.getTeachingRange
+  -#%br
+  -#%br
+  -#
+  -#subjects:
+  -#= @lesson_obj.getSubjects
+  -#%br
+  -#%br
+  -#
+  -#difficulty_level:
+  -#= @lesson_obj.getDifficultyLevel
+  -#%br
+  -#%br
+  -#
+  -#skills:
+  -#= @lesson_obj.getSkillsLevels
+  -#%br
+  -#%br
+  -#
+  -#context:
+  -#= @lesson_obj.getContext
+  -#%br
+  -#%br
+  -#
+  -#tags:
+  -#= @lesson_obj.getOtherInterests
+  -#%br
+  -#%br
+  -#
+  -#collection:
+  -#= @lesson_obj.getCollectionTags
 

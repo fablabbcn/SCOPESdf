@@ -1,0 +1,44 @@
+.steps--view{
+  .wrapped {
+    .step {
+      border-bottom: 2px solid $color-gray-outlines;
+      &:last-of-type {
+        border-bottom: none;
+      }
+      .step-content {
+        display: flex;
+        flex-direction: row;
+        h4 {
+          color: $color-dark-hi;
+        }
+        h5 {
+          font-weight: 400;
+          color: $color-mid-gray;
+        }
+        section {
+          border-bottom: 2px solid $color-gray-outlines;
+          margin: 0;
+          padding: 10px 0 34px 0;
+          &:last-of-type {
+            border-bottom: none;
+          }
+        }
+
+        .left {
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+          padding-right: 80px;
+        }
+        .right {
+          display: flex;
+          flex-direction: column;
+          min-width: 330px;
+        }
+        ul {
+          padding-left: 20px;
+        }
+      }
+    }
+  }
+}

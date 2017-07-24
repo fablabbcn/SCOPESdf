@@ -11,7 +11,15 @@
 #
 
 class OrgTag < ApplicationRecord
+  belongs_to :taggable, polymorphic: true
+  validates :taggable_id, presence: true
+  validates :taggable_type, presence: true
 
+  validates :organization_id, presence: true
 
+  validates_uniqueness_of :taggable_id, :scope => [:taggable_type, :organization_id]
+
+  # Currently links to the following:
+  #
 
 end

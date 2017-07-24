@@ -1,0 +1,73 @@
+.enter-page
+  %section#top
+    %h3.login
+      Login to SCOPES-DF
+    %h3.register
+      Register your interests
+
+
+  %section#content.wrapped
+    %ul.toggle#buttons.nav
+      %li
+        =link_to "Login", '', class: 'login-switch', data: {state: 0}
+      %li
+        =link_to "Register", '', class: 'register-switch', data: {state: 1}
+
+    #forms_wrapper
+      .login.form-wrapper
+        %h3 Got your account details?
+        %p Log in below for access to SCOPES-DF
+        = form_tag(register_path method: "post", id:"login_form") do
+          %label Email
+          = text_field(:email, class:'input--large')
+          %label Password
+          = password_field(:password, class:'input--large')
+          = submit_tag('Submit', class: 'button button--inverse')
+      .register.form-wrapper
+        %h3 The project is still in beta mode but will be open for sign up very soon.
+        %p Fill in your details below and we’ll invite you as soon as it’s ready!
+        = form_tag(register_path method: "post", id:"registration_form") do
+          %label Name
+          = text_field(:name, class:'input--large')
+          %label Email
+          = text_field(:email, class:'input--large')
+          %label Organization
+          = text_field(:email, class:'input--large')
+          = submit_tag('Submit', class: 'button button--inverse')
+
+
+:javascript
+   var STATE = parseInt("#{@step}");
+
+   $(document).on('turbolinks:load', function() {
+      $('.toggle').find('a').click(function(e) {
+        e.preventDefault();
+        prepState($(this).data('state'));
+      });
+
+    prepState(STATE);
+  });
+
+  function prepState(s){
+    if (s == 0){ // login form
+      $('.toggle').find('a').eq(0).addClass('current');
+      $('.toggle').find('a').eq(1).removeClass('current');
+
+      $('.login').removeClass('animate_out');
+      $('.register').removeClass('animate_in_right');
+
+      $('.login').addClass('animate_in_left');
+      $('.register').addClass('animate_out');
+      }
+    else { //register state
+      $('.toggle').find('a').eq(0).removeClass('current');
+      $('.toggle').find('a').eq(1).addClass('current');
+
+
+      $('.register').removeClass('animate_out');
+      $('.login').removeClass('animate_in_left');
+
+      $('.register').addClass('animate_in_right');
+      $('.login').addClass('animate_out');
+    }
+  }

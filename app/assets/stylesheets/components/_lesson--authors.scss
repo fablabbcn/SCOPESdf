@@ -1,0 +1,16 @@
+.lesson--authors{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  small{
+    text-overflow: ellipsis;
+  }
+  small.name{
+    color: black;
+  }
+  .thumb_image{
+    width: 36px;
+    padding: 0 22px;
+  }
+}

@@ -10,7 +10,7 @@
           .lesson--standard-wrapper
             .lesson--standard-header
               %h4
-                Standard 1
+                ="Standard #{index+1}"
               .actions
                 -#= link_to 'Delete', '#'
                 = button_tag 'Delete Standard', class: "delete-standard", data: { order: index}
@@ -25,14 +25,13 @@
                 Description
                 %small Add one or more
               .field-wrapper
-                - if standard["descriptions"].present?
-                  - standard["descriptions"].each do |desc|
-                    %p
+                .clone-container
+                  - if standard["descriptions"].present?
+                    - standard["descriptions"].each do |desc|
+                      %textarea.textarea--short{{data: { control:'key'} }}
+                        = desc
+                  - else
                     %textarea.textarea--short{{data: { control:'key'} }}
-                      = desc
-                - else
-                  = standard
-                  %textarea.textarea--short{{data: { control:'key'} }}
                 %small Press ↵ Return to add
       - else
         .lesson--standard-wrapper
@@ -54,7 +53,8 @@
               Description
               %small Add one or more
             .field-wrapper
-              %textarea.textarea--short{{data: { control:'key'} } }
+              .clone-container
+                %textarea.textarea--short{{data: { control:'key'} } }
               %small Press ↵ Return to add
 
 
@@ -65,7 +65,7 @@
 
   %footer
     .wrapped
-      =link_to 'Back to overview', lesson_new_path(id: @lesson_obj.id, form_step:1), class: 'button button--call'
+      =link_to 'Back to overview', lesson_new_path(id: @lesson_obj.id, form_step:1), class: 'button button--call ajax-standards'
       =link_to 'Add some details', lesson_new_path(id: @lesson_obj.id, form_step:3), class: 'button button--call ajax-standards'
 
 

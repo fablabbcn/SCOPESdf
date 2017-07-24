@@ -1,0 +1,54 @@
+$form-animation-speed: .20s;
+
+@-webkit-keyframes form_fade_out {
+  0%   { opacity: 1; }
+  100% { opacity: 0; position: absolute; }
+}
+@-moz-keyframes form_fade_out {
+  0%   { opacity: 1; }
+  100% { opacity: 0; position: absolute; }
+}
+@-o-keyframes form_fade_out {
+  0%   { opacity: 1; }
+  100% { opacity: 0; position: absolute; }
+}
+@keyframes form_fade_out {
+  0%   { opacity: 1; }
+  100% { opacity: 0; position: absolute; }
+}
+
+
+@-webkit-keyframes form_fade_in_right {
+  0%   { visibility: visible; opacity: 0; position: relative; right: 35px; }
+  100% { visibility: visible; opacity: 1; position: relative; right: 0; }
+}
+@-moz-keyframes form_fade_in_right {
+  0%   { visibility: visible; opacity: 0; position: relative; right: 35px; }
+  100% { visibility: visible; opacity: 1; position: relative; right: 0; }
+}
+@-o-keyframes form_fade_in_right {
+  0%   { visibility: visible; opacity: 0; position: relative; right: 35px; }
+  100% { visibility: visible; opacity: 1; position: relative; right: 0; }
+}
+@keyframes form_fade_in_right {
+  0%   { visibility: visible; opacity: 0; position: relative; right: 35px; }
+  100% { visibility: visible; opacity: 1; position: relative; right: 0; }
+}
+
+
+@-webkit-keyframes form_fade_in_left {
+  0%   { visibility: visible; opacity: 0; position: relative; left: 35px; }
+  100% { visibility: visible; opacity: 1; position: relative; left: 0; }
+}
+@-moz-keyframes form_fade_in_left {
+  0%   { visibility: visible; opacity: 0; position: relative; left: 35px; }
+  100% { visibility: visible; opacity: 1; position: relative; left: 0; }
+}
+@-o-keyframes form_fade_in_left {
+  0%   { visibility: visible; opacity: 0; position: relative; left: 35px; }
+  100% { visibility: visible; opacity: 1; position: relative; left: 0; }
+}
+@keyframes form_fade_in_left {
+  0%   { visibility: visible; opacity: 0; position: relative; left: 35px; }
+  100% { visibility: visible; opacity: 1; position: relative; left: 0; }
+}

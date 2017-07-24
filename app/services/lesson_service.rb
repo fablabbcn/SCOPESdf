@@ -131,8 +131,6 @@ class LessonService
       # cleaning - from form
       @lesson_params[:learning_objectives].delete("")
       @lesson_params[:further_readings].delete("")
-      @lesson_params[:standards] = nil unless @lesson_params[:standards].present?
-
 
       @lesson.attributes = @lesson_params
       # puts @lesson.inspect
@@ -141,8 +139,8 @@ class LessonService
     end
 
     def associatePlaces!
-      @lesson.lesson_tags.where(taggable_type: "Organization").map{|x| x.destroy } # sanitize
       return unless @places.present?
+      @lesson.lesson_tags.where(taggable_type: "Organization").map{|x| x.destroy } # sanitize
       @places.map{ |x|
         @lesson.addOrg(x)
       }
@@ -151,8 +149,8 @@ class LessonService
     end
 
     def updateStandards!
-      @lesson.standards = {standards: []}; @lesson.save! #sanitize
       return unless @standards.present?
+      @lesson.standards = {standards: []}; @lesson.save! #sanitize
       @lesson.standards = {standards: @standards}
       @lesson.save!
       @lesson.reload

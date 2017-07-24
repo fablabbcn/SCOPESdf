@@ -1,0 +1,16 @@
+.wrapped
+  %h2
+    =@lesson.name
+  %p.text--intro This lesson abides by the following standards
+
+  -@lesson.standards_array.each do |s|
+    %section.standard
+      %h3
+        =s["name"]
+      - s["descriptions"].each do |desc|
+        = render 'shared/lesson_standard', desc: desc
+
+%footer
+  .wrapped
+    =link_to 'Back to Overview',lesson_view_path(step:1), class: 'button button--call'
+    =link_to 'Step by Step',lesson_view_path(step:3), class: 'button button--call'

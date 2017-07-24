@@ -1,0 +1,51 @@
+.step
+  %h4
+    ="Step #{index + 1}"
+  .step-content
+    %section.left
+      %h3
+        =step.summary
+      %p
+        =step.description.gsub(/\n/, '<br>').html_safe
+      - if step.supporting_materials.present?
+        [ gallery here ]
+    .right
+      %section
+        %h5
+          Duration
+        ="[icon] #{step.duration}"
+
+      - if step.supporting_files.present? # TODO test this
+        %section
+          %h5
+            Project Files
+          ="[icon] #{step.duration}"
+
+      - if step.materials.present?
+        %section
+          %h5
+            Materials needed for this step
+          %ul
+            -step.materials.each do |m|
+              %li
+                = "x#{m['number']} - #{m['name']}"
+
+      - if step.tools.present?
+        %section
+          %h5
+            Tools needed for this step
+          %ul
+            -step.tools.each do |t|
+              %li
+                = t
+
+      -#- if step.external_links.present? # TODO test this
+      -#  %section
+      -#    %h5
+      -#      External Links
+      -#    %ul
+      -#      -step.external_links.each do |el|
+      -#        %li
+      -#          =link_to el, el
+
+

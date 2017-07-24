@@ -24,9 +24,6 @@ fieldset#lesson-difficulty-level {
     align-items: center;
     justify-content: space-between;
   }
-
-
-
 }
 
 .lesson--standard-header {
@@ -40,4 +37,11 @@ fieldset#lesson-difficulty-level {
   .actions {
     float:right;
   }
+}
+
+.heading-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
 }

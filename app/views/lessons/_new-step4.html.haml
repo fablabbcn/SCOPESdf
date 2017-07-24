@@ -8,7 +8,10 @@
 
     - @steps.each_with_index do |s,i|
       .lesson-step{data: {id: s.id} }
-        = button_tag 'Remove Step', class: "button remove-step", data:{index: i}
+        .heading-wrapper
+          %h4
+            = "Step #{i+1}"
+          = button_tag 'Remove Step', class: "button remove-step", data:{index: i}
         %fieldset
           %legend
             %h4 Instructions
@@ -35,7 +38,7 @@
                 %p Describe all the actions in this step.
                 %p If there are lot of actions, please consider breaking it down into multiple steps!
             .field-wrapper
-              = text_field(:step, :description, value: s.description, data:{index: i})
+              = text_area(:step, :description, value: s.description, data:{index: i})
               .field-group.field-group--support
                 %label.label--small
                   Supporting files
@@ -71,6 +74,19 @@
             .field-wrapper
               = file_field_tag 'supporting_materials[]', multiple: true
 
+          .field-group
+            %label
+              External Links
+              %small Anymore useful links
+            .field-wrapper
+              .clone-container
+                - if s.external_links.present?
+                  - s.external_links.each do |external|
+                    = text_field(:step, :external_links, multiple: true, data: { control:'key', index: i}, value: external )
+                - else
+                  = text_field(:step, :external_links, multiple: true, data: { control:'key', index: i})
+              %small Press ↵ Return to add
+
 
     %h3="Step #{@steps_array.count+1}"
     = button_tag 'Add new Step', class: "button button--highlight add-step"
@@ -83,8 +99,9 @@
 
 :javascript
 
-  $(document).ready(function(){
+  $(document).on('turbolinks:load', function() {
     $(document).on('focusout','input',function() {
+      console.log('update');
       updateStep($(this).data("index"));
     });
 
@@ -117,13 +134,29 @@
 
       lst_index = $('.lesson-step').length;
       $elem = $('.lesson-step').last().clone(false,false);
+
       $elem.find("input").val('');
+      $elem.find("input").text('');
       $elem.find("input").attr("data-index", ($('.lesson-step').length));
+
+      $elem.find("textarea").val('');
+      $elem.find("textarea").text('');
+      $elem.find("textarea").attr("data-index", ($('.lesson-step').length));
+
       $elem.find(".remove-step").attr("data-index", ($('.lesson-step').length));
       $elem.attr("data-id", "");
       $elem.insertAfter($('.lesson-step').last());
 
-      $('.add-step').siblings('h3').text('Step ' + ($('.lesson-step').length + 2));
+      for(i = 0; i < $elem.find("[name='step[external_links][]']").length; i++){
+        if (i > 0) {
+          $elem.find("[name='step[external_links][]']").eq(i).remove();
+        }
+      }
+
+      $('.add-step').siblings('h3').text('Step ' + ($('.lesson-step').length + 1));
+
+      console.log($elem);
+      $elem.find('.heading-wrapper').find('h4').text('Step ' + ($('.lesson-step').length));
 
   });
 
@@ -135,7 +168,7 @@
       $elem.find(".remove-step").attr("data-index", i);
       $elem.attr("data-id", ID_ARRAY[i]);
 
-      $('.add-step').siblings('h3').text('Step ' + ($('.lesson-step').length + 2));
+      $('.add-step').siblings('h3').text('Step ' + ($('.lesson-step').length + 1));
     }
   }
 
@@ -171,9 +204,18 @@
       description_data = $("[name='step[description]']").eq(index).val();
       // materials=
       // tools=
+      external_links_data = [];
+
+      $("[name='step[external_links][]']").filter("[data-index=" + index + "]").each(function(i){
+        external_links_data.push($(this).val());
+      });
+      console.log(external_links_data);
+
+
+
       id_data = $('.lesson-step').eq(index).data("id");
 
-      step_data = [{id: id_data, summary: summary_data, description: description_data}];
+      step_data = [{id: id_data, summary: summary_data, description: description_data, external_links: external_links_data}];
       paramaters = {steps: step_data};
       console.log(step_data);
 
