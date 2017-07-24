@@ -18,13 +18,34 @@ $(document).ready(function(){
     }
   });
 
+  /*
     $('#lesson_form_1').on('keyup keypress', function(e) {
+        console.log('oi');
         var keyCode = e.keyCode || e.which;
         if (keyCode === 13) {
             e.preventDefault();
             return false;
         }
     });
+*/
+
+    /* Character counter in every textarea */
+
+    var textareaLimit = 800;
+    $('.lesson--steps textarea').parent().append('<div class="textarea--counter"><em>0</em>/<span></span></div>');
+
+    $('.textarea--counter span').text(textareaLimit);
+
+    $('.lesson--steps textarea').on('keyup', function(e) {
+        var characters = $(this).val().length;
+        var lessText = "";
+        if (characters >= textareaLimit) {
+            e.preventDefault();
+            lessText = $(this).val();
+            $(this).val(lessText.substring(0,800));
+        }
+        $(this).parent().find('.textarea--counter em').text($(this).val().length);
+  });
 
 
     // Dynamic

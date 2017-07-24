@@ -144,6 +144,21 @@ textarea {
   }
 }
 
+.textarea--counter {
+
+  position:absolute;
+  bottom:1rem;
+  right:2rem;
+
+  color:$color-mid-gray;
+  font-size:.8em;
+
+  em {
+    font-style:normal;
+    color:$color-dark-hi;
+  }
+}
+
 input[type="submit"] {
   @include button;
 }
@@ -212,6 +227,7 @@ fieldset {
     }
 
     .field-wrapper {
+      position:relative;
       small {
         display:block;
         text-align: right;
