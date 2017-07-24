@@ -18,7 +18,7 @@ class Context < ApplicationRecord
   end
 
   def self.seed
-    ["In Classroom", "In Fablab", "Capstone", "Group", "Homework", "Other"].map{ |i|
+    ["in classroom", "in fablab", "capstone", "group", "homework", "other"].map{ |i|
       new(name: i).save
     }
   end

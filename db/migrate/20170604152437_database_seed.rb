@@ -226,6 +226,8 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
 
     create_table  :invited_users, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       t.string      :email, null: false, index: true
+      t.json        :data
+      t.string      :name, index: true
       t.string      :invite_link, null: false, index: true
       t.datetime    :confirmed_at, null: true
       t.datetime    :created_at, null: false

@@ -47,11 +47,14 @@ ActiveRecord::Schema.define(version: 20170604152437) do
 
   create_table "invited_users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "email",        null: false
+    t.json     "data"
+    t.string   "name"
     t.string   "invite_link",  null: false
     t.datetime "confirmed_at"
     t.datetime "created_at",   null: false
     t.index ["email"], name: "index_invited_users_on_email", using: :btree
     t.index ["invite_link"], name: "index_invited_users_on_invite_link", using: :btree
+    t.index ["name"], name: "index_invited_users_on_name", using: :btree
   end
 
   create_table "involvements", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

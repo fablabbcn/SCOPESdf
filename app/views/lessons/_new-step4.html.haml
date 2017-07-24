@@ -1,5 +1,5 @@
 %article
-  .wrapped
+  .wrapped#steps-wrapper
     %fieldset
       %legend
         %h3 How does this lesson unfold?
@@ -100,7 +100,7 @@
 :javascript
 
   $(document).on('turbolinks:load', function() {
-    $(document).on('focusout','input',function() {
+    $('#steps-wrapper').on('focusout','input',function() {
       console.log('update');
       updateStep($(this).data("index"));
     });

@@ -177,10 +177,6 @@ class LessonsController < ApplicationController
     files_hash.merge!({outcome_files: file_params[:outcome_files]}) if file_params[:outcome_files].present?
 
     LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first)
-
-
-    # return_array = file_params[:assessment_criteria_files]
-
     @lesson.reload
     uploaded_acf = file_params[:assessment_criteria_files].each{|x|
       @lesson.find_carrier_wave_with_original_name(x.original_filename, :assessment_criteria)

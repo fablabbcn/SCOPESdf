@@ -147,7 +147,6 @@
       %footer
         .wrapped
           %p Next up...
-          -#=link_to 'Add some more details',lesson_new_path(step:2), class: 'button button--call'
-          -#=link_to 'Add some more details', '', class: 'button button--call', onclick: "$('#form').submit()"
+          = submit_tag('Add some more details', class: 'button button--call')
 
 = render '/users/new-modal';

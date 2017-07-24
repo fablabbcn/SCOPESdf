@@ -16,7 +16,14 @@ class VisitorsController < ApplicationController
   end
 
   def enter
-    @step ||= 0
+    @step = params[:step] || 0
+  end
+  def register_interest
+    puts register_params.inspect
+    org = register_params.delete(:organization)
+
+    InvitedUser.new(name: register_params[:name], email: register_params[:email], data: {org_name: org}).save!
+    render :json => {status: "GUCCI"}, :status => 200
   end
 
 
@@ -24,6 +31,10 @@ class VisitorsController < ApplicationController
   private
   def file_params
     params.permit(:avatar)
+  end
+
+  def register_params
+    params.require(:invited_user).permit(:name, :email, :organization)
   end
 
 

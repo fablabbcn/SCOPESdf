@@ -7,33 +7,34 @@
 
 
   %section#content.wrapped
-    %ul.toggle#buttons.nav
-      %li
-        =link_to "Login", '', class: 'login-switch', data: {state: 0}
-      %li
-        =link_to "Register", '', class: 'register-switch', data: {state: 1}
+    .mid-wrapper
+      %ul.toggle#buttons.nav
+        %li
+          =link_to "Login", '', class: 'login-switch', data: {state: 0}
+        %li
+          =link_to "Register", '', class: 'register-switch', data: {state: 1}
 
-    #forms_wrapper
-      .login.form-wrapper
-        %h3 Got your account details?
-        %p Log in below for access to SCOPES-DF
-        = form_tag(register_path method: "post", id:"login_form") do
-          %label Email
-          = text_field(:email, class:'input--large')
-          %label Password
-          = password_field(:password, class:'input--large')
-          = submit_tag('Submit', class: 'button button--inverse')
-      .register.form-wrapper
-        %h3 The project is still in beta mode but will be open for sign up very soon.
-        %p Fill in your details below and we’ll invite you as soon as it’s ready!
-        = form_tag(register_path method: "post", id:"registration_form") do
-          %label Name
-          = text_field(:name, class:'input--large')
-          %label Email
-          = text_field(:email, class:'input--large')
-          %label Organization
-          = text_field(:email, class:'input--large')
-          = submit_tag('Submit', class: 'button button--inverse')
+      #forms_wrapper
+        .login.form-wrapper
+          %h3 Got your account details?
+          %p Log in below for access to SCOPES-DF
+          = form_tag(register_path method: "post", id:"login_form") do
+            %label Email
+            = text_field(:email, class:'input--large')
+            %label Password
+            = password_field(:password, class:'input--large')
+            = submit_tag('Submit', class: 'button button--inverse')
+        .register.form-wrapper
+          %h3 The project is still in beta mode but will be open for sign up very soon.
+          %p Fill in your details below and we’ll invite you as soon as it’s ready!
+          = form_tag(register_path, id:"registration_form", remote: true) do
+            %label Name
+            = text_field(:invited_user, :name, class:'input--large')
+            %label Email
+            = text_field(:invited_user, :email, class:'input--large')
+            %label Organization
+            = text_field(:invited_user, :organization, class:'input--large')
+            = submit_tag('Submit', class: 'button button--inverse')
 
 
 :javascript
@@ -46,7 +47,50 @@
       });
 
     prepState(STATE);
+
+    $("#registration_form").submit(function(event){
+        var $email_field = $("#registration_form").find('input').eq(2);
+        var email = $(this).find('input').eq(2).val();
+        if ( (email == "") && !isValidEmailAddress(email) ){  // If something was entered
+          $email_field.addClass('input--error');
+          $email_field.focus();   //focus on email field
+          event.preventDefault();
+          return false;
+        }
+    });
+
+    $("#registration_form").bind('ajax:complete', function() {
+       console.log('registered');
+       var name = $(this).find('input').eq(1).val();
+       var email = $(this).find('input').eq(2).val();
+
+       var successString_1 = "Thank you " + name + ", you will hear from us very soon!!";
+       var successString_2 = "We will send you an email at " + email +" when we are ready for your lesson plans!";
+
+       $('#registration_form').addClass('animate_out');
+       $('.register.form-wrapper').find('h3').addClass('animate_out');
+       $('.register.form-wrapper').find('p').addClass('animate_out');
+       setTimeout(function(){displayCompletion(successString_1, successString_2)}, 1000);
+
+
+    });
+    $("#registration_form").find('input').eq(2).change(function() {
+      if (isValidEmailAddress($(this).val())){
+        $(this).removeClass('input--error');
+
+      }
+    });
   });
+
+  function displayCompletion(s1, s2){
+    $('.register.form-wrapper').find('h3').text(s1);
+    $('.register.form-wrapper').find('p').text(s2);
+
+    $('.register.form-wrapper').find('h3').addClass('animate_in_right');
+    $('.register.form-wrapper').find('p').addClass('animate_in_right');
+    $('.register.form-wrapper').find('h3').removeClass('animate_out');
+    $('.register.form-wrapper').find('p').removeClass('animate_out');
+  }
 
   function prepState(s){
     if (s == 0){ // login form
@@ -70,4 +114,8 @@
       $('.register').addClass('animate_in_right');
       $('.login').addClass('animate_out');
     }
+  }
+  function isValidEmailAddress(emailAddress) {
+    var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+    return pattern.test(emailAddress);
   }

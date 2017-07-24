@@ -1,0 +1,12 @@
+.lesson--call
+  .wrapped
+    %p.text--intro Share your lesson with other educators around the world!
+    = link_to 'Add a lesson', lesson_new_path, class: 'button'
+
+.wrapped
+  %p [filters]
+
+.wrapped
+  .item--list.lesson--list
+    - @lessons.each do |l|
+      = render 'shared/lesson_mini', lesson: l
