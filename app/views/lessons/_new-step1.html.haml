@@ -11,13 +11,13 @@
               Name of Lesson *
               %small 50 chars max
             .field-wrapper
-              = text_field(:lesson, :name, class:'input--large', value: @lesson_obj.name)
+              = text_field(:lesson, :name, class:'input--large', value: @lesson_obj.name, placeholder: 'Name your lesson')
           .field-group
             %label
               Topline description *
               %small Describe it in a sentence
             .field-wrapper
-              = text_field(:lesson, :topline, value: @lesson_obj.topline)
+              = text_field(:lesson, :topline, value: @lesson_obj.topline, placeholder: 'How would you describe it in one sentence?')
           .field-group
             %label
               Summary of lesson *

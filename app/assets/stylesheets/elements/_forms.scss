@@ -56,6 +56,10 @@ textarea {
     background:darken($color-white,2%);
   }
 
+  &::placeholder {
+    color:$color-mid-gray;
+  }
+
   &:disabled {
     border-color:$color-gray-outlines;
     cursor:default;
@@ -69,10 +73,10 @@ textarea {
     border:$color-red 1px solid;
     box-shadow: inset 0 0 1px $color-red;
     background:$color-alert-red;
-    color:$color-red;
+    color:$color-dark;
 
     &::placeholder {
-      color:$color-red;
+      color:$color-dark;
     }
   }
 
