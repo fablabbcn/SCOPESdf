@@ -21,9 +21,9 @@ Rails.application.routes.draw do
 
 
 
+  get 'lessons/:id'        => 'lessons_public#show', as: :lesson_view
 
 
-  get 'lessons/:id'        => 'lessons#show', as: :lesson_view
 
   get 'list/lessons' => 'lessons#list_json'
 
@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   post 'file_upload'      => 'visitors#file_form_upload'
 
 
+  get 'enter' =>  'visitors#enter', as: :enter
+  get 'register' => 'visitors#register_interest', as: :register
 
   post 'users/affiliate' => 'users#affiliate_organization_id'
 

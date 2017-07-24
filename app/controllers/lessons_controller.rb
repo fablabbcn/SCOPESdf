@@ -105,9 +105,6 @@ class LessonsController < ApplicationController
     render :json => {success: Lesson.find(params[:id]).publish!}, :status => 200
   end
 
-  def show
-    @lesson = Lesson.find(params[:id])
-  end
 
 
   def list_json
@@ -231,11 +228,11 @@ class LessonsController < ApplicationController
   end
 
   def step_params
-    params.permit(steps: [:id, :name, :summary, :duration, :description, :supporting_images => [], :materials => [], :tools => [], :supporting_material => []]) #TODO - supporting materials vs materials... add materials
+    params.permit(steps: [:id, :name, :summary, :duration, :description, :supporting_images => [], :materials => [], :tools => [], :supporting_material => [], :external_links => []]) #TODO - supporting materials vs materials... add materials
   end
 
   def step_param
-    params.require(:step).permit(:id, :summary, :duration, materials: [:number, :name], tools: [])
+    params.require(:step).permit(:id, :summary, :duration, materials: [:number, :name], tools: [], external_links:[])
   end
 
   def file_params

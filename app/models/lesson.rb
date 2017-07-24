@@ -367,11 +367,8 @@ class Lesson < ApplicationRecord
 
   # todo - make search ( for visible only )
 
-  # todo - add accessors to all of the children
-
 
   # sole viewing data --
-
   def further_readings_data
     self.further_readings.map {|x|
       begin
@@ -384,16 +381,27 @@ class Lesson < ApplicationRecord
       end
     }
   end
-
   def totalDuration
     sum = 0
     self.steps.map {|x| sum += x.duration}
     sum
   end
-
   def standards_array
     self.standards["standards"] if self.standards.present?
   end
+  def stats
+    {likes: self.likes.count, forks: Lesson.where(original_lesson: self.id).count}
+  end
+  def get_all_materials
+    total_steps = []
+    steps.map{ |s| total_steps.push(s.materials)}
+    total_steps.flatten
+  end
+  def get_all_tools
+    steps.map{ |s| s.tools}.flatten
+  end
+
+
 
   def publishable_values
     check_against = {

@@ -15,6 +15,7 @@ class SeedService
       Subject.new(name:"Technology").save!
     end
     def admin
+      self.essentials
       user = User.find_or_create_by!(email: Rails.application.secrets.admin_email) do |user|
           user.password = Rails.application.secrets.admin_password
           user.password_confirmation = Rails.application.secrets.admin_password
@@ -26,10 +27,12 @@ class SeedService
     end
     def user
       user = User.find_or_create_by!(email: "otherUser@gmail.com") do |user|
+        user.name = "Lucas Lorenzo Pena"
         user.password = "somepassword"
         user.password_confirmation = "somepassword"
         user.user!
       end
+      user.setInvolvements(["classroom teacher"])
     end
     def place
       place = Organization.find_or_create_by!(name: "Fab Kindergarden") do |x|
@@ -42,7 +45,7 @@ class SeedService
         x.country = "USA"
         x.setPoints(40.748440,-73.985643)
       end
-      # User.first.addOrgId?(Organization.first.id)
+      User.first.addOrg(Organization.first, true)
     end
 
     def lesson
@@ -61,9 +64,7 @@ class SeedService
     end
 
     def lesson_service
-      self.place
-      self.admin
-        lesson =
+      lesson =
             {
                 # TAB 1 - Overviewr
                 # Basic Information
@@ -139,7 +140,6 @@ class SeedService
     end
 
     def step_service
-      self.lesson_service
       step = {
           summary: "Step Subject Here",
           duration: "1508",
@@ -151,9 +151,10 @@ class SeedService
           ],
           tools:
               ["3D Printer"],
+          external_links:
+              ["https://api.jquery.com/category/manipulation/dom-removal/"],
           # supporting_material >> has own endpoint
       }
-      self.lesson_service
       Step.find_or_create_and_update(nil, Lesson.first.id, step, User.first)
     end
   end

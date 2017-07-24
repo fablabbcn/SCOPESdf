@@ -164,6 +164,7 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.json     "materials"
     t.string   "tools",                                          array: true
     t.string   "supporting_materials", default: [],              array: true
+    t.string   "external_links",                                 array: true
     t.integer  "step_number",                       null: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false

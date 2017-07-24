@@ -1,0 +1,15 @@
+.lesson--standard{
+  display: flex;
+  flex-direction: row;
+  .check_image{
+    width: 100px;
+    text-align: center;
+  }
+  .information {
+    padding: 0 25px;
+    p {
+      margin: 0;
+    }
+  }
+  margin: 3.5rem 1rem;
+}

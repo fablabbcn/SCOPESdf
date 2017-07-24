@@ -14,7 +14,7 @@ class Skill < ApplicationRecord
 
   def self.seed
     ["CNC", "Software", "CAD Design", "3D Printing", "Handywork", "Electrical"].map{ |s|
-      new(name: s).save!
+      new(name: s).save
     }
   end
 
