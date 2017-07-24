@@ -1,11 +1,13 @@
 body {
   padding:0;
   margin:0;
+  letter-spacing:0.02rem;
 }
 
 .wrapped {
   padding:0 $site-inner-padding;
   margin:0 auto;
+  transition:padding .2s;
 
   @include breakpoint($desktop-breakpoint) {
     max-width:$site-max-width;

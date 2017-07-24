@@ -19,6 +19,7 @@ nav[role="navigation"] {
 
 ul.nav {
   @include ul-reset;
+  font-weight:400;
 
   li {
     display:inline-block;
@@ -28,6 +29,11 @@ ul.nav {
     text-decoration: none;
     padding:.5em;
     position:relative;
+
+    &.nav-link--thin {
+      color:lighten($color-dark,40%);
+    }
+
     &:after {
       width:0;
       display:block;
@@ -48,6 +54,10 @@ ul.nav {
       }
     }
   }
+
+  .author--nav {
+    margin-left:3rem;
+  }
 }
 
 .nav-secondary {
@@ -61,7 +71,7 @@ ul.nav {
     a {
       display: block;
       font-size:.8em;
-      padding:.8em;
+      padding:1.2rem .8rem;
       margin:0;
     }
   }

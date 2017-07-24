@@ -30,8 +30,31 @@ header[role="banner"] {
   }
 
 
+  @include breakpoint($large-breakpoint) {
+    .wrapped {
+      max-width:100%;
+      padding:0 $site-inner-padding*8;
+      box-sizing:border-box;
+      min-width:$site-max-width;
+    }
+  }
+
+
   @include breakpoint($desktop-breakpoint) {
     border-top:$color-blue-hi 8px solid;
   }
 
+}
+
+.lesson-nav-actions,
+.nav-secondary {
+
+  @include breakpoint($large-breakpoint) {
+    .wrapped {
+      max-width:100%;
+      padding:0 $site-inner-padding*8;
+      box-sizing:border-box;
+
+    }
+  }
 }

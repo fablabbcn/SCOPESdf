@@ -11,7 +11,7 @@
               Name of Lesson *
               %small 50 chars max
             .field-wrapper
-              = text_field(:lesson, :name, class:'input--large', value: @lesson_obj.name, placeholder: 'Name your lesson')
+              = text_field(:lesson, :name, class:'input--large input--higher', value: @lesson_obj.name, placeholder: 'Name your lesson')
           .field-group
             %label
               Topline description *
@@ -30,7 +30,7 @@
                   • The types of activities students will do.
                 %p You can format using markdown
             .field-wrapper
-              = text_area(:lesson, :summary, value: @lesson_obj.summary)
+              = text_area(:lesson, :summary, value: @lesson_obj.summary, placeholder: 'Add a summary for your lesson')
         %fieldset
           %legend
             %h3 Authors

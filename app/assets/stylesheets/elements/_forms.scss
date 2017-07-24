@@ -35,13 +35,18 @@ textarea {
   font-family:$font-base;
   font-size:.8em;
   display:inline-block;
-
+  font-weight:200;
+  letter-spacing:0.03rem;
   box-sizing:border-box;
   width:100%;
   padding:.7rem .8rem .6rem .8rem;
   color:#62686C;
   transition: all .2s ease;
-  background:darken($color-white,2%);
+  background:$color-white;
+
+  &:placeholder-shown {
+    background:darken($color-white,2%);
+  }
 
   &:hover {
     border-color:$color-blue-hi;
@@ -63,6 +68,12 @@ textarea {
     background:url(icons/icon_lock_black.svg) .6rem no-repeat;
     padding-left:2rem;
     background-size:12px;
+  }
+
+  &.input--higher {
+    font-size:1.15rem;
+    font-weight:300;
+    padding:1rem .8rem 1rem .8rem;
   }
 
   &.input--error {
@@ -116,6 +127,7 @@ textarea {
   float:left;
 }
 
+
 select {
   outline: none;
   background: #fff;
@@ -162,14 +174,13 @@ input[type="submit"] {
 fieldset {
   @include clearfix;
   border-bottom:1px solid $color-gray-outlines;
-  padding:2em 0;
+  padding:2em 0 1em 0;
   margin:2em 0;
 
   legend {
     @include clearfix;
     padding:0;
     margin:0;
-    margin-bottom:1rem;
     width:100%;
 
     h3 {
@@ -200,6 +211,7 @@ fieldset {
       color:$color-dark;
       line-height:1.2em;
       font-weight:400;
+      font-size:1.125em;
       opacity:.6;
       transition:opacity .2s;
 
