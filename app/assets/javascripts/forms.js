@@ -102,7 +102,8 @@ $(document).on('turbolinks:load', function() {
             }
         }
     });
-// Doesnt need to by dynamic
+
+    // Doesnt need to by dynamic
     $('fieldset').on("click", '.add-standard', function () {
         lst_index = $('.lesson--standard-wrapper').length;
         $elem = $('.lesson--standard-wrapper').last().clone(false, false);
@@ -117,6 +118,54 @@ $(document).on('turbolinks:load', function() {
         }
         $elem.find(".delete-standard").attr("data-order", lst_index);
         $elem.insertAfter($('.lesson--standard-wrapper').last());
+    });
+
+    /** Upload images **/
+
+
+  $('#form').fileupload({
+    dataType: 'script',
+    add(e, data) {
+      const types = /(\.|\/)(gif|jpe?g|png|mov|mpeg|mpeg4|avi)$/i;
+      const file = data.files[0];
+      if (types.test(file.type) || types.test(file.name)) {
+        data.context = $(tmpl("template-upload", file));
+        $('#form').append(data.context);
+        return data.submit();
+      } else {
+        return alert(`${file.name} is not a gif, jpg or png image file`);
+      }
+    },
+    progress(e, data) {
+      if (data.context) {
+        const progress = parseInt((data.loaded / data.total) * 100, 10);
+        return data.context.find('.bar').css('width', progress + '%');
+      }
+    }
+  });
+
+    /*
+    $('#form').fileupload();
+        dropZone: $('#dropzone');
+        // 
+        // Load existing files:
+        $.getJSON($('#form').prop('action'), function (files) {
+          var fu = $('#form').data('fileupload'), 
+            template;
+          fu._adjustMaxNumberOfFiles(-files.length);
+          template = fu._renderDownload(files)
+            .appendTo($('#form .files'));
+          // Force reflow:
+          fu._reflow = fu._transition && template.length &&
+            template[0].offsetWidth;
+          template.addClass('in');
+          $('#loading').remove();
+    });
+  */
+
+
+    $(document).bind('drop dragover', function (e) {
+        e.preventDefault();
     });
 
 });

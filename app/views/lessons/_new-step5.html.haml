@@ -10,7 +10,13 @@
             Add images
             %small Guideliens for images
             -# @TODO add little info icon and tooltip with information
-          = file_field_tag 'outcome_files[]', multiple: true
+          .image-uploader-wrapper
+            .dropzone
+              %p 
+                Drag & drop files here - or click to browse 
+                %br .jpg, .png, .pdf
+
+            = file_field_tag 'outcome_files[]', multiple: true, class: 'form--file-uploader'
 
 
         .field-group
@@ -25,3 +31,8 @@
         =link_to 'Back to instructions', lesson_new_path(id: @lesson_obj.id, form_step:4), class: 'button button--call'
         -#=link_to 'Publish lesson', '#', class: 'button button--highlight'
         = submit_tag('Publish lesson', class: 'button button--call')
+
+%script#template-upload{:type => "text/x-tmpl"}
+  :cdata
+    <div class="upload">{%=o.name%}<div class="progress"><div class="bar" style="width: 0%"></div></div></div> 
+

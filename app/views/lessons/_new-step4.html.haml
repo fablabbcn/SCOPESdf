@@ -43,8 +43,13 @@
               .field-group.field-group--support
                 %label.label--small
                   Supporting files
-                .field-wrapper
-                  = file_field_tag 'supporting_files[]', multiple: true
+              .image-uploader-wrapper
+                .dropzone
+                  %p 
+                    Drag & drop files here - or click to browse 
+                    %br .jpg, .png, .pdf
+              .field-wrapper
+                = file_field_tag 'supporting_files[]', multiple: true
 
         %fieldset
           %legend
@@ -74,6 +79,11 @@
               Supporting Materials
               %small Design files, handouts needed for this step
             .field-wrapper
+              .image-uploader-wrapper
+                .dropzone
+                  %p 
+                    Drag & drop files here - or click to browse 
+                    %br .jpg, .png, .pdf
               = file_field_tag 'supporting_materials[]', multiple: true
 
           .field-group
