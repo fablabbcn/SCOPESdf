@@ -48,7 +48,8 @@ textarea {
     background:darken($color-white,2%);
   }
 
-  &:hover {
+  &:hover, 
+  &:focus {
     border-color:$color-blue-hi;
     box-shadow: inset 0 0 0 1px $color-blue-hi;
   }
@@ -177,6 +178,12 @@ fieldset {
   padding:2em 0 1em 0;
   margin:2em 0;
 
+  &:hover {
+    legend h3 {
+      opacity:1;
+    }
+  }
+
   legend {
     @include clearfix;
     padding:0;
@@ -186,6 +193,8 @@ fieldset {
     h3 {
       margin:0;
       float:left;
+      opacity:.6;
+      transition:opacity .2s;
     }
 
     h4 {

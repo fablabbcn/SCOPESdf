@@ -90,9 +90,9 @@
               .clone-container
                 - if @lesson_obj.learning_objectives.present?
                   - @lesson_obj.learning_objectives.each do |objective|
-                    = text_field(:lesson, :learning_objectives, multiple: true, data: { control:'key'}, value: objective )
+                    = text_field(:lesson, :learning_objectives, multiple: true, data: { control:'key'}, value: objective)
                 - else
-                  = text_field(:lesson, :learning_objectives, multiple: true, data: { control:'key'})
+                  = text_field(:lesson, :learning_objectives, multiple: true, data: { control:'key'}, placeholder: '+ Add new objective' )
               %small Press ↵ Return to add
         %fieldset
           %legend
@@ -109,7 +109,7 @@
                   • The types of activities students will do.
                 %p You can format using markdown
             .field-wrapper
-              = text_area(:lesson, :description, value: @lesson_obj.description)
+              = text_area(:lesson, :description, value: @lesson_obj.description, placeholder: 'Which is the description of the lesson?')
           .field-group
             %label
               Assessment Criteria *
@@ -122,7 +122,7 @@
                   • The types of activities students will do.
                 %p You can format using markdown
             .field-wrapper
-              = text_area(:lesson, :assessment_criteria, value: @lesson_obj.assessment_criteria)
+              = text_area(:lesson, :assessment_criteria, value: @lesson_obj.assessment_criteria, placeholder: 'Which is the assessment criteria?')
             .field-wrapper
               .field-group.field-group--support
                 %label.label--small
@@ -141,7 +141,7 @@
                   - @lesson_obj.further_readings.each do |further|
                     = text_field(:lesson, :further_readings, multiple: true, data: { control:'key'}, value: further )
                 - else
-                  = text_field(:lesson, :further_readings, multiple: true, data: { control:'key'})
+                  = text_field(:lesson, :further_readings, multiple: true, data: { control:'key'}, placeholder: '+ Type URL and press enter ')
               %small Press ↵ Return to add
 
       %footer
