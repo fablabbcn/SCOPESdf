@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   post 'file_upload'      => 'visitors#file_form_upload'
 
 
+  get 'enter' =>  'visitors#enter', as: :enter
+  get 'register' => 'visitors#register_interest', as: :register
 
   post 'users/affiliate' => 'users#affiliate_organization_id'
 

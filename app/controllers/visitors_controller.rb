@@ -15,6 +15,10 @@ class VisitorsController < ApplicationController
     render :json => {status: "GUCCI"}, :status => 200
   end
 
+  def enter
+    @step ||= 0
+  end
+
 
 
   private

@@ -1,0 +1,69 @@
+.enter-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: stretch;
+
+  #top {
+    height: 100px;
+    h3 {
+      width: 100%;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: $color-white;
+    }
+    background: url(landing-page-image.png) no-repeat center center;
+  }
+  #content {
+    .toggle {
+      padding: 0;
+    }
+    padding: 2rem;
+    ul {
+      list-style: none;
+      li {
+        display: inline-block;
+      }
+    }
+    #forms_wrapper {
+      margin-top: 3rem;
+      min-height: 530px;
+      .form-wrapper, form {
+        width: 80vw;
+      }
+      input {
+        width: 100%;
+        margin: 1rem 0 2rem 0rem;
+      }
+    }
+
+  }
+
+  .login, .register{
+    visibility: hidden;
+  }
+
+  .animate_out {
+    -webkit-animation: form_fade_out $form-animation-speed forwards;
+    -moz-animation: form_fade_out $form-animation-speed forwards;
+    -o-animation: form_fade_out $form-animation-speed forwards;
+    animation: form_fade_out $form-animation-speed forwards;
+  }
+  .animate_in_right{
+    -webkit-animation: form_fade_in_right $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
+    -moz-animation: form_fade_in_right $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
+    -o-animation: form_fade_in_right $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
+    animation: form_fade_in_right $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .animate_in_left{
+    -webkit-animation: form_fade_in_left $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
+    -moz-animation: form_fade_in_left $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
+    -o-animation: form_fade_in_left $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
+    animation: form_fade_in_left $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+
+
+}

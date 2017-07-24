@@ -124,6 +124,11 @@
           %p Next up...
           -#=link_to 'Add some more details',lesson_new_path(step:2), class: 'button button--call'
           -#=link_to 'Add some more details', '', class: 'button button--call', onclick: "$('#form').submit()"
-          = submit_tag('Add some more details', class: 'button button--call')
+          #box {
+  -webkit-animation: NAME-YOUR-ANIMATION 5s infinite; /* Safari 4+ */
+  -moz-animation:    NAME-YOUR-ANIMATION 5s infinite; /* Fx 5+ */
+  -o-animation:      NAME-YOUR-ANIMATION 5s infinite; /* Opera 12+ */
+  animation:         NAME-YOUR-ANIMATION 5s infinite; /* IE 10+, Fx 29+ */
+}
 
 = render '/users/new-modal';
