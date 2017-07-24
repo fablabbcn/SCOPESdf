@@ -1,7 +1,19 @@
-.lesson--standard{
+fieldset.lesson--standards {
+  border-bottom:none;
+}
+
+.lesson--standard-wrapper {
+  border-bottom:$color-gray-outlines 1px solid;
+  padding-bottom:2em;
+  margin-bottom:2em;
+}
+
+.lesson--standard {
   display: flex;
   flex-direction: row;
-  .check_image{
+
+
+  .check_image {
     width: 100px;
     text-align: center;
   }

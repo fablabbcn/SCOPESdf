@@ -128,7 +128,6 @@ textarea {
   float:left;
 }
 
-
 select {
   outline: none;
   background: #fff;
@@ -178,10 +177,24 @@ fieldset {
   padding:2em 0 1em 0;
   margin:2em 0;
 
+  &:last-child {
+    border:none;
+  }
+
   &:hover {
     legend h3 {
       opacity:1;
     }
+
+    h4 {
+      opacity:1;
+    }
+  }
+
+  h4 {
+    margin:0;
+    opacity:.6;
+    transition:opacity .2s;
   }
 
   legend {
@@ -195,10 +208,6 @@ fieldset {
       float:left;
       opacity:.6;
       transition:opacity .2s;
-    }
-
-    h4 {
-      margin:0;
     }
 
     small {

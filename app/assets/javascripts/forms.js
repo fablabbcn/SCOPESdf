@@ -73,7 +73,7 @@ $(document).ready(function(){
     /* Character counter in every textarea */
 
     var textareaLimit = 800;
-    $('.lesson--steps textarea').parent().append('<div class="textarea--counter"><em>0</em>/<span></span></div>');
+    $('.lesson--steps textarea:not(".textarea--short")').parent().append('<div class="textarea--counter"><em>0</em>/<span></span></div>');
 
     $('.textarea--counter span').text(textareaLimit);
 
