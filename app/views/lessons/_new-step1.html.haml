@@ -43,18 +43,18 @@
               .user--teaser-wrapper
                 = render '/users/user-teaser';
                 .form--actions-related
-                  %button.button--highlight Invite to SCOPES
-                  %a.form--remove-element{href:'#'}
-                    %i.icon_delete_black
-                    %span Delete
+                  -#%button.button--highlight Invite to SCOPES
+                  -#%a.form--remove-element{href:'#'}
+                    -#%i.icon_delete_black
+                    -#%span Delete
 
-              %input{id:'other-user-emails', name: 'other_user_emails', type: 'text', placeholder: 'Add new person' }
-          .field-group
-            %label
-              Where was this made *
-              %small Enter one or more places
-            .field-wrapper
-              %input{type: 'text', placeholder: 'Add new place'}
+              -#%input{id:'other-user-emails', name: 'other_user_emails', type: 'text', placeholder: 'Add new person' }
+              -#.field-group
+              -#%label
+              -#Where was this made *
+              -#%small Enter one or more places
+              -#.field-wrapper
+              -#%input{type: 'text', placeholder: 'Add new place'}
         %fieldset
           %legend
             %h3 Objectives
