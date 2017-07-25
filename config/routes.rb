@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get 'lessons/:id/file/:attr', to: 'lessons#file_upload_load', as: :lesson_file_data
   post 'lessons/:id/file/:attr', to: 'lessons#file_upload', as: :lesson_file
   delete 'lessons/:id/file', to: 'lessons#remove_file_upload', as: :delete_lesson_file
+  #~~~~~~~~~~
+
 
 
 

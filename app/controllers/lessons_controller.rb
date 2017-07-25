@@ -181,25 +181,35 @@ class LessonsController < ApplicationController
     files_hash = {}
     files_hash.merge!({assessment_criteria_files: file_params[:assessment_criteria_files]}) if file_params[:assessment_criteria_files].present?
     files_hash.merge!({outcome_files: file_params[:outcome_files]}) if file_params[:outcome_files].present?
+    
+    puts files_hash.inspect
 
     LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first)
     @lesson.reload
-    uploaded_acf = file_params[:assessment_criteria_files].each{|x|
-      @lesson.find_carrier_wave_with_original_name(x.original_filename, :assessment_criteria)
-    }
-
-    # returning = uploaded_acf.each{|x|
-    #   JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria")
-    # }
-
-    puts uploaded_acf.count
 
     returning = []
-    for i in 0..uploaded_acf.count-1
-      x = @lesson.assessment_criteria_files[i]
-      returning.append (JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
-    end
 
+
+    if files_hash[:assessment_criteria_files].present?
+      uploaded_acf = file_params[:assessment_criteria_files].each{|x|
+        @lesson.find_carrier_wave_with_original_name(x.original_filename, :assessment_criteria)
+      }
+      for i in 0..uploaded_acf.count-1
+        x = @lesson.assessment_criteria_files[i]
+        puts x.inspect
+        puts x.path
+        returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
+      end
+    elsif files_hash[:outcome_files].present?
+      uploaded_of = file_params[:outcome_files].each{|x|
+        @lesson.find_carrier_wave_with_original_name(x.original_filename, :outcome_files)
+      }
+      puts uploaded_of.count
+      for i in 0..uploaded_of.count-1
+        x = @lesson.assessment_criteria_files[i]
+        returning.append (JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
+      end
+    end
 
     puts "carriers below"
     puts returning
@@ -235,7 +245,7 @@ class LessonsController < ApplicationController
   def remove_file_upload
     puts params.inspect
     @lesson = Lesson.find(params[:id])
-    @lesson.removeFileWithName(params[:attr].to_sym, params[:name])
+    @lesson.removeFileWithName(remove_file_params[:attr].to_sym, remove_file_params[:name])
   end
 
 
@@ -252,11 +262,12 @@ class LessonsController < ApplicationController
     params.require(:step).permit(:id, :summary, :duration, materials: [:number, :name], tools: [], external_links:[])
   end
 
+
   def file_params
-    params.permit(:assessment_criteria_files => [])
+    params.permit(:id, :assessment_criteria_files => [], :outcome_files => [])
   end
-  # def remove_file_params
-  #   params.require(:id).permit(:name, :attr)
-  # end
+  def remove_file_params
+    params.permit(:name, :attr)
+  end
 
 end
