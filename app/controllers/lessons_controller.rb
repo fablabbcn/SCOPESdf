@@ -243,6 +243,7 @@ class LessonsController < ApplicationController
         }
     end
 
+
     respond_to do |format|
       format.html {
         render :json => returning.to_json,
@@ -250,7 +251,7 @@ class LessonsController < ApplicationController
                :layout => false
       }
       format.json {
-        render :json => { :files => returning }
+        render :json => { files: returning }, status: :created, location: @Uploaded
       }
     end
   end

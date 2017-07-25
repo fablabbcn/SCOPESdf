@@ -123,27 +123,27 @@ $(document).on('turbolinks:load', function() {
     /** Upload images **/
 
 
-  $('#form').fileupload({
-    dataType: 'script',
-    autoUpload: true,
-    add(e, data) {
-      const types = /(\.|\/)(gif|jpe?g|png|mov|mpeg|mpeg4|avi)$/i;
-      const file = data.files[0];
-      if (types.test(file.type) || types.test(file.name)) {
-        data.context = $(tmpl("template-upload", file));
-        $('#form').append(data.context);
-        return data.submit();
-      } else {
-        return alert(`${file.name} is not a gif, jpg or png image file`);
-      }
-    },
-    progress(e, data) {
-      if (data.context) {
-        const progress = parseInt((data.loaded / data.total) * 100, 10);
-        return data.context.find('.bar').css('width', progress + '%');
-      }
-    }
-  });
+  // $('#form').fileupload({
+  //   dataType: 'script',
+  //   autoUpload: true,
+  //   add(e, data) {
+  //     const types = /(\.|\/)(gif|jpe?g|png|mov|mpeg|mpeg4|avi)$/i;
+  //     const file = data.files[0];
+  //     if (types.test(file.type) || types.test(file.name)) {
+  //       data.context = $(tmpl("template-upload", file));
+  //       $('#form').append(data.context);
+  //       return data.submit();
+  //     } else {
+  //       return alert(`${file.name} is not a gif, jpg or png image file`);
+  //     }
+  //   },
+  //   progress(e, data) {
+  //     if (data.context) {
+  //       const progress = parseInt((data.loaded / data.total) * 100, 10);
+  //       return data.context.find('.bar').css('width', progress + '%');
+  //     }
+  //   }
+  // });
 
 
     $(document).bind('drop dragover', function (e) {
