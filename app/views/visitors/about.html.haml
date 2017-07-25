@@ -1,0 +1,104 @@
+.about
+  %section#top.about-flex
+    .wrapped
+      %h4
+        =CopyService.about[:top][:first].gsub(/\n/, '<br>').html_safe
+      %h1
+        =CopyService.about[:top][:second].gsub(/\n/, '<br>').html_safe
+      %p.text--intro
+        =CopyService.about[:top][:third].gsub(/\n/, '<br>').html_safe
+
+  %section#issues
+    .about-flex.wrapped
+      .issue-wrapper.about-flex-child
+        .issue
+          %h5
+            =CopyService.about[:issue1][:first].gsub(/\n/, '<br>').html_safe
+          %p.text--intro
+            =CopyService.about[:issue1][:second].gsub(/\n/, '<br>').html_safe
+          %p
+            =CopyService.about[:issue1][:third].gsub(/\n/, '<br>').html_safe
+      .issue-wrapper.about-flex-child
+        .issue
+          %h5
+            =CopyService.about[:issue2][:first].gsub(/\n/, '<br>').html_safe
+          %p.text--intro
+            =CopyService.about[:issue2][:second].gsub(/\n/, '<br>').html_safe
+          %p
+            =CopyService.about[:issue2][:third].gsub(/\n/, '<br>').html_safe
+  %section#white1.wrapped
+    %h3
+      =CopyService.about[:white1][:first].gsub(/\n/, '<br>').html_safe
+    %p.text--intro
+      =CopyService.about[:white1][:second].gsub(/\n/, '<br>').html_safe
+    %p
+      =CopyService.about[:white1][:third].gsub(/\n/, '<br>').html_safe
+
+  %section#grey1.about-flex
+    .image.image_wrapper-center.about-flex-child
+      =image_tag("bringtogether.jpg")
+    .copy.about-flex-child
+      .copy-container
+        %p.text--intro
+          =CopyService.about[:grey1][:first].gsub(/\n/, '<br>').html_safe
+        %p
+          =CopyService.about[:grey1][:second].gsub(/\n/, '<br>').html_safe
+
+  %section#white2.wrapped
+    %h3
+      =CopyService.about[:white2][:first].gsub(/\n/, '<br>').html_safe
+    %p.text--intro
+      =CopyService.about[:white2][:second].gsub(/\n/, '<br>').html_safe
+    %p
+      =CopyService.about[:white2][:third].gsub(/\n/, '<br>').html_safe
+
+  %section#white3
+    %h2
+      =CopyService.about[:white3][:first].gsub(/\n/, '<br>').html_safe
+    %p.text--intro
+      =CopyService.about[:white3][:second].gsub(/\n/, '<br>').html_safe
+
+  %section#box1.about-flex
+    .image.image_wrapper-center.about-flex-child
+      =image_tag("1 StemTeachers.jpg")
+    .copy.about-flex-child
+      .copy-container
+        %h3
+          =CopyService.about[:box1][:first].gsub(/\n/, '<br>').html_safe
+        = render 'shared/check_area', content: CopyService.about[:box1][:second].gsub(/\n/, '<br>').html_safe
+        = render 'shared/check_area', content: CopyService.about[:box1][:third].gsub(/\n/, '<br>').html_safe
+        = render 'shared/check_area', content: CopyService.about[:box1][:fourth].gsub(/\n/, '<br>').html_safe
+
+
+  %section#box2.about-flex
+    .copy.about-flex-child
+      .copy-container
+        %h3
+          =CopyService.about[:box2][:first].gsub(/\n/, '<br>').html_safe
+        = render 'shared/check_area', content: CopyService.about[:box2][:second].gsub(/\n/, '<br>').html_safe
+        = render 'shared/check_area', content: CopyService.about[:box2][:third].gsub(/\n/, '<br>').html_safe
+        = render 'shared/check_area', content: CopyService.about[:box2][:fourth].gsub(/\n/, '<br>').html_safe
+    .image.image_wrapper-center.about-flex-child
+      =image_tag("2 MakersFabbers.jpg")
+
+  %section#box3.about-flex
+    .image.image_wrapper-center.about-flex-child
+      =image_tag("3 StudentsSchools.jpg")
+    .copy.about-flex-child
+      .copy-container
+        %h3
+          =CopyService.about[:box3][:first].gsub(/\n/, '<br>').html_safe
+        = render 'shared/check_area', content: CopyService.about[:box3][:second].gsub(/\n/, '<br>').html_safe
+        = render 'shared/check_area', content: CopyService.about[:box3][:third].gsub(/\n/, '<br>').html_safe
+        = render 'shared/check_area', content: CopyService.about[:box3][:fourth].gsub(/\n/, '<br>').html_safe
+
+  %footer
+    %section.wrapped#footer
+      .about-flex
+        .about-flex-child
+          %h3
+            =CopyService.home[:footer][:first].gsub(/\n/, '<br>').html_safe
+          %p.text--intro
+            =CopyService.home[:footer][:second].gsub(/\n/, '<br>').html_safe
+        .about-flex-child
+          =link_to "#{CopyService.home[:footer][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--highlight'

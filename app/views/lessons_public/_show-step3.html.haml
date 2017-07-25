@@ -15,12 +15,13 @@
 
   #consolidated-space
     .wrapped
-      %section
-        %h4 [icon] Materials Needed
-        %ul
-          -@lesson.get_all_materials.each do |m|
-            %li
-              = "x#{m['number']} - #{m['name']}"
+      - if @lesson.get_all_materials.present? && @lesson.get_all_materials.first.present?  # weird... [nil].present? == true
+        %section
+          %h4 [icon] Materials Needed
+          %ul
+            -@lesson.get_all_materials.each do |m|
+              %li
+                = "x#{m['number']} - #{m['name']}"
       %section
         %h4 [icon] Tools Used
         %ul

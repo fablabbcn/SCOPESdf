@@ -187,15 +187,18 @@
 
 
   %section#blue1
-    .landing-contents-columns
-      .content
-        %h3
-          =CopyService.home[:blue1][:first].gsub(/\n/, '<br>').html_safe
-        %p.body-18-med
-          =CopyService.home[:blue1][:second].gsub(/\n/, '<br>').html_safe
-        %p
-          =CopyService.home[:blue1][:third].gsub(/\n/, '<br>').html_safe
-        =link_to "#{CopyService.home[:blue1][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--darkblue'
+    .landing-contents-row
+      .content-wrapper
+        .content
+          %h3
+            =CopyService.home[:blue1][:first].gsub(/\n/, '<br>').html_safe
+          %p.body-18-med
+            =CopyService.home[:blue1][:second].gsub(/\n/, '<br>').html_safe
+          %p
+            =CopyService.home[:blue1][:third].gsub(/\n/, '<br>').html_safe
+          =link_to "#{CopyService.home[:blue1][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--darkblue'
+      .image.image_wrapper-center.about-flex-child
+        =image_tag("solder.jpg")
 
 
   %section.wrapped#white3
@@ -246,7 +249,7 @@
   %footer
     %section.wrapped#footer
       .landing-contents-columns
-        .content
+        .content.instructions
           %h3
             =CopyService.home[:footer][:first].gsub(/\n/, '<br>').html_safe
           %p.text--intro
