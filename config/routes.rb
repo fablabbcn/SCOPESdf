@@ -19,8 +19,11 @@ Rails.application.routes.draw do
 
   delete 'lessons/:id/step/:step_id'   => 'lessons#delete_step'
 
-  post 'lessons/:id/file/:atr', to: 'lessons#file_upload', as: :lesson_file
+  #~~~~ Lesson Files
+  post 'lessons/:id/file', to: 'lessons#file_upload', as: :lesson_file
   delete 'lessons/:id/file', to: 'lessons#remove_file_upload', as: :delete_lesson_file
+  #~~~~~~~~~~
+
 
 
 
