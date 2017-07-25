@@ -5,7 +5,7 @@ class JqUploaderService
 
   def self.convert_to_jq_upload(carrier_item, lesson_id, symb)
     name = carrier_item.path.split("/").last
-    thumbnail = '' unless carrier_item.respond_to?(:thumb)
+    thumbnail = carrier_item.respond_to?(:thumb) ? carrier_item.thumb : "thumb.jpg"
     json_obj = {
         "name" => name,
         "size" => carrier_item.size,
