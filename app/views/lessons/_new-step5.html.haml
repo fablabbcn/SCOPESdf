@@ -22,7 +22,7 @@
           .field--image-gallery
             -(1..4).each do
               %figure
-                = link_to '<i class="icon icon--trash"></i><span>Delete</span>'.html_safe, "#"
+                = link_to '<i class="icon-Trash"></i><span>Delete</span>'.html_safe, "#", :class =>'action--delete'
                 = image_tag 'https://www.fillmurray.com/270/200'
                 %figcaption DSCF-0124.jpg
 

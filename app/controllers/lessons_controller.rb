@@ -102,7 +102,13 @@ class LessonsController < ApplicationController
 
 
   def publish
+    # check to make sure current user is owner and make inactive
+    # make sure passes validation
     render :json => {success: Lesson.find(params[:id]).publish!}, :status => 200
+  end
+  def delete
+    # check to make sure current user is owner and make inactive
+    render :json => {success: Lesson.find(params[:id]).hidden!}, :status => 200
   end
 
 
