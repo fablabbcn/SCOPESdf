@@ -2,9 +2,9 @@
   .wrapped
     %h3 New lesson
     .actions
-      = link_to 'Delete', '#', class: 'button button--inverse'
+      = link_to 'Delete', lesson_delete_path(id: @lesson_obj.id), class: 'button button--inverse'
       = link_to 'Save as draft', '#', class: 'button button--inverse'
-      = link_to 'Publish lesson', '#', class: 'button button--inverse button--disabled'
+      = link_to 'Publish lesson', lesson_publish_path(id: @lesson_obj.id), class: 'button button--inverse button--disabled'
 
 %nav.nav-secondary
   .wrapped

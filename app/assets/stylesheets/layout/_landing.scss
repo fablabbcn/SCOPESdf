@@ -115,16 +115,35 @@
     }
 
     &#blue1 {
-      min-height: 70vh;
-      .content {
-        text-align: left;
+      .landing-contents-row {
         display: flex;
-        flex-direction: column;
-        max-width: 400px;
-        .button {
-          width: 100%;
-          @include breakpoint($tablet-breakpoint) {
-            width: 150px;
+        flex-direction: column-reverse;
+        justify-content: center;
+        .image {
+          width: 100vw;
+        }
+        .content-wrapper {
+          width: 100vw;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .content {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            .button {
+              width: 100%;
+              @include breakpoint($tablet-breakpoint) {
+                width: 150px;
+              }
+            }
+          }
+        }
+        @include breakpoint($tablet-breakpoint) {
+          flex-direction: row;
+          .content-wrapper, .image {
+            width: 50vw;
           }
         }
       }
@@ -176,7 +195,12 @@
         align-items: center;
         justify-content: center;
       }
-
+      .instructions {
+        padding-bottom: 0;
+        @include breakpoint($tablet-breakpoint) {
+          padding: 3rem;
+        }
+      }
       .content {
         text-align: left;
         display: flex;
