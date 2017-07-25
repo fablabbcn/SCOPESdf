@@ -311,6 +311,13 @@ fieldset {
 
     position:relative;
 
+    a.action--delete {
+      opacity:.5;
+      transform:scale(0,0);
+      transition: transform .2s, opacity .2s;
+    }
+
+
     @include gallery(3 of 12);
     figcaption {
       margin-top:1em;
@@ -324,6 +331,12 @@ fieldset {
     }
 
     &:hover {
+
+      a.action--delete {
+        opacity:1;
+        transform:scale(1,1);
+      }
+
       img {
         box-shadow:0 0 0px 2px $color-blue-hi;
       }
@@ -331,6 +344,14 @@ fieldset {
 
     span.label {
       position:absolute;
+      top:1em;
+      left:1em;
+    }
+
+    a.action--delete {
+      position:absolute;
+      top:1em;
+      right:1em;
     }
 
   }
