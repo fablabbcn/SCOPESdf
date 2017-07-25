@@ -176,7 +176,7 @@ class LessonsController < ApplicationController
     # puts x.first.original_filename
 
     #id = Lesson.first.id
-    @lesson = Lesson.first
+    @lesson = Lesson.params[:id]
 
     files_hash = {}
     files_hash.merge!({assessment_criteria_files: file_params[:assessment_criteria_files]}) if file_params[:assessment_criteria_files].present?
@@ -204,6 +204,21 @@ class LessonsController < ApplicationController
     puts "carriers below"
     puts returning
     puts returning.inspect
+
+    respond_to do |format|
+      format.html {
+        render :json => returning.to_json,
+               :content_type => 'text/html',
+               :layout => false
+      }
+      format.json {
+        render :json => { :files => returning }
+      }
+    end
+  end
+
+  def file_upload_load
+
 
     respond_to do |format|
       format.html {
