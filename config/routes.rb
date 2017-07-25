@@ -8,11 +8,13 @@ Rails.application.routes.draw do
   post 'lessons/new'            => 'lessons#new', as: :lesson_create
   # the above line is strictly used for the weekend of the 13/7/2017 for submit on new page loads
 
-  post '/lessons/:id/publish' => 'lessons#publish'
 
   get 'lessons/test'  => 'lessons#test', as: :lesson_test
 
+  post '/lessons/:id/publish' => 'lessons#publis', as: :lesson_publish#--
   put  'lessons/:id'        => 'lessons#update'
+  delete 'lessons/:id' => 'lessons#delete', as: :lesson_delete #--
+
   post 'lessons/:id/step'   => 'lessons#add_step'
 
   delete 'lessons/:id/step/:step_id'   => 'lessons#delete_step'
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
 
 
   get 'lessons/:id'        => 'lessons_public#show', as: :lesson_view
-  get 'lessons/list'  => 'lessons_public#list', as: :lesson_list
+  get 'list/lessons'  => 'lessons_public#list', as: :lesson_list
 
 
 
@@ -34,6 +36,8 @@ Rails.application.routes.draw do
 
   get 'enter' =>  'visitors#enter', as: :enter
   post 'register' => 'visitors#register_interest', as: :register
+
+  get 'about' => 'visitors#about', as: :about
 
 
   post 'users/affiliate' => 'users#affiliate_organization_id'
