@@ -246,6 +246,12 @@ fieldset {
 
     }
 
+    & > .image-uploader-wrapper {
+      @include breakpoint($tablet-breakpoint){
+        @include span(9 of 12 last);
+      }
+    }
+
     &:hover {
       label {
         opacity:1;
@@ -267,7 +273,8 @@ fieldset {
 
   .field-group--support {
 
-    margin-top:2em;
+    margin-top:1em;
+    margin-bottom:.5em;
 
     label {
       float:none;
@@ -368,6 +375,28 @@ a.form--remove-element {
       small {
         text-align: left;
       }
+    }
+  }
+}
+
+
+.image-uploader-wrapper {
+  .dropzone {
+    background:$color-gray;
+    border:1px dashed $color-gray-outlines;
+    display:flex;
+    align-items:center;
+    height:6.5em;
+    padding:2em;
+    text-align: center;
+    box-sizing:border-box;
+
+    p {
+      width:100%;
+      margin:0;
+      line-height:1.2em;
+      font-size:.875rem;
+      color:$color-mid-gray;
     }
   }
 }
