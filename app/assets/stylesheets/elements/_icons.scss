@@ -978,7 +978,7 @@ $icon-Users: "\e986";
   }
 }
 
-.icon--close {
+.icon_close {
 
   &:before {
     content:"";
@@ -990,4 +990,30 @@ $icon-Users: "\e986";
 
   }
 }
+
+
+.icon_social {
+  width:24px;
+  height:24px;
+  display:inline-block;
+  text-indent:-999em;
+  overflow:hidden;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:100% 100%;
+
+  &.icon_slack {
+    background-image:url(icons/icon_slack.svg);
+  }
+
+  &.icon_twitter {
+    background-image:url(icons/icon_twitter.svg);
+  }
+
+  &.icon_facebook {
+    background-image:url(icons/icon_facebook.svg);
+  }
+
+}
+
 

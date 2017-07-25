@@ -147,9 +147,4 @@ $(document).on('turbolinks:load', function() {
   //   }
   // });
 
-
-    $(document).bind('drop dragover', function (e) {
-        e.preventDefault();
-    });
-
 });

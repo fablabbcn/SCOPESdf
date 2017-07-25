@@ -116,6 +116,10 @@ Drag &amp; drop files here - or click to browse
                 dropZones.removeClass('in hover');
             }, 100);
         });
+
+       $(document).bind('drop dragover', function (e) {
+            e.preventDefault();
+        });
         
         // 
         // Load existing files:
