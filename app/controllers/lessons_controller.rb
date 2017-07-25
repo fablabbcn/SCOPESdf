@@ -227,6 +227,21 @@ class LessonsController < ApplicationController
     end
   end
 
+  def file_upload_load
+
+
+    respond_to do |format|
+      format.html {
+        render :json => returning.to_json,
+               :content_type => 'text/html',
+               :layout => false
+      }
+      format.json {
+        render :json => { :files => returning }
+      }
+    end
+  end
+
   def remove_file_upload
     puts params.inspect
     @lesson = Lesson.find(params[:id])
