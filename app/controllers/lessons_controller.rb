@@ -176,7 +176,7 @@ class LessonsController < ApplicationController
     # puts x.first.original_filename
 
     #id = Lesson.first.id
-    @lesson = Lesson.params[:id]
+    @lesson = Lesson.find(params[:id])
 
     files_hash = {}
     files_hash.merge!({assessment_criteria_files: file_params[:assessment_criteria_files]}) if file_params[:assessment_criteria_files].present?
@@ -228,7 +228,20 @@ class LessonsController < ApplicationController
   end
 
   def file_upload_load
+    @lesson = Lesson.find(params[:id])
 
+    returning = []
+
+    if file_params[:attr] == "assessment_criteria_files"
+        @lesson.assessment_criteria_files.map{|x|
+          returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
+        }
+    elsif
+      file_params[:attr] == "outcome_files"
+        @lesson.outcome_files.map{|x|
+          returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
+        }
+    end
 
     respond_to do |format|
       format.html {
@@ -264,7 +277,7 @@ class LessonsController < ApplicationController
 
 
   def file_params
-    params.permit(:id, :assessment_criteria_files => [], :outcome_files => [])
+    params.permit(:id, :attr, :assessment_criteria_files => [], :outcome_files => [])
   end
   def remove_file_params
     params.permit(:name, :attr)

@@ -80,7 +80,7 @@
 
 
 <script type="text/javascript" charset="utf-8">
-    $(function () {
+    $(document).ready(function () {
         // Initialize the jQuery File Upload widget:
         $('#fileupload').fileupload();
         // 
@@ -90,7 +90,7 @@
 
           console.log(files);
 
-          var fu = $('#fileupload').data('fileupload'), 
+          var fu = $('#fileupload').data('fileupload'),
             template;
           fu._adjustMaxNumberOfFiles(-files.length);
           template = fu._renderDownload(files)
