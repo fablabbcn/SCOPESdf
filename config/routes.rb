@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   post '/lessons/:id/publish' => 'lessons#publish'
 
+  get 'lessons/test'  => 'lessons#test', as: :lesson_test
 
   put  'lessons/:id'        => 'lessons#update'
   post 'lessons/:id/step'   => 'lessons#add_step'

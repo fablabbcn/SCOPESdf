@@ -125,6 +125,7 @@ $(document).on('turbolinks:load', function() {
 
   $('#form').fileupload({
     dataType: 'script',
+    autoUpload: true,
     add(e, data) {
       const types = /(\.|\/)(gif|jpe?g|png|mov|mpeg|mpeg4|avi)$/i;
       const file = data.files[0];
@@ -143,25 +144,6 @@ $(document).on('turbolinks:load', function() {
       }
     }
   });
-
-    /*
-    $('#form').fileupload();
-        dropZone: $('#dropzone');
-        // 
-        // Load existing files:
-        $.getJSON($('#form').prop('action'), function (files) {
-          var fu = $('#form').data('fileupload'), 
-            template;
-          fu._adjustMaxNumberOfFiles(-files.length);
-          template = fu._renderDownload(files)
-            .appendTo($('#form .files'));
-          // Force reflow:
-          fu._reflow = fu._transition && template.length &&
-            template[0].offsetWidth;
-          template.addClass('in');
-          $('#loading').remove();
-    });
-  */
 
 
     $(document).bind('drop dragover', function (e) {
