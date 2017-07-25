@@ -306,7 +306,11 @@ fieldset {
 .field--image-gallery {
   margin-top:2em;
   @include clearfix;
+
   figure {
+
+    position:relative;
+
     @include gallery(3 of 12);
     figcaption {
       margin-top:1em;
@@ -321,8 +325,12 @@ fieldset {
 
     &:hover {
       img {
-        box-shadow:0 0 0px 2px $color-yellow;
+        box-shadow:0 0 0px 2px $color-blue-hi;
       }
+    }
+
+    span.label {
+      position:absolute;
     }
 
   }

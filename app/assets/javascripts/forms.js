@@ -120,6 +120,8 @@ $(document).on('turbolinks:load', function() {
         $elem.insertAfter($('.lesson--standard-wrapper').last());
     });
 
+    $('.lesson--steps .field--image-gallery figure:first-child').prepend('<span class="label label--dark">Cover image</span>');
+
     /** Upload images **/
 
 

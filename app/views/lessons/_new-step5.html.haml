@@ -18,11 +18,11 @@
 
             = file_field_tag 'outcome_files[]', multiple: true, class: 'form--file-uploader'
 
-
         .field-group
           .field--image-gallery
             -(1..4).each do
               %figure
+                = link_to '<i class="icon icon--trash"></i><span>Delete</span>'.html_safe, "#"
                 = image_tag 'https://www.fillmurray.com/270/200'
                 %figcaption DSCF-0124.jpg
 
