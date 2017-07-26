@@ -49,11 +49,12 @@
       emptyResult: 'Empty file upload result'
     };
 
+-# @TODO don't dry all the time
 
 %script#template-upload{:type => "text/html"}
   :plain
     {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
-      <figure>
+      <figure data-src="{%=file.url%}" data-filename="{%=file.name%}">
         {% if (file.error) { %}
         <span class="label important">Error</span> {%=fileUploadErrors[file.error] || file.error%}
         {% } else { %}
@@ -72,7 +73,7 @@
 %script#template-download{:type => "text/html"}
   :plain
     {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
-    <figure>
+    <figure data-src="{%=file.url%}" data-filename="{%=file.name%}">
       {% if (file.error) { %}
       <span class="label important">Error</span> {%=fileUploadErrors[file.error] || file.error%}
       {% } else { %}
@@ -86,7 +87,7 @@
 
 %script#template-teaser{:type => "text/html"}
   :plain 
-    <figure>
+    <figure data-src="{%=o.url%}" data-filename="{%=o.name%}">
       <a href="{%= o.delete_url %}" class="action--delete"><i class="icon-Trash"></i><span>Delete</span></a>
         <div class="image--container" style="background-image:url({%=o.url%});"></div>
       <figcaption>{%=o.name %}</figcaption>
@@ -100,6 +101,8 @@
           $.each(key, function(index,file){
             var content = tmpl('template-teaser');
             $('.field--image-gallery').append(tmpl('template-teaser',file));
+            $('span.label--cover-image').remove();
+            $('.lesson--steps .field--image-gallery figure:first-child').prepend('<span class="label label--dark label--cover-image">Cover image</span>');
           });
         });
       

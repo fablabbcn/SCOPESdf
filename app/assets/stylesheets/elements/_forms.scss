@@ -310,6 +310,19 @@ fieldset {
   figure {
 
     position:relative;
+    width:265px;
+    height:210px;
+    box-sizing:border-box;
+    float:left;
+    margin:.3em;
+    margin-bottom:2em;
+
+    &.ui-sortable-helper {
+      a.action--delete,
+      .label--cover-image {
+        display:none;
+      }
+    }
 
     a.action--delete {
       opacity:.5;
@@ -327,7 +340,7 @@ fieldset {
       background-position:center center;
     }
 
-    @include gallery(3 of 12);
+    //@include gallery(3 of 12);
 
 
     figcaption {
@@ -343,12 +356,10 @@ fieldset {
     }
 
     &:hover {
-
       a.action--delete {
         opacity:1;
         transform:scale(1,1);
       }
-
       .image--container {
         box-shadow:0 0 2px 1px $color-blue-hi;
       }
