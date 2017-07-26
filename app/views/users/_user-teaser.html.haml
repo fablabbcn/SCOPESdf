@@ -3,5 +3,6 @@
     =image_tag 'https://www.fillmurray.com/100/100' # u.avatar path
   .details
     %p
-      = u.name
-      %em Role or description
+      = user.name
+      %em
+        =user.getInvolvements.join("")

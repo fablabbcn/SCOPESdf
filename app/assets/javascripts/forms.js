@@ -4,8 +4,6 @@ $(document).on('turbolinks:load', function() {
         $('#new-user-modal').modal('show', {backdrop: 'static'});
     });
 
-    // $('[data-control="key"]').wrap('<div class="clone-container"></div>');
-
 
     $('fieldset').on("keypress", '[data-control="key"]', function (e) {
         if (e.charCode == 13) { // enter key
@@ -31,7 +29,6 @@ $(document).on('turbolinks:load', function() {
             }
         }
     });
-
     $('fieldset').on("keydown", '[data-control="key"]', function (e) {
         var key = e.keyCode || e.charCode;
         // console.log($(this).data());
@@ -47,6 +44,63 @@ $(document).on('turbolinks:load', function() {
             }
         }
     });
+
+
+    $('fieldset').on("keypress", '[data-control="key-pair"]', function (e) {
+        if (e.charCode == 13) { // enter key
+            e.preventDefault();
+            for (i = 0; i < $('[data-control="key-pair"]').length; i++) {
+                if ($('[data-control="key-pair"]').eq(i).val().length == 0) {
+                    return; // don't wanna clone empty elements
+                }
+            }
+            $parent = $(this).parent().parent().clone(true,true);
+            $parent.find('input').eq(0).attr('data-sub', $(this).data('sub')+1);
+            $parent.find('input').eq(1).attr('data-sub', $(this).data('sub')+1);
+
+            $parent.find('input').eq(0).val('');
+            $parent.find('input').eq(1).val('');
+
+
+            $parent.insertAfter($(this).parent().parent());
+
+            // $elem = $(this).clone(true, true);
+            // $elem.val('');
+            // $elem.appendTo($(this).parent());
+            // $elem.focus();
+        }
+    });
+    $('fieldset').on('focusout', '[data-control="key-pair"]', function (e) {
+        if( $(this).val().length == 0 && $('[data-control="key-pair"]').length > 2) {
+            console.log('focus delete');
+            // if current pair is empty then pop
+            //error gets created... race condition with keydown
+            console.log($(this).parent().parent().find('input'));
+            var sib1 = $(this).parent().parent().find('input').eq(0);
+            var sib2 = $(this).parent().parent().find('input').eq(2);
+
+            if (sib1.val().length + sib2.val().length > 0) {
+                $(this).parent.remove().parent();
+            }
+        }
+    });
+    // $('fieldset').on("keydown", '[data-control="key-pair"]', function (e) {
+    //     var key = e.keyCode || e.charCode;
+    //     // console.log($(this).data());
+    //     if (key == 8 || key == 46) { // delete made
+    //         if( ($(this).val().length > 0)  || $(this).siblings('[data-control="key-pair"]').length == 0 ){
+    //             return; //do nothing
+    //         }
+    //         console.log('key delete');
+    //         $(this).prev().focus();
+    //         //error gets created... race condition with keydown
+    //         if ($(this).length > 0) {
+    //             $(this).remove();
+    //         }
+    //     }
+    // });
+
+
 
   $('#other-user-emails').click(function(e){
     e.preventDefault();

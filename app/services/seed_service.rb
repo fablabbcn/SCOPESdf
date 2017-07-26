@@ -20,12 +20,12 @@ class SeedService
           user.password = Rails.application.secrets.admin_password
           user.password_confirmation = Rails.application.secrets.admin_password
           user.name = "SCOPES-df Team"
-          user.name = "SCOPES team bio should be here"
+          user.bio = "SCOPES team bio should be here"
           user.user!
       end
       self.place()
       user.addOrg(Organization.first, false)
-      user.setInvolvements(["classroom teacher"])
+      user.save!
       user
     end
     def user

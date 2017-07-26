@@ -1,19 +1,15 @@
--#%h3 Welcome
--#%p
--#  = link_to 'Users:', users_path
--#  = User.count
--#  registered
-
 .landing-page
   %section#top
-    .content
-      %h1
-        =CopyService.home[:top][:first].gsub(/\n/, '<br>').html_safe
-      %h3
-        =CopyService.home[:top][:second].gsub(/\n/, '<br>').html_safe
-      %p
-        =CopyService.home[:top][:third].gsub(/\n/, '<br>').html_safe
-    =link_to "#{CopyService.home[:top][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--call'
+    .content-wrapper
+      .content.wrapped
+        %h1
+          =CopyService.home[:top][:first].gsub(/\n/, '<br>').html_safe
+        %h3
+          =CopyService.home[:top][:second].gsub(/\n/, '<br>').html_safe
+        %p
+          =CopyService.home[:top][:third].gsub(/\n/, '<br>').html_safe
+        .wrapper
+          =link_to "#{CopyService.home[:top][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--call'
 
 
   %section.wrapped#white1
