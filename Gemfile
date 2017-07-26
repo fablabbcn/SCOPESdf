@@ -33,7 +33,6 @@ gem 'option'
 gem 'rb-readline'
 
 gem 'carrierwave', '~> 1.0' # file form
-gem 'mini_magick'
 gem 'fog'
 gem 'fog-aws'
 
@@ -41,6 +40,7 @@ gem 'link_thumbnailer'
 gem 'video_thumb'
 
 gem 'kaminari'
+gem 'mini_magick'
 
 group :development do
   gem 'web-console'

@@ -6,7 +6,7 @@
 -#  = file_field_tag 'files[]', multiple: true
 -#  = submit_tag("Submit")
 
-= form_tag(lesson_file_path(id: 1, atr: "this"), method: "post", multipart: true) do
+= form_tag(lesson_file_test_path(id: 1, atr: "this"), method: "post", multipart: true) do
   = text_field(:lesson, :name)
-  = file_field_tag 'assessment_criteria_files[]', multiple: true
+  = file_field_tag 'outcome_files[]', multiple: true
   = submit_tag("Submit")

@@ -33,8 +33,7 @@ Rails.application.routes.draw do
 
 
   get 'file_form'         => 'visitors#form'
-  
-  post 'file_upload'      => 'visitors#file_form_upload'
+  post 'file_upload'      => 'visitors#file_form_upload',  as: :lesson_file_test
 
 
   get 'enter' =>  'visitors#enter', as: :enter

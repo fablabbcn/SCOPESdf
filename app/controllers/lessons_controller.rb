@@ -196,8 +196,7 @@ class LessonsController < ApplicationController
       }
       for i in 0..uploaded_acf.count-1
         x = @lesson.assessment_criteria_files[i]
-        puts x.inspect
-        puts x.path
+        @lesson.reload
         returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
       end
     elsif files_hash[:outcome_files].present?
@@ -206,7 +205,8 @@ class LessonsController < ApplicationController
       }
       puts uploaded_of.count
       for i in 0..uploaded_of.count-1
-        x = @lesson.assessment_criteria_files[i]
+        @lesson.reload
+        x = @lesson.outcome_files[i]
         returning.append (JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
       end
     end
@@ -257,9 +257,12 @@ class LessonsController < ApplicationController
   end
 
   def remove_file_upload
+    puts "prepping for delete"
     puts params.inspect
     @lesson = Lesson.find(params[:id])
-    @lesson.removeFileWithName(remove_file_params[:attr].to_sym, remove_file_params[:name])
+    status = @lesson.removeFileWithName(remove_file_params[:attr].to_sym, remove_file_params[:name])
+    puts "finished for delete"
+    render :json => {status: status}, location: @Uploaded
   end
 
 

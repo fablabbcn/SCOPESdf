@@ -5,12 +5,12 @@ class JqUploaderService
 
   def self.convert_to_jq_upload(carrier_item, lesson_id, symb)
     name = carrier_item.path.split("/").last
-    thumbnail = carrier_item.respond_to?(:thumb) ? carrier_item.thumb : "thumb.jpg"
+    thumbnail =  carrier_item.url.to_s
     json_obj = {
         "name" => name,
         "size" => carrier_item.size,
         "url" => carrier_item.url,
-        "thumbnail_url" => thumbnail,
+        "thumbnail_url" => carrier_item.url,
         "delete_url" => "/lessons/#{lesson_id}/file/?name=#{name}&attr=#{symb}",
         "delete_type" => "DELETE"
     }

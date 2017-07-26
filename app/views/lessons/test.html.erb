@@ -1,5 +1,6 @@
 <h2><%= t('photos.title') %></h2>
 <%= form_tag(lesson_file_path(id: 'af3e2464-1388-46fe-b927-c639f974a043', attr:"outcome_files"), method: :post, multipart: true, id:"fileupload") do |f| %>
+<div class="files"></div>
   <div class="row">
     <div class="span16 fileupload-buttonbar">
       <div class="progressbar fileupload-progressbar nofade"><div style="width:0%;"></div></div>
@@ -81,27 +82,27 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).on('turbolinks:load', function() {
-        // Initialize the jQuery File Upload widget:
-        $('#fileupload').fileupload();
-        // 
-        // Load existing files:
-        
-        $.getJSON($('#fileupload').prop('action'), function (files) {
+            // Initialize the jQuery File Upload widget:
+            $('#fileupload').fileupload({autoUpload: true});
+            //
+            // Load existing files:
 
-          console.log(files);
+            $.getJSON($('#fileupload').prop('action'), function (files) {
 
-          var fu = $('#fileupload').data('blueimpFileupload'),
-            template;
-          fu._adjustMaxNumberOfFiles(-files.length);
-          template = fu._renderDownload(files)
-            .appendTo($('#fileupload .files'));
-          // Force reflow:
-          fu._reflow = fu._transition && template.length &&
-            template[0].offsetWidth;
-          template.addClass('in');
-          $('#loading').remove();
-        });
-        
+                console.log(files);
+
+//                var fu = $('#fileupload').data('fileupload'),
+//                    template;
+//                fu._adjustMaxNumberOfFiles(-files.length);
+//                template = fu._renderDownload(files)
+//                    .appendTo($('#fileupload .files'));
+//                // Force reflow:
+//                fu._reflow = fu._transition && template.length &&
+//                    template[0].offsetWidth;
+//                template.addClass('in');
+//                $('#loading').remove();
+            });
+
 
     });
 </script>

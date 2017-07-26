@@ -136,25 +136,26 @@ class Lesson < ApplicationRecord
     self.lesson_tags << LessonTag.new(taggable: student)
     self.lesson_tags << LessonTag.new(taggable: educator)
   end
+
   def getDifficultyLevel
     self.lesson_tags.where(taggable_type: "DifficultyLevel").map {|x| y = x.taggable; {metric: y.metric, level: y.level}}
   end
+
   def removeDifficultyLevels
     self.lesson_tags.where(taggable_type: "DifficultyLevel").destroy_all
   end
+
   def student_difficulty
     student = {}
-    self.getDifficultyLevel.map{|x| student = x if x[:metric] == "students"}
+    self.getDifficultyLevel.map {|x| student = x if x[:metric] == "students"}
     return student
   end
+
   def educator_difficulty
     educator = {}
-    self.getDifficultyLevel.map{|x| educator = x if x[:metric] == "educator"}
+    self.getDifficultyLevel.map {|x| educator = x if x[:metric] == "educator"}
     return educator
   end
-
-
-
 
 
   def setSkillsLevels(hash_array) # [{name, level}]
@@ -269,12 +270,16 @@ class Lesson < ApplicationRecord
     case sym
       when :assessment_criteria
         # puts "assessment saving"
-        self.assessment_criteria_files = file
+        collection = self.assessment_criteria_files
+        collection += file
+        self.assessment_criteria_files = collection
         self.save!
         self.reload
         returnable = self.assessment_criteria_files.map {|x| x.url}
       when :outcome
-        self.outcome_files = file
+        collection = self.outcome_files
+        collection += file
+        self.outcome_files = collection
         self.save!
         self.reload
         returnable = self.outcome_files.map {|x| x.url}
@@ -312,7 +317,11 @@ class Lesson < ApplicationRecord
         remain_files = self.assessment_criteria_files # copy the array
         deleted_file = remain_files.delete_at(index) # delete the target image
         deleted_file.try(:remove!) # delete image from S3
-        self.assessment_criteria_files = remain_files # re-assign back
+        if remain_files.empty?
+          self.removeFiles(:assessment_criteria)
+        else
+          self.assessment_criteria_files = remain_files # re-assign back
+        end
         self.assessment_criteria_files_will_change!
         self.save!; self.reload
         returnable = true
@@ -324,11 +333,17 @@ class Lesson < ApplicationRecord
           end
         }
         # puts index
+
         remain_files = self.outcome_files # copy the array
         deleted_file = remain_files.delete_at(index) # delete the target image
         deleted_file.try(:remove!) # delete image from S3
-        self.outcome_files = remain_files # re-assign back
+        if remain_files.empty?
+          self.removeFiles(:outcome)
+        else
+          self.outcome_files = remain_files # re-assign back
+        end
         self.outcome_files_will_change!
+        puts "running outcome"
         self.save!; self.reload
         returnable = true
     end
@@ -364,7 +379,6 @@ class Lesson < ApplicationRecord
   end
 
 
-
   # todo - make search ( for visible only )
 
 
@@ -381,26 +395,30 @@ class Lesson < ApplicationRecord
       end
     }
   end
+
   def totalDuration
     sum = 0
     self.steps.map {|x| sum += x.duration}
     sum
   end
+
   def standards_array
     self.standards["standards"] if self.standards.present?
   end
+
   def stats
     {likes: self.likes.count, forks: Lesson.where(original_lesson: self.id).count}
   end
+
   def get_all_materials
     total_steps = []
-    steps.map{ |s| total_steps.push(s.materials)}
+    steps.map {|s| total_steps.push(s.materials)}
     total_steps.flatten
   end
-  def get_all_tools
-    steps.map{ |s| s.tools}.flatten
-  end
 
+  def get_all_tools
+    steps.map {|s| s.tools}.flatten
+  end
 
 
   def publishable_values
