@@ -10,19 +10,21 @@ class SeedService
       CollectionTag.seed
     end
 
-    def l_tags
-      self.essentials
-      Subject.new(name:"Technology").save!
-    end
+    # def l_tags
+    #   self.essentials
+    #   Subject.new(name:"Technology").save!
+    # end
     def admin
       self.essentials
       user = User.find_or_create_by!(email: Rails.application.secrets.admin_email) do |user|
           user.password = Rails.application.secrets.admin_password
           user.password_confirmation = Rails.application.secrets.admin_password
+          user.name = "SCOPES-df Team"
+          user.name = "SCOPES team bio should be here"
           user.user!
       end
       self.place()
-      ##user.addOrg(Organization.first, false)
+      user.addOrg(Organization.first, false)
       user
     end
     def user
@@ -35,15 +37,18 @@ class SeedService
       user.setInvolvements(["classroom teacher"])
     end
     def place
-      place = Organization.find_or_create_by!(name: "Fab Kindergarden") do |x|
-        x.name = "Fab Kindergarden"
-        x.desc = "Fab ninos, sponsored by Gerber and Russia"
-        x.address_line1 = "123 Broadway Stree"
-        x.address_line2 = "APT 1337"
-        x.locality = "New York"
-        x.post_code = "10010"
+      place = Organization.find_or_create_by!(name: "Fab Foundation") do |x|
+        x.name = "Fab Foundation"
+        x.desc = "Formed in 2009 to facilitate and support the growth of the international fab lab network as well as the development of regional capacity-building organizations. The Fab Foundation is a US non-profit 501(c) 3 organization that emerged from MIT’s Center for Bits & Atoms Fab Lab Program. Our mission is to provide access to the tools, the knowledge and the financial means to educate, innovate and invent using technology and digital fabrication to allow anyone to make (almost) anything, and thereby creating opportunities to improve lives and livelihoods around the world. Community organizations, educational institutions and non-profit concerns are our primary beneficiaries.
+The Foundation’s programs focus on: education (.edu), organizational capacity building and services (.org), and business opportunity (.com)."
+
+        x.address_line1 = "50 Milk Street"
+        x.address_line2 = ""
+        x.locality = "Boston"
+        x.post_code = "02109"
         x.country = "USA"
-        x.setPoints(40.748440,-73.985643)
+        x.setPoints(-71.057521,42.356978)
+        place.validated!
       end
       User.first.addOrg(Organization.first, true)
     end

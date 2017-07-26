@@ -41,7 +41,7 @@
             .field-wrapper
 
               .user--teaser-wrapper
-                = render '/users/user-teaser';
+                = render '/users/user-teaser', user: User.first # UPDATE THIS TODO --
                 .form--actions-related
                   -#%button.button--highlight Invite to SCOPES
                   -#%a.form--remove-element{href:'#'}
