@@ -1,3 +1,14 @@
+var fileUploadErrors = {
+  maxFileSize: 'File is too big',
+  minFileSize: 'File is too small',
+  acceptFileTypes: 'Filetype not allowed',
+  maxNumberOfFiles: 'Max number of files exceeded',
+  uploadedBytes: 'Uploaded bytes exceed file size',
+  emptyResult: 'Empty file upload result'
+};
+
+
+
 $(document).on('turbolinks:load', function() {
   $('#other-user-emails').click(function (e) {
       e.preventDefault();
@@ -134,9 +145,36 @@ $(document).on('turbolinks:load', function() {
         dropZone: $('.dropzone'),
     });
 
+    // Specific for lesson 1
+
+    $('#lesson_form_1').fileupload({
+        autoUpload:true,
+        dropZone: $('.dropzone'),
+        url:$('#lesson_form_1 .image-uploader-wrapper').data('endpoint')
+    });
+
+
+    $.getJSON($('#lesson_form_1 .image-uploader-wrapper').data('endpoint'), function (files) {
+      $.each(files, function(index,key){
+          $.each(key, function(index,file){
+            $('#lesson_form_1 .image-uploader-wrapper').parent().find('.files').append('<span><a href="'+file.url+'">'+file.name+'</a><a href="#" data-delete="'+file.delete_url+'">x</a></span>');
+
+
+            $.ajax({
+              url:file.delete_url,
+              type:'DELETE',
+              success: function(result){
+                // @TODO DELETE WHEN HITTING BUTTON
+                //console.log('by bye' + file.name)
+              }
+            });
+
+          });
+        });
+    });
 
     $(".dropzone").on("click",function(){
-      $("#fileupload input[type='file']").trigger('click');
+      $(this).parent().parent().find("input[type='file']").trigger('click');
     });
 
 
