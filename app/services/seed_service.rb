@@ -25,6 +25,7 @@ class SeedService
       end
       self.place()
       user.addOrg(Organization.first, false)
+      user.setInvolvements(["classroom teacher"])
       user
     end
     def user
@@ -41,16 +42,14 @@ class SeedService
         x.name = "Fab Foundation"
         x.desc = "Formed in 2009 to facilitate and support the growth of the international fab lab network as well as the development of regional capacity-building organizations. The Fab Foundation is a US non-profit 501(c) 3 organization that emerged from MIT’s Center for Bits & Atoms Fab Lab Program. Our mission is to provide access to the tools, the knowledge and the financial means to educate, innovate and invent using technology and digital fabrication to allow anyone to make (almost) anything, and thereby creating opportunities to improve lives and livelihoods around the world. Community organizations, educational institutions and non-profit concerns are our primary beneficiaries.
 The Foundation’s programs focus on: education (.edu), organizational capacity building and services (.org), and business opportunity (.com)."
-
-        x.address_line1 = "50 Milk Street"
-        x.address_line2 = ""
+        x.address_line1 = "Milk Street"
+        x.address_line2 = "50"
         x.locality = "Boston"
         x.post_code = "02109"
         x.country = "USA"
-        x.setPoints(-71.057521,42.356978)
-        place.validated!
       end
-      User.first.addOrg(Organization.first, true)
+      place.setPoints(-71.057521,42.356978)
+      place.validated!
     end
 
     def lesson
@@ -120,7 +119,7 @@ The Foundation’s programs focus on: education (.edu), organizational capacity 
                 ],
                 context:
                     ["In Classroom", "Outdoors"],
-                collection_tag: "Gold Standard Lesson",
+                collection_tag: "fab certified/tested",
                 tags:
                     ["Pinball"]
             }

@@ -223,7 +223,7 @@ class Lesson < ApplicationRecord
 
 
   def setCollectionTag(string)
-    ct = CollectionTag.find_or_create_by(name: string.downcase)
+    ct = CollectionTag.where(name: string.downcase).first
     self.lesson_tags << LessonTag.new(taggable: ct)
   end
 
