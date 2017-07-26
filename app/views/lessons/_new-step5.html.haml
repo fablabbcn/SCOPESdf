@@ -1,4 +1,4 @@
-= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:5), method: "post", multipart: true, id:"form") do
+= form_tag(lesson_file_path(id: @lesson_obj.id, attr:"outcome_files"), method: "post", multipart: true, id:"fileupload", ) do
   %article
     .wrapped
       %fieldset
@@ -8,7 +8,7 @@
         .field-group
           %label
             Add images
-            %small Guideliens for images
+            %small Guidelines for images
             -# @TODO add little info icon and tooltip with information
           .image-uploader-wrapper
             .dropzone
@@ -18,13 +18,18 @@
 
             = file_field_tag 'outcome_files[]', multiple: true, class: 'form--file-uploader'
 
+
+
+      .loading
+
+
         .field-group
-          .field--image-gallery
-            -(1..4).each do
-              %figure
-                = link_to '<i class="icon-Trash"></i><span>Delete</span>'.html_safe, "#", :class =>'action--delete'
-                = image_tag 'https://www.fillmurray.com/270/200'
-                %figcaption DSCF-0124.jpg
+          .field--image-gallery.files
+            -#(1..4).each do
+            -#  %figure
+            -#    = link_to '<i class="icon-Trash"></i><span>Delete</span>'.html_safe, "#", :class =>'action--delete'
+            -#    = image_tag 'https://www.fillmurray.com/270/200'
+            -#    %figcaption DSCF-0124.jpg
 
     %footer
       .wrapped
@@ -32,7 +37,75 @@
         -#=link_to 'Publish lesson', '#', class: 'button button--highlight'
         = submit_tag('Publish lesson', class: 'button button--call')
 
-%script#template-upload{:type => "text/x-tmpl"}
-  :cdata
-    <div class="upload">{%=o.name%}<div class="progress"><div class="bar" style="width: 0%"></div></div></div> 
+
+%script
+  :plain
+    var fileUploadErrors = {
+      maxFileSize: 'File is too big',
+      minFileSize: 'File is too small',
+      acceptFileTypes: 'Filetype not allowed',
+      maxNumberOfFiles: 'Max number of files exceeded',
+      uploadedBytes: 'Uploaded bytes exceed file size',
+      emptyResult: 'Empty file upload result'
+    };
+
+-# @TODO don't dry all the time
+
+%script#template-upload{:type => "text/html"}
+  :plain
+    {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
+      <figure data-src="{%=file.url%}" data-filename="{%=file.name%}">
+        {% if (file.error) { %}
+        <span class="label important">Error</span> {%=fileUploadErrors[file.error] || file.error%}
+        {% } else { %}
+
+        <a href="{%=file.delete_url%}" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}" class="action--delete"><i class="icon-Trash"></i><span>Delete</span></a>
+        <div class="image--container" style="background-image:url({%=o.url%});"></div>
+
+        <figcaption>
+          {%=file.name%}
+        </figcaption>
+      {% } %}
+      
+      </figure>
+    {% } %}
+
+%script#template-download{:type => "text/html"}
+  :plain
+    {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
+    <figure data-src="{%=file.url%}" data-filename="{%=file.name%}">
+      {% if (file.error) { %}
+      <span class="label important">Error</span> {%=fileUploadErrors[file.error] || file.error%}
+      {% } else { %}
+
+      <a href="{%=file.delete_url%}" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}" class="action--delete"><i class="icon-Trash"></i><span>Delete</span></a>
+      <div class="image--container" style="background-image:url({%=o.url%});"></div>
+    {% } %}
+
+    </figure>
+    {% } %}
+
+%script#template-teaser{:type => "text/html"}
+  :plain 
+    <figure data-src="{%=o.url%}" data-filename="{%=o.name%}">
+      <a href="{%= o.delete_url %}" class="action--delete"><i class="icon-Trash"></i><span>Delete</span></a>
+        <div class="image--container" style="background-image:url({%=o.url%});"></div>
+      <figcaption>{%=o.name %}</figcaption>
+    </figure>
+
+%script
+  :plain
+    $(document).on('turbolinks:load', function() {
+      $.getJSON($('#fileupload').prop('action'), function (files) {
+        $.each(files, function(index,key){
+          $.each(key, function(index,file){
+            var content = tmpl('template-teaser');
+            $('.field--image-gallery').append(tmpl('template-teaser',file));
+            $('span.label--cover-image').remove();
+            $('.lesson--steps .field--image-gallery figure:first-child').prepend('<span class="label label--dark label--cover-image">Cover image</span>');
+          });
+        });
+      
+      });
+    });
 

@@ -1,8 +1,8 @@
 $(document).on('turbolinks:load', function() {
-    $('#other-user-emails').click(function (e) {
-        e.preventDefault();
-        $('#new-user-modal').modal('show', {backdrop: 'static'});
-    });
+  $('#other-user-emails').click(function (e) {
+      e.preventDefault();
+      $('#new-user-modal').modal('show', {backdrop: 'static'});
+  });
 
 
     $('fieldset').on("keypress", '[data-control="key"]', function (e) {
@@ -33,7 +33,7 @@ $(document).on('turbolinks:load', function() {
         var key = e.keyCode || e.charCode;
         // console.log($(this).data());
         if (key == 8 || key == 46) { // delete made
-            if( ($(this).val().length > 0)  || $(this).siblings('[data-control="key"]').length == 0 ){
+            if (($(this).val().length > 0) || $(this).siblings('[data-control="key"]').length == 0) {
                 return; //do nothing
             }
             console.log('key delete');
@@ -44,6 +44,32 @@ $(document).on('turbolinks:load', function() {
             }
         }
     });
+  $('fieldset').on('focusout', '[data-control="key"]', function (e) {
+      if ($(this).val().length == 0 && $(this).siblings('[data-control="key"]').length > 1) {
+          console.log('focus delete');
+
+          //error gets created... race condition with keydown
+          if ($(this).length > 0) {
+              $(this).remove();
+          }
+      }
+  });
+
+  $('fieldset').on("keydown", '[data-control="key"]', function (e) {
+      var key = e.keyCode || e.charCode;
+      // console.log($(this).data());
+      if (key == 8 || key == 46) { // delete made
+          if( ($(this).val().length > 0)  || $(this).siblings('[data-control="key"]').length == 0 ){
+              return; //do nothing
+          }
+          console.log('key delete');
+          $(this).prev().focus();
+          //error gets created... race condition with keydown
+          if ($(this).length > 0) {
+              $(this).remove();
+          }
+      }
+  });
 
 
     $('fieldset').on("keypress", '[data-control="key-pair"]', function (e) {
@@ -122,83 +148,112 @@ $(document).on('turbolinks:load', function() {
   });
 
 
-    /* Character counter in every textarea */
+  /* Character counter in every textarea but short ones */
 
-    var textareaLimit = 800;
-    $('.lesson--steps textarea:not(".textarea--short")').parent().append('<div class="textarea--counter"><em>0</em>/<span></span></div>');
+  var textareaLimit = 800;
+  $('.lesson--steps textarea:not(".textarea--short")').parent().append('<div class="textarea--counter"><em>0</em>/<span></span></div>');
 
-    $('.textarea--counter span').text(textareaLimit);
+  $('.textarea--counter span').text(textareaLimit);
 
-    $('.lesson--steps textarea').on('keyup', function(e) {
-        var characters = $(this).val().length;
-        var lessText = "";
-        if (characters >= textareaLimit) {
-            e.preventDefault();
-            lessText = $(this).val();
-            $(this).val(lessText.substring(0,800));
-        }
-        $(this).parent().find('.textarea--counter em').text($(this).val().length);
+  $('.lesson--steps textarea').on('keyup', function(e) {
+      var characters = $(this).val().length;
+      var lessText = "";
+      if (characters >= textareaLimit) {
+          e.preventDefault();
+          lessText = $(this).val();
+          $(this).val(lessText.substring(0,800));
+      }
+      $(this).parent().find('.textarea--counter em').text($(this).val().length);
   });
 
 
-// Dynamic
-    $('fieldset').on("click", '.delete-standard', function () {
-        index = $(this).data('order');
-        console.log(index);
-        if ($('.lesson--standard-wrapper').length > 1) {
-            console.log('running');
-            $('.lesson--standard-wrapper').get(index).remove();
-            lst_index = $('.lesson--standard-wrapper').length;
-            for (i = 0; i < lst_index; i++) {
-                $elem = $('.lesson--standard-wrapper').eq(i);
-                $elem.find("h4").text('Standard ' + (lst_index));
-                $elem.find(".delete-standard").attr("data-order", lst_index - 1);
-            }
-        }
-    });
+  // Dynamic
+  $('fieldset').on("click", '.delete-standard', function () {
+      index = $(this).data('order');
+      console.log(index);
+      if ($('.lesson--standard-wrapper').length > 1) {
+          console.log('running');
+          $('.lesson--standard-wrapper').get(index).remove();
+          lst_index = $('.lesson--standard-wrapper').length;
+          for (i = 0; i < lst_index; i++) {
+              $elem = $('.lesson--standard-wrapper').eq(i);
+              $elem.find("h4").text('Standard ' + (lst_index));
+              $elem.find(".delete-standard").attr("data-order", lst_index - 1);
+          }
+      }
+  });
 
-    // Doesnt need to by dynamic
-    $('fieldset').on("click", '.add-standard', function () {
-        lst_index = $('.lesson--standard-wrapper').length;
-        $elem = $('.lesson--standard-wrapper').last().clone(false, false);
-        $elem.find(".textarea--short").val('');
-        $elem.find("h4").text('Standard ' + (lst_index + 1));
-        for (i = 0; i < $elem.find('[data-control="key"]').length; i++) { //only copy one element
-            if (i > 0) {
-                console.log('removing');
-                console.log($elem.find('[data-control="key"]').eq(i));
-                $elem.find('[data-control="key"]').eq(i).remove();
-            }
-        }
-        $elem.find(".delete-standard").attr("data-order", lst_index);
-        $elem.insertAfter($('.lesson--standard-wrapper').last());
-    });
+  // Doesnt need to by dynamic
+  $('fieldset').on("click", '.add-standard', function () {
+      lst_index = $('.lesson--standard-wrapper').length;
+      $elem = $('.lesson--standard-wrapper').last().clone(false, false);
+      $elem.find(".textarea--short").val('');
+      $elem.find("h4").text('Standard ' + (lst_index + 1));
+      for (i = 0; i < $elem.find('[data-control="key"]').length; i++) { //only copy one element
+          if (i > 0) {
+              console.log('removing');
+              console.log($elem.find('[data-control="key"]').eq(i));
+              $elem.find('[data-control="key"]').eq(i).remove();
+          }
+      }
+      $elem.find(".delete-standard").attr("data-order", lst_index);
+      $elem.insertAfter($('.lesson--standard-wrapper').last());
+  });
 
-    $('.lesson--steps .field--image-gallery figure:first-child').prepend('<span class="label label--dark">Cover image</span>');
+  var setCoverImage = function(){ // WARNING! This is repeated in step5. Should DRY this by attaching stuff in the window object.
+    $('span.label--cover-image').remove();
+    $('.lesson--steps .field--image-gallery figure:first-child').prepend('<span class="label label--dark label--cover-image">Cover image</span>');
+  }
+
+  setCoverImage();
+
 
     /** Upload images **/
 
 
-  // $('#form').fileupload({
-  //   dataType: 'script',
-  //   autoUpload: true,
-  //   add(e, data) {
-  //     const types = /(\.|\/)(gif|jpe?g|png|mov|mpeg|mpeg4|avi)$/i;
-  //     const file = data.files[0];
-  //     if (types.test(file.type) || types.test(file.name)) {
-  //       data.context = $(tmpl("template-upload", file));
-  //       $('#form').append(data.context);
-  //       return data.submit();
-  //     } else {
-  //       return alert(`${file.name} is not a gif, jpg or png image file`);
-  //     }
-  //   },
-  //   progress(e, data) {
-  //     if (data.context) {
-  //       const progress = parseInt((data.loaded / data.total) * 100, 10);
-  //       return data.context.find('.bar').css('width', progress + '%');
-  //     }
-  //   }
-  // });
+    $('#fileupload').fileupload({
+        autoUpload:true,
+        dropZone: $('.dropzone'),
+    });
+
+
+    $(".dropzone").on("click",function(){
+      $("#fileupload input[type='file']").trigger('click');
+    });
+
+
+    $(document).bind('dragover', function (e) {
+        var dropZones = $('.dropzone'),
+            timeout = window.dropZoneTimeout;
+        if (timeout) {
+            clearTimeout(timeout);
+        } else {
+            dropZones.addClass('in');
+        }
+        var hoveredDropZone = $(e.target).closest(dropZones);
+        dropZones.not(hoveredDropZone).removeClass('hover');
+        hoveredDropZone.addClass('hover');
+        window.dropZoneTimeout = setTimeout(function () {
+            window.dropZoneTimeout = null;
+            dropZones.removeClass('in hover');
+        }, 100);
+    });
+
+    $(document).bind('drop dragover', function (e) {
+      e.preventDefault();
+    });
+
+    /* Sort images */
+
+    $('.field--image-gallery').sortable({
+      revert: false,
+      containment: "parent",
+      tolerance: "pointer",
+      update: function(event,ui){
+        setCoverImage();
+        //@TODO here the endpoint for the ajax call with the order
+        // loop through figures
+      }
+    }).disableSelection();
 
 });

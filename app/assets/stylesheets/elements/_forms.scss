@@ -310,6 +310,19 @@ fieldset {
   figure {
 
     position:relative;
+    width:265px;
+    height:210px;
+    box-sizing:border-box;
+    float:left;
+    margin:.3em;
+    margin-bottom:2em;
+
+    &.ui-sortable-helper {
+      a.action--delete,
+      .label--cover-image {
+        display:none;
+      }
+    }
 
     a.action--delete {
       opacity:.5;
@@ -318,27 +331,37 @@ fieldset {
     }
 
 
-    @include gallery(3 of 12);
+    .image--container {
+      width:265px;
+      height:200px;
+      overflow:hidden;
+      background:$color-gray;
+      background-size:cover;
+      background-position:center center;
+    }
+
+    //@include gallery(3 of 12);
+
+
     figcaption {
       margin-top:1em;
       font-size:.8em;
+      line-height:1em;
       color:$color-mid-gray;
     }
 
-    img {
+    .image--container {
       border-radius:2px;
       transition: box-shadow .2s;
     }
 
     &:hover {
-
       a.action--delete {
         opacity:1;
         transform:scale(1,1);
       }
-
-      img {
-        box-shadow:0 0 0px 2px $color-blue-hi;
+      .image--container {
+        box-shadow:0 0 2px 1px $color-blue-hi;
       }
     }
 
@@ -442,5 +465,9 @@ a.form--remove-element {
       font-size:.875rem;
       color:$color-mid-gray;
     }
+  }
+
+  input[type="file"]{
+    display:none;
   }
 }
