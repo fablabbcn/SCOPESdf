@@ -443,4 +443,8 @@ a.form--remove-element {
       color:$color-mid-gray;
     }
   }
+
+  input[type="file"]{
+    display:none;
+  }
 }

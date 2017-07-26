@@ -125,26 +125,36 @@ $(document).on('turbolinks:load', function() {
     /** Upload images **/
 
 
-  // $('#form').fileupload({
-  //   dataType: 'script',
-  //   autoUpload: true,
-  //   add(e, data) {
-  //     const types = /(\.|\/)(gif|jpe?g|png|mov|mpeg|mpeg4|avi)$/i;
-  //     const file = data.files[0];
-  //     if (types.test(file.type) || types.test(file.name)) {
-  //       data.context = $(tmpl("template-upload", file));
-  //       $('#form').append(data.context);
-  //       return data.submit();
-  //     } else {
-  //       return alert(`${file.name} is not a gif, jpg or png image file`);
-  //     }
-  //   },
-  //   progress(e, data) {
-  //     if (data.context) {
-  //       const progress = parseInt((data.loaded / data.total) * 100, 10);
-  //       return data.context.find('.bar').css('width', progress + '%');
-  //     }
-  //   }
-  // });
+        $('#fileupload').fileupload({
+            autoUpload:true,
+            dropZone: $('.dropzone'),
+        });
+
+
+        $(".dropzone").on("click",function(){
+          $("#fileupload input[type='file']").trigger('click');
+        });
+
+
+        $(document).bind('dragover', function (e) {
+            var dropZones = $('.dropzone'),
+                timeout = window.dropZoneTimeout;
+            if (timeout) {
+                clearTimeout(timeout);
+            } else {
+                dropZones.addClass('in');
+            }
+            var hoveredDropZone = $(e.target).closest(dropZones);
+            dropZones.not(hoveredDropZone).removeClass('hover');
+            hoveredDropZone.addClass('hover');
+            window.dropZoneTimeout = setTimeout(function () {
+                window.dropZoneTimeout = null;
+                dropZones.removeClass('in hover');
+            }, 100);
+        });
+
+      $(document).bind('drop dragover', function (e) {
+        e.preventDefault();
+      });
 
 });
