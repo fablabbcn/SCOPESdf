@@ -8,7 +8,7 @@
         .field-group
           %label
             Add images
-            %small Guideliens for images
+            %small Guidelines for images
             -# @TODO add little info icon and tooltip with information
           .image-uploader-wrapper
             .dropzone
@@ -53,20 +53,20 @@
 %script#template-upload{:type => "text/html"}
   :plain
     {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
-    <tr class="template-upload">
-      <td class="preview"><span class=""></span></td>
-      <td class="name">{%=file.name%}</td>
-      <td class="size">{%=o.formatFileSize(file.size)%}</td>
-      {% if (file.error) { %}
-      <td class="error" colspan="2"><span class="label important">Error</span> {%=fileUploadErrors[file.error] || file.error%}</td>
-      {% } else if (o.files.valid && !i) { %}
-      <td class="progress"><div class="progressbar"><div style="width:0%;"></div></div></td>
-      <td class="start">{% if (!o.options.autoUpload) { %}<button class="btn primary"><%= t('photos.template.start') %></button>{% } %}</td>
-      {% } else { %}
-      <td colspan="2"></td>
+      <figure>
+        {% if (file.error) { %}
+        <span class="label important">Error</span> {%=fileUploadErrors[file.error] || file.error%}
+        {% } else { %}
+
+        <a href="{%=file.delete_url%}" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}" class="action--delete"><i class="icon-Trash"></i><span>Delete</span></a>
+        <div class="image--container" style="background-image:url({%=o.url%});"></div>
+
+        <figcaption>
+          {%=file.name%}
+        </figcaption>
       {% } %}
-      <td class="cancel">{% if (!i) { %}<button class="btn info"><%= t('photos.template.cancel') %></button>{% } %}</td>
-    </tr>
+      
+      </figure>
     {% } %}
 
 %script#template-download{:type => "text/html"}
@@ -78,13 +78,9 @@
       {% } else { %}
 
       <a href="{%=file.delete_url%}" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}" class="action--delete"><i class="icon-Trash"></i><span>Delete</span></a>
-      <img src="{%=file.url%}">
-      
-      <figcaption>
-        {%=file.name%}
-      </figcaption>
-
+      <div class="image--container" style="background-image:url({%=o.url%});"></div>
     {% } %}
+
     </figure>
     {% } %}
 
@@ -92,7 +88,7 @@
   :plain 
     <figure>
       <a href="{%= o.delete_url %}" class="action--delete"><i class="icon-Trash"></i><span>Delete</span></a>
-      <img src="{%=o.url%}">
+        <div class="image--container" style="background-image:url({%=o.url%});"></div>
       <figcaption>{%=o.name %}</figcaption>
     </figure>
 

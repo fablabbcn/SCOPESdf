@@ -318,14 +318,26 @@ fieldset {
     }
 
 
+    .image--container {
+      width:265px;
+      height:200px;
+      overflow:hidden;
+      background:$color-gray;
+      background-size:cover;
+      background-position:center center;
+    }
+
     @include gallery(3 of 12);
+
+
     figcaption {
       margin-top:1em;
       font-size:.8em;
+      line-height:1em;
       color:$color-mid-gray;
     }
 
-    img {
+    .image--container {
       border-radius:2px;
       transition: box-shadow .2s;
     }
@@ -337,8 +349,8 @@ fieldset {
         transform:scale(1,1);
       }
 
-      img {
-        box-shadow:0 0 0px 2px $color-blue-hi;
+      .image--container {
+        box-shadow:0 0 2px 1px $color-blue-hi;
       }
     }
 
