@@ -131,5 +131,20 @@ Notice that disabled buttons have **cursor:default** and **pointer-events:none**
     padding:.6rem 1.2rem .7rem 1.2rem;
   }
 
+}
 
+
+a.action--delete {
+  border-radius:2px;
+  background:#fff;
+  color:$color-mid-gray;
+  text-decoration:none;
+  font-size:.875rem;
+  line-height:1em;
+
+  padding:.5rem;
+
+  span {
+    display:none;
+  }
 }

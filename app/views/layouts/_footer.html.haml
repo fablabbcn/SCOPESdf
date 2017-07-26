@@ -1,2 +1,12 @@
-%ul.nav
-  = render 'layouts/navigation_links'
+.brand
+  = link_to 'SCOPESdf', root_path
+  %p 
+    Connect & Share lesson plans
+    %br with STEM educators everywhere.
+
+.navigation
+  %ul
+    = render 'layouts/navigation_links'
+    = render 'layouts/social_links'
+  %p.legal 
+    =link_to 'Terms & Conditions', '#'

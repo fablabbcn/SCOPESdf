@@ -3,7 +3,99 @@
 **/
 
 footer[role="contentinfo"] {
+
+  background:darken($color-white,2%);
+  @include clearfix;
+  padding:3rem 0;
+  text-align: center;
+
+  p.legal {
+    font-size:.875rem;
+    a {
+      color:$color-dark-hi;
+      text-decoration: none;
+    }
+  }
+
+  .brand {
+    display:none;
+  }
+
+  ul {
+    @include ul-reset;
+    li {
+      display:inline-block;
+      margin:0 .3em;
+
+      &:not(.social) {
+        display:none;
+      }
+    }
+  }
+
   @include breakpoint($desktop-breakpoint) {
     padding:5rem 0;
+    text-align: left;
+
+
+    .brand {
+      display:block;
+      @include span(1 of 2);
+
+      a {
+        display:block;
+        background: asset-url("scopes-logo.svg") center left no-repeat;
+        text-indent:-999em;
+        overflow: hidden;
+        width:170px;
+        height:35px;
+      }
+
+      p {
+        font-size:.9rem;
+        color:lighten($color-dark,60%);
+        line-height:1.2em;
+      }
+
+    }
+
+    .navigation {
+
+      @include span(1 of 2 last);
+      text-align: right;
+
+
+      ul {
+        display:flex;
+        justify-content:flex-end;
+        margin-bottom:2.15rem;
+      }
+
+      ul li:not(.social) {
+        display:inline-block;
+        margin-left:1.5rem;
+      }
+
+      li {
+        text-align: left;
+        margin:0;
+        margin-left:.5rem;
+
+        a {
+          color:$color-dark;
+          text-decoration: none;
+          font-weight:400;
+          display: inline-block;
+
+          &.nav-link--thin {
+            color:lighten($color-dark,40%);
+          }
+        }
+
+        &:not(.social) {
+          font-size:1rem;
+        }
+      }
+    }
   }
 }
