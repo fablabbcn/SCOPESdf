@@ -2,11 +2,8 @@ class LessonsController < ApplicationController
   #before_action :authenticate_user! # ADD THIS OBVIOUSLY
   #after_action :verify_authorized # pundit
 
-
   def new
     @form_step = params[:form_step].present? ? params[:form_step] : 1
-
-    # the below is strictly used for the weekend of the 13/7/2017 for submit on new page loads
     if params[:id].present?
       @lesson_obj = Lesson.find(params[:id])
     end
@@ -52,6 +49,19 @@ class LessonsController < ApplicationController
     @standards = Lesson.standards_list
     @standards_array = @lesson_obj.standards_array
     @difficulty_helper = DifficultyLevel.form_helper
+
+
+    respond_to do |format|
+      format.html {
+        render :json => returning.to_json,
+               :content_type => 'text/html',
+               :layout => false
+      }
+      format.json {
+        render :json => { :files => returning }
+      }
+    end
+
   end
 
   def create
@@ -229,9 +239,7 @@ class LessonsController < ApplicationController
 
   def file_upload_load
     @lesson = Lesson.find(params[:id])
-
     returning = []
-
     if file_params[:attr] == "assessment_criteria_files"
         @lesson.assessment_criteria_files.map{|x|
           returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
@@ -242,7 +250,6 @@ class LessonsController < ApplicationController
           returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
         }
     end
-
 
     respond_to do |format|
       format.html {

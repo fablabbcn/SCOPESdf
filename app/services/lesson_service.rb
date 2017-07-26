@@ -75,8 +75,6 @@ class LessonService
     # acceptable types: assessment_criteria
     #file_params : {assessment_criteria_files: [], ...}
     def add_file_by_type_to_id(id, file_params, calling_user)
-      # puts "PARAMS BELOW"
-      # puts file_params.inspect
       @lesson = Lesson.find(id)
       return false unless @lesson.hasAuthor?(calling_user)
 
