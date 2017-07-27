@@ -306,23 +306,75 @@ fieldset {
 .field--image-gallery {
   margin-top:2em;
   @include clearfix;
+
   figure {
-    @include gallery(3 of 12);
+
+    position:relative;
+    width:265px;
+    height:210px;
+    box-sizing:border-box;
+    float:left;
+    margin:.3em;
+    margin-bottom:2em;
+
+    &.ui-sortable-helper {
+      a.action--delete,
+      .label--cover-image {
+        display:none;
+      }
+    }
+
+    a.action--delete {
+      opacity:.5;
+      transform:scale(0,0);
+      transition: transform .2s, opacity .2s;
+    }
+
+
+    .image--container {
+      width:265px;
+      height:200px;
+      overflow:hidden;
+      background:$color-gray;
+      background-size:cover;
+      background-position:center center;
+    }
+
+    //@include gallery(3 of 12);
+
+
     figcaption {
       margin-top:1em;
       font-size:.8em;
+      line-height:1em;
       color:$color-mid-gray;
     }
 
-    img {
+    .image--container {
       border-radius:2px;
       transition: box-shadow .2s;
     }
 
     &:hover {
-      img {
-        box-shadow:0 0 0px 2px $color-yellow;
+      a.action--delete {
+        opacity:1;
+        transform:scale(1,1);
       }
+      .image--container {
+        box-shadow:0 0 2px 1px $color-blue-hi;
+      }
+    }
+
+    span.label {
+      position:absolute;
+      top:1em;
+      left:1em;
+    }
+
+    a.action--delete {
+      position:absolute;
+      top:1em;
+      right:1em;
     }
 
   }
@@ -390,6 +442,21 @@ a.form--remove-element {
     padding:2em;
     text-align: center;
     box-sizing:border-box;
+    transition: background-color .2s, border-color .2s;
+
+    &:hover {
+      cursor:pointer;
+    }
+
+    &.in, &:hover {
+      background:darken($color-gray,2%);
+      border-color:darken($color-gray-outlines,2%);
+    }
+
+    &.hover {
+      background:darken($color-gray,5%);
+      border-color:darken($color-gray-outlines,5%);
+    }
 
     p {
       width:100%;
@@ -398,5 +465,9 @@ a.form--remove-element {
       font-size:.875rem;
       color:$color-mid-gray;
     }
+  }
+
+  input[type="file"]{
+    display:none;
   }
 }

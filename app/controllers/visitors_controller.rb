@@ -6,13 +6,26 @@ class VisitorsController < ApplicationController
   end
 
   def file_form_upload
-    uploaded = file_params[:avatar]
-    puts uploaded
-    u = User.first
-    u.attributes = file_params
-    u.save!
+    # uploaded = file_params[:avatar]
+    # puts uploaded
+    # u = User.first
+    # u.attributes = file_params
+    # u.save!
 
-    render :json => {status: "GUCCI"}, :status => 200
+
+    x = params[:outcome_files]
+    puts params.inspect
+    l = Lesson.first
+
+    l.addFiles(x, :outcome)
+    l.save!
+
+    puts "url"
+    puts l.outcome_files.first.url
+
+
+
+    render :json => {status: l.outcome_files.inspect}, :status => 200
   end
 
   def about
@@ -34,7 +47,7 @@ class VisitorsController < ApplicationController
 
   private
   def file_params
-    params.permit(:avatar)
+    params.permit(:avatar, outcome_files: [])
   end
 
   def register_params

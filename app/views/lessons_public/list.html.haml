@@ -1,7 +1,8 @@
-.lesson--call
-  .wrapped
-    %p.text--intro Share your lesson with other educators around the world!
-    = link_to 'Add a lesson', lesson_new_path, class: 'button'
+- if user_signed_in?
+  .lesson--call
+    .wrapped
+      %p.text--intro Share your lesson with other educators around the world!
+      = link_to 'Add a lesson', lesson_new_path, class: 'button'
 
 .wrapped
   %p [filters]

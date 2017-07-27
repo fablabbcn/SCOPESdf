@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users
 
   get  'lessons/new' => 'lessons#new', as: :lesson_new
-  post 'lessons'            => 'lessons#create'#, as: :lesson_create
+  # post 'lessons'            => 'lessons#create'#, as: :lesson_create
   post 'lessons/new'            => 'lessons#new', as: :lesson_create
   # the above line is strictly used for the weekend of the 13/7/2017 for submit on new page loads
 
@@ -33,8 +33,7 @@ Rails.application.routes.draw do
 
 
   get 'file_form'         => 'visitors#form'
-  
-  post 'file_upload'      => 'visitors#file_form_upload'
+  post 'file_upload'      => 'visitors#file_form_upload',  as: :lesson_file_test
 
 
   get 'enter' =>  'visitors#enter', as: :enter

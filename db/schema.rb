@@ -29,7 +29,8 @@ ActiveRecord::Schema.define(version: 20170604152437) do
   end
 
   create_table "collection_tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name",        null: false
+    t.string "description", null: false
     t.index ["name"], name: "index_collection_tags_on_name", using: :btree
   end
 
@@ -113,13 +114,11 @@ ActiveRecord::Schema.define(version: 20170604152437) do
   end
 
   create_table "organizations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string    "name",                                                                             default: "", null: false
-    t.string    "desc",                                                                             default: "", null: false
+    t.string    "name",                                                                      default: "", null: false
+    t.string    "desc",                                                                      default: "", null: false
     t.json      "social"
-    t.integer   "teaching_range_start",                                                             default: 0
-    t.integer   "teaching_range_end",                                                               default: 0
     t.string    "contact_email"
-    t.integer   "state",                                                                            default: 0,  null: false
+    t.integer   "state",                                                                     default: 0,  null: false
     t.string    "address_line1"
     t.string    "address_line2"
     t.string    "address_line3"
@@ -128,9 +127,9 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.string    "region"
     t.string    "post_code"
     t.string    "country"
-    t.geography "lonlat",               limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
-    t.datetime  "created_at",                                                                                    null: false
-    t.datetime  "updated_at",                                                                                    null: false
+    t.geography "lonlat",        limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
+    t.datetime  "created_at",                                                                             null: false
+    t.datetime  "updated_at",                                                                             null: false
     t.index ["contact_email"], name: "index_organizations_on_contact_email", using: :btree
     t.index ["lonlat"], name: "index_organizations_on_lonlat", using: :btree
     t.index ["name"], name: "index_organizations_on_name", using: :btree
@@ -195,25 +194,36 @@ ActiveRecord::Schema.define(version: 20170604152437) do
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.integer  "role",                   default: 0,  null: false
-    t.string   "name",                   default: "", null: false
-    t.string   "avatar",                 default: ""
-    t.string   "bio",                    default: "", null: false
-    t.json     "social"
-    t.json     "settings",                            null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string    "email",                                                                              default: "", null: false
+    t.string    "encrypted_password",                                                                 default: "", null: false
+    t.string    "reset_password_token"
+    t.datetime  "reset_password_sent_at"
+    t.datetime  "remember_created_at"
+    t.integer   "sign_in_count",                                                                      default: 0,  null: false
+    t.datetime  "current_sign_in_at"
+    t.datetime  "last_sign_in_at"
+    t.inet      "current_sign_in_ip"
+    t.inet      "last_sign_in_ip"
+    t.integer   "role",                                                                               default: 0,  null: false
+    t.string    "name",                                                                               default: "", null: false
+    t.string    "avatar",                                                                             default: ""
+    t.string    "address_line1"
+    t.string    "address_line2"
+    t.string    "address_line3"
+    t.string    "address_line4"
+    t.string    "locality"
+    t.string    "region"
+    t.string    "post_code"
+    t.string    "country"
+    t.geography "lonlat",                 limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
+    t.string    "bio",                                                                                default: "", null: false
+    t.json      "social"
+    t.json      "settings",                                                                                        null: false
+    t.datetime  "created_at",                                                                                      null: false
+    t.datetime  "updated_at",                                                                                      null: false
     t.index ["email"], name: "index_users_on_email", using: :btree
+    t.index ["lonlat"], name: "index_users_on_lonlat", using: :btree
+    t.index ["post_code"], name: "index_users_on_post_code", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
   end
 

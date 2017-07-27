@@ -2,11 +2,8 @@ class LessonsController < ApplicationController
   #before_action :authenticate_user! # ADD THIS OBVIOUSLY
   #after_action :verify_authorized # pundit
 
-
   def new
     @form_step = params[:form_step].present? ? params[:form_step] : 1
-
-    # the below is strictly used for the weekend of the 13/7/2017 for submit on new page loads
     if params[:id].present?
       @lesson_obj = Lesson.find(params[:id])
     end
@@ -52,6 +49,19 @@ class LessonsController < ApplicationController
     @standards = Lesson.standards_list
     @standards_array = @lesson_obj.standards_array
     @difficulty_helper = DifficultyLevel.form_helper
+
+
+    respond_to do |format|
+      format.html {
+        render :json => returning.to_json,
+               :content_type => 'text/html',
+               :layout => false
+      }
+      format.json {
+        render :json => { :files => returning }
+      }
+    end
+
   end
 
   def create
@@ -176,7 +186,7 @@ class LessonsController < ApplicationController
     # puts x.first.original_filename
 
     #id = Lesson.first.id
-    @lesson = Lesson.params[:id]
+    @lesson = Lesson.find(params[:id])
 
     files_hash = {}
     files_hash.merge!({assessment_criteria_files: file_params[:assessment_criteria_files]}) if file_params[:assessment_criteria_files].present?
@@ -196,8 +206,7 @@ class LessonsController < ApplicationController
       }
       for i in 0..uploaded_acf.count-1
         x = @lesson.assessment_criteria_files[i]
-        puts x.inspect
-        puts x.path
+        @lesson.reload
         returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
       end
     elsif files_hash[:outcome_files].present?
@@ -206,14 +215,16 @@ class LessonsController < ApplicationController
       }
       puts uploaded_of.count
       for i in 0..uploaded_of.count-1
-        x = @lesson.assessment_criteria_files[i]
+        @lesson.reload
+        x = @lesson.outcome_files[i]
         returning.append (JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
       end
     end
 
     puts "carriers below"
     puts returning
-    puts returning.inspect
+    puts '///////////////////////////////////////////'
+    puts returning.to_json
 
     respond_to do |format|
       format.html {
@@ -228,7 +239,18 @@ class LessonsController < ApplicationController
   end
 
   def file_upload_load
-
+    @lesson = Lesson.find(params[:id])
+    returning = []
+    if file_params[:attr] == "assessment_criteria_files"
+        @lesson.assessment_criteria_files.map{|x|
+          returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
+        }
+    elsif
+      file_params[:attr] == "outcome_files"
+        @lesson.outcome_files.map{|x|
+          returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
+        }
+    end
 
     respond_to do |format|
       format.html {
@@ -237,15 +259,18 @@ class LessonsController < ApplicationController
                :layout => false
       }
       format.json {
-        render :json => { :files => returning }
+        render :json => { files: returning }, status: :created, location: @Uploaded
       }
     end
   end
 
   def remove_file_upload
+    puts "prepping for delete"
     puts params.inspect
     @lesson = Lesson.find(params[:id])
-    @lesson.removeFileWithName(remove_file_params[:attr].to_sym, remove_file_params[:name])
+    status = @lesson.removeFileWithName(remove_file_params[:attr].to_sym, remove_file_params[:name])
+    puts "finished for delete"
+    render :json => {status: status}, location: @Uploaded
   end
 
 
@@ -264,7 +289,7 @@ class LessonsController < ApplicationController
 
 
   def file_params
-    params.permit(:id, :assessment_criteria_files => [], :outcome_files => [])
+    params.permit(:id, :attr, :assessment_criteria_files => [], :outcome_files => [])
   end
   def remove_file_params
     params.permit(:name, :attr)

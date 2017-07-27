@@ -13,11 +13,22 @@
     }
 
     &#top {
+      .content-wrapper{
+        width: 100%;
+      }
       .content {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         text-align: center;
+        @include breakpoint($desktop-breakpoint) {
+          align-items: flex-start;
+          text-align: left;
+          h1{ margin-left: 0;}
+        }
+        .wrapper{
+          padding: 1.5rem 0;
+        }
       }
       h1 {
         margin: 1.5rem;

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.3.4'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
 gem 'pg'
@@ -13,6 +13,7 @@ gem 'breakpoint'
 gem 'bourbon'
 gem 'susy', '>= 2.2.12'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-fileupload-rails'
@@ -33,7 +34,6 @@ gem 'option'
 gem 'rb-readline'
 
 gem 'carrierwave', '~> 1.0' # file form
-gem 'mini_magick'
 gem 'fog'
 gem 'fog-aws'
 
@@ -41,6 +41,7 @@ gem 'link_thumbnailer'
 gem 'video_thumb'
 
 gem 'kaminari'
+gem 'mini_magick'
 
 group :development do
   gem 'web-console'

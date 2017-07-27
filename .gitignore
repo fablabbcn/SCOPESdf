@@ -21,6 +21,9 @@ db/*.sqlite3
 /log/*
 /tmp/*
 
+/public/uploads/tmp/*
+.elasticbeanstalk/*
+
 # add /config/database.yml if it contains passwords
 # /config/database.yml
 
@@ -82,3 +85,8 @@ pickle-email-*.html
 
 # tilde files are usually backup files from a text editor
 *~
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

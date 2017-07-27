@@ -1,7 +1,8 @@
 - if user_signed_in?
+  %li= link_to 'My Activity', '#' , class: 'author--nav'
   %li= link_to 'Sign out', destroy_user_session_path, :method=>'delete', class: 'author--nav'
 - else
-  %li= link_to 'Login', enter_path(step: 0), class: 'button button--highlight author--nav'
-  %li= link_to 'Register', enter_path(step: 1), class: 'button button--inverse'
+  %li= link_to 'Login', enter_path(step: 0), class: 'button author--nav'
+  %li= link_to 'Register', enter_path(step: 1), class: 'button button--highlight'
 
 

@@ -34,6 +34,8 @@ ul.nav {
       color:lighten($color-dark,40%);
     }
 
+
+
     &:after {
       width:0;
       display:block;
@@ -54,9 +56,11 @@ ul.nav {
       }
     }
   }
+}
 
-  .author--nav {
-    margin-left:3rem;
+.nav-link--extra-space {
+  @include breakpoint($desktop-breakpoint) {
+    margin-right:2em;
   }
 }
 

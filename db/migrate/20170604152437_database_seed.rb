@@ -37,7 +37,16 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.string    :name, default: "", null: false
       t.string    :avatar, default: ""
 
-      # p2
+      ## Consider making address its own table.. for normalization
+      t.string    :address_line1
+      t.string    :address_line2
+      t.string    :address_line3
+      t.string    :address_line4
+      t.string    :locality
+      t.string    :region
+      t.string    :post_code, index: true
+      t.string    :country
+      t.st_point  :lonlat, geographic: true, null: true, index: true, using: :gist
 
       t.string    :bio, default: "", null:  false
       t.json      :social
@@ -50,12 +59,10 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.string    :desc, default: "", null: false
       t.json      :social
 
-      t.integer   :teaching_range_start, default: 0, null: true
-      t.integer   :teaching_range_end, default: 0, null: true
-
       t.string    :contact_email, null: true, index: true
       t.integer   :state, default: 0, null: false, index: true
 
+      ## Consider making address its own table.. for normalization
       t.string    :address_line1
       t.string    :address_line2
       t.string    :address_line3
@@ -65,6 +72,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
       t.string    :post_code, index: true
       t.string    :country
       t.st_point  :lonlat, geographic: true, null: true, index: true, using: :gist
+
       t.timestamps null: false
     end
 
@@ -215,6 +223,7 @@ class DatabaseSeed < ActiveRecord::Migration[5.0]
 
     create_table  :collection_tags, id: :uuid,  default: "uuid_generate_v4()", force: :cascade do |t|
       t.string    :name, null: false, index: true
+      t.string    :description, null: false
     end
 
 

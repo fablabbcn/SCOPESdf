@@ -1,16 +1,22 @@
 <h2><%= t('photos.title') %></h2>
-<%= form_tag(lesson_file_path(id: 'af3e2464-1388-46fe-b927-c639f974a043', attr:"outcome_files"), method: :post, multipart: true, id:"fileupload") do |f| %>
-  <div class="row">
+<%= form_tag(lesson_file_path(id: '931e7eb1-c245-4474-89a5-bfb34647ce1d', attr:"outcome_files"), method: :post, multipart: true, id:"fileupload") do |f| %>
+
+<div class="image-uploader-wrapper">
+<div class="dropzone">
+<p>
+Drag &amp; drop files here - or click to browse
+<br>.jpg, .png, .pdf<br>
+</p>
+</div>
+</div>
+
+    <div class="row">
     <div class="span16 fileupload-buttonbar">
-      <div class="progressbar fileupload-progressbar nofade"><div style="width:0%;"></div></div>
+      <div class="progressbar fileupload-progressbar"><div style="width:0%;"></div></div>
       <span class="btn success fileinput-button">
         <span><%= t('photos.add_files') %>...</span>
         <%= file_field_tag 'outcome_files[]', multiple: true, class: 'form--file-uploader' %>
       </span>
-      <button type="submit" class="btn primary start"><%= t('photos.start_upload') %></button>
-      <button type="reset" class="btn info cancel"><%= t('photos.cancel_upload') %></button>
-      <button type="button" class="btn danger delete"><%= t('photos.delete_selected') %></button>
-      <input type="checkbox" class="toggle">
     </div>
   </div>
   <br>
@@ -35,8 +41,8 @@
 <!-- IMPORTANT fade class makes fileupload depend on css transition effect REMOVE or RENAME it -->
 <script id="template-upload" type="text/html">
   {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
-  <tr class="template-upload nofade">
-    <td class="preview"><span class="nofade"></span></td>
+  <tr class="template-upload">
+    <td class="preview"><span class=""></span></td>
     <td class="name">{%=file.name%}</td>
     <td class="size">{%=o.formatFileSize(file.size)%}</td>
     {% if (file.error) { %}
@@ -53,7 +59,7 @@
 </script>
 <script id="template-download" type="text/html">
   {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
-  <tr class="template-download nofade">
+  <tr class="template-download">
     {% if (file.error) { %}
     <td></td>
     <td class="name">{%=file.name%}</td>
@@ -80,17 +86,60 @@
 
 
 <script type="text/javascript" charset="utf-8">
-    $(function () {
+    $(document).on('turbolinks:load', function() {
         // Initialize the jQuery File Upload widget:
-        $('#fileupload').fileupload();
+        $('#fileupload').fileupload({
+            autoUpload:true,
+            dropZone: $('.dropzone')
+        });
+
+
+        $(".dropzone").on("click",function(){
+          $("#fileupload input[type='file']").trigger('click');
+        });
+
+
+        $(document).bind('dragover', function (e) {
+            var dropZones = $('.dropzone'),
+                timeout = window.dropZoneTimeout;
+            if (timeout) {
+                clearTimeout(timeout);
+            } else {
+                dropZones.addClass('in');
+            }
+            var hoveredDropZone = $(e.target).closest(dropZones);
+            dropZones.not(hoveredDropZone).removeClass('hover');
+            hoveredDropZone.addClass('hover');
+            window.dropZoneTimeout = setTimeout(function () {
+                window.dropZoneTimeout = null;
+                dropZones.removeClass('in hover');
+            }, 100);
+        });
+
+       $(document).bind('drop dragover', function (e) {
+            e.preventDefault();
+        });
+        
         // 
         // Load existing files:
-        
+        /*
         $.getJSON($('#fileupload').prop('action'), function (files) {
 
-          console.log(files);
+                console.log(files);
 
-          var fu = $('#fileupload').data('fileupload'), 
+//                var fu = $('#fileupload').data('fileupload'),
+//                    template;
+//                fu._adjustMaxNumberOfFiles(-files.length);
+//                template = fu._renderDownload(files)
+//                    .appendTo($('#fileupload .files'));
+//                // Force reflow:
+//                fu._reflow = fu._transition && template.length &&
+//                    template[0].offsetWidth;
+//                template.addClass('in');
+//                $('#loading').remove();
+            });
+
+          var fu = $('#fileupload').data('blueimpFileupload'),
             template;
           fu._adjustMaxNumberOfFiles(-files.length);
           template = fu._renderDownload(files)
@@ -101,7 +150,7 @@
           template.addClass('in');
           $('#loading').remove();
         });
-        
+*/
 
     });
 </script>

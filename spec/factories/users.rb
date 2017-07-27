@@ -16,6 +16,15 @@
 #  role                   :integer          default("user"), not null
 #  name                   :string           default(""), not null
 #  avatar                 :string           default("")
+#  address_line1          :string
+#  address_line2          :string
+#  address_line3          :string
+#  address_line4          :string
+#  locality               :string
+#  region                 :string
+#  post_code              :string
+#  country                :string
+#  lonlat                 :geography({:srid point, 4326
 #  bio                    :string           default(""), not null
 #  social                 :json
 #  settings               :json             not null
