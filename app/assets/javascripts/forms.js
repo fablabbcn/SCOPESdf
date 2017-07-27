@@ -9,29 +9,33 @@ window.Scopes.lesson = {
 
   getUploadedFiles: function(){ // Generic function to print files
 
-    // @TODO rename this to file-uploader wrapper because it can behave distinct from image
-    $.getJSON($('.image-uploader-wrapper').data('endpoint'), function (files) {
-      $.each(files, function(index,key){
-          $.each(key, function(i,file){
-            $('.image-uploader-wrapper').parent().find('.files').append('<span class="button button--file"><a href="'+file.url+'">'+file.name+'</a><a href="#" data-delete="'+file.delete_url+'"><i class="icon-close"></i></a></span>');
+      $('.image-uploader-wrapper').each(function(){
+        var self = $(this);
+        $.getJSON($(this).data('endpoint'), function (files) {
+          console.log(files);
+          $.each(files, function(index,key){
+            $.each(key, function(i,file){
+              self.parent().find('.files').append('<span class="button button--file"><a href="'+file.url+'">'+file.name+'</a><a href="#" data-delete="'+file.delete_url+'"><i class="icon-close"></i></a></span>');
+            });
           });
         });
-    });
+      });
   },
 
   enableFileUploader: function(element){ // enable file uploader.
-    console.log($(element));
+    console.log(element);
     var endpoint_url = $(element).data('endpoint');
     if(endpoint_url) {
       $(element).fileupload({
           autoUpload:true,
-          dropZone: $('.dropzone'),
+          dropZone: $(element).find('.dropzone'),
           url:endpoint_url
       }).bind('fileuploadadd',function(e,data){
         console.log('file uploaded');
         //console.log(data,'data');
       }).bind('fileuploadsend',function(e,data){
         console.log('file sent');
+        console.log(e);
         //console.log(data,'data');
       });
     }
