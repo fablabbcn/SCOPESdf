@@ -98,4 +98,130 @@ class Step < ApplicationRecord
     true
   end
 
+  def add_file_through_hash(h)
+    url = h.each {|k,v|
+      file_type = k.to_s
+      self.addFiles(v, file_type.to_sym)
+    }
+    url
+  end
+
+
+
+
+
+  def addFiles(file, sym)
+    returnable =""
+    # puts file
+    case sym
+      when :supporting_materials
+        # puts "assessment saving"
+        collection = self.supporting_materials
+        collection += file
+        self.supporting_materials = collection
+        self.save!
+        self.reload
+        returnable = self.supporting_materials.map {|x| x.url}
+      when :supporting_files
+        collection = self.supporting_files
+        collection += file
+        self.supporting_files = collection
+        self.save!
+        self.reload
+        returnable = self.supporting_files.map {|x| x.url}
+    end
+    returnable
+  end
+
+  def removeFiles(sym)
+    returnable = false
+    case sym
+      when :supporting_materials
+        self.remove_supporting_materials!
+        self.save!
+        returnable = true
+      when :supporting_files
+        self.removes_upporting_files!
+        self.save!
+        returnable = true
+    end
+    returnable
+  end
+
+  #~~~~~~~~~~
+
+
+  def removeFileWithName(sym, name)
+    name.gsub!(" ", "_")
+    returnable = false
+    case sym
+      when :supporting_materials
+        index = nil
+        self.supporting_materials.each_with_index {|x, i|
+          if (x.path.split("/").last.include?(name))
+            index = i
+          end
+        }
+        # puts index
+        remain_files = self.supporting_materials # copy the array
+        deleted_file = remain_files.delete_at(index) # delete the target image
+        deleted_file.try(:remove!) # delete image from S3
+        if remain_files.empty?
+          self.removeFiles(:supporting_materials)
+        else
+          self.supporting_materials = remain_files # re-assign back
+        end
+        self.supporting_materials_will_change!
+        self.save!; self.reload
+        returnable = true
+      when :supporting_files
+        index = nil
+        self.supporting_files.each_with_index {|x, i|
+          if (x.path.split("/").last.include?(name))
+            index = i
+          end
+        }
+        remain_files = self.supporting_files # copy the array
+        deleted_file = remain_files.delete_at(index) # delete the target image
+        deleted_file.try(:remove!) # delete image from S3
+        if remain_files.empty?
+          self.removeFiles(:supporting_files)
+        else
+          self.supporting_files = remain_files # re-assign back
+        end
+        self.supporting_files_will_change!
+        self.save!; self.reload
+        returnable = true
+    end
+    returnable
+  end
+
+  def files_destroy_all
+    removeFiles(:supporting_materials)
+    removeFiles(:supporting_files)
+  end
+
+  def find_carrier_wave_with_original_name(og_name, sym)
+    og_name.gsub!(" ", "_")
+    self.reload
+    case sym
+      when :supporting_files
+        indexes = []
+        self.supporting_files.each_with_index {|x, i|
+          if x.path.split("/").last.include?(og_name)
+            indexes.append(i)
+          end
+        }
+        indexes
+      when :supporting_materials
+        indexes = []
+        self.supporting_materials.each_with_index {|x, i|
+          if x.path.split("/").last.include?(og_name)
+            indexes.append(i)
+          end
+        }
+        indexes
+    end
+  end
+
 end

@@ -181,7 +181,7 @@ class LessonsController < ApplicationController
     
     puts files_hash.inspect
 
-    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first)
+    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first) ## THIS NEEDS TO FUCKING CHANGE!! TODO --
     @lesson.reload
 
     returning = []
@@ -207,11 +207,6 @@ class LessonsController < ApplicationController
         returning.append (JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
       end
     end
-
-    # puts "carriers below"
-    # puts returning
-    # puts '///////////////////////////////////////////'
-    # puts returning.to_json
 
     respond_to do |format|
       format.html {
@@ -261,6 +256,98 @@ class LessonsController < ApplicationController
   end
 
 
+
+  # STEP FILES HERE
+  def step_file_upload_load
+    @lesson = Lesson.find(params[:id])
+    @step = @lesson.steps.find(params[:step])
+    @lesson = Lesson.find(id)
+
+    returning = []
+
+    if file_params[:attr] == "files"
+      @step.supporting_files.map{|x|
+        returning.push( JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_files") )
+      }
+    elsif
+    file_params[:attr] == "materials"
+      @step.supporting_materials.map{|x|
+        returning.push( JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_materials") )
+      }
+    end
+
+    respond_to do |format|
+      format.html {
+        render :json => returning.to_json,
+               :content_type => 'text/html',
+               :layout => false
+      }
+      format.json {
+        render :json => { files: returning }, status: :created, location: @Uploaded
+      }
+    end
+  end
+  def step_file_upload
+    @lesson = Lesson.find(params[:id])
+    # return false unless @lesson.isAuthor?(calling_user.id)
+    @step = @lesson.steps.find(params[:step])
+
+    files_hash = {}
+    files_hash.merge!({supporting_files: file_params[:supporting_files]}) if file_params[:supporting_files].present?
+    files_hash.merge!({supporting_materials: file_params[:supporting_materials]}) if file_params[:supporting_materials].present?
+
+    puts files_hash.inspect
+
+    @step.add_file_through_hash(files_hash) # CHECK TO MAKE SURE CALLING USER IS AUTHOR OF
+    @step.reload
+
+    returning = []
+
+
+    if files_hash[:supporting_files].present?
+      uploaded_sF = file_params[:supporting_files].each{|x|
+        @step.find_carrier_wave_with_original_name(x.original_filename, :supporting_files)
+      }
+      for i in 0..uploaded_sF.count-1
+        @step.reload
+        x = @step.supporting_files[i]
+        returning.push( JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_files") )
+      end
+    elsif files_hash[:supporting_materials].present?
+      uploaded_of = file_params[:supporting_materials].each{|x|
+        @step.find_carrier_wave_with_original_name(x.original_filename, :supporting_materials)
+      }
+      puts uploaded_of.count
+      for i in 0..uploaded_of.count-1
+        @step.reload
+        x = @step.supporting_materials[i]
+        returning.push( JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_materials") )
+      end
+    end
+
+    respond_to do |format|
+      format.html {
+        render :json => returning.to_json,
+               :content_type => 'text/html',
+               :layout => false
+      }
+      format.json {
+        render :json => { :files => returning }
+      }
+    end
+  end
+  def step_remove_file_upload
+    puts "prepping for delete"
+    puts params.inspect
+    @lesson = Lesson.find(params[:id])
+    # return false unless @lesson.isAuthor?(calling_user.id)
+    @step = @lesson.steps.find(params[:step])
+    status = @step.removeFileWithName(remove_file_params[:attr].to_sym, remove_file_params[:name])
+    puts "finished for delete"
+    render :json => {status: status}, location: @Uploaded
+  end
+
+
   private
   def lesson_params
     params.require(:lesson).permit(:name, :topline, :summary, :description, :assessment_criteria, :state, :collection_tag, other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids: [], standards: [:name, descriptions: []], grade_range: [:start, :end], subjects: [], difficulty_level: [:student, :educator], skills: [:name, :level], context: [], tags: [])
@@ -275,8 +362,8 @@ class LessonsController < ApplicationController
   end
 
 
-  def file_params
-    params.permit(:id, :attr, :assessment_criteria_files => [], :outcome_files => [])
+  def file_params # both lessons and steps
+    params.permit(:id, :attr, :step, :assessment_criteria_files => [], :outcome_files => [], :supporting_materials => [], :supporting_files => [])
   end
   def remove_file_params
     params.permit(:name, :attr)
