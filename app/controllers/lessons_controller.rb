@@ -166,19 +166,13 @@ class LessonsController < ApplicationController
 
   end
 
-  def file_upload # https://github.com/blueimp/jQuery-File-Upload/wiki/Rails-setup-for-V6-(multiple)
-    # puts params[:id]
-    # x = file_params[:assessment_criteria_files]
-    # puts x.inspect
-    # puts x.first.original_filename
-
-    #id = Lesson.first.id
+  def file_upload
     @lesson = Lesson.find(params[:id])
 
     files_hash = {}
-    files_hash.merge!({assessment_criteria_files: file_params[:assessment_criteria_files]}) if file_params[:assessment_criteria_files].present?
-    files_hash.merge!({outcome_files: file_params[:outcome_files]}) if file_params[:outcome_files].present?
-    
+    files_hash.merge!({assessment_criteria_files: file_params[:files]}) if file_params[:attr] == "assessment_criteria_files"
+    files_hash.merge!({outcome_files: file_params[:files]}) if file_params[:attr] == "outcome_files"
+    puts "uploading files"
     puts files_hash.inspect
 
     LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first) ## THIS NEEDS TO FUCKING CHANGE!! TODO --
@@ -188,7 +182,7 @@ class LessonsController < ApplicationController
 
 
     if files_hash[:assessment_criteria_files].present?
-      uploaded_acf = file_params[:assessment_criteria_files].each{|x|
+      uploaded_acf = file_params[:files].each{|x|
         @lesson.find_carrier_wave_with_original_name(x.original_filename, :assessment_criteria)
       }
       for i in 0..uploaded_acf.count-1
@@ -197,7 +191,7 @@ class LessonsController < ApplicationController
         returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
       end
     elsif files_hash[:outcome_files].present?
-      uploaded_of = file_params[:outcome_files].each{|x|
+      uploaded_of = file_params[:files].each{|x|
         @lesson.find_carrier_wave_with_original_name(x.original_filename, :outcome_files)
       }
       puts uploaded_of.count
@@ -365,7 +359,7 @@ class LessonsController < ApplicationController
 
 
   def file_params # both lessons and steps
-    params.permit(:id, :attr, :step, :assessment_criteria_files => [], :outcome_files => [], :supporting_materials => [], :supporting_files => [])
+    params.permit(:id, :attr, :step, :assessment_criteria_files => [], :outcome_files => [], :supporting_materials => [], :supporting_files => [], files: [])
   end
   def remove_file_params
     params.permit(:name, :attr)

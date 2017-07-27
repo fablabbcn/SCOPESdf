@@ -265,11 +265,11 @@ class Lesson < ApplicationRecord
 
 
   def addFiles(file, sym)
-    returnable =""
+    returnable = ""
     # puts file
     case sym
       when :assessment_criteria
-        # puts "assessment saving"
+        puts "assessment saving"
         collection = self.assessment_criteria_files
         collection += file
         self.assessment_criteria_files = collection
@@ -277,6 +277,7 @@ class Lesson < ApplicationRecord
         self.reload
         returnable = self.assessment_criteria_files.map {|x| x.url}
       when :outcome
+        puts "assessment saving"
         collection = self.outcome_files
         collection += file
         self.outcome_files = collection
