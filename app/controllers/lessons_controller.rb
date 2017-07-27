@@ -287,6 +287,7 @@ class LessonsController < ApplicationController
     end
   end
   def step_file_upload
+    puts "sthis"
     @lesson = Lesson.find(params[:id])
     # return false unless @lesson.isAuthor?(calling_user.id)
     @step = @lesson.steps.find(params[:step])
@@ -295,6 +296,7 @@ class LessonsController < ApplicationController
     files_hash.merge!({supporting_files: file_params[:supporting_files]}) if file_params[:supporting_files].present?
     files_hash.merge!({supporting_materials: file_params[:supporting_materials]}) if file_params[:supporting_materials].present?
 
+    puts "sthis"
     puts files_hash.inspect
 
     @step.add_file_through_hash(files_hash) # CHECK TO MAKE SURE CALLING USER IS AUTHOR OF
@@ -303,26 +305,26 @@ class LessonsController < ApplicationController
     returning = []
 
 
-    if files_hash[:supporting_files].present?
-      uploaded_sF = file_params[:supporting_files].each{|x|
-        @step.find_carrier_wave_with_original_name(x.original_filename, :supporting_files)
-      }
-      for i in 0..uploaded_sF.count-1
-        @step.reload
-        x = @step.supporting_files[i]
-        returning.push( JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_files") )
-      end
-    elsif files_hash[:supporting_materials].present?
-      uploaded_of = file_params[:supporting_materials].each{|x|
-        @step.find_carrier_wave_with_original_name(x.original_filename, :supporting_materials)
-      }
-      puts uploaded_of.count
-      for i in 0..uploaded_of.count-1
-        @step.reload
-        x = @step.supporting_materials[i]
-        returning.push( JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_materials") )
-      end
-    end
+    # if files_hash[:supporting_files].present?
+    #   uploaded_sF = file_params[:supporting_files].each{|x|
+    #     @step.find_carrier_wave_with_original_name(x.original_filename, :supporting_files)
+    #   }
+    #   for i in 0..uploaded_sF.count-1
+    #     @step.reload
+    #     x = @step.supporting_files[i]
+    #     returning.push( JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_files") )
+    #   end
+    # elsif files_hash[:supporting_materials].present?
+    #   uploaded_of = file_params[:supporting_materials].each{|x|
+    #     @step.find_carrier_wave_with_original_name(x.original_filename, :supporting_materials)
+    #   }
+    #   puts uploaded_of.count
+    #   for i in 0..uploaded_of.count-1
+    #     @step.reload
+    #     x = @step.supporting_materials[i]
+    #     returning.push( JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_materials") )
+    #   end
+    # end
 
     respond_to do |format|
       format.html {
