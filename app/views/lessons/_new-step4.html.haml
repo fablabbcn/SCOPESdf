@@ -94,13 +94,14 @@
             %label
               Supporting Materials
               %small Design files, handouts needed for this step
-            .field-wrapper
-              .image-uploader-wrapper
+            .field-wrapper.field-group--supporting-materials
+              .image-uploader-wrapper{ data: { endpoint: "#{step_file_path(id: @lesson_obj.id, step:@steps.first.id, attr: 'supporting_materials')}" } }
                 .dropzone
                   %p 
                     Drag & drop files here - or click to browse 
                     %br .jpg, .png, .pdf
               = file_field_tag 'supporting_materials[]', multiple: true
+              .files
 
           .field-group
             %label
@@ -132,9 +133,16 @@
 
   function resetEndpoints(){
     for(i = 0; i <= ID_ARRAY.length -1; i++){
-      $('.lesson-step .field-group--supporting-files').eq(i).find('.image-uploader-wrapper').attr('id','upload-'+ID_ARRAY[i]);
-      window.Scopes.lesson.nameTheEndpoint(LESSON_ID,ID_ARRAY[i]);
-      window.Scopes.lesson.enableFileUploader('#upload-'+ID_ARRAY[i]);
+
+      $('.lesson-step').eq(i).find('.image-uploader-wrapper').eq(0).attr('id','upload-'+ID_ARRAY[i]);
+      $('.lesson-step').eq(i).find('.image-uploader-wrapper').eq(1).attr('id','upload-material-'+ID_ARRAY[i]);
+      //$('.lesson-step .field-group--supporting-materials').eq(i).find('.image-uploader-wrapper').attr('id','upload-material-'+ID_ARRAY[i]);
+
+      window.Scopes.lesson.nameTheEndpoint(LESSON_ID,ID_ARRAY[i],'files');
+      window.Scopes.lesson.nameTheEndpoint(LESSON_ID,ID_ARRAY[i],'materials');
+
+      window.Scopes.lesson.enableFileUploader('#' + $('.lesson-step').eq(i).find('.image-uploader-wrapper').eq(0).attr('id'));
+      window.Scopes.lesson.enableFileUploader('#' + $('.lesson-step').eq(i).find('.image-uploader-wrapper').eq(1).attr('id'));
     }
   }
 

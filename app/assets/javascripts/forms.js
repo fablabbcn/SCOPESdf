@@ -2,9 +2,9 @@ window.Scopes = window.Scopes || {};
 
 window.Scopes.lesson = {
 
-  nameTheEndpoint: function(lesson,step){
-    var endpoint_supporting_files = '/lessons/'+lesson+'/'+step+'/file/supporting_files';
-    $('.lesson-step[data-id="'+step+'"]').find('.field-group--supporting-files .image-uploader-wrapper').attr('data-endpoint',endpoint_supporting_files);
+  nameTheEndpoint: function(lesson,step,type){
+    var endpoint_for_files = '/lessons/'+lesson+'/'+step+'/file/supporting_'+type;
+    $('.lesson-step[data-id="'+step+'"]').find('.field-group--supporting-'+type+' .image-uploader-wrapper').attr('data-endpoint',endpoint_for_files);
   },
 
   getUploadedFiles: function(){ // Generic function to print files
@@ -20,8 +20,8 @@ window.Scopes.lesson = {
   },
 
   enableFileUploader: function(element){ // enable file uploader.
+    console.log($(element));
     var endpoint_url = $(element).data('endpoint');
-    console.log(endpoint_url);
     if(endpoint_url) {
       $(element).fileupload({
           autoUpload:true,
