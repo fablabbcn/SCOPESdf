@@ -43,7 +43,7 @@
       min-height: 85vh;
       background: image-url("landing-page-image-mobile.png") no-repeat center center;
       @include breakpoint($tablet-breakpoint) {
-        background: url(landing-page-image.png) no-repeat center center;
+        background: image-url("landing-page-image.png") no-repeat center center;
       }
     }
 

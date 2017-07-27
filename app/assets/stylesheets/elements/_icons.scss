@@ -983,7 +983,7 @@ $icon-Users: "\e986";
   &:before {
     content:"";
     display:block;
-    background:url(icons/icon_close_black.svg) top left no-repeat;
+    background:image-url("icons/icon_close_black.svg") top left no-repeat;
     background-size:100%;
     width:18px;
     height:18px;
@@ -1003,15 +1003,15 @@ $icon-Users: "\e986";
   background-size:100% 100%;
 
   &.icon_slack {
-    background-image:url(icons/icon_slack.svg);
+    background-image:image-url("icons/icon_slack.svg");
   }
 
   &.icon_twitter {
-    background-image:url(icons/icon_twitter.svg);
+    background-image:image-url("icons/icon_twitter.svg");
   }
 
   &.icon_facebook {
-    background-image:url(icons/icon_facebook.svg);
+    background-image:image-url("icons/icon_facebook.svg");
   }
 
 }
