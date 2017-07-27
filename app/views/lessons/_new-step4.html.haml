@@ -60,10 +60,11 @@
               %small What do they need?
             .field-wrapper
               -#@TODO repeat both
-              .field--xs
-                %input{type: 'text', placeholder: 'Qty'}
-              .field--xl
-                %input{type: 'text', placeholder: 'Enter item here'}
+              .clone-container
+                .field--xs
+                  %input{type: 'text', placeholder: 'Qty', data:{index: i, control:'key-pair', sub: 0}}
+                .field--xl
+                  %input{type: 'text', placeholder: 'Enter item here', data:{index: i, control:'key-pair', sub:0}}
               %small Press ↵ Return to add
 
           .field-group
@@ -232,7 +233,7 @@
       console.log(step_data);
 
 
-      $.ajax({
+      /*$.ajax({
           type: "PUT",
           url: "/lessons/#{@lesson_obj.id}/steps",
           // The key needs to match your method's input parameter (case-sensitive).
@@ -247,5 +248,5 @@
           failure: function(errMsg) {
               alert(errMsg);
           }
-      });
+      });*/
   };

@@ -4,4 +4,5 @@
   .details
     %p
       = user.name
-      %em Role or description
+      %em
+        =user.getInvolvements.join("")

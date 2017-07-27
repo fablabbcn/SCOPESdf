@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users
 
   get  'lessons/new' => 'lessons#new', as: :lesson_new
-  post 'lessons'            => 'lessons#create'#, as: :lesson_create
+  # post 'lessons'            => 'lessons#create'#, as: :lesson_create
   post 'lessons/new'            => 'lessons#new', as: :lesson_create
   # the above line is strictly used for the weekend of the 13/7/2017 for submit on new page loads
 
