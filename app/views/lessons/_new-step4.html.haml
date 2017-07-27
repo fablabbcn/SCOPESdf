@@ -112,6 +112,17 @@
 
 :javascript
 
+  var ID_ARRAY = #{ raw @steps_array };
+  var LESSON_ID = "#{@lesson_obj.id}";
+
+  function resetEndpoints(){
+    for(i = 0; i <= ID_ARRAY.length -1; i++){
+      $('.lesson-step .field-group--supporting-files').eq(i).find('.image-uploader-wrapper').attr('id','upload-'+ID_ARRAY[i]);
+      window.Scopes.lesson.nameTheEndpoint(LESSON_ID,ID_ARRAY[i]);
+      window.Scopes.lesson.enableFileUploader('#upload-'+ID_ARRAY[i]);
+    }
+  }
+
   $(document).on('turbolinks:load', function() {
     $('#steps-wrapper').on('focusout','input',function() {
       console.log('update');
@@ -185,7 +196,8 @@
     }
   }
 
-  $('article').on("click", '.remove-step', function(){
+  $('.lesson--steps').on("click", '.remove-step', function(e){
+        e.preventDefault();
         index = $(this).data('index');
         id_data = $('.lesson-step').eq(index).data('id');
         step_data = {id: id_data};
@@ -208,6 +220,7 @@
           }
       });
     });
+
    function updateStep(index){
       console.log('submit data for step: ' + index);
       // console.log(ID_ARRAY);

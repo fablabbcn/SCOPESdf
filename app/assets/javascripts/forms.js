@@ -2,6 +2,40 @@ window.Scopes = window.Scopes || {};
 
 window.Scopes.lesson = {
 
+  nameTheEndpoint: function(lesson,step){
+    var endpoint_supporting_files = '/lessons/'+lesson+'/'+step+'/file/supporting_files';
+    $('#upload-'+step).attr('data-endpoint',endpoint_supporting_files);
+  },
+
+  getUploadedFiles: function(){ // Generic function to print files
+    // @TODO rename this to file-uploader wrapper because it can behave distinct from image
+    $.getJSON($('.image-uploader-wrapper').data('endpoint'), function (files) {
+      $.each(files, function(index,key){
+          $.each(key, function(i,file){
+            $('.image-uploader-wrapper').parent().find('.files').append('<span class="button button--file">333<a href="'+file.url+'">'+file.name+'</a><a href="#" data-delete="'+file.delete_url+'"><i class="icon-close"></i></a></span>');
+          });
+        });
+    });
+  },
+
+  enableFileUploader: function(element){ // enable file uploader.
+    var endpoint_url = $(element).data('endpoint');
+    var self = element;
+    if(endpoint_url) {
+      $($(element)).fileupload({
+          autoUpload:true,
+          dropZone: $('.dropzone'),
+          url:endpoint_url
+      }).bind('fileuploadadd',function(e,data){
+        //console.log(e,'event');
+        //console.log(data,'data');
+      }).bind('fileuploadsend',function(e,data){
+        //console.log(e,'event');
+        //console.log(data,'data');
+      });
+    }
+  },
+
   deleteFile: function(element) {
     var url = $(element).data('delete');
 
@@ -241,6 +275,8 @@ $(document).on('turbolinks:load', function() {
 
     /** Upload images **/
 
+    window.Scopes.lesson.getUploadedFiles();
+    //window.Scopes.lesson.enableFileUploader('#lesson_form_1');
 
     $('#fileupload').fileupload({
         autoUpload:true,
