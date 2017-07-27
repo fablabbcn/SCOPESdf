@@ -141,7 +141,7 @@ class Step < ApplicationRecord
         self.save!
         returnable = true
       when :supporting_files
-        self.removes_upporting_files!
+        self.remove_supporting_files!
         self.save!
         returnable = true
     end
