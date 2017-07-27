@@ -106,14 +106,50 @@
 
 
 :javascript
+
+      var sliderValues = #{ raw @teaching_range_helper.to_json };
+      var sliderDefaults = #{ raw @lesson_obj.getTeachingRange_formatted.to_json if @lesson_obj.present? };
+
+
+
+      $(function () {
+        $( "#slider-range" ).slider({
+          range: true,
+          min: 0,
+          max: 13,
+          values: [ 2, 5 ],
+          slide: function( event, ui ) {
+            $( "#grade" ).val([ui.values[0],ui.values[1]]);
+          },
+          stop: function(event, ui) {
+            submitForm();
+          }
+        });
+      });
+
      /**
      * AJAX BELOW
      */
     $('.ajax-details').hover(function() {
+      submitForm();
+    });
+
+      var submitForm = function(){
 
         console.log('submit details');
         parameters = {};
         standards_data = [];
+
+        grade_data = $('#grade').val();
+
+        grade_range_data = {
+          'start': grade_data[0],
+          'end': grade_data[2] 
+        };
+
+        // @TODO fix this :shit:
+
+        console.log(grade_range_data);
 
          // TODO --
         // grade_range= {start: , end: }
@@ -130,10 +166,11 @@
         });
 
         difficulty_level_data = { student: $('input[name=difficulty-student]:checked').val() , educator: $('input[name=difficulty-educator]:checked').val() }
+        
 
 
-        parameters = {lesson: {subjects: subjects_data, context: context_data, difficulty_level: difficulty_level_data} };
-        console.log(parameters);
+        parameters = {lesson: {subjects: subjects_data, context: context_data, difficulty_level: difficulty_level_data, grade_range: grade_range_data }};
+        console.log(parameters,'params');
 
 
 
@@ -149,4 +186,4 @@
                 alert(errMsg);
             }
         });
-    });
+      }
