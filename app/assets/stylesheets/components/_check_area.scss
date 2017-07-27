@@ -7,10 +7,18 @@
   width: 100%;
   margin: 1rem 1.5rem;
   .check_image {
-    width: 76px;
+    width: 5rem;
     text-align: center;
+    margin: 2rem 0;
+    color: $color-green;
+    font-size: 2rem;
   }
   .objective {
     padding: 1rem;
   }
+}
+.icon-Done{
+  margin: 2rem 0;
+  color: $color-green;
+  font-size: 2rem;
 }

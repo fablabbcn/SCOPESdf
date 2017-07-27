@@ -15,6 +15,9 @@
     background: image-url("landing-page-image.png") no-repeat center center;
   }
   #content {
+    .mid-wrapper{
+      width: 100%;
+    }
     .toggle {
       padding: 0;
     }
