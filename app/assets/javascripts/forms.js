@@ -2,6 +2,20 @@ window.Scopes = window.Scopes || {};
 
 window.Scopes.lesson = {
 
+  getUploadedFiles: function(){ // Generic function to print files
+
+    // @TODO rename this to file uploader wrapper because it can behave distinct from image
+    $.getJSON($('.image-uploader-wrapper').data('endpoint'), function (files) {
+
+      $.each(files, function(index,key){
+          $.each(key, function(index,file){
+            $('.image-uploader-wrapper').parent().find('.files').append('<span class="button button--file"><a href="'+file.url+'">'+file.name+'</a><a href="#" data-delete="'+file.delete_url+'"><i class="icon-close"></i></a></span>');
+          });
+        });
+    });
+
+  },
+
   deleteFile: function(element) {
     var url = $(element).data('delete');
 
@@ -122,6 +136,7 @@ $(document).on('turbolinks:load', function() {
             $parent.insertAfter($(this).parent().parent());
         }
     });
+
     $('fieldset').on('focusout', '[data-control="key-pair"]', function (e) {
         if( $(this).val().length == 0 && $('[data-control="key-pair"]').length > 2) {
             console.log('focus delete');
@@ -236,6 +251,8 @@ $(document).on('turbolinks:load', function() {
 
     /** Upload images **/
 
+    window.Scopes.lesson.getUploadedFiles();
+
 
     $('#fileupload').fileupload({
         autoUpload:true,
@@ -253,20 +270,19 @@ $(document).on('turbolinks:load', function() {
     $('#lesson_4').fileupload({
         autoUpload:true,
         dropZone: $('.dropzone'),
-        url:$('#lesson4 .image-uploader-wrapper').data('endpoint')
-    });
-
-    $.getJSON($('#lesson_4 .image-uploader-wrapper').data('endpoint'), function (files) {
-
-      $.each(files, function(index,key){
-          $.each(key, function(index,file){
-            $('#lesson_4 .image-uploader-wrapper').parent().find('.files').append('<span class="button button--file"><a href="'+file.url+'">'+file.name+'</a><a href="#" data-delete="'+file.delete_url+'"><i class="icon-close"></i></a></span>');
-          });
-        });
+        url:$('#lesson4 .image-uploader-wrapper').data('endpoint'),
+    }).bind('fileuploadadd',function(e,data){
+      console.log(e,'event');
+      console.log(data,'data');
+    }).bind('fileuploadsend',function(e,data){
+      console.log(e,'event');
+      console.log(data,'data');
     });
 
 
 
+
+    /*
     $.getJSON($('#lesson_form_1 .image-uploader-wrapper').data('endpoint'), function (files) {
 
       $.each(files, function(index,key){
@@ -275,6 +291,7 @@ $(document).on('turbolinks:load', function() {
           });
         });
     });
+    */
 
 
     $('#lesson_form_1').fileupload({
