@@ -291,9 +291,11 @@ class LessonsController < ApplicationController
     # return false unless @lesson.isAuthor?(calling_user.id)
     @step = @lesson.steps.find(params[:step])
 
+    puts file_params.inspect
+
     files_hash = {}
-    files_hash.merge!({supporting_files: file_params[:supporting_files]}) if file_params[:supporting_files].present?
-    files_hash.merge!({supporting_materials: file_params[:supporting_materials]}) if file_params[:supporting_materials].present?
+    files_hash.merge!({supporting_files: file_params[:files]}) if file_params[:attr] == "supporting_files"
+    files_hash.merge!({supporting_materials: file_params[:files]}) if file_params[:attr] == "supporting_materials"
 
     puts files_hash.inspect
 
@@ -304,7 +306,7 @@ class LessonsController < ApplicationController
 
 
     if files_hash[:supporting_files].present?
-      uploaded_sF = file_params[:supporting_files].each{|x|
+      uploaded_sF = file_params[:files].each{|x|
         @step.find_carrier_wave_with_original_name(x.original_filename, :supporting_files)
       }
       for i in 0..uploaded_sF.count-1
@@ -313,7 +315,7 @@ class LessonsController < ApplicationController
         returning.push( JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_files") )
       end
     elsif files_hash[:supporting_materials].present?
-      uploaded_of = file_params[:supporting_materials].each{|x|
+      uploaded_of = file_params[:files].each{|x|
         @step.find_carrier_wave_with_original_name(x.original_filename, :supporting_materials)
       }
       puts uploaded_of.count

@@ -106,8 +106,11 @@ class Lesson < ApplicationRecord
 
   def getTeachingRange_formatted
     range = {}
-    original_range = getTeachingRange
-    range = {range_start: TeachingRange.format(range[:range_start].gsub("start_", "")), range_end: TeachingRange.format(range[:range_end].gsub("end_", ""))} if original_range.present?
+    if getTeachingRange.present?
+      range = getTeachingRange
+      range = {range_start: TeachingRange.format(range[:range_start].gsub("start_", "")), range_end: TeachingRange.format(range[:range_end].gsub("end_", ""))}
+    end
+    range
   end
 
 
