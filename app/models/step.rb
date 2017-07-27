@@ -115,14 +115,15 @@ class Step < ApplicationRecord
     # puts file
     case sym
       when :supporting_materials
-        # puts "assessment saving"
+        puts "supporting_materials saving"
         collection = self.supporting_materials
         collection += file
         self.supporting_materials = collection
         self.save!
         self.reload
-        returnable = self.supporting_materials.map {|x| x.url}
+        returnable = self.supporting_files.map {|x| x.url}
       when :supporting_files
+        puts "supporting_files saving"
         collection = self.supporting_files
         collection += file
         self.supporting_files = collection
