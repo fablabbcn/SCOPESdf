@@ -119,7 +119,7 @@
           max: 13,
           values: [ 2, 5 ],
           slide: function( event, ui ) {
-            $( "#grade" ).val([ui.values[0],ui.values[1]]);
+            $( "#grade" ).val(ui.values[0] + "," + ui.values[1]);
           },
           stop: function(event, ui) {
             submitForm();
@@ -140,11 +140,11 @@
         parameters = {};
         standards_data = [];
 
-        grade_data = $('#grade').val();
+        grade_data = $('#grade').val().split(',');
 
         grade_range_data = {
           'start': grade_data[0],
-          'end': grade_data[2] 
+          'end': grade_data[1] 
         };
 
         // @TODO fix this :shit:
