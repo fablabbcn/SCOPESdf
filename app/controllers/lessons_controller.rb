@@ -223,7 +223,8 @@ class LessonsController < ApplicationController
 
     puts "carriers below"
     puts returning
-    puts returning.inspect
+    puts '///////////////////////////////////////////'
+    puts returning.to_json
 
     respond_to do |format|
       format.html {

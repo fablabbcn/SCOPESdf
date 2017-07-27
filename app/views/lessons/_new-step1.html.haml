@@ -128,12 +128,14 @@
                 %label.label--small
                   Supporting files
                 .field-wrapper
-                  .image-uploader-wrapper
+                  .image-uploader-wrapper{ data: { endpoint: "#{lesson_file_path(id: @lesson_obj.id, attr:'assessment_criteria_files')}" } }
                     .dropzone
                       %p 
                         Drag & drop files here - or click to browse 
                         %br .jpg, .png, .pdf
                   = file_field_tag 'assessment_criteria_files[]', multiple: true
+
+                  .files
 
         %fieldset
           .field-group
@@ -153,5 +155,41 @@
         .wrapped
           %p Next up...
           = submit_tag('Add some Standards', class: 'button button--call')
+
+
+
+%script#template-upload{:type => "text/html"}
+  :plain
+    {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
+      <figure data-src="{%=file.url%}" data-filename="{%=file.name%}">
+        {% if (file.error) { %}
+        <span class="label important">Error</span> {%=fileUploadErrors[file.error] || file.error%}
+        {% } else { %}
+
+        <a href="{%=file.delete_url%}" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}" class="action--delete"><i class="icon-Trash"></i><span>Delete</span></a>
+        <div class="image--container" style="background-image:url({%=o.url%});"></div>
+
+        <figcaption>
+          {%=file.name%}
+        </figcaption>
+      {% } %}
+      
+      </figure>
+    {% } %}
+
+%script#template-download{:type => "text/html"}
+  :plain
+    {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
+    <figure data-src="{%=file.url%}" data-filename="{%=file.name%}">
+      {% if (file.error) { %}
+      <span class="label important">Error</span> {%=fileUploadErrors[file.error] || file.error%}
+      {% } else { %}
+
+      <a href="{%=file.delete_url%}" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}" class="action--delete"><i class="icon-Trash"></i><span>Delete</span></a>
+      <div class="image--container" style="background-image:url({%=o.url%});"></div>
+    {% } %}
+
+    </figure>
+    {% } %}
 
 = render '/users/new-modal';
