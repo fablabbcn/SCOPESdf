@@ -71,6 +71,8 @@ class Step < ApplicationRecord
     end
     params.delete(:id)
     params[:external_links].delete("")
+    params[:tools].delete("")
+    params[:materials].delete({number:"", name:""})
     @step.attributes = params
     @step.save!
     @step.reload

@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-content: stretch;
-    #top {
+  #top {
     height: 100px;
     h3 {
       width: 100%;
@@ -15,7 +15,7 @@
     background: image-url("landing-page-image.png") no-repeat center center;
   }
   #content {
-      .toggle {
+    .toggle {
       padding: 0;
     }
     padding: 2rem;
@@ -39,7 +39,7 @@
         width: 100%;
         margin: 1rem 0 2rem 0rem;
 
-        &:last-of-type{
+        &:last-of-type {
           @include breakpoint($tablet-breakpoint) {
             max-width: 115px;
           }
@@ -51,17 +51,17 @@
 
   @include breakpoint($desktop-breakpoint) {
     flex-direction: row;
-    #content{
+    #content {
       order: 1;
       width: 50vw;
-
+      height: 80vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-content: center;
       align-items: center;
     }
-    #top{
+    #top {
       order: 2;
       height: inherit;
       display: flex;
@@ -72,8 +72,7 @@
     }
   }
 
-
-  .login, .register{
+  .login, .register {
     visibility: hidden;
   }
 
@@ -83,20 +82,18 @@
     -o-animation: form_fade_out $form-animation-speed forwards;
     animation: form_fade_out $form-animation-speed forwards;
   }
-  .animate_in_right{
+  .animate_in_right {
     -webkit-animation: form_fade_in_right $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
     -moz-animation: form_fade_in_right $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
     -o-animation: form_fade_in_right $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
     animation: form_fade_in_right $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
   }
 
-  .animate_in_left{
+  .animate_in_left {
     -webkit-animation: form_fade_in_left $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
     -moz-animation: form_fade_in_left $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
     -o-animation: form_fade_in_left $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
     animation: form_fade_in_left $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);
   }
-
-
 
 }

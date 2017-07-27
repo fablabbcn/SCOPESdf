@@ -49,19 +49,6 @@ class LessonsController < ApplicationController
     @standards = Lesson.standards_list
     @standards_array = @lesson_obj.standards_array
     @difficulty_helper = DifficultyLevel.form_helper
-
-
-    respond_to do |format|
-      format.html {
-        render :json => returning.to_json,
-               :content_type => 'text/html',
-               :layout => false
-      }
-      format.json {
-        render :json => { :files => returning }
-      }
-    end
-
   end
 
   def create
@@ -221,10 +208,10 @@ class LessonsController < ApplicationController
       end
     end
 
-    puts "carriers below"
-    puts returning
-    puts '///////////////////////////////////////////'
-    puts returning.to_json
+    # puts "carriers below"
+    # puts returning
+    # puts '///////////////////////////////////////////'
+    # puts returning.to_json
 
     respond_to do |format|
       format.html {
@@ -280,7 +267,7 @@ class LessonsController < ApplicationController
   end
 
   def step_params
-    params.permit(steps: [:id, :name, :summary, :duration, :description, :supporting_images => [], :materials => [], :tools => [], :supporting_material => [], :external_links => []]) #TODO - supporting materials vs materials... add materials
+    params.permit(steps: [:id, :name, :summary, :duration, :description, :supporting_images => [], :materials => [:number, :name], :tools => [], :supporting_material => [], :external_links => []]) #TODO - supporting materials vs materials... add materials
   end
 
   def step_param

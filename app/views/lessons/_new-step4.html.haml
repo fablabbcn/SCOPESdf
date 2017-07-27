@@ -60,11 +60,19 @@
               %small What do they need?
             .field-wrapper
               -#@TODO repeat both
-              .clone-container
-                .field--xs
-                  %input{type: 'text', placeholder: 'Qty', data:{index: i, control:'key-pair', sub: 0}}
-                .field--xl
-                  %input{type: 'text', placeholder: 'Enter item here', data:{index: i, control:'key-pair', sub:0}}
+              - if s.materials.present?
+                -s.materials.each do |m|
+                  .clone-container.materials-container
+                    .field--xs
+                      = text_field(:step, :materials_number, multiple: true, data:{index: i, control:'key-pair', sub: 0}, placeholder: 'Qty', value: m["number"] )
+                    .field--xl
+                      = text_field(:step, :materials_value, multiple: true, data:{index: i, control:'key-pair', sub: 0}, placeholder: 'Enter item here', value: m["name"] )
+              - else
+                .clone-container.materials-container
+                  .field--xs
+                    = text_field(:step, :materials_number, multiple: true, data:{index: i, control:'key-pair', sub: 0}, placeholder: 'Qty' )
+                  .field--xl
+                    = text_field(:step, :materials_value, multiple: true, data:{index: i, control:'key-pair', sub: 0}, placeholder: 'Enter item here' )
               %small Press ↵ Return to add
 
           .field-group
@@ -72,7 +80,11 @@
               Tools
               %small List as many as needed
             .field-wrapper
-              %input{type: 'text', placeholder: 'Enter item here',data:{index: i, control:'key'}}
+              - if s.tools.present?
+                - s.tools.each do |tool|
+                  = text_field(:step, :tools, placeholder: 'Enter item here', multiple: true, data: { control:'key', index: i}, value: tool )
+              - else
+                = text_field(:step, :tools, placeholder: 'Enter item here', multiple: true, data: { control:'key', index: i} )
               %small Press ↵ Return to add
 
           .field-group
@@ -214,11 +226,29 @@
 
       summary_data = $("[name='step[summary]']").eq(index).val();
       //duration_data =
-      description_data = $("[name='step[description]']").eq(index).val();
-      // materials=
-      // tools=
-      external_links_data = [];
+      // send as seconds in string
 
+      description_data = $("[name='step[description]']").eq(index).val();
+
+
+      materials_data = [];
+      $(".materials-container").each(function(i){
+        var quantity =  $(this).find("[name='step[materials_number][]']").first().val();
+        var item = $(this).find("[name='step[materials_value][]']").first().val();
+        materials_data.push({"number": quantity, "name": item });
+      });
+
+
+
+
+
+      tools_data = []
+      $("[name='step[tools][]']").filter("[data-index=" + index + "]").each(function(i){
+        tools_data.push($(this).val());
+      });
+
+
+      external_links_data = [];
       $("[name='step[external_links][]']").filter("[data-index=" + index + "]").each(function(i){
         external_links_data.push($(this).val());
       });
@@ -228,12 +258,12 @@
 
       id_data = $('.lesson-step').eq(index).data("id");
 
-      step_data = [{id: id_data, summary: summary_data, description: description_data, external_links: external_links_data}];
+      step_data = [{id: id_data, summary: summary_data, description: description_data, external_links: external_links_data, tools: tools_data, materials: materials_data}];
       paramaters = {steps: step_data};
       console.log(step_data);
 
 
-      /*$.ajax({
+      $.ajax({
           type: "PUT",
           url: "/lessons/#{@lesson_obj.id}/steps",
           // The key needs to match your method's input parameter (case-sensitive).
@@ -248,5 +278,5 @@
           failure: function(errMsg) {
               alert(errMsg);
           }
-      });*/
+      });
   };

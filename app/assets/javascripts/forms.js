@@ -100,11 +100,6 @@ $(document).on('turbolinks:load', function() {
 
 
             $parent.insertAfter($(this).parent().parent());
-
-            // $elem = $(this).clone(true, true);
-            // $elem.val('');
-            // $elem.appendTo($(this).parent());
-            // $elem.focus();
         }
     });
     $('fieldset').on('focusout', '[data-control="key-pair"]', function (e) {
