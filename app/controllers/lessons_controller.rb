@@ -261,7 +261,6 @@ class LessonsController < ApplicationController
   def step_file_upload_load
     @lesson = Lesson.find(params[:id])
     @step = @lesson.steps.find(params[:step])
-    @lesson = Lesson.find(id)
 
     returning = []
 

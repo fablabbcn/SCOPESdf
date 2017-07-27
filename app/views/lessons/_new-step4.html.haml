@@ -40,16 +40,18 @@
             .field-wrapper
               = text_area(:step, :description, value: s.description, data:{index: i})
             .field-wrapper
-              .field-group.field-group--support
+              #lesson_4.field-group.field-group--support
                 %label.label--small
                   Supporting files
-              .image-uploader-wrapper
-                .dropzone
-                  %p 
-                    Drag & drop files here - or click to browse 
-                    %br .jpg, .png, .pdf
-              .field-wrapper
-                = file_field_tag 'supporting_files[]', multiple: true
+                .field-wrapper
+                  .image-uploader-wrapper{ data: { endpoint: "#{step_file_path(id: @lesson_obj.id, step:@steps.first.id, attr: 'supporting_files')}" } }
+                    .dropzone
+                      %p 
+                        Drag & drop files here - or click to browse 
+                        %br .jpg, .png, .pdf
+                  = file_field_tag 'supporting_files[]', multiple: true
+                  
+                  .files
 
         %fieldset
           %legend
@@ -280,3 +282,16 @@
           }
       });
   };
+
+-# @TODO dont repeat your self DRY warning
+%script#template-upload{:type => "text/html"}
+  :plain
+    {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
+      <span class="button button--file"><a href="{%=file.url%}">{%=file.name%}</a><a href="#" data-delete="{%=file.delete_url%}"><i class="icon-close"></i></a></span>
+    {% } %}
+
+%script#template-download{:type => "text/html"}
+  :plain
+    {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
+      <span class="button button--file"><a href="{%=file.url%}">{%=file.name%}</a><a href="#" data-delete="{%=file.delete_url%}"><i class="icon-close"></i></a></span>
+    {% } %}

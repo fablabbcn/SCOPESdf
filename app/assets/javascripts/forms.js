@@ -250,6 +250,22 @@ $(document).on('turbolinks:load', function() {
         url:$('#lesson_form_1 .image-uploader-wrapper').data('endpoint')
     });
 
+    $('#lesson_4').fileupload({
+        autoUpload:true,
+        dropZone: $('.dropzone'),
+        url:$('#lesson4 .image-uploader-wrapper').data('endpoint')
+    });
+
+    $.getJSON($('#lesson_4 .image-uploader-wrapper').data('endpoint'), function (files) {
+
+      $.each(files, function(index,key){
+          $.each(key, function(index,file){
+            $('#lesson_4 .image-uploader-wrapper').parent().find('.files').append('<span class="button button--file"><a href="'+file.url+'">'+file.name+'</a><a href="#" data-delete="'+file.delete_url+'"><i class="icon-close"></i></a></span>');
+          });
+        });
+    });
+
+
 
     $.getJSON($('#lesson_form_1 .image-uploader-wrapper').data('endpoint'), function (files) {
 
@@ -258,6 +274,13 @@ $(document).on('turbolinks:load', function() {
             $('#lesson_form_1 .image-uploader-wrapper').parent().find('.files').append('<span class="button button--file"><a href="'+file.url+'">'+file.name+'</a><a href="#" data-delete="'+file.delete_url+'"><i class="icon-close"></i></a></span>');
           });
         });
+    });
+
+
+    $('#lesson_form_1').fileupload({
+        autoUpload:true,
+        dropZone: $('.dropzone'),
+        url:$('#lesson_form_1 .image-uploader-wrapper').data('endpoint')
     });
 
     $(".dropzone").on("click",function(){
