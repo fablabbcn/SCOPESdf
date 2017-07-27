@@ -50,6 +50,7 @@ class LessonsController < ApplicationController
     @standards_array = @lesson_obj.standards_array
     @difficulty_helper = DifficultyLevel.form_helper
     @teaching_range_helper = TeachingRange.inputRange
+
   end
 
   def create
