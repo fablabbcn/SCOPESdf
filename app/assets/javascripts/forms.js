@@ -4,7 +4,7 @@ window.Scopes.lesson = {
 
   getUploadedFiles: function(){ // Generic function to print files
 
-    // @TODO rename this to file uploader wrapper because it can behave distinct from image
+    // @TODO rename this to file-uploader wrapper because it can behave distinct from image
     $.getJSON($('.image-uploader-wrapper').data('endpoint'), function (files) {
 
       $.each(files, function(index,key){
@@ -14,6 +14,23 @@ window.Scopes.lesson = {
         });
     });
 
+  },
+
+  enableFileUploader: function(element){ // enable file uploader.
+    var endpoint_url = $(element).find('.image-uploader-wrapper').data('endpoint');
+    if(endpoint_url) {
+      $(element).fileupload({
+          autoUpload:true,
+          dropZone: $('.dropzone'),
+          url:endpoint_url
+      }).bind('fileuploadadd',function(e,data){
+        console.log(e,'event');
+        console.log(data,'data');
+      }).bind('fileuploadsend',function(e,data){
+        console.log(e,'event');
+        console.log(data,'data');
+      });
+    }
   },
 
   deleteFile: function(element) {
@@ -44,6 +61,7 @@ var fileUploadErrors = {
 
 
 $(document).on('turbolinks:load', function() {
+
   $('#other-user-emails').click(function (e) {
       e.preventDefault();
       $('#new-user-modal').modal('show', {backdrop: 'static'});
@@ -64,6 +82,7 @@ $(document).on('turbolinks:load', function() {
             $elem.focus();
         }
     });
+
     $('fieldset').on('focusout', '[data-control="key"]', function (e) {
         if ($(this).val().length == 0 && $(this).siblings('[data-control="key"]').length > 1) {
             console.log('focus delete');
@@ -74,6 +93,7 @@ $(document).on('turbolinks:load', function() {
             }
         }
     });
+
     $('fieldset').on("keydown", '[data-control="key"]', function (e) {
         var key = e.keyCode || e.charCode;
         // console.log($(this).data());
@@ -89,6 +109,7 @@ $(document).on('turbolinks:load', function() {
             }
         }
     });
+
   $('fieldset').on('focusout', '[data-control="key"]', function (e) {
       if ($(this).val().length == 0 && $(this).siblings('[data-control="key"]').length > 1) {
           console.log('focus delete');
@@ -252,6 +273,8 @@ $(document).on('turbolinks:load', function() {
     /** Upload images **/
 
     window.Scopes.lesson.getUploadedFiles();
+    window.Scopes.lesson.enableFileUploader('#lesson_form_1');
+    window.Scopes.lesson.enableFileUploader('#lesson_4');
 
 
     $('#fileupload').fileupload({
@@ -260,12 +283,13 @@ $(document).on('turbolinks:load', function() {
     });
 
     // Specific for lesson 1
-
+    /*
     $('#lesson_form_1').fileupload({
         autoUpload:true,
         dropZone: $('.dropzone'),
         url:$('#lesson_form_1 .image-uploader-wrapper').data('endpoint')
     });
+    
 
     $('#lesson_4').fileupload({
         autoUpload:true,
@@ -278,7 +302,7 @@ $(document).on('turbolinks:load', function() {
       console.log(e,'event');
       console.log(data,'data');
     });
-
+    */
 
 
 
@@ -292,13 +316,6 @@ $(document).on('turbolinks:load', function() {
         });
     });
     */
-
-
-    $('#lesson_form_1').fileupload({
-        autoUpload:true,
-        dropZone: $('.dropzone'),
-        url:$('#lesson_form_1 .image-uploader-wrapper').data('endpoint')
-    });
 
     $(".dropzone").on("click",function(){
       $(this).parent().parent().find("input[type='file']").trigger('click');
