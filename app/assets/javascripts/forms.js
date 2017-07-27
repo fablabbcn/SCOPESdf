@@ -2,13 +2,26 @@ window.Scopes = window.Scopes || {};
 
 window.Scopes.lesson = {
 
+  nameTheEndpoint: function(lesson,step){
+    var endpoint_supporting_files = '/lessons/'+lesson+'/'+step+'/file/supporting_files';
+
+    $('.lesson-step[data-id="'+step+'"]').find('.field-group--supporting-files .image-uploader-wrapper').attr('data-endpoint',endpoint_supporting_files);
+
+    console.log(endpoint_supporting_files);
+
+    // /lessons/6b96d693-633f-4d57-bb1b-4607ee0a677a/4102741d-4647-4da3-b693-d2443b0a5187/file/supporting_files
+  },
+
   getUploadedFiles: function(){ // Generic function to print files
 
     // @TODO rename this to file-uploader wrapper because it can behave distinct from image
     $.getJSON($('.image-uploader-wrapper').data('endpoint'), function (files) {
 
+      console.log(files);
+
       $.each(files, function(index,key){
-          $.each(key, function(index,file){
+        console.log(key);
+          $.each(key, function(i,file){
             $('.image-uploader-wrapper').parent().find('.files').append('<span class="button button--file"><a href="'+file.url+'">'+file.name+'</a><a href="#" data-delete="'+file.delete_url+'"><i class="icon-close"></i></a></span>');
           });
         });
@@ -24,11 +37,11 @@ window.Scopes.lesson = {
           dropZone: $('.dropzone'),
           url:endpoint_url
       }).bind('fileuploadadd',function(e,data){
-        console.log(e,'event');
-        console.log(data,'data');
+        //console.log(e,'event');
+        //console.log(data,'data');
       }).bind('fileuploadsend',function(e,data){
-        console.log(e,'event');
-        console.log(data,'data');
+        //console.log(e,'event');
+        //console.log(data,'data');
       });
     }
   },

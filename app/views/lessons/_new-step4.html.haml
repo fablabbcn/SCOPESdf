@@ -1,4 +1,4 @@
-%article
+.form-step
   .wrapped#steps-wrapper
     %fieldset
       %legend
@@ -40,10 +40,11 @@
             .field-wrapper
               = text_area(:step, :description, value: s.description, data:{index: i})
             .field-wrapper
-              #lesson_4.field-group.field-group--support
+              #lesson_4.field-group.field-group--support.field-group--supporting-files
                 %label.label--small
                   Supporting files
                 .field-wrapper
+                  
                   .image-uploader-wrapper{ data: { endpoint: "#{step_file_path(id: @lesson_obj.id, step:@steps.first.id, attr: 'supporting_files')}" } }
                     .dropzone
                       %p 
@@ -126,11 +127,23 @@
 
 :javascript
 
+
+  var ID_ARRAY = #{ raw @steps_array };
+  var LESSON_ID = "#{@lesson_obj.id}";
+
+  function resetEndpoints(){
+    for(i = 0; i <= ID_ARRAY.length -1; i++){
+      window.Scopes.lesson.nameTheEndpoint(LESSON_ID,ID_ARRAY[i]);
+    }
+  }
+
   $(document).on('turbolinks:load', function() {
     $('#steps-wrapper').on('focusout','input',function() {
       console.log('update');
       updateStep($(this).data("index"));
     });
+
+    resetEndpoints();
 
   });
 
@@ -139,7 +152,7 @@
    */
 
 
-   var ID_ARRAY = "#{@steps_array.to_json}";
+
    function setSections(){
     for(i = 0; i <= ID_ARRAY.length; i++){
       // console.log(ID_ARRAY[i]);
@@ -149,6 +162,7 @@
    }
 
    $('.add-step').click(function() {
+
       continueable = true;
       for(i = 0; i < $("[name='step[description]']").length; i++){
         if ($("[name='step[description]']").eq(i).val() == ""){
@@ -184,6 +198,7 @@
 
       console.log($elem);
       $elem.find('.heading-wrapper').find('h4').text('Step ' + ($('.lesson-step').length));
+      resetEndpoints();
 
   });
 
@@ -231,6 +246,8 @@
       // send as seconds in string
 
       description_data = $("[name='step[description]']").eq(index).val();
+
+      resetEndpoints();
 
 
       materials_data = [];
