@@ -121,7 +121,7 @@ class Step < ApplicationRecord
         self.supporting_materials = collection
         self.save!
         self.reload
-        returnable = self.supporting_files.map {|x| x.url}
+        returnable = self.supporting_materials.map {|x| x.url}
       when :supporting_files
         puts "supporting_files saving"
         collection = self.supporting_files
