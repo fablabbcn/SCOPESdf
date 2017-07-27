@@ -21,17 +21,17 @@ window.Scopes.lesson = {
 
   enableFileUploader: function(element){ // enable file uploader.
     var endpoint_url = $(element).data('endpoint');
-    var self = element;
+    console.log(endpoint_url);
     if(endpoint_url) {
-      $($(element)).fileupload({
+      $(element).fileupload({
           autoUpload:true,
           dropZone: $('.dropzone'),
           url:endpoint_url
       }).bind('fileuploadadd',function(e,data){
-        //console.log(e,'event');
+        console.log('file uploaded');
         //console.log(data,'data');
       }).bind('fileuploadsend',function(e,data){
-        //console.log(e,'event');
+        console.log('file sent');
         //console.log(data,'data');
       });
     }
@@ -277,7 +277,7 @@ $(document).on('turbolinks:load', function() {
     /** Upload images **/
 
     window.Scopes.lesson.getUploadedFiles();
-    //window.Scopes.lesson.enableFileUploader('#lesson_form_1');
+    window.Scopes.lesson.enableFileUploader('#lesson_1');
 
     $('#fileupload').fileupload({
         autoUpload:true,
