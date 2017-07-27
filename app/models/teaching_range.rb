@@ -36,6 +36,25 @@ class TeachingRange < ApplicationRecord
     end
   end
 
+  def self.inputRange
+    {
+        "0" => "pre-k",
+        "1" => "k",
+        "2" => "1st",
+        "3" => "2nd",
+        "4" => "3rd",
+        "5" => "4th",
+        "6" => "5th",
+        "7" => "6h",
+        "8" => "7th",
+        "9" => "8th",
+        "10" => "9th",
+        "11" => "10th",
+        "12" => "11th",
+        "13" => "12th"
+    }
+  end
+
   def self.translate(value)
     if value.kind_of? String
       value = value.downcase

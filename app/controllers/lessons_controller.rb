@@ -49,6 +49,7 @@ class LessonsController < ApplicationController
     @standards = Lesson.standards_list
     @standards_array = @lesson_obj.standards_array
     @difficulty_helper = DifficultyLevel.form_helper
+    @teaching_range_helper = TeachingRange.inputRange
   end
 
   def create
@@ -201,6 +202,7 @@ class LessonsController < ApplicationController
         returning.append (JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
       end
     end
+
 
     respond_to do |format|
       format.html {
