@@ -69,9 +69,11 @@ class TeachingRange < ApplicationRecord
     end
   end
 
+
+
   def self.setRangesForLesson(lesson_id, s, e)
     l = Lesson.find(lesson_id)
-    r = self.where(range_start: translate(s) , range_end: translate(e)).first
+    r = self.where(range_start:(s) , range_end:(e)).first
     l.lesson_tags << LessonTag.new(taggable: r)
   end
 
