@@ -1,3 +1,23 @@
+window.Scopes = window.Scopes || {};
+
+window.Scopes.lesson = {
+
+  deleteFile: function(element) {
+    var url = $(element).data('delete');
+
+    if(url) {
+      $.ajax({
+        url:url,
+        type:'DELETE',
+        success: function(result){
+          // @TODO come on. This is soo weak
+          $(element).parent().remove();
+        }
+      });
+    }
+  }  
+}
+
 var fileUploadErrors = {
   maxFileSize: 'File is too big',
   minFileSize: 'File is too small',
@@ -155,26 +175,22 @@ $(document).on('turbolinks:load', function() {
 
 
     $.getJSON($('#lesson_form_1 .image-uploader-wrapper').data('endpoint'), function (files) {
+
       $.each(files, function(index,key){
           $.each(key, function(index,file){
-            $('#lesson_form_1 .image-uploader-wrapper').parent().find('.files').append('<span><a href="'+file.url+'">'+file.name+'</a><a href="#" data-delete="'+file.delete_url+'">x</a></span>');
-
-
-            $.ajax({
-              url:file.delete_url,
-              type:'DELETE',
-              success: function(result){
-                // @TODO DELETE WHEN HITTING BUTTON
-                //console.log('by bye' + file.name)
-              }
-            });
-
+            $('#lesson_form_1 .image-uploader-wrapper').parent().find('.files').append('<span class="button button--file"><a href="'+file.url+'">'+file.name+'</a><a href="#" data-delete="'+file.delete_url+'"><i class="icon-close"></i></a></span>');
           });
         });
     });
 
     $(".dropzone").on("click",function(){
       $(this).parent().parent().find("input[type='file']").trigger('click');
+    });
+
+    $(document).on("click",'a[data-delete]',function(e){
+      e.preventDefault();
+      var self = $(this);
+      window.Scopes.lesson.deleteFile(self);
     });
 
 
