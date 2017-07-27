@@ -114,7 +114,6 @@ textarea {
     }
 
   }
-
 }
 
 .field--xs {
@@ -275,6 +274,10 @@ fieldset {
 
     margin-top:1em;
     margin-bottom:.5em;
+
+    input[type="file"] {
+      display:none;
+    }
 
     label {
       float:none;

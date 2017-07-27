@@ -38,7 +38,16 @@ Here you will find the colors defined in the variables file. There is no class d
 
 */
 
-
+@font-face {
+  font-family: 'sco-icon-font';
+  src:  url('sco-icon-font.eot?fu578m');
+  src:  url('sco-icon-font.eot?fu578m#iefix') format('embedded-opentype'),
+    url('sco-icon-font.ttf?fu578m') format('truetype'),
+    url('sco-icon-font.woff?fu578m') format('woff'),
+    url('sco-icon-font.svg?fu578m#sco-icon-font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 
 
 /**
@@ -105,9 +114,6 @@ A message for the future
   content: "\e902";
 }
 **/
-
-
-$font-icons: 'icons-scopes';
 
 // Base Colors
 

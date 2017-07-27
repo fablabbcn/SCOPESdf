@@ -102,7 +102,7 @@ ab ucib us
 |<i class="icon-Direction-Down"></i>|`<i class="icon-Direction-Down"></i>`  | `.icon-Direction-Down` |`icon-Direction-Down.svg`|
 |<i class="icon-DIrection-Left"></i>|`<i class="icon-DIrection-Left"></i>`  | `.icon-DIrection-Left` |`icon-DIrection-Left.svg`|
 |<i class="icon-Direction-Right"></i>|`<i class="icon-Direction-Right"></i>`  | `.icon-Direction-Right` |`icon-Direction-Right.svg`|
-|<i class="icon-Direction-Up-Copy"></i>|`<i class="icon-Direction-Up-Copy"></i>`  | `.icon-Direction-Up-Copy` |`icon-Direction-Up-Copy.svg`|
+|<i class="icon-close"></i>|`<i class="icon-close"></i>`  | `.icon-close` |`icon-close.svg`|
 |<i class="icon-Direction-Up"></i>|`<i class="icon-Direction-Up"></i>`  | `.icon-Direction-Up` |`icon-Direction-Up.svg`|
 |<i class="icon-Done"></i>|`<i class="icon-Done"></i>`  | `.icon-Done` |`icon-Done.svg`|
 |<i class="icon-Download"></i>|`<i class="icon-Download"></i>`  | `.icon-Download` |`icon-Download.svg`|
@@ -145,17 +145,6 @@ ab ucib us
 |<i class="icon-Users"></i>|`<i class="icon-Users"></i>`  | `.icon-Users` |`icon-Users.svg`|
 
 */
-
-@font-face {
-  font-family: 'sco-icon-font';
-  src:  url('sco-icon-font.eot?fu578m');
-  src:  url('sco-icon-font.eot?fu578m#iefix') format('embedded-opentype'),
-    url('sco-icon-font.ttf?fu578m') format('truetype'),
-    url('sco-icon-font.woff?fu578m') format('woff'),
-    url('sco-icon-font.svg?fu578m#sco-icon-font') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 
 
 $icon-ic_add_box_black_24px: "\e900";
@@ -250,7 +239,7 @@ $icon-Clock: "\e95a";
 $icon-Direction-Down: "\e95b";
 $icon-DIrection-Left: "\e95c";
 $icon-Direction-Right: "\e95d";
-$icon-Direction-Up-Copy: "\e95e";
+$icon-close: "\e95e";
 $icon-Direction-Up: "\e95f";
 $icon-Done: "\e960";
 $icon-Download: "\e961";
@@ -305,7 +294,7 @@ $icon-Users: "\e986";
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-  font-size:24px;
+  font-size:16px;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
@@ -772,9 +761,9 @@ $icon-Users: "\e986";
     content: $icon-Direction-Right;
   }
 }
-.icon-Direction-Up-Copy {
+.icon-close {
   &:before {
-    content: $icon-Direction-Up-Copy;
+    content: $icon-close;
   }
 }
 .icon-Direction-Up {

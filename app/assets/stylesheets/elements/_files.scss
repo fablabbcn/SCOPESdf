@@ -1,0 +1,28 @@
+span.button.button--file {
+  padding:0;
+  margin-right:1em;
+  @include clearfix;
+
+  a {
+    border:none;
+    float:left;
+    box-shadow:none;
+    text-decoration:none;
+    display:inline-block;
+    font-size:.875rem;
+    color:#000;
+    line-height:1rem;
+    padding:1rem 1rem;
+
+    &[data-delete]{
+      margin-left:1em;
+      padding-left:0;
+      color:$color-gray-outlines;
+
+      &:hover {
+        color:$color-dark;
+      }
+    }
+  }
+
+}
