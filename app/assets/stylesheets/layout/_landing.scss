@@ -96,10 +96,18 @@
       min-height: 70vh;
       p {
         color: $color-dark-hi-landing;
+        margin-bottom: 0;
       }
       .slider {
-        height: 450px;
-        background: red;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        text-align: center;
+        flex-wrap: wrap;
+        article{
+          margin: 2rem 1rem;
+        }
       }
     }
 

@@ -83,13 +83,14 @@
                     %polygon#Fill-2{:points => "2.24033451 -0.00038 -0.000158450704 2.24003667 8.96339789 11.19537 11.2038908 8.95653667"}
 
   %section#grey1
-    .wrapped.content
+    .content
       %h3
         =CopyService.home[:grey1][:first].gsub(/\n/, '<br>').html_safe
       %p
         =CopyService.home[:grey1][:second].gsub(/\n/, '<br>').html_safe
       .slider
-        [slider here]
+        - @lessons.each do |l|
+          = render 'shared/lesson_mini', lesson: l
       =link_to "#{CopyService.home[:grey1][:button].gsub(/\n/, '<br>').html_safe}", enter_path(step: 1), class: 'button button--highlight'
 
 
