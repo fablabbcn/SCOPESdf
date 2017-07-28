@@ -3,6 +3,7 @@
 **/
 
 nav[role="navigation"] {
+  @include clearfix;
   .navbar-toggle {
     @include breakpoint($desktop-breakpoint) {
       display:none;
@@ -12,7 +13,7 @@ nav[role="navigation"] {
   .navbar-collapse {
     @include breakpoint($desktop-breakpoint) {
       float:right;
-      padding:2.4rem 0;
+      padding:1.4rem 0;
     }
   }
 }
