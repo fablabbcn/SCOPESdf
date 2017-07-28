@@ -6,7 +6,16 @@ nav[role="navigation"] {
   @include clearfix;
 
   .navbar-collapse {
+
+    display:none;
+
+    &.active {
+      display:block;
+    }
+
+
     @include breakpoint($tablet-breakpoint) {
+      display:block;
       float:right;
       padding:1.4rem 0;
     }
@@ -30,9 +39,11 @@ a#toggle-nav {
   display:block;
   width:24px;
   height:24px;
+
   i {
     font-size:24px;
   }
+
   span {
     display:none;
   }
@@ -43,48 +54,83 @@ a#toggle-nav {
 
 ul.nav {
   @include ul-reset;
-  font-weight:400;
+  font-weight:300;
+  border-top:$color-gray-outlines 1px solid;
+
+  @include breakpoint($tablet-breakpoint) {
+    font-weight:400;
+    border-top:none;
+  }
 
   li {
-    display:inline-block;
-  }
-  a:not(.button) {
-    color:$color-dark;
-    text-decoration: none;
-    padding:.5em;
-    position:relative;
 
-    &.nav-link--thin {
-      color:lighten($color-dark,40%);
+    display:block;
+
+    @include breakpoint($tablet-breakpoint) {
+      display:inline-block;
     }
 
-
-
-    &:after {
-      width:0;
+    a {
       display:block;
-      content:"";
-      height:2px;
-      position:absolute;
-      opacity:0;
-      bottom:0;
-      left:0;
-    }
+      margin:1em 0;
+      font-size:1.25rem;
 
-    &:hover,
-    &.current {
-      &:after {
-        background:$color-blue-hi;
-        width:100%;
-        opacity:1;
+      &:not(.button) {
+
+        color:$color-dark;
+        text-decoration: none;
+        padding:.5em;
+        position:relative;
+        margin:0;
+        border-bottom:$color-gray-outlines 1px solid;
+        background:asset-url("icons/icon-Direction-Right.svg") right center no-repeat;
+
+        @include breakpoint($tablet-breakpoint) {
+          border:none;
+          background:none;          
+        }
+
+
+        &.nav-link--thin {
+          color:lighten($color-dark,40%);
+        }
+
+        &:after {
+          width:0;
+          display:block;
+          content:"";
+          height:2px;
+          position:absolute;
+          opacity:0;
+          bottom:0;
+          left:0;
+        }
+
+        &:hover,
+        &.current {
+          &:after {
+            @include breakpoint($tablet-breakpoint) {
+              background:$color-blue-hi;
+              width:100%;
+              opacity:1;
+            }
+          }
+        }
+      }
+
+      &.nav-link--extra-space {
+        margin-top:1em;
+      }
+
+      @include breakpoint($tablet-breakpoint) {
+        font-size:1rem;
+        border-bottom:0;
+        &.nav-link--extra-space {
+            margin-right:2em;
+            margin-top:1em;
+        }
       }
     }
-  }
-}
-
-.nav-link--extra-space {
-  @include breakpoint($desktop-breakpoint) {
-    margin-right:2em;
   }
 }
 
