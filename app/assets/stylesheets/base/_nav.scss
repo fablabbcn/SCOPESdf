@@ -4,17 +4,40 @@
 
 nav[role="navigation"] {
   @include clearfix;
-  .navbar-toggle {
-    @include breakpoint($desktop-breakpoint) {
-      display:none;
-    }
-  }
 
   .navbar-collapse {
-    @include breakpoint($desktop-breakpoint) {
+    @include breakpoint($tablet-breakpoint) {
       float:right;
       padding:1.4rem 0;
     }
+  }
+}
+
+.navbar-header {
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+  @include breakpoint($tablet-breakpoint) {
+    display:block;
+    float:left;
+  }
+}
+
+
+a#toggle-nav {
+  color:#000;
+  text-decoration: none;
+  display:block;
+  width:24px;
+  height:24px;
+  i {
+    font-size:24px;
+  }
+  span {
+    display:none;
+  }
+  @include breakpoint($tablet-breakpoint) {
+    display:none;
   }
 }
 

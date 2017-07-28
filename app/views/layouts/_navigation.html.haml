@@ -3,8 +3,7 @@
     .navbar-header
       %h1{"class"=>"brand"}
         = link_to 'SCOPESdf', root_path
-      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
+      = link_to '<i class="icon-Menu"></i><span>Menu</span>'.html_safe, '#', id: 'toggle-nav'
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         = render 'layouts/navigation_links'

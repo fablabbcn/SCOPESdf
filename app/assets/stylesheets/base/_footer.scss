@@ -98,4 +98,16 @@ footer[role="contentinfo"] {
       }
     }
   }
+
+
+  @include breakpoint($large-breakpoint) {
+    .wrapped {
+      max-width:100%;
+      padding:0 $site-inner-padding*8;
+      box-sizing:border-box;
+      min-width:$site-max-width;
+    }
+  }
+
+
 }

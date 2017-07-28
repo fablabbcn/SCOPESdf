@@ -9,10 +9,7 @@ header[role="banner"] {
   h1.brand {
     padding:1rem 0;
     margin:0;
-    @include breakpoint($desktop-breakpoint) {
-      padding:1rem 0;
-      float:left;
-    }
+    float:left;
 
     a {
       display:block;
@@ -22,7 +19,7 @@ header[role="banner"] {
       height:50px;
       background: asset-url("scopes-logo-alt.svg") center left no-repeat;
       
-      @include breakpoint($desktop-breakpoint) {
+      @include breakpoint($tablet-breakpoint) {
         background: asset-url("scopes-logo.svg") center left no-repeat;
         width:170px;
         height:50px;
@@ -42,7 +39,7 @@ header[role="banner"] {
   }
 
 
-  @include breakpoint($desktop-breakpoint) {
+  @include breakpoint($tablet-breakpoint) {
     border-top:$color-blue-hi 8px solid;
   }
 
