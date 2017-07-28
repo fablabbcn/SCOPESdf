@@ -9,7 +9,7 @@
         %p
           =CopyService.home[:top][:third].gsub(/\n/, '<br>').html_safe
         .wrapper
-          =link_to "#{CopyService.home[:top][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--call'
+          =link_to "#{CopyService.home[:top][:button].gsub(/\n/, '<br>').html_safe}",  enter_path(step: 1), class: 'button button--transparent'
 
 
   %section.wrapped#white1
@@ -90,7 +90,7 @@
         =CopyService.home[:grey1][:second].gsub(/\n/, '<br>').html_safe
       .slider
         [slider here]
-      =link_to "#{CopyService.home[:grey1][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--highlight'
+      =link_to "#{CopyService.home[:grey1][:button].gsub(/\n/, '<br>').html_safe}", enter_path(step: 1), class: 'button button--highlight'
 
 
 
@@ -179,7 +179,7 @@
             =CopyService.home[:white2][:column3_header].gsub(/\n/, '<br>').html_safe #blue
           %p
             =CopyService.home[:white2][:column3].gsub(/\n/, '<br>').html_safe
-      =link_to "#{CopyService.home[:white2][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--highlight'
+      =link_to "#{CopyService.home[:white2][:button].gsub(/\n/, '<br>').html_safe}", about_path, class: 'button button--highlight'
 
 
   %section#blue1
@@ -192,9 +192,9 @@
             =CopyService.home[:blue1][:second].gsub(/\n/, '<br>').html_safe
           %p
             =CopyService.home[:blue1][:third].gsub(/\n/, '<br>').html_safe
-          =link_to "#{CopyService.home[:blue1][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--darkblue'
+          =link_to "#{CopyService.home[:blue1][:button].gsub(/\n/, '<br>').html_safe}", about_path, class: 'button button--darkblue'
       .image.image_wrapper-center.about-flex-child
-        =image_tag("solder.jpg")
+        =image_tag("stem.jpg")
 
 
   %section.wrapped#white3
@@ -251,4 +251,4 @@
           %p.text--intro
             =CopyService.home[:footer][:second].gsub(/\n/, '<br>').html_safe
         .content
-          =link_to "#{CopyService.home[:footer][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--highlight'
+          =link_to "#{CopyService.home[:footer][:button].gsub(/\n/, '<br>').html_safe}",  enter_path(step: 1), class: 'button button--highlight'
