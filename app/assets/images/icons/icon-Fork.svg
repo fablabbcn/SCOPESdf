@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon/Fork</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M13.75,5 L15.75375,7.00375 L13.23375,9.52375 L14.47625,10.76625 L16.99625,8.24625 L19,10.25 L19,5 L13.75,5 Z M10.25,5 L5,5 L5,10.25 L7.00375,8.24625 L11.125,12.35875 L11.125,19 L12.875,19 L12.875,11.64125 L8.24625,7.00375 L10.25,5 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon/Fork">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Shape" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>
