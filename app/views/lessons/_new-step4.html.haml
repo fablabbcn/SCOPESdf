@@ -27,8 +27,9 @@
             %label
               Time needed
               %small A reference on the time that will take to complete the step
+              -# in minutes
             .field-wrapper
-              %input{type: 'text', id: 'grade', data: {index: i}, readonly: 'readonly'}
+              %input{type: 'text', id: 'duration', data: {index: i}, readonly: 'readonly'}
                 %div#slider-range
 
           .field-group
@@ -136,7 +137,6 @@
 
       $('.lesson-step').eq(i).find('.image-uploader-wrapper').eq(0).attr('id','upload-'+ID_ARRAY[i]);
       $('.lesson-step').eq(i).find('.image-uploader-wrapper').eq(1).attr('id','upload-material-'+ID_ARRAY[i]);
-      //$('.lesson-step .field-group--supporting-materials').eq(i).find('.image-uploader-wrapper').attr('id','upload-material-'+ID_ARRAY[i]);
 
       window.Scopes.lesson.nameTheEndpoint(LESSON_ID,ID_ARRAY[i],'files');
       window.Scopes.lesson.nameTheEndpoint(LESSON_ID,ID_ARRAY[i],'materials');
