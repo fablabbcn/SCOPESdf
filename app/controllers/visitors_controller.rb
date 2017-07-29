@@ -1,8 +1,12 @@
 class VisitorsController < ApplicationController
 
+  def index
+    # @lesson = Lesson.limit(4)
+    @lessons = [Lesson.first, Lesson.first, Lesson.first, Lesson.first]
+  end
+
   def form
     @user = User.first
-
   end
 
   def file_form_upload

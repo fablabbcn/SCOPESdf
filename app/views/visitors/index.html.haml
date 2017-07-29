@@ -9,7 +9,7 @@
         %p
           =CopyService.home[:top][:third].gsub(/\n/, '<br>').html_safe
         .wrapper
-          =link_to "#{CopyService.home[:top][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--call'
+          =link_to "#{CopyService.home[:top][:button].gsub(/\n/, '<br>').html_safe}",  enter_path(step: 1), class: 'button button--transparent'
 
 
   %section.wrapped#white1
@@ -83,14 +83,15 @@
                     %polygon#Fill-2{:points => "2.24033451 -0.00038 -0.000158450704 2.24003667 8.96339789 11.19537 11.2038908 8.95653667"}
 
   %section#grey1
-    .wrapped.content
+    .content
       %h3
         =CopyService.home[:grey1][:first].gsub(/\n/, '<br>').html_safe
       %p
         =CopyService.home[:grey1][:second].gsub(/\n/, '<br>').html_safe
       .slider
-        [slider here]
-      =link_to "#{CopyService.home[:grey1][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--highlight'
+        - @lessons.each do |l|
+          = render 'shared/lesson_mini', lesson: l
+      =link_to "#{CopyService.home[:grey1][:button].gsub(/\n/, '<br>').html_safe}", enter_path(step: 1), class: 'button button--highlight'
 
 
 
@@ -179,7 +180,7 @@
             =CopyService.home[:white2][:column3_header].gsub(/\n/, '<br>').html_safe #blue
           %p
             =CopyService.home[:white2][:column3].gsub(/\n/, '<br>').html_safe
-      =link_to "#{CopyService.home[:white2][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--highlight'
+      =link_to "#{CopyService.home[:white2][:button].gsub(/\n/, '<br>').html_safe}", about_path, class: 'button button--highlight'
 
 
   %section#blue1
@@ -192,9 +193,9 @@
             =CopyService.home[:blue1][:second].gsub(/\n/, '<br>').html_safe
           %p
             =CopyService.home[:blue1][:third].gsub(/\n/, '<br>').html_safe
-          =link_to "#{CopyService.home[:blue1][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--darkblue'
+          =link_to "#{CopyService.home[:blue1][:button].gsub(/\n/, '<br>').html_safe}", about_path, class: 'button button--darkblue'
       .image.image_wrapper-center.about-flex-child
-        =image_tag("solder.jpg")
+        =image_tag("stem.jpg")
 
 
   %section.wrapped#white3
@@ -251,4 +252,4 @@
           %p.text--intro
             =CopyService.home[:footer][:second].gsub(/\n/, '<br>').html_safe
         .content
-          =link_to "#{CopyService.home[:footer][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--highlight'
+          =link_to "#{CopyService.home[:footer][:button].gsub(/\n/, '<br>').html_safe}",  enter_path(step: 1), class: 'button button--highlight'

@@ -111,6 +111,19 @@ Notice that disabled buttons have **cursor:default** and **pointer-events:none**
 
   }
 
+  &.button--transparent {
+    @include button(transparent,$color-white, 2,$color-white);
+
+    &:hover {
+      @include button(darken($color-yellow,5%),$color-white);
+    }
+
+    &:disabled, &.button--disabled {
+      @include button($color-gray-low,$color-mid-gray);
+    }
+  }
+
+
   &.button--action {
 
     @include button(lighten($color-mid-gray,10%),$color-white);
