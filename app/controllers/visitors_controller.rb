@@ -9,6 +9,10 @@ class VisitorsController < ApplicationController
     @user = User.first
   end
 
+  def policy
+    @step = params[:step] || 0
+  end
+
   def file_form_upload
     # uploaded = file_params[:avatar]
     # puts uploaded
