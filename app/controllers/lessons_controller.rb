@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  #before_action :authenticate_user! # ADD THIS OBVIOUSLY
+  before_action :authenticate_user!
   #after_action :verify_authorized # pundit
 
   def new
