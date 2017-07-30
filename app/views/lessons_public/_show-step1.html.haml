@@ -1,8 +1,7 @@
-
 .view--top-content
   .top-content-title
     .badges
-      [ make badge partial / component ]
+      = render 'shared/badge_show', collection: @lesson.getCollectionTags.first
     %h2
       =@lesson.name
     %p.text--intro
@@ -18,12 +17,24 @@
   #range-teaching.detail
     %h5.header--section
       Teaching Range
-    = "#{@lesson.getTeachingRange_formatted[:range_start].titleize} - #{@lesson.getTeachingRange_formatted[:range_end].titleize} Grade"
+    %p
+      = "#{@lesson.getTeachingRange_formatted[:range_start].titleize} - #{@lesson.getTeachingRange_formatted[:range_end].titleize} Grade"
   #subjects-covered.detail
     %h5.header--section
       Subject Covered
     -@lesson.getSubjects.each do |s|
-      =s.titleize
+      -if s =="technology"
+        %span.icon-Technology.icon-color
+      -if s =="science"
+        %span.icon-Science.icon-color
+      -if s =="mathematics"
+        %span.icon-Maths.icon-color
+      -if s =="arts"
+        %span.icon-Palette.icon-color
+      -else s =="engineering"
+        %span.icon-Engineeringy.icon-color
+        %span
+          =s.titleize
       %br
   #difficulty.detail
     %h5.header--section

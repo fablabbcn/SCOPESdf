@@ -65,12 +65,20 @@
   .view--details{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    min-height: 300px;
+    padding: 2rem 0;
     background-color: $color-gray;
     .detail{
       padding: 2em;
+      h5{ margin-top: 0}
+      font-size: 1.25rem;
+      font-weight: 300;
+    }
+    #range-teaching {
+      p {
+        font-size: 2rem;
+      }
     }
     @include breakpoint($tablet-breakpoint) {
       flex-direction: row;
@@ -198,6 +206,11 @@
     a.button:last-child, input.button--call:last-child {
       float: right;
     }
+  }
+
+  .icon-color{
+    color: $color-blue-hi;
+    font-size: 1.25rem;
   }
 
 }

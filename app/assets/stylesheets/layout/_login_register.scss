@@ -17,6 +17,7 @@
   #content {
     .mid-wrapper{
       width: 100%;
+      height: 100%;
     }
     .toggle {
       padding: 0;
@@ -84,6 +85,7 @@
     -moz-animation: form_fade_out $form-animation-speed forwards;
     -o-animation: form_fade_out $form-animation-speed forwards;
     animation: form_fade_out $form-animation-speed forwards;
+    display: none;
   }
   .animate_in_right {
     -webkit-animation: form_fade_in_right $form-animation-speed $form-animation-speed/2 forwards cubic-bezier(0.19, 1, 0.22, 1);

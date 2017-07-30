@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   post 'register' => 'visitors#register_interest', as: :register
 
   get 'about' => 'visitors#about', as: :about
+  get 'policy' => 'visitors#policy', as: :policy
 
 
   post 'users/affiliate' => 'users#affiliate_organization_id'

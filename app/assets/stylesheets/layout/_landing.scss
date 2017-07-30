@@ -32,6 +32,7 @@
       }
       h1 {
         margin: 1.5rem;
+        line-height: 3.5rem;
       }
       h3 {
         font-weight: 400;
@@ -39,11 +40,14 @@
       p {
         font-size: 18px;
         font-weight: 300;
+        margin-top: 0;
       }
       min-height: 85vh;
-      background: image-url("landing-page-image-mobile.png") no-repeat center center;
+      background: image-url("Landing-Big.jpg") no-repeat center center;
+      background-size: cover;
       @include breakpoint($tablet-breakpoint) {
-        background: image-url("landing-page-image.png") no-repeat center center;
+        background: image-url("Landing-Big.jpg") no-repeat center center;
+        background-size: cover;
       }
     }
 
@@ -65,6 +69,12 @@
       p {
         color: $color-blue-hi;
         font-size: 18px;
+        margin-bottom: 0;
+      }
+      h3{
+        font-size: 1.5rem;
+        line-height: 2rem;
+        margin-top: 1rem;
       }
 
       @include breakpoint($tablet-breakpoint) {
@@ -86,10 +96,18 @@
       min-height: 70vh;
       p {
         color: $color-dark-hi-landing;
+        margin-bottom: 0;
       }
       .slider {
-        height: 450px;
-        background: red;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        text-align: center;
+        flex-wrap: wrap;
+        article{
+          margin: 2rem 1rem;
+        }
       }
     }
 
@@ -143,6 +161,10 @@
             display: flex;
             flex-direction: column;
             max-width: 400px;
+            p:last-of-type{
+              margin: 0 0 2.5rem 0;
+            }
+
             .button {
               width: 100%;
               @include breakpoint($tablet-breakpoint) {
@@ -161,13 +183,15 @@
     }
 
     &#white3 {
-      min-height: 70vh;
+      .content{
+        padding-bottom: 0;
+      }
       .landing-contents-columns {
         max-width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 3rem;
+        margin: 1rem 0 2rem 0;
         justify-content: space-around;
         img {
           max-width: 100%;
@@ -177,7 +201,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          margin: 0 3rem;
+          margin: 2rem 3rem;
           height: 80px;
         }
         @include breakpoint($tablet-breakpoint) {

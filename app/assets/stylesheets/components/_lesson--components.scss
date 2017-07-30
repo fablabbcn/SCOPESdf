@@ -1,0 +1,15 @@
+.badge_show{
+  .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p{ color : $color-mid-gray}
+    .svg-wrapper{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem 1rem;
+      height: 80px;
+    }
+  }
+}
