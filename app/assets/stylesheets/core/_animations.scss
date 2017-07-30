@@ -2,19 +2,19 @@ $form-animation-speed: .20s;
 
 @-webkit-keyframes form_fade_out {
   0%   { opacity: 1; display: flex !important; }
-  100% { opacity: 0; position: absolute; display: none !important;background-color: red;}
+  100% { opacity: 0; position: absolute; display: none !important;}
 }
 @-moz-keyframes form_fade_out {
   0%   { opacity: 1; display: flex !important; }
-  100% { opacity: 0; position: absolute; display: none !important;background-color: red;}
+  100% { opacity: 0; position: absolute; display: none !important;}
 }
 @-o-keyframes form_fade_out {
   0%   { opacity: 1; display: flex !important; }
-  100% { opacity: 0; position: absolute; display: none !important;background-color: red;}
+  100% { opacity: 0; position: absolute; display: none !important;}
 }
 @keyframes form_fade_out {
   0%   { opacity: 1; display: flex !important; }
-  100% { opacity: 0; position: absolute; display: none !important;background-color: red;}
+  100% { opacity: 0; position: absolute; display: none !important;}
 }
 
 
