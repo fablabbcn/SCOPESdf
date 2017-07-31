@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
   get 'about' => 'visitors#about', as: :about
   get 'policy' => 'visitors#policy', as: :policy
+  get 'get_involved' => 'visitors#get_involved', as: :involved
 
 
   post 'users/affiliate' => 'users#affiliate_organization_id'

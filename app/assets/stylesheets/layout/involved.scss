@@ -1,0 +1,100 @@
+.involved {
+  * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  }
+  .text--intro {  color: $color-dark;  }
+
+  #top {
+    background: image-url("involved.jpg") no-repeat center center;
+    background-size:cover;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 2rem 0 4rem 0;
+    min-height: 70vh;
+    .wrapped{
+      height: 100%;
+      .text--intro {
+        letter-spacing: 0.05rem;
+        color: $color-white;
+      }
+    }
+  }
+
+  #issues {
+    .issue-wrapper {
+      padding: 1.5rem;
+      .issue{
+        h5 { font-weight: 400; color: $color-mid-gray; margin: 0;}
+        p{
+          &.text--intro{
+            margin-top: 2.5rem;
+          }
+          margin: 1.5rem 0;
+        }
+        padding: 2.25rem;
+        border-radius: 2px;
+        background: #FFFFFF;
+        box-shadow: 0 0 80px 0 rgba(182,182,182,0.37);
+        position: relative;
+        top: -4rem;
+      }
+    }
+  }
+
+  .about-flex {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    .copy {
+      padding: 1rem 3.5rem;
+      .copy-container{
+        max-width: 45rem;
+
+      }
+    }
+    .about-flex-child{
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+    }
+    @include breakpoint($tablet-breakpoint) {
+      flex-direction: row;
+      .about-flex-child {
+        width: 50%;
+      }
+    }
+  }
+
+  footer {
+    #footer {
+      background-color: transparent;
+      p {
+        color: $color-white;
+      }
+      a{ color: $color-white; text-decoration: none}
+      .about-flex-child {
+        padding: 2rem 1rem;
+        &:first-of-type {
+          flex-grow: 1;
+          padding-bottom: 0;
+          @include breakpoint($tablet-breakpoint) {
+            padding: 3rem;
+          }
+        }
+        &:last-of-type {
+          width: inherit;
+        }
+      }
+    }
+    background-color: $color-blue-hi;
+    color: $color-white;
+  }
+
+
+
+}

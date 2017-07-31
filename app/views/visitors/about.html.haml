@@ -12,21 +12,15 @@
     .about-flex.wrapped
       .issue-wrapper.about-flex-child
         .issue
-          %h5
-            =CopyService.about[:issue1][:first].gsub(/\n/, '<br>').html_safe
           %p.text--intro
-            =CopyService.about[:issue1][:second].gsub(/\n/, '<br>').html_safe
-          %p
-            =CopyService.about[:issue1][:third].gsub(/\n/, '<br>').html_safe
+            =CopyService.about[:issue1][:first].gsub(/\n/, '<br>').html_safe
       .issue-wrapper.about-flex-child
         .issue
-          %h5
-            =CopyService.about[:issue2][:first].gsub(/\n/, '<br>').html_safe
           %p.text--intro
-            =CopyService.about[:issue2][:second].gsub(/\n/, '<br>').html_safe
-          %p
-            =CopyService.about[:issue2][:third].gsub(/\n/, '<br>').html_safe
+            =CopyService.about[:issue2][:first].gsub(/\n/, '<br>').html_safe
   %section#white1.wrapped
+    %p
+      =CopyService.about[:white1][:fourth].gsub(/\n/, '<br>').html_safe
     %h3
       =CopyService.about[:white1][:first].gsub(/\n/, '<br>').html_safe
     %p.text--intro
@@ -39,10 +33,12 @@
       =image_tag("Bring Together.png")
     .copy.about-flex-child
       .copy-container
-        %p.text--intro
+        %h3
           =CopyService.about[:grey1][:first].gsub(/\n/, '<br>').html_safe
-        %p
+        %p.text--intro
           =CopyService.about[:grey1][:second].gsub(/\n/, '<br>').html_safe
+        %p
+          =CopyService.about[:grey1][:third].gsub(/\n/, '<br>').html_safe
 
   %section#white2.wrapped
     %h3
@@ -68,6 +64,7 @@
         = render 'shared/check_area', content: CopyService.about[:box1][:second].gsub(/\n/, '<br>').html_safe
         = render 'shared/check_area', content: CopyService.about[:box1][:third].gsub(/\n/, '<br>').html_safe
         = render 'shared/check_area', content: CopyService.about[:box1][:fourth].gsub(/\n/, '<br>').html_safe
+        = render 'shared/check_area', content: CopyService.about[:box1][:fifth].gsub(/\n/, '<br>').html_safe
 
 
   %section#box2.about-flex
@@ -78,6 +75,7 @@
         = render 'shared/check_area', content: CopyService.about[:box2][:second].gsub(/\n/, '<br>').html_safe
         = render 'shared/check_area', content: CopyService.about[:box2][:third].gsub(/\n/, '<br>').html_safe
         = render 'shared/check_area', content: CopyService.about[:box2][:fourth].gsub(/\n/, '<br>').html_safe
+        = render 'shared/check_area', content: CopyService.about[:box2][:fifth].gsub(/\n/, '<br>').html_safe
     .image.image_wrapper-center.about-flex-child
       =image_tag("MakersFabbers.jpg")
 
@@ -91,14 +89,19 @@
         = render 'shared/check_area', content: CopyService.about[:box3][:second].gsub(/\n/, '<br>').html_safe
         = render 'shared/check_area', content: CopyService.about[:box3][:third].gsub(/\n/, '<br>').html_safe
         = render 'shared/check_area', content: CopyService.about[:box3][:fourth].gsub(/\n/, '<br>').html_safe
+        = render 'shared/check_area', content: CopyService.about[:box3][:fifth].gsub(/\n/, '<br>').html_safe
 
   %footer
     %section.wrapped#footer
       .about-flex
         .about-flex-child
           %h3
-            =CopyService.home[:footer][:first].gsub(/\n/, '<br>').html_safe
+            =CopyService.about[:footer][:first].gsub(/\n/, '<br>').html_safe
           %p.text--intro
-            =CopyService.home[:footer][:second].gsub(/\n/, '<br>').html_safe
-        .about-flex-child
-          =link_to "#{CopyService.home[:footer][:button].gsub(/\n/, '<br>').html_safe}", '', class: 'button button--highlight'
+            =CopyService.about[:footer][:second].gsub(/\n/, '<br>').html_safe
+          %p.text--intro
+            =CopyService.about[:footer][:third].gsub(/\n/, '<br>').html_safe
+          %p.text--intro
+            ="The Fab Foundation, 50 Milk Street, 16th Floor, Boston, MA 02139<br>Tel 857-333-7777  |".html_safe
+            %span.text--highlighted
+              =mail_to "scopesdf@fabfoundation.org"

@@ -1,0 +1,60 @@
+.involved
+  %section#top.about-flex
+    .wrapped
+      %h4
+        Get Involved with SCOPES-DF
+      %h1
+        SCOPES –DF will continue to catalyze learning in this first year - join the conversation.
+      %p.text--intro
+        Register on SCOPESDF.org now to receive an early invite to preview the site and receive email updates.
+
+  %section#issues
+    .about-flex.wrapped
+      .issue-wrapper.about-flex-child
+        .issue
+          %p.text--intro
+            Submit more projects, activities, and lessons for the next round of Fab Tested curation
+            %span.text--highlighted
+              =link_to "here", 'https://form.jotform.us/scopesdf/submit', target: "_blank"
+            , starting August 1st on a rolling basis.
+      .issue-wrapper.about-flex-child
+        .issue
+          %p.text--intro
+            Test or remix a Fab Tested lesson in your local setting or just provide us with your feedback
+            %span.text--highlighted
+              =link_to "here", 'https://form.jotform.us/scopesdf/feedback', target: "_blank"
+
+      .issue-wrapper.about-flex-child
+        .issue
+          %p.text--intro
+            To learn more about our approach in developing the SCOPES-DF project, or to gather additional tips and insight see the
+            %span.text--highlighted
+              =link_to "Toolkit", 'https://docs.google.com/document/d/11JLilR9yt_BNgc0rxAMCpBtFQjQBWyXF5IdBA5scEmU/edit', target: "_blank"
+
+      .issue-wrapper.about-flex-child
+        .issue
+          %p.text--intro
+            Also learn more about the project in the:
+            %br
+            %span.text--highlighted
+              =link_to "About Page", about_path, target: "_blank"
+            %br
+            %span.text--highlighted
+              =link_to "FAG", 'https://docs.google.com/document/d/1NoOsbBkf4gsq2-Gmwiat5_L4f7tpCt0Yu_4La_zGe-E/edit', target: "_blank"
+            %br
+            %span.text--highlighted
+              =link_to "Lexicon", 'https://docs.google.com/document/d/1POXG3Jzf7PGQPcl9Wr8OtHgeRVUqEed_Irf3LST98do/edit', target: "_blank"
+  %footer
+    %section.wrapped#footer
+      .about-flex
+        .about-flex-child
+          %h3
+            =CopyService.about[:footer][:first].gsub(/\n/, '<br>').html_safe
+          %p.text--intro
+            =CopyService.about[:footer][:second].gsub(/\n/, '<br>').html_safe
+          %p.text--intro
+            =CopyService.about[:footer][:third].gsub(/\n/, '<br>').html_safe
+          %p.text--intro
+            ="The Fab Foundation, 50 Milk Street, 16th Floor, Boston, MA 02139<br>Tel 857-333-7777  |".html_safe
+            %span.text--highlighted
+              =mail_to "scopesdf@fabfoundation.org"

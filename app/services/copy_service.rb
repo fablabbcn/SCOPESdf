@@ -5,9 +5,9 @@ class CopyService
       {
           top: {
               first: "Inspire student ingenuity <br> through digital fabrication.",
-              second: "Learning by doing and making is smart!",
-              third: "We’re creating ways for teachers to teach digital fabrication that’s even smarter.",
-              button: "Want to get involved?"
+              second: "Learning by making is the future",
+              third: "And the future starts today! We’re partnering with educators,<br>makers and fabricators to bring digital fabrication to the classroom.",
+              button: "Join us"
           },
           white1: {
               first: "Here, you can...",
@@ -19,13 +19,13 @@ class CopyService
               button: "View all lessons"
           },
           white2: {
-              first: "A better approach",
+              first: "A digital fabrication approach",
               column1_header: "Engaging Lesson Plans",
-              column1: "Innovative content, materials and activities focused on learning STEM subjects through uses of digital fabrication.",
-              column2_header: "Interactive Community",
-              column2: "A broad community of educators, designers and other contributors that provide an environment of support and active development.",
-              column3_header: "Meaningful Standards",
-              column3: "Accurate and holistic methods of evaluation to demonstrate the most salient aspects of achievement and contribute the most to learning objectives.",
+              column1: "Innovative, engaging content, materials and activities focused on student-centered practices.",
+              column2_header: "Interactive Communit",
+              column2: "Multi-talented, highly-skilled, enthusiastic Community of Practice of educators, makers, fabrication practitioners, and other contributors provide an environment of support.",
+              column3_header: "Aligned Standards",
+              column3: "Suited to a range of US national (and soon international) standards that address academic performance and essential skills for K-12 students.",
               button: "Find out more"
           },
           blue1: {
@@ -36,7 +36,7 @@ class CopyService
           },
           white3: {
               first: "A powerful partnership",
-              second: "SCOPESdf ( Scaling a Community of Practice for Education in STEM through Digital Fabrication ) is a broad, bold project that began as an idea of The Fab Foundation and the International Fab Lab Network with the generous support from Chevron and General Electric"
+              second: "With the generous support of partners like Chevron and the GE Foundation, the Fab Foundation and the International Fab Lab Network are tapping the power of digital fabrication to amplify learning, and answering the call of teachers by providing quality, standards-aligned, FREE lessons that leverage the expertise of Fab Lab, Makerspace and educator networks around the world.<br><br>We’re harnessing and disseminating this collective knowledge, worldwide, to K-12 educators who are eager to use digital technologies in the classroom for STEM learning, interdisciplinary learning, problem-solving, critical thinking, geeking-out and just plain fun! Through SCOPES-DF, we can inspire and change student learning."
           },
           footer: {
               first: "Get involved!",
@@ -48,23 +48,27 @@ class CopyService
 
     def about
       {
-          top: {first: "About SCOPES-DF", second: "Empowering teachers to teach (and learn!)", third: "Digital fabrication holds the promise for transforming basic K-12 education. Yet, various obstacles exist for using it with STEM learning on a widespread basis"},
-          issue1: {first: "Issue #1", second: "There is lack of consistency with digital fabrication learning today. ", third: "This includes access to engaging, student-focused instruction by expert educators as well as to resources for technical and other support. "},
-          issue2: {first: "Issue #2", second: "There are few curricular guides and no central forum for knowledge exchange. ", third: "Pioneering teachers leading efforts to bring digital fabrication spaces and activities into schools often build labs and develop curriculum, in isolation."},
-          white1: {first: "We want to address these issues and more. ", second: "Digital fabrication of meaningful projects ignites learning in essential life skills. ", third: "When students connect with projects they are passionate about, they puzzle over real challenges, instead of applying concepts out of context, without relevance or importance to them. It’s not just about mastering subjects, but about changing lives. <br><br> For the first time, projects for students are taking shape with the input of fabbers and teachers. <br><br> What’s more, technology will amplify this community’s know-how to STEM teachers who are eager to learn and incorporate instruction with digital fabrication projects for their students, from Kindergarten to 12th grade. <br><br> Collaborative and crowd-sourced information so teachers can tap into digital fabrication as an instructional tool. A reservoir of digital fabrication lessons aligned to standards and available for teachers to try out and use, to influence others and encourage the adoption of ideas, activities and teaching tips."},
-          grey1: {first: "By bringing together Fabbers and Teachers to collaborate and interact in a supportive and immersive forum, we want to invent fresh, exciting, new ways to learn and teach STEM subjects.", second: "Each group has an essential, yet distinct, perspective. Together, they have the know-how to intertwine digital fabrication with teaching of students at all levels."},
-          white2: {first: "Better support for educators", second: "No longer do the boundaries of an educator’s knowledge need to define student limits.", third: "Nor must professional development stop with short workshops. We want to free educators otherwise isolated within their classrooms, encourage social interaction and integrate ongoing development into practice. <br><br> Experts, resources, assets, knowledge and tools beyond the classroom ensure that both students and educators continue to discover, create and navigate around obstacles that, otherwise, might slow or stop their progress. <br><br> This support gives educators and students confidence to tackle STEM projects. <br><br> By consulting an ever-expanding repository of knowledge through this website and related resources, educators and students learn together and from each other."},
-          white3: {first: "What's in it for me?", second: "We want to help Educators, Students and makers worldwide make almost anything"},
-          box1: {first: "STEM Teachers ", second: "Access digital fabrication lesson plans through a global community of teachers and makers.
-", third: "Unlock student ingenuity, inspiring them to become creators instead of consumers.  
-", fourth: "Find high quality, standards-aligned lessons that seize creative capacity and coaching expertise within Fab Labs and makerspaces."},
-          box2: {first: "Makers and Fabbers", second: "Share amazing projects with youth worldwide and influence how digital fabrication empowers learning.
-", third: "Create awareness of what digital fabrication is, does and means for students eager to discover exciting ways to learn fundamental concepts in STEM subject areas.
-", fourth: "Promote the process behind digital design. Encourage universal understanding of fundamental terms, concepts, equipment and the vocabulary fluent Fabbers use. "},
-          box3: {first: "Students & Schools", second: "Create steps toward changing the way STEM learning happens for students in elementary, middle and high school
-", third: "Ignite interest in ways that teach sophisticated concepts within challenging, but fun, lessons.
-", fourth: "Spread the idea that learning, specifically within science, technology, engineering and math, can happen with greater equity at all levels, including income, ability and geography."},
-          footer: {first: "Get involved!", second: "We are connecting an engaged thinkers, doers, makers, with digital fabrication lesson plans aligned to U.S. standards.", button: "Register"}
+          top: {first: "About SCOPES-DF", second: "Teach STEM through digital fabrication projects", third: "Digital fabrication has the potential to transform k-12 education.  However, the technology can be intimidating and the barriers to entry can be many.  Bringing together fabbers, makers and educators creates opportunities to deepen understanding of the “what”, “how” and “why” of STEM disciplines."},
+          issue1: {first: "SCOPES-DF will provide access to engaging, student-centered instruction, as well as to resources for technical and other support."},
+          issue2: {first: "SCOPES-DF will provide a bridge, connecting early-adopting teacher leaders to emerging leaders, through the Community of Practice and resources."},
+          white1: {first: "The Future", second: "Fueled by collaboration and scale, this project has the power to transform STEM learning in diverse educational settings through digital fabrication technologies and practices found in a Fab Lab or Makerspace.", third: "We are building strategic curricular frameworks, professional development resources, and evaluation tools around digital fabrication that can catalyze STEM learning in the classroom.<br><br>This new infrastructure will enable fabbers, makers and educators to collaborate and interact in a Community of Practice and promises to expand STEM learning and teaching in fresh new ways. Each partner in this collaboration comes with an essential, yet distinct, perspective. Together, they can ignite student learning!", fourth:"We can do this by sharing knowledge and practice as a community!  Integrating digital fabrication into student projects and instruction!  Taking full advantage of the expertise of Fab Labs, Makerspaces and pioneering educators across the planet!"},
+
+          grey1: {first: "What Is SCOPES-DF?", second: "Scaling a Community of Practice for Education in STEM through Digital Fabrication", third:"SCOPES-DF is the first project of its kind to specifically develop effective pathways and resources for using digital fabrication in STEM education. SCOPES-DF offers educators new models and methods for teaching.  It offers students relevant, engaging, applied learning opportunities."},
+          white2: {first: "Better support for educatorsSupport from a Community of Practice", second: "Scaling the Community of Practice gives this approach an outsized and outside reach.", third: "Experts, knowledge, resources and tools, beyond the normal classroom environment, ensure that k-12 learners continue to discover, create, problem-solve, think critically, and learn in powerful, engaging ways. <br><br>Support from a Community of Practice  gives educators increased confidence in tackling STEM projects. Consulting an ever-expanding repository of trusted knowledge and activities, through this website and related resources, empowers educators to learn together and from each other.<br><br>This project is primarily intended to support teachers, students, fabbers and makers. Yet, it is meant to respond to the concerns of anyone who cares about STEM education and wants to find ways to make it accessible and meaningful."},
+          white3: {first: "Benefit and Contribute", second: "We want to help Educators, Students and Makers worldwide make almost anything."},
+
+
+          box1: {first: "STEM Teachers ", second: "Access digital fabrication lesson plans through a global portal, powered by a global community.", third: "Then, find high-quality, standards-aligned lessons that help you teach difficult content.", fourth: "Inspire students with authentic, relevant, hands-on lessons and interest-driven projects.", fifth: "Participate in constructing the STEM curriculum of the future."},
+
+
+          box2: {first: "Fabbers & Makers", second: "Share amazing projects with educators worldwide.", third: "Contribute content and Influence how digital fabrication empowers learning.", fourth: "Create awareness for digital fabrication--with real world applications.", fifth: "Promote design! Share the culture of creatives through universal understanding of fundamental terms, concepts, equipment and the vocabulary common to fabbers and makers worldwide."},
+
+
+          box3: {first: "Students & Schools", second: " STEM learning is engaging, fun and relevant!", third: " “Geek-out!”  We have challenging, self-paced, guided, meaningful projects.", fourth:"Discover that STEM learning is more accessible than you think!.", fifth: "Spread the idea that learning, specifically within science, technology, engineering and math, can happen with greater equity at all levels, including income, ability and geography."},
+
+          footer: {first: "Join us!", second: "For more information, please contact:
+", third:"Sonya Pryor-Jones", fourth:"The Fab Foundation, 50 Milk Street, 16th Floor, Boston, MA 02139
+Tel 857-333-7777  |  Email: scopesdf@fabfoundation.org"}
       }
     end
 

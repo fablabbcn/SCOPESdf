@@ -55,6 +55,12 @@
     h3 { font-weight: 400; }
     margin-top: -3rem;
     padding: 3rem 3rem 6rem 3rem;
+    background: image-url("copy-particles.svg") no-repeat center center;
+    background-size:contain;
+    p:first-of-type{
+      text-align: center;
+      margin-bottom: 6rem;
+    }
   }
   #white2 {
     border-bottom: $color-gray-outlines 1px solid;
@@ -62,6 +68,8 @@
     .text--intro{
       margin: 2.5rem 0;
     }
+    background: image-url("copy-particles.svg") no-repeat center center;
+    background-size:contain;
   }
   #white3 {
     h3{ font-weight: 500; color: $color-mid-gray; }
@@ -119,6 +127,7 @@
       p {
         color: $color-white;
       }
+      a{ color: $color-white; text-decoration: none}
       .about-flex-child {
         padding: 2rem 1rem;
         &:first-of-type {
