@@ -18,19 +18,6 @@
               %small Describe it in a sentence
             .field-wrapper
               = text_field(:lesson, :topline, value: @lesson_obj.topline, placeholder: 'How would you describe it in one sentence?')
-          .field-group
-            %label
-              Summary of lesson *
-              %small
-                %p Keep it short and snappy.
-                %p Try to include:
-                %p
-                  • Why the lesson is interesting
-                  %br
-                  • The types of activities students will do.
-                %p You can format using markdown
-            .field-wrapper
-              = text_area(:lesson, :summary, value: @lesson_obj.summary, placeholder: 'Add a summary for your lesson')
         %fieldset
           %legend
             %h3 Authors
