@@ -56,5 +56,4 @@
             =CopyService.about[:footer][:third].gsub(/\n/, '<br>').html_safe
           %p.text--intro
             ="The Fab Foundation, 50 Milk Street, 16th Floor, Boston, MA 02139<br>Tel 857-333-7777  |".html_safe
-            %span.text--highlighted
-              =mail_to "scopesdf@fabfoundation.org"
+            %span.text--highlighted =mail_to "scopesdf@fabfoundation.org"
