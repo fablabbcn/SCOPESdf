@@ -12,7 +12,10 @@
       font-weight: 500;
       color: $color-white;
     }
-    background: image-url("landing-page-image.png") no-repeat center center;
+    background: image-url("entry-background.png") no-repeat center center;
+    @include breakpoint($tablet-breakpoint) {
+      background-size: cover;
+    }
   }
   #content {
     .mid-wrapper{

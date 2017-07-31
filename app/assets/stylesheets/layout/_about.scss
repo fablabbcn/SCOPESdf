@@ -7,9 +7,12 @@
   .text--intro {  color: $color-dark;  }
 
   #top {
+    background: image-url("about-backgroundM.png") no-repeat center center;
+    @include breakpoint($tablet-breakpoint) {
+      background: image-url("about-background.png") no-repeat center center;
+    }
     align-items: center;
     text-align: center;
-    background-color: $color-blue;
     color: white;
     padding: 2rem 0 4rem 0;
     min-height: 70vh;
