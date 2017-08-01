@@ -15,7 +15,7 @@ class CopyService
           },
           grey1: {
               first: "Teach how to make almost anything",
-              second: "Discover the initial lessons and insights, available, for free under an open-source licence!",
+              second: "Discover the initial lessons and insight, available, for free under an open-source licence!",
               button: "View all lessons"
           },
           white2: {
