@@ -38,7 +38,10 @@
     .top-content-title, .top-content-images {
       width: 100vw;
       height: 300px;
-
+      p{
+        margin: 0 2rem;
+        text-align: center;
+      }
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -74,6 +77,33 @@
       h5{ margin-top: 0}
       font-size: 1.25rem;
       font-weight: 300;
+
+      &#difficulty{
+        p.text--intro {
+          margin: 2rem 0 0 0;
+          color: $color-dark;
+        }
+        small{
+          color: $color-mid-gray;
+        }
+      }
+      &#standards{
+        p.text--intro {
+          margin: 1rem 0;
+          font-size: 1rem;
+          color: $color-dark;
+          max-width: 300px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          text-transform: uppercase;
+          letter-spacing: initial;
+        }
+        small{
+          color: $color-mid-gray;
+        }
+        a{  font-size: 1rem;  }
+      }
     }
     #range-teaching {
       p {
@@ -87,7 +117,10 @@
   }
   .overview{
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
+    @include breakpoint($tablet-breakpoint) {
+      flex-direction: row;
+    }
     justify-content: center;
     .overview--right{
       width: 275px;
@@ -137,35 +170,66 @@
   }
 
   #instructions {
+    .icon-Clock, .icon-Done{
+      font-size: 1.25rem;
+      color: $color-mid-gray;
+      margin: 0 .5rem;
+    }
     #title-space {
       .wrapped {
         display: flex;
-        flex-direction: row;
-        min-height: 160px;
+        flex-direction: column;
+        .growth{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-grow: 2;
+          margin: 0;
+        }
+        @include breakpoint($tablet-breakpoint) {
+          flex-direction: row;
+          .growth{
+            justify-content: flex-start;
+            align-items: center;
+          }
+        }
+          min-height: 160px;
         align-items: center;
         span{
           display: flex;
           margin: 0 15px;
           p { margin: 0 3rem;}
           h2 { margin: 0; }
-          &:first-of-type{
-            flex-grow: 2;
-            margin: 0;
-          }
         }
       }
     }
 
     #consolidated-space {
       background-color: $color-gray;
+      .section-header{
+        font-size: 1.1em;
+        letter-spacing: 0.04rem;
+        font-weight: 400;
+        line-height: 1em;
+      }
+      .icon-List, .icon-Tool, .icon-File{
+        font-size: 1.25rem;
+        color: $color-blue-hi;
+        margin-right: 1rem;
+      }
       .wrapped {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
-        section{
+        flex-wrap: wrap;
+        @include breakpoint($tablet-breakpoint) {
+          flex-direction: row;
+        }
+          section{
           display: flex;
           flex-direction: column;
-          margin: 0 3rem;
+          margin: 2rem;
+          min-width: 250px;
           .icon{
             float: left;
           }
@@ -176,9 +240,13 @@
           ul{
             list-style: none;
             padding: 1rem 0;
-            margin: 0;
+            margin: 0 0 0 2rem;
             li{
               margin: .5rem 0;
+              max-width: 250px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
           }
         }
