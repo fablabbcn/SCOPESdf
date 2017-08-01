@@ -7,11 +7,22 @@
   background-color: $color-gray;
   width: 100%;
   margin: 10px 0;
-  .check_image{
-    width: 76px;
+  .check_image {
     text-align: center;
+    margin: 1rem .5rem;
+    color: $color-green;
+    font-size: 2rem;
+    width: 32px !important;
   }
-  .objective{
-    padding: 15px;
+  .objective {
+    padding: 1rem;
+    display: flex;
+    flex-grow: 2;
   }
+}
+.icon-Done{
+  margin: 2rem 0;
+  color: $color-green;
+  font-size: 2rem;
+  display: flex;
 }

@@ -1,35 +1,40 @@
 #instructions
   #title-space
     .wrapped
-      %span
+      %span.growth
         %h2
           =@lesson.name
       %span
-        %p
-          [icon here]
-          = "#{@lesson.totalDuration.minutes} minutes"
-      %span
-        %p
-          [icon here]
+        .icon-Clock
+        %span
+          = " #{(@lesson.totalDuration/ 60.0 / 60.0).to_d.truncate(2).to_f} hours"
+        .icon-Done
+        %span
           = "#{@lesson.steps.count} step#{ @lesson.steps.count > 1 ? 's' : '' }"
 
   #consolidated-space
     .wrapped
       - if @lesson.get_all_materials.present? && @lesson.get_all_materials.first.present?  # weird... [nil].present? == true
         %section
-          %h4 [icon] Materials Needed
+          %span
+            %span.icon-List
+            %span.section-header Materials Needed
           %ul
             -@lesson.get_all_materials.each do |m|
               %li
                 = "x#{m['number']} - #{m['name']}"
       %section
-        %h4 [icon] Tools Used
+        %span
+          %span.icon-Tool
+          %span.section-header  Tools Used
         %ul
           -@lesson.get_all_tools.each do |t|
             %li
               = t
       %section
-        %h4 [icon] Project Files
+        %span
+          %span.icon-File
+          %span.section-header Project Files
         =link_to 'something', '#'
 
   .steps--view

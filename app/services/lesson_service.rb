@@ -44,11 +44,8 @@ class LessonService
 
       params = {
           lesson: given,
-          users: other_users,
           places: associated_places,
           standards: standards,
-          range: teaching_range,
-          subjects: subjects,
           difficulty_level: difficulty_level,
           skills: skills
       }
@@ -57,18 +54,16 @@ class LessonService
 
       @calling_user = usr
       @lesson_params = params[:lesson]
-      @other_authors = params[:users]
-      @places = params[:places]
-      @standards = params[:standards]
-      @teaching_range = params[:range]
-      @subjects = params[:subjects]
-
-      @difficulty_level = difficulty_level
-      @skills = skills
-      @context = context
-      @other_interests = other_interests
-
-      @collection = collection
+      @other_authors = given.delete(:other_users_emails)
+      @places = given.delete(:associated_places_ids)
+      @standards = given.delete(:standards)
+      @teaching_range = given.delete(:grade_range)
+      @subjects = given.delete(:subjects)
+      @difficulty_level = given.delete(:difficulty_level)
+      @skills = given.delete(:skills)
+      @context = given.delete(:context)
+      @other_interests = given.delete(:tags)
+      @collection = given.delete(:collection_tag)
     end
 
 
@@ -127,8 +122,8 @@ class LessonService
       @lesson.state = 1   # draft state
 
       # cleaning - from form
-      @lesson_params[:learning_objectives].delete("")
-      @lesson_params[:further_readings].delete("")
+      @lesson_params[:learning_objectives].delete("") if @lesson_params[:learning_objectives].present?
+      @lesson_params[:further_readings].delete("") if @lesson_params[:further_readings].present?
 
       @lesson.attributes = @lesson_params
       # puts @lesson.inspect

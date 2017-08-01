@@ -13,7 +13,9 @@
       %section
         %h5
           Duration
-        ="[icon] #{step.duration}"
+        %span.icon-Clock
+        %span
+          = " #{(step.duration / 60.0 / 60.0).to_d.truncate(2).to_f} hours"
 
       - if step.supporting_files.present? # TODO test this
         %section
