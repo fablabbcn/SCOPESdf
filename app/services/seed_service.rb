@@ -368,5 +368,292 @@ the hook is where the MDF handle can be used to hoist the lantern in a horizonta
 
     end
 
+    def pinball
+      lesson =
+          {
+              name: "Pinball Machine Lesson (Understanding Energy)",
+              topline: "Build some unique energy for physics and math by designing simple and complex machines, in the form of an old school arcade pinball games",
+              description: "A 9th grade class can learn conceptual physics as students explore digital fabrication tools to design a pinball machine.  When they laser cut their prototypes, students will gain an understanding of the applications of potential, kinetic and mechanical energy through simple and complex machines.",
+
+              learning_objectives:
+                  ["Design and build a pinball machine utilizing fab lab tools.", "Understand how elastic potential energy, levers, and force are used.", "Understand the concepts related to work and energy."],
+
+              assessment_criteria: "Students’ knowledge, skills, and aptitudes will be assessed using selected response items and rubrics for class participation, group work, engineering problem solving, brief constructed responses, and extended constructed responses summarizing the lesson.
+
+Pre-Test Practice Test (Chapter 9- with answers)
+http://marsd.org/cms/lib7/NJ01000603/Centricity/Domain/266/CD%209.1%20Work%20and%20Energy%20Answers.pdf
+
+Formative Assessment (Chapter 9-with answers)
+https://d3jc3ahdjad7x7.cloudfront.net/YhXdaDN05u8IzfPKjlMqrJ7KQZJlSEgbGQLCfrwLSx3xNDo6.pdf
+
+Post-Test (Repeat of Practice Test)
+http://marsd.org/cms/lib7/NJ01000603/Centricity/Domain/266/CD%209.1%20Work%20and%20Energy%20Answers.pdf
+
+
+Pinball Machine Student Project Rubric
+
+The Pinball Machine student project rubrics will be presented in advance of the activities to familiarize students with the expectations and performance digital fabrication criteria. They will also be reviewed during the activities to guide students in the completion of assignments.
+
+Design Specifications				27 pts (3pts each)
+Sturdy sides to keep ball in field
+Ball launcher mechanism
+Buttons to activate the flipper are easily pressed
+Flipper mechanism made of 4 layers of cardboard
+Flipper mechanism easily pivots
+Obstacles in playing field
+Ball catcher
+Ball does not get hung on playing field
+Barriers that keep the ball from going behind flippers
+
+Explanation	(must be neatly written on a separate sheet of paper)		24 pts (4pts each)
+Explanation of how levers are used in your pinball game
+Explanation of how elastic potential energy is used in your pinball game
+
+Analysis
+Measure distance between where the button attaches to the flipper and pivot: __________
+Measure distance between where the marble hits the flipper and pivot: ______________
+Find the force multiplier ratio (b divided by a):  ______________
+Measure the angle of your playing field:  ______________
+
+Documentation		28 pts (4pts each)
+Original Sketch
+Final Sketch Side view
+Final Sketch Top view
+Neatly drawn
+Picture or Sketch of Flipper Prototype
+Sketch of Ball Launcher Mechanism
+Picture of Final Pinball Machine
+
+Aesthetics				10 pts
+Neat Construction
+Interesting decorations
+
+Other
+Group evaluation			8 pts(uploaded to folder
+Self Evaluation			3 pts
+
+--------------------
+Bonus Points for Theme		10 pts ",
+
+              further_readings:
+                  ["http://marsd.org/cms/lib7/NJ01000603/Centricity/Domain/266/CD%209.1%20Work%20and%20Energy%20Answers.pdf", "https://d3jc3ahdjad7x7.cloudfront.net/YhXdaDN05u8IzfPKjlMqrJ7KQZJlSEgbGQLCfrwLSx3xNDo6.pdf", "http://marsd.org/cms/lib7/NJ01000603/Centricity/Domain/266/CD%209.1%20Work%20and%20Energy%20Answers.pdf"],
+
+              steps: [{
+                          summary: "Introduction to the lesson",
+                          duration: "600",
+                          description: "Show students examples of pinball machines by showing the following videos:  https://www.youtube.com/watch?v=gnrrbKFWL3Q
+https://www.youtube.com/watch?v=jqwOaPYjKXI (min 11:57-end)
+After watching the video, discuss the motion of the flipper.  The flipper transfers energy to the ball to keep the ball in motion. Discuss with students how pinball machines are controlled with electronics so the energy transfer is electrical to mechanical.
+Show that the transfer of energy in their cardboard pinball machine will be elastic to mechanical.
+Point out that the travel of the ball is interrupted by bouncing off obstacles.  These obstacles make the play more interesting.
+Show that there is a launcher mechanism off camera that causes the ball to launch into the playing field.  The launcher gives the ball the initial speed on the playing field.
+Discuss the rubric for the activity.",
+
+                          external_links:
+                              ["https://www.youtube.com/watch?v=gnrrbKFWL3Q", "https://www.youtube.com/watch?v=jqwOaPYjKXI"],
+                      }, {
+                          summary: "PART A: Making the base",
+                          duration: "3600",
+                          description: "Cut a rectangle out of corrugated cardboard to the desired size.  This is usually 18-24 inches long and 13-16 inches wide.
+Cut some long strips of cardboard to make the 4 sides.  These sides will keep the marble on the playing field.
+Glue the strips around the perimeter of the board.
+Add cardboard ramps, cardboard obstacles, or small toys around the board to create obstacles or rebound surfaces.  Students can also make their pinball machine themed with vinyl decals if time, materials and equipment permit.
+Cut angled cardboard pieces to attach to the bottom of the base to provide an angle for the playing field.  A fast board has about 12-15 degree slope.  A slower board has about 5 degrees slope.
+The included design files have all of the necessary components for an 16 inch x 10 inch base with a 10 degree slope and is capable of being made on an Epilog Mini 24”x12” laser cutter common in many Fab Labs. The file may have to be modified to work with your local equipment.
+
+
+Teacher Led Discussion:  Gravitational potential energy depends on the height of an object above the ground.  In the pinball machine a larger angle results in a larger gravitational potential energy therefore larger kinetic energy.  Because KE = ½ mv2 higher kinetic energy translates to higher speed.",
+                          materials: [{number: "1 per student", name: "Large sheet of recycled cardboard for laser cutting"}],
+                          tools:
+                              ["Laser Cutter", "Computers with 2D Vector Graphic Software"],
+                          external_links:
+                              ["https://api.jquery.com/category/manipulation/dom-removal/"],
+                      }, {
+                          summary: "PART B: Making the flippers",
+                          duration: "1800",
+                          description: "Teacher Led Discussion: A bell crank mechanism transfers horizontal motion to vertical motion.  Show student videos of bell crank mechanisms in motion.
+https://www.youtube.com/watch?v=-nuAhMMAbXw,
+https://www.youtube.com/watch?v=26D-_Fo0Tlk.
+For the pinball machine, the short leg is attached to the push button from the side of the pinball machine.  This is the horizontal motion.  The long leg has vertical motion and bats the marble back onto the playing field.  Essentially a bell crank mechanism is two levers attached at a stationary point.
+
+Basic Bell Crank
+
+Make a single L-shaped flipper from cardboard.  This is a basic bell crank mechanism.  A good starting point is for the long part of the L to be 3 inches and the short part 2 inches.
+Drill a stationary pivot hole in the corner of the single layer flipper.
+Test the flipper shape, size, and placement of the pivot and push button points.  Your goal is to have a small horizontal motion, with a small force required and a fast vertical motion to give the ball more speed.
+Once you have decided on your design, build two final flippers by gluing 4 layers of cardboard together.
+Cover the front of the flipper with poster board to give the marble a good surface for bouncing. The included design file has the components for two sets of flippers and is capable of being made on an Epilog Mini 24”x12” laser cutter common in many Fab Labs. The file may have to be modified to work with your local equipment.",
+                          materials: [
+                              {number: "1 per student", name: "Remainder of Large sheet of recycled cardboard for laser cutting"},
+                              {number: "1 per student", name: "Marble"},
+                              {number: "1 per student", name: "Small piece of poster board"}
+                          ],
+                          tools:
+                              ["Laser Cutter", "Computers with 2D Vector Graphic Software"],
+                          external_links:
+                              ["https://www.youtube.com/watch?v=-nuAhMMAbXw", "https://www.youtube.com/watch?v=26D-_Fo0Tlk."],
+                      }, {
+
+                          summary: "PART C: Make Push Buttons",
+                          duration: "1800",
+                          description: "Cut small rectangles about three inches above the bottom edge of the box.
+
+
+Cut and glue long strips of cardboard to make the main part of the push button.  (See diagram below)
+
+Make small squares off cardboard to glue on the end to make top of the push button.  This will be the part that the player will use to activate the mechanism.
+
+Place the push buttons in the rectangular slots on the playing field (created in #1)",
+                          materials: [
+
+
+                              {number: "1 per student", name: "Glue"}],
+                          tools:
+                              ["Laser Cutter", "Computers with 2D Vector Graphic Software"],
+                      }, {
+                          summary: "PART D: Attaching the button to the flipper ",
+                          duration: "300",
+                          description: "Attach push button to the flipper in the location determined in Activity 2.  Use brads, bolts, or skewers that will allow the pushbutton and flipper to rotate.  You will need to come up with a design to effectively attach the buttons to the flippers. The basic design is shown below.
+
+
+          2. Add rubber bands to flippers and buttons provide a return force.  Play with the arrangement of the rubber bands to find the best return force and smoothest flipper motion.
+
+          Teacher Led Discussion:  The arrangement of the rubber bands is very important.  When the button is pressed the rubber bands should be stretched.  The work done in moving the button transfers energy to the rubber bands.  That energy is then released when the button is released and the rubber bands pull the flipper mechanism back to its original position.  Some of the energy is transferred to the marble on the playing field.
+
+          3. Once you are satisfied with the arrangement of rubber bands, flipper, and buttons, permanently attach the flipper mechanism to the playing field with a bolt, skewer, or dowel through the stationary point.
+
+          4. Glue cardboard strips to the playing field to provide guides for the push button.
+
+              5. The included design files also incorporate push buttons.
+
+                  6. Measure distance between where the button attaches to the flipper and stationary pivot: ________
+                                                                            7.  Measure distance between where the marble hits the flipper and stationary pivot: _____________
+                                                                            8. Find the IMA which is the ratio of the two distances (6 divided by 7):  ______________
+
+                                                                            Teacher lead discussion:  In a lever system, the distances are used to find the Ideal Mechanical Advantage (IMA).   The equation for IMA is input distance/ output distance.  In most instances we want a larger than 1 IMA because we want to input a smaller force and get a larger output force.  However, for this application we sacrifice force in order to get a larger range of motion for our flipper.  Another example of sacrificing IMA to get a larger range in motion is the forearm of humans.",
+                          materials: [
+                              {number: "2 per student", name: "rubber bands"},
+                              {number: "1 per student", name: "ruler"}],
+                          tools:
+                              ["Laser Cutter", "Computers with 2D Vector Graphic Software"]
+                      }, {
+
+                          summary: "PART E: Making a launcher ",
+                          duration: "300",
+                          description: "Teacher Led Discussion:  The most common launcher for a pinball machine is a spring system, as seen in the picture to the right1.  A spring system is very similar to a rubber band system because they both convert elastic potential energy to kinetic energy.  A spring system can be stretched or compressed to gain elastic potential energy; however, a rubber band system can only be stretched.  In the following directions, students will create a rubber band launcher.  In the rubber band launcher pulling the paddle does work on the launcher mechanism creating elastic potential energy.  When the system is triggered, the elastic potential energy is converted to kinetic energy putting the ball into motion.  Students can develop alternate ball launching mechanisms such as a gravity ramp launcher or spinner launcher.
+
+
+                                                                                Fold out a file folder and roll it up to make a launching tube.
+
+                                                                                Glue a circular cardboard piece, slightly smaller than the launching tube, to the end of a dowel rod, paint stirrer, large craft stick, pencil, or similar long cylinder.
+
+                                                                                Place the plunger made in #2.  Attach a rubber band from the top of the file folder tube to the plunger.  To change the speed of marble launch, change the  type of rubber band and placement of the rubber band on the plunger.
+
+                                                                            Attach the launcher to the side of the pinball board.
+
+                                                                                Cut a square hole in the side of the top of the cardboard base.
+
+                                                                                Attach a flat piece of cardboard and a curved piece of cardboard to carry the ball from the launcher to the playing field.",
+                          materials: [
+
+                              {number: "2 per student", name: "rubber bands"},
+                              {number: "1 per student", name: "dowel rod or similar"}],
+                          tools:
+                              ["Laser Cutter", "Computers with 2D Vector Graphic Software", "Glue"],
+
+                      }, {
+
+                          summary: "PART F: Making a ball catcher ",
+                          duration: "300",
+                          description: "Cut a 3 inch long x 1 inch high slot in the bottom of the playing field for the ball catcher.
+
+                                                                                Create a catcher box by gluing together a small rectangular box.
+
+                                                                                    Attach the box below the 3 inch slot.
+
+                                                                                As an extension activity, have the students design and laser cut their own box for a ball catcher.
+
+                                                                                Activity 7: Placing obstacles on the playing field/decorating the pinball machine
+                                                                            Choose objects to place on the playing field to make obstacles for the marble as it travels on the playing field.
+                                                                                Carefully decide on the layout; make sure that the marble will not get stuck on an obstacle.
+                                                                                Use hot glue to attach obstacles.
+                                                                                    Paint or decorate the pinball machine to match a theme if you have chosen one.",
+
+                          tools:
+                              ["Laser Cutter", "Computers with 2D Vector Graphic Software", "Hot Glue Gun"],
+
+                      }, {
+                          summary: "PART G: Final Presentation ",
+                          duration: "1800",
+                          description: "   	Students present their pinball machines to the class.
+                                                                                2.   	Students complete reflective memo for the project. (uploaded to folder)
+
+                                                                                                                          Teacher Led Discussion:  Teacher will discuss levers and inclined planes, which are two of the simple machines.  In most cases simple machines are used to make our lives easier by requiring a smaller input force to get a larger output force.  In the case of the flipper, we sacrifice the force advantage to gain a larger range of motion.
+
+                                                                                                                              The inclined plane is the playing field of the pinball machine.  By having an angle we increase the speed of the marble as it goes down the incline toward the flipper.  This makes the game more exciting and challenging."
+                      }],
+
+
+              standards:
+                  [{
+                       name: "Common Core English Language Arts/Science & Technical Subjects Standards",
+                       descriptions: ["RST.9-10.3. Follow precisely a complex multistep procedure when carrying out experiments, taking measurements, or performing technical tasks, attending to special cases or exceptions defined in the text.", "RST.9-10.4. Determine the meaning of symbols, key terms, and other domain-specific words and phrases as they are used in a specific scientific or technical context relevant to grades 9-10 texts and topics.", "RST.9-10.5. Analyze the structure of the relationships among concepts in a text, including relationships among key terms (e.g., force, friction, reaction force, energy).", "RST.9-10.8. Assess the extent to which the reasoning and evidence in a text support the author's claim or a recommendation for solving a scientific or technical problem.", "RST.9-10.9. Compare and contrast findings presented in a text to those from other sources (including their own experiments), noting when the findings support or contradict previous explanations or accounts."]
+                   },
+                   {
+                       name: "Common Core Mathematics Standards",
+                       descriptions: ["HSN.Q.A.1: Use units as a way of understanding problems and to guide the solution of multi-step problems; choose and interpret units consistently in formulas; choose and interpret the scale and the origin in graphs and data displays.", "HSN.Q.A.2.: Define appropriate quantities for the purpose of descriptive modeling.", "HSN.Q.A.3: Choose a level of accuracy appropriate to limitations on measurements when reporting quantities.", "HSN.CED.A.2:  Create equations in two or more variables to represent relationship between quantities; graph equations on coordinate axes with labels and scales."]
+                   },
+                   {
+                       name: "Common Core Social Studies Unifying Theme: Sequencing and Chronology Skills ",
+                       descriptions: ["Using the vocabulary of time and place", "Placing events in chronological order", "Sequencing events on a timeline", "Creating timelines", "Understanding concepts of time, continuity, and change."]
+                   },
+                   {
+                       name: "Major Next Generation Science Standards Understandings",
+                       descriptions: ["Energy cannot be created or destroyed, but only changed from one form into another", "Mechanical energy can be considered either to be kinetic energy, which is energy in motion, or potential energy, which depends on relative position.", "Energy exists in many forms, and when these forms change, energy is conserved."]
+                   },
+                   {
+                       name: "Next Generation Cross-Cutting Concepts",
+                       descriptions: ["Time, space, and energy phenomena can be observed at various scales using models to study systems that are too large or too small.", "The total amount of energy and matter in closed systems is conserved.", "Energy drives the cycling of matter within and between systems.", "Proportional relationships (e.g. speed as the ratio of distance traveled to time taken) among different types of quantities provide information about the magnitude of properties and processes."]
+                   },
+                   {
+                       name: "Digital Fabrication Competencies: I can statements",
+                       descriptions: ["(FAB.1): The Design Process: I can use the digital fabrication design process and quality assurance principles to analyze and solve design problems. This includes journal writing to document progress and capture ideas during the development phase., purposes, and audiences", "(FAB.2): Sketching and Visualization: I can brainstorm, conceptualize and sketch design projects and components, by hand sketch. This includes paper prototyping", "(FAB.3): Create Models: I can create models to illustrate the design of project and components This include using and/or creating a file during the modeling process.", "(FAB.4): Interpret and prepare 2D and 3D drawings: I can create and interpret auxiliary views, orthographic projections, isometric drawing, oblique drawings and perspective drawings. I can also use 2D and 3D modeling software to document work and communicate solutions.", "(FAB.5): Computer-Aided Modeling: I can create models to illustrate the design of projects, including apply manufacturing processes (e.g. casting, molding, separating, assembling, finishing, and rapid prototyping).", "(FAB.6): Computer-Aided Drafting: I can interpret and prepare technical drawings, including creating and interpreting auxiliary views, orthographic projections, isometric drawings, oblique drawings and perspective drawings.", "(FAB.7): Precision Digital Fabrication Machining: I can apply principles of precision machining to measuring work pieces, drawing interpretations, and inspect workpieces according to specifications.", "(FAB.8): Measurement and Interpretation: I can interpret drawings and documentation and perform measurements.", "(FAB.9): Layout and Planning: I can determine product requirements, dimensions, and tolerances from drawing and specifications.", "(FAB.10): Implement safety procedures. I can demonstrate knowledge of FAB Lab safety rules and guidelines."]
+                   }],
+
+              grade_range: {start: 10, end: 13},
+              subjects:
+                  ["technology", "science", "engineering"],
+              difficulty_level:
+                  {student: "3", educator: "3"},
+              skills: [
+                  {name: "CAD Design", level: "2"},
+                  {name: "Laser Cutting", level: "2"}
+              ],
+              context:
+                  ["In Classroom", "In fablab"],
+              collection_tag: "fab certified/tested"
+          }; steps = lesson.delete(:steps)
+    end
+    def quatcopter
+
+      [{
+           name: "Common Core ELA Writing Standards",
+           descriptions: [ "RST.6–8.1 Cite specific textual evidence to support analysis of science and technical texts. (MS-ETS1-1),(MS-ETS1-2),(MS-ETS1-3)", "RST.6–8.7 Integrate quantitative or technical information expressed in words in a text with a version of that information expressed visually (e.g., in a flowchart, diagram, model, graph, or table). (MS-ETS1-3)", "RST.6–8.9 Compare and contrast the information gained from experiments, simulations, video, or multimedia sources with that gained from reading a text on the same topic. (MS-ETS1-2),(MS-ETS1-3)", "WHST.6–8.7 Conduct short research projects to answer a question (including a self-generated question), drawing on several sources and generating additional related, focused questions that allow for multiple avenues of exploration. (MS-ETS1-2)", "WHST.6–8.8 Gather relevant information from multiple print and digital sources (primary and secondary), using search terms         	effectively; assess the credibility and accuracy of each source; and quote or paraphrase the data and conclusions of others while avoiding plagiarism and following a standard format for citation. (MS-ETS1-1)", "WHST.6–8.9         	Draw evidence from informational texts to support analysis, reflection, and research. (MS-ETS1-2)", "SL.8.5                    	Include multimedia components and visual displays in presentations to clarify claims and findings and emphasize salient points. (MS-ETS1-4)"]
+       },
+       {
+           name: "Common Core Math",
+           descriptions: [ "MP.2 Reason abstractly and quantitatively. (MS-ETS1-1),(MS-ETS1-2),(MS-ETS1-3),(MS-ETS1-4)", "7.EE.3 Solve multi-step real-life and mathematical problems posed with positive and negative rational numbers in any form (whole numbers, fractions, and decimals), using tools strategically. Apply properties of operations to calculate with numbers in any form; convert between forms as appropriate; and assess the reasonableness of answers using mental computation and estimation strategies. (MS-ETS1-1),(MS-ETS1-2),(MS-ETS1-3)", "7.SP.7.a,b Develop a probability model and use it to find probabilities of events. Compare probabilities from a model to observed frequencies, if the agreement is not good, explain possible sources of the discrepancy (MS-ETS 1-4)"]
+       },
+       {
+           name: "Next Generation Science Standards",
+           descriptions: [ "MS-ETS1-1.  Define the criteria and constraints of a design problem with sufficient precision to ensure a successful solution, taking into account relevant scientific principles and potential impacts on people and the natural environment that may limit possible solutions.", "MS-ETS1-2.  Evaluate competing design solutions using a systematic process to determine how well they meet the criteria and constraints of the problem.", "MS-ETS1-3.  Analyze data from tests to determine similarities and differences among several design solutions to identify the best characteristics of each that can be combined into a new solution to better meet the criteria for success.", "MS-ETS1-4.  Develop a model to generate data for iterative testing and modification of a  proposed object, tool, or process such that an optimal design can be achieved"]
+       },
+       {
+           name: "Digital Fabrication Competencies: I can statements",
+           descriptions: [ "(FAB.1): The Design Process: I can use the digital fabrication design process and quality assurance principles to analyze and solve design problems. This includes journal writing to document progress and capture ideas during the development phase., purposes, and audiences", "(FAB.2): Sketching and Visualization: I can brainstorm, conceptualize and sketch design projects and components, by hand sketch includes paper prototyping.", "(FAB.3): Create Models: I can create models to illustrate the design of project and components This include using and/or creating a file during the modeling process.", "(FAB.4): Interpret and prepare 2D and 3D drawings: I can create and interpret auxiliary views, orthographic projections, isometric drawing, oblique drawings and perspective drawings. I can also use 2D and 3D modeling software to document work and communicate solutions.", "(FAB.5): Computer-Aided Modeling: I can create models to illustrate the design of projects, including apply manufacturing processes (e.g. casting, molding, separating, assembling, finishing, and rapid prototyping).", "(FAB.6): Computer-Aided Drafting: I can interpret and prepare technical drawings, including creating and interpreting auxiliary views, orthographic projections, isometric drawings, oblique drawings and perspective drawings.", "(FAB.7): Precision Digital Fabrication Machining: I can apply principles of precision machining to measuring work pieces, drawing interpretations, and inspect work pieces according to specifications.", "(FAB.8): Measurement and Interpretation: I can interpret drawings and documentation and perform measurements.","(FAB.9): Layout and Planning: I can determine product requirements, dimensions, and tolerances from drawing and specifications.", "(FAB.10): Implement safety procedures. I can demonstrate knowledge of FAB Lab safety rules and guidelines." ]
+       }]
+
+    end
+
   end
 end

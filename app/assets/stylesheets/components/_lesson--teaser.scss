@@ -1,7 +1,11 @@
 article.lesson--teaser {
   background:$color-white;
   border:1px solid $color-gray-outlines;
-
+  height: 25rem;
+  a {
+    color: $color-dark;
+    text-decoration: none;
+  }
   .detail {
     padding:2rem;
   }
@@ -12,7 +16,19 @@ article.lesson--teaser {
   }
 
   p {
+    &:first-of-type{
+      height: 70px;
+    }
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
     font-size:.9em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  img{
+    height: 200px;
   }
 
 }

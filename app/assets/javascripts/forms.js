@@ -220,7 +220,7 @@ $(document).on('turbolinks:load', function() {
 
   /* Character counter in every textarea but short ones */
 
-  var textareaLimit = 800;
+  var textareaLimit = '';
   $('.lesson--steps textarea:not(".textarea--short")').parent().append('<div class="textarea--counter"><em>0</em>/<span></span></div>');
 
   $('.textarea--counter span').text(textareaLimit);
@@ -230,8 +230,8 @@ $(document).on('turbolinks:load', function() {
       var lessText = "";
       if (characters >= textareaLimit) {
           e.preventDefault();
-          lessText = $(this).val();
-          $(this).val(lessText.substring(0,800));
+          //lessText = $(this).val();
+          //$(this).val(lessText.substring(0,800));
       }
       $(this).parent().find('.textarea--counter em').text($(this).val().length);
   });

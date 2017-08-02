@@ -24,7 +24,7 @@ class Lesson < ApplicationRecord
   enum state: [:hidden, :draft, :visible]
 
   def self.standards_list
-    ["NGCSS", "Common Core ELA", "I Can Statements"]
+    ["NGSS", "Common Core ELA", "Common Core Math", "FAB I Can Statements", "21st Century Skills", "Other"]
   end
 
 
@@ -39,7 +39,7 @@ class Lesson < ApplicationRecord
 
 
   #   validates :organization_exists
-  def organization_exists # TODO - validate existence of organization from lesson_tags
+  def organization_exists # TODO - validate existece of organization from lesson_tags
     # not saved yet... so checking against query doesn't work *
   end
 
@@ -418,11 +418,17 @@ class Lesson < ApplicationRecord
   def get_all_materials
     total_steps = []
     steps.map {|s| total_steps.push(s.materials)}
-    total_steps.flatten
+    total_steps.flatten.compact.uniq
   end
 
   def get_all_tools
-    steps.map {|s| s.tools}.flatten
+    steps.map {|s| s.tools}.flatten.uniq
+  end
+
+  def get_all_supporting
+    x = steps.map {|s| s.supporting_files}.flatten
+    x.append(steps.map {|s| s.supporting_materials}.flatten)
+    x.flatten.compact
   end
 
 
@@ -430,7 +436,6 @@ class Lesson < ApplicationRecord
     check_against = {
         name: self.name.present?,
         topline: self.topline.present?,
-        summary: self.summary.present?,
         authors: self.authors.present?,
         # organizations: self.getOrgs.present?,
         learning_objectives: self.learning_objectives.present?,
@@ -466,3 +471,5 @@ class Lesson < ApplicationRecord
   end
 
 end
+
+

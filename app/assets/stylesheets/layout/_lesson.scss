@@ -38,7 +38,7 @@
     .top-content-title, .top-content-images {
       width: 100vw;
       height: 300px;
-      p{
+      p {
         margin: 0 2rem;
         text-align: center;
       }
@@ -65,29 +65,31 @@
       }
     }
   }
-  .view--details{
+  .view--details {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     padding: 2rem 0;
     background-color: $color-gray;
-    .detail{
+    .detail {
       padding: 2em;
-      h5{ margin-top: 0}
+      h5 {
+        margin-top: 0
+      }
       font-size: 1.25rem;
       font-weight: 300;
 
-      &#difficulty{
+      &#difficulty {
         p.text--intro {
           margin: 2rem 0 0 0;
           color: $color-dark;
         }
-        small{
+        small {
           color: $color-mid-gray;
         }
       }
-      &#standards{
+      &#standards {
         p.text--intro {
           margin: 1rem 0;
           font-size: 1rem;
@@ -99,10 +101,12 @@
           text-transform: uppercase;
           letter-spacing: initial;
         }
-        small{
+        small {
           color: $color-mid-gray;
         }
-        a{  font-size: 1rem;  }
+        a {
+          font-size: 1rem;
+        }
       }
     }
     #range-teaching {
@@ -115,62 +119,62 @@
       flex-wrap: wrap;
     }
   }
-  .overview{
+  .overview {
     display: flex;
     flex-direction: column-reverse;
     @include breakpoint($tablet-breakpoint) {
       flex-direction: row;
     }
     justify-content: center;
-    .overview--right{
+    .overview--right {
       width: 275px;
-      section{
+      section {
         border-bottom: 2px solid $color-gray-outlines;
         margin: 10px;
         padding: 10px 0 34px 0;
-        &:last-of-type{
+        &:last-of-type {
           border-bottom: none;
         }
       }
     }
-    .overview--left{
+    .overview--left {
       max-width: 540px;
       margin: 0 50px;
-      section{
+      section {
         padding: 10px;
-        &summary{
+        &summary {
           font-size: 20px;
         }
       }
-      ul{
+      ul {
         padding-left: 20px;
         list-style: none;
       }
     }
   }
 
-  .flex-wrapper--fullrow{
+  .flex-wrapper--fullrow {
     display: flex;
     flex-direction: column;
-    .sub-section--half{
+    .sub-section--half {
       width: 50%;
     }
-    .sub-section--full{
+    .sub-section--full {
       width: 100%;
     }
   }
 
-  section.standard{
+  section.standard {
     border-bottom: 2px solid $color-gray-outlines;
     margin: 10px;
     padding: 10px 0 34px 0;
-    &:last-of-type{
+    &:last-of-type {
       border-bottom: none;
     }
   }
 
   #instructions {
-    .icon-Clock, .icon-Done{
+    .icon-Clock, .icon-Done {
       font-size: 1.25rem;
       color: $color-mid-gray;
       margin: 0 .5rem;
@@ -179,7 +183,7 @@
       .wrapped {
         display: flex;
         flex-direction: column;
-        .growth{
+        .growth {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -188,31 +192,35 @@
         }
         @include breakpoint($tablet-breakpoint) {
           flex-direction: row;
-          .growth{
+          .growth {
             justify-content: flex-start;
             align-items: center;
           }
         }
-          min-height: 160px;
+        min-height: 160px;
         align-items: center;
-        span{
+        span {
           display: flex;
           margin: 0 15px;
-          p { margin: 0 3rem;}
-          h2 { margin: 0; }
+          p {
+            margin: 0 3rem;
+          }
+          h2 {
+            margin: 0;
+          }
         }
       }
     }
 
     #consolidated-space {
       background-color: $color-gray;
-      .section-header{
+      .section-header {
         font-size: 1.1em;
         letter-spacing: 0.04rem;
         font-weight: 400;
         line-height: 1em;
       }
-      .icon-List, .icon-Tool, .icon-File{
+      .icon-List, .icon-Tool, .icon-File {
         font-size: 1.25rem;
         color: $color-blue-hi;
         margin-right: 1rem;
@@ -225,23 +233,25 @@
         @include breakpoint($tablet-breakpoint) {
           flex-direction: row;
         }
-          section{
+        section {
+          max-height: 22rem;
+          overflow: scroll;
           display: flex;
           flex-direction: column;
           margin: 2rem;
           min-width: 250px;
-          .icon{
+          .icon {
             float: left;
           }
-          h4{
+          h4 {
             float: left;
             margin-bottom: 0;
           }
-          ul{
+          ul {
             list-style: none;
             padding: 1rem 0;
             margin: 0 0 0 2rem;
-            li{
+            li {
               margin: .5rem 0;
               max-width: 250px;
               white-space: nowrap;
@@ -254,8 +264,20 @@
     }
   }
 
-  footer{
-    .wrapped{
+  #outcomes {
+    section {
+      height: 45rem;
+      .image_grand_wrapper_column {
+        max-height: 100%;
+      }
+      @include breakpoint($tablet-breakpoint) {
+        height: 25rem;
+      }
+    }
+  }
+
+  footer {
+    .wrapped {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -276,7 +298,7 @@
     }
   }
 
-  .icon-color{
+  .icon-color {
     color: $color-blue-hi;
     font-size: 1.25rem;
   }

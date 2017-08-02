@@ -43,7 +43,7 @@
             .field-wrapper
               #lesson_4.field-group.field-group--support.field-group--supporting-files
                 %label.label--small
-                  Supporting files
+                  Supporting Documents and Media
                 .field-wrapper
                   
                   .image-uploader-wrapper{ data: { endpoint: "#{step_file_path(id: @lesson_obj.id, step:@steps.first.id, attr: 'supporting_files')}" } }
@@ -93,8 +93,8 @@
 
           .field-group
             %label
-              Supporting Materials
-              %small Design files, handouts needed for this step
+              Design Files
+              %small files for step creation
             .field-wrapper.field-group--supporting-materials
               .image-uploader-wrapper{ data: { endpoint: "#{step_file_path(id: @lesson_obj.id, step:@steps.first.id, attr: 'supporting_materials')}" } }
                 .dropzone

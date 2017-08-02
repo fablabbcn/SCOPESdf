@@ -26,9 +26,6 @@
                 %small Add one or more
               .field-wrapper
                 -# @TODO ican container should be there only if a given value is selected from the previous select.
-                .field--ican-container
-                  = select(:standard_name, :standard_id, ['un','dos','tres'])
-
                 .clone-container
                   - if standard["descriptions"].present?
                     - standard["descriptions"].each do |desc|
