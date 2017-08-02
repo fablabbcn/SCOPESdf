@@ -7,11 +7,14 @@
     %p.text--intro
       =@lesson.topline
     %hr
-    .author-section
-      [ make badge partial / component ]
+    -#%br
+    -#.author-section
+    -#  = render '/users/user-teaser', user: @lesson.authors.first
 
   .top-content-images
-    [ view more images button ]
+    .image.image_wrapper-center.about-flex-child
+      - if @lesson.outcome_files.present?
+        =image_tag("#{@lesson.outcome_files.first.url}")
 
 %section.view--details
   #range-teaching.detail
@@ -79,20 +82,32 @@
           Objectives
         - @lesson.learning_objectives.each do |lo|
           = render 'shared/lesson_objective', content: lo
-      %section#outcomes
-        %h5.header--section
-          Expected Outcomes
-        [ image gallery here]
-        [view all button]
+
+      -if @lesson.outcome_files.present?
+        %section#outcomes
+          %h5.header--section
+            Expected Outcomes
+          .image.image_wrapper-center.about-flex-child
+            =image_tag("#{@lesson.outcome_files.first.url}")
+          -if @lesson.outcome_files.count > 3
+            .image_grand_wrapper_column
+              - @lesson.outcome_files[1,2].each do |i|
+                .image.image_wrapper-center.about-flex-child
+                  =image_tag("#{i.url}")
+          =link_to 'View All',lesson_view_path(step:4), class: 'button button--highlight'
+
       %section#assessment
         %h5.header--section
           Assessment Criteria
         %p Your students should know the following things:
         %p
           =@lesson.assessment_criteria.gsub(/\n/, '<br>').html_safe
-        %h5.header--section
-          Supporting Files
-        [links to files here]
+        -if @lesson.further_readings.present?
+          %h5.header--section
+            Further Readings
+          - @lesson.further_readings.each do |fr|
+            =link_to("#{fr}", fr)
+
     .overview--right
       %section#wherewhen
         %h5.header--section
@@ -102,7 +117,7 @@
             %h5.header--section
               Duration:
             %p
-              = "#{@lesson.totalDuration.minutes} minutes"
+              = "#{(@lesson.totalDuration/ 60.0).to_d.truncate(2).to_f} minutes"
           .sub-section--full
             %h5.header--section
               Setting:

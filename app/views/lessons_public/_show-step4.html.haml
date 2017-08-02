@@ -6,6 +6,10 @@
     %section
       %h3
         Expected Outcomes
+      .image_grand_wrapper_column
+        - @lesson.outcome_files.each do |i|
+          .image.image_wrapper-center.about-flex-child
+            =image_tag("#{i.url}")
 
     -#%section
     -#  %h3
@@ -14,3 +18,7 @@
     -#%section
     -#  %h3
     -#    Expected Outcomes
+
+%footer
+  .wrapped
+    =link_to 'Back to Steps',lesson_view_path(step:3), class: 'button button--call'

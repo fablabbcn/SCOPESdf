@@ -10,6 +10,8 @@
 class DifficultyLevel < ApplicationRecord
   has_many :lesson_tags, as: :taggable
 
+  # NOVICE INTERMEDIATE ADVANCED
+
   enum level: [ :easy, :medium, :hard ]
   enum metric: [ :students, :educator ]
 

@@ -152,7 +152,21 @@ class LessonService
     def updateTeachingRange!
       return unless @teaching_range.present? && @teaching_range[:start].present? && @teaching_range[:end].present?
       @lesson.removeTeachingRange # sanitize
-      @lesson.setTeachingRange(@teaching_range[:start], @teaching_range[:end])
+      puts "
+
+
+
+
+
+LE TEACHING RANG HEREJSFJSLHDFLHDSJF
+
+
+
+           #{@teaching_range}
+
+
+           "
+      @lesson.setTeachingRange(@teaching_range["start"], @teaching_range["end"])
       @lesson.save!
       @lesson.reload
     end

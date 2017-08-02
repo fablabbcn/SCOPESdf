@@ -11,7 +11,7 @@ class LessonsPublicController < ApplicationController
 
   def list
     @page = params[:page] || 1
-    @lessons = Lesson.page(@page).per(24)
+    @lessons = Lesson.where(state: 2).page(@page).per(24)
   end
 
 

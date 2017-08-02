@@ -10,7 +10,7 @@
           = " #{(@lesson.totalDuration/ 60.0 / 60.0).to_d.truncate(2).to_f} hours"
         .icon-Done
         %span
-          = "#{@lesson.steps.count} step#{ @lesson.steps.count > 1 ? 's' : '' }"
+          = " #{@lesson.steps.count} step#{ @lesson.steps.count > 1 ? 's' : '' }"
 
   #consolidated-space
     .wrapped
@@ -31,15 +31,19 @@
           -@lesson.get_all_tools.each do |t|
             %li
               = t
-      %section
-        %span
-          %span.icon-File
-          %span.section-header Project Files
-        =link_to 'something', '#'
+      - if @lesson.get_all_supporting.present?
+        %section
+          %span
+            %span.icon-File
+            %span.section-header Project Files
+            %ul
+              -@lesson.get_all_supporting.each do |s|
+                %li
+                  =link_to( s.path.split("/").last ,"#{s.url}", target: "_blank")
 
   .steps--view
     .wrapped
-      - @lesson.steps.each_with_index do |step, i|
+      - @lesson.steps.sort_by{ |k| k[:step_number] }.each_with_index do |step, i|
         = render 'shared/lesson_step_view', step: step, index: i
 
 %footer

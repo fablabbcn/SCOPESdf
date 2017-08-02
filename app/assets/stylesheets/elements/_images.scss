@@ -19,3 +19,14 @@
     width: inherit !important;
   }
 }
+
+.image_grand_wrapper_column{
+  display: flex;
+  flex-direction: column;
+  @include breakpoint($tablet-breakpoint) {
+    flex-direction: row;
+  }
+    .image{
+    margin: 1rem;
+  }
+}

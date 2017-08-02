@@ -19,6 +19,10 @@
 
 class Step < ApplicationRecord
 
+  # supporting files > supporting documents and media
+
+  #supporting materials > design files
+
   validates :lesson_id, presence: true
 
   before_create :check_step_number, :if => :new_record?
@@ -70,9 +74,17 @@ class Step < ApplicationRecord
       @lesson.steps << @step
     end
     params.delete(:id)
-    params[:external_links].delete("")
-    params[:tools].delete("")
-    params[:materials].delete({number:"", name:""})
+
+    params[:external_links].delete("") if params[:external_links].present?
+    params[:external_links].uniq! if params[:external_links].present?
+
+
+    params[:tools].delete("") if params[:tools].present?
+    params[:tools].uniq! if params[:tools].present?
+
+    params[:materials].delete({number:"", name:""}) if params[:materials].present?
+    params[:materials].uniq! if params[:materials].present?
+
     @step.attributes = params
     @step.save!
     @step.reload
