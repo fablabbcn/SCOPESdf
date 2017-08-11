@@ -15,21 +15,21 @@
           %p.text--intro
             Submit more projects, activities, and lessons for the next round of Fab Tested curation
             %span.text--highlighted
-              =link_to "here", 'https://form.jotform.us/scopesdf/submit', target: "_blank"
-            , starting August 1st on a rolling basis.
+              =link_to "here,", 'https://form.jotform.us/scopesdf/submit', target: "_blank"
+            starting August 1st on a rolling basis.
       .issue-wrapper.about-flex-child
         .issue
           %p.text--intro
             Test or remix a Fab Tested lesson in your local setting or just provide us with your feedback
             %span.text--highlighted
-              =link_to "here", 'https://form.jotform.us/scopesdf/feedback', target: "_blank"
+              =link_to "here.", 'https://form.jotform.us/scopesdf/feedback', target: "_blank"
 
       .issue-wrapper.about-flex-child
         .issue
           %p.text--intro
-            To learn more about our approach in developing the SCOPES-DF project, or to gather additional tips and insight see the
+            To learn more about our approach in developing the SCOPES-DF project, or to gather additional tips and insights see the
             %span.text--highlighted
-              =link_to "Toolkit", 'https://docs.google.com/document/d/11JLilR9yt_BNgc0rxAMCpBtFQjQBWyXF5IdBA5scEmU/edit', target: "_blank"
+              =link_to "Toolkit.", 'https://docs.google.com/document/d/11JLilR9yt_BNgc0rxAMCpBtFQjQBWyXF5IdBA5scEmU/edit', target: "_blank"
 
       .issue-wrapper.about-flex-child
         .issue
@@ -55,5 +55,6 @@
           %p.text--intro
             =CopyService.about[:footer][:third].gsub(/\n/, '<br>').html_safe
           %p.text--intro
-            ="The Fab Foundation, 50 Milk Street, 16th Floor, Boston, MA 02139<br>Tel 857-333-7777  |".html_safe
-            %span.text--highlighted =mail_to "scopesdf@fabfoundation.org"
+            ="The Fab Foundation, 50 Milk Street, 16th Floor, Boston, MA 02139<br>Tel +1 857-333-7777  |".html_safe
+            %span.text--highlighted
+              =mail_to "scopesdf@fabfoundation.org"
