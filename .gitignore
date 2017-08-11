@@ -24,6 +24,7 @@ db/*.sqlite3
 /public/uploads/tmp/*
 /public/supporting_files/*
 .elasticbeanstalk/*
+/public/assets
 
 # add /config/database.yml if it contains passwords
 # /config/database.yml
