@@ -29,7 +29,7 @@ class CopyService
               button: "Find out more"
           },
           blue1: {
-              first: "Smart STEM teaching ",
+              first: "The Future of Teaching and Learning",
               second: "Teachers are, increasingly, choosing digital fabrication to engage elementary, middle and high school students with science, technology, engineering, math, and other subjects.",
               third: "Fueled by collaboration at scale, we have the power to transform and turbocharge STEM learning in educational environments through digital fabrication technologies and practices.",
               button: "Find out more"
