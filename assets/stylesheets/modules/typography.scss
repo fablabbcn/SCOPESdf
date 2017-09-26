@@ -1,0 +1,12 @@
+$fonts: "";
+
+@each $font in $fonts {
+	@font-face {
+    font-family: "#{$font}";
+    src: url("fonts/#{$font}.woff2") format('woff2'),
+		url("fonts/#{$font}.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+	}
+}
