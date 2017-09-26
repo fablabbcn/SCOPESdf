@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
+	<%= render partial: 'layouts/head' %>
+
+	<body>
+
+		<%= render partial: 'layouts/flash' if flash.present? %>
+
+		<!-- container -->
+		<div class="Container">
+
+			<!-- header -->
+			<header class="Header">
+
+
+
+			</header>
+			<!-- .header -->
+
+			<!-- main -->
+			<div class="Main">
+
+				<%= yield %>
+
+			</div>
+			<!-- .main -->
+
+			<!-- footer -->
+			<footer class="Footer">
+
+				
+
+			</footer>
+			<!-- .footer -->
+
+		</div>
+		<!-- .container -->
+
+	</body>
+
+</html>
