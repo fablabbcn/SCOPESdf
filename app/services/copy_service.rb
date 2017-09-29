@@ -3,20 +3,20 @@ class CopyService
 
     def home
       {
-          top: {
+          hero: {
               first: "Inspire student ingenuity <br> through digital fabrication.",
               second: "Learning by making is the future",
               third: "And the future starts today! We’re partnering with educators,<br>makers and fabricators to bring digital fabrication to the classroom.",
               button: "Join us"
           },
-          white1: {
-              first: "Here, you can...",
-              second: "Connect, discover and share digital fabrication lesson plans with educators all around the world."
+          proposition: {
+              sub: "Here, you can...",
+              main: "Connect, discover and share digital fabrication lesson plans with educators all around the world."
           },
-          grey1: {
-              first: "Teach how to make almost anything",
-              second: "Discover the initial lessons and insight, available, for free under an open-source licence!",
-              button: "View all lessons"
+          projects: {
+              heading: "Teach how to make almost anything",
+              sub: "Discover the initial lessons and insight, available, for free under an open-source licence!",
+              action: "View all lessons"
           },
           white2: {
               first: "A digital fabrication approach",
