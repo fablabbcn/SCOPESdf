@@ -89,6 +89,11 @@ const webpackBaseConfig = function(env) {
 
           new WebpackNotifierPlugin({ title: 'Webpack', alwaysNotify: true}),
 
+          // Make React globally available
+          new webpack.ProvidePlugin({
+            $: "cash-dom"
+          }),
+
           function() {
 
             // output the fingerprint
