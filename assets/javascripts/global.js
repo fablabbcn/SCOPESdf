@@ -15,6 +15,8 @@ import Webfonts 			from "./init/Webfonts"
 // --------------------------  import modules  -------------------------- //
 import ExternalLinks	from "./modules/ExternalLinks"
 
+import Carousel	from "./components/Carousel"
+
 // --------------------------  import components  -------------------------- //
 //import Whatever	from "./components/Component"
 
@@ -40,6 +42,8 @@ var ScopesDF = {
 	go: function() {
 
 		ExternalLinks()
+
+		Carousel()
 
 	}
 
