@@ -1,0 +1,26 @@
+@import "~flickity/css/flickity";
+
+.flickity-prev-next-button {
+	background-repeat: no-repeat;
+	background-position: center;
+  background-color: transparent;
+  width: 47px;
+  height: 47px;
+
+  svg {
+    display: none;
+  }
+
+	&.previous {
+
+	}
+
+	&.next {
+		
+	}
+
+  &:hover {
+    background-color: transparent;
+  }
+
+}

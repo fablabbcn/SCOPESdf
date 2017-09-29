@@ -1,0 +1,15 @@
+.Logo {
+  width: 150px;
+  height: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  span {
+    display: none;
+  }
+
+  .Header--transparent & {
+    background-image: url('logo-light.svg');
+  }
+
+}

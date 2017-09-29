@@ -1,0 +1,9 @@
+.Toolbar {
+  display: flex;
+
+}
+
+.Toolbar__tool {
+  margin-left: $gutter-width/4;
+  margin-right: $gutter-width/4;
+}

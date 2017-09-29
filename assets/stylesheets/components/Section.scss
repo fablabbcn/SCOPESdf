@@ -1,0 +1,16 @@
+.Section {
+
+}
+
+.Section--gray {
+    background-color: $color-gray-light;
+}
+
+.Section--centered {
+  text-align: center;
+}
+
+.Section--with-padding {
+  padding-top: $gutter-width*4;
+  padding-bottom: $gutter-width*4;
+}

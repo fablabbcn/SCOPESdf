@@ -1,0 +1,22 @@
+.Navigation {
+  margin-left: auto;
+}
+
+.Navigation__items {
+  display: flex;
+  flex-direction: row;
+  margin-right: $gutter-width;
+  margin-left: $gutter-width;
+}
+
+.Navigation__item {
+  display: flex;
+}
+
+.Navigation__link {
+  margin-left: $gutter-width - 5px;
+  margin-right: $gutter-width - 5px;
+  padding-right: $gutter-width/4;
+  padding-left: $gutter-width/4;
+  color: #fff;
+}

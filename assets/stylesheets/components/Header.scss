@@ -1,0 +1,21 @@
+.Header {
+  display: flex;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  max-width: $grid-width;
+  padding: $gutter-width;
+  height: 100px;
+  align-items: center;
+}
+
+.Header--white {
+  background-color: #fff;
+}
+
+.Header--transparent {
+  background-color: transparent;
+}

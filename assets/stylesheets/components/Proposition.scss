@@ -1,0 +1,19 @@
+.Proposition {
+  padding: $gutter-width*8.5 $gutter-width*8;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Proposition__sub {
+  font-size: 18px;
+  color: $color-highlight-primary;
+  margin-bottom: $gutter-width;
+}
+
+.Proposition__main {
+  font-size: 24px;
+  max-width: 720px;
+}

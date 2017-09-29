@@ -1,15 +1,19 @@
 // --------------------------  global typography  -------------------------- //
 
 body {
+	font-family: -apple-system-headline, BlinkMacSystemFont,
+	    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+	    "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+	    sans-serif;
 	font-feature-settings: "liga", "kern", "lnum";
 	backface-visibility: hidden;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	line-height: 1.5;
-	font-weight: normal;
+	line-height: 1.4;
 	color: $color-main;
-	font-size: 16px;
+	font-weight: 400;
+	font-size: 14px;
 }
 
 em {
@@ -46,8 +50,8 @@ p {
 		color: $color-main;
 
 		&:hover {
-			color: $color-highlight;
-			border-color: rgba($color-highlight, 0.25);
+			color: $color-highlight-secondary;
+			border-color: rgba($color-highlight-secondary, 0.25);
 		}
 
 	}
@@ -73,4 +77,21 @@ h1,h2,h3,h4,h5,h6 {
 	padding: 0;
 	font-size: inherit;
 	display: block;
+}
+
+h1 {
+	font-size: 48px;
+	line-height: 1.2;
+	color: $color-highlight-secondary;
+	font-weight: 600;
+}
+
+h2 {
+	font-size: 32px;
+	font-weight: 600;
+}
+
+h3 {
+	font-size: 24px;
+	font-weight: 500;
 }
