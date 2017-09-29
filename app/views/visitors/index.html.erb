@@ -1,0 +1,81 @@
+<div class="Hero" style="background-image: url('<%= image_url('stem.jpg') %>');">
+
+  <div class="Hero__content">
+
+    <div class="Hero__primary"><%= CopyService.home[:hero][:first].gsub(/\n/, '<br>').html_safe %></div>
+    <div class="Hero__secondary"><%= CopyService.home[:hero][:second].gsub(/\n/, '<br>').html_safe %></div>
+    <div class="Hero__tertiary"><%= CopyService.home[:hero][:third].gsub(/\n/, '<br>').html_safe %></div>
+
+    <div class="Hero__actions">
+      <%= link_to 'Join us!', new_user_registration_path, class: "Button Button--light Button--outline" %>
+    </div>
+
+  </div>
+
+</div>
+
+
+<section class="Section Section--centered">
+
+  <div class="Proposition">
+
+    <div class="Proposition__sub">
+      <%= CopyService.home[:proposition][:sub].gsub(/\n/, '<br>').html_safe %>
+    </div>
+
+    <div class="Proposition__main">
+      <%= CopyService.home[:proposition][:main].gsub(/\n/, '<br>').html_safe %>
+    </div>
+
+  </div>
+
+</div>
+
+
+<section class="Section Section--gray Section--centered Section--with-padding">
+
+  <div class="SectionHeader">
+    <h3 class="SectionHeader__main"><%= CopyService.home[:projects][:heading].gsub(/\n/, '<br>').html_safe %></h3>
+    <div class="SectionHeader__sub"><%= CopyService.home[:projects][:sub].gsub(/\n/, '<br>').html_safe %></div>
+  </div>
+
+  <div class="Carousel">
+
+    <div class="Carousel__cells">
+
+      <% 12.times do |i| %>
+      <div class="Carousel__cell">
+
+        <div class="Thumb">
+
+          <a href="#" class="Thumb__image">
+            <img src="" class="Image Image--lazy" />
+          </a>
+
+          <a href="#" class="Thumb__title">Title <%= i %></a>
+
+          <div class="Thumb__description">
+
+          </div>
+
+          <div class="Thumb__footer">
+            <a href="#" class="UserBadge UserBadge--small">
+              <img src="#" class="UserBadge__avatar Image" />
+              <div class="UserBadge__info">
+                <div class="UserBadge__name">Daniel Howells</div>
+                <div class="UserBadge__role">Director</div>
+                <div class="UserBadge__organisation">Howells—Studio</div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+      <% end %>
+
+    </div>
+
+  </div>
+
+</section>
