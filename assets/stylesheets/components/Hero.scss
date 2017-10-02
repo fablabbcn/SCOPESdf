@@ -36,6 +36,7 @@
 
 .Hero__secondary {
   font-size: 23px;
+  @include text-medium;
   margin-bottom: $gutter-width/2;
 }
 
