@@ -1,0 +1,8 @@
+.Container {
+  padding-top: $header-height-desktop;
+}
+
+// if the layout has a hero, ditch the padding
+.Container--has-hero {
+  padding-top: 0;
+}
