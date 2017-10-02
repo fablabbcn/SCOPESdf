@@ -1,0 +1,23 @@
+.SectionColumn {
+  padding-left: $gutter-width*2;
+  padding-right: $gutter-width*2;
+  width: (100%/3);
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $gutter-width;
+}
+
+.SectionColumn__image {
+  margin-bottom: $gutter-width*2;
+}
+
+.SectionColumn__title {
+  color: $color-highlight-primary;
+  margin-bottom: $gutter-width;
+}
+
+.SectionColumn__description {
+
+}

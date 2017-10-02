@@ -49,7 +49,7 @@
         <div class="Thumb">
 
           <a href="#" class="Thumb__image">
-            <img src="https://unsplash.it/270/202" srcset="https://unsplash.it/270/202 1x, https://unsplash.it/540/404 2x" class="Image Image--lazy" />
+            <img src="https://unsplash.it/270/202?image=0" srcset="https://unsplash.it/270/202?image=0 1x, https://unsplash.it/540/404?image=0 2x" class="Image Image--lazy" />
           </a>
 
           <div class="Thumb__content">
@@ -83,7 +83,42 @@
   </div>
 
   <div class="Section__actions">
-    <%= link_to "View all lessons", lesson_list_path, class: "Button Button--secondary" %>
+    <%= link_to CopyService.home[:projects][:action].gsub(/\n/, '<br>').html_safe, lesson_list_path, class: "Button Button--secondary" %>
+  </div>
+
+</section>
+
+
+<section class="Section Section--centered Section--with-padding">
+
+  <div class="SectionHeader">
+    <h2 class="SectionHeader__main"><%= CopyService.home[:approach][:heading].gsub(/\n/, '<br>').html_safe %></h2>
+  </div>
+
+  <div class="Section__columns">
+
+    <% CopyService.home[:approach][:columns].each_with_index do |column, i| %>
+    <div class="SectionColumn">
+
+      <div class="SectionColumn__image">
+        <img srcset="/images/approach/<%= i+1 %>.svg" class="Image Image--lazy" />
+      </div>
+
+      <h4 class="SectionColumn__title">
+        <%= column[:title] %>
+      </h4>
+
+      <div class="SectionColumn__description">
+        <%= column[:description] %>
+      </div>
+
+    </div>
+    <% end %>
+
+  </div>
+
+  <div class="Section__actions">
+    <%= link_to CopyService.home[:approach][:action].gsub(/\n/, '<br>').html_safe, lesson_list_path, class: "Button Button--secondary" %>
   </div>
 
 </section>

@@ -18,15 +18,23 @@ class CopyService
               sub: "Discover the initial lessons and insight, available, for free under an open-source licence!",
               action: "View all lessons"
           },
-          white2: {
-              first: "A digital fabrication approach",
-              column1_header: "Engaging Lesson Plans",
-              column1: "Innovative, engaging content, materials and activities focused on student-centered practices.",
-              column2_header: "Interactive Community",
-              column2: "Multi-talented, highly-skilled, enthusiastic Community of Practice of educators, makers, fabrication practitioners, and other contributors provide an environment of support.",
-              column3_header: "Aligned Standards",
-              column3: "Suited to a range of US national (and soon international) standards that address academic performance and essential skills for K-12 students.",
-              button: "Find out more"
+          approach: {
+              heading: "A digital fabrication approach",
+              columns: [
+                {
+                  title: "Engaging Lesson Plans",
+                  description: "Innovative, engaging content, materials and activities focused on student-centered practices."
+                },
+                {
+                  title: "Interactive Community",
+                  description: "Multi-talented, highly-skilled, enthusiastic Community of Practice of educators, makers, fabrication practitioners, and other contributors provide an environment of support."
+                },
+                {
+                  title: "Aligned Standards",
+                  description: "Suited to a range of US national (and soon international) standards that address academic performance and essential skills for K-12 students."
+                }
+              ],
+              action: "Find out more"
           },
           blue1: {
               first: "The Future of Teaching and Learning",
