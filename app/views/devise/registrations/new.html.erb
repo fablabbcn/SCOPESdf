@@ -1,0 +1,45 @@
+<div class="Auth">
+
+  <div class="Auth__form">
+
+    <div class="Auth__switches">
+      <%= active_link_to 'Log in', new_user_session_path, class: "Auth__switch", class_active: "Auth__switch--active" %>
+      <%= active_link_to 'Register', new_user_registration_path, class: "Auth__switch", class_active: "Auth__switch--active" %>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+      <%= devise_error_messages! %>
+
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up" %>
+      </div>
+
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+
+  </div>
+
+  <div class="Auth__header">
+
+
+
+  </div>
+
+</div>
