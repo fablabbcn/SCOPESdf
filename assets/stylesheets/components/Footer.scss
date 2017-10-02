@@ -17,7 +17,7 @@
 }
 
 .Footer__logo {
-  margin-bottom: $gutter-width;
+  margin-bottom: $gutter-width*1.5;
 }
 
 .Footer__statement {
@@ -27,4 +27,5 @@
 
 .Footer__navigation {
   margin-left: auto;
+  font-size: 16px;
 }
