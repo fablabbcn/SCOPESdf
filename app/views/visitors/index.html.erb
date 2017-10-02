@@ -1,4 +1,4 @@
-<div class="Hero" style="background-image: url('<%= image_url('stem.jpg') %>');">
+<div class="Hero" style="background-image: url('<%= image_url('visitors/index/hero.jpg') %>');">
 
   <div class="Hero__content">
 
@@ -101,7 +101,7 @@
     <div class="SectionColumn">
 
       <div class="SectionColumn__image">
-        <img srcset="/images/approach/<%= i+1 %>.svg" class="Image Image--lazy" />
+        <img srcset="<%= image_url("visitors/index/approach/#{i+1}.svg") %>" class="Image Image--lazy" />
       </div>
 
       <h4 class="SectionColumn__title">
@@ -119,6 +119,52 @@
 
   <div class="Section__actions">
     <%= link_to CopyService.home[:approach][:action].gsub(/\n/, '<br>').html_safe, lesson_list_path, class: "Button Button--secondary" %>
+  </div>
+
+</section>
+
+
+<section class="Section">
+
+  <div class="SectionPanels">
+
+    <div class="SectionPanel SectionPanel--color SectionPanel--blue">
+
+      <div class="SectionPanel__content">
+        <h3 class="SectionPanel__heading"><%= CopyService.home[:panels][:title].gsub(/\n/, '<br>').html_safe %></h3>
+        <div class="SectionPanel__sub">
+          <%= CopyService.home[:panels][:sub].gsub(/\n/, '<br>').html_safe %>
+        </div>
+        <div class="SectionPanel__description">
+          <%= CopyService.home[:panels][:description].gsub(/\n/, '<br>').html_safe %>
+        </div>
+        <div class="SectionPanel__actions">
+          <%= link_to CopyService.home[:panels][:action].gsub(/\n/, '<br>').html_safe, lesson_list_path, class: "Button Button--light Button--outline " %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="SectionPanel SectionPanel--image">
+      <div class="SectionPanel__image" style="background-image: url('<%= image_url('visitors/index/stem-teaching.jpg') %>');'">dd</div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="Section Section--centered Section--with-padding">
+
+  <div class="SectionHeader">
+    <h3 class="SectionHeader__main"><%= CopyService.home[:partnership][:heading].gsub(/\n/, '<br>').html_safe %></h3>
+    <div class="SectionHeader__sub"><%= CopyService.home[:partnership][:sub].gsub(/\n/, '<br>').html_safe %></div>
+  </div>
+
+  <div class="Section__logos">
+    <a href="" class="Section__logo"><img srcset="<%= image_url('visitors/index/partnerships/fabfoundation.png') %>" style="width: 270px" class="Image Image--lazy" /></a>
+    <a href="" class="Section__logo"><img srcset="<%= image_url('visitors/index/partnerships/chevron.png') %>" style="width: 76px" class="Image Image--lazy" /></a>
+    <a href="" class="Section__logo"><img srcset="<%= image_url('visitors/index/partnerships/gefoundation.png') %>" style="width: 270px" class="Image Image--lazy" /></a>
   </div>
 
 </section>

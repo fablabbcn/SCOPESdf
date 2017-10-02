@@ -1,15 +1,22 @@
 .Header {
-  display: flex;
   left: 0;
   position: fixed;
   right: 0;
   top: 0;
   width: 100%;
   z-index: 10;
-  max-width: $grid-width;
   padding: $gutter-width;
   height: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.Header__content {
+  margin: 0 auto;
+  display: flex;
   align-items: center;
+  width: 100%;
+  max-width: $grid-width;
 }
 
 .Header--white {

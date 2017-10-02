@@ -1,0 +1,47 @@
+.SectionPanel {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-height: 534px;
+}
+
+.SectionPanel--color {
+  color: #fff;
+  background-color: #fefefe;
+  padding: $gutter-width*4;
+}
+
+.SectionPanel--blue {
+  background-color: $color-blue;
+}
+
+.SectionPanel__content {
+
+}
+
+.SectionPanel__heading {
+  margin-bottom: $gutter-width;
+}
+
+.SectionPanel__sub {
+  margin-bottom: $gutter-width;
+  font-size: 18px;
+  @include text-medium;
+}
+
+.SectionPanel__description {
+  margin-bottom: $gutter-width*2;
+  font-size: 16px;
+}
+
+.SectionPanel__actions {
+
+}
+
+.SectionPanel__image {
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+}

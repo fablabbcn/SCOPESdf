@@ -36,15 +36,15 @@ class CopyService
               ],
               action: "Find out more"
           },
-          blue1: {
-              first: "The Future of Teaching and Learning",
-              second: "Teachers are, increasingly, choosing digital fabrication to engage elementary, middle and high school students with science, technology, engineering, math, and other subjects.",
-              third: "Fueled by collaboration at scale, we have the power to transform and turbocharge STEM learning in educational environments through digital fabrication technologies and practices.",
-              button: "Find out more"
+          panels: {
+              title: "The Future of Teaching and Learning",
+              sub: "Teachers are, increasingly, choosing digital fabrication to engage elementary, middle and high school students with science, technology, engineering, math, and other subjects.",
+              description: "Fueled by collaboration at scale, we have the power to transform and turbocharge STEM learning in educational environments through digital fabrication technologies and practices.",
+              action: "Find out more"
           },
-          white3: {
-              first: "A powerful partnership",
-              second: "With the generous support of partners like Chevron and the GE Foundation, the Fab Foundation and the International Fab Lab Network are tapping the power of digital fabrication to amplify learning, and answering the call of teachers by providing quality, standards-aligned, FREE lessons that leverage the expertise of Fab Lab, Makerspace and educator networks around the world.<br><br>We’re harnessing and disseminating this collective knowledge, worldwide, to K-12 educators who are eager to use digital technologies in the classroom for STEM learning, interdisciplinary learning, problem-solving, critical thinking, geeking-out and just plain fun! Through SCOPES-DF, we can inspire and transform teaching and learning."
+          partnership: {
+              heading: "A powerful partnership",
+              sub: "With the generous support of partners like Chevron and the GE Foundation, the Fab Foundation and the International Fab Lab Network are tapping the power of digital fabrication to amplify learning, and answering the call of teachers by providing quality, standards-aligned, FREE lessons that leverage the expertise of Fab Lab, Makerspace and educator networks around the world.<br><br>We’re harnessing and disseminating this collective knowledge, worldwide, to K-12 educators who are eager to use digital technologies in the classroom for STEM learning, interdisciplinary learning, problem-solving, critical thinking, geeking-out and just plain fun! Through SCOPES-DF, we can inspire and transform teaching and learning."
           },
           footer: {
               first: "Get involved!",
