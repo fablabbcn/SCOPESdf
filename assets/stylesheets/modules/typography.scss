@@ -1,0 +1,16 @@
+// font weights
+
+@mixin text-medium {
+  font-weight: 500;
+}
+
+// specified styles
+
+@mixin text-small {
+  font-size: 12px;
+}
+
+@mixin text-small-gray {
+  @include text-small;
+  color: $color-gray-mid;
+}

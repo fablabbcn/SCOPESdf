@@ -1,0 +1,45 @@
+.UserBadge {
+  display: flex;
+  text-align: left;
+}
+
+.UserBadge__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-grow: 0;
+
+  .UserBadge--small & {
+    width: 32px;
+    height: 32px;
+  }
+
+}
+
+.UserBadge__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  padding-left: $gutter-width/2;
+}
+
+.UserBadge__name {
+  @include text-medium;
+  @include text-small;
+  color: $color-gray-verydark;
+}
+
+.UserBadge__role {
+
+  // don't show the role for the small version
+  .UserBadge--small & {
+    display: none;
+  }
+
+}
+
+.UserBadge__organisation {
+  @include text-small;
+  color: $color-gray-mid;
+}

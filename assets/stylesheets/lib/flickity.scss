@@ -4,23 +4,51 @@
 	background-repeat: no-repeat;
 	background-position: center;
   background-color: transparent;
-  width: 47px;
-  height: 47px;
+  width: 23px;
+  height: 23px;
+	border-radius: 0;
 
   svg {
     display: none;
   }
 
 	&.previous {
-
+		background-image: url('images/direction-left-active.svg');
+		left: $gutter-width * -3;
+		&:disabled {
+			background-image: url('images/direction-left-inactive.svg');
+		}
 	}
 
 	&.next {
-		
+		background-image: url('images/direction-right-active.svg');
+		right: $gutter-width * -3;
+		&:disabled {
+			background-image: url('images/direction-right-inactive.svg');
+		}
 	}
 
   &:hover {
-    background-color: transparent;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-color: transparent;
   }
+
+}
+
+.flickity-page-dots {
+	bottom: -40px;
+
+	.dot {
+		width: 8px;
+		height: 8px;
+		background-color: $color-gray-mid;
+		margin: 0 8px;
+
+		&.is-selected {
+			background-color: $color-gray-verydark;
+		}
+
+	}
 
 }

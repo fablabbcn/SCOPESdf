@@ -3,9 +3,10 @@
 }
 
 .SectionHeader__main {
-  margin-bottom: $gutter-width/2;
+  margin-bottom: $gutter-width;
 }
 
 .SectionHeader__sub {
-
+  font-size: 16px;
+  color: $color-gray-dark;
 }

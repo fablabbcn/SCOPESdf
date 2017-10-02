@@ -49,18 +49,22 @@
         <div class="Thumb">
 
           <a href="#" class="Thumb__image">
-            <img src="" class="Image Image--lazy" />
+            <img src="https://unsplash.it/270/202" srcset="https://unsplash.it/270/202 1x, https://unsplash.it/540/404 2x" class="Image Image--lazy" />
           </a>
 
-          <a href="#" class="Thumb__title">Title <%= i %></a>
+          <div class="Thumb__content">
 
-          <div class="Thumb__description">
+            <a href="#" class="Thumb__title">Title <%= i %></a>
+
+            <div class="Thumb__description">
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+            </div>
 
           </div>
 
           <div class="Thumb__footer">
             <a href="#" class="UserBadge UserBadge--small">
-              <img src="#" class="UserBadge__avatar Image" />
+              <img src="" srcset="https://pbs.twimg.com/profile_images/476990389392777217/HilNvfjz_400x400.jpeg" class="UserBadge__avatar Image Image--lazy" />
               <div class="UserBadge__info">
                 <div class="UserBadge__name">Daniel Howells</div>
                 <div class="UserBadge__role">Director</div>
@@ -76,6 +80,10 @@
 
     </div>
 
+  </div>
+
+  <div class="Section__actions">
+    <%= link_to "View all lessons", lesson_list_path, class: "Button Button--secondary" %>
   </div>
 
 </section>
