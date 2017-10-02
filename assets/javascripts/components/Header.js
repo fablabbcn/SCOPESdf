@@ -5,6 +5,7 @@ module.exports = Header;
 import Headroom from "headroom.js"
 
 let $header
+let $hero
 
 /**
  * Initializes the header
@@ -15,12 +16,16 @@ function Header() {
 	console.log("-- Header initialized")
 
 	$header = $('header.Header')
+	$hero = $('.Hero')
 
   // headroom.js
   initHeadroom()
 
   // setStyleClass
   setStyleClass($header)
+
+	//
+	setStyleClassOnScroll()
 
   return $header
 
@@ -53,24 +58,39 @@ function initHeadroom(header=$header[0]) {
 }
 
 /**
- * Sets whether the header should have transparent class
+ * Sets whether the header should have transparent class, depending if there's
+ * a hero element
  * @param {string} header element
  * @returns {element} header
  */
 function setStyleClass($header=$header, $hero=$('.Hero')) {
 
-  console.log($header, $hero)
+	if ($hero.length > 0) {
 
-  let heroHeight = $hero.height()
+	  let heroHeight = $hero.height()
 
-  $(window).on('scroll', function() {
+	  if ( $header.offset().top > heroHeight ) {
+	    $header.removeClass('Header--transparent').addClass('Header--white')
+	  } else {
+	    $header.addClass('Header--transparent').removeClass('Header--white')
+	  }
 
-    if ( $header.offset().top > heroHeight ) {
-      $header.removeClass('Header--transparent').addClass('Header--white')
-    } else {
-      $header.addClass('Header--transparent').removeClass('Header--white')
-    }
+	} else {
 
-  })
+		$header.removeClass('Header--transparent').addClass('Header--white')
+
+	}
+
+}
+
+/**
+ * Trigger setStyleClass when the user scrolls
+ * @returns {element} header
+ */
+function setStyleClassOnScroll() {
+
+  $(window).on('scroll', function(){
+		setStyleClass($header)
+	})
 
 }
