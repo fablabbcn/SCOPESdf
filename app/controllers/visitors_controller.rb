@@ -1,8 +1,13 @@
 class VisitorsController < ApplicationController
 
   def index
+
     # @lesson = Lesson.limit(4)
     # @lessons = [Lesson.first, Lesson.first, Lesson.first, Lesson.first]
+
+    # This template features a hero
+    @has_hero = true
+
   end
 
   def form

@@ -9,10 +9,10 @@
 		<%= render partial: 'layouts/flash' if flash.present? %>
 
 		<!-- container -->
-		<div class="Container">
+		<div class="Container <%= @has_hero ? 'Container--has-hero' : nil %>">
 
 			<!-- header -->
-			<header class="Header Header--transparent">
+			<header class="Header">
 
 				<div class="Header__content">
 
