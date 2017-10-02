@@ -1,9 +1,43 @@
 .Toolbar {
   display: flex;
-
 }
 
 .Toolbar__tool {
   margin-left: $gutter-width/4;
   margin-right: $gutter-width/4;
+
+  .Header--transparent & {
+
+  }
+
+  .Header--white & {
+
+  }
+
+}
+
+
+.Toolbar__tool--login {
+
+  .Header--transparent & {
+    @extend .Button--outline;
+    @extend .Button--light;
+  }
+
+  .Header--white & {
+    @extend .Button--outline;
+  }
+
+}
+
+.Toolbar__tool--register {
+
+  .Header--transparent & {
+
+  }
+
+  .Header--white & {
+    @extend .Button--primary;
+  }
+
 }

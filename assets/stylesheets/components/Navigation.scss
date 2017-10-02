@@ -18,5 +18,9 @@
   margin-right: $gutter-width - 5px;
   padding-right: $gutter-width/4;
   padding-left: $gutter-width/4;
-  color: #fff;
+
+  .Header--transparent & {
+    color: #fff;
+  }
+
 }

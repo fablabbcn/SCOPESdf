@@ -4,10 +4,12 @@
   display: inline-block;
   border-radius: 2px;
   @include text-medium;
+  transition: all .24s ease-in-out;
 }
 
 .Button--outline {
   background-color: transparent;
+  border: 1px solid $color-border;
 }
 
 .Button--outline.Button--light {
@@ -15,6 +17,11 @@
 }
 
 .Button--light {
+  color: #fff;
+}
+
+.Button--primary {
+  background-color: $color-highlight-primary;
   color: #fff;
 }
 

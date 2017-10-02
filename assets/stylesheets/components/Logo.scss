@@ -8,6 +8,10 @@
     display: none;
   }
 
+  .Header--white & {
+    background-image: url('logo.svg');
+  }
+
   .Header--transparent & {
     background-image: url('logo-light.svg');
   }

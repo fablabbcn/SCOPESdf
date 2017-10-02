@@ -9,6 +9,16 @@
   height: 100px;
   display: flex;
   justify-content: center;
+  will-change: transform;
+  transition: all .24s ease-in-out;
+  border-top: 8px solid $color-blue;
+}
+
+.Header--visibility-pinned {
+  transform: translateY(0%);
+}
+.Header--visibility-unpinned {
+  transform: translateY(-100%);
 }
 
 .Header__content {
@@ -21,8 +31,15 @@
 
 .Header--white {
   background-color: #fff;
+  border-color: $color-blue;
 }
 
 .Header--transparent {
   background-color: transparent;
+  border-color: rgba(#fff, 0.1);
+
+  &.Header--visibility-pinned.Header--visibility-not-top {
+    background-color: rgba(#fff, 0.1);
+  }
+
 }
