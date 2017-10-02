@@ -1,0 +1,31 @@
+.SocialLinks {
+  display: flex;
+}
+
+.SocialLinks__link {
+  width: 24px;
+  height: 24px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: $gutter-width/2;
+  margin-right: $gutter-width/2;
+
+  span {
+    display: none;
+  }
+}
+
+.SocialLinks__link--slack {
+  background-image: url('images/slack.svg');
+  width: 16px;
+}
+
+.SocialLinks__link--twitter {
+  background-image: url('images/twitter.svg');
+  width: 16px;
+}
+
+.SocialLinks__link--facebook {
+  background-image: url('images/facebook.svg');
+  width: 8px;
+}

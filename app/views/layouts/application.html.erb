@@ -18,14 +18,7 @@
 
 					<%= link_to "<span>ScopesDF</span>".html_safe, root_path, class: "Logo" %>
 
-					<nav class="Navigation">
-						<ul class="Navigation__items">
-							<li class="Navigation__item"><%= link_to 'Lessons', lesson_list_path, class: "Navigation__link" %></li>
-							<li class="Navigation__item"><%= link_to 'People', involved_path, class: "Navigation__link" %></li>
-							<li class="Navigation__item"><%= link_to 'Places', involved_path, class: "Navigation__link" %></li>
-							<li class="Navigation__item"><%= link_to 'About', about_path, class: "Navigation__link" %></li>
-						</ul>
-					</nav>
+					<%= render 'components/navigation' %>
 
 					<div class="Toolbar">
 						<%= link_to 'Log in', new_user_session_path, class: "Toolbar__tool Toolbar__tool--login Button" %>
@@ -48,7 +41,36 @@
 			<!-- footer -->
 			<footer class="Footer">
 
+				<div class="Footer__content">
 
+					<div class="Footer__logo-statement">
+
+						<a href="#" class="Footer__logo Logo"><span>ScopesDF</span></a>
+
+						<div class="Footer__statement">
+							Connect & Share lesson plans<br />
+							with STEM educators everywhere.
+						</div>
+
+					</div>
+
+					<div class="Footer__navigation">
+
+						<%= render 'components/navigation' %>
+
+					</div>
+
+					<div class="Footer__social">
+
+						<div class="SocialLinks">
+							<a href="#" class="SocialLinks__link SocialLinks__link--slack"><span>Slack</span></a>
+							<a href="#" class="SocialLinks__link SocialLinks__link--twitter"><span>Twitter</span></a>
+							<a href="#" class="SocialLinks__link SocialLinks__link--facebook"><span>Facebook</span></a>
+						</div>
+
+					</div>
+
+				</div>
 
 			</footer>
 			<!-- .footer -->
