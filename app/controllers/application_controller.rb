@@ -1,3 +1,5 @@
+require "turbolinks/redirection"
+
 class ApplicationController < ActionController::Base
 
   # Include turbolinks redirection methods
