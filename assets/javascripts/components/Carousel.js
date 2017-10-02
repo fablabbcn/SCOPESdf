@@ -13,18 +13,26 @@ function Carousel(selector='.Carousel__cells') {
 
 	console.log("-- Carousel initialized")
 
-  // Init flickity for all carousels
-	let flkty = new Flickity( selector, {
-		cellSelector: '.Carousel__cell',
-		cellAlign: 'center',
-		contain: true,
-		groupCells: true
-	})
+	if ($(selector).length > 0) {
 
-	document.addEventListener("turbolinks:request-start", function() {
-    flkty.destroy()
-  })
+	  // Init flickity for all carousels
+		let flkty = new Flickity( selector, {
+			cellSelector: '.Carousel__cell',
+			cellAlign: 'center',
+			contain: true,
+			groupCells: true
+		})
 
-	return flkty
+		document.addEventListener("turbolinks:request-start", function() {
+	    flkty.destroy()
+	  })
+
+		return flkty
+
+	} else {
+
+		return null
+
+	}
 
 }
