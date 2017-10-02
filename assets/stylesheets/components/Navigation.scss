@@ -1,5 +1,5 @@
 .Navigation {
-  margin-left: auto;
+
 }
 
 .Navigation__items {
@@ -18,9 +18,14 @@
   margin-right: $gutter-width - 5px;
   padding-right: $gutter-width/4;
   padding-left: $gutter-width/4;
+  font-size: 16px;
 
   .Header--transparent & {
     color: #fff;
   }
 
+}
+
+.Navigation__link--sub {
+  opacity: 0.5;
 }
