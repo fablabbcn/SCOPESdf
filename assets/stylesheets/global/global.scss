@@ -22,6 +22,8 @@ body {
 
 body {
 	background: $color-background;
+	display: flex;
+  flex-direction: column;
 }
 
 img {
