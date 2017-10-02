@@ -1,5 +1,10 @@
 .Search {
   margin-left: auto;
+
+  .Header--transparent & {
+    visibility: hidden;
+  }
+
 }
 
 .Search__input {
