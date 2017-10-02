@@ -14,7 +14,6 @@ gem 'bourbon'
 gem 'susy', '>= 2.2.12'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'turbolinks', require: false
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-fileupload-rails'
 
@@ -69,3 +68,7 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
+
+# Frontend - added by Howells
+gem 'active_link_to'
+gem 'turbolinks', require: false
