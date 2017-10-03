@@ -69,11 +69,13 @@ var fileUploadErrors = {
 
 
 $(document).on('turbolinks:load', function() {
+    console.log('loadingForms.js'); // delete this.... eventually
 
-  $('#other-user-emails').click(function (e) {
+
+    $('#other-user-emails').click(function (e) {
       e.preventDefault();
       $('#new-user-modal').modal('show', {backdrop: 'static'});
-  });
+    });
 
 
     $('fieldset').on("keypress", '[data-control="key"]', function (e) {
