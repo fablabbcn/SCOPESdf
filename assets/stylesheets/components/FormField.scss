@@ -1,0 +1,25 @@
+.FormField {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $gutter-width;
+
+  label {
+    margin-bottom: $gutter-width/2;
+  }
+
+}
+
+
+.FormField--checkbox {
+  flex-direction: row;
+
+  input {
+    position: relative;
+    top: 2px;
+  }
+
+  label {
+    margin-left: $gutter-width/2;
+  }
+
+}

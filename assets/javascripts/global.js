@@ -15,6 +15,7 @@ import Webfonts 			from "./init/Webfonts"
 // --------------------------  import modules  -------------------------- //
 import ExternalLinks	from "./modules/ExternalLinks"
 
+import Auth	from "./components/Auth"
 import Carousel	from "./components/Carousel"
 import Header	from "./components/Header"
 
@@ -44,6 +45,7 @@ var ScopesDF = {
 
 		ExternalLinks()
 
+		Auth()
 		Carousel()
 		Header()
 

@@ -1,0 +1,20 @@
+.Form {
+  padding-left: $gutter-width/2;
+  padding-right: $gutter-width/2;
+}
+
+.Form__actions {
+  padding-top: $gutter-width;
+}
+
+.Form__links {
+  display: flex;
+  padding-left: $gutter-width/2;
+  padding-right: $gutter-width/2;
+  padding-top: $gutter-width;
+}
+
+.Form__link {
+  color: $color-gray-mid;
+  margin-right: $gutter-width/2;
+}
