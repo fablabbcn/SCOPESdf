@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: 'visitors#index'
   devise_for :users, :controllers => {sessions: 'sessions', registrations: 'registrations'} # CSRF_forgery makes this fail :3
+
   resources :users
+
 
   get  'lessons/new' => 'lessons#new', as: :lesson_new
   # post 'lessons'            => 'lessons#create'#, as: :lesson_create
@@ -52,7 +54,7 @@ Rails.application.routes.draw do
 
   get 'api/users/exists'   =>  'secured_api#user_presence'
 
-  post 'search/:entity', :to => 'search#main', :as => :search
+  get 'search/:entity', :to => 'search#main', :as => :search
 
 
 
