@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   after_action :verify_authorized
 
+
   def index
     @users = User.all
     authorize User
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy # Should users be allowed to be deleted??
+  def destroy # Should users be allowed rto be deleted??
     user = User.find(params[:id])
     authorize user
     user.destroy

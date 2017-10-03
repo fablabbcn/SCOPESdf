@@ -76,6 +76,14 @@ class User < ApplicationRecord
 
   has_many :skill_tags, as: :taggable
 
+  class << self #accessors
+    def name_search(fuzzy)
+      User.where("lower(name) like ?", "%#{fuzzy}%")
+    end
+    def email_search(fuzzy)
+      User.where("lower(email) like ?", "%#{fuzzy}%")
+    end
+  end
 
 
   def addOrg_id(org_uuid, primary)

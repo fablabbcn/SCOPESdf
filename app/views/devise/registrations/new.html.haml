@@ -1,17 +1,128 @@
-.authform
-  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f|
-    %h3 Sign up
-    = devise_error_messages!
-    .form-group
-      = f.label :name
-      = f.text_field :name, :autofocus => true, class: 'form-control'
-    .form-group
-      = f.label :email
-      = f.email_field :email, class: 'form-control'
-    .form-group
-      = f.label :password
-      = f.password_field :password, class: 'form-control'
-    .form-group
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation, class: 'form-control'
-    = f.submit 'Sign up', :class => 'button right'
+
+.form-step
+  .authform
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form'}) do |f|
+      %article
+        .wrapped
+          = devise_error_messages!
+          %fieldset
+            %legend
+              %h3 Account Details
+              %small * Mandatory information
+            .field-group
+              %label
+                = f.label :name
+                %small This one is easy
+              .field-wrapper
+                = f.text_field :name, :autofocus => true, class: 'form-control'
+
+            .field-group
+              %label
+                = f.label :email
+                %small Preferably your educational email
+              .field-wrapper
+                = f.email_field :email, class: 'form-control'
+
+          %fieldset
+            .field-group
+              %label
+                = f.label :password
+                %small Try to make it as secure as possible
+              .field-wrapper
+                = f.password_field :password, class: 'form-control'
+
+            .field-group
+              %label
+                = f.label :password_confirmation
+                %small Just to make sure...
+              .field-wrapper
+                = f.password_field :password_confirmation, class: 'form-control'
+
+          %fieldset
+            .field-group
+              %label
+                Avatar
+
+          %fieldset
+            %legend
+            .field-group
+              %label
+                Location
+
+          %fieldset
+            %legend
+            .field-group
+              %label
+                Workplace
+                %small Do you work at an education place?
+
+          %fieldset
+            %legend
+            .field-group
+              %label
+                What do you do?
+                %small Chose one or more
+              .field-wrapper
+                - @involvements.each do |i|
+                  .checkbox
+                    %label
+                      -#- @checked = @lesson_obj.getContext.any? { |a| c.titleize.include?(a.titleize) }
+                      %input{name: 'subject', type: 'checkbox', value: i, checked: false}
+                      =i.titleize
+
+          %fieldset
+            %legend
+            .field-group
+              %label
+                Subjects interested in
+                %small Chose one or more
+              .field-wrapper
+                - @subjects.each do |s|
+                  .checkbox
+                    %label
+                      %input{name: 'subject', type: 'checkbox', value: s, checked: false}
+                      =s.titleize
+
+          %fieldset
+            %legend
+            .field-group
+              %label
+                Other interests
+                %small Enter, comma separated tags
+
+          %fieldset
+            %legend
+            .field-group
+              %label
+                Skills
+                %small Specify as many as you like
+              .field-wrapper
+                - @skills.each do |s|
+                  .checkbox
+                    %label
+                      %input{name: 'subject', type: 'checkbox', value: s, checked: false}
+                      =s.titleize
+
+          %fieldset
+            %legend
+            .field-group
+              %label
+                Short Bio
+                %small Keep it short and snappy
+              .field-wrapper
+                = text_area(:user, :bio, placeholder: 'Share some things about youself')
+
+          %fieldset
+            %legend
+            .field-group
+              %label
+                Other links
+                %small Where else can we find you online. 5 links max.
+              .field-wrapper
+                .clone-container
+                  = text_field(:user, :social, multiple: true, data: { control:'key'})
+                %small Press ↵ Return to add
+
+
+
+          = f.submit 'Add some details about yourself', :class => 'button button--call'
