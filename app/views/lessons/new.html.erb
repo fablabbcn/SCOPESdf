@@ -5,9 +5,9 @@
     <h1 class="SubHeader__heading">New lesson</h1>
 
     <div class="SubHeader__tools">
-      <a href="#" class="SubHeader__tool Button Button--small Button--light Button--outline Button--icon Button--icon--trash Button--no-label"><span>Cancel</span></a>
-      <a href="#" class="SubHeader__tool Button Button--small Button--light Button--icon Button--icon--document Button--outline Button--icon-document">Save as Draft</a>
-      <a href="#" class="SubHeader__tool Button Button--small Button--icon Button--icon Button--icon--locked Button--dark Button--disabled">Publish Lesson</a>
+      <%= active_link_to "<span>Cancel</span>".html_safe, lesson_delete_path(id: @lesson_obj.id), class: "SubHeader__tool Button Button--small Button--light Button--outline Button--icon Button--icon--trash Button--no-label" %>
+      <%= active_link_to "Save as Draft", '#', class: "SubHeader__tool Button Button--small Button--light Button--icon Button--icon--document Button--outline Button--icon-document" %>
+      <%= active_link_to "Publish Lessson", lesson_publish_path(id: @lesson_obj.id), class: "SubHeader__tool Button Button--small Button--icon Button--icon Button--icon--locked Button--dark Button--disabled" %>
     </div>
 
   </div>
@@ -17,11 +17,11 @@
 <div class="Progress">
 
   <div class="Progress__steps">
-    <%= active_link_to "Overview", lesson_new_path, class: "Progress__step Progress__step--icon Progress__step--icon--edit", class_active: "Progress__step--active" %>
-    <a href="#" class="Progress__step Progress__step--icon Progress__step--icon--ellipsis">Standards</a>
-    <a href="#" class="Progress__step Progress__step--icon Progress__step--icon--ellipsis">Details</a>
-    <a href="#" class="Progress__step Progress__step--icon Progress__step--icon--ellipsis">Instructions</a>
-    <a href="#" class="Progress__step Progress__step--icon Progress__step--icon--ellipsis">Outcomes</a>
+    <%= active_link_to "Overview", lesson_new_path(id: @lesson_obj.id, form_step:1), class: "Progress__step", class_active: "Progress__step--active", active: params[:form_step].to_i == 1 %>
+    <%= active_link_to "Standards", lesson_new_path(id: @lesson_obj.id, form_step:2), active: :exclusive, class: "Progress__step", class_active: "Progress__step--active", active: params[:form_step].to_i == 2 %>
+    <%= active_link_to "Details", lesson_new_path(id: @lesson_obj.id, form_step:3), active: :exclusive, class: "Progress__step", class_active: "Progress__step--active", active: params[:form_step].to_i == 3 %>
+    <%= active_link_to "Instructions", lesson_new_path(id: @lesson_obj.id, form_step:4), class: "Progress__step", class_active: "Progress__step--active", active: params[:form_step].to_i == 4 %>
+    <%= active_link_to "Outcomes", lesson_new_path(id: @lesson_obj.id, form_step:5), class: "Progress__step", class_active: "Progress__step--active", active: params[:form_step].to_i == 5 %>
   </div>
 
   <div class="Progress__track">
@@ -35,3 +35,62 @@
   </div>
 
 </div>
+
+
+<%= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:2), method: "post", multipart: true, class: "Form") do %>
+
+  <%= field_set_tag 'Basic Information', class: 'Form__fieldset' do %>
+
+    <!-- lesson.name -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_name">Name of lesson</label>
+        <div class="FormField__hint">50 chars max</div>
+      </div>
+
+      <div class="FormField__input">
+        <%= text_field(:lesson, :name, value: @lesson_obj.name, placeholder: 'Name your lesson', id: 'lesson_name') %>
+      </div>
+
+    </div>
+
+    <!-- lesson.topline -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_topline">Topline description</label>
+        <div class="FormField__hint">Describe it in a sentence</div>
+      </div>
+
+      <div class="FormField__input">
+        <%= text_field(:lesson, :topline, value: @lesson_obj.topline, placeholder: 'How would you describe it in one sentence?', id: 'lesson_topline') %>
+      </div>
+
+    </div>
+
+    <!-- lesson.summary -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_summary">Summary of lesson</label>
+        <div class="FormField__hint">
+          <p>Keep it short and snappy</p>
+          <p>Try to include:</p>
+          <ul>
+            <li>Why the lesson is interesting</li>
+            <li>The types of activities students will do.</li>
+          </ul>
+          <p>You can format using markdown</p>
+        </div>
+      </div>
+
+      <div class="FormField__input">
+        <%= text_area(:lesson, :summary, value: @lesson_obj.summary, id: 'lesson_summary') %>
+      </div>
+
+    </div>
+
+  <% end %>
+
+<% end %>

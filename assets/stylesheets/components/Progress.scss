@@ -18,23 +18,15 @@
   padding-right: $gutter-width;
   border-bottom: 4px solid transparent;
   margin-right: $gutter-width/2;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  padding-left: $gutter-width*1.75;
+  background-image: url('images/icon-ellipsis-mid.svg');
 }
 
 .Progress__step--active {
   border-bottom: 4px solid $color-highlight-primary;
-}
-
-.Progress__step--icon {
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  padding-left: $gutter-width*1.75;
-}
-
-.Progress__step--icon--edit {
   background-image: url('images/icon-edit-highlight.svg');
-}
-.Progress__step--icon--ellipsis {
-  background-image: url('images/icon-ellipsis-mid.svg');
 }
 
 .Progress__track {
