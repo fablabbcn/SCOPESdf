@@ -1,0 +1,37 @@
+<div class="SubHeader">
+
+  <div class="SubHeader__content">
+
+    <h1 class="SubHeader__heading">New lesson</h1>
+
+    <div class="SubHeader__tools">
+      <a href="#" class="SubHeader__tool Button Button--small Button--light Button--outline Button--icon Button--icon--trash Button--no-label"><span>Cancel</span></a>
+      <a href="#" class="SubHeader__tool Button Button--small Button--light Button--icon Button--icon--document Button--outline Button--icon-document">Save as Draft</a>
+      <a href="#" class="SubHeader__tool Button Button--small Button--icon Button--icon Button--icon--locked Button--dark Button--disabled">Publish Lesson</a>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="Progress">
+
+  <div class="Progress__steps">
+    <%= active_link_to "Overview", lesson_new_path, class: "Progress__step Progress__step--icon Progress__step--icon--edit", class_active: "Progress__step--active" %>
+    <a href="#" class="Progress__step Progress__step--icon Progress__step--icon--ellipsis">Standards</a>
+    <a href="#" class="Progress__step Progress__step--icon Progress__step--icon--ellipsis">Details</a>
+    <a href="#" class="Progress__step Progress__step--icon Progress__step--icon--ellipsis">Instructions</a>
+    <a href="#" class="Progress__step Progress__step--icon Progress__step--icon--ellipsis">Outcomes</a>
+  </div>
+
+  <div class="Progress__track">
+    <div class="Progress__status">
+      Essential information missing
+    </div>
+    <div class="Track">
+      <div class="Track__progress"><span>10%</span></div>
+      <div class="Track__base"></div>
+    </div>
+  </div>
+
+</div>

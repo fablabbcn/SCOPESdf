@@ -1,17 +1,26 @@
 .Button {
-  padding: 14px 30px;
-  background-color: #fff;
-  display: inline-block;
-  border-radius: 2px;
   @include text-medium;
-  transition: all .24s ease-in-out;
-  font-size: 16px;
+  background-color: #fff;
+  border-radius: 2px;
+  border: 1px solid #fff;
   cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  padding-left: 30px;
+  padding-right: 30px;
+  transition: all .24s ease-in-out;
+  color: $color-main;
+  height: 48px;
+  line-height: 48px;
+  white-space: nowrap;
 }
 
-.Button--outline {
-  background-color: transparent;
-  border: 1px solid $color-border;
+.Button--small {
+  font-size: 14px;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+  height: 45px;
+  line-height: 45px;
 }
 
 .Button--large {
@@ -23,7 +32,24 @@
 }
 
 .Button--light {
+  color: $color-main;
+  border-color: #fff;
+  background-color: #fff;
+}
+
+.Button--outline {
+  background-color: transparent;
+  border: 1px solid $color-border;
+}
+
+.Button--outline.Button--light {
   color: #fff;
+}
+
+.Button--dark {
+  color: #fff;
+  background-color: $color-main;
+  border-color: $color-main;
 }
 
 .Button--primary {
@@ -33,4 +59,36 @@
 
 .Button--secondary {
   background-color: $color-highlight-secondary;
+}
+
+.Button--disabled {
+  opacity: 0.5;
+}
+
+.Button--icon {
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  padding-left: 40px;
+}
+
+.Button--icon--document {
+  background-image: url('images/icon-document-light.svg');
+}
+.Button--icon--trash {
+  background-image: url('images/icon-trash-light.svg');
+}
+.Button--icon--locked {
+  background-image: url('images/icon-locked-dark.svg');
+}
+
+.Button--no-label {
+  span {
+    display: none;
+  }
+}
+
+.Button--no-label.Button--icon {
+  background-position: center;
+  padding-left: 22px;
+  padding-right: 22px;
 }
