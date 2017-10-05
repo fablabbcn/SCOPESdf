@@ -52,6 +52,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'foreman'
   gem 'erb2haml'
+  gem 'binding_of_caller'
 end
 group :development, :test do
   gem 'byebug', platform: :mri
