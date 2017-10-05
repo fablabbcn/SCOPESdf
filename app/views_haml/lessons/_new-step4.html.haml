@@ -45,14 +45,14 @@
                 %label.label--small
                   Supporting Documents and Media
                 .field-wrapper
-                  
+
                   .image-uploader-wrapper{ data: { endpoint: "#{step_file_path(id: @lesson_obj.id, step:@steps.first.id, attr: 'supporting_files')}" } }
                     .dropzone
-                      %p 
-                        Drag & drop files here - or click to browse 
+                      %p
+                        Drag & drop files here - or click to browse
                         %br .jpg, .png, .pdf
                   = file_field_tag 'supporting_files[]', multiple: true
-                  
+
                   .files
 
         %fieldset
@@ -98,8 +98,8 @@
             .field-wrapper.field-group--supporting-materials
               .image-uploader-wrapper{ data: { endpoint: "#{step_file_path(id: @lesson_obj.id, step:@steps.first.id, attr: 'supporting_materials')}" } }
                 .dropzone
-                  %p 
-                    Drag & drop files here - or click to browse 
+                  %p
+                    Drag & drop files here - or click to browse
                     %br .jpg, .png, .pdf
               = file_field_tag 'supporting_materials[]', multiple: true
               .files

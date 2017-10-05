@@ -3,6 +3,7 @@
 module.exports = Slider;
 
 import noUiSlider from 'nouislider'
+import wNumb from 'wnumb'
 
 /**
  * Initializes multislider component(s)
@@ -10,37 +11,36 @@ import noUiSlider from 'nouislider'
  */
 function Slider() {
 
-	console.log("-- Slider initialized", $('.Input--slider'))
+	console.log("-- Slider initialized")
 
   $('.Input--slider').each(function(){
 
     let slider = this
 
+		// Get ths config for this component
+		let config = JSON.parse($(this).data('config'))
+
+		console.log(config.start)
+
     noUiSlider.create(slider, {
-      start: [8, 10],
-      connect: true,
-      step: 1,
-      tooltips: true,
+      start: config.start,
+      connect: config.connect,
+      step: config.step,
       format: {
-      to: function ( value ) {
-        return value
-      },
-      from: function ( value ) {
-        return value
-      }
-    },
-      range: {
-        min: 7,
-        max: 18
-      }
+	      to: ( value ) => {
+					return parseInt(value)
+	      },
+	      from: ( value ) => {
+	        return parseInt(value)
+	      }
+	    },
+      range: config.range
     })
 
     slider.noUiSlider.on('update', function(values, handle){
       console.log(values)
-    });
-
+    })
 
   })
-
 
 }

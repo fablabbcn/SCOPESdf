@@ -17,9 +17,9 @@ import ExternalLinks	from "./modules/ExternalLinks"
 
 import Auth	from "./components/Auth"
 import Carousel	from "./components/Carousel"
+import Choices	from "./components/Choices"
 import Header	from "./components/Header"
 import Slider	from "./components/Slider"
-import Choices	from "./components/Choices"
 
 
 var ScopesDF = {
@@ -37,8 +37,6 @@ var ScopesDF = {
 		Images()
 		MobileDetect()
     Webfonts()
-		Slider()
-		Choices()
 
 	},
 
@@ -49,7 +47,9 @@ var ScopesDF = {
 
 		Auth()
 		Carousel()
+		Choices()
 		Header()
+		Slider()
 
 	}
 

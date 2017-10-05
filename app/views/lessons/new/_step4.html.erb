@@ -1,4 +1,177 @@
 <%= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:4), method: "post", multipart: true, class: "Form") do %>
 
+  <%= field_set_tag 'How does this lesson unfold?', class: 'Form__fieldset' do %>
+
+    <ul class="StepList">
+      <% @steps.each do |step| %>
+      <li class="StepList__step">
+        <div class="StepList__step__number">
+          <%= "Step #{step.step_number}" %>
+        </div>
+        <div class="StepList__step__duration">
+          <%= step.duration %>
+        </div>
+        <div class="StepList__step__title">
+          Ned title attribute for step
+        </div>
+        <a href="#" class="StepList__step__expand">
+          Expand Step
+        </a>
+        <a href="#" class="StepList__step__remove">
+          Remove Step
+        </a>
+      </li>
+      <% end %>
+    </ul>
+
+  <% end %>
+
+  <%= field_set_tag 'Instructions', class: 'Form__fieldset' do %>
+
+    <!-- lesson.step.name -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_name">Step name</label>
+      </div>
+
+      <div class="FormField__input">
+        <input type="text" />
+      </div>
+
+    </div>
+
+    <!-- lesson.step.duration -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_name">Duration</label>
+      </div>
+
+      <div class="FormField__input">
+        <div class="Input Input--slider" data-config="<%= { start: 0, step: 10, connect: [true, false], range: { min: 0, max: 420 } }.to_json %>"></div>
+      </div>
+
+    </div>
+
+    <!-- lesson.step.description -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_step_description">Description</label>
+        <div class="FormField__hint">
+          <p>Describe all the actions in this step.</p>
+          <p>If there are lot of actions, please consider breaking it down into multiple steps!</p>
+        </div>
+      </div>
+
+      <div class="FormField__input">
+        <textarea id="lesson_step_description"></textarea>
+      </div>
+
+    </div>
+
+    <!-- lesson.step.supporting_files -->
+    <div class="FormField">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="assessment_criteria">Supporting files</label>
+        <div class="FormField__hint">
+          <p>Upload any files required</p>
+        </div>
+      </div>
+
+      <div class="FormField__input">
+        TODO dropzone
+      </div>
+
+    </div>
+
+  <% end %>
+
+  <%= field_set_tag 'What is needed for this step?', class: 'Form__fieldset' do %>
+
+    <!-- lesson.step.materials -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="materials">Materials</label>
+        <div class="FormField__hint">
+          <p>What do I need?</p>
+        </div>
+      </div>
+
+      <div class="FormField__input FormField__input--multiple">
+        <input type="text" name="lesson[steps][][materials]" placeholder="+ Add a new item" />
+        <div class="FormField__instruction">Press  ↵ Return to add</div>
+      </div>
+
+    </div>
+
+    <!-- lesson.step.tools -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_name">Tools</label>
+        <div class="FormField__hint">
+          <p>List as many as needed</p>
+        </div>
+      </div>
+
+      <div class="FormField__input FormField__input--multiple">
+        <input type="text" name="lesson[steps][][tools]" placeholder="+ Add a new tool" />
+        <div class="FormField__instruction">Press  ↵ Return to add</div>
+      </div>
+
+    </div>
+
+    <!-- lesson.step.supporting_materials -->
+    <div class="FormField">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="assessment_criteria">Supporting materials</label>
+        <div class="FormField__hint">
+          <p>Design files, handouts needed for this step</p>
+        </div>
+      </div>
+
+      <div class="FormField__input">
+        TODO dropzone
+      </div>
+
+    </div>
+
+    <!-- lesson.step.tools -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_name">External links</label>
+        <div class="FormField__hint">
+          <p>Any more useful links</p>
+        </div>
+      </div>
+
+      <div class="FormField__input FormField__input--multiple">
+        <input type="text" name="lesson[steps][][external_links]" placeholder="+ Add a new link" />
+        <div class="FormField__instruction">Press  ↵ Return to add</div>
+      </div>
+
+    </div>
+
+    <div class="FormField__actions">
+      <a href="#" class="Button Button--secondary">Save step</a>
+      <a href="#" class="Button Button--secondary">Save and add a new step</a>
+    </div>
+
+  <% end %>
+
+  <div class="Form__footer">
+
+    <div class="Form__footer__actions">
+      <a href="#" class="Button Button--primary">Back to instructions</a>
+      <button class="Button Button--primary">Add lesson outcomes</button>
+    </div>
+
+  </div>
 
 <% end %>
