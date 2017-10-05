@@ -1,4 +1,32 @@
 <%= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:5), method: "post", multipart: true, class: "Form") do %>
 
+  <%= field_set_tag 'Examples of finished work', class: 'Form__fieldset' do %>
+
+    <!-- lesson.outcome_files -->
+    <div class="FormField">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="outcome_files">Add images</label>
+        <div class="FormField__hint">
+          <p>Image specifications here</p>
+        </div>
+      </div>
+
+      <div class="FormField__input">
+        TODO dropzone
+      </div>
+
+    </div>
+
+  <% end %>
+
+  <div class="Form__footer">
+
+    <div class="Form__footer__actions">
+      <a href="#" class="Button Button--primary">Back to steps</a>
+      <button class="Button Button--primary">Publish Lesson</button>
+    </div>
+
+  </div>
 
 <% end %>
