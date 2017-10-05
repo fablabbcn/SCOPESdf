@@ -27,6 +27,8 @@ class Lesson < ApplicationRecord
     ["NGSS", "Common Core ELA", "Common Core Math", "FAB I Can Statements", "21st Century Skills", "Other"]
   end
 
+  # TODO - added an attribute for other_users_emails as was missing
+  attr_accessor :other_users_emails
 
   # TODO - validate publishing only when all content is set
 
@@ -471,5 +473,3 @@ class Lesson < ApplicationRecord
   end
 
 end
-
-
