@@ -1,0 +1,191 @@
+<%= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:2), method: "post", multipart: true, class: "Form") do %>
+
+  <%= field_set_tag 'Basic Information', class: 'Form__fieldset' do %>
+
+    <!-- lesson.name -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_name">Name of lesson</label>
+        <div class="FormField__hint">50 chars max</div>
+      </div>
+
+      <div class="FormField__input">
+        <%= text_field(:lesson, :name, value: @lesson_obj.name, placeholder: 'Name your lesson', id: 'lesson_name') %>
+      </div>
+
+    </div>
+
+    <!-- lesson.topline -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_topline">Topline description</label>
+        <div class="FormField__hint">Describe it in a sentence</div>
+      </div>
+
+      <div class="FormField__input">
+        <%= text_field(:lesson, :topline, value: @lesson_obj.topline, placeholder: 'How would you describe it in one sentence?', id: 'lesson_topline') %>
+      </div>
+
+    </div>
+
+    <!-- lesson.summary -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_summary">Summary of lesson</label>
+        <div class="FormField__hint">
+          <p>Keep it short and snappy</p>
+          <p>Try to include:</p>
+          <ul>
+            <li>Why the lesson is interesting</li>
+            <li>The types of activities students will do.</li>
+          </ul>
+          <p>You can format using markdown</p>
+        </div>
+      </div>
+
+      <div class="FormField__input">
+        <%= text_area(:lesson, :summary, value: @lesson_obj.summary, id: 'lesson_summary') %>
+      </div>
+
+    </div>
+
+  <% end %>
+
+  <%= field_set_tag 'Authors', class: 'Form__fieldset' do %>
+
+  <!-- lesson.authors -->
+  <div class="FormField FormField--required">
+
+    <div class="FormField__info">
+      <label class="FormField__label" for="lesson_topline">Who made this</label>
+      <div class="FormField__hint">Enter one or more authors</div>
+    </div>
+
+    <!-- TODO: param other_users_emails isn't handled by controller nor part of the lesson model: have added in a virtual attr for now -->
+    <div class="FormField__input FormField__input--multiple">
+      <%= text_field(:lesson, "other_users_emails[]", placeholder: '+ Add a new email address', id: 'other_users_emails_1') %>
+      <div class="FormField__instruction">Press  ↵ Return to add</div>
+    </div>
+
+  </div>
+
+  <% end %>
+
+  <%= field_set_tag 'Objectives', class: 'Form__fieldset' do %>
+
+    <!-- lesson.learning_objectives -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_topline">Learning objectives</label>
+        <div class="FormField__hint">What will the students learn</div>
+      </div>
+
+      <div class="FormField__input FormField__input--multiple">
+        <%= text_field(:lesson, "learning_objectives[]", placeholder: '+ Add a new objective', id: 'learning_objectives_1') %>
+        <div class="FormField__instruction">Press  ↵ Return to add</div>
+      </div>
+
+    </div>
+
+  <% end %>
+
+  <%= field_set_tag 'Lesson ambitions', class: 'Form__fieldset' do %>
+
+    <!-- lesson.description -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_description">Lesson description</label>
+        <div class="FormField__hint">
+          <p>Keep it short and snappy</p>
+          <p>Try to include:</p>
+          <ul>
+            <li>Why the lesson is interesting</li>
+            <li>The types of activities students will do.</li>
+          </ul>
+          <p>You can format using markdown</p>
+        </div>
+      </div>
+
+      <div class="FormField__input">
+        <%= text_area(:lesson, :lesson_description, value: @lesson_obj.description, id: 'lesson_description') %>
+      </div>
+
+    </div>
+
+    <!-- lesson.assessment_criteria -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="assessment_criteria">Assessment criteria</label>
+        <div class="FormField__hint">
+          <p>Keep it short and snappy</p>
+          <p>Try to include:</p>
+          <ul>
+            <li>Why the lesson is interesting</li>
+            <li>The types of activities students will do.</li>
+          </ul>
+          <p>You can format using markdown</p>
+        </div>
+      </div>
+
+      <div class="FormField__input">
+        <%= text_area(:lesson, :assessment_criteria, value: @lesson_obj.assessment_criteria, id: 'assessment_criteria') %>
+      </div>
+
+    </div>
+
+    <!-- lesson.assessment_criteria_files -->
+    <div class="FormField">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="assessment_criteria">Supporting files</label>
+        <div class="FormField__hint">
+          <p>Upload any files required</p>
+        </div>
+      </div>
+
+      <div class="FormField__input">
+        TODO dropzone
+      </div>
+
+    </div>
+
+  <% end %>
+
+  <%= field_set_tag nil, class: 'Form__fieldset' do %>
+
+    <!-- lesson.learning_objectives -->
+    <div class="FormField">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_topline">Further reading</label>
+        <div class="FormField__hint">Add any further useful links</div>
+      </div>
+
+      <div class="FormField__input FormField__input--multiple">
+        <%= text_field(:lesson, "further_readings[]", placeholder: '+ Enter a URL', id: 'further_readings_1') %>
+        <div class="FormField__instruction">Press  ↵ Return to add</div>
+      </div>
+
+    </div>
+
+  <% end %>
+
+  <div class="Form__footer">
+
+    <div class="Form__footer__heading">
+      Next up...
+    </div>
+
+    <div class="Form__footer__actions">
+      <button class="Button Button--primary">Add some standards</button>
+    </div>
+
+  </div>
+
+<% end %>
