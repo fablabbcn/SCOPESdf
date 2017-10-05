@@ -3,7 +3,10 @@ class LessonsController < ApplicationController
   #after_action :verify_authorized # pundit
 
   def new
-    @form_step = params[:form_step].present? ? params[:form_step] : 1
+
+    # Assign the @form_step var, casting as integer instead of a string
+    @form_step = params[:form_step].present? ? params[:form_step].to_i : 1
+
     if params[:id].present?
       @lesson_obj = Lesson.find(params[:id])
     end
@@ -54,7 +57,7 @@ class LessonsController < ApplicationController
   end
 
   def create
-    # id = params[:id]
+    # id = ss[:id]
     # user = @current_user
 
 
@@ -140,8 +143,8 @@ class LessonsController < ApplicationController
 
   end
 
-  
-  
+
+
   # ~~~~~~~~~~~~~~~
   # STEPS HERE
   # ~~~~~~~~~~~~~~~
@@ -161,7 +164,7 @@ class LessonsController < ApplicationController
     render :json => {ids: ids}, :status => 200
   end
 
-  
+
 
 
   def draft
