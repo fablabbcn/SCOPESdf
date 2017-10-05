@@ -2,7 +2,7 @@
 
   <div class="SubHeader__content">
 
-    <h1 class="SubHeader__heading">New lesson</h1>
+    <h1 class="SubHeader__heading"><%= @lesson_obj.name.present? ? @lesson_obj.name : "New lesson" %></h1>
 
     <div class="SubHeader__tools">
       <%= active_link_to "<span>Cancel</span>".html_safe, lesson_delete_path(id: @lesson_obj.id), class: "SubHeader__tool Button Button--small Button--light Button--outline Button--icon Button--icon--trash Button--no-label" %>
