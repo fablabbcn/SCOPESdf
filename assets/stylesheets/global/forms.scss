@@ -1,3 +1,26 @@
+@mixin input-style {
+	border-radius: 2px;
+	border: 1px solid $color-input-border;
+	padding-left: $gutter-width;
+	padding-right: $gutter-width;
+	width: 100%;
+
+	&:hover {
+    box-shadow:inset 0px 0px 0px 1px $color-highlight-primary;
+		&:focus {
+			box-shadow: 0 !important;
+		}
+	}
+
+	&:focus {
+		color: $color-gray-verydark;
+		border-color: $color-highlight-primary;
+		background-color: $color-gray-verylight;
+		outline: none;
+	}
+}
+
+
 /* ----------------------------------------------------------------------------------------------------
 Super Form Reset
 A couple of things to watch out for:
@@ -81,26 +104,8 @@ input[type=time],
 input[type=url],
 input[type=week]
 {
-	border-radius: 2px;
-	border: 1px solid $color-input-border;
 	height: 48px;
-	padding-left: $gutter-width;
-	padding-right: $gutter-width;
-	width: 100%;
-
-	&:hover {
-    box-shadow:inset 0px 0px 0px 1px $color-highlight-primary;
-		&:focus {
-			box-shadow: 0 !important;
-		}
-	}
-
-	&:focus {
-		color: $color-gray-verydark;
-		border-color: $color-highlight-primary;
-		background-color: $color-gray-verylight;
-	}
-
+	@include input-style;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -181,6 +186,12 @@ textarea
 
 	/* Turn off scroll bars in IE unless needed */
 	overflow:auto;
+
+	@include input-style;
+	padding-top: $gutter-width;
+	padding-bottom: $gutter-width;
+
+
 }
 
 /* Selects
