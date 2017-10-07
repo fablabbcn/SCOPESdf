@@ -41,12 +41,48 @@
   color: $color-gray-mid;
 }
 
+.FormField__instruction {
+  font-size: 14px;
+  color: $color-gray-mid;
+  margin-left: auto;
+  margin-top: 4px;
+}
+
 .FormField__input {
   width: 80%;
   position: relative;
   display: flex;
   flex-direction: column;
 }
+
+// styles for multiple input parts
+
+.FormField__multipleinput {
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.FormField__multipleinput__handle {
+  background-image: url('images/icon-sort-dark.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: move;
+  height: 48px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 48px;
+
+  span {
+    display: none;
+  }
+
+  &:focus {
+    outline: line;
+  }
+
+}
+
 
 // character count for text areas
 

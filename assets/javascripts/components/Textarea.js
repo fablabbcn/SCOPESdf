@@ -2,7 +2,6 @@
 
 module.exports = Textarea;
 
-import $ from 'cash-dom'
 import Autosize from 'autosize'
 
 /**
@@ -50,12 +49,9 @@ export function initCharacterCount(textarea) {
   let $formField = $(textarea).parent('.FormField__input')
   let currentClass = 'FormField__characters__current'
   let maxClass = 'FormField__characters__max'
-  let $status = $(`
-    <div class="FormField__characters">
-      <span class="${currentClass}">${currentCount}</span>
-      <span class="${maxClass}">/${maxCount}</span>
-    </div>`
-  )
+  let $status = $(`<div class="FormField__characters">
+      <span class="${currentClass}">${currentCount}</span><span class="${maxClass}">/${maxCount}</span>
+    </div>`)
   $formField.append($status)
 
   // On keyup, update the character count

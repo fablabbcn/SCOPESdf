@@ -11,7 +11,7 @@
       </div>
 
       <div class="FormField__input">
-        <%= text_field(:lesson, :name, value: @lesson_obj.name, placeholder: 'Name your lesson', id: 'lesson_name') %>
+        <input type="text" name="lesson[name]" class="Input" value="<%= @lesson_obj.name %>" placeholder="Name your lesson" id="lesson_name" maxlength="50" required />
       </div>
 
     </div>
@@ -25,7 +25,7 @@
       </div>
 
       <div class="FormField__input">
-        <%= text_field(:lesson, :topline, value: @lesson_obj.topline, placeholder: 'How would you describe it in one sentence?', id: 'lesson_topline') %>
+        <input type="text" name="lesson[topline]" class="Input" value="<%= @lesson_obj.topline %>" placeholder="How would you describe it in one sentence?" id="lesson_topline" required />
       </div>
 
     </div>
@@ -47,7 +47,7 @@
       </div>
 
       <div class="FormField__input">
-        <textarea class="Input Input--textarea Input--autosize Input--character-count" rows="5" maxLength="800" name="lession[summary]" id="lesson_summary"><%= @lesson_obj.summary %></textarea>
+        <textarea class="Input Input--textarea Input--autosize Input--character-count" rows="5" maxlength="800" name="lession[summary]" id="lesson_summary" required><%= @lesson_obj.summary %></textarea>
       </div>
 
     </div>
@@ -60,14 +60,13 @@
   <div class="FormField FormField--required">
 
     <div class="FormField__info">
-      <label class="FormField__label" for="lesson_topline">Who made this</label>
+      <label class="FormField__label" for="lesson_other_users_emails_1">Who made this</label>
       <div class="FormField__hint">Enter one or more authors</div>
     </div>
 
     <!-- TODO: param other_users_emails isn't handled by controller nor part of the lesson model: have added in a virtual attr for now -->
     <div class="FormField__input FormField__input--multiple">
-      <%= text_field(:lesson, "other_users_emails[]", placeholder: '+ Add a new email address', id: 'other_users_emails_1') %>
-      <div class="FormField__instruction">Press  ↵ Return to add</div>
+      <input type="email" name="lesson[other_users_emails][]" class="Input Input--multiple" data-multiplevalues='<%= ['daniel.howells@gmail.com','mail@ceciliahalling.com'].to_json %>' value="" placeholder="+ Add a new email address" id="lesson_other_users_emails_1" required />
     </div>
 
   </div>
@@ -85,8 +84,7 @@
       </div>
 
       <div class="FormField__input FormField__input--multiple">
-        <%= text_field(:lesson, "learning_objectives[]", placeholder: '+ Add a new objective', id: 'learning_objectives_1') %>
-        <div class="FormField__instruction">Press  ↵ Return to add</div>
+        <input type="email" name="lesson[objectives][]" class="Input Input--multiple" data-multiplevalues='<%= ['This is an objective','And so is this'].to_json %>' value="" placeholder="+ Add a new objective" id="lesson_objectives_1" required />
       </div>
 
     </div>

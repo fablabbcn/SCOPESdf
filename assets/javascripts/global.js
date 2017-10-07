@@ -21,7 +21,7 @@ import Choices	from "./components/Choices"
 import Header	from "./components/Header"
 import Slider	from "./components/Slider"
 import Textarea	from "./components/Textarea"
-
+import MultipleInputs	from "./components/MultipleInputs"
 
 var ScopesDF = {
 
@@ -52,6 +52,7 @@ var ScopesDF = {
 		Header()
 		Slider()
 		Textarea()
+		MultipleInputs()
 
 	}
 
