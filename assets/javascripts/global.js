@@ -23,6 +23,7 @@ import Header	from "./components/Header"
 import MultipleInputs	from "./components/MultipleInputs"
 import Slider	from "./components/Slider"
 import Textarea	from "./components/Textarea"
+import FileUpload	from "./components/FileUpload"
 
 var ScopesDF = {
 
@@ -55,6 +56,7 @@ var ScopesDF = {
 		MultipleInputs()
 		Slider()
 		Textarea()
+		FileUpload()
 
 	}
 
