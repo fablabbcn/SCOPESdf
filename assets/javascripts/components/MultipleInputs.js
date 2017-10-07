@@ -22,7 +22,7 @@ function MultipleInputs() {
     // Append some instructions
     appendInstruction(input)
 
-    // First handle existing data, provided via data-multiplevalues
+    // First handle existing data, provided via data-values
     initInitialValues(input)
 
     // Handle new inputs
@@ -42,6 +42,10 @@ function handleAddNewValue(input) {
       $(input).val(null)
     }
 
+		// If we now have at least one multiple input we no longer need the required attr
+		if ($(input).attr('required'))
+			$(input).attr('required', false)
+
   })
 
 }
@@ -58,8 +62,8 @@ function appendInstruction(input) {
 
 function initInitialValues(input) {
 
-  if (!$(input).data('multiplevalues')) {
-    console.error('Multiple value inputs need data-multiplevalues attributes, formatted as JSON string')
+  if (!$(input).data('values')) {
+    console.error('Multiple value inputs need data-values attributes, formatted as JSON string')
     return
   }
 
@@ -67,9 +71,9 @@ function initInitialValues(input) {
   let initialData
 
   try {
-    initialData = JSON.parse($(input).data('multiplevalues'))
+    initialData = $(input).data('values')
   } catch (e) {
-    console.error('data-multiplevalues needs to be a valid JSON string, {} if empty')
+    console.error('data-values needs to be a valid JSON string, {} if empty')
     return
   }
 
@@ -100,7 +104,7 @@ function createNewInput(sourceInput, value) {
   $(clonedInput).val(value)
 
   // Strip the input of its id and initial data, don't need them anymore
-  $(clonedInput).attr('id', false).attr('data-multiplevalues', false)
+  $(clonedInput).removeAttr('id').removeAttr('data-values')
 
   // Create a wrapper for the cloned input
   let $wrapper = $('<div class="FormField__multipleinput"><button class="FormField__multipleinput__handle"><span>Sort</span></button></div>')

@@ -66,7 +66,7 @@
 
     <!-- TODO: param other_users_emails isn't handled by controller nor part of the lesson model: have added in a virtual attr for now -->
     <div class="FormField__input FormField__input--multiple">
-      <input type="email" name="lesson[other_users_emails][]" class="Input Input--multiple" data-multiplevalues='<%= ['daniel.howells@gmail.com','mail@ceciliahalling.com'].to_json %>' value="" placeholder="+ Add a new email address" id="lesson_other_users_emails_1" required />
+      <input type="email" name="lesson[other_users_emails][]" class="Input Input--multiple" data-values='<%= ['daniel.howells@gmail.com','mail@ceciliahalling.com'].to_json %>' value="" placeholder="+ Add a new email address" id="lesson_other_users_emails_1" required />
     </div>
 
   </div>
@@ -84,7 +84,7 @@
       </div>
 
       <div class="FormField__input FormField__input--multiple">
-        <input type="email" name="lesson[objectives][]" class="Input Input--multiple" data-multiplevalues='<%= ['This is an objective','And so is this'].to_json %>' value="" placeholder="+ Add a new objective" id="lesson_objectives_1" required />
+        <input type="text" name="lesson[objectives][]" class="Input Input--multiple" data-values='<%= ['This is an objective','And so is this'].to_json %>' value="" placeholder="+ Add a new objective" id="lesson_objectives_1" required />
       </div>
 
     </div>
@@ -166,7 +166,7 @@
       </div>
 
       <div class="FormField__input FormField__input--multiple">
-        <input type="url" name="lesson[further_readings][]" class="Input Input--multiple" data-multiplevalues='<%= [].to_json %>' value="" placeholder="+ Add a new URL" id="further_readings_1" required />
+        <input type="url" name="lesson[further_readings][]" class="Input Input--multiple" data-values='<%= [].to_json %>' value="" placeholder="+ Add a new URL" id="further_readings_1" required />
       </div>
 
     </div>

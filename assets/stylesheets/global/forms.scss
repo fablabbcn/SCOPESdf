@@ -19,6 +19,12 @@
 		background-color: $color-gray-verylight;
 		outline: none;
 	}
+
+	&.Input--error {
+	  border-color: $color-red;
+	  background-color: rgba(#FFA0A0, 0.3);
+	}
+
 }
 
 
@@ -107,6 +113,9 @@ input[type=week]
 {
 	height: 48px;
 	@include input-style;
+
+
+
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */

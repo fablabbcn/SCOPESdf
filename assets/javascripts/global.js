@@ -18,10 +18,11 @@ import ExternalLinks	from "./modules/ExternalLinks"
 import Auth	from "./components/Auth"
 import Carousel	from "./components/Carousel"
 import Choices	from "./components/Choices"
+import Form	from "./components/Form"
 import Header	from "./components/Header"
+import MultipleInputs	from "./components/MultipleInputs"
 import Slider	from "./components/Slider"
 import Textarea	from "./components/Textarea"
-import MultipleInputs	from "./components/MultipleInputs"
 
 var ScopesDF = {
 
@@ -49,10 +50,11 @@ var ScopesDF = {
 		Auth()
 		Carousel()
 		Choices()
+		Form()
 		Header()
+		MultipleInputs()
 		Slider()
 		Textarea()
-		MultipleInputs()
 
 	}
 
