@@ -47,7 +47,7 @@
       </div>
 
       <div class="FormField__input">
-        <%= text_area(:lesson, :summary, value: @lesson_obj.summary, id: 'lesson_summary') %>
+        <textarea class="Input Input--textarea Input--autosize Input--character-count" rows="5" maxLength="800" name="lession[summary]" id="lesson_summary"><%= @lesson_obj.summary %></textarea>
       </div>
 
     </div>

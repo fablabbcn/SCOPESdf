@@ -1,12 +1,6 @@
 .FormField {
   display: flex;
-  flex-direction: column;
   margin-bottom: $gutter-width;
-
-  label {
-    margin-bottom: $gutter-width/2;
-  }
-
 }
 
 
@@ -22,4 +16,47 @@
     margin-left: $gutter-width/2;
   }
 
+}
+
+.FormField__info {
+  width: (20%);
+}
+
+.FormField__label {
+  font-size: 18px;
+  @include text-medium;
+
+  .FormField--required & {
+    &:after {
+      content: "*";
+      color: $color-highlight-primary;
+      margin-left: 4px;
+    }
+  }
+
+}
+
+.FormField__hint {
+  font-size: 14px;
+  color: $color-gray-mid;
+}
+
+.FormField__input {
+  width: 80%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+// character count for text areas
+
+.FormField__characters {
+  @include text-medium;
+  font-size: 14px;
+  margin-left: auto;
+  margin-top: 4px;
+}
+
+.FormField__characters__max {
+  color: $color-gray-mid;
 }

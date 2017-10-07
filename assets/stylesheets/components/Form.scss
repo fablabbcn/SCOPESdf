@@ -1,6 +1,10 @@
 .Form {
   padding-left: $gutter-width/2;
   padding-right: $gutter-width/2;
+  max-width: $grid-width;
+  margin: 0 auto;
+  padding-top: $gutter-width*3;
+  padding-bottom: $gutter-width*3;
 }
 
 .Form__actions {
@@ -17,4 +21,18 @@
 .Form__link {
   color: $color-gray-mid;
   margin-right: $gutter-width/2;
+}
+
+.Form__fieldset {
+  border: 0;
+  display: block;
+  padding-top: $gutter-width*2;
+  padding-bottom: $gutter-width*2;
+  margin-bottom: $gutter-width*1.5;
+  border-bottom: 1px solid $color-border;
+
+  legend {
+    @extend h3;
+  }
+
 }

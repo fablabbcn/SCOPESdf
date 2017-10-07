@@ -20,6 +20,7 @@ import Carousel	from "./components/Carousel"
 import Choices	from "./components/Choices"
 import Header	from "./components/Header"
 import Slider	from "./components/Slider"
+import Textarea	from "./components/Textarea"
 
 
 var ScopesDF = {
@@ -50,6 +51,7 @@ var ScopesDF = {
 		Choices()
 		Header()
 		Slider()
+		Textarea()
 
 	}
 
