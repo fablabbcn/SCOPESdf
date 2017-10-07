@@ -39,6 +39,7 @@
 .FormField__hint {
   font-size: 14px;
   color: $color-gray-mid;
+  padding-bottom: $gutter-width*2;
 }
 
 .FormField__instruction {
@@ -72,13 +73,14 @@
   right: 0;
   top: 0;
   width: 48px;
+  opacity: 0.5;
 
   span {
     display: none;
   }
 
   &:focus {
-    outline: line;
+    outline: none;
   }
 
 }

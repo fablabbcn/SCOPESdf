@@ -97,7 +97,7 @@
     <div class="FormField FormField--required">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_description">Lesson description</label>
+        <label class="FormField__label" for="lesson_description">Lesson Description</label>
         <div class="FormField__hint">
           <p>Keep it short and snappy</p>
           <p>Try to include:</p>
@@ -110,7 +110,7 @@
       </div>
 
       <div class="FormField__input">
-        <%= text_area(:lesson, :lesson_description, value: @lesson_obj.description, id: 'lesson_description') %>
+        <textarea class="Input Input--textarea Input--autosize Input--character-count" rows="5" maxlength="800" name="lession[description]" id="lesson_description" required><%= @lesson_obj.description %></textarea>
       </div>
 
     </div>
@@ -132,7 +132,7 @@
       </div>
 
       <div class="FormField__input">
-        <%= text_area(:lesson, :assessment_criteria, value: @lesson_obj.assessment_criteria, id: 'assessment_criteria') %>
+        <textarea class="Input Input--textarea Input--autosize Input--character-count" rows="5" maxlength="800" name="lession[assessment_criteria]" id="lesson_assessment_criteria" required><%= @lesson_obj.assessment_criteria %></textarea>
       </div>
 
     </div>
@@ -166,8 +166,7 @@
       </div>
 
       <div class="FormField__input FormField__input--multiple">
-        <%= text_field(:lesson, "further_readings[]", placeholder: '+ Enter a URL', id: 'further_readings_1') %>
-        <div class="FormField__instruction">Press  ↵ Return to add</div>
+        <input type="url" name="lesson[further_readings][]" class="Input Input--multiple" data-multiplevalues='<%= [].to_json %>' value="" placeholder="+ Add a new URL" id="further_readings_1" required />
       </div>
 
     </div>

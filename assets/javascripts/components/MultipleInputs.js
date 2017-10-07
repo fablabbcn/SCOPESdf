@@ -86,7 +86,7 @@ function initInitialValues(input) {
   // Init a new sortable
   let sortable = new Sortable([$(input).parent()[0]], {
     draggable: '.FormField__multipleinput',
-    handle: '.FormField__multipleinput__handle'
+    handle: '.FormField__multipleinput__handle',
   })
 
 }
