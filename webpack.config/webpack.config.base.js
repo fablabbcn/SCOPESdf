@@ -91,7 +91,7 @@ const webpackBaseConfig = function(env) {
 
           // Make React globally available
           new webpack.ProvidePlugin({
-            $: "cash-dom"
+            $: "jquery"
           }),
 
           function() {
