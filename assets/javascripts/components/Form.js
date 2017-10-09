@@ -20,4 +20,10 @@ function Form() {
 
   $('.Form').parsley(options)
 
+
+	// Prevent submission of form using return key
+	$(document).on("keypress", "form", function(event) {
+		return event.keyCode != 13;
+	})
+
 }

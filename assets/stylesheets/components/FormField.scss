@@ -70,10 +70,33 @@
   cursor: move;
   height: 48px;
   position: absolute;
+
+  right: $gutter-width*1.5;
+  top: 0;
+  width: 48px;
+  opacity: 0.25;
+
+  span {
+    display: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+}
+
+.FormField__multipleinput__remove {
+  background-image: url('images/icon-remove-dark.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  height: 48px;
+  position: absolute;
   right: 0;
   top: 0;
   width: 48px;
-  opacity: 0.5;
+  opacity: 0.25;
 
   span {
     display: none;

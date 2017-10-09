@@ -79,9 +79,9 @@ class LessonsController < ApplicationController
     LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first) # should not be user first
     @lesson.reload
 
-
     # puts @lesson.inspect
     render :json => {lesson_id: @lesson.id, files: urls, lesson_obj: @lesson.inspect, publishable: @lesson.publishable?, publishable_details: @lesson.publishable_values}, :status => 200
+
   end
 
   def update # used for AJAX
@@ -340,6 +340,7 @@ class LessonsController < ApplicationController
       }
     end
   end
+
   def step_remove_file_upload
     puts "prepping for delete"
     puts params.inspect
@@ -353,24 +354,25 @@ class LessonsController < ApplicationController
 
 
   private
-  def lesson_params
-    params.require(:lesson).permit(:name, :topline, :summary, :description, :assessment_criteria, :state, :collection_tag, other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids: [], standards: [:name, descriptions: []], grade_range: [:start, :end], subjects: [], difficulty_level: [:student, :educator], skills: [:name, :level], context: [], tags: [])
-  end
 
-  def step_params
-    params.permit(steps: [:id, :name, :summary, :duration, :description, :supporting_images => [], :materials => [:number, :name], :tools => [], :supporting_material => [], :external_links => []]) #TODO - supporting materials vs materials... add materials
-  end
+    def lesson_params
+      params.require(:lesson).permit(:name, :topline, :summary, :description, :assessment_criteria, :state, :collection_tag, other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids: [], standards: [:name, descriptions: []], grade_range: [:start, :end], subjects: [], difficulty_level: [:student, :educator], skills: [:name, :level], context: [], tags: [])
+    end
 
-  def step_param
-    params.require(:step).permit(:id, :summary, :duration, materials: [:number, :name], tools: [], external_links:[])
-  end
+    def step_params
+      params.permit(steps: [:id, :name, :summary, :duration, :description, :supporting_images => [], :materials => [:number, :name], :tools => [], :supporting_material => [], :external_links => []]) #TODO - supporting materials vs materials... add materials
+    end
 
+    def step_param
+      params.require(:step).permit(:id, :summary, :duration, materials: [:number, :name], tools: [], external_links:[])
+    end
 
-  def file_params # both lessons and steps
-    params.permit(:id, :attr, :step, :assessment_criteria_files => [], :outcome_files => [], :supporting_materials => [], :supporting_files => [], files: [])
-  end
-  def remove_file_params
-    params.permit(:name, :attr)
-  end
+    def file_params # both lessons and steps
+      params.permit(:id, :attr, :step, :assessment_criteria_files => [], :outcome_files => [], :supporting_materials => [], :supporting_files => [], files: [])
+    end
+
+    def remove_file_params
+      params.permit(:name, :attr)
+    end
 
 end
