@@ -1,0 +1,35 @@
+.RadioButtons {
+  flex-grow: 1;
+}
+
+.RadioButtons__inputs {
+  display: flex;
+  padding-right: $gutter-width;
+}
+
+.RadioButtons__label {
+  margin-bottom: 6px;
+  @include text-medium;
+  color: $color-gray-mid;
+}
+
+.RadioButton {
+  margin-right: -1px;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.RadioButton__input {
+  display: none;
+}
+
+.RadioButton__label {
+  width: 100%;
+  padding-top: $gutter-width/2;
+  padding-bottom: $gutter-width/2;
+  height: auto;
+}
+
+.RadioButton__input:checked ~ .RadioButton__label {
+  @extend .Button--active;
+}

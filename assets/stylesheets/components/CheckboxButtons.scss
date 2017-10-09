@@ -1,0 +1,16 @@
+.CheckboxButtons {
+  display: flex;
+
+}
+
+.CheckboxButton {
+  margin-right: $gutter-width;
+}
+
+.CheckboxButton__input {
+  display: none;
+}
+
+.CheckboxButton__input:checked ~ .CheckboxButton__label {
+  @extend .Button--active;
+}

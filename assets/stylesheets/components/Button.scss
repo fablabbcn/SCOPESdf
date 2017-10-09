@@ -3,24 +3,25 @@
   background-color: #fff;
   border-radius: 2px;
   border: 1px solid #fff;
+  color: $color-main;
   cursor: pointer;
   display: inline-block;
   font-size: 16px;
-  padding-left: 30px;
-  padding-right: 30px;
-  transition: all .24s ease-in-out;
-  color: $color-main;
   height: 48px;
   line-height: 48px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+  transition: all .12s ease-in-out;
   white-space: nowrap;
 }
 
 .Button--small {
   font-size: 14px;
-  padding-left: $gutter-width;
-  padding-right: $gutter-width;
   height: 45px;
   line-height: 45px;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
 }
 
 .Button--large {
@@ -52,7 +53,8 @@
   border-color: $color-main;
 }
 
-.Button--primary {
+.Button--primary,
+.Button--active {
   background-color: $color-highlight-primary;
   color: #fff;
 }
@@ -69,7 +71,7 @@
 .Button--icon--left { // default
   background-repeat: no-repeat;
   background-position: 15px center;
-  padding-left: 40px;
+  padding-left: 42px;
 }
 
 .Button--icon--left {
@@ -98,6 +100,46 @@
 }
 .Button--icon--locked {
   background-image: url('images/icon-locked-dark.svg');
+}
+.Button--icon--arts {
+  &.Button--outline {
+    background-image: url('images/icon-arts-primary.svg');
+  }
+  &.Button--active {
+    background-image: url('images/icon-arts-light.svg');
+  }
+}
+.Button--icon--engineering {
+  &.Button--outline {
+    background-image: url('images/icon-engineering-primary.svg');
+  }
+  &.Button--active {
+    background-image: url('images/icon-engineering-light.svg');
+  }
+}
+.Button--icon--mathematics {
+  &.Button--outline {
+    background-image: url('images/icon-maths-primary.svg');
+  }
+  &.Button--active {
+    background-image: url('images/icon-maths-light.svg');
+  }
+}
+.Button--icon--science {
+  &.Button--outline {
+    background-image: url('images/icon-science-primary.svg');
+  }
+  &.Button--active {
+    background-image: url('images/icon-science-light.svg');
+  }
+}
+.Button--icon--technology {
+  &.Button--outline {
+    background-image: url('images/icon-technology-primary.svg');
+  }
+  &.Button--active {
+    background-image: url('images/icon-technology-light.svg');
+  }
 }
 
 .Button--no-label {

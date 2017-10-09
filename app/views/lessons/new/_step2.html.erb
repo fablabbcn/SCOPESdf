@@ -2,11 +2,11 @@
 
   <%= field_set_tag 'How does this align to standards?', class: 'Form__fieldset' do %>
 
-    <div class="FormFieldGroups FormFieldGroups--multiple">
+    <!-- lesson.standards -->
+    <div class="FormFieldGroups FormFieldGroups--multiple" data-values="<%= [ { standard_id: 1, descriptions: ['Descrption 1', 'Description 2', 'Descrption 3'] }, { standard_id: 1, descriptions: ['Descrption 1', 'Description 2', 'Descrption 3'] } ].to_json %>">
 
-      <div class="FormFieldGroup" data-values="<%= @lesson_obj.standards.to_json %>">
+      <div class="FormFieldGroup">
 
-        <!-- lesson.standards -->
         <div class="FormField FormField--required">
 
           <div class="FormField__info">
@@ -15,7 +15,7 @@
           </div>
 
           <div class="FormField__input FormField--multiple">
-            <select name="lesson[standards][][standard_id]" id="lesson_standards__standard_id_1">
+            <select name="lesson[standards][][standard_id]" id="lesson_standards__standard_id_1" value="">
                 <%= options_for_select(@standards) %>
             </select>
           </div>
@@ -30,7 +30,7 @@
           </div>
 
           <div class="FormField__input FormField--multiple">
-            <textarea name="lesson[standards][][description]" class="Input Input--multiple" value="" placeholder="+ Add a new standard" id="lesson_standards_description_1"></textarea>
+            <textarea name="lesson[standards][][description]" class="Input Input--multiple" placeholder="+ Add a new standard" id="lesson_standards_description_1"></textarea>
           </div>
 
         </div>

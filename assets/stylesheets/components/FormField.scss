@@ -1,8 +1,14 @@
 .FormField {
   display: flex;
   margin-bottom: $gutter-width;
+  padding-bottom: $gutter-width;
 }
 
+.FormField--with-border{
+  border-bottom: 1px solid $color-border;
+  margin-bottom: $gutter-width*2;
+  padding-bottom: $gutter-width*2;
+}
 
 .FormField--checkbox {
   flex-direction: row;
@@ -39,7 +45,7 @@
 .FormField__hint {
   font-size: 14px;
   color: $color-gray-mid;
-  padding-bottom: $gutter-width*2;
+  padding-right: $gutter-width;
 }
 
 .FormField__instruction {
@@ -106,6 +112,11 @@
     outline: none;
   }
 
+}
+
+.FormField__radiobutton-groups {
+  display: flex;
+  flex-direction: row;
 }
 
 

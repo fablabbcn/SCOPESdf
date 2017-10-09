@@ -30,6 +30,9 @@ class Lesson < ApplicationRecord
   # TODO - added an attribute for other_users_emails as was missing
   attr_accessor :other_users_emails
 
+  # TODO - added an attribute for grade_range
+  attr_accessor :grade_range
+
   # TODO - validate publishing only when all content is set
 
   # TODO - api view sections for content loading

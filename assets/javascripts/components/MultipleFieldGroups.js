@@ -3,6 +3,7 @@
 module.exports = MutipleFieldGroups;
 
 import {Sortable} from '@shopify/draggable';
+import MultipleInputs from './MultipleInputs'
 
 /**
  * Initializes multiple field groups
@@ -32,7 +33,9 @@ function initFormFieldGroup(formFieldGroup) {
   // When add button is clicked, add a new group
   $addGroup.on('click', function(){
 
-    
+		let $clonedFieldGroup = $(formFieldGroup).find('.FormFieldGroup').first().clone()
+
+		$(this).before($clonedFieldGroup)
 
     return false
 

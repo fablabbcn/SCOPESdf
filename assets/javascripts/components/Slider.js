@@ -18,10 +18,9 @@ function Slider() {
     let slider = this
 
 		// Get ths config for this component
-		let config = JSON.parse($(this).data('config'))
+		let config = $(this).data('config')
 
-		console.log(config.start)
-
+		// Create the slider
     noUiSlider.create(slider, {
       start: config.start,
       connect: config.connect,
@@ -37,8 +36,10 @@ function Slider() {
       range: config.range
     })
 
+		// On slide update, set the value of the nexted hidden input
     slider.noUiSlider.on('update', function(values, handle){
       console.log(values)
+			$(slider).find('input[type=hidden]').val(values)
     })
 
   })

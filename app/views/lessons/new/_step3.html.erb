@@ -3,7 +3,7 @@
   <%= field_set_tag 'Who is this for?', class: 'Form__fieldset' do %>
 
     <!-- lesson.name -->
-    <div class="FormField FormField--required">
+    <div class="FormField FormField--required FormField--with-border">
 
       <div class="FormField__info">
         <label class="FormField__label" for="lesson_name">Grade range</label>
@@ -11,17 +11,15 @@
       </div>
 
       <div class="FormField__input">
-        <div class="Input Input--slider" data-config="<%= { start: [8, 10], connect: true, step: 1, range: { min: 7, max: 18 } }.to_json %>"></div>
+        <div class="Input Input--slider" data-config="<%= { start: @lesson_obj.grade_range.present? ? @lesson_obj.grade_range.to_a : [8,10], connect: true, step: 1, range: { min: 7, max: 18 } }.to_json %>">
+          <input type="hidden" name="lesson[grade_range]" value="<%= @lesson_obj.grade_range %>" />
+        </div>
       </div>
 
     </div>
 
-  <% end %>
-
-  <%= field_set_tag 'Subjects', class: 'Form__fieldset' do %>
-
     <!-- lesson.subjects -->
-    <div class="FormField FormField--required">
+    <div class="FormField FormField--required FormField--with-border">
 
       <div class="FormField__info">
         <label class="FormField__label" for="lesson_name">Subjects</label>
@@ -29,41 +27,52 @@
       </div>
 
       <div class="FormField__input">
-        <% @subjects.each do |s| %>
-        <label><input type="checkbox" name="subjects[]" value="<%= s %>"><%= s.titleize %></label>
-        <% end %>
+        <div class="CheckboxButtons">
+          <% Subject.all.each do |s| %>
+          <div class="CheckboxButton">
+            <input type="checkbox" class="CheckboxButton__input" name="lesson[subjects][]" value="<%= s.id %>" id="lesson__subjects__<%= s.id %>">
+            <label class="CheckboxButton__label Button Button--outline Button--small Button--icon Button--icon--<%= s.name %>" for="lesson__subjects__<%= s.id %>"><%= s.name.titleize %></label>
+          </div>
+          <% end %>
+        </div>
       </div>
 
     </div>
 
     <!-- lesson.difficulty -->
-    <div class="FormField FormField--required">
+    <div class="FormField FormField--required FormField--with-border">
 
       <div class="FormField__info">
         <label class="FormField__label" for="lesson_name">Difficulty level</label>
         <div class="FormField__hint">How hard is this lesson?</div>
       </div>
 
-      <div class="FormField__input">
+      <div class="FormField__input FormField__radiobutton-groups">
 
-        <div class="FormField__radiogroup">
-          <div class="FormField__radiogroup__label">
+        <div class="RadioButtons">
+          <div class="RadioButtons__label">
             For the student
           </div>
-          <div class="FormField__radiogroup__inputs">
-            <% @difficulty_helper[:students].each do |dl| %>
-              <label><input type="radio" name="gender" value="<%= dl[:value] %>"><%= dl[:name] %></label>
+          <div class="RadioButtons__inputs">
+            <% @difficulty_helper[:students].each_with_index do |dl, i| %>
+              <div class="RadioButton">
+                <input type="radio" class="RadioButton__input" name="lesson[difficulty_level_students]" value="<%= dl[:value] %>" id="lesson_difficulty_level_students_<%= i %>">
+                <label class="RadioButton__label Button Button--small Button--outline" for="lesson_difficulty_level_students_<%= i %>"><%= dl[:name] %></label>
+              </div>
             <% end %>
           </div>
         </div>
 
-        <div class="FormField__radiogroup">
-          <div class="FormField__radiogroup__label">
-            For the teacher
+        <div class="RadioButtons">
+          <div class="RadioButtons__label">
+            For teachers
           </div>
-          <div class="FormField__radiogroup__inputs">
-            <% @difficulty_helper[:teachers].each do |dl| %>
-              <label><input type="radio" name="gender" value="<%= dl[:value] %>"><%= dl[:name] %></label>
+          <div class="RadioButtons__inputs">
+            <% @difficulty_helper[:teachers].each_with_index do |dl, i| %>
+              <div class="RadioButton">
+                <input type="radio" class="RadioButton__input" name="lesson[difficulty_level_teachers]" value="<%= dl[:value] %>" id="lesson_difficulty_level_teachers_<%= i %>">
+                <label class="RadioButton__label Button Button--small Button--outline" for="lesson_difficulty_level_teachers_<%= i %>"><%= dl[:name] %></label>
+              </div>
             <% end %>
           </div>
         </div>
@@ -73,7 +82,7 @@
     </div>
 
     <!-- lesson.context -->
-    <div class="FormField FormField--required">
+    <div class="FormField FormField--required FormField--with-border">
 
       <div class="FormField__info">
         <label class="FormField__label" for="lesson_name">Context</label>
@@ -89,7 +98,7 @@
     </div>
 
     <!-- lesson.collection -->
-    <div class="FormField FormField--required">
+    <div class="FormField FormField--required FormField--with-border">
 
       <div class="FormField__info">
         <label class="FormField__label" for="lesson_name">Collection</label>
@@ -120,9 +129,13 @@
 
   <div class="Form__footer">
 
-    <div class="Form__footer__actions">
-      <a href="#" class="Button Button--primary">Back to standards</a>
-      <button class="Button Button--primary">Add some instructions</button>
+    <div class="Form__footer__content">
+
+      <div class="Form__footer__actions">
+        <a href="#" class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left">Back to standards</a>
+        <button class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right">Add some instructions</button>
+      </div>
+
     </div>
 
   </div>
