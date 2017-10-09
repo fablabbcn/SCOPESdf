@@ -66,7 +66,6 @@ function appendInstruction(input) {
 function initInitialValues(input) {
 
   if (!$(input).data('values')) {
-    console.error('Multiple value inputs need data-values attributes, formatted as JSON string')
     return
   }
 
