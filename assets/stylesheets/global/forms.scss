@@ -113,9 +113,6 @@ input[type=week]
 {
 	height: 48px;
 	@include input-style;
-
-
-
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -210,6 +207,14 @@ textarea
 
 select
 {
+	-webkit-appearance: none;
+  -moz-appearance: none;
+	height: 48px;
+	@include input-style;
+	background-image: url('images/icon-arrow-down-dark.svg');
+	background-repeat: no-repeat;
+	background-position: right 20px center;
+
 
 }
 

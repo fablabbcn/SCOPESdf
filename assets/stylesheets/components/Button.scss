@@ -72,6 +72,15 @@
   padding-left: 40px;
 }
 
+.Button--icon--left {
+  background-position: 15px center;
+  padding-left: 40px;
+  padding-right: 30px;
+  &.Button--small {
+    padding-right: $gutter-width;
+  }
+}
+
 .Button--icon--right {
   background-position: right 15px center;
   padding-right: 40px;
@@ -105,4 +114,7 @@
 
 .Button--arrow--right {
   background-image: url('images/icon-arrow-right-light.svg');
+}
+.Button--arrow--left {
+  background-image: url('images/icon-arrow-left-light.svg');
 }

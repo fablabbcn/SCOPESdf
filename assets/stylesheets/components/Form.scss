@@ -51,15 +51,24 @@
   padding-top: $gutter-width*3;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .Form__footer__heading {
   font-size: 24px;
   @include text-medium;
+  width: 50%;
 }
 
 .Form__footer__actions {
   display: flex;
+  width: 100%;
+}
+
+.Form__footer__action {
+  &:last-child {
+    margin-left: auto;
+  }
 }
 
 .Form__footer__actions--right {
