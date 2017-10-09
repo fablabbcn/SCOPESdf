@@ -18,12 +18,13 @@ import ExternalLinks	from "./modules/ExternalLinks"
 import Auth	from "./components/Auth"
 import Carousel	from "./components/Carousel"
 import Choices	from "./components/Choices"
+import FileUpload	from "./components/FileUpload"
 import Form	from "./components/Form"
 import Header	from "./components/Header"
+import MultipleFieldGroups	from "./components/MultipleFieldGroups"
 import MultipleInputs	from "./components/MultipleInputs"
 import Slider	from "./components/Slider"
 import Textarea	from "./components/Textarea"
-import FileUpload	from "./components/FileUpload"
 
 var ScopesDF = {
 
@@ -51,12 +52,13 @@ var ScopesDF = {
 		Auth()
 		Carousel()
 		Choices()
+		FileUpload()
 		Form()
 		Header()
+		MultipleFieldGroups()
 		MultipleInputs()
 		Slider()
 		Textarea()
-		FileUpload()
 
 	}
 
