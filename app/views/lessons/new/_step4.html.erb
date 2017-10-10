@@ -13,7 +13,7 @@
           30m
         </div>
         <div class="StepList__step__title">
-          Title attribute for step
+          Title attribute for step required
         </div>
         <a href="<%=  %>" class="StepList__step__edit">
           Edit Step
@@ -36,11 +36,11 @@
     <div class="FormField FormField--required">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_name">Step name</label>
+        <label class="FormField__label" for="step_name">Step name</label>
       </div>
 
       <div class="FormField__input">
-        <input type="text" />
+        <input type="text" name="step[name]" required />
       </div>
 
     </div>
@@ -49,11 +49,13 @@
     <div class="FormField FormField--required">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_name">Duration</label>
+        <label class="FormField__label" for="step_duration">Duration</label>
       </div>
 
       <div class="FormField__input">
-        <div class="Input Input--slider" data-config="<%= { start: 0, step: 10, connect: [true, false], range: { min: 0, max: 420 } }.to_json %>"></div>
+        <div class="Input Input--slider" data-config="<%= { start: 0, step: 10, connect: [true, false], range: { min: 0, max: 420 } }.to_json %>">
+          <input type="hidden" name="step[duration]" value="" />
+        </div>
       </div>
 
     </div>
@@ -62,7 +64,7 @@
     <div class="FormField FormField--required">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_step_description">Description</label>
+        <label class="FormField__label" for="step_description">Description</label>
         <div class="FormField__hint">
           <p>Describe all the actions in this step.</p>
           <p>If there are lot of actions, please consider breaking it down into multiple steps!</p>
@@ -70,7 +72,7 @@
       </div>
 
       <div class="FormField__input">
-        <textarea id="lesson_step_description"></textarea>
+        <textarea id="step_description" name="step[description]" required></textarea>
       </div>
 
     </div>
@@ -79,14 +81,18 @@
     <div class="FormField">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="assessment_criteria">Supporting files</label>
+        <label class="FormField__label" for="step_supporting_files">Supporting files</label>
         <div class="FormField__hint">
           <p>Upload any files required</p>
         </div>
       </div>
 
       <div class="FormField__input">
-        TODO dropzone
+        <div class="FileUpload" data-url="/" data-paramname="step[supporting_files]" id="step_supporting_files_1">
+          <div class="FileUpload__message">
+            Drag & drop files here - or click to browse<br />.jpg, .png, .pdf
+          </div>
+        </div>
       </div>
 
     </div>
@@ -99,15 +105,14 @@
     <div class="FormField FormField--required">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="materials">Materials</label>
+        <label class="FormField__label" for="step_materials">Materials</label>
         <div class="FormField__hint">
           <p>What do I need?</p>
         </div>
       </div>
 
       <div class="FormField__input FormField__input--multiple">
-        <input type="text" name="lesson[steps][][materials]" placeholder="+ Add a new item" />
-        <div class="FormField__instruction">Press  ↵ Return to add</div>
+        <input type="text" name="step[materials][]" class="Input Input--multiple" placeholder="+ Add a new item" id="step_materials" data-values="<%= [].to_json %>" />
       </div>
 
     </div>
@@ -116,15 +121,14 @@
     <div class="FormField FormField--required">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_name">Tools</label>
+        <label class="FormField__label" for="step_tools">Tools</label>
         <div class="FormField__hint">
           <p>List as many as needed</p>
         </div>
       </div>
 
       <div class="FormField__input FormField__input--multiple">
-        <input type="text" name="lesson[steps][][tools]" placeholder="+ Add a new tool" />
-        <div class="FormField__instruction">Press  ↵ Return to add</div>
+        <input type="text" name="step[tools][]" class="Input Input--multiple" placeholder="+ Add a new item" id="step_tools" data-values="<%= [].to_json %>" />
       </div>
 
     </div>
@@ -133,14 +137,18 @@
     <div class="FormField">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="assessment_criteria">Supporting materials</label>
+        <label class="FormField__label" for="step_supporting_files_1">Supporting materials</label>
         <div class="FormField__hint">
           <p>Design files, handouts needed for this step</p>
         </div>
       </div>
 
       <div class="FormField__input">
-        TODO dropzone
+        <div class="FileUpload" data-url="/" data-paramname="step[supporting_files]" id="step_supporting_files_1">
+          <div class="FileUpload__message">
+            Drag & drop files here - or click to browse<br />.jpg, .png, .pdf
+          </div>
+        </div>
       </div>
 
     </div>
@@ -149,15 +157,14 @@
     <div class="FormField FormField--required">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_name">External links</label>
+        <label class="FormField__label" for="step_external_links_1">External links</label>
         <div class="FormField__hint">
           <p>Any more useful links</p>
         </div>
       </div>
 
       <div class="FormField__input FormField__input--multiple">
-        <input type="text" name="lesson[steps][][external_links]" placeholder="+ Add a new link" />
-        <div class="FormField__instruction">Press  ↵ Return to add</div>
+        <input type="url" name="step[external_links][]" class="Input Input--multiple" data-values='' value="" placeholder="+ Add a new URL" id="step_external_links_1" />
       </div>
 
     </div>

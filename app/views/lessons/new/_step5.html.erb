@@ -6,14 +6,18 @@
     <div class="FormField">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="outcome_files">Add images</label>
+        <label class="FormField__label" for="lesson_outcome_files">Add images</label>
         <div class="FormField__hint">
           <p>Image specifications here</p>
         </div>
       </div>
 
       <div class="FormField__input">
-        TODO dropzone
+        <div class="FileUpload" data-url="/" data-paramname="lesson[outcome_files]" id="lesson_outcome_files">
+          <div class="FileUpload__message">
+            Drag & drop files here - or click to browse<br />.jpg, .png, .pdf
+          </div>
+        </div>
       </div>
 
     </div>
@@ -26,7 +30,7 @@
 
       <div class="Form__footer__actions">
         <a href="#" class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left">Back to instructions</a>
-        <button class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right">Publish lesson</button>
+        <button class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--check">Publish lesson</button>
       </div>
 
     </div>

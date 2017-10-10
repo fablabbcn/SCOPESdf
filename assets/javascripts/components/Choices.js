@@ -18,7 +18,7 @@ function Choices() {
       removeItems: true,
       removeItemButton: true,
 			placeholder: true,
-			placeholderValue: "tag,"
+			placeholderValue: "Enter a tag..."
     });
 
   })

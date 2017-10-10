@@ -1,8 +1,10 @@
 .Banner {
   background-color: $color-highlight-primary;
   color: #fff;
-  padding-top: $gutter-width*4;
   padding-bottom: $gutter-width*4;
+  padding-left: $gutter-width*4;
+  padding-right: $gutter-width*4;
+  padding-top: $gutter-width*4;
 }
 
 .Banner__content {
@@ -10,6 +12,7 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
+
 }
 
 .Banner__primary {

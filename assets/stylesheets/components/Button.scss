@@ -24,6 +24,13 @@
   padding-right: $gutter-width;
 }
 
+.Button--large {
+  height: 65px;
+  line-height: 65px;
+  padding-left: $gutter-width*2;
+  padding-right: $gutter-width*2;
+}
+
 .Button--extra-padding {
   padding-left: $gutter-width*1.5;
   padding-right: $gutter-width*1.5;
@@ -38,9 +45,6 @@
 
 }
 
-.Button--large {
-  padding: 21px 50px;
-}
 
 .Button--outline.Button--light {
   border: 1px solid #fff;
@@ -111,6 +115,9 @@
 }
 .Button--icon--trash {
   background-image: url('images/icon-trash-light.svg');
+}
+.Button--icon--check {
+  background-image: url('images/icon-check-light.svg');
 }
 .Button--icon--locked {
   background-image: url('images/icon-locked-dark.svg');

@@ -132,3 +132,17 @@
 .FormField__characters__max {
   color: $color-gray-mid;
 }
+
+.FormField__errors {
+  padding-right: $gutter-width/4;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  li {
+    color: $color-red;
+    background-repeat: no-repeat;
+    background-image: url('images/icon-alert-red.svg');
+    padding-left: 27px;
+    min-height: 20px;
+    background-position: left center;
+  }
+}
