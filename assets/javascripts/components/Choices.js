@@ -16,7 +16,9 @@ function Choices() {
 
     let choices = new ChoicesJs(this, {
       removeItems: true,
-      removeItemButton: true
+      removeItemButton: true,
+			placeholder: true,
+			placeholderValue: "tag,"
     });
 
   })

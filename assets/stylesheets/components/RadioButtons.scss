@@ -10,6 +10,7 @@
 .RadioButtons__label {
   margin-bottom: 6px;
   @include text-medium;
+  color: $color-gray-mid;
 }
 
 .RadioButton {

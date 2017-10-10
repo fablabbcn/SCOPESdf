@@ -1,1 +1,37 @@
 @import "~nouislider/distribute/nouislider";
+
+.noUi-handle {
+  box-shadow: none;
+  border-radius: 50%;
+  border: 1px solid $color-input-border;
+
+  &:before {
+    height: 7px;
+    width: 1px;
+    left: 7px;
+    top: 5px;
+  }
+
+  &:after {
+    height: 7px;
+    top: 5px;
+    left: 10px;
+  }
+
+}
+
+.noUi-horizontal {
+  height: 7px;
+  border: 0;
+  box-shadow: none;
+}
+
+.noUi-horizontal .noUi-handle {
+  width: 20px;
+  height: 20px;
+
+}
+
+.noUi-target {
+  background-color: $color-gray-light;
+}
