@@ -10,7 +10,6 @@
 .RadioButtons__label {
   margin-bottom: 6px;
   @include text-medium;
-  color: $color-gray-mid;
 }
 
 .RadioButton {
@@ -25,8 +24,10 @@
 
 .RadioButton__label {
   width: 100%;
+  border-color: $color-input-border !important;
 }
 
 .RadioButton__input:checked ~ .RadioButton__label {
   @extend .Button--active;
+  border-color: $color-highlight-primary !important;
 }

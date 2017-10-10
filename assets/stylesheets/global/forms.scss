@@ -111,8 +111,12 @@ input[type=time],
 input[type=url],
 input[type=week]
 {
-	height: 48px;
-	@include input-style;
+
+	&:not(.choices__input) {
+		height: 48px;
+		@include input-style;
+	}
+
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */

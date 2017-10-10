@@ -10,8 +10,8 @@
 
 .Form__links {
   display: flex;
-  padding-left: $gutter-width/2;
-  padding-right: $gutter-width/2;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
   padding-top: $gutter-width;
 }
 
@@ -28,8 +28,8 @@
   margin: 0 auto;
   max-width: $grid-width;
   padding-bottom: $gutter-width*2;
-  padding-left: $gutter-width/2;
-  padding-right: $gutter-width/2;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
   padding-top: $gutter-width*2;
 
   legend {
@@ -40,8 +40,8 @@
 
 .Form__footer {
   background-color: $color-gray-light;
-  padding-left: $gutter-width/2;
-  padding-right: $gutter-width/2;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
 }
 
 .Form__footer__content {

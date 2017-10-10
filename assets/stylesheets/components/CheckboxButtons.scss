@@ -8,7 +8,7 @@
 }
 
 .CheckboxButton__label {
-  
+  border-color: $color-input-border !important;
 }
 
 .CheckboxButton__input {
@@ -17,4 +17,5 @@
 
 .CheckboxButton__input:checked ~ .CheckboxButton__label {
   @extend .Button--active;
+  border-color: $color-highlight-primary !important;
 }

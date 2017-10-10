@@ -1,0 +1,35 @@
+.StepList {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid $color-border;
+}
+
+.StepList__step {
+  display: flex;
+  padding-top: $gutter-width*1.5;
+  padding-bottom: $gutter-width*1.5;
+  align-items: center;
+}
+
+.StepList__step__number {
+  font-size: 20px;
+  @include text-medium;
+  width: 20%;
+}
+
+.StepList__step__duration {
+  width: 10%;
+}
+
+.StepList__step__title {
+
+}
+
+.StepList__step__link {
+  width: 5%;
+  margin-left: auto;
+}
+
+.StepList__step__remove {
+  width: 5%;
+}
