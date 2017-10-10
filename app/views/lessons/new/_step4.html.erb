@@ -1,30 +1,34 @@
-<%= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:5), method: "post", multipart: true, class: "Form") do %>
 
-  <%= field_set_tag 'How does this lesson unfold?', class: 'Form__fieldset' do %>
 
-    <ul class="StepList">
-      <% @steps.each do |step| %>
-      <li class="StepList__step">
+<div class="StepList">
+  <h3 class="StepList__heading">How does this lesson unfold?</h3>
+  <ul class="StepList__steps">
+    <% 5.times do |step| %>
+    <li class="StepList__step">
+      <div class="StepList__content">
         <div class="StepList__step__number">
-          <%= "Step #{step.step_number}" %>
+          Step <%= step+1 %>
         </div>
         <div class="StepList__step__duration">
-          <%= step.duration %>
+          30m
         </div>
         <div class="StepList__step__title">
-          Ned title attribute for step
+          Title attribute for step
         </div>
-        <a href="<%=  %>" class="StepList__step__link">
+        <a href="<%=  %>" class="StepList__step__edit">
           Edit Step
         </a>
         <a href="<%=  %>" class="StepList__step__remove">
           <span>Remove</span>
         </a>
-      </li>
-      <% end %>
-    </ul>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
 
-  <% end %>
+
+<%= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:5), method: "post", multipart: true, class: "Form") do %>
 
   <%= field_set_tag 'Instructions', class: 'Form__fieldset' do %>
 
@@ -167,9 +171,13 @@
 
   <div class="Form__footer">
 
-    <div class="Form__footer__actions">
-      <a href="#" class="Button Button--primary">Back to instructions</a>
-      <button class="Button Button--primary">Add lesson outcomes</button>
+    <div class="Form__footer__content">
+
+      <div class="Form__footer__actions">
+        <a href="#" class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left">Back to details</a>
+        <button class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right">Add some outcomes</button>
+      </div>
+
     </div>
 
   </div>

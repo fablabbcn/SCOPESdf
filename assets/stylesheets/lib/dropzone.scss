@@ -1,5 +1,9 @@
 @import "~dropzone/dist/basic.css";
 @import "~dropzone/dist/dropzone.css";
-body {
-  background-color: red;
+
+.dropzone {
+  border: 1px dashed $color-input-border;
+  text-align: center;
+  min-height: 0;
+  padding: $gutter-width*2;
 }
