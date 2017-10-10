@@ -48,7 +48,9 @@ class LessonsController < ApplicationController
 
     @collections = CollectionTag.all.to_a.map{|x| x.name.titleize}
     @subjects = Subject.all.to_a.map{|x| x.name.titleize}
+    @subjects = Subject.all
     @context = Context.all.to_a.map{|x| x.name.titleize}
+    @contexts = Context.all
     @standards = Lesson.standards_list
     @standards_array = @lesson_obj.standards_array
     @difficulty_helper = DifficultyLevel.form_helper

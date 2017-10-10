@@ -28,10 +28,10 @@
 
       <div class="FormField__input">
         <div class="CheckboxButtons">
-          <% Subject.all.each do |s| %>
+          <% @subjects.each do |s| %>
           <div class="CheckboxButton">
             <input type="checkbox" class="CheckboxButton__input" name="lesson[subjects][]" value="<%= s.id %>" id="lesson__subjects__<%= s.id %>">
-            <label class="CheckboxButton__label Button Button--outline Button--small Button--icon Button--icon--<%= s.name %>" for="lesson__subjects__<%= s.id %>"><%= s.name.titleize %></label>
+            <label class="CheckboxButton__label Button Button--outline Button--small Button--extra-padding Button--icon Button--icon--<%= s.name %>" for="lesson__subjects__<%= s.id %>"><%= s.name.titleize %></label>
           </div>
           <% end %>
         </div>
@@ -57,7 +57,7 @@
             <% @difficulty_helper[:students].each_with_index do |dl, i| %>
               <div class="RadioButton">
                 <input type="radio" class="RadioButton__input" name="lesson[difficulty_level_students]" value="<%= dl[:value] %>" id="lesson_difficulty_level_students_<%= i %>">
-                <label class="RadioButton__label Button Button--small Button--outline" for="lesson_difficulty_level_students_<%= i %>"><%= dl[:name] %></label>
+                <label class="RadioButton__label Button Button--small Button--extra-padding Button--outline" for="lesson_difficulty_level_students_<%= i %>"><%= dl[:name] %></label>
               </div>
             <% end %>
           </div>
@@ -71,7 +71,7 @@
             <% @difficulty_helper[:teachers].each_with_index do |dl, i| %>
               <div class="RadioButton">
                 <input type="radio" class="RadioButton__input" name="lesson[difficulty_level_teachers]" value="<%= dl[:value] %>" id="lesson_difficulty_level_teachers_<%= i %>">
-                <label class="RadioButton__label Button Button--small Button--outline" for="lesson_difficulty_level_teachers_<%= i %>"><%= dl[:name] %></label>
+                <label class="RadioButton__label Button Button--small Button--extra-padding Button--outline" for="lesson_difficulty_level_teachers_<%= i %>"><%= dl[:name] %></label>
               </div>
             <% end %>
           </div>
@@ -90,9 +90,16 @@
       </div>
 
       <div class="FormField__input">
-        <% @context.each do |c| %>
-        <label><input type="checkbox" name="contexts[]" value="<%= c %>"><%= c.titleize %></label>
-        <% end %>
+        <div class="Checkboxes">
+          <% @contexts.each do |c| %>
+          <div class="Checkbox">
+            <input type="checkbox" class="Checkbox__input" name="lesson[contexts]" value="<%= c %>" id="lesson_contexts_<%= c.id %>" />
+            <label class="Checkbox__label" for="lesson_contexts_<%= c.id %>">
+              <%= c.name.titleize %>
+            </label>
+          </div>
+          <% end %>
+        </div>
       </div>
 
     </div>

@@ -4,7 +4,7 @@
 
 .RadioButtons__inputs {
   display: flex;
-  padding-right: $gutter-width;
+  margin-right: $gutter-width;
 }
 
 .RadioButtons__label {
@@ -25,9 +25,6 @@
 
 .RadioButton__label {
   width: 100%;
-  padding-top: $gutter-width/2;
-  padding-bottom: $gutter-width/2;
-  height: auto;
 }
 
 .RadioButton__input:checked ~ .RadioButton__label {
