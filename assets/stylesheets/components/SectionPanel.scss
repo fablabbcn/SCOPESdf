@@ -4,12 +4,20 @@
   align-items: center;
   flex-shrink: 0;
   min-height: 534px;
+  background-color: #F9FAFB;
+}
+
+.SectionPanel--left {
+  order: 1;
+}
+
+.SectionPanel--right {
+  order: 2;
 }
 
 .SectionPanel--color {
   color: #fff;
   background-color: #fefefe;
-  padding: $gutter-width*4;
 }
 
 .SectionPanel--blue {
@@ -17,7 +25,7 @@
 }
 
 .SectionPanel__content {
-
+  padding: $gutter-width*4;
 }
 
 .SectionPanel__heading {
@@ -44,4 +52,27 @@
   background-position: center;
   height: 100%;
   width: 100%;
+}
+
+.SectionPanel--text {
+  text-align: left;
+}
+
+.SectionPanel__bullets {
+  display: flex;
+  flex-direction: column;
+  padding-top: $gutter-width;
+  padding-bottom: $gutter-width;
+}
+
+.SectionPanel__bullet {
+  font-size: 16px;
+  margin-bottom: $gutter-width;
+  background-image: url('images/icon-check-green.svg');
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: $gutter-width*2.5;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }

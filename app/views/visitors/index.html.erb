@@ -10,6 +10,7 @@
     } %>
 
 
+<!-- proposition -->
 <section class="Section Section--centered">
 
   <div class="Proposition">
@@ -26,7 +27,7 @@
 
 </div>
 
-
+<!-- projects carousel -->
 <section class="Section Section--gray Section--centered Section--with-padding">
 
   <div class="SectionHeader">
@@ -83,7 +84,7 @@
 
 </section>
 
-
+<!-- approach -->
 <section class="Section Section--centered Section--with-padding">
 
   <div class="SectionHeader">
@@ -118,12 +119,16 @@
 
 </section>
 
-
+<!-- future of teaching and learning -->
 <section class="Section">
 
   <div class="SectionPanels">
 
-    <div class="SectionPanel SectionPanel--color SectionPanel--blue">
+    <div class="SectionPanel SectionPanel--image SectionPanel--right">
+      <div class="SectionPanel__image" style="background-image: url('<%= image_url('visitors/index/stem-teaching.jpg') %>');'"></div>
+    </div>
+
+    <div class="SectionPanel SectionPanel--text SectionPanel--color SectionPanel--blue SectionPanel--left">
 
       <div class="SectionPanel__content">
         <h3 class="SectionPanel__heading"><%= CopyService.home[:panels][:title].gsub(/\n/, '<br>').html_safe %></h3>
@@ -140,15 +145,11 @@
 
     </div>
 
-    <div class="SectionPanel SectionPanel--image">
-      <div class="SectionPanel__image" style="background-image: url('<%= image_url('visitors/index/stem-teaching.jpg') %>');'">dd</div>
-    </div>
-
   </div>
 
 </section>
 
-
+<!-- logos -->
 <section class="Section Section--centered Section--with-padding">
 
   <div class="SectionHeader">
@@ -157,13 +158,20 @@
   </div>
 
   <div class="Section__logos">
-    <a href="" class="Section__logo"><img srcset="<%= image_url('visitors/index/partnerships/fabfoundation.png') %>" style="width: 270px" class="Image Image--lazy" /></a>
-    <a href="" class="Section__logo"><img srcset="<%= image_url('visitors/index/partnerships/chevron.png') %>" style="width: 76px" class="Image Image--lazy" /></a>
-    <a href="" class="Section__logo"><img srcset="<%= image_url('visitors/index/partnerships/gefoundation.png') %>" style="width: 270px" class="Image Image--lazy" /></a>
+    <a href="" class="Section__logo">
+      <img srcset="<%= image_url('visitors/index/partnerships/fabfoundation.png') %>" style="width: 270px" class="Image Image--lazy" />
+    </a>
+    <a href="" class="Section__logo">
+      <img srcset="<%= image_url('visitors/index/partnerships/chevron.png') %>" style="width: 76px" class="Image Image--lazy" />
+    </a>
+    <a href="" class="Section__logo">
+      <img srcset="<%= image_url('visitors/index/partnerships/gefoundation.png') %>" style="width: 270px" class="Image Image--lazy" />
+    </a>
   </div>
 
 </section>
 
+<!-- get involved! -->
 <div class="Banner">
 
   <div class="Banner__content">
