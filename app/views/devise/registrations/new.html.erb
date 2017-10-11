@@ -19,20 +19,11 @@
 
       <%= devise_error_messages! %>
 
-      <div class="FormField">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true %>
-      </div>
+      <%= render 'devise/form_email' %>
 
-      <div class="FormField">
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: "off" %>
-      </div>
+      <%= render 'devise/form_password' %>
 
-      <div class="FormField">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
-      </div>
+      <%= render 'devise/form_password_confirmation' %>
 
       <div class="Form__actions">
         <%= f.submit "Register", class: "Button Button--primary" %>
