@@ -1,10 +1,10 @@
 .SectionHeader {
-  max-width: 1005px;
+  max-width: $content-width;
   margin: 0 auto;
 }
 
 .SectionHeader__main {
-  margin-bottom: $gutter-width;
+  margin-bottom: $gutter-width*2;
 }
 
 .SectionHeader__sub {

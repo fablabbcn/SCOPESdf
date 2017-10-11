@@ -1,5 +1,4 @@
 .Hero {
-  height: 90vh;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -21,12 +20,35 @@
 
 }
 
+.Hero--full {
+  height: 90vh;
+}
+
+.Hero--narrow {
+  height: 60vh;
+}
+
+.Hero--align-left {
+
+}
+
+.Hero--align-center {
+  text-align: center;
+  justify-content: center;
+}
+
 .Hero__content {
-  max-width: 1000px;
   padding-left: $gutter-width*6;
   padding-right: $gutter-width*6;
   z-index: 2;
   color: #fff;
+  max-width: 1000px;
+}
+
+.Hero__subheading {
+  margin-bottom: $gutter-width;
+  font-size: 18px;
+  @include text-medium;
 }
 
 .Hero__primary {

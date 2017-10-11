@@ -22,7 +22,7 @@
 .Section__columns {
   margin: 0 auto;
   display: flex;
-  max-width: 1005px + ($gutter-width*2);
+  max-width: $content-width + ($gutter-width*2);
 }
 
 .Section__logos {
@@ -35,4 +35,20 @@
 .Section__logo {
   margin-left: $gutter-width*2;
   margin-right: $gutter-width*2;
+}
+
+.Section__content {
+  margin: 0 auto;
+  display: flex;
+  max-width: $content-width;
+}
+
+.Section__content--primary {
+  font-size: 20px;
+  margin-bottom: $gutter-width*2;
+}
+
+.Section__content--secondary {
+  font-size: 16px;
+
 }

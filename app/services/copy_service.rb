@@ -4,10 +4,10 @@ class CopyService
     def home
       {
           hero: {
-              first: "Inspire student ingenuity <br> through digital fabrication.",
-              second: "Learning by making is the future",
-              third: "And the future starts today! We’re partnering with educators,<br>makers and fabricators to bring digital fabrication to the classroom.",
-              button: "Join us"
+              primary: "Inspire student ingenuity <br> through digital fabrication.",
+              secondary: "Learning by making is the future",
+              tertiary: "And the future starts today! We’re partnering with educators,<br>makers and fabricators to bring digital fabrication to the classroom.",
+              action: "Join us!"
           },
           proposition: {
               sub: "Here, you can...",
@@ -56,10 +56,25 @@ class CopyService
 
     def about
       {
-          top: {first: "About SCOPES-DF", second: "Teach STEM through digital fabrication projects", third: "Digital fabrication has the potential to transform k-12 education.  However, the technology can be intimidating and the barriers to entry can be many.  Bringing together fabbers, makers and educators creates opportunities to deepen understanding of the “what”, “how” and “why” of STEM disciplines."},
-          issue1: {first: "SCOPES-DF will provide access to engaging, student-centered instruction, as well as to resources for technical and other support."},
-          issue2: {first: "SCOPES-DF will provide a bridge, connecting early-adopting teacher leaders to emerging leaders, through the Community of Practice and resources."},
-          white1: {first: "The Future", second: "Fueled by collaboration and scale, this project has the power to transform STEM learning in diverse educational settings through digital fabrication technologies and practices found in a Fab Lab or Makerspace.", third: "We are building strategic curricular frameworks, professional development resources, and evaluation tools around digital fabrication that can catalyze STEM learning in the classroom.<br><br>This new infrastructure will enable fabbers, makers and educators to collaborate and interact in a Community of Practice and promises to expand STEM learning and teaching in fresh new ways. Each partner in this collaboration comes with an essential, yet distinct, perspective. Together, they can ignite student learning!", fourth:"We can do this by sharing knowledge and practice as a community!  Integrating digital fabrication into student projects and instruction!  Taking full advantage of the expertise of Fab Labs, Makerspaces and pioneering educators across the planet!"},
+          hero: {
+            subheading: "About SCOPES-DF",
+            primary: "Teach STEM through digital fabrication projects",
+            tertiary: "Digital fabrication has the potential to transform k-12 education.  However, the technology can be intimidating and the barriers to entry can be many.  Bringing together fabbers, makers and educators creates opportunities to deepen understanding of the “what”, “how” and “why” of STEM disciplines."
+          },
+
+          callouts: [
+            "SCOPES-DF will provide access to engaging, student-centered instruction, as well as to resources for technical and other support.",
+            "SCOPES-DF will provide a bridge, connecting early-adopting teacher leaders to emerging leaders, through the Community of Practice and resources."
+          ],
+
+          future: {
+            heading: "The Future",
+            primary: "Fueled by collaboration and scale, this project has the power to transform STEM learning in diverse educational settings through digital fabrication technologies and practices found in a Fab Lab or Makerspace.",
+            
+            secondary: "We are building strategic curricular frameworks, professional development resources, and evaluation tools around digital fabrication that can catalyze STEM learning in the classroom. This new infrastructure will enable fabbers, makers and educators to collaborate and interact in a Community of Practice and promises to expand STEM learning and teaching in fresh new ways. Each partner in this collaboration comes with an essential, yet distinct, perspective. Together, they can ignite student learning!
+
+            We can do this by sharing knowledge and practice as a community!  Integrating digital fabrication into student projects and instruction!  Taking full advantage of the expertise of Fab Labs, Makerspaces and pioneering educators across the planet!"
+          },
 
           grey1: {first: "What Is SCOPES-DF?", second: "Scaling a Community of Practice for Education in STEM through Digital Fabrication", third:"SCOPES-DF is the first project of its kind to specifically develop effective pathways and resources for using digital fabrication in STEM education. SCOPES-DF offers educators new models and methods for teaching.  It offers students relevant, engaging, applied learning opportunities."},
           white2: {first: "Support from a Community of Practice", second: "Scaling the Community of Practice gives this approach an outsized and outside reach.", third: "Experts, knowledge, resources and tools, beyond the normal classroom environment, ensure that k-12 learners continue to discover, create, problem-solve, think critically, and learn in powerful, engaging ways. <br><br>Support from a Community of Practice  gives educators increased confidence in tackling STEM projects. Consulting an ever-expanding repository of trusted knowledge and activities, through this website and related resources, empowers educators to learn together and from each other.<br><br>This project is primarily intended to support teachers, students, fabbers and makers. Yet, it is meant to respond to the concerns of anyone who cares about STEM education and wants to find ways to make it accessible and meaningful."},

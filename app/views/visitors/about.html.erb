@@ -1,0 +1,41 @@
+<%= render partial: "components/hero", locals: {
+    align: :center,
+    content_primary: CopyService.about[:hero][:primary].gsub(/\n/, '<br>').html_safe,
+    content_subheading: CopyService.about[:hero][:subheading].gsub(/\n/, '<br>').html_safe,
+    content_tertiary: CopyService.about[:hero][:tertiary].gsub(/\n/, '<br>').html_safe,
+    image_url: image_url('visitors/about/hero.jpg'),
+    size: :narrow,
+    callouts: CopyService.about[:callouts]
+    } %>
+
+
+<div class="Callouts">
+
+  <% CopyService.about[:callouts].each do |callout| %>
+  <div class="Callout">
+
+    <div class="Callout__content">
+      <%= callout.gsub(/\n/, '<br>').html_safe %>
+    </div>
+
+  </div>
+  <% end %>
+
+</div>
+
+
+<section class="Section Section--with-padding">
+
+  <div class="SectionHeader">
+    <h3 class="SectionHeader__main"><%= CopyService.about[:future][:heading].gsub(/\n/, '<br>').html_safe %></h3>
+  </div>
+
+  <div class="Section__content Section__content--primary">
+    <%= CopyService.about[:future][:primary].gsub(/\n/, '<br>').html_safe %>
+  </div>
+
+  <div class="Section__content Section__content--secondary">
+    <%= CopyService.about[:future][:secondary].gsub(/\n/, '<br>').html_safe %>
+  </div>
+
+</section>

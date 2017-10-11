@@ -1,18 +1,13 @@
-<div class="Hero" style="background-image: url('<%= image_url('visitors/index/hero.jpg') %>');">
-
-  <div class="Hero__content">
-
-    <div class="Hero__primary"><%= CopyService.home[:hero][:first].gsub(/\n/, '<br>').html_safe %></div>
-    <div class="Hero__secondary"><%= CopyService.home[:hero][:second].gsub(/\n/, '<br>').html_safe %></div>
-    <div class="Hero__tertiary"><%= CopyService.home[:hero][:third].gsub(/\n/, '<br>').html_safe %></div>
-
-    <div class="Hero__actions">
-      <%= link_to 'Join us!', new_user_registration_path, class: "Button Button--light Button--outline" %>
-    </div>
-
-  </div>
-
-</div>
+<%= render partial: "components/hero", locals: {
+    image_url: image_url('visitors/index/hero.jpg'),
+    content_primary: CopyService.home[:hero][:primary].gsub(/\n/, '<br>').html_safe,
+    content_secondary: CopyService.home[:hero][:secondary].gsub(/\n/, '<br>').html_safe,
+    content_tertiary: CopyService.home[:hero][:tertiary].gsub(/\n/, '<br>').html_safe,
+    actions: [
+      label: CopyService.home[:hero][:action].gsub(/\n/, '<br>').html_safe,
+      url: new_user_registration_path
+    ]
+    } %>
 
 
 <section class="Section Section--centered">

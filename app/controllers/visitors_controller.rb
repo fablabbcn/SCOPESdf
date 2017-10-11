@@ -10,6 +10,14 @@ class VisitorsController < ApplicationController
 
   end
 
+  def about
+
+    # This template features a hero
+    @has_hero = true
+
+  end
+  
+
   def form
     @user = User.first
   end
@@ -41,9 +49,7 @@ class VisitorsController < ApplicationController
     render :json => {status: l.outcome_files.inspect}, :status => 200
   end
 
-  def about
 
-  end
 
   def enter
     @step = params[:step] || 0
