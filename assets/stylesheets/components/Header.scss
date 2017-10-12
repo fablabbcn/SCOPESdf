@@ -1,0 +1,45 @@
+.Header {
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  padding: $gutter-width;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  will-change: transform;
+  transition: all .24s ease-in-out;
+  border-top: 8px solid $color-blue;
+}
+
+.Header--visibility-pinned {
+  transform: translateY(0%);
+}
+.Header--visibility-unpinned {
+  transform: translateY(-100%);
+}
+
+.Header__content {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: $grid-width;
+}
+
+.Header--white {
+  background-color: #fff;
+  border-color: $color-blue;
+}
+
+.Header--transparent {
+  background-color: transparent;
+  border-color: rgba(#fff, 0.1);
+
+  &.Header--visibility-pinned.Header--visibility-not-top {
+    background-color: rgba(#fff, 0.1);
+  }
+
+}

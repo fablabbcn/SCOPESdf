@@ -1,0 +1,24 @@
+<div class="SectionPanels">
+
+  <div class="SectionPanel SectionPanel--image SectionPanel--<%= image_align %>">
+    <div class="SectionPanel__image" style="background-image: url('<%= image_url %>');'"></div>
+  </div>
+
+  <div class="SectionPanel SectionPanel--text SectionPanel--<%= image_align == :left ? :right : :left %>">
+
+    <div class="SectionPanel__content">
+      <h3 class="SectionPanel__heading"><%= heading %></h3>
+      <% if defined? bullets %>
+      <ul class="SectionPanel__bullets">
+        <% bullets.each do |bullet| %>
+        <li class="SectionPanel__bullet">
+          <%= bullet.gsub(/\n/, '<br>').html_safe %>
+        </li>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>

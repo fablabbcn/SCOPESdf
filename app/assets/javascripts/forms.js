@@ -54,7 +54,7 @@ window.Scopes.lesson = {
         }
       });
     }
-  }  
+  }
 }
 
 var fileUploadErrors = {
@@ -297,7 +297,7 @@ $(document).on('turbolinks:load', function() {
         dropZone: $('.dropzone'),
         url:$('#lesson_form_1 .image-uploader-wrapper').data('endpoint')
     });
-    
+
 
     $('#lesson_4').fileupload({
         autoUpload:true,

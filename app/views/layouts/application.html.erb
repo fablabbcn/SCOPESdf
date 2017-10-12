@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+
+	<%= render partial: 'layouts/head' %>
+
+	<body>
+
+		<%= render partial: 'layouts/flash' if flash.present? %>
+
+		<!-- container -->
+		<div class="Container <%= @has_hero ? 'Container--has-hero' : nil %>">
+
+				<!-- header -->
+				<header class="Header Header--white" data-turbolinks-permanent>
+
+					<div class="Header__content">
+
+						<%= link_to "<span>ScopesDF</span>".html_safe, root_path, class: "Logo" %>
+
+						<form class="Search">
+							<input type="search" class="Search__input" />
+						</form>
+
+						<%= render 'components/navigation' %>
+
+						<div class="Toolbar">
+							<%= active_link_to 'Log in', new_user_session_path, class: "Toolbar__tool Toolbar__tool--login Button" %>
+							<%= active_link_to 'Register', new_user_registration_path, class: "Toolbar__tool Toolbar__tool--register Button" %>
+						</div>
+
+					</div>
+
+				</header>
+				<!-- .header -->
+
+				<%= yield %>
+
+		</div>
+		<!-- .container -->
+
+		<!-- footer -->
+		<footer class="Footer">
+
+			<div class="Footer__content">
+
+				<div class="Footer__logo-statement">
+
+					<a href="#" class="Footer__logo Logo"><span>ScopesDF</span></a>
+
+					<div class="Footer__statement">
+						Connect & Share lesson plans<br />
+						with STEM educators everywhere.
+					</div>
+
+				</div>
+
+				<div class="Footer__navigation">
+
+					<%= render 'components/navigation' %>
+
+				</div>
+
+				<div class="Footer__social">
+
+					<div class="SocialLinks">
+						<a href="#" class="SocialLinks__link SocialLinks__link--slack"><span>Slack</span></a>
+						<a href="#" class="SocialLinks__link SocialLinks__link--twitter"><span>Twitter</span></a>
+						<a href="#" class="SocialLinks__link SocialLinks__link--facebook"><span>Facebook</span></a>
+					</div>
+
+				</div>
+
+			</div>
+
+		</footer>
+		<!-- .footer -->
+
+	</body>
+
+</html>

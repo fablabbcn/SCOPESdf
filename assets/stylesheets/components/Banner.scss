@@ -1,0 +1,44 @@
+.Banner {
+  background-color: $color-highlight-primary;
+  color: #fff;
+  padding-bottom: $gutter-width*4;
+  padding-left: $gutter-width*4;
+  padding-right: $gutter-width*4;
+  padding-top: $gutter-width*4;
+}
+
+.Banner__content {
+  max-width: $grid-width;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+
+  a {
+    color: #fff;
+    @include text-medium;
+  }
+
+}
+
+.Banner__primary {
+  width: (100%/3)*2;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding-right: $gutter-width*8;
+}
+
+.Banner__secondary {
+  width: (100%/3);
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.Banner__title {
+  font-size: 24px;
+  @include text-medium;
+  margin-bottom: $gutter-width;
+}
+
+.Banner__description {
+  font-size: 20px;
+}

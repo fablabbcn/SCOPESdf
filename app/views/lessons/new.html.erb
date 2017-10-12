@@ -1,0 +1,44 @@
+<div class="SubHeader">
+
+  <div class="SubHeader__content">
+
+    <h1 class="SubHeader__heading"><%= @lesson_obj.name.present? ? @lesson_obj.name : "New lesson" %></h1>
+
+    <div class="SubHeader__tools">
+      <%= active_link_to "<span>Cancel</span>".html_safe, lesson_delete_path(id: @lesson_obj.id), class: "SubHeader__tool Button Button--small Button--light Button--outline Button--icon Button--icon--trash Button--no-label" %>
+      <%= active_link_to "Save as Draft", '#', class: "SubHeader__tool Button Button--small Button--light Button--icon Button--icon--document Button--outline Button--icon-document" %>
+      <%= active_link_to "Publish Lessson", lesson_publish_path(id: @lesson_obj.id), class: "SubHeader__tool Button Button--small Button--icon Button--icon Button--icon--locked Button--dark Button--disabled" %>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- sub navigation -->
+<div class="SubNavigation">
+
+  <div class="SubNavigation__content">
+
+    <div class="SubNavigation__items">
+      <%= active_link_to "Overview", lesson_new_path(id: @lesson_obj.id, form_step:1), class: "SubNavigation__item", class_active: "SubNavigation__item--active", active: @form_step == 1 %>
+      <%= active_link_to "Standards", lesson_new_path(id: @lesson_obj.id, form_step:2), class: "SubNavigation__item", class_active: "SubNavigation__item--active", active: @form_step == 2 %>
+      <%= active_link_to "Details", lesson_new_path(id: @lesson_obj.id, form_step:3), class: "SubNavigation__item", class_active: "SubNavigation__item--active", active: @form_step == 3 %>
+      <%= active_link_to "Instructions", lesson_new_path(id: @lesson_obj.id, form_step:4), class: "SubNavigation__item", class_active: "SubNavigation__item--active", active: @form_step == 4 %>
+      <%= active_link_to "Outcomes", lesson_new_path(id: @lesson_obj.id, form_step:5), class: "SubNavigation__item", class_active: "SubNavigation__item--active", active: @form_step == 5 %>
+    </div>
+
+    <div class="SubNavigation__track">
+      <div class="SubNavigation__status">
+        Essential information missing
+      </div>
+      <div class="Track">
+        <div class="Track__progress"><span>10%</span></div>
+        <div class="Track__base"></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<%= render partial: "lessons/new/step#{@form_step}" %>

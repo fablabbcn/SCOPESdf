@@ -1,0 +1,48 @@
+.SubNavigation {
+  background-color: #F9FAFB;
+  padding-left: $gutter-width/2;
+  padding-right: $gutter-width/2;
+
+}
+
+.SubNavigation__content {
+  width: 100%;
+  max-width: $grid-width;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.SubNavigation__items {
+  display: flex;
+  max-width: $grid-width;
+}
+
+.SubNavigation__item {
+  padding-top: $gutter-width;
+  padding-bottom: $gutter-width;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+  border-bottom: 4px solid transparent;
+  margin-right: $gutter-width/2;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  padding-left: $gutter-width*1.75;
+  background-image: url('images/icon-ellipsis-mid.svg');
+}
+
+.SubNavigation__item--active {
+  border-bottom: 4px solid $color-highlight-primary;
+  background-image: url('images/icon-edit-highlight.svg');
+}
+
+.SubNavigation__track {
+  margin-left: auto;
+  height: 36px;
+}
+
+.SubNavigation__status {
+  font-size: 14px;
+  @include text-medium;
+  margin-bottom: 4px;
+}

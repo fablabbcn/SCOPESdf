@@ -1,0 +1,77 @@
+.Form {
+  padding-top: $gutter-width*3;
+}
+
+.Form__actions {
+  padding-top: $gutter-width;
+}
+
+.Form__links {
+  display: flex;
+}
+
+.Form__link {
+  color: $color-gray-mid;
+  margin-right: $gutter-width/2;
+}
+
+.Form__fieldset {
+  border-bottom: 1px solid $color-border;
+  border: 0;
+  display: block;
+  margin-bottom: $gutter-width*1.5;
+  margin: 0 auto;
+  max-width: $grid-width;
+  padding-bottom: $gutter-width*2;
+  padding-top: $gutter-width*2;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+  max-width: $form-width;
+
+  legend {
+    @extend h3;
+  }
+
+}
+
+.Form__fieldset--with-border {
+  border-bottom: 1px solid $color-input-border;
+  margin-bottom: $gutter-width*2;
+}
+
+.Form__footer {
+  background-color: $color-gray-light;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+}
+
+.Form__footer__content {
+  margin: 0 auto;
+  max-width: $grid-width;
+  padding-bottom: $gutter-width*3;
+  padding-top: $gutter-width*3;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.Form__footer__heading {
+  font-size: 24px;
+  @include text-medium;
+  width: 50%;
+}
+
+.Form__footer__actions {
+  display: flex;
+  width: 100%;
+}
+
+.Form__footer__action {
+  &:last-child {
+    margin-left: auto;
+  }
+}
+
+.Form__footer__actions--right {
+  margin-left: auto;
+}

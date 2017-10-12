@@ -1,0 +1,33 @@
+.Footer {
+  background-color: #fafafa;
+  padding-top: $gutter-width*4;
+  padding-bottom: $gutter-width*4;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+}
+
+.Footer__content {
+  max-width: $grid-width;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.Footer__logo-statement {
+  display: flex;
+  flex-direction: column;
+}
+
+.Footer__logo {
+  margin-bottom: $gutter-width*1.5;
+}
+
+.Footer__statement {
+  opacity: .31;
+  font-size: 18px;
+}
+
+.Footer__navigation {
+  margin-left: auto;
+  font-size: 16px;
+}

@@ -1,15 +1,24 @@
 Rails.application.routes.draw do
+
   root to: 'visitors#index'
+
   devise_for :users, :controllers => {sessions: 'sessions', registrations: 'registrations'} # CSRF_forgery makes this fail :3
 
   resources :users
 
+  # DH: We *could* just structure lessons steps, and standards using resources, like this
+  resources :lessons do
+    resources :steps
+    resources :standards
+  end
+  # --
+
+  # -- Lessons
 
   get  'lessons/new' => 'lessons#new', as: :lesson_new
   # post 'lessons'            => 'lessons#create'#, as: :lesson_create
   post 'lessons/new'            => 'lessons#new', as: :lesson_create
   # the above line is strictly used for the weekend of the 13/7/2017 for submit on new page loads
-
 
   get 'lessons/test'  => 'lessons#test', as: :lesson_test
 
@@ -30,38 +39,31 @@ Rails.application.routes.draw do
   post 'lessons/:id/:step/file/:attr', to: 'lessons#step_file_upload', as: :step_file
   delete 'lessons/:id/:step/file', to: 'lessons#step_remove_file_upload', as: :delete_step_file
 
-
-
   get 'lessons/:id'        => 'lessons_public#show', as: :lesson_view
   get 'list/lessons'  => 'lessons_public#list', as: :lesson_list
-
-
-
-  get 'file_form'         => 'visitors#form'
-  post 'file_upload'      => 'visitors#file_form_upload',  as: :lesson_file_test
-
-
-  get 'enter' =>  'visitors#enter', as: :enter
-  post 'register' => 'visitors#register_interest', as: :register
-
-  get 'about' => 'visitors#about', as: :about
-  get 'policy' => 'visitors#policy', as: :policy
-  get 'get_involved' => 'visitors#get_involved', as: :involved
-
-
-  post 'users/affiliate' => 'users#affiliate_organization_id'
-
-
-  get 'api/users/exists'   =>  'secured_api#user_presence'
-
-  get 'search/:entity', :to => 'search#main', :as => :search
-
-
-
-
 
   #~~~~ Steps Ajax
   put     'lessons/:id/steps' => 'lessons#set_steps'
   delete  'lessons/:id/steps' => 'lessons#remove_step'
   #~~~~~~~~~~
+
+  # -- .Lessons
+
+  get 'file_form'         => 'visitors#form'
+  post 'file_upload'      => 'visitors#file_form_upload',  as: :lesson_file_test
+
+  post 'register' => 'visitors#register_interest', as: :register
+
+  post 'users/affiliate' => 'users#affiliate_organization_id'
+
+  get 'api/users/exists'   =>  'secured_api#user_presence'
+
+  get 'search/:entity', :to => 'search#main', :as => :search
+
+  # Static pages
+  get 'enter' =>  'visitors#enter', as: :enter
+  get 'about' => 'visitors#about', as: :about
+  get 'policy' => 'visitors#policy', as: :policy
+  get 'get_involved' => 'visitors#get_involved', as: :involved
+
 end

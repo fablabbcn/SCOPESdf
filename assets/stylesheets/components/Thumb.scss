@@ -1,0 +1,33 @@
+.Thumb {
+  width: 270px;
+  text-align: left;
+  border: 1px solid #E2E2E2;
+  border-radius: 2px;
+}
+
+.Thumb__image {
+  display: block;
+  width: 270px;
+  height: 202px;
+}
+
+.Thumb__content {
+  padding: $gutter-width;
+}
+
+.Thumb__title {
+  display: block;
+  font-size: 16px;
+  @include text-medium;
+  margin-bottom: $gutter-width/2;
+}
+
+.Thumb__description {
+  font-size: 14px;
+  color: $color-gray-verydark;
+}
+
+.Thumb__footer {
+  padding: $gutter-width;
+  padding-top: 0;
+}

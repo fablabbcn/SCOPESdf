@@ -1,0 +1,25 @@
+.SubHeader {
+  background-color: $color-highlight-primary;
+  padding: $gutter-width;
+}
+
+.SubHeader__content {
+  margin: 0 auto;
+  max-width: $grid-width;
+  align-items: center;
+  display: flex;
+}
+
+.SubHeader__heading {
+  @extend h3;
+  color: #fff;
+}
+
+.SubHeader__tools {
+  margin-left: auto;
+  display: flex;
+}
+
+.SubHeader__tool {
+  margin-left: $gutter-width/2;
+}

@@ -1,0 +1,25 @@
+<div class="Banner">
+
+  <div class="Banner__content">
+
+    <div class="Banner__primary">
+
+      <div class="Banner__title">
+        <%= title %>
+      </div>
+
+      <div class="Banner__description">
+        <%= description %>
+      </div>
+
+    </div>
+
+    <% if defined? action %>
+    <div class="Banner__secondary">
+      <a href="<%= action[:path] %>" class="Banner__action Button Button--large"><%= action[:label] %></a>
+    </div>
+    <% end %>
+
+  </div>
+
+</div>

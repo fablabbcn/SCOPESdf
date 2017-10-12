@@ -1,0 +1,8 @@
+<nav class="Navigation">
+  <ul class="Navigation__items">
+    <li class="Navigation__item"><%= active_link_to 'Lessons', lesson_list_path, class: "Navigation__link", class_active: "Navigation__link--active" %></li>
+    <li class="Navigation__item"><%= active_link_to 'People', involved_path, class: "Navigation__link", class_active: "Navigation__link--active" %></li>
+    <li class="Navigation__item"><%= active_link_to 'Places', involved_path, class: "Navigation__link", class_active: "Navigation__link--active" %></li>
+    <li class="Navigation__item"><%= active_link_to 'About', about_path, class: "Navigation__link Navigation__link--sub", class_active: "Navigation__link--active" %></li>
+  </ul>
+</nav>

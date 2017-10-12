@@ -117,8 +117,8 @@
                 .field-wrapper
                   #lesson_1.image-uploader-wrapper{ data: { endpoint: "#{lesson_file_path(id: @lesson_obj.id, attr:'assessment_criteria_files')}" } }
                     .dropzone
-                      %p 
-                        Drag & drop files here - or click to browse 
+                      %p
+                        Drag & drop files here - or click to browse
                         %br .jpg, .png, .pdf
                   = file_field_tag 'assessment_criteria_files[]', multiple: true
 

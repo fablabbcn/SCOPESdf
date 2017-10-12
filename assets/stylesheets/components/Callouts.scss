@@ -1,0 +1,23 @@
+.Callouts {
+  max-width: $content-width + ($gutter-width*8);
+  margin: 0 auto;
+  display: flex;
+  margin-top: -30px;
+  position: relative;
+
+}
+
+.Callout {
+  padding-left: 15px;
+  padding-right: 15px;
+  flex-grow: 0;
+
+}
+
+.Callout__content {
+  background-color: #fff;
+  padding: $gutter-width*2;
+  font-size: 20px;
+  box-shadow: 0 0 80px 0 rgba(182,182,182,0.37);
+  border-radius: 2px;
+}

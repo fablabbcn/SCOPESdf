@@ -1,0 +1,16 @@
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+
+<title>ScopesDF<%= @title.present? ? ' — ' + @title : nil %></title>
+
+<!-- stylesheet -->
+<link href="/assets/stylesheets/<%= fingerprinted_asset('application') %>.css" rel="stylesheet">
+
+<!-- javascript -->
+<script defer src="/assets/javascripts/<%= fingerprinted_asset('application') %>.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<%= csrf_meta_tags %>
+
+<meta name="turbolinks-cache-control" content="no-preview">

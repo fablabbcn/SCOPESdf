@@ -1,0 +1,98 @@
+// --------------------------  global typography  -------------------------- //
+
+body {
+	font-family: $font-family;
+	font-feature-settings: "liga", "kern", "lnum";
+	backface-visibility: hidden;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	line-height: 1.4;
+	color: $color-main;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+em {
+	font-style: italic;
+}
+
+a {
+	color: $color-main;
+	text-decoration: none;
+	transition: color .12s $default-easing, border-color .12s $default-easing;
+}
+
+p {
+	margin: 0;
+	margin-bottom: 20px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	strong,
+	b {
+		color: $color-main;
+		font-weight: normal;
+	}
+
+	i,
+	em {
+
+	}
+
+	a {
+		border-bottom: 1px solid $color-border;
+		color: $color-main;
+
+		&:hover {
+			color: $color-highlight-secondary;
+			border-color: rgba($color-highlight-secondary, 0.25);
+		}
+
+	}
+
+	iframe {
+		display: block;
+		max-width: 100%;
+	}
+
+}
+
+ul,ol {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+// --------------------------  headings  -------------------------- //
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	font-size: inherit;
+	display: block;
+}
+
+h1 {
+	font-size: 48px;
+	line-height: 1.2;
+	color: $color-highlight-secondary;
+	font-weight: 600;
+}
+
+h2 {
+	font-size: 32px;
+	font-weight: 600;
+}
+
+h3 {
+	font-size: 24px;
+	@include text-medium;
+}
+
+h4 {
+	font-size: 18px;
+}

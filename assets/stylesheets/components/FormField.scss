@@ -1,0 +1,164 @@
+.FormField {
+  display: flex;
+  padding-bottom: $gutter-width;
+}
+
+.FormField--vertical {
+  flex-direction: column;
+}
+
+.FormField--with-border{
+  border-bottom: 1px solid $color-border;
+  margin-bottom: $gutter-width*2;
+  padding-bottom: $gutter-width*2;
+}
+
+.FormField--checkbox {
+  flex-direction: row;
+
+  input {
+    position: relative;
+    top: 2px;
+  }
+
+  label {
+    margin-left: $gutter-width/2;
+  }
+
+}
+
+.FormField__info {
+  width: (20%);
+  padding-top: 13px;
+
+  .FormField--vertical & {
+    width: 100%;
+    margin-bottom: 6px;
+  }
+
+}
+
+.FormField__label {
+  font-size: 18px;
+  @include text-medium;
+  margin-bottom: 4px;
+
+  .FormField--required & {
+    &:after {
+      content: "*";
+      color: $color-highlight-primary;
+      margin-left: 4px;
+    }
+  }
+
+}
+
+.FormField__hint {
+  font-size: 14px;
+  color: $color-gray-mid;
+  padding-right: $gutter-width;
+}
+
+.FormField__instruction {
+  font-size: 14px;
+  color: $color-gray-mid;
+  margin-left: auto;
+  margin-top: 4px;
+}
+
+.FormField__input {
+  width: 80%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .FormField--vertical & {
+    width: 100%;
+  }
+
+}
+
+// styles for multiple input parts
+
+.FormField__multipleinput {
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.FormField__multipleinput__handle {
+  background-image: url('images/icon-sort-dark.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: move;
+  height: 48px;
+  position: absolute;
+
+  right: $gutter-width*1.5;
+  top: 0;
+  width: 48px;
+  opacity: 0.25;
+
+  span {
+    display: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+}
+
+.FormField__multipleinput__remove {
+  background-image: url('images/icon-remove-dark.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  height: 48px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 48px;
+  opacity: 0.25;
+
+  span {
+    display: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+}
+
+.FormField__radiobutton-groups {
+  display: flex;
+  flex-direction: row;
+}
+
+
+// character count for text areas
+
+.FormField__characters {
+  @include text-medium;
+  font-size: 14px;
+  margin-left: auto;
+  margin-top: 4px;
+}
+
+.FormField__characters__max {
+  color: $color-gray-mid;
+}
+
+.FormField__errors {
+  padding-right: $gutter-width/4;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  li {
+    color: $color-red;
+    background-repeat: no-repeat;
+    background-image: url('images/icon-alert-red.svg');
+    padding-left: 27px;
+    min-height: 20px;
+    background-position: left center;
+  }
+}

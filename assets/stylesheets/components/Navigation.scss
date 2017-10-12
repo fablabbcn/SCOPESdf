@@ -1,0 +1,40 @@
+.Navigation {
+
+}
+
+.Navigation__items {
+  display: flex;
+  flex-direction: row;
+  margin-right: $gutter-width;
+  margin-left: $gutter-width;
+}
+
+.Navigation__item {
+  display: flex;
+}
+
+.Navigation__link {
+  margin-left: $gutter-width - 5px;
+  margin-right: $gutter-width - 5px;
+  padding-right: $gutter-width/4;
+  padding-left: $gutter-width/4;
+  padding-top: 10px;
+  padding-bottom: 4px;
+  font-size: 16px;
+
+  .Header--transparent & {
+    color: #fff;
+  }
+
+}
+
+.Navigation__link--sub {
+  opacity: 0.5;
+  &.Navigation__link--active {
+    opacity: 1;
+  }
+}
+
+.Navigation__link--active {
+  border-bottom: 4px solid $color-highlight-primary;
+}

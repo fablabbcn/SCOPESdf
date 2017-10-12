@@ -1,0 +1,113 @@
+<%= render partial: "components/hero", locals: {
+    align: :center,
+    content_primary: CopyService.about[:hero][:primary].gsub(/\n/, '<br>').html_safe,
+    content_subheading: CopyService.about[:hero][:subheading].gsub(/\n/, '<br>').html_safe,
+    content_tertiary: CopyService.about[:hero][:tertiary].gsub(/\n/, '<br>').html_safe,
+    image_url: image_url('visitors/about/hero.jpg'),
+    size: :narrow,
+    callouts: CopyService.about[:callouts]
+    } %>
+
+
+<!-- callouts -->
+<%= render partial: "components/callouts", locals: {
+  callouts: CopyService.about[:callouts]
+  } %>
+
+<!-- the future -->
+<section class="Section Section--with-padding">
+
+  <div class="SectionHeader">
+    <h3 class="SectionHeader__main"><%= CopyService.about[:future][:heading].gsub(/\n/, '<br>').html_safe %></h3>
+  </div>
+
+  <div class="Section__content Section__content--primary">
+    <%= CopyService.about[:future][:primary].gsub(/\n/, '<br>').html_safe %>
+  </div>
+
+  <div class="Section__content Section__content--secondary">
+    <%= CopyService.about[:future][:secondary].gsub(/\n/, '<br>').html_safe %>
+  </div>
+
+</section>
+
+<!-- what is scopes? -->
+<section class="Section">
+
+  <div class="SectionPanels">
+
+    <div class="SectionPanel SectionPanel--image SectionPanel--left">
+      <div class="SectionPanel__image" style="background-image: url('<%= image_url('visitors/about/bring-together.jpg') %>');'">dd</div>
+    </div>
+
+    <div class="SectionPanel SectionPanel--text SectionPanel--right">
+
+      <div class="SectionPanel__content">
+        <h3 class="SectionPanel__heading"><%= CopyService.about[:whatisscopes][:title].gsub(/\n/, '<br>').html_safe %></h3>
+        <div class="SectionPanel__sub">
+          <%= CopyService.about[:whatisscopes][:sub].gsub(/\n/, '<br>').html_safe %>
+        </div>
+        <div class="SectionPanel__description">
+          <%= CopyService.about[:whatisscopes][:description].gsub(/\n/, '<br>').html_safe %>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- support from a community -->
+<section class="Section Section--with-padding Section--with-border">
+
+  <div class="SectionHeader">
+    <h3 class="SectionHeader__main"><%= CopyService.about[:support][:heading].gsub(/\n/, '<br>').html_safe %></h3>
+  </div>
+
+  <div class="Section__content Section__content--primary">
+    <%= CopyService.about[:support][:primary].gsub(/\n/, '<br>').html_safe %>
+  </div>
+
+  <div class="Section__content Section__content--secondary">
+    <%= CopyService.about[:support][:secondary].gsub(/\n/, '<br>').html_safe %>
+  </div>
+
+</section>
+
+<!-- benefit and contribute -->
+<section class="Section Section--centered">
+
+  <div class="SectionHeader SectionHeader--with-padding">
+    <h3 class="SectionHeader__main"><%= CopyService.about[:benefitcontribute][:heading].gsub(/\n/, '<br>').html_safe %></h3>
+    <div class="SectionHeader__sub"><%= CopyService.about[:benefitcontribute][:sub].gsub(/\n/, '<br>').html_safe %></div>
+  </div>
+
+  <%= render partial: "components/section_panels", locals: {
+    image_url: image_url('visitors/about/stem-teachers.jpg'),
+    image_align: :left,
+    heading: CopyService.about[:benefitcontribute_panels_1][:heading].gsub(/\n/, '<br>').html_safe,
+    bullets: CopyService.about[:benefitcontribute_panels_1][:bullets]
+    } %>
+
+  <%= render partial: "components/section_panels", locals: {
+    image_url: image_url('visitors/about/makers-fabbers.jpg'),
+    image_align: :right,
+    heading: CopyService.about[:benefitcontribute_panels_2][:heading].gsub(/\n/, '<br>').html_safe,
+    bullets: CopyService.about[:benefitcontribute_panels_2][:bullets]
+    } %>
+
+  <%= render partial: "components/section_panels", locals: {
+    image_url: image_url('visitors/about/students-schools.jpg'),
+    image_align: :left,
+    heading: CopyService.about[:benefitcontribute_panels_3][:heading].gsub(/\n/, '<br>').html_safe,
+    bullets: CopyService.about[:benefitcontribute_panels_3][:bullets]
+    } %>
+
+</section>
+
+<!-- join us -->
+<%= render partial: 'components/banner', locals: {
+  description: CopyService.about[:banner][:description].gsub(/\n/, '<br>').html_safe,
+  title: CopyService.about[:banner][:title].gsub(/\n/, '<br>').html_safe,
+  } %>

@@ -1,0 +1,35 @@
+$choices-font-size-lg: 14px;
+$choices-font-size-md: 14px;
+$choices-font-size-sm: 14px;
+
+$choices-button-icon-path: "../images/choices";
+$choices-guttering: $gutter-width;
+$choices-border-radius: 2px;
+$choices-bg-color: #fff;
+$choices-text-color: $color-main;
+$choices-keyline-color: $color-input-border;
+$choices-primary-color: $color-highlight-primary;
+$choices-border-radius-item: 2px;
+
+@import "~choices.js/assets/styles/scss/choices";
+
+
+.choices__input {
+  padding: 15px;
+  min-width: 150px;
+}
+
+.choices__list--multiple .choices__item {
+  border-color: $color-highlight-primary;
+  padding: 12px 15px;
+}
+
+.choices[data-type*=select-multiple] .choices__button, .choices[data-type*=text] .choices__button {
+  background-image: url('images/icon-remove-light.svg');
+  background-size: 14px;
+	width: 14px;
+  height: 14px;
+  background-position: right 10px center;
+  border-left: 0;
+  padding-left: 30px;
+}

@@ -1,0 +1,182 @@
+<%= render partial: "components/hero", locals: {
+    image_url: image_url('visitors/index/hero.jpg'),
+    content_primary: CopyService.home[:hero][:primary].gsub(/\n/, '<br>').html_safe,
+    content_secondary: CopyService.home[:hero][:secondary].gsub(/\n/, '<br>').html_safe,
+    content_tertiary: CopyService.home[:hero][:tertiary].gsub(/\n/, '<br>').html_safe,
+    actions: [
+      label: CopyService.home[:hero][:action].gsub(/\n/, '<br>').html_safe,
+      url: new_user_registration_path
+    ]
+    } %>
+
+
+<!-- proposition -->
+<section class="Section Section--centered">
+
+  <div class="Proposition">
+
+    <div class="Proposition__sub">
+      <%= CopyService.home[:proposition][:sub].gsub(/\n/, '<br>').html_safe %>
+    </div>
+
+    <div class="Proposition__main">
+      <%= CopyService.home[:proposition][:main].gsub(/\n/, '<br>').html_safe %>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- projects carousel -->
+<section class="Section Section--gray Section--centered Section--with-padding">
+
+  <div class="SectionHeader">
+    <h3 class="SectionHeader__main"><%= CopyService.home[:projects][:heading].gsub(/\n/, '<br>').html_safe %></h3>
+    <div class="SectionHeader__sub"><%= CopyService.home[:projects][:sub].gsub(/\n/, '<br>').html_safe %></div>
+  </div>
+
+  <div class="Carousel">
+
+    <div class="Carousel__cells">
+
+      <% 12.times do |i| %>
+      <div class="Carousel__cell">
+
+        <div class="Thumb">
+
+          <a href="#" class="Thumb__image">
+            <img src="https://unsplash.it/270/202?image=0" srcset="https://unsplash.it/270/202?image=0 1x, https://unsplash.it/540/404?image=0 2x" class="Image Image--lazy" />
+          </a>
+
+          <div class="Thumb__content">
+
+            <a href="#" class="Thumb__title">Title <%= i %></a>
+
+            <div class="Thumb__description">
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+            </div>
+
+          </div>
+
+          <div class="Thumb__footer">
+            <a href="#" class="UserBadge UserBadge--small">
+              <img src="" srcset="https://pbs.twimg.com/profile_images/476990389392777217/HilNvfjz_400x400.jpeg" class="UserBadge__avatar Image Image--lazy" />
+              <div class="UserBadge__info">
+                <div class="UserBadge__name">Daniel Howells</div>
+                <div class="UserBadge__role">Director</div>
+                <div class="UserBadge__organisation">Howells—Studio</div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+      <% end %>
+
+    </div>
+
+  </div>
+
+  <div class="Section__actions">
+    <%= link_to CopyService.home[:projects][:action].gsub(/\n/, '<br>').html_safe, lesson_list_path, class: "Button Button--secondary" %>
+  </div>
+
+</section>
+
+<!-- approach -->
+<section class="Section Section--centered Section--with-padding">
+
+  <div class="SectionHeader">
+    <h2 class="SectionHeader__main"><%= CopyService.home[:approach][:heading].gsub(/\n/, '<br>').html_safe %></h2>
+  </div>
+
+  <div class="Section__columns">
+
+    <% CopyService.home[:approach][:columns].each_with_index do |column, i| %>
+    <div class="SectionColumn">
+
+      <div class="SectionColumn__image">
+        <img srcset="<%= image_url("visitors/index/approach/#{i+1}.svg") %>" class="Image Image--lazy" />
+      </div>
+
+      <h4 class="SectionColumn__title">
+        <%= column[:title] %>
+      </h4>
+
+      <div class="SectionColumn__description">
+        <%= column[:description] %>
+      </div>
+
+    </div>
+    <% end %>
+
+  </div>
+
+  <div class="Section__actions">
+    <%= link_to CopyService.home[:approach][:action].gsub(/\n/, '<br>').html_safe, lesson_list_path, class: "Button Button--secondary" %>
+  </div>
+
+</section>
+
+<!-- future of teaching and learning -->
+<section class="Section">
+
+  <div class="SectionPanels">
+
+    <div class="SectionPanel SectionPanel--image SectionPanel--right">
+      <div class="SectionPanel__image" style="background-image: url('<%= image_url('visitors/index/stem-teaching.jpg') %>');'"></div>
+    </div>
+
+    <div class="SectionPanel SectionPanel--text SectionPanel--color SectionPanel--blue SectionPanel--left">
+
+      <div class="SectionPanel__content">
+        <h3 class="SectionPanel__heading"><%= CopyService.home[:panels][:title].gsub(/\n/, '<br>').html_safe %></h3>
+        <div class="SectionPanel__sub">
+          <%= CopyService.home[:panels][:sub].gsub(/\n/, '<br>').html_safe %>
+        </div>
+        <div class="SectionPanel__description">
+          <%= CopyService.home[:panels][:description].gsub(/\n/, '<br>').html_safe %>
+        </div>
+        <div class="SectionPanel__actions">
+          <%= link_to CopyService.home[:panels][:action].gsub(/\n/, '<br>').html_safe, lesson_list_path, class: "Button Button--light Button--outline " %>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- logos -->
+<section class="Section Section--centered Section--with-padding">
+
+  <div class="SectionHeader">
+    <h3 class="SectionHeader__main"><%= CopyService.home[:partnership][:heading].gsub(/\n/, '<br>').html_safe %></h3>
+    <div class="SectionHeader__sub"><%= CopyService.home[:partnership][:sub].gsub(/\n/, '<br>').html_safe %></div>
+  </div>
+
+  <div class="Section__logos">
+    <a href="" class="Section__logo">
+      <img srcset="<%= image_url('visitors/index/partnerships/fabfoundation.png') %>" style="width: 270px" class="Image Image--lazy" />
+    </a>
+    <a href="" class="Section__logo">
+      <img srcset="<%= image_url('visitors/index/partnerships/chevron.png') %>" style="width: 76px" class="Image Image--lazy" />
+    </a>
+    <a href="" class="Section__logo">
+      <img srcset="<%= image_url('visitors/index/partnerships/gefoundation.png') %>" style="width: 270px" class="Image Image--lazy" />
+    </a>
+  </div>
+
+</section>
+
+<!-- get involved! -->
+<%= render partial: 'components/banner', locals: {
+  action: {
+    label: CopyService.home[:banner][:action].gsub(/\n/, '<br>').html_safe,
+    path: new_user_registration_path,
+  },
+  description: CopyService.home[:banner][:description].gsub(/\n/, '<br>').html_safe,
+  title: CopyService.home[:banner][:title].gsub(/\n/, '<br>').html_safe,
+  } %>

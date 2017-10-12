@@ -1,0 +1,15 @@
+<% flash.each do |name, msg| %>
+
+  <% if msg.is_a?(String) %>
+  <div class="Alert Alert--<%= name.to_s == 'notice' ? 'success' : 'danger' %>">
+
+    <button class="Alert__close" aria-hidden></button>
+
+    <div class="Alert__message">
+      <%= msg %>
+    </div>
+
+  </div>
+  <% end %>
+
+<% end %>

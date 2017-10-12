@@ -1,0 +1,77 @@
+.StepList {
+  padding-top: $gutter-width*3;
+}
+
+.StepList__heading {
+  margin-bottom: $gutter-width;
+  max-width: $grid-width;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+}
+
+.StepList__steps {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid $color-border;
+}
+
+.StepList__step {
+
+
+  &:nth-child(odd) {
+    background-color: $color-gray-verylight;
+  }
+
+}
+
+.StepList__content {
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+  max-width: $grid-width;
+  display: flex;
+  padding-top: $gutter-width;
+  padding-bottom: $gutter-width;
+  align-items: center;
+}
+
+.StepList__step__number {
+  font-size: 16px;
+  @include text-medium;
+  width: 20%;
+}
+
+.StepList__step__duration {
+  width: 10%;
+}
+
+.StepList__step__title {
+
+}
+
+.StepList__step__edit {
+  font-size: 14px;
+  margin-left: auto;
+  padding-right: $gutter-width;
+  white-space: nowrap;
+  color: $color-gray-mid;
+
+  .StepList__step:hover & {
+    color: $color-gray-dark;
+  }
+
+}
+
+.StepList__step__remove {
+  background-image: url('images/icon-trash-dark.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  border-left: 1px solid $color-gray-mid;
+  height: 35px;
+  opacity: 0.25;
+  width: 45px;
+  width: 5%;
+
+  span {
+    display: none;
+  }
+}

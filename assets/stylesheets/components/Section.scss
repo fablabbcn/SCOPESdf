@@ -1,0 +1,59 @@
+.Section {
+
+}
+
+.Section--gray {
+  background-color: $color-gray-light;
+}
+
+.Section--centered {
+  text-align: center;
+}
+
+.Section--with-border {
+  border-bottom: 1px solid $color-border;
+  margin-bottom: $gutter-width*4;
+}
+
+.Section--with-padding {
+  padding-top: $gutter-width*4;
+  padding-bottom: $gutter-width*4;
+}
+
+.Section__actions {
+  padding-top: $gutter-width*1.5;
+}
+
+.Section__columns {
+  margin: 0 auto;
+  display: flex;
+  max-width: $content-width + ($gutter-width*2);
+}
+
+.Section__logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: $gutter-width*4;
+}
+
+.Section__logo {
+  margin-left: $gutter-width*2;
+  margin-right: $gutter-width*2;
+}
+
+.Section__content {
+  margin: 0 auto;
+  display: flex;
+  max-width: $content-width;
+}
+
+.Section__content--primary {
+  font-size: 20px;
+  margin-bottom: $gutter-width*2;
+}
+
+.Section__content--secondary {
+  font-size: 16px;
+
+}

@@ -1,0 +1,51 @@
+.Checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Checkbox {
+
+}
+
+.Checkbox__input {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.Checkbox__label {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  padding-right: $gutter-width*2;
+  white-space: nowrap;
+
+  &:before {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border: 1px solid $color-input-border;
+    margin-right: $gutter-width/2;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    &:before {
+      background-color: $color-highlight-primary;
+      border: 1px solid $color-highlight-primary;
+    }
+  }
+
+}
+
+.Checkbox__input:checked ~ .Checkbox__label {
+  &:before {
+    background-color: $color-highlight-primary;
+    background-image: url('icon-check-light.svg');
+    border: 1px solid $color-highlight-primary;
+  }
+}

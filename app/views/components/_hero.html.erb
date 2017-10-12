@@ -1,0 +1,20 @@
+<div class="Hero <%= (defined? size) ? "Hero--#{size}" : "Hero--full" %> <%= (defined? align) ? "Hero--align-#{align}" : "Hero--align-left" %>" style="background-image: url('<%= image_url %>');">
+
+  <div class="Hero__content">
+
+    <% if defined? content_subheading %><div class="Hero__subheading"><%= content_subheading %></div><% end %>
+    <% if defined? content_primary %><div class="Hero__primary"><%= content_primary %></div><% end %>
+    <% if defined? content_secondary %><div class="Hero__secondary"><%= content_secondary %></div><% end %>
+    <% if defined? content_tertiary %><div class="Hero__tertiary"><%= content_tertiary %></div><% end %>
+
+    <% if defined? actions %>
+    <div class="Hero__actions">
+      <% actions.each do |action| %>
+      <%= link_to action[:label], action[:url], class: "Button Button--light Button--outline" %>
+      <% end %>
+    </div>
+    <% end %>
+
+  </div>
+
+</div>

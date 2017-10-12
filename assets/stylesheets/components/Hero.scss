@@ -1,0 +1,68 @@
+.Hero {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  position: relative;
+  z-index: 0;
+  align-items: center;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    background-image: linear-gradient(90deg, rgba(42,42,42,0.8) 0%, rgba(42,42,42,0.4) 54%);
+    z-index: 1;
+  }
+
+}
+
+.Hero--full {
+  height: 90vh;
+}
+
+.Hero--narrow {
+  height: 60vh;
+}
+
+.Hero--align-left {
+
+}
+
+.Hero--align-center {
+  text-align: center;
+  justify-content: center;
+}
+
+.Hero__content {
+  padding-left: $gutter-width*6;
+  padding-right: $gutter-width*6;
+  z-index: 2;
+  color: #fff;
+  max-width: 1000px;
+}
+
+.Hero__subheading {
+  margin-bottom: $gutter-width;
+  font-size: 18px;
+  @include text-medium;
+}
+
+.Hero__primary {
+  @extend h1;
+  margin-bottom: $gutter-width;
+}
+
+.Hero__secondary {
+  font-size: 23px;
+  @include text-medium;
+  margin-bottom: $gutter-width/2;
+}
+
+.Hero__tertiary {
+  font-size: 18px;
+  margin-bottom: $gutter-width * 2;
+}

@@ -1,0 +1,17 @@
+.SectionHeader {
+  max-width: $content-width;
+  margin: 0 auto;
+}
+
+.SectionHeader--with-padding {
+  padding-bottom: $gutter-width*4;
+}
+
+.SectionHeader__main {
+  margin-bottom: $gutter-width;
+}
+
+.SectionHeader__sub {
+  font-size: 16px;
+  color: $color-gray-dark;
+}

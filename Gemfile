@@ -14,7 +14,6 @@ gem 'bourbon'
 gem 'susy', '>= 2.2.12'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-fileupload-rails'
 
@@ -53,6 +52,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'foreman'
   gem 'erb2haml'
+  gem 'binding_of_caller'
 end
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -69,3 +69,7 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
+
+# Frontend - added by Howells
+gem 'active_link_to'
+gem 'turbolinks', require: false

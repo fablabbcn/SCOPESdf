@@ -1,0 +1,28 @@
+.Search {
+  margin-left: auto;
+
+  .Header--transparent & {
+    visibility: hidden;
+  }
+
+}
+
+input[type=search].Search__input {
+  border: 1px solid $color-border;
+  height: 55px;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+  background-repeat: no-repeat;
+  background-position: left $gutter-width center;
+  background-image: url('search-inactive.svg');
+  padding-left: $gutter-width*2.5;
+  width: 300px;
+
+
+  &:focus {
+    background-image: url('search-active.svg');
+    color: $color-main;
+    background-color: #FAFAFA;
+  }
+
+}

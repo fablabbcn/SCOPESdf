@@ -1,0 +1,21 @@
+.Logo {
+  display: block;
+  width: 150px;
+  height: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('logo.svg');
+
+  span {
+    display: none;
+  }
+
+  .Header--white & {
+    background-image: url('logo.svg');
+  }
+
+  .Header--transparent & {
+    background-image: url('logo-light.svg');
+  }
+
+}

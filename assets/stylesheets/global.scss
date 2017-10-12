@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+// --------------------------  imports -------------------------- //
+
+// normalize browsers
+@import "~node-normalize-scss/normalize";
+
+// some useful helper mixins
+@import "~bourbon/app/assets/stylesheets/bourbon";
+
+// --------------------------  import -------------------------- //
+
+// settings that are used by sass files throughou the site: dimensions, colors, etc.
+@import "settings";
+
+// modules are mixins and webfonts, e.g. media query mixins
+@import "modules/*";
+
+// any vendors' sass files (thought ideally imported from node_modules)
+@import "lib/*";
+
+// general styles applied to the entire site
+@import "global/*";
+
+// invdividual components, e.g. a Header, Footer, Heading, Slideshow, etc.
+@import "components/*";

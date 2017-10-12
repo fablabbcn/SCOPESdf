@@ -1,0 +1,195 @@
+<%= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:2), method: "post", multipart: true, class: "Form") do %>
+
+  <%= field_set_tag 'Basic Information', class: 'Form__fieldset Form__fieldset--with-border' do %>
+
+    <!-- lesson.name -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_name">Name of lesson</label>
+        <div class="FormField__hint">50 chars max</div>
+      </div>
+
+      <div class="FormField__input">
+        <input type="text" name="lesson[name]" class="Input" value="<%= @lesson_obj.name %>" placeholder="Name your lesson" id="lesson_name" maxlength="50" required />
+      </div>
+
+    </div>
+
+    <!-- lesson.topline -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_topline">Topline description</label>
+        <div class="FormField__hint">Describe it in a sentence</div>
+      </div>
+
+      <div class="FormField__input">
+        <input type="text" name="lesson[topline]" class="Input" value="<%= @lesson_obj.topline %>" placeholder="How would you describe it in one sentence?" id="lesson_topline" required />
+      </div>
+
+    </div>
+
+    <!-- lesson.summary -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_summary">Summary of lesson</label>
+        <div class="FormField__hint">
+          <p>Keep it short and snappy</p>
+          <p>Try to include:</p>
+          <ul>
+            <li>Why the lesson is interesting</li>
+            <li>The types of activities students will do.</li>
+          </ul>
+          <p>You can format using markdown</p>
+        </div>
+      </div>
+
+      <div class="FormField__input">
+        <textarea class="Input Input--textarea Input--autosize Input--character-count" rows="5" maxlength="800" name="lesson[summary]" id="lesson_summary" required><%= @lesson_obj.summary %></textarea>
+      </div>
+
+    </div>
+
+  <% end %>
+
+  <%= field_set_tag 'Authors', class: 'Form__fieldset Form__fieldset--with-border' do %>
+
+  <!-- lesson.authors -->
+  <div class="FormField FormField--required">
+
+    <div class="FormField__info">
+      <label class="FormField__label" for="lesson_other_users_emails_1">Who made this</label>
+      <div class="FormField__hint">Enter one or more authors</div>
+    </div>
+
+    <div class="FormField__input FormField__input--multiple">
+      <input type="email" name="lesson[other_users_emails][]" class="Input Input--multiple" data-values='<%= @lesson_obj.other_users_emails.to_json %>' value="" placeholder="+ Add a new email address" id="lesson_other_users_emails_1" />
+    </div>
+
+  </div>
+
+  <% end %>
+
+  <%= field_set_tag 'Objectives', class: 'Form__fieldset Form__fieldset--with-border' do %>
+
+    <!-- lesson.learning_objectives -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_topline">Learning objectives</label>
+        <div class="FormField__hint">What will the students learn</div>
+      </div>
+
+      <div class="FormField__input FormField__input--multiple">
+        <input type="text" name="lesson[learning_objectives][]" class="Input Input--multiple" data-values='<%= @lesson_obj.learning_objectives.to_json %>' value="" placeholder="+ Add a new objective" id="lesson_objectives_1" />
+      </div>
+
+    </div>
+
+  <% end %>
+
+  <%= field_set_tag 'Lesson ambitions', class: 'Form__fieldset Form__fieldset--with-border' do %>
+
+    <!-- lesson.description -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_description">Lesson Description</label>
+        <div class="FormField__hint">
+          <p>Keep it short and snappy</p>
+          <p>Try to include:</p>
+          <ul>
+            <li>Why the lesson is interesting</li>
+            <li>The types of activities students will do.</li>
+          </ul>
+          <p>You can format using markdown</p>
+        </div>
+      </div>
+
+      <div class="FormField__input">
+        <textarea class="Input Input--textarea Input--autosize Input--character-count" rows="5" maxlength="800" name="lesson[description]" id="lesson_description" required><%= @lesson_obj.description %></textarea>
+      </div>
+
+    </div>
+
+    <!-- lesson.assessment_criteria -->
+    <div class="FormField FormField--required">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="assessment_criteria">Assessment criteria</label>
+        <div class="FormField__hint">
+          <p>Keep it short and snappy</p>
+          <p>Try to include:</p>
+          <ul>
+            <li>Why the lesson is interesting</li>
+            <li>The types of activities students will do.</li>
+          </ul>
+          <p>You can format using markdown</p>
+        </div>
+      </div>
+
+      <div class="FormField__input">
+        <textarea class="Input Input--textarea Input--autosize Input--character-count" rows="5" maxlength="800" name="lesson[assessment_criteria]" id="lesson_assessment_criteria" required><%= @lesson_obj.assessment_criteria %></textarea>
+      </div>
+
+    </div>
+
+    <!-- lesson.assessment_criteria_files -->
+    <div class="FormField">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="assessment_criteria_files">Supporting files</label>
+        <div class="FormField__hint">
+          <p>Upload any files required</p>
+        </div>
+      </div>
+
+      <div class="FormField__input">
+        <div class="FileUpload" data-url="<%= lesson_file_path(@lesson_obj.id, :assessment_criteria_files) %>" data-paramname="assessment_criteria_files" id="assessment_criteria_files">
+          <div class="FileUpload__message">
+            Drag & drop files here - or click to browse<br />.jpg, .png, .pdf
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  <% end %>
+
+  <%= field_set_tag nil, class: 'Form__fieldset' do %>
+
+    <!-- lesson.learning_objectives -->
+    <div class="FormField">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_topline">Further reading</label>
+        <div class="FormField__hint">Add any further useful links</div>
+      </div>
+
+      <div class="FormField__input FormField__input--multiple">
+        <input type="url" name="lesson[further_readings][]" class="Input Input--multiple" data-values='<%= @lesson_obj.further_readings.to_json %>' value="" placeholder="+ Add a new URL" id="further_readings_1" />
+      </div>
+
+    </div>
+
+  <% end %>
+
+  <div class="Form__footer">
+
+    <div class="Form__footer__content">
+
+      <div class="Form__footer__heading">
+        Next up...
+      </div>
+
+      <div class="Form__footer__actions Form__footer__actions--right">
+        <button class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right">Add some standards</button>
+      </div>
+
+    </div>
+
+  </div>
+
+<% end %>

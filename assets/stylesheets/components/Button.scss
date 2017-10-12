@@ -1,0 +1,183 @@
+.Button {
+  @include text-medium;
+  background-color: #fff;
+  border-radius: 2px;
+  border: 1px solid #fff;
+  color: $color-main;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  height: 48px;
+  line-height: 48px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+  transition: all .12s ease-in-out;
+  white-space: nowrap;
+}
+
+.Button--small {
+  font-size: 14px;
+  height: 45px;
+  line-height: 45px;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+}
+
+.Button--large {
+  height: 65px;
+  line-height: 65px;
+  padding-left: $gutter-width*2;
+  padding-right: $gutter-width*2;
+}
+
+.Button--extra-padding {
+  padding-left: $gutter-width*1.5;
+  padding-right: $gutter-width*1.5;
+  padding-top: $gutter-width/2;
+  padding-bottom: $gutter-width/2;
+  height: auto;
+
+  &.Button--icon {
+    background-position: $gutter-width center;
+    padding-left: $gutter-width*2.5;
+  }
+
+}
+
+
+.Button--outline.Button--light {
+  border: 1px solid #fff;
+}
+
+.Button--light {
+  color: $color-main;
+  border-color: #fff;
+  background-color: #fff;
+}
+
+.Button--outline {
+  background-color: transparent;
+  border: 1px solid $color-border;
+}
+
+.Button--outline.Button--light {
+  color: #fff;
+}
+
+.Button--dark {
+  color: #fff;
+  background-color: $color-main;
+  border-color: $color-main;
+}
+
+.Button--primary,
+.Button--active {
+  background-color: $color-highlight-primary;
+  color: #fff;
+}
+
+.Button--secondary {
+  background-color: $color-highlight-secondary;
+}
+
+.Button--disabled {
+  opacity: 0.5;
+}
+
+.Button--icon,
+.Button--icon--left { // default
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  padding-left: 42px;
+}
+
+.Button--icon--left {
+  background-position: 15px center;
+  padding-left: 40px;
+  padding-right: 30px;
+  &.Button--small {
+    padding-right: $gutter-width;
+  }
+}
+
+.Button--icon--right {
+  background-position: right 15px center;
+  padding-right: 40px;
+  padding-left: 30px;
+  &.Button--small {
+    padding-left: $gutter-width;
+  }
+}
+
+.Button--icon--document {
+  background-image: url('images/icon-document-light.svg');
+}
+.Button--icon--trash {
+  background-image: url('images/icon-trash-light.svg');
+}
+.Button--icon--check {
+  background-image: url('images/icon-check-light.svg');
+}
+.Button--icon--locked {
+  background-image: url('images/icon-locked-dark.svg');
+}
+.Button--icon--arts {
+  &.Button--outline {
+    background-image: url('images/icon-arts-primary.svg');
+  }
+  &.Button--active {
+    background-image: url('images/icon-arts-light.svg');
+  }
+}
+.Button--icon--engineering {
+  &.Button--outline {
+    background-image: url('images/icon-engineering-primary.svg');
+  }
+  &.Button--active {
+    background-image: url('images/icon-engineering-light.svg');
+  }
+}
+.Button--icon--mathematics {
+  &.Button--outline {
+    background-image: url('images/icon-maths-primary.svg');
+  }
+  &.Button--active {
+    background-image: url('images/icon-maths-light.svg');
+  }
+}
+.Button--icon--science {
+  &.Button--outline {
+    background-image: url('images/icon-science-primary.svg');
+  }
+  &.Button--active {
+    background-image: url('images/icon-science-light.svg');
+  }
+}
+.Button--icon--technology {
+  &.Button--outline {
+    background-image: url('images/icon-technology-primary.svg');
+  }
+  &.Button--active {
+    background-image: url('images/icon-technology-light.svg');
+  }
+}
+
+.Button--no-label {
+  span {
+    display: none;
+  }
+}
+
+.Button--no-label.Button--icon {
+  background-position: center;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.Button--arrow--right {
+  background-image: url('images/icon-arrow-right-light.svg');
+}
+.Button--arrow--left {
+  background-image: url('images/icon-arrow-left-light.svg');
+}
