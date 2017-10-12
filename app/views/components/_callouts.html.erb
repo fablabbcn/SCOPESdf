@@ -1,0 +1,13 @@
+<div class="Callouts">
+
+  <% callouts.each do |callout| %>
+  <div class="Callout">
+
+    <div class="Callout__content">
+      <%= callout.gsub(/\n/, '<br>').html_safe %>
+    </div>
+
+  </div>
+  <% end %>
+
+</div>

@@ -3,8 +3,12 @@
   margin: 0 auto;
 }
 
+.SectionHeader--with-padding {
+  padding-bottom: $gutter-width*4;
+}
+
 .SectionHeader__main {
-  margin-bottom: $gutter-width*2;
+  margin-bottom: $gutter-width;
 }
 
 .SectionHeader__sub {

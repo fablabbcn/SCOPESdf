@@ -128,11 +128,13 @@ class CopyService
             ]
           },
 
-          footer: {
-            first: "Join us!",
-            second: "For more information, please contact:",
-            third:"Sonya Pryor-Jones",
-            fourth:"The Fab Foundation, 50 Milk Street, 16th Floor, Boston, MA 02139<br>Tel 857-333-7777  |  Email: scopesdf@fabfoundation.org"
+          banner: {
+            title: "Join us!",
+            description: "For more information, please contact:
+
+            <strong>Sonya Pryor-Jones</strong>
+            The Fab Foundation, 50 Milk Street, 16th Floor, Boston, MA 02139
+            Tel 857-333-7777 | Email: <a href='mailto:scopesdf@fabfoundation.org'>scopesdf@fabfoundation.org</a>"
           }
 
       }

@@ -10,19 +10,9 @@
 
 
 <!-- callouts -->
-<div class="Callouts">
-
-  <% CopyService.about[:callouts].each do |callout| %>
-  <div class="Callout">
-
-    <div class="Callout__content">
-      <%= callout.gsub(/\n/, '<br>').html_safe %>
-    </div>
-
-  </div>
-  <% end %>
-
-</div>
+<%= render partial: "components/callouts", locals: {
+  callouts: CopyService.about[:callouts]
+  } %>
 
 <!-- the future -->
 <section class="Section Section--with-padding">
@@ -69,7 +59,7 @@
 </section>
 
 <!-- support from a community -->
-<section class="Section Section--with-padding">
+<section class="Section Section--with-padding Section--with-border">
 
   <div class="SectionHeader">
     <h3 class="SectionHeader__main"><%= CopyService.about[:support][:heading].gsub(/\n/, '<br>').html_safe %></h3>
@@ -86,9 +76,9 @@
 </section>
 
 <!-- benefit and contribute -->
-<section class="Section Section--centered Section--with-padding">
+<section class="Section Section--centered">
 
-  <div class="SectionHeader">
+  <div class="SectionHeader SectionHeader--with-padding">
     <h3 class="SectionHeader__main"><%= CopyService.about[:benefitcontribute][:heading].gsub(/\n/, '<br>').html_safe %></h3>
     <div class="SectionHeader__sub"><%= CopyService.about[:benefitcontribute][:sub].gsub(/\n/, '<br>').html_safe %></div>
   </div>
@@ -108,10 +98,16 @@
     } %>
 
   <%= render partial: "components/section_panels", locals: {
-    image_url: image_url('visitors/about/makers-fabbers.jpg'),
+    image_url: image_url('visitors/about/students-schools.jpg'),
     image_align: :left,
     heading: CopyService.about[:benefitcontribute_panels_3][:heading].gsub(/\n/, '<br>').html_safe,
     bullets: CopyService.about[:benefitcontribute_panels_3][:bullets]
     } %>
 
 </section>
+
+<!-- join us -->
+<%= render partial: 'components/banner', locals: {
+  description: CopyService.about[:banner][:description].gsub(/\n/, '<br>').html_safe,
+  title: CopyService.about[:banner][:title].gsub(/\n/, '<br>').html_safe,
+  } %>

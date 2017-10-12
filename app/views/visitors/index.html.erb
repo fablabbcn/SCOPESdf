@@ -172,28 +172,11 @@
 </section>
 
 <!-- get involved! -->
-<div class="Banner">
-
-  <div class="Banner__content">
-
-    <div class="Banner__primary">
-
-      <div class="Banner__title">
-        <%= CopyService.home[:banner][:title].gsub(/\n/, '<br>').html_safe %>
-      </div>
-
-      <div class="Banner__description">
-        <%= CopyService.home[:banner][:description].gsub(/\n/, '<br>').html_safe %>
-      </div>
-
-    </div>
-
-    <div class="Banner__secondary">
-
-      <a href="<%= new_user_registration_path %>" class="Banner__action Button Button--large"><%= CopyService.home[:banner][:action].gsub(/\n/, '<br>').html_safe %></a>
-
-    </div>
-
-  </div>
-
-</div>
+<%= render partial: 'components/banner', locals: {
+  action: {
+    label: CopyService.home[:banner][:action].gsub(/\n/, '<br>').html_safe,
+    path: new_user_registration_path,
+  },
+  description: CopyService.home[:banner][:description].gsub(/\n/, '<br>').html_safe,
+  title: CopyService.home[:banner][:title].gsub(/\n/, '<br>').html_safe,
+  } %>

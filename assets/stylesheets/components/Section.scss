@@ -10,6 +10,11 @@
   text-align: center;
 }
 
+.Section--with-border {
+  border-bottom: 1px solid $color-border;
+  margin-bottom: $gutter-width*4;
+}
+
 .Section--with-padding {
   padding-top: $gutter-width*4;
   padding-bottom: $gutter-width*4;
