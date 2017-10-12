@@ -1,6 +1,17 @@
 class LessonsController < ApplicationController
+
   #before_action :authenticate_user!
   #after_action :verify_authorized # pundit
+
+  def index
+    # Using lessons#index for now as the public view of all lesson
+    # No authentication here
+  end
+
+  def show
+    # Using lessons#show for now as the public view
+    # No authentication here
+  end
 
   def new
 
