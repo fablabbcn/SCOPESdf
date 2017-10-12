@@ -79,30 +79,34 @@ class TeachingRange < ApplicationRecord
 
   def self.format(value)
     case
-      when value == "grade_1"
+      when value == "grade_1" || value == 1
         return "1st"
-      when value == "grade_2"
+      when value == "grade_2" || value == 2
         return "2nd"
-      when value == "grade_3"
+      when value == "grade_3" || value == 3
         return "3rd"
-      when value == "grade_4"
+      when value == "grade_4" || value == 4
         return "4th"
-      when value == "grade_5"
+      when value == "grade_5" || value == 5
         return "5th"
-      when value == "grade_6"
+      when value == "grade_6" || value == 6
         return "6th"
-      when value == "grade_7"
+      when value == "grade_7" || value == 7
         return "7th"
-      when value == "grade_8"
+      when value == "grade_8" || value == 8
         return "8th"
-      when value == "grade_9"
+      when value == "grade_9" || value == 9
         return "9th"
-      when value == "grade_10"
+      when value == "grade_10" || value == 10
         return "10th"
-      when value == "grade_11"
+      when value == "grade_11" || value == 11
         return "11th"
-      when value == "grade_12"
+      when value == "grade_12" || value == 12
         return "12th"
+      when value == 0
+        return "k"
+      when value == -1
+        return "pre-k"
       else
         return value
     end

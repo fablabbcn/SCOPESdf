@@ -143,7 +143,7 @@ class LessonService
 
     def updateStandards!
       return unless @standards.present?
-      @lesson.standards = {standards: []}; @lesson.save! #sanitize
+      @lesson.standards = {standards: []}; @lesson.save! # sanitize
       @lesson.standards = {standards: @standards}
       @lesson.save!
       @lesson.reload
@@ -152,20 +152,6 @@ class LessonService
     def updateTeachingRange!
       return unless @teaching_range.present? && @teaching_range[:start].present? && @teaching_range[:end].present?
       @lesson.removeTeachingRange # sanitize
-      puts "
-
-
-
-
-
-LE TEACHING RANG HEREJSFJSLHDFLHDSJF
-
-
-
-           #{@teaching_range}
-
-
-           "
       @lesson.setTeachingRange(@teaching_range["start"], @teaching_range["end"])
       @lesson.save!
       @lesson.reload
@@ -173,7 +159,7 @@ LE TEACHING RANG HEREJSFJSLHDFLHDSJF
 
     def updateSubjects!
       return unless @subjects.present?
-      @lesson.removeSubjects
+      @lesson.removeSubjects # sanitize
       @lesson.setSubjects(@subjects)
       @lesson.save! 
       @lesson.reload
@@ -221,8 +207,3 @@ LE TEACHING RANG HEREJSFJSLHDFLHDSJF
 
   end
 end
-
-# Testing
-# calling_user = User.first
-# id = nil
-# params =

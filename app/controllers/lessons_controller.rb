@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
 
-  #before_action :authenticate_user!
-  #after_action :verify_authorized # pundit
+  before_action :authenticate_user!, except: [:index, :show]
+  # after_action :verify_authorized, only: :new  # TODO -- setup pundit fully
 
   def index
     # Using lessons#index for now as the public view of all lesson
@@ -14,32 +14,28 @@ class LessonsController < ApplicationController
   def show
     # Using lessons#show for now as the public view
     # No authentication here
-
     @lesson = Lesson.includes(:steps).find(params[:id])
-
   end
 
+
   def new
+    @current_user = current_user
 
     # Assign the @form_step var, casting as integer instead of a string
     @form_step = params[:form_step].present? ? params[:form_step].to_i : 1
 
     if params[:id].present?
       @lesson_obj = Lesson.find(params[:id])
-    end
-
-    if params[:id].present?
-      @lesson_obj = Lesson.find(params[:id])
       # same as create endpoint
 
       if params[:lesson].present?
-        @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first) # should not be user first
+        @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, @current_user)
       end
       files_hash = {}
       files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
       files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
 
-      LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash, User.first) # should not be user first
+      LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash, @current_user) # should not be user first
       @lesson_obj.reload
 
 
@@ -58,7 +54,7 @@ class LessonsController < ApplicationController
     # elsif params[:id].present? && params[:step].present? # making a step
     #   Step.find_or_create_and_update(nil, params[:id], step_param, User.first).set_files(params)
     else
-      @lesson_obj = LessonService.find_or_create_and_update(nil, {}, User.first) # should not be user first
+      @lesson_obj = LessonService.find_or_create_and_update(nil, {}, @current_user) # should not be user first
       @lesson_obj.reload
     end
 
@@ -132,18 +128,6 @@ class LessonsController < ApplicationController
     render :json => {success: Lesson.find(params[:id]).hidden!}, :status => 200
   end
 
-
-
-  def list_json
-    returnable = []
-    returnable.append({name: "Place 1", id: 1, lon: "2.173403",lat: "41.385064" })
-    returnable.append({name: "Place 2", id: 2, lon: "2.273403",lat: "41.385064" })
-    returnable.append({name: "Place 3", id: 3, lon: "2.373403",lat: "41.325064" })
-    returnable.append({name: "Place 4", id: 4, lon: "2.473403",lat: "41.424064" })
-    returnable.append({name: "Place 5", id: 5, lon: "2.573403",lat: "41.425064" })
-    render :json => {data: returnable}, :status => 200
-
-  end
 
 
 
