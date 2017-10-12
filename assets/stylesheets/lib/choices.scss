@@ -16,6 +16,7 @@ $choices-border-radius-item: 2px;
 
 .choices__input {
   padding: 15px;
+  min-width: 150px;
 }
 
 .choices__list--multiple .choices__item {

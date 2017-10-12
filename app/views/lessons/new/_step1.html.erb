@@ -1,6 +1,6 @@
 <%= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:2), method: "post", multipart: true, class: "Form") do %>
 
-  <%= field_set_tag 'Basic Information', class: 'Form__fieldset' do %>
+  <%= field_set_tag 'Basic Information', class: 'Form__fieldset Form__fieldset--with-border' do %>
 
     <!-- lesson.name -->
     <div class="FormField FormField--required">
@@ -54,7 +54,7 @@
 
   <% end %>
 
-  <%= field_set_tag 'Authors', class: 'Form__fieldset' do %>
+  <%= field_set_tag 'Authors', class: 'Form__fieldset Form__fieldset--with-border' do %>
 
   <!-- lesson.authors -->
   <div class="FormField FormField--required">
@@ -72,7 +72,7 @@
 
   <% end %>
 
-  <%= field_set_tag 'Objectives', class: 'Form__fieldset' do %>
+  <%= field_set_tag 'Objectives', class: 'Form__fieldset Form__fieldset--with-border' do %>
 
     <!-- lesson.learning_objectives -->
     <div class="FormField FormField--required">
@@ -90,7 +90,7 @@
 
   <% end %>
 
-  <%= field_set_tag 'Lesson ambitions', class: 'Form__fieldset' do %>
+  <%= field_set_tag 'Lesson ambitions', class: 'Form__fieldset Form__fieldset--with-border' do %>
 
     <!-- lesson.description -->
     <div class="FormField FormField--required">

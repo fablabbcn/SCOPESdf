@@ -18,6 +18,8 @@
   margin-right: $gutter-width - 5px;
   padding-right: $gutter-width/4;
   padding-left: $gutter-width/4;
+  padding-top: 10px;
+  padding-bottom: 4px;
   font-size: 16px;
 
   .Header--transparent & {
@@ -28,4 +30,11 @@
 
 .Navigation__link--sub {
   opacity: 0.5;
+  &.Navigation__link--active {
+    opacity: 1;
+  }
+}
+
+.Navigation__link--active {
+  border-bottom: 4px solid $color-highlight-primary;
 }

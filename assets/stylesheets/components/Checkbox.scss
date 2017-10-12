@@ -14,9 +14,10 @@
 }
 
 .Checkbox__label {
-  display: flex;
   align-items: center;
   cursor: pointer;
+  display: flex;
+  padding-right: $gutter-width*2;
   white-space: nowrap;
 
   &:before {

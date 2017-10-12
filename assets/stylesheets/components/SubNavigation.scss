@@ -1,17 +1,24 @@
-.Progress {
+.SubNavigation {
   background-color: #F9FAFB;
   padding-left: $gutter-width/2;
   padding-right: $gutter-width/2;
+
+}
+
+.SubNavigation__content {
+  width: 100%;
+  max-width: $grid-width;
+  margin: 0 auto;
   display: flex;
   align-items: center;
 }
 
-.Progress__steps {
+.SubNavigation__items {
   display: flex;
   max-width: $grid-width;
 }
 
-.Progress__step {
+.SubNavigation__item {
   padding-top: $gutter-width;
   padding-bottom: $gutter-width;
   padding-left: $gutter-width;
@@ -24,17 +31,17 @@
   background-image: url('images/icon-ellipsis-mid.svg');
 }
 
-.Progress__step--active {
+.SubNavigation__item--active {
   border-bottom: 4px solid $color-highlight-primary;
   background-image: url('images/icon-edit-highlight.svg');
 }
 
-.Progress__track {
+.SubNavigation__track {
   margin-left: auto;
   height: 36px;
 }
 
-.Progress__status {
+.SubNavigation__status {
   font-size: 14px;
   @include text-medium;
   margin-bottom: 4px;

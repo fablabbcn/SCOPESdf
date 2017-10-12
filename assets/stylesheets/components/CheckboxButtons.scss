@@ -9,6 +9,11 @@
 
 .CheckboxButton__label {
   border-color: $color-input-border !important;
+
+  &:hover {
+    @extend .Button--active;
+  }
+
 }
 
 .CheckboxButton__input {

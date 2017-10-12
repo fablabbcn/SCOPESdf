@@ -41,6 +41,7 @@
 .FormField__label {
   font-size: 18px;
   @include text-medium;
+  margin-bottom: 4px;
 
   .FormField--required & {
     &:after {

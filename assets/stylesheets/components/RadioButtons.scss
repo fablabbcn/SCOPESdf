@@ -26,6 +26,11 @@
 .RadioButton__label {
   width: 100%;
   border-color: $color-input-border !important;
+
+  &:hover {
+    @extend .Button--active;
+  }
+
 }
 
 .RadioButton__input:checked ~ .RadioButton__label {
