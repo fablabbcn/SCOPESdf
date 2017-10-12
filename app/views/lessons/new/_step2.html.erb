@@ -1,4 +1,4 @@
-<%= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:3), method: :post, multipart: true, class: "Form") do %>
+<%= form_tag(lesson_standards_path(lesson_id: @lesson_obj.id, form_step:3), method: :post, multipart: true, class: "Form") do %>
 
   <%= field_set_tag 'How does this align to standards?', class: 'Form__fieldset' do %>
 
@@ -15,7 +15,7 @@
           </div>
 
           <div class="FormField__input FormField--multiple">
-            <select name="lesson[standards][][standard_id]" id="lesson_standards__standard_id_1" value="">
+            <select name="standards[name]" id="lesson_standards__standard_id_1" value="">
                 <%= options_for_select(@standards) %>
             </select>
           </div>
@@ -30,7 +30,7 @@
           </div>
 
           <div class="FormField__input FormField--multiple">
-            <textarea name="lesson[standards][][description]" class="Input Input--multiple" placeholder="+ Add a new standard" id="lesson_standards_description_1"></textarea>
+            <textarea name="standards[description][]" class="Input Input--multiple" placeholder="+ Add a new standard" id="lesson_standards_description_1"></textarea>
           </div>
 
         </div>

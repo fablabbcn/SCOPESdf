@@ -142,11 +142,17 @@ class LessonService
     end
 
     def updateStandards!
-      return unless @standards.present?
-      @lesson.standards = {standards: []}; @lesson.save! # sanitize
-      @lesson.standards = {standards: @standards}
-      @lesson.save!
-      @lesson.reload
+
+      # moved to model check Lesson.rb
+      # - append
+      # - delete
+      # - sanitie
+      # - override
+
+      # return unless @standards.present?
+      # @lesson.standards = {standards: @standards}
+      # @lesson.save!
+      # @lesson.reload
     end
 
     def updateTeachingRange!

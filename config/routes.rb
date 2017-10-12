@@ -58,7 +58,7 @@ Rails.application.routes.draw do
 
   get 'api/users/exists'   =>  'secured_api#user_presence'
 
-  get 'search/:entity', :to => 'search#main', :as => :search
+  get 'search/:entity', :to => 'search#main', as: :search
 
   # Static pages
   get 'enter' =>  'visitors#enter', as: :enter
