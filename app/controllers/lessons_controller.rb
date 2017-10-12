@@ -6,11 +6,17 @@ class LessonsController < ApplicationController
   def index
     # Using lessons#index for now as the public view of all lesson
     # No authentication here
+
+    @lessons = Lesson.includes(:steps).all
+
   end
 
   def show
     # Using lessons#show for now as the public view
     # No authentication here
+
+    @lesson = Lesson.includes(:steps).find(params[:id])
+
   end
 
   def new
