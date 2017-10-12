@@ -11,7 +11,7 @@
       </div>
 
       <div class="FormField__input">
-        <div class="Input Input--slider" data-config="<%= { start: @lesson_obj.grade_range.present? ? @lesson_obj.grade_range.to_a : [8,10], connect: true, step: 1, range: { min: 7, max: 18 } }.to_json %>">
+        <div class="Input Input--slider" data-config="<%= { start: @lesson_obj.grade_range.present? ? @lesson_obj.grade_range.to_a : [3,5], connect: true, step: 1, range: { min: -1, max: 12 } }.to_json %>">
           <input type="hidden" name="lesson[grade_range]" value="<%= @lesson_obj.grade_range %>" />
         </div>
       </div>

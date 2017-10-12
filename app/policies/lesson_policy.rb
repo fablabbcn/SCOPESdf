@@ -10,6 +10,10 @@ class LessonPolicy
     @current_user.lesson_tags.where(lesson_id: @lesson.id).exists? #user created the lesson
   end
 
+  def new?
+    true
+  end
+
 
 end
 

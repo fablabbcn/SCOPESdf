@@ -415,6 +415,29 @@ class Lesson < ApplicationRecord
   def standards_array
     self.standards["standards"] if self.standards.present?
   end
+  def append_standards(standard)
+    if self.standards_array.select{|h| h["name"] == standard["name"]}.count > 0
+      return false
+    end
+    standards = self.standards_array
+    standards.append(standard)
+    self.override_standards(standards)
+  end
+  def delete_standards(name)
+    standards = self.standards_array
+    standards.reject!{|s| s["name"] == name }
+    returnable = ( self.standards_array.count == standards.count)
+    self.override_standards(standards)
+    !returnable
+  end
+  def sanitize_standards!
+    self.standards = {standards: []}
+    self.save!
+  end
+  def override_standards(given)
+    self.standards = {standards: given}
+    self.save
+  end
 
   def stats
     {likes: self.likes.count, forks: Lesson.where(original_lesson: self.id).count}
