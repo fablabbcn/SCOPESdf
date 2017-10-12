@@ -416,6 +416,9 @@ class Lesson < ApplicationRecord
     self.standards["standards"] if self.standards.present?
   end
   def append_standards(standard)
+    if self.standards_array.select{|h| h["name"] == standard["name"]}.count > 0
+      return false
+    end
     standards = self.standards_array
     standards.append(standard)
     self.override_standards(standards)
