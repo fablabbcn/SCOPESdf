@@ -12,9 +12,14 @@ class LessonsController < ApplicationController
   end
 
   def show
+
     # Using lessons#show for now as the public view
     # No authentication here
     @lesson = Lesson.includes(:steps).find(params[:id])
+
+    # Fetch any specified section and turn it into a sym, otherwise :overview
+    @secton = params[:section].to_sym || :overview
+
   end
 
   def new

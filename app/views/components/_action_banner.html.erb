@@ -1,0 +1,17 @@
+<div class="ActionBanner">
+
+  <div class="ActionBanner__content">
+
+    <div class="ActionBanner__statement">
+      <%= statement %>
+    </div>
+
+    <div class="ActionBanner__actions">
+      <% actions.each do |action| %>
+        <%= link_to action[:label], action[:path], class: "Button Button--small Button--light Button--icon Button--icon--add" %>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>
