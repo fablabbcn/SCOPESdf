@@ -1,0 +1,17 @@
+.Filter {
+  background-color: $color-gray-verylight;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+}
+
+.Filter__content {
+  max-width: $grid-width;
+  margin: 0 auto;
+  padding-top: $gutter-width;
+  padding-bottom: $gutter-width;
+  display: flex;
+}
+
+.Filter__view {
+  margin-left: auto;
+}
