@@ -1,0 +1,23 @@
+.ActionBanner {
+  background-color: $color-yellow-dark;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+}
+
+.ActionBanner__content {
+  display: flex;
+  margin: 0 auto;
+  max-width: $grid-width;
+  padding-top: $gutter-width*1.5;
+  padding-bottom: $gutter-width*1.5;
+  align-items: center;
+
+}
+
+.ActionBanner__statement {
+  font-size: 20px;
+}
+
+.ActionBanner__actions {
+  margin-left: auto;
+}
