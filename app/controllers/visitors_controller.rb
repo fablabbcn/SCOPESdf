@@ -16,7 +16,7 @@ class VisitorsController < ApplicationController
     @has_hero = true
 
   end
-  
+
 
   def form
     @user = User.first
