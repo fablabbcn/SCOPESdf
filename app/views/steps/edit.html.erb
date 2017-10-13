@@ -1,34 +1,10 @@
+<%= render partial: 'lessons/sub_header' %>
 
+<%= render partial: 'lessons/sub_nav' %>
 
-<div class="StepList">
-  <h3 class="StepList__heading">How does this lesson unfold?</h3>
-  <ul class="StepList__steps">
-    <% 5.times do |step| %>
-    <li class="StepList__step">
-      <div class="StepList__content">
-        <div class="StepList__step__number">
-          Step <%= step+1 %>
-        </div>
-        <div class="StepList__step__duration">
-          30m
-        </div>
-        <div class="StepList__step__title">
-          Title attribute for step required
-        </div>
-        <a href="<%=  %>" class="StepList__step__edit">
-          Edit Step
-        </a>
-        <a href="<%=  %>" class="StepList__step__remove">
-          <span>Remove</span>
-        </a>
-      </div>
-    </li>
-    <% end %>
-  </ul>
-</div>
+<%= render partial: 'steps/step_list' %>
 
-
-<%= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:5), method: "post", multipart: true, class: "Form") do %>
+<%= form_tag(edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @step_obj.id, form_step:4), method: :patch, multipart: true, class: "Form") do %>
 
   <%= field_set_tag 'Instructions', class: 'Form__fieldset' do %>
 

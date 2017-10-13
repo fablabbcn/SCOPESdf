@@ -17,16 +17,48 @@ class LessonsController < ApplicationController
     @lesson = Lesson.includes(:steps).find(params[:id])
   end
 
-
   def new
+
+    # We only need to create a new empty lesson with an id here
+    # before handing it off to edit. An id might have been provided already.
+    # TODO: look up a lesson that in the middle of being created, by session id
+
+    lesson = nil
+
+    if params[:id].present?
+      lesson = Lesson.find_or_create_by!(id: params[:id]) do
+        lesson.steps << Step.new(summary: "")
+      end
+    else
+      lesson = Lesson.create!
+    end
+
+    # Make sure this new lesson has at least one step
+    lesson.steps << Step.new(summary: '') unless lesson.steps.present?
+
+    if lesson.present?
+      redirect_to edit_lesson_path(lesson)
+    else
+      raise lesson.errors
+    end
+
+  end
+
+  def edit
+
     @current_user = current_user
 
     # Assign the @form_step var, casting as integer instead of a string
     @form_step = params[:form_step].present? ? params[:form_step].to_i : 1
 
     if params[:id].present?
+
+      # Fetch the lesson by the provided id
       @lesson_obj = Lesson.find(params[:id])
-      # same as create endpoint
+
+      # If the form step is 4, i.e. steps, we redirect to edit the first step created
+      # when the lesson itself was created
+      redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @lesson_obj.steps.first.id, form_step: @form_step) if @form_step == 4
 
       if params[:lesson].present?
         @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, @current_user)
@@ -99,6 +131,7 @@ class LessonsController < ApplicationController
 
   end
 
+=begin
   def update # used for AJAX
     # CONFIRM USER IS OWNER
     puts params[:id].inspect
@@ -116,21 +149,28 @@ class LessonsController < ApplicationController
     # puts @lesson.inspect
     render :json => {lesson_id: @lesson.id, lesson_obj: @lesson.inspect, publishable: @lesson.publishable?, publishable_details: @lesson.publishable_values}, :status => 200
   end
+=end
 
+  def update
+
+    # Update the lesson
+    @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
+
+    # Redirect to the next step
+    redirect_to edit_lesson_path(id: @lesson_obj.id, form_step: params[:form_step])
+
+  end
 
   def publish
     # check to make sure current user is owner and make inactive
     # make sure passes validation
     render :json => {success: Lesson.find(params[:id]).publish!}, :status => 200
   end
+
   def delete
     # check to make sure current user is owner and make inactive
     render :json => {success: Lesson.find(params[:id]).hidden!}, :status => 200
   end
-
-
-
-
 
   def add_step
     @lesson = Lesson.first
@@ -143,10 +183,7 @@ class LessonsController < ApplicationController
   def delete_step
     r = Step.delete_and_update_sibilings(params[:step_id], params[:id], User.first) # should not be user first
     render :json => {success: r}, :status => 200
-
   end
-
-
 
   # ~~~~~~~~~~~~~~~
   # STEPS HERE
@@ -166,9 +203,6 @@ class LessonsController < ApplicationController
     ids = Lesson.find(params[:id]).steps.order(:created_at).map{|x| x.id}
     render :json => {ids: ids}, :status => 200
   end
-
-
-
 
   def draft
 
@@ -354,7 +388,6 @@ class LessonsController < ApplicationController
     puts "finished for delete"
     render :json => {status: status}, location: @Uploaded
   end
-
 
   private
 

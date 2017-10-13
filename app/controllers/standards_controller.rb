@@ -2,7 +2,6 @@ class StandardsController < ApplicationController
   before_action :authenticate_user!
   # TODO - PUT PUNDIT
 
-
   def create
     @lesson = Lesson.find(params["lesson_id"])
     @lesson.append_standards(standard_params)
