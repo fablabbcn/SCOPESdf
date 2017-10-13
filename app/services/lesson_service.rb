@@ -8,6 +8,7 @@ class LessonService
 
 
     def find_or_create_and_update(id, params, calling_user)
+      params ||= {}
       # puts params << for testing internally
 
 

@@ -42,6 +42,10 @@ class Lesson < ApplicationRecord
 
   # TODO - assessment criteria - input field and file format... ( assessment_criteria_docs :: JSON )
 
+  before_create do # lessons initial state
+    self.state = 0
+  end
+
 
   #   validates :organization_exists
   def organization_exists # TODO - validate existece of organization from lesson_tags

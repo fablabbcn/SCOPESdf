@@ -22,26 +22,14 @@ class LessonsController < ApplicationController
     # We only need to create a new empty lesson with an id here
     # before handing it off to edit. An id might have been provided already.
     # TODO: look up a lesson that in the middle of being created, by session id
-
-    lesson = nil
-
-    if params[:id].present?
-      lesson = Lesson.find_or_create_by!(id: params[:id]) do
-        lesson.steps << Step.new(summary: "")
-      end
-    else
-      lesson = Lesson.create!
-    end
-
-    # Make sure this new lesson has at least one step
-    lesson.steps << Step.new(summary: '') unless lesson.steps.present?
+    lesson = LessonService.find_or_create_and_update(params[:id], nil, current_user)
+    lesson.steps << Step.new(summary: "")
 
     if lesson.present?
       redirect_to edit_lesson_path(lesson)
     else
       raise lesson.errors
     end
-
   end
 
   def edit
