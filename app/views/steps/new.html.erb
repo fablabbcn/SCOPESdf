@@ -1,0 +1,9 @@
+<%= render partial: 'lessons/sub_header' %>
+
+<%= render partial: 'lessons/sub_nav' %>
+
+<%= render partial: 'steps/step_list' %>
+
+<%= form_tag(edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @step_obj.id, form_step:4), method: :patch, multipart: true, class: "Form") do %>
+  <%= render partial: 'steps/form' %>
+<% end %>

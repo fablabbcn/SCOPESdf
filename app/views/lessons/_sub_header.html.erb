@@ -1,0 +1,15 @@
+<div class="SubHeader">
+
+  <div class="SubHeader__content">
+
+    <h1 class="SubHeader__heading"><%= @lesson_obj.name.present? ? @lesson_obj.name : "New lesson" %></h1>
+
+    <div class="SubHeader__tools">
+      <%= active_link_to "<span>Cancel</span>".html_safe, delete_lesson_path(id: @lesson_obj.id, method: :delete), class: "SubHeader__tool Button Button--small Button--light Button--outline Button--icon Button--icon--trash Button--no-label" %>
+      <%= active_link_to "Save as Draft", '#', class: "SubHeader__tool Button Button--small Button--light Button--icon Button--icon--document Button--outline Button--icon-document" %>
+      <%= active_link_to "Publish Lessson", publish_lesson_path(id: @lesson_obj.id, method: :put), class: "SubHeader__tool Button Button--small Button--icon Button--icon Button--icon--locked Button--dark Button--disabled" %>
+    </div>
+
+  </div>
+
+</div>

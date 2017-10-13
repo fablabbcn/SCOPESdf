@@ -189,12 +189,12 @@ class User < ApplicationRecord
   end
 
 
+  # Return the name if object called as string
+  def to_s
+    name
+  end
 
   private
-
-
-
-
 
 
 

@@ -1,4 +1,4 @@
-<%= form_tag(lesson_create_path(id: @lesson_obj.id, form_step:2), method: "post", multipart: true, class: "Form") do %>
+<%= form_tag(lesson_path(id: @lesson_obj.id, form_step:2), method: :patch, multipart: true, class: "Form") do %>
 
   <%= field_set_tag 'Basic Information', class: 'Form__fieldset Form__fieldset--with-border' do %>
 
@@ -147,7 +147,7 @@
       </div>
 
       <div class="FormField__input">
-        <div class="FileUpload" data-url="<%= lesson_file_path(@lesson_obj.id, :assessment_criteria_files) %>" data-paramname="assessment_criteria_files" id="assessment_criteria_files">
+        <div class="FileUpload" data-url="<%= upload_file_for_lesson_path(@lesson_obj.id, :assessment_criteria_files) %>" data-paramname="assessment_criteria_files" id="assessment_criteria_files">
           <div class="FileUpload__message">
             Drag & drop files here - or click to browse<br />.jpg, .png, .pdf
           </div>

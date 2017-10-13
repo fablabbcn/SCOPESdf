@@ -38,6 +38,7 @@ function handleAddNewValue(input) {
 
     // if the return key is pressed, create another input from the value entered
     if (event.which == 13 || event.keyCode == 13) {
+			ev.preventDefault() // don't submit the form
 			let value = $(input).val()
 			if (value) {
       	createNewInput(input, $(input).val())

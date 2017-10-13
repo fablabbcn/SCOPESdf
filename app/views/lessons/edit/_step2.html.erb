@@ -1,4 +1,4 @@
-<%= form_tag(lesson_standards_path(lesson_id: @lesson_obj.id, form_step:3), method: :post, multipart: true, class: "Form") do %>
+<%= form_tag(lesson_path(lesson_id: @lesson_obj.id, form_step:3), method: :patch, multipart: true, class: "Form") do %>
 
   <%= field_set_tag 'How does this align to standards?', class: 'Form__fieldset' do %>
 
