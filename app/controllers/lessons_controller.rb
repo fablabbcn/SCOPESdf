@@ -1,13 +1,15 @@
 class LessonsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :show]
-  # after_action :verify_authorized, only: :new  # TODO -- setup pundit fully
 
   def index
     # Using lessons#index for now as the public view of all lesson
     # No authentication here
+    @page = params[:page] || 1
 
-    @lessons = Lesson.includes(:steps).all
+    #@lessons = Lesson.page(@page).includes(:steps).to_array
+    #TODO - pass page value along for pagination
+    @lessons = Lesson.includes(:steps).to_a
 
   end
 
@@ -39,44 +41,42 @@ class LessonsController < ApplicationController
     # Assign the @form_step var, casting as integer instead of a string
     @form_step = params[:form_step].present? ? params[:form_step].to_i : 1
 
-    if params[:id].present?
 
-      # Fetch the lesson by the provided id
-      @lesson_obj = Lesson.find(params[:id])
+    # Fetch the lesson by the provided id
+    @lesson_obj = Lesson.find(params[:id])
 
-      # If the form step is 4, i.e. steps, we redirect to edit the first step created
-      # when the lesson itself was created
-      redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @lesson_obj.steps.first.id, form_step: @form_step) if @form_step == 4
+    #pundit --
+    authorize @lesson_obj, :update?
 
-      if params[:lesson].present?
-        @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, @current_user)
+    # If the form step is 4, i.e. steps, we redirect to edit the first step created
+    # when the lesson itself was created
+    redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @lesson_obj.steps.first.id, form_step: @form_step) if @form_step == 4
+
+    if params[:lesson].present?
+      @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, @current_user)
+    end
+    files_hash = {}
+    files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
+    files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
+
+    LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash, @current_user) # should not be user first
+    @lesson_obj.reload
+
+
+    if @form_step == 4
+      @steps = @lesson_obj.steps.order(:created_at).to_a
+      unless @steps.present?
+        @lesson_obj.steps << Step.new(summary: "")
+        @lesson_obj.save!
+        puts @lesson_obj.steps
+        @steps = @lesson_obj.steps.to_a
       end
-      files_hash = {}
-      files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
-      files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
-
-      LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash, @current_user) # should not be user first
-      @lesson_obj.reload
-
-
-      if @form_step == 4
-        @steps = @lesson_obj.steps.order(:created_at).to_a
-        unless @steps.present?
-          @lesson_obj.steps << Step.new(summary: "")
-          @lesson_obj.save!
-          puts @lesson_obj.steps
-          @steps = @lesson_obj.steps.to_a
-        end
-        @steps_array = @steps.map{|s| s.id}
-      end
+      @steps_array = @steps.map{|s| s.id}
+    end
 
 
     # elsif params[:id].present? && params[:step].present? # making a step
     #   Step.find_or_create_and_update(nil, params[:id], step_param, User.first).set_files(params)
-    else
-      @lesson_obj = LessonService.find_or_create_and_update(nil, {}, @current_user) # should not be user first
-      @lesson_obj.reload
-    end
 
 
     @collections = CollectionTag.all.to_a.map{|x| x.name.titleize}

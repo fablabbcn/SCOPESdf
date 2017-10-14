@@ -79,7 +79,7 @@
   </div>
 
   <div class="Section__actions">
-    <%= link_to CopyService.home[:projects][:action].gsub(/\n/, '<br>').html_safe, lesson_list_path, class: "Button Button--secondary" %>
+    <%= link_to CopyService.home[:projects][:action].gsub(/\n/, '<br>').html_safe, lessons_path, class: "Button Button--secondary" %>
   </div>
 
 </section>
@@ -114,7 +114,7 @@
   </div>
 
   <div class="Section__actions">
-    <%= link_to CopyService.home[:approach][:action].gsub(/\n/, '<br>').html_safe, lesson_list_path, class: "Button Button--secondary" %>
+    <%= link_to CopyService.home[:approach][:action].gsub(/\n/, '<br>').html_safe, lessons_path, class: "Button Button--secondary" %>
   </div>
 
 </section>
@@ -139,7 +139,7 @@
           <%= CopyService.home[:panels][:description].gsub(/\n/, '<br>').html_safe %>
         </div>
         <div class="SectionPanel__actions">
-          <%= link_to CopyService.home[:panels][:action].gsub(/\n/, '<br>').html_safe, lesson_list_path, class: "Button Button--light Button--outline " %>
+          <%= link_to CopyService.home[:panels][:action].gsub(/\n/, '<br>').html_safe, lessons_path, class: "Button Button--light Button--outline " %>
         </div>
       </div>
 
