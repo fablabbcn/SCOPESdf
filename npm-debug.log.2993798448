@@ -1,0 +1,30 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/6.5.0/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'clean' ]
+2 info using npm@3.10.3
+3 info using node@v6.5.0
+4 verbose run-script [ 'preclean', 'clean', 'postclean' ]
+5 info lifecycle scopesdf@~preclean: scopesdf@
+6 silly lifecycle scopesdf@~preclean: no script for preclean, continuing
+7 info lifecycle scopesdf@~clean: scopesdf@
+8 verbose lifecycle scopesdf@~clean: unsafe-perm in lifecycle true
+9 verbose lifecycle scopesdf@~clean: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/Lucian/Dropbox/FABLAB/SCOPES/scopes/node_modules/.bin:/usr/local/Cellar/node/6.5.0/bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/Lucian/Dropbox/FABLAB/SCOPES/scopes/node_modules/.bin:/usr/local/Cellar/node/6.5.0/bin:/Users/Lucian/.rbenv/versions/2.3.4/bin:/usr/local/Cellar/rbenv/1.0.0/libexec:/usr/local/sbin:/Users/Lucian/.rbenv/shims:/usr/local/bin:/Users/Lucian/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+10 verbose lifecycle scopesdf@~clean: CWD: /Users/Lucian/Dropbox/FABLAB/SCOPES/scopes
+11 silly lifecycle scopesdf@~clean: Args: [ '-c', 'npm run ds_store && rimraf public/build' ]
+12 verbose stack Error: write EPIPE
+12 verbose stack     at exports._errnoException (util.js:1026:11)
+12 verbose stack     at WriteWrap.afterWrite (net.js:795:14)
+13 verbose cwd /Users/Lucian/Dropbox/FABLAB/SCOPES/scopes
+14 error Darwin 16.7.0
+15 error argv "/usr/local/Cellar/node/6.5.0/bin/node" "/usr/local/bin/npm" "run" "clean"
+16 error node v6.5.0
+17 error npm  v3.10.3
+18 error code EPIPE
+19 error errno EPIPE
+20 error syscall write
+21 error write EPIPE
+22 error If you need help, you may report this error at:
+22 error     <https://github.com/npm/npm/issues>
+23 verbose exit [ 1, true ]
