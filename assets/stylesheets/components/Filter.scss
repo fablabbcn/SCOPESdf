@@ -15,3 +15,21 @@
 .Filter__view {
   margin-left: auto;
 }
+
+.Filter__sort {
+  display: flex;
+}
+
+.Filter__sort {
+  display: flex;
+  margin-right: $gutter-width;
+}
+
+.Filter__filters {
+  display: flex;
+  margin-right: $gutter-width;
+}
+
+.Filter__view {
+  display: flex;
+}
