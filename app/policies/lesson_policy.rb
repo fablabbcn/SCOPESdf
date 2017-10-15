@@ -7,13 +7,8 @@ class LessonPolicy
   end
 
   def update?
-    @current_user.lesson_tags.where(lesson_id: @lesson.id).exists? #user created the lesson
+    @lesson.hasAuthor?(@current_user) #user is author, and can therefore upadate
   end
-
-  def new?
-    true
-  end
-
 
 end
 

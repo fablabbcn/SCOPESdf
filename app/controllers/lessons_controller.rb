@@ -1,13 +1,15 @@
 class LessonsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :show]
-  # after_action :verify_authorized, only: :new  # TODO -- setup pundit fully
 
   def index
     # Using lessons#index for now as the public view of all lesson
     # No authentication here
+    @page = params[:page] || 1
 
-    @lessons = Lesson.includes(:steps).all
+    #@lessons = Lesson.page(@page).includes(:steps).to_array
+    #TODO - pass page value along for pagination
+    @lessons = Lesson.includes(:steps).to_a
 
   end
 
@@ -17,46 +19,63 @@ class LessonsController < ApplicationController
     @lesson = Lesson.includes(:steps).find(params[:id])
   end
 
-
   def new
+
+    # We only need to create a new empty lesson with an id here
+    # before handing it off to edit. An id might have been provided already.
+    # TODO: look up a lesson that in the middle of being created, by session id
+    lesson = LessonService.find_or_create_and_update(params[:id], nil, current_user)
+    lesson.steps << Step.new(summary: "")
+
+    if lesson.present?
+      redirect_to edit_lesson_path(lesson)
+    else
+      raise lesson.errors
+    end
+  end
+
+  def edit
+
     @current_user = current_user
 
     # Assign the @form_step var, casting as integer instead of a string
     @form_step = params[:form_step].present? ? params[:form_step].to_i : 1
 
-    if params[:id].present?
-      @lesson_obj = Lesson.find(params[:id])
-      # same as create endpoint
+    # Fetch the lesson by the provided id
+    @lesson_obj = Lesson.find(params[:id])
 
-      if params[:lesson].present?
-        @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, @current_user)
+    #pundit --
+    authorize @lesson_obj, :update?
+
+    # If the form step is 4, i.e. steps, we redirect to edit the first step created
+    # when the lesson itself was created
+    redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @lesson_obj.steps.first.id, form_step: @form_step) if @form_step == 4
+
+    if params[:lesson].present?
+      @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, @current_user)
+    end
+    files_hash = {}
+    files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
+    files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
+
+    LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash, @current_user) # should not be user first
+    @lesson_obj.reload
+
+
+    if @form_step == 4
+      @steps = @lesson_obj.steps.order(:created_at).to_a
+      unless @steps.present?
+        @lesson_obj.steps << Step.new(summary: "")
+        @lesson_obj.save!
+        puts @lesson_obj.steps
+        @steps = @lesson_obj.steps.to_a
       end
-      files_hash = {}
-      files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
-      files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
-
-      LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash, @current_user) # should not be user first
-      @lesson_obj.reload
-
-
-      if @form_step == 4
-        @steps = @lesson_obj.steps.order(:created_at).to_a
-        unless @steps.present?
-          @lesson_obj.steps << Step.new(summary: "")
-          @lesson_obj.save!
-          puts @lesson_obj.steps
-          @steps = @lesson_obj.steps.to_a
-        end
-        @steps_array = @steps.map{|s| s.id}
-      end
+      @steps_array = @steps.map{|s| s.id}
+    end
 
 
     # elsif params[:id].present? && params[:step].present? # making a step
     #   Step.find_or_create_and_update(nil, params[:id], step_param, User.first).set_files(params)
-    else
-      @lesson_obj = LessonService.find_or_create_and_update(nil, {}, @current_user) # should not be user first
-      @lesson_obj.reload
-    end
 
 
     @collections = CollectionTag.all.to_a.map{|x| x.name.titleize}
@@ -71,66 +90,27 @@ class LessonsController < ApplicationController
 
   end
 
-  def create
-    # id = ss[:id]
-    # user = @current_user
 
+  def update
 
-    # authorize IN PUNDIT
-    # id = params[:id]
-    # if id
-    #   Lesson.find(id).hasAuthor?(@current.User)
-    # end
+    # Update the lesson
+    @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
 
-    @lesson = LessonService.find_or_create_and_update(nil, lesson_params, User.first) # should not be user first
-
-    urls = params[:assessment_criteria_files].inspect
-
-    files_hash = {}
-    files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
-    files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
-
-
-    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first) # should not be user first
-    @lesson.reload
-
-    # puts @lesson.inspect
-    render :json => {lesson_id: @lesson.id, files: urls, lesson_obj: @lesson.inspect, publishable: @lesson.publishable?, publishable_details: @lesson.publishable_values}, :status => 200
+    # Redirect to the next step
+    redirect_to edit_lesson_path(id: @lesson_obj.id, form_step: params[:form_step])
 
   end
-
-  def update # used for AJAX
-    # CONFIRM USER IS OWNER
-    puts params[:id].inspect
-    puts lesson_params[:standards].inspect
-
-    @lesson = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first) # should not be user first
-
-
-    files_hash = {}
-    files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
-    files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
-
-    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first) # should not be user first
-    @lesson.reload
-    # puts @lesson.inspect
-    render :json => {lesson_id: @lesson.id, lesson_obj: @lesson.inspect, publishable: @lesson.publishable?, publishable_details: @lesson.publishable_values}, :status => 200
-  end
-
 
   def publish
     # check to make sure current user is owner and make inactive
     # make sure passes validation
     render :json => {success: Lesson.find(params[:id]).publish!}, :status => 200
   end
+
   def delete
     # check to make sure current user is owner and make inactive
     render :json => {success: Lesson.find(params[:id]).hidden!}, :status => 200
   end
-
-
-
-
 
   def add_step
     @lesson = Lesson.first
@@ -143,10 +123,7 @@ class LessonsController < ApplicationController
   def delete_step
     r = Step.delete_and_update_sibilings(params[:step_id], params[:id], User.first) # should not be user first
     render :json => {success: r}, :status => 200
-
   end
-
-
 
   # ~~~~~~~~~~~~~~~
   # STEPS HERE
@@ -166,9 +143,6 @@ class LessonsController < ApplicationController
     ids = Lesson.find(params[:id]).steps.order(:created_at).map{|x| x.id}
     render :json => {ids: ids}, :status => 200
   end
-
-
-
 
   def draft
 
@@ -354,7 +328,6 @@ class LessonsController < ApplicationController
     puts "finished for delete"
     render :json => {status: status}, location: @Uploaded
   end
-
 
   private
 

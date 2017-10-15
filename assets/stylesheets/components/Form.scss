@@ -8,6 +8,8 @@
 
 .Form__links {
   display: flex;
+  padding-top: $gutter-width;
+  padding-bottom: $gutter-width;
 }
 
 .Form__link {

@@ -1,0 +1,27 @@
+<div class="StepList">
+  <h3 class="StepList__heading">How does this lesson unfold?</h3>
+  <ul class="StepList__steps">
+    <% @lesson_obj.steps.each_with_index do |step, index| %>
+    <li class="StepList__step">
+      <div class="StepList__content">
+        <div class="StepList__step__number">
+          Step <%= index + 1 %>
+        </div>
+        <div class="StepList__step__duration">
+          <%= distance_of_time_in_words(step.duration * 60) %>
+        </div>
+        <div class="StepList__step__title">
+          Title attribute for step required
+        </div>
+        <%= link_to "Edit step", edit_lesson_step_path(id: step.id, lesson_id: @lesson_obj.id, form_step: @form_step), class: 'StepList__step__edit' %>
+        <% if @lesson_obj.steps.count >= 2 %>
+        <%= link_to '<span>Remove</span>'.html_safe, lesson_step_path(id: step.id, lesson_id: @lesson_obj.id, form_step: @form_step), method: :delete, confirm: "Are you sure?", class: 'StepList__step__remove' %>
+        <% end %>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+  <div class="StepList__actions">
+    <%= link_to "+ Add a new step", new_lesson_step_path(lesson_id: @lesson_obj.id, form_step: @form_step) %>
+  </div>
+</div>
