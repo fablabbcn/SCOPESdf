@@ -1,5 +1,6 @@
 .Grid {
   display: flex;
+<<<<<<< HEAD
   padding-top: $gutter-width;
   padding-bottom: $gutter-width;
   padding-left: $gutter-width/2;
@@ -14,4 +15,10 @@
   padding-left: $gutter-width/2;
   padding-right: $gutter-width/2;
   padding-bottom: $gutter-width*2;
+=======
+}
+
+.Grid__item {
+
+>>>>>>> f46a5d49ea074ee7821b06b96015c71569c5bc0a
 }
