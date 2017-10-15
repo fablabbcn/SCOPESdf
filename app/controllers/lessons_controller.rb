@@ -46,7 +46,6 @@ class LessonsController < ApplicationController
     # Assign the @form_step var, casting as integer instead of a string
     @form_step = params[:form_step].present? ? params[:form_step].to_i : 1
 
-
     # Fetch the lesson by the provided id
     @lesson_obj = Lesson.find(params[:id])
 
@@ -96,53 +95,6 @@ class LessonsController < ApplicationController
 
   end
 
-  def create
-    # id = ss[:id]
-    # user = @current_user
-
-
-    # authorize IN PUNDIT
-    # id = params[:id]
-    # if id
-    #   Lesson.find(id).hasAuthor?(@current.User)
-    # end
-
-    @lesson = LessonService.find_or_create_and_update(nil, lesson_params, User.first) # should not be user first
-
-    urls = params[:assessment_criteria_files].inspect
-
-    files_hash = {}
-    files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
-    files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
-
-
-    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first) # should not be user first
-    @lesson.reload
-
-    # puts @lesson.inspect
-    render :json => {lesson_id: @lesson.id, files: urls, lesson_obj: @lesson.inspect, publishable: @lesson.publishable?, publishable_details: @lesson.publishable_values}, :status => 200
-
-  end
-
-=begin
-  def update # used for AJAX
-    # CONFIRM USER IS OWNER
-    puts params[:id].inspect
-    puts lesson_params[:standards].inspect
-
-    @lesson = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first) # should not be user first
-
-
-    files_hash = {}
-    files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
-    files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
-
-    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first) # should not be user first
-    @lesson.reload
-    # puts @lesson.inspect
-    render :json => {lesson_id: @lesson.id, lesson_obj: @lesson.inspect, publishable: @lesson.publishable?, publishable_details: @lesson.publishable_values}, :status => 200
-  end
-=end
 
   def update
 
