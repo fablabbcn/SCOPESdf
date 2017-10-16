@@ -1,6 +1,17 @@
 class StandardsController < ApplicationController
+
   before_action :authenticate_user!
   # TODO - PUT PUNDIT
+
+  before_action :set_lesson, only: [:new, :show, :edit, :update, :destroy]
+  before_action :set_standards, only: [:new]
+  before_action :set_standard, only: [:show, :edit, :update, :destroy]
+
+  def new
+
+
+
+  end
 
   def create
     @lesson = Lesson.find(params["lesson_id"])
@@ -16,10 +27,25 @@ class StandardsController < ApplicationController
   end
 
   private
-  def standard_params
-    params.require(:standards).permit(:name, description: [])
-  end
-  def delete_params
-    params.require(:name)
-  end
+
+    def standard_params
+      params.require(:standards).permit(:name, description: [])
+    end
+
+    def delete_params
+      params.require(:name)
+    end
+
+    def set_lesson
+      @lesson_obj = Lesson.find_by_id(params[:lesson_id])
+    end
+
+    def set_standard
+      @standard_obj = Standard.find_by_id(params[:id])
+    end
+
+    def set_standards
+      @standards = Standard.all
+    end
+
 end
