@@ -94,16 +94,6 @@ const webpackBaseConfig = function(env) {
             $: "jquery"
           }),
 
-          function() {
-
-            // output the fingerprint
-            this.plugin("done", function(stats) {
-              let output = "ASSET_FINGERPRINT = \"" + stats.hash + "\""
-              fs.writeFileSync("config/initializers/fingerprint.rb", output, "utf8");
-            });
-
-          },
-
         ]
     }
 };

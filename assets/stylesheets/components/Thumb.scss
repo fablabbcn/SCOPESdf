@@ -3,6 +3,12 @@
   text-align: left;
   border: 1px solid #E2E2E2;
   border-radius: 2px;
+  box-shadow: 0;
+  transition: box-shadow .24s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 20px 0 #E2E2E2;
+  }
 }
 
 .Thumb__image {

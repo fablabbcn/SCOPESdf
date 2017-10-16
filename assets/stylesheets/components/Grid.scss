@@ -1,0 +1,17 @@
+.Grid {
+  display: flex;
+  padding-top: $gutter-width;
+  padding-bottom: $gutter-width;
+  padding-left: $gutter-width/2;
+  padding-right: $gutter-width/2;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.Grid__item {
+  width: 270px + $gutter-width;
+  padding-left: $gutter-width/2;
+  padding-right: $gutter-width/2;
+  padding-bottom: $gutter-width*2;
+}

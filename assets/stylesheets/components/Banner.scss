@@ -12,12 +12,6 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-
-  a {
-    color: #fff;
-    @include text-medium;
-  }
-
 }
 
 .Banner__primary {
@@ -41,4 +35,10 @@
 
 .Banner__description {
   font-size: 20px;
+
+  a {
+    color: #fff;
+    @include text-medium;
+  }
+
 }

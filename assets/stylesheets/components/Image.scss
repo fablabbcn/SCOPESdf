@@ -1,4 +1,30 @@
 .Image {
   display: block;
   width: 100%;
+  transform: translateZ(0);
+  max-width: 100%;
+}
+
+img[data-sizes="auto"] {
+  display: block;
+  width: 100%;
+}
+
+// -- some helpers for lazysizes plugin -- //
+
+.Image--lazy {
+  opacity: 0;
+}
+
+.Image--lazyloading {
+  background-color: #efefef;
+  opacity: 0;
+}
+
+.Image--lazyloaded {
+  background-image: url('images/loading.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity $default-duration $default-easing;
+  opacity: 1;
 }

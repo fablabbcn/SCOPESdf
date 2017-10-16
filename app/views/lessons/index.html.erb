@@ -1,15 +1,61 @@
-<div class="ActionBanner">
+<%= render partial: "components/action_banner", locals: {
+  statement: "Share your lesson with other educators around the world!",
+  actions: [{
+    label: "Add a lesson",
+    path: new_lesson_path
+  }]
+  } %>
 
-  <div class="ActionBanner__content">
 
-    <div class="ActionBanner__statement">
-      Share your lesson with other educators around the world!
-    </div>
+<div class="Filter">
 
-    <div class="ActionBanner__actions">
-      <%= link_to "Add a lesson", new_lesson_path, class: "Button Button--small Button--light Button--icon Button--icon--add" %>
+  <div class="Filter__content">
+
+    <a href="" class="Filter__sort">
+      <div class="Filter__sort__label">
+        Sort by:
+      </div>
+      <div class="Filter__sort__selected">
+        Closest to me
+      </div>
+    </a>
+
+    <a href="" class="Filter__filters">
+      <div class="Filter__filters__label">
+        Filter:
+      </div>
+      <div class="Filter__filters__selected">
+        2
+      </div>
+    </a>
+
+    <div class="Filter__view">
+      <div class="Filter__view__label">
+        View as:
+      </div>
+      <div class="Filter__view__options">
+        <a href="#">Thumbnails</a>
+        <a href="#">Map</a>
+      </div>
     </div>
 
   </div>
+
+</div>
+
+
+
+<div class="Grid">
+
+  <% 24.times do |i| %>
+  <div class="Grid__item">
+
+    <%= render partial: 'components/lesson_thumb', locals: {
+      lesson: Lesson.first,
+      i: i
+      } %>
+
+  </div>
+  <% end %>
 
 </div>
