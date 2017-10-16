@@ -20,7 +20,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.includes(:steps).find(params[:id])
 
     # Fetch any specified section and turn it into a sym, otherwise :overview
-    @secton = params[:section].to_sym || :overview
+    @section = params[:section].present? ? params[:section].to_sym : :overview
 
   end
 
@@ -51,6 +51,9 @@ class LessonsController < ApplicationController
 
     #pundit --
     authorize @lesson_obj, :update?
+
+    # If the form step is 2, i.e. standards, we redirect to create the first standard
+    redirect_to new_lesson_standard_path(lesson_id: @lesson_obj.id, form_step: @form_step) if @form_step == 2
 
     # If the form step is 4, i.e. steps, we redirect to edit the first step created
     # when the lesson itself was created
@@ -113,8 +116,11 @@ class LessonsController < ApplicationController
   end
 
   def delete
-    # check to make sure current user is owner and make inactive
-    render :json => {success: Lesson.find(params[:id]).hidden!}, :status => 200
+
+    lesson = Lesson.find(params[:id]).hidden!
+
+    redirect_to edit_lesson_path(id: lesson.id)
+
   end
 
   def add_step
