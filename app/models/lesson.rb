@@ -129,15 +129,15 @@ class Lesson < ApplicationRecord
       self.lesson_tags << LessonTag.new(taggable: s)
     }
   end
-
-  def getSubjects
+  def subjects
     self.lesson_tags.where(taggable_type: "Subject").map {|x| y = x.taggable; y.name}
   end
-
+  def subject_ids
+    self.lesson_tags.where(taggable_type: "Subject").map {|x| y = x.taggable; y.id}
+  end
   def removeSubject(string)
     self.lesson_tags.where(taggable_type: "Subject").map {|x| y = x.taggable; x.destroy if string.downcase == y.name}
   end
-
   def removeSubjects
     self.lesson_tags.where(taggable_type: "Subject").destroy_all
   end
