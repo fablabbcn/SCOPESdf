@@ -16,8 +16,8 @@ Rails.application.routes.draw do
       delete :delete_file, as: :delete_file_for
     end
     resources :steps do
-      post :upload_file, as: :upload_file_for
-      delete :delete_file, as: :delete_file_for
+      post :upload_file
+      delete :delete_file
     end
     resources :standards
   end
