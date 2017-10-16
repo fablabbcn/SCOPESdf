@@ -144,8 +144,17 @@ class Lesson < ApplicationRecord
 
 
   def setDifficultyLevel(obj_hash)
-    student = DifficultyLevel.find_or_create_by(metric: 0, level: obj_hash[:student].to_i)
-    educator = DifficultyLevel.find_or_create_by(metric: 1, level: obj_hash[:educator].to_i)
+    student = DifficultyLevel.find_or_create_by(metric: 0, level: obj_hash[:student].to_i) if obj_hash[:student].present?
+    educator = DifficultyLevel.find_or_create_by(metric: 1, level: obj_hash[:educator].to_i) if obj_hash[:educator].present?
+    if student.present?
+      student_level = self.lesson_tags.where(taggable_type: "DifficultyLevel").first
+      student_level.destroy if student_level.present?
+    end
+    if educator.present?
+      educator_level = self.lesson_tags.where(taggable_type: "DifficultyLevel").first
+      educator_level.destroy if educator_level.present?
+    end
+
     self.lesson_tags << LessonTag.new(taggable: student)
     self.lesson_tags << LessonTag.new(taggable: educator)
   end
@@ -158,13 +167,15 @@ class Lesson < ApplicationRecord
     self.lesson_tags.where(taggable_type: "DifficultyLevel").destroy_all
   end
 
-  def student_difficulty
+  def student_difficulty(passed_value)
+    self.setDifficultyLevel({student: passed_value}) if passed_value
     student = {}
     self.getDifficultyLevel.map {|x| student = x if x[:metric] == "students"}
     return student
   end
 
-  def educator_difficulty
+  def educator_difficulty(passed_value)
+    self.setDifficultyLevel({educator: passed_value}) if passed_value
     educator = {}
     self.getDifficultyLevel.map {|x| educator = x if x[:metric] == "educator"}
     return educator
