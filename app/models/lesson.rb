@@ -220,11 +220,12 @@ class Lesson < ApplicationRecord
       self.lesson_tags << LessonTag.new(taggable: c)
     }
   end
-
-  def getContext
+  def context
     self.lesson_tags.where(taggable_type: "Context").map {|x| y = x.taggable; y.name}
   end
-
+  def context_ids
+    self.lesson_tags.where(taggable_type: "Subject").map {|x| y = x.taggable; y.id}
+  end
   def removeContext
     self.lesson_tags.where(taggable_type: "Context").destroy_all
   end
