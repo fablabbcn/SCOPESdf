@@ -1,8 +1,9 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const fs = require('fs')
+const ManifestPlugin = require('webpack-manifest-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-const ManifestPlugin = require('webpack-manifest-plugin')
 
 // Set the webpack production configurations
 const webpackProductionConfig = {
