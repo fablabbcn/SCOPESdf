@@ -56,6 +56,9 @@ class Lesson < ApplicationRecord
   has_many :steps, dependent: :destroy
   has_many :lesson_tags, dependent: :destroy
 
+  has_and_belongs_to_many :standards
+
+
   # TODO - search for filter on lesson_tags
 
 

@@ -1,0 +1,3 @@
+class LessonStandard < ApplicationRecord
+
+end
