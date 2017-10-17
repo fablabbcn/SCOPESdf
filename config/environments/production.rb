@@ -12,7 +12,7 @@ Rails.application.configure do
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
+  config.action_clontroller.perform_caching = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -21,6 +21,8 @@ Rails.application.configure do
     'Cache-Control' => 'public, s-maxage=31536000, maxage=15552000',
     'Expires' => "#{1.year.from_now.to_formatted_s(:rfc822)}"
   }
+
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS.
   # config.assets.js_compressor = :uglifier

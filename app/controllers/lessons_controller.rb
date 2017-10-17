@@ -59,7 +59,7 @@ class LessonsController < ApplicationController
     # when the lesson itself was created
     redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @lesson_obj.steps.first.id, form_step: @form_step) if @form_step == 4
 
-    if params[:lesson].present?
+    if params[:lesson].present?l
       @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, @current_user)
     end
     files_hash = {}
