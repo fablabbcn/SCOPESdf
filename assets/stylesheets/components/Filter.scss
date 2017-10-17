@@ -66,4 +66,41 @@
 
 .Filter__view {
   display: flex;
+  align-items: center;
+}
+
+.Filter__view__label {
+  margin-right: $gutter-width/2;
+  color: $color-gray-mid;
+}
+
+.Filter__view__options {
+  display: flex;
+  align-items: center;
+}
+
+.Filter__view__option {
+  opacity: 0.3;
+  background-position:  center left;
+  padding-left: $gutter-width*1.25;
+  background-repeat: no-repeat;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  margin-right: $gutter-width/2;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.Filter__view__option--active {
+  opacity: 1;
+}
+
+.Filter__view__option--thumbnails {
+  background-image: url('images/icon-thumbnails-dark.svg');
+}
+
+.Filter__view__option--map {
+  background-image: url('images/icon-globe-dark.svg');
 }

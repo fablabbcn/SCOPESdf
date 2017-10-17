@@ -19,6 +19,7 @@ import Auth	from "./components/Auth"
 import Carousel	from "./components/Carousel"
 import Choices	from "./components/Choices"
 import FileUpload	from "./components/FileUpload"
+import FilterOverlay	from "./components/FilterOverlay"
 import Form	from "./components/Form"
 import Header	from "./components/Header"
 import MultipleFieldGroups	from "./components/MultipleFieldGroups"
@@ -59,6 +60,7 @@ var ScopesDF = {
 		MultipleInputs()
 		Slider()
 		Textarea()
+		FilterOverlay()
 
 	}
 

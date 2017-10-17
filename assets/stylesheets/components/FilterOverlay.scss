@@ -1,13 +1,14 @@
 .FilterOverlay {
-  display: none;
   background-color: #fff;
-  position: absolute;
+  display: none;
   left: 0;
+  opacity: 0;
+  padding-bottom: $gutter-width;
+  padding-top: $gutter-width;
+  position: absolute;
   right: 0;
-  padding-top: $gutter-width*2;
-  padding-bottom: $gutter-width*2;
-  z-index: 100;
   width: 100%;
+  z-index: 100;
 }
 
 .FilterOverlay__content {
@@ -15,11 +16,21 @@
 }
 
 .FilterOverlay--active {
-  display: flex;
+
 }
 
 .FilterOverlay__close {
+  background-image: url('images/icon-cross-dark.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 24px;
   position: absolute;
   right: $gutter-width;
   top: $gutter-width;
+  width: 24px;
+  outline: none;
+  cursor: pointer;
+  span {
+    display: none;
+  }
 }
