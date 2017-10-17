@@ -10,6 +10,10 @@
   padding-top: $gutter-width;
   padding-bottom: $gutter-width;
   display: flex;
+  font-size: 14px;
+  @include text-medium;
+  align-items: center;
+  display: flex;
 }
 
 .Filter__view {
@@ -18,16 +22,46 @@
 
 .Filter__sort {
   display: flex;
+  margin-right: $gutter-width;
+  background-image: url('images/icon-arrow-down-dark.svg');
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding-right: $gutter-width;
 }
 
-.Filter__sort {
-  display: flex;
-  margin-right: $gutter-width;
+.Filter__sort__label {
+  margin-right: $gutter-width/2;
+  color: $color-gray-mid;
 }
 
 .Filter__filters {
   display: flex;
   margin-right: $gutter-width;
+  align-items: center;
+  background-image: url('images/icon-arrow-down-dark.svg');
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding-right: $gutter-width;
+}
+
+.Filter__filters__label {
+  margin-right: $gutter-width/2;
+}
+
+.Filter__filters__selected {
+  background-color: $color-highlight-primary;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    color: #fff;
+    line-height: 1;
+  }
+
 }
 
 .Filter__view {
