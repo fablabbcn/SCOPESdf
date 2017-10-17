@@ -41,7 +41,6 @@
 .FormField__label {
   font-size: 18px;
   @include text-medium;
-  margin-bottom: 4px;
 
   .FormField--required & {
     &:after {
@@ -54,14 +53,15 @@
 }
 
 .FormField__hint {
-  font-size: 14px;
   color: $color-gray-mid;
+  font-size: 14px;
+  margin-top: 6px;
   padding-right: $gutter-width;
 }
 
 .FormField__instruction {
-  font-size: 14px;
   color: $color-gray-mid;
+  font-size: 14px;
   margin-left: auto;
   margin-top: 4px;
 }

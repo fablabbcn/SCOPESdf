@@ -1,0 +1,33 @@
+<!-- TODO: set checked -->
+
+<div class="FormField__input FormField__radiobutton-groups">
+
+  <div class="RadioButtons">
+    <div class="RadioButtons__label">
+      For the student
+    </div>
+    <div class="RadioButtons__inputs">
+      <% @difficulty_helper[:students].each_with_index do |dl, i| %>
+        <div class="RadioButton">
+          <input type="radio" class="RadioButton__input" name="lesson[difficulty_level_students]" value="<%= dl[:value] %>" id="lesson_difficulty_level_students_<%= i %>">
+          <label class="RadioButton__label Button Button--small Button--extra-padding Button--outline" for="lesson_difficulty_level_students_<%= i %>"><%= dl[:name] %></label>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="RadioButtons">
+    <div class="RadioButtons__label">
+      For teachers
+    </div>
+    <div class="RadioButtons__inputs">
+      <% @difficulty_helper[:teachers].each_with_index do |dl, i| %>
+        <div class="RadioButton">
+          <input type="radio" class="RadioButton__input" name="lesson[difficulty_level_teachers]" value="<%= dl[:value] %>" id="lesson_difficulty_level_teachers_<%= i %>">
+          <label class="RadioButton__label Button Button--small Button--extra-padding Button--outline" for="lesson_difficulty_level_teachers_<%= i %>"><%= dl[:name] %></label>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

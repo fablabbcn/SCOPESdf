@@ -21,8 +21,11 @@
     </div>
 
     <div class="FormField__input">
-      <div class="Input Input--slider" data-config="<%= { start: 0, step: 10, connect: [true, false], range: { min: 0, max: 420 } }.to_json %>">
-        <input type="hidden" name="step[duration]" value="" />
+      <div class="Slider">
+        <div class="Slider__value"></div>
+        <div class="Slider__control" data-config="<%= { start: 0, step: 10, connect: [true, false], range: { min: 0, max: 420 }, unit: 'mins' }.to_json %>">
+          <input type="hidden" name="step[duration]" value="" />
+        </div>
       </div>
     </div>
 
@@ -143,16 +146,3 @@
   </div>
 
 <% end %>
-
-<div class="Form__footer">
-
-  <div class="Form__footer__content">
-
-    <div class="Form__footer__actions">
-      <a href="#" class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left">Back to details</a>
-      <button class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right">Add some outcomes</button>
-    </div>
-
-  </div>
-
-</div>
