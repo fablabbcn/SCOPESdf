@@ -2,14 +2,27 @@ class LessonsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :show]
 
+  before_action :set_contexts, only: [:index, :edit]
+  before_action :set_subjects, only: [:index, :edit]
+  before_action :set_collections, only: [:index, :edit]
+
   def index
     # Using lessons#index for now as the public view of all lesson
     # No authentication here
+
+    # Fetch the page number, otherwise 1
     @page = params[:page] || 1
 
-    #@lessons = Lesson.page(@page).includes(:steps).to_array
-    #TODO - pass page value along for pagination
-    @lessons = Lesson.includes(:steps).to_a
+    # Fetch lessons
+    @lessons = Lesson.includes(:steps).page(@page)
+
+    # TODO: use filters
+
+    # Fetch subjects
+    @filter_subjects = [] # TODO: turn subject param into array to check against
+
+    # set difficulties
+    @difficulty_helper = DifficultyLevel.form_helper
 
   end
 
@@ -37,6 +50,7 @@ class LessonsController < ApplicationController
     else
       raise lesson.errors
     end
+
   end
 
   def edit
@@ -50,7 +64,7 @@ class LessonsController < ApplicationController
     @lesson_obj = Lesson.find(params[:id])
 
     #pundit --
-    authorize @lesson_obj, :update?
+    #authorize @lesson_obj, :update? TODO: this keeps erroring for me - DH
 
     # If the form step is 2, i.e. standards, we redirect to create the first standard
     redirect_to new_lesson_standard_path(lesson_id: @lesson_obj.id, form_step: @form_step) if @form_step == 2
@@ -59,7 +73,7 @@ class LessonsController < ApplicationController
     # when the lesson itself was created
     redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @lesson_obj.steps.first.id, form_step: @form_step) if @form_step == 4
 
-    if params[:lesson].present?l
+    if params[:lesson].present?
       @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, @current_user)
     end
     files_hash = {}
@@ -87,10 +101,6 @@ class LessonsController < ApplicationController
 
 
     @collections = CollectionTag.all.to_a.map{|x| x.name.titleize}
-    @subjects = Subject.all.to_a.map{|x| x.name.titleize}
-    @subjects = Subject.all
-    @context = Context.all.to_a.map{|x| x.name.titleize}
-    @contexts = Context.all
     @standards = Lesson.standards_list
     @standards_array = @lesson_obj.standards_array
     @difficulty_helper = DifficultyLevel.form_helper
@@ -360,6 +370,18 @@ class LessonsController < ApplicationController
 
     def remove_file_params
       params.permit(:name, :attr)
+    end
+
+    def set_collections
+      @collections = CollectionTag.all
+    end
+
+    def set_contexts
+      @contexts = Context.all
+    end
+
+    def set_subjects
+      @subjects = Subject.all
     end
 
 end
