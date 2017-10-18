@@ -33,6 +33,9 @@ class Lesson < ApplicationRecord
   # TODO - added an attribute for grade_range
   attr_accessor :grade_range
 
+  # TODO - description to be renamed, or new attr to be added
+  attr_accessor :teacher_notes
+
   # TODO - validate publishing only when all content is set
 
   # TODO - api view sections for content loading
