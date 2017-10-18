@@ -32,7 +32,8 @@ function Textarea() {
 }
 
 export function initAutosize(textarea) {
-  Autosize(textarea)
+  let autosize = Autosize(textarea)
+	Autosize.update(textarea)
 }
 
 function characterCount(textarea) {
