@@ -1,0 +1,40 @@
+.LessonListing {
+  display: flex;
+}
+
+.LessonListing__image {
+  width: (100%/3);
+}
+
+.LessonListing__content {
+  padding-left: $gutter-width;
+  width: (100%/3)*2;
+  display: flex;
+  flex-direction: column;
+}
+
+.LessonListing__name {
+  @include text-medium;
+  margin-bottom: 2px;
+  flex-grow: 0;
+}
+
+.LessonListing__name--collection {
+  span {
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: $gutter-width;
+  }
+}
+
+.LessonListing__name--collection--fab-tested {
+  span {
+    background-image: url('images/collection-fab-tested.svg');
+    background-size: 16px;
+  }
+}
+
+.LessonListing__topline {
+  font-size: 12px;
+  margin-bottom: 4px;
+}

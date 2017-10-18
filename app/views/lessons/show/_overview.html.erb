@@ -60,8 +60,6 @@
 
 
 
-
-
 <div class="LessonDetails">
 
   <div class="LessonDetails__content">
@@ -144,6 +142,56 @@
 
       </div>
 
+      <!-- outcomes -->
+      <div class="LessonContent__section">
+
+        <div class="LessonContent__heading">Expected outcomes</div>
+
+        <div class="LessonContent__thumbnails">
+
+          <% 3.times do |i| %>
+          <a href="#" class="LessonContent__thumbnail">
+            <img src="<%= image_url("lessons/show/catan#{i+1}.jpg") %>"
+              data-sizes="auto"
+              data-srcset="<%= image_url("lessons/show/catan#{i+1}.jpg") %> 1x, <%= image_url("lessons/show/catan#{i+1}.jpg") %> 2x"
+              class="Image Image--lazy" />
+          </a>
+          <% end %>
+
+        </div>
+
+      </div>
+
+      <!-- assessment criteria -->
+      <div class="LessonContent__section">
+
+        <div class="LessonContent__heading">Assessment Criteria</div>
+
+        <div class="LesssonContent__text">
+
+          <p>
+            Your students should know the following things:
+          </p>
+
+          <ul>
+            <li>What are the benefits of modeling small, separate pieces for printing?</li>
+            <li>What tools do you use to build objects in Tinkercad?</li>
+            <li>What are the strengths and weaknesses of Tinkercad?</li>
+            <li>How do you navigate in Tinkercad?</li>
+            <li>When building the mountain tiles, why was it important to use the Hole tool to cut off	the base of the tile?</li>
+            <li>What are the benefits of plating multiple prints at a time?</li>
+          </ul>
+
+        </div>
+
+        <div class="LessonContent__heading LessonContent__heading--minor">Supporting files</div>
+
+        <a href="#" class="Button Button--outline Button--small Button--icon Button--icon--file">SettlersCatanAssessment.pdf</a>
+
+        <a href="#" class="Button Button--outline Button--small Button--icon Button--icon--file">Quiz.pdf</a>
+
+      </div>
+
     </div>
 
     <div class="LessonContent__sidebar">
@@ -166,11 +214,53 @@
           Stats
         </div>
 
-        <ul class="LessonContent__stats">
-          <li><a href="#" class="LessonContent__stat LessonContent__stat--likes">82 Likes</a></li>
-          <li><a href="#" class="LessonContent__stat LessonContent__stat--forks">6 Forks</a></li>
-          <li><a href="#" class="LessonContent__stat LessonContent__stat--completed">51 Completed</a></li>
+        <ul class="LessonContent__list">
+          <li class="LessonContent__list__item"><a href="#" class="LessonContent__stat LessonContent__stat--likes">82 Likes</a></li>
+          <li class="LessonContent__list__item"><a href="#" class="LessonContent__stat LessonContent__stat--forks">6 Forks</a></li>
+          <li class="LessonContent__list__item"><a href="#" class="LessonContent__stat LessonContent__stat--completed">51 Completed</a></li>
         </ul>
+
+      </div>
+
+      <!-- dates -->
+      <div class="LessonContent__section LessonContent__section--with-border">
+
+        <div class="LessonContent__heading">
+          Details
+        </div>
+
+        <ul class="LessonContent__list">
+          <li class="LessonContent__list__item">Publish date: 21 Aug 2017</li>
+          <li class="LessonContent__list__item">Last updated: 28 Aug 2017</li>
+        </ul>
+
+      </div>
+
+      <!-- forked -->
+      <div class="LessonContent__section LessonContent__section--with-border">
+
+        <div class="LessonContent__heading">
+          Forked from
+        </div>
+
+        <div class="LessonListing LessonListing--small">
+
+          <a href="#" class="LessonListing__image">
+            <img src="<%= image_url('lessons/show/aquacatan.jpg') %>" class="Image Image--lazy" />
+          </a>
+          <div class="LessonListing__content">
+            <a href="#" class="LessonListing__name LessonListing__name--collection LessonListing__name--collection--fab-tested">
+              <span>AquaCatan</span>
+            </a>
+            <div class="LessonListing__topline">
+              A variation on the popular catan game with only …
+            </div>
+            <div class="LessonListing__author">
+              <%= render partial: "components/user_badge", locals: { size: :tiny } %>
+            </div>
+          </div>
+
+        </div>
 
       </div>
 

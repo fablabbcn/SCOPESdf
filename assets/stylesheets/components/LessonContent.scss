@@ -4,6 +4,11 @@
   padding-top: $gutter-width*3;
 }
 
+.LesssonContent__text {
+  @include body-text;
+  margin-bottom: $gutter-width*2;
+}
+
 .LessonContent__columns {
   display: flex;
   max-width: $grid-width;
@@ -39,6 +44,10 @@
   margin-bottom: $gutter-width;
 }
 
+.LessonContent__heading--minor {
+  font-size: 12px;
+}
+
 .LessonContent__quick_pitch {
   @include text-medium;
   font-size: 20px;
@@ -63,8 +72,28 @@
 }
 
 
-.LessonContent__stats {
+.LessonContent__thumbnails {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-left: -10px;
+  margin-right: -10px;
+}
 
+.LessonContent__thumbnail {
+  width: (100%/3);
+  padding-left: $gutter-width/2;
+  padding-right: $gutter-width/2;
+}
+
+
+.LessonContent__list {
+
+}
+
+.LessonContent__list__item {
+  font-size: 16px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .LessonContent__stat {
@@ -72,9 +101,6 @@
   background-repeat: no-repeat;
   background-position: left center;
   padding-left: 24px;
-  font-size: 16px;
-  padding-top: 4px;
-  padding-bottom: 4px;
 }
 
 .LessonContent__stat--likes {
