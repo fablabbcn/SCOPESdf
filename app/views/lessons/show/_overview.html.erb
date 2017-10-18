@@ -1,0 +1,59 @@
+<div class="LessonHeader">
+
+  <div class="LessonHeader__panel">
+
+    <div class="LessonHeader__content">
+
+      <div class="LessonHeader__collection LessonHeader__collection--fab-tested">
+        <span>Fab Tested</span>
+      </div>
+
+      <h1 class="LessonHeader__heading">
+        Settlers of Catan
+      </h1>
+
+      <div class="LessonHeader__topline">
+        Make Your Own Country with Tinkercad
+      </div>
+
+      <a href="#" class="LessonHeader__author LessonHeader__author--verified">
+        <div class="LessonHeader__author__avatars">
+          <div class="LessonHeader__author__person">
+            <img src="<%= image_url('avatars/avatar1.jpg') %>" class="Image Image--lazy" />
+          </div>
+          <div class="LessonHeader__author__place">
+            <img src="<%= image_url('places/ucla.png') %>" class="Image Image--lazy" />
+          </div>
+        </div>
+        <div class="LessonHeader__author__name">
+          Claudia Sanchez Munoz
+        </div>
+        <div class="LessonHeader__author__roleplace">
+          Teacher • UCLA
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="LessonHeader__photos">
+
+    <% 4.times do |i| %>
+    <div class="LessonHeader__photo">
+      <img src="<%= image_url("lessons/show/catan#{i+1}.jpg") %>"
+        data-sizes="auto"
+        data-srcset="<%= image_url("lessons/show/catan#{i+1}.jpg") %> 1x, <%= image_url("lessons/show/catan#{i+1}.jpg") %> 2x"
+        class="Image Image--lazy" />
+    </div>
+    <% end %>
+
+    <%= link_to "View more photos", lesson_path(section: :outcomes), class: "LessonHeader__photos__action Button Button--primary Button--small" %>
+
+    <div class="LessonHeader__photos__status">
+      <span class="current">1</span> / <span class="total"></span>
+    </div>
+
+  </div>
+
+</div>
