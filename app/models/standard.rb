@@ -19,7 +19,6 @@ class Standard < ApplicationRecord
       rescue ActiveRecord::RecordInvalid => e
         next
       end
-
     }
   end
 
