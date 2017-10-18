@@ -21,7 +21,10 @@ class Standard < ApplicationRecord
       end
 
     }
+  end
 
+  def self.name_array
+    Standard.all.to_a.map{|x| x.name}
   end
 
   private
