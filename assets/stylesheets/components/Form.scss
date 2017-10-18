@@ -44,6 +44,13 @@
 
 }
 
+.Form__fieldset--minor {
+  legend {
+    font-size: 18px;
+    color: $color-gray-dark;
+  }
+}
+
 .Form__fieldset--with-border {
   border-bottom: 1px solid $color-input-border;
   margin-bottom: $gutter-width*2;

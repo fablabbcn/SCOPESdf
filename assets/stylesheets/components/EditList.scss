@@ -17,6 +17,7 @@
 }
 
 .EditList__item {
+  font-size: 16px;
 
   &:nth-child(odd) {
     background-color: $color-gray-verylight;
@@ -36,13 +37,13 @@
 }
 
 .EditList__number {
-  font-size: 16px;
+  font-size: 18px;
   @include text-medium;
   width: 20%;
 }
 
 .EditList__duration {
-  width: 15%;
+  width: 17%;
   white-space: nowrap;
 }
 

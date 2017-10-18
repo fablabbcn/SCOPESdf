@@ -8,7 +8,9 @@ class StepsController < ApplicationController
   before_action :set_step, only: [:show, :edit, :update, :destroy]
 
   def index
+
     @steps = Step.all
+
   end
 
   def show
@@ -38,7 +40,10 @@ class StepsController < ApplicationController
   end
 
   def create
+
     @step_obj = Step.new(step_params)
+
+    # TODO: if create param is set, we need to redirect to new
 
     respond_to do |format|
       if @step_obj.save
