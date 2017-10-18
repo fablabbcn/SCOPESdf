@@ -3,9 +3,16 @@ class StandardsController < ApplicationController
   before_action :authenticate_user!
   # TODO - PUT PUNDIT
 
-  before_action :set_lesson, only: [:new, :show, :edit, :update, :destroy]
+  before_action :set_lesson, only: [:index, :new, :show, :edit, :update, :destroy]
   before_action :set_standards, only: [:new]
   before_action :set_standard, only: [:show, :edit, :update, :destroy]
+
+  def index
+
+    # Specify section as standards for use in sub nav
+    @section = :standards
+
+  end
 
   def new
 
@@ -35,10 +42,6 @@ class StandardsController < ApplicationController
 
     def delete_params
       params.require(:name)
-    end
-
-    def set_lesson
-      @lesson_obj = Lesson.find_by_id(params[:lesson_id])
     end
 
     def set_standard

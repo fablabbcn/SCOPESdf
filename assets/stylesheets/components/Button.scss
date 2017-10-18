@@ -45,7 +45,6 @@
 
 }
 
-
 .Button--outline.Button--light {
   border: 1px solid #fff;
 }
@@ -54,6 +53,11 @@
   color: $color-main;
   border-color: #fff;
   background-color: #fff;
+}
+
+.Button--transparent {
+  background-color: transparent;
+  border-color: transparent;
 }
 
 .Button--outline {
@@ -120,7 +124,23 @@
   background-image: url('images/icon-trash-light.svg');
 }
 .Button--icon--check {
-  background-image: url('images/icon-check-light.svg');
+  background-image: url('images/icon-check-dark.svg');
+  &.Button--outline {
+    background-image: url('images/icon-check-highlight.svg');
+  }
+  &.Button--active,
+  &.Button--primary {
+    background-image: url('images/icon-check-light.svg');
+  }
+}
+.Button--icon--edit {
+  background-image: url('images/icon-edit-highlight.svg');
+}
+.Button--icon--like {
+  background-image: url('images/icon-heart-blue.svg');
+}
+.Button--icon--fork {
+  background-image: url('images/icon-fork-blue.svg');
 }
 .Button--icon--locked {
   background-image: url('images/icon-locked-dark.svg');
@@ -129,7 +149,8 @@
   &.Button--outline {
     background-image: url('images/icon-arts-primary.svg');
   }
-  &.Button--active {
+  &.Button--active,
+  &.Button--primary {
     background-image: url('images/icon-arts-light.svg');
   }
 }

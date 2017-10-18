@@ -4,12 +4,15 @@ class StepsController < ApplicationController
   # but must always have a lesson id provided.
 
   before_action :authenticate_user!
-  before_action :set_lesson, only: [:new, :show, :edit, :update, :destroy]
+  before_action :set_lesson, only: [:index, :new, :show, :edit, :update, :destroy]
   before_action :set_step, only: [:show, :edit, :update, :destroy]
 
   def index
 
     @steps = Step.all
+
+    # Specify section as steps for use in sub nav
+    @section = :steps
 
   end
 
@@ -96,10 +99,6 @@ class StepsController < ApplicationController
   end
 
   private
-
-    def set_lesson
-      @lesson_obj = Lesson.find_by_id(params[:lesson_id])
-    end
 
     def set_step
       @step_obj = Step.find_by_id(params[:id])

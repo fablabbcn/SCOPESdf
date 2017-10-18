@@ -27,13 +27,24 @@
   margin-right: $gutter-width/2;
   background-repeat: no-repeat;
   background-position: 10px center;
+
+}
+
+.SubNavigation__item--icon {
   padding-left: $gutter-width*1.75;
+}
+
+.SubNavigation__item--icon--ellipsis {
   background-image: url('images/icon-ellipsis-mid.svg');
+}
+.SubNavigation__item--icon--edit {
+  &.SubNavigation__item--active {
+    background-image: url('images/icon-edit-highlight.svg');
+  }
 }
 
 .SubNavigation__item--active {
   border-bottom: 4px solid $color-highlight-primary;
-  background-image: url('images/icon-edit-highlight.svg');
 }
 
 .SubNavigation__track {
@@ -45,4 +56,13 @@
   font-size: 14px;
   @include text-medium;
   margin-bottom: 4px;
+}
+
+.SubNavigation__actions {
+  display: flex;
+  margin-left: auto;
+}
+
+.SubNavigation__action {
+  
 }

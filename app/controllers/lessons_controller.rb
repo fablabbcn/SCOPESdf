@@ -30,7 +30,11 @@ class LessonsController < ApplicationController
 
     # Using lessons#show for now as the public view
     # No authentication here
-    @lesson = Lesson.includes(:steps).find(params[:id])
+
+    # TODO: just finding/creating a dummy lesson now just to be able to show the templates
+    #@lesson = Lesson.includes(:steps).find(params[:id])
+    @lesson_obj = LessonService.find_or_create_and_update(params[:id], nil, current_user)
+    @lesson_obj.steps << Step.new(summary: "")
 
     # Fetch any specified section and turn it into a sym, otherwise :overview
     @section = params[:section].present? ? params[:section].to_sym : :overview
