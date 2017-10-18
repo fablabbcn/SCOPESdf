@@ -9,6 +9,11 @@
   border-radius: 50%;
   flex-grow: 0;
 
+  .UserBadge--medium & {
+    width: 36px;
+    height: 36px;
+  }
+
   .UserBadge--small & {
     width: 32px;
     height: 32px;
@@ -34,6 +39,10 @@
   @include text-small;
   color: $color-gray-verydark;
 
+  .UserBadge--medium & {
+    font-size: 14px;
+  }
+
   .UserBadge--tiny & {
     font-size: 10px;
     color: $color-gray-mid;
@@ -42,6 +51,8 @@
 }
 
 .UserBadge__role {
+  @include text-small;
+  color: $color-gray-mid;
 
   // don't show the role for the small version
   .UserBadge--small &,

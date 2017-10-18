@@ -1,0 +1,14 @@
+.Tag {
+  @include text-medium;
+  font-size: 14px;
+  display: inline-block;
+  background-color: $color-gray-light;
+  padding: 10px 8px;
+  border-radius: 2px;
+  transition: all $default-duration $default-easing;
+
+  &:hover {
+    background-color: darken($color-gray-light, 2%);
+  }
+
+}
