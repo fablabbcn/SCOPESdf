@@ -88,7 +88,7 @@ class LessonsController < ApplicationController
     @subjects = Subject.all
     @context = Context.all.to_a.map{|x| x.name.titleize}
     @contexts = Context.all
-    @standards = Lesson.standards_list
+    @standards = Standard.name_array
     @standards_array = @lesson_obj.standards_array
     @difficulty_helper = DifficultyLevel.form_helper
     @teaching_range_helper = TeachingRange.inputRange

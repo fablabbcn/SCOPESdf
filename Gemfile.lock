@@ -55,6 +55,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
+    annotate (2.7.2)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 13.0)
     ansi (1.5.0)
     arel (7.1.4)
     ast (2.3.0)
@@ -519,6 +522,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to
   activerecord-postgis-adapter
+  annotate
   better_errors
   binding_of_caller
   bootstrap-sass

@@ -23,10 +23,6 @@
 class Lesson < ApplicationRecord
   enum state: [:hidden, :draft, :visible]
 
-  def self.standards_list
-    ["NGSS", "Common Core ELA", "Common Core Math", "FAB I Can Statements", "21st Century Skills", "Other"]
-  end
-
   # TODO - added an attribute for other_users_emails as was missing
   attr_accessor :other_users_emails
 
@@ -55,6 +51,9 @@ class Lesson < ApplicationRecord
 
   has_many :steps, dependent: :destroy
   has_many :lesson_tags, dependent: :destroy
+
+  has_and_belongs_to_many :standards
+
 
   # TODO - search for filter on lesson_tags
 
@@ -428,6 +427,9 @@ class Lesson < ApplicationRecord
     sum
   end
 
+
+
+
   def standards_array
     self.standards["standards"] if self.standards.present?
   end
@@ -454,6 +456,9 @@ class Lesson < ApplicationRecord
     self.standards = {standards: given}
     self.save
   end
+
+
+
 
   def stats
     {likes: self.likes.count, forks: Lesson.where(original_lesson: self.id).count}
@@ -487,8 +492,10 @@ class Lesson < ApplicationRecord
         # assessment_criteria: self.assessment_criteria.present?,
         # further_readings: self.further_readings.present?,
 
-        standards:
-            (self.standards.present? && self.standards["standards"].present? && self.standards["standards"].count > 0 && self.standards["standards"].first["name"].present? && self.standards["standards"].first["descriptions"].present?),
+        # TODO - add standards
+
+        # standards:
+        #     (self.standards.present? && self.standards["standards"].present? && self.standards["standards"].count > 0 && self.standards["standards"].first["name"].present? && self.standards["standards"].first["descriptions"].present?),
 
         subjects: self.getSubjects.present?,
         difficulty_level: self.getDifficultyLevel.present? && self.getDifficultyLevel.count == 2,

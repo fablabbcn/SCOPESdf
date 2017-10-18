@@ -8,6 +8,7 @@ class SeedService
       Skill.seed
       Context.seed
       CollectionTag.seed
+      Standard.seed
     end
 
     # def l_tags

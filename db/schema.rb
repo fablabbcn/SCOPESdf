@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604152437) do
+ActiveRecord::Schema.define(version: 20171017113557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,15 @@ ActiveRecord::Schema.define(version: 20170604152437) do
     t.index ["state"], name: "index_lessons_on_state", using: :btree
   end
 
+  create_table "lessons_standards", id: false, force: :cascade do |t|
+    t.uuid    "lesson_id",   null: false
+    t.uuid    "standard_id", null: false
+    t.string  "description"
+    t.integer "index"
+    t.index ["lesson_id"], name: "index_lessons_standards_on_lesson_id", using: :btree
+    t.index ["standard_id"], name: "index_lessons_standards_on_standard_id", using: :btree
+  end
+
   create_table "likes", force: :cascade do |t|
     t.uuid     "lesson_id",  null: false
     t.uuid     "user_id",    null: false
@@ -155,6 +164,12 @@ ActiveRecord::Schema.define(version: 20170604152437) do
   create_table "skills", force: :cascade do |t|
     t.string "name", null: false
     t.index ["name"], name: "index_skills_on_name", using: :btree
+  end
+
+  create_table "standards", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name",         null: false
+    t.string "autocomplete"
+    t.index ["name"], name: "index_standards_on_name", using: :btree
   end
 
   create_table "steps", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -230,6 +245,8 @@ ActiveRecord::Schema.define(version: 20170604152437) do
   add_foreign_key "affiliations", "organizations"
   add_foreign_key "affiliations", "users"
   add_foreign_key "lesson_tags", "lessons"
+  add_foreign_key "lessons_standards", "lessons"
+  add_foreign_key "lessons_standards", "standards"
   add_foreign_key "likes", "lessons"
   add_foreign_key "likes", "users"
   add_foreign_key "org_tags", "organizations"

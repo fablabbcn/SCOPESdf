@@ -62,6 +62,7 @@ group :development, :test do
   gem 'hologram', github: 'trulia/hologram'
   gem 'guard-hologram', require: false
   gem 'rspec-rails'
+  gem 'annotate'
 end
 group :test do
   gem 'capybara'
