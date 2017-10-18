@@ -28,9 +28,6 @@ class LessonsController < ApplicationController
 
   def show
 
-    # Using lessons#show for now as the public view
-    # No authentication here
-
     # TODO: just finding/creating a dummy lesson now just to be able to show the templates
     #@lesson = Lesson.includes(:steps).find(params[:id])
     @lesson_obj = LessonService.find_or_create_and_update(params[:id], nil, current_user)
