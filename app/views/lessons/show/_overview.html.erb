@@ -264,6 +264,32 @@
 
       </div>
 
+      <!-- contributors -->
+      <div class="LessonContent__section LessonContent__section--with-border">
+
+        <div class="LessonContent__heading">
+          Contributors
+        </div>
+
+        <%= render partial: "components/user_badge", locals: { size: :medium } %>
+
+      </div>
+
+      <!-- tags -->
+      <div class="LessonContent__section LessonContent__section--with-border">
+
+        <div class="LessonContent__heading">
+          Tags
+        </div>
+
+        <div class="Tags">
+        <% ['3D', 'Innovation', 'Physics', '8th Grade', '9th Grade', '10th Grade', '11th Grade', 'Algebra'].each do |tag| %>
+          <a href="#" class="Tag"><%= tag %></a>
+        <% end %>
+        </div>
+
+      </div>
+
     </div>
 
   </div>
