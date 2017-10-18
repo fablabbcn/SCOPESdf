@@ -48,8 +48,8 @@ class StandardsController < ApplicationController
       @standard_obj = Standard.find_by_id(params[:id])
     end
 
-    def set_standards
-      @standards = Standard.all
-    end
-
+  def set_standards
+    # @standards = Standard.all
+    @standards = Standard.name_array
+  end
 end
