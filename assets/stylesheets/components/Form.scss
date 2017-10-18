@@ -51,7 +51,7 @@
 
 .Form__footer__content {
   margin: 0 auto;
-  max-width: $grid-width;
+  max-width: $form-width;
   padding-bottom: $gutter-width*3;
   padding-top: $gutter-width*3;
   display: flex;
@@ -63,6 +63,14 @@
   font-size: 24px;
   @include text-medium;
   width: 50%;
+
+  span {
+    display: block;
+    font-size: 14px;
+    color: $color-gray-mid;
+
+  }
+
 }
 
 .Form__footer__actions {
