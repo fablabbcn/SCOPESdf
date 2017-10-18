@@ -1,0 +1,116 @@
+<div class="FilterOverlay FilterOverlay--active">
+
+  <button class="FilterOverlay__close"><span>✕</span></button>
+
+  <div class="FilterOverlay__content">
+
+    <%= form_tag(lessons_path, method: :get, class: "Form") do %>
+
+      <%= field_set_tag nil, class: 'Form__fieldset' do %>
+
+        <!-- distance -->
+        <div class="FormField FormField--with-border">
+
+          <div class="FormField__info">
+            <label class="FormField__label" for="lesson_name">Distance</label>
+          </div>
+
+          <div class="FormField__input">
+            <div class="Slider">
+              <div class="Slider__value"></div>
+              <div class="Slider__control" data-config="<%= { start: [0, 100], connect: true, step: 1, range: { min: 0, max: 800 }, unit: 'mi' }.to_json %>">
+                <input type="hidden" name="lesson[distance]" value="<%= params[:distance] %>" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- collection -->
+        <div class="FormField FormField--with-border">
+
+          <div class="FormField__info">
+            <label class="FormField__label" for="lesson_name">Collection</label>
+          </div>
+
+          <div class="FormField__input">
+            <select name="collection">
+              <% @collections.each do |collection| %>
+              <option value="<%= collection.id %>"><%= collection.name.titleize %></option>
+              <% end %>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- subjects -->
+        <div class="FormField FormField--with-border">
+
+          <div class="FormField__info">
+            <label class="FormField__label" for="lesson_name">Subjects</label>
+          </div>
+
+          <div class="FormField__input">
+            <div class="CheckboxButtons">
+              <% @subjects.each do |s| %>
+              <div class="CheckboxButton">
+                <input type="checkbox" class="CheckboxButton__input" name="lesson[subjects][]" value="<%= s.id %>" <%= @filter_subjects.include?(s) ? 'checked' : nil %> id="lesson__subjects__<%= s.id %>" />
+                <label class="CheckboxButton__label Button Button--outline Button--small Button--extra-padding Button--icon Button--icon--<%= s.name %>" for="lesson__subjects__<%= s.id %>"><%= s.name.titleize %></label>
+              </div>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- grade_range -->
+        <div class="FormField FormField--with-border">
+
+          <div class="FormField__info">
+            <label class="FormField__label" for="lesson_grade_range">Grade range</label>
+          </div>
+
+          <div class="FormField__input">
+            <div class="Slider">
+              <div class="Slider__value"></div>
+              <div class="Slider__control" data-config="<%= { start: [3,5], connect: true, step: 1, range: { min: -1, max: 12 }, unit: 'ordinal' }.to_json %>">
+                <input type="hidden" name="lesson[grade_range]" value="<%= params[:grade_range] %>" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- difficulty -->
+        <div class="FormField FormField--with-border">
+
+          <div class="FormField__info">
+            <label class="FormField__label" for="lesson_difficulty">Difficulty level</label>
+          </div>
+
+          <%= render partial: "lessons/form/mastery" %>
+
+        </div>
+
+        <!-- contexts -->
+        <div class="FormField FormField--with-border">
+
+          <div class="FormField__info">
+            <label class="FormField__label" for="lesson_contexts">Contexts</label>
+          </div>
+
+          <%= render partial: "lessons/form/contexts" %>
+
+        </div>
+
+        <div class="Form__actions">
+          <button type="submit" class="Button Button--primary Button--right Button--icon Button--icon--check">Apply filters</button>
+        </div>
+
+      <% end %>
+
+    <% end %>
+
+  </div>
+
+</div>

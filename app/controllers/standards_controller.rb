@@ -1,6 +1,25 @@
 class StandardsController < ApplicationController
+
   before_action :authenticate_user!
   # TODO - PUT PUNDIT
+
+  before_action :set_lesson, only: [:index, :new, :show, :edit, :update, :destroy]
+  before_action :set_standards, only: [:new]
+  before_action :set_standard, only: [:show, :edit, :update, :destroy]
+
+  def index
+
+    # Specify section as standards for use in sub nav
+    @section = :standards
+
+  end
+
+  def new
+
+    # Assign the @form_step var, casting as integer instead of a string
+    @form_step = params[:form_step].present? ? params[:form_step].to_i : 1
+
+  end
 
   def create
     @lesson = Lesson.find(params["lesson_id"])
@@ -16,10 +35,21 @@ class StandardsController < ApplicationController
   end
 
   private
-  def standard_params
-    params.require(:standards).permit(:name, description: [])
-  end
-  def delete_params
-    params.require(:name)
-  end
+
+    def standard_params
+      params.require(:standards).permit(:name, description: [])
+    end
+
+    def delete_params
+      params.require(:name)
+    end
+
+    def set_standard
+      @standard_obj = Standard.find_by_id(params[:id])
+    end
+
+    def set_standards
+      @standards = Standard.all
+    end
+
 end

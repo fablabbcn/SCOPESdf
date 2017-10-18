@@ -1,27 +1,27 @@
-<div class="StepList">
-  <h3 class="StepList__heading">How does this lesson unfold?</h3>
-  <ul class="StepList__steps">
+<div class="EditList">
+  <h3 class="EditList__heading">How do we learn and build?</h3>
+  <ul class="EditList__items">
     <% @lesson_obj.steps.each_with_index do |step, index| %>
-    <li class="StepList__step">
-      <div class="StepList__content">
-        <div class="StepList__step__number">
+    <li class="EditList__item">
+      <div class="EditList__content">
+        <div class="EditList__number">
           Step <%= index + 1 %>
         </div>
-        <div class="StepList__step__duration">
+        <div class="EditList__duration">
           <%= distance_of_time_in_words(step.duration * 60) %>
         </div>
-        <div class="StepList__step__title">
+        <div class="EditList__title">
           Title attribute for step required
         </div>
-        <%= link_to "Edit step", edit_lesson_step_path(id: step.id, lesson_id: @lesson_obj.id, form_step: @form_step), class: 'StepList__step__edit' %>
+        <%= link_to "Edit step", edit_lesson_step_path(id: step.id, lesson_id: @lesson_obj.id, form_step: @form_step), class: 'EditList__edit' %>
         <% if @lesson_obj.steps.count >= 2 %>
-        <%= link_to '<span>Remove</span>'.html_safe, lesson_step_path(id: step.id, lesson_id: @lesson_obj.id, form_step: @form_step), method: :delete, confirm: "Are you sure?", class: 'StepList__step__remove' %>
+        <%= link_to '<span>Remove</span>'.html_safe, lesson_step_path(id: step.id, lesson_id: @lesson_obj.id, form_step: @form_step), method: :delete, confirm: "Are you sure?", class: 'EditList__remove' %>
         <% end %>
       </div>
     </li>
     <% end %>
   </ul>
-  <div class="StepList__actions">
+  <div class="EditList__actions">
     <%= link_to "+ Add a new step", new_lesson_step_path(lesson_id: @lesson_obj.id, form_step: @form_step) %>
   </div>
 </div>

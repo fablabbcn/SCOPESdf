@@ -1,0 +1,128 @@
+.LessonHeader {
+  display: flex;
+}
+
+.LessonHeader__panel {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.LessonHeader__content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  	align-items: center;
+}
+
+.LessonHeader__collection {
+  font-size: 16px;
+  color: $color-gray-dark;
+  background-position: left center;
+  padding-left: $gutter-width*2;
+  padding-right: $gutter-width*2;
+  background-repeat: no-repeat;
+  flex-grow: 0;
+  margin-bottom: $gutter-width*2;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.LessonHeader__collection--fab-tested {
+  background-image: url('images/collection-fab-tested.svg');
+
+}
+
+.LessonHeader__heading {
+  @extend h2;
+  margin-bottom: 8px;
+}
+
+.LessonHeader__topline {
+  font-size: 20px;
+  color: $color-gray-dark;
+
+}
+
+.LessonHeader__author {
+  padding-top: $gutter-width*2;
+  &:before {
+    background-color: $color-highlight-primary;
+    content: "";
+    display: block;
+    height: 2px;
+    margin: 0 auto;
+    margin-bottom: $gutter-width*2;
+    width: 60px;
+  }
+}
+
+.LessonHeader__author__avatars {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.LessonHeader__author__place,
+.LessonHeader__author__person {
+  width: 38px;
+  height: 38px;
+  border-radius: 100%;
+  overflow: hidden;
+  border: 2px solid #fff;
+  position: relative;
+}
+
+.LessonHeader__author__person {
+  margin-right: -10px;
+  z-index: 2;
+}
+
+.LessonHeader__author__name {
+  @include text-medium;
+  font-size: 14px;
+}
+
+.LessonHeader__author__roleplace {
+  @include text-medium;
+  font-size: 14px;
+  color: $color-gray-mid;
+}
+
+.LessonHeader__photos {
+  position: relative;
+  width: 50%;
+  opacity: 0;
+  transition: opacity $default-duration $default-easing;
+  &.flickity-enabled {
+    opacity: 1;
+  }
+}
+
+.LessonHeader__photo {
+  width: 100%;
+}
+
+.LessonHeader__photos__action {
+  width: 170px;
+  position: absolute;
+  bottom: $gutter-width;
+  z-index: 1000;
+  left: 50%;
+  margin-left: -(170px/2);
+}
+
+.LessonHeader__photos__status {
+  position: absolute;
+  bottom: $gutter-width + 8px;
+  left: $gutter-width;
+  z-index: 1000;
+  background-color: #1D1D1D;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1;
+}

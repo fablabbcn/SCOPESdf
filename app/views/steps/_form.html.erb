@@ -1,6 +1,6 @@
-<%= field_set_tag 'Instructions', class: 'Form__fieldset' do %>
+<%= field_set_tag 'Instructions', class: 'Form__fieldset Form__fieldset--minor' do %>
 
-  <!-- lesson.step.name -->
+  <!-- step.name -->
   <div class="FormField FormField--required">
 
     <div class="FormField__info">
@@ -8,12 +8,12 @@
     </div>
 
     <div class="FormField__input">
-      <input type="text" name="step[name]" required />
+      <input type="text" name="step[name]" class="Input Input--large" required />
     </div>
 
   </div>
 
-  <!-- lesson.step.duration -->
+  <!-- step.duration -->
   <div class="FormField FormField--required">
 
     <div class="FormField__info">
@@ -21,21 +21,24 @@
     </div>
 
     <div class="FormField__input">
-      <div class="Input Input--slider" data-config="<%= { start: 0, step: 10, connect: [true, false], range: { min: 0, max: 420 } }.to_json %>">
-        <input type="hidden" name="step[duration]" value="" />
+      <div class="Slider">
+        <div class="Slider__value"></div>
+        <div class="Slider__control" data-config="<%= { start: 0, step: 10, connect: [true, false], range: { min: 0, max: 420 }, unit: 'mins' }.to_json %>">
+          <input type="hidden" name="step[duration]" value="" />
+        </div>
       </div>
     </div>
 
   </div>
 
-  <!-- lesson.step.description -->
+  <!-- step.description -->
   <div class="FormField FormField--required">
 
     <div class="FormField__info">
       <label class="FormField__label" for="step_description">Description</label>
       <div class="FormField__hint">
-        <p>Describe all the actions in this step.</p>
-        <p>If there are lot of actions, please consider breaking it down into multiple steps!</p>
+        <p>Describe all the actions in this step, including preparation, facilitation or procedure, builds, and discussions.</p>
+        <p>Small bulleted or ordered list are helpful - Remember, the more info you share, the more likely a fellow educator can try it with their own youth!</p>
       </div>
     </div>
 
@@ -45,13 +48,13 @@
 
   </div>
 
-  <!-- lesson.step.supporting_files -->
-  <div class="FormField">
+  <!-- step.images -->
+  <div class="FormField FormField--with-border">
 
     <div class="FormField__info">
-      <label class="FormField__label" for="step_supporting_files">Supporting files</label>
+      <label class="FormField__label" for="step_images">Images</label>
       <div class="FormField__hint">
-        <p>Upload any files required</p>
+        <p>Upload any images required</p>
       </div>
     </div>
 
@@ -67,52 +70,68 @@
 
 <% end %>
 
-<%= field_set_tag 'What is needed for this step?', class: 'Form__fieldset' do %>
+<%= field_set_tag 'Prepare', class: 'Form__fieldset Form__fieldset--minor' do %>
 
-  <!-- lesson.step.materials -->
-  <div class="FormField FormField--required">
+  <!-- step.materials -->
+  <div class="FormField FormField--with-padding">
 
     <div class="FormField__info">
-      <label class="FormField__label" for="step_materials">Materials</label>
+      <label class="FormField__label" for="step_materials">Material List</label>
       <div class="FormField__hint">
-        <p>What do I need?</p>
+        <p>List and describe the materials</p>
       </div>
     </div>
 
     <div class="FormField__input FormField__input--multiple">
-      <input type="text" name="step[materials][]" class="Input Input--multiple" placeholder="+ Add a new item" id="step_materials" data-values="<%= [].to_json %>" />
+      <input type="text" name="step[materials][]" class="Input Input--multiple" placeholder="+ Add a new item" id="step_materials" data-values="<%= @step_obj.materials.to_json %>" />
     </div>
 
   </div>
 
-  <!-- lesson.step.tools -->
-  <div class="FormField FormField--required">
+  <!-- step.fabrication_equipment -->
+  <div class="FormField FormField--with-padding">
 
     <div class="FormField__info">
-      <label class="FormField__label" for="step_tools">Tools</label>
+      <label class="FormField__label" for="step_fabrication_equipment">Fabrication Equipment</label>
       <div class="FormField__hint">
-        <p>List as many as needed</p>
+        <p>Check the Fabrication Equipment used</p>
       </div>
     </div>
 
     <div class="FormField__input FormField__input--multiple">
-      <input type="text" name="step[tools][]" class="Input Input--multiple" placeholder="+ Add a new item" id="step_tools" data-values="<%= [].to_json %>" />
+      <input type="text" name="step[fabrication_equipment][]" class="Input Input--multiple" placeholder="+ Add a new item" id="step_fabrication_equipment" data-values="<%= @step_obj.fabrication_equipment.to_json %>" />
     </div>
 
   </div>
 
-  <!-- lesson.step.supporting_materials -->
-  <div class="FormField">
+  <!-- step.software -->
+  <div class="FormField FormField--with-padding">
 
     <div class="FormField__info">
-      <label class="FormField__label" for="step_supporting_files_1">Supporting materials</label>
+      <label class="FormField__label" for="step_software">Software</label>
       <div class="FormField__hint">
-        <p>Design files, handouts needed for this step</p>
+        <p>Add any/all softward used</p>
+      </div>
+    </div>
+
+    <div class="FormField__input FormField__input--multiple">
+      <input type="text" name="step[software][]" class="Input Input--multiple" placeholder="+ Add a new item" id="step_software" data-values="<%= @step_obj.software.to_json %>" />
+    </div>
+
+  </div>
+
+  <!-- step.design_files -->
+  <div class="FormField FormField--with-padding">
+
+    <div class="FormField__info">
+      <label class="FormField__label" for="step_supporting_files_1">Design Files</label>
+      <div class="FormField__hint">
+        <p>More educator notes, handouts, or other support files</p>
       </div>
     </div>
 
     <div class="FormField__input">
-      <div class="FileUpload" data-url="/" data-paramname="step[supporting_files]" id="step_supporting_files_1">
+      <div class="FileUpload" data-url="/" data-paramname="step[design_files]" id="step_design_files">
         <div class="FileUpload__message">
           Drag & drop files here - or click to browse<br />.jpg, .png, .pdf
         </div>
@@ -121,11 +140,11 @@
 
   </div>
 
-  <!-- lesson.step.tools -->
-  <div class="FormField FormField--required">
+  <!-- step.external_links -->
+  <div class="FormField FormField--with-border">
 
     <div class="FormField__info">
-      <label class="FormField__label" for="step_external_links_1">External links</label>
+      <label class="FormField__label" for="step_external_links_1">External Links</label>
       <div class="FormField__hint">
         <p>Any more useful links</p>
       </div>
@@ -138,21 +157,9 @@
   </div>
 
   <div class="FormField__actions">
-    <a href="#" class="Button Button--secondary">Save step</a>
-    <a href="#" class="Button Button--secondary">Save and add a new step</a>
+    <button type="submit" class="Button Button--secondary FormField__action">Save step</button>
+    <input name="create" type="hidden" value="" />
+    <button type="submit" class="Button Button--secondary FormField__action FormField__action--create">Save and add a new step</button>
   </div>
 
 <% end %>
-
-<div class="Form__footer">
-
-  <div class="Form__footer__content">
-
-    <div class="Form__footer__actions">
-      <a href="#" class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left">Back to details</a>
-      <button class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right">Add some outcomes</button>
-    </div>
-
-  </div>
-
-</div>

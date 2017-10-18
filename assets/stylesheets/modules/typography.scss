@@ -14,3 +14,14 @@
   @include text-small;
   color: $color-gray-mid;
 }
+
+
+@mixin body-text {
+  font-size: 16px;
+  p {
+    margin-bottom: $gutter-width;
+  }
+  ul {
+    list-style: disc inside none;
+  }
+}

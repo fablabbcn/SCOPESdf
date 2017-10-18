@@ -1,0 +1,12 @@
+<div class="FormField__input">
+  <div class="Checkboxes">
+    <% @contexts.each do |c| %>
+    <div class="Checkbox">
+      <input type="checkbox" class="Checkbox__input" name="lesson[contexts][]" value="<%= c %>" id="lesson_contexts_<%= c.id %>" />
+      <label class="Checkbox__label" for="lesson_contexts_<%= c.id %>">
+        <%= c.name.titleize %>
+      </label>
+    </div>
+    <% end %>
+  </div>
+</div>

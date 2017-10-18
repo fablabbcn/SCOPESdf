@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M23,12 L20.56,14.78 L20.9,18.46 L17.29,19.28 L15.4,22.46 L12,21 L8.6,22.47 L6.71,19.29 L3.1,18.47 L3.44,14.78 L1,12 L3.44,9.21 L3.1,5.53 L6.71,4.72 L8.6,1.54 L12,3 L15.4,1.54 L17.29,4.72 L20.9,5.54 L20.56,9.22 L23,12 Z M10,16.96 L18,8.96 L16.59,7.54 L10,14.13 L7.41,11.55 L6,12.96 L10,16.96 Z" id="path-1"></path>
+    </defs>
+    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon/Badge-Verified-2" transform="translate(-1.000000, -1.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Shape" fill="#F4D100" fill-rule="nonzero" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

@@ -2,14 +2,27 @@ class LessonsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :show]
 
+  before_action :set_contexts, only: [:index, :edit]
+  before_action :set_subjects, only: [:index, :edit]
+  before_action :set_collections, only: [:index, :edit]
+
   def index
     # Using lessons#index for now as the public view of all lesson
     # No authentication here
+
+    # Fetch the page number, otherwise 1
     @page = params[:page] || 1
 
-    #@lessons = Lesson.page(@page).includes(:steps).to_array
-    #TODO - pass page value along for pagination
-    @lessons = Lesson.includes(:steps).to_a
+    # Fetch lessons
+    @lessons = Lesson.includes(:steps).page(@page)
+
+    # TODO: use filters
+
+    # Fetch subjects
+    @filter_subjects = [] # TODO: turn subject param into array to check against
+
+    # set difficulties
+    @difficulty_helper = DifficultyLevel.form_helper
 
   end
 
@@ -17,10 +30,14 @@ class LessonsController < ApplicationController
 
     # Using lessons#show for now as the public view
     # No authentication here
-    @lesson = Lesson.includes(:steps).find(params[:id])
+
+    # TODO: just finding/creating a dummy lesson now just to be able to show the templates
+    #@lesson = Lesson.includes(:steps).find(params[:id])
+    @lesson_obj = LessonService.find_or_create_and_update(params[:id], nil, current_user)
+    @lesson_obj.steps << Step.new(summary: "")
 
     # Fetch any specified section and turn it into a sym, otherwise :overview
-    @secton = params[:section].to_sym || :overview
+    @section = params[:section].present? ? params[:section].to_sym : :overview
 
   end
 
@@ -37,6 +54,7 @@ class LessonsController < ApplicationController
     else
       raise lesson.errors
     end
+
   end
 
   def edit
@@ -50,13 +68,16 @@ class LessonsController < ApplicationController
     @lesson_obj = Lesson.find(params[:id])
 
     #pundit --
-    authorize @lesson_obj, :update?
+    #authorize @lesson_obj, :update? TODO: this keeps erroring for me - DH
+
+    # If the form step is 2, i.e. standards, we redirect to create the first standard
+    redirect_to new_lesson_standard_path(lesson_id: @lesson_obj.id, form_step: @form_step) if @form_step == 2
 
     # If the form step is 4, i.e. steps, we redirect to edit the first step created
     # when the lesson itself was created
     redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @lesson_obj.steps.first.id, form_step: @form_step) if @form_step == 4
 
-    if params[:lesson].present?l
+    if params[:lesson].present?
       @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, @current_user)
     end
     files_hash = {}
@@ -84,12 +105,6 @@ class LessonsController < ApplicationController
 
 
     @collections = CollectionTag.all.to_a.map{|x| x.name.titleize}
-    @subjects = Subject.all.to_a.map{|x| x.name.titleize}
-    @subjects = Subject.all
-    @context = Context.all.to_a.map{|x| x.name.titleize}
-    @contexts = Context.all
-    @standards = Standard.name_array
-    @standards_array = @lesson_obj.standards_array
     @difficulty_helper = DifficultyLevel.form_helper
     @teaching_range_helper = TeachingRange.inputRange
 
@@ -113,8 +128,11 @@ class LessonsController < ApplicationController
   end
 
   def delete
-    # check to make sure current user is owner and make inactive
-    render :json => {success: Lesson.find(params[:id]).hidden!}, :status => 200
+
+    lesson = Lesson.find(params[:id]).hidden!
+
+    redirect_to edit_lesson_path(id: lesson.id)
+
   end
 
   def add_step
@@ -354,6 +372,18 @@ class LessonsController < ApplicationController
 
     def remove_file_params
       params.permit(:name, :attr)
+    end
+
+    def set_collections
+      @collections = CollectionTag.all
+    end
+
+    def set_contexts
+      @contexts = Context.all
+    end
+
+    def set_subjects
+      @subjects = Subject.all
     end
 
 end

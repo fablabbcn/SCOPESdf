@@ -1,8 +1,8 @@
-.StepList {
+.EditList {
   padding-top: $gutter-width*3;
 }
 
-.StepList__heading {
+.EditList__heading {
   margin: 0 auto;
   margin-bottom: $gutter-width;
   max-width: $form-width;
@@ -10,13 +10,14 @@
   padding-right: $gutter-width;
 }
 
-.StepList__steps {
+.EditList__items {
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid $color-border;
 }
 
-.StepList__step {
+.EditList__item {
+  font-size: 16px;
 
   &:nth-child(odd) {
     background-color: $color-gray-verylight;
@@ -24,7 +25,7 @@
 
 }
 
-.StepList__content {
+.EditList__content {
   padding-left: $gutter-width;
   padding-right: $gutter-width;
   max-width: $form-width;
@@ -35,35 +36,35 @@
   margin: 0 auto;
 }
 
-.StepList__step__number {
-  font-size: 16px;
+.EditList__number {
+  font-size: 18px;
   @include text-medium;
   width: 20%;
 }
 
-.StepList__step__duration {
-  width: 15%;
+.EditList__duration {
+  width: 17%;
   white-space: nowrap;
 }
 
-.StepList__step__title {
+.EditList__title {
 
 }
 
-.StepList__step__edit {
+.EditList__edit {
   font-size: 14px;
   margin-left: auto;
   padding-right: $gutter-width;
   white-space: nowrap;
   color: $color-gray-mid;
 
-  .StepList__step:hover & {
+  .EditList__step:hover & {
     color: $color-gray-dark;
   }
 
 }
 
-.StepList__step__remove {
+.EditList__remove {
   background-image: url('images/icon-trash-dark.svg');
   background-position: center;
   background-repeat: no-repeat;
@@ -78,7 +79,7 @@
   }
 }
 
-.StepList__actions {
+.EditList__actions {
   padding-left: $gutter-width;
   padding-right: $gutter-width;
   max-width: $form-width;

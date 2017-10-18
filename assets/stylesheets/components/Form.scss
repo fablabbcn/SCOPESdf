@@ -1,9 +1,11 @@
 .Form {
   padding-top: $gutter-width*3;
+  width: 100%;
 }
 
 .Form__actions {
   padding-top: $gutter-width;
+  display: flex;
 }
 
 .Form__links {
@@ -32,8 +34,21 @@
 
   legend {
     @extend h3;
+    span {
+      font-size: 14px;
+      display: block;
+      color: $color-gray-mid;
+      padding-top: 4px;
+    }
   }
 
+}
+
+.Form__fieldset--minor {
+  legend {
+    font-size: 18px;
+    color: $color-gray-dark;
+  }
 }
 
 .Form__fieldset--with-border {
@@ -49,7 +64,9 @@
 
 .Form__footer__content {
   margin: 0 auto;
-  max-width: $grid-width;
+  max-width: $form-width;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
   padding-bottom: $gutter-width*3;
   padding-top: $gutter-width*3;
   display: flex;
@@ -61,6 +78,14 @@
   font-size: 24px;
   @include text-medium;
   width: 50%;
+
+  span {
+    display: block;
+    font-size: 14px;
+    color: $color-gray-mid;
+
+  }
+
 }
 
 .Form__footer__actions {

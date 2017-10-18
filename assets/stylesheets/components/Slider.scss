@@ -1,0 +1,17 @@
+.Slider {
+  width: 100%;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  display: flex;
+  align-items: center;
+}
+
+.Slider__control {
+  width: 80%;
+}
+
+.Slider__value {
+  width: 20%;
+  font-size: 18px;
+  @include text-medium;
+}

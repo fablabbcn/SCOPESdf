@@ -54,6 +54,7 @@
 .Hero__primary {
   @extend h1;
   margin-bottom: $gutter-width;
+  color: $color-highlight-secondary;
 }
 
 .Hero__secondary {

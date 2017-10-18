@@ -11,6 +11,15 @@
   border-bottom: 1px solid $color-border;
   margin-bottom: $gutter-width*2;
   padding-bottom: $gutter-width*2;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+}
+
+.FormField--with-padding {
+  padding-bottom: $gutter-width*2;
 }
 
 .FormField--checkbox {
@@ -29,7 +38,7 @@
 
 .FormField__info {
   width: (20%);
-  padding-top: 13px;
+  padding-top: 4px;
 
   .FormField--vertical & {
     width: 100%;
@@ -39,9 +48,10 @@
 }
 
 .FormField__label {
-  font-size: 18px;
   @include text-medium;
-  margin-bottom: 4px;
+  font-size: 18px;
+  line-height: 1.3;
+  padding-right: $gutter-width/2;
 
   .FormField--required & {
     &:after {
@@ -54,14 +64,22 @@
 }
 
 .FormField__hint {
-  font-size: 14px;
   color: $color-gray-mid;
+  font-size: 14px;
+  margin-top: 6px;
   padding-right: $gutter-width;
+
+  ul,ol {
+    list-style-type: disc;
+    list-style-position: outside;
+    margin-bottom: $gutter-width;
+  }
+
 }
 
 .FormField__instruction {
-  font-size: 14px;
   color: $color-gray-mid;
+  font-size: 14px;
   margin-left: auto;
   margin-top: 4px;
 }

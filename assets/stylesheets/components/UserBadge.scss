@@ -14,6 +14,11 @@
     height: 32px;
   }
 
+  .UserBadge--tiny & {
+    width: 16px;
+    height: 16px;
+  }
+
 }
 
 .UserBadge__info {
@@ -28,12 +33,19 @@
   @include text-medium;
   @include text-small;
   color: $color-gray-verydark;
+
+  .UserBadge--tiny & {
+    font-size: 10px;
+    color: $color-gray-mid;
+  }
+
 }
 
 .UserBadge__role {
 
   // don't show the role for the small version
-  .UserBadge--small & {
+  .UserBadge--small &,
+  .UserBadge--tiny & {
     display: none;
   }
 
@@ -42,4 +54,10 @@
 .UserBadge__organisation {
   @include text-small;
   color: $color-gray-mid;
+
+  // don't show the role for the tiny version
+  .UserBadge--tiny & {
+    display: none;
+  }
+
 }

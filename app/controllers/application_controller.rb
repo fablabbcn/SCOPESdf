@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:account_update, keys: [:name])
     end
 
+		def set_lesson
+      @lesson_obj = Lesson.find_by_id(params[:lesson_id])
+    end
+
 end

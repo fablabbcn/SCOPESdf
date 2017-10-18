@@ -1,0 +1,271 @@
+<div class="LessonHeader">
+
+  <div class="LessonHeader__panel">
+
+    <div class="LessonHeader__content">
+
+      <div class="LessonHeader__collection LessonHeader__collection--fab-tested">
+        <span>Fab Tested</span>
+      </div>
+
+      <h1 class="LessonHeader__heading">
+        Settlers of Catan
+      </h1>
+
+      <div class="LessonHeader__topline">
+        Make Your Own Country with Tinkercad
+      </div>
+
+      <a href="#" class="LessonHeader__author LessonHeader__author--verified">
+        <div class="LessonHeader__author__avatars">
+          <div class="LessonHeader__author__person">
+            <img src="<%= image_url('avatars/avatar1.jpg') %>" class="Image Image--lazy" />
+          </div>
+          <div class="LessonHeader__author__place">
+            <img src="<%= image_url('places/ucla.png') %>" class="Image Image--lazy" />
+          </div>
+        </div>
+        <div class="LessonHeader__author__name">
+          Claudia Sanchez Munoz
+        </div>
+        <div class="LessonHeader__author__roleplace">
+          Teacher • UCLA
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="LessonHeader__photos">
+
+    <% 4.times do |i| %>
+    <div class="LessonHeader__photo">
+      <img src="<%= image_url("lessons/show/catan#{i+1}.jpg") %>"
+        data-sizes="auto"
+        data-srcset="<%= image_url("lessons/show/catan#{i+1}.jpg") %> 1x, <%= image_url("lessons/show/catan#{i+1}.jpg") %> 2x"
+        class="Image Image--lazy" />
+    </div>
+    <% end %>
+
+    <%= link_to "View more photos", lesson_path(section: :outcomes), class: "LessonHeader__photos__action Button Button--primary Button--small" %>
+
+    <div class="LessonHeader__photos__status">
+      <span class="current">1</span> / <span class="total"></span>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="LessonDetails">
+
+  <div class="LessonDetails__content">
+
+    <div class="LessonDetails__column">
+      <div class="LessonDetails__header">Teaching Range</div>
+      <div class="LessonDetails__range">
+        8th—12th Grade
+      </div>
+    </div>
+
+    <div class="LessonDetails__column">
+      <div class="LessonDetails__header">Subjects Covered</div>
+      <ul class="LessonDetails__subjects">
+        <li class="LessonDetails__subject LessonDetails__subject--art">Art</li>
+        <li class="LessonDetails__subject LessonDetails__subject--technology">Technology</li>
+      </ul>
+    </div>
+
+    <div class="LessonDetails__column">
+      <div class="LessonDetails__header">Mastery</div>
+      <div class="LessonDetails__masteries">
+        <div class="LessonDetails__mastery">
+          <div class="LessonDetails__mastery__metric">Difficult</div>
+          <div class="LessonDetails__mastery__for">For Teachers</div>
+        </div>
+        <div class="LessonDetails__mastery">
+          <div class="LessonDetails__mastery__metric">Moderate</div>
+          <div class="LessonDetails__mastery__for">For Students</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="LessonDetails__column">
+      <div class="LessonDetails__header">Alignment to Standards</div>
+      <ul class="LessonDetails__standards">
+        <li class="LessonDetails__standard">CCSS.ELA-LITERACY.RH.6-8.7</li>
+        <li class="LessonDetails__standard">CCSS.ELA-LITERACY.RH.9-10.4</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="LessonContent">
+
+  <div class="LessonContent__columns">
+
+    <div class="LessonContent__main">
+
+      <!-- summary -->
+      <div class="LessonContent__section">
+
+        <div class="LessonContent__heading">Summary</div>
+
+        <div class="LessonContent__quick_pitch">
+          This project, focuses on creating geographical tiles using primitive shapes in Tinkercad.
+        </div>
+
+        <div class="LessonContent__summary">
+          In this project, your students will learn how to use a free program called Tinkercad. Using Tinkercad students will design basic geographical tiles to represent various environments. When the tiles are combined, students can create a country and learn about geography and colonialism.
+        </div>
+
+      </div>
+
+      <!-- objectives -->
+      <div class="LessonContent__section">
+
+        <div class="LessonContent__heading">Objectives</div>
+
+        <div class="LessonContent__objective">
+          Explore the history of colonialism, research the geography of different regions
+        </div>
+
+        <div class="LessonContent__objective">
+          Understand the importance of natural resources, learn basic principles of economics (supply and demand)
+        </div>
+
+      </div>
+
+      <!-- outcomes -->
+      <div class="LessonContent__section">
+
+        <div class="LessonContent__heading">Expected outcomes</div>
+
+        <div class="LessonContent__thumbnails">
+
+          <% 3.times do |i| %>
+          <a href="#" class="LessonContent__thumbnail">
+            <img src="<%= image_url("lessons/show/catan#{i+1}.jpg") %>"
+              data-sizes="auto"
+              data-srcset="<%= image_url("lessons/show/catan#{i+1}.jpg") %> 1x, <%= image_url("lessons/show/catan#{i+1}.jpg") %> 2x"
+              class="Image Image--lazy" />
+          </a>
+          <% end %>
+
+        </div>
+
+      </div>
+
+      <!-- assessment criteria -->
+      <div class="LessonContent__section">
+
+        <div class="LessonContent__heading">Assessment Criteria</div>
+
+        <div class="LesssonContent__text">
+
+          <p>
+            Your students should know the following things:
+          </p>
+
+          <ul>
+            <li>What are the benefits of modeling small, separate pieces for printing?</li>
+            <li>What tools do you use to build objects in Tinkercad?</li>
+            <li>What are the strengths and weaknesses of Tinkercad?</li>
+            <li>How do you navigate in Tinkercad?</li>
+            <li>When building the mountain tiles, why was it important to use the Hole tool to cut off	the base of the tile?</li>
+            <li>What are the benefits of plating multiple prints at a time?</li>
+          </ul>
+
+        </div>
+
+        <div class="LessonContent__heading LessonContent__heading--minor">Supporting files</div>
+
+        <a href="#" class="Button Button--outline Button--small Button--icon Button--icon--file">SettlersCatanAssessment.pdf</a>
+
+        <a href="#" class="Button Button--outline Button--small Button--icon Button--icon--file">Quiz.pdf</a>
+
+      </div>
+
+    </div>
+
+    <div class="LessonContent__sidebar">
+
+      <!-- files -->
+      <div class="LessonContent__section LessonContent__section--with-border">
+
+        <div class="LessonContent__heading">
+          Download Lesson Plan
+        </div>
+
+        <a href="#" class="Button Button--outline Button--small Button--icon Button--icon--file Button--extra-padding Button--full">CatanLessonPlan.pdf</a>
+
+      </div>
+
+      <!-- stats -->
+      <div class="LessonContent__section LessonContent__section--with-border">
+
+        <div class="LessonContent__heading">
+          Stats
+        </div>
+
+        <ul class="LessonContent__list">
+          <li class="LessonContent__list__item"><a href="#" class="LessonContent__stat LessonContent__stat--likes">82 Likes</a></li>
+          <li class="LessonContent__list__item"><a href="#" class="LessonContent__stat LessonContent__stat--forks">6 Forks</a></li>
+          <li class="LessonContent__list__item"><a href="#" class="LessonContent__stat LessonContent__stat--completed">51 Completed</a></li>
+        </ul>
+
+      </div>
+
+      <!-- dates -->
+      <div class="LessonContent__section LessonContent__section--with-border">
+
+        <div class="LessonContent__heading">
+          Details
+        </div>
+
+        <ul class="LessonContent__list">
+          <li class="LessonContent__list__item">Publish date: 21 Aug 2017</li>
+          <li class="LessonContent__list__item">Last updated: 28 Aug 2017</li>
+        </ul>
+
+      </div>
+
+      <!-- forked -->
+      <div class="LessonContent__section LessonContent__section--with-border">
+
+        <div class="LessonContent__heading">
+          Forked from
+        </div>
+
+        <div class="LessonListing LessonListing--small">
+
+          <a href="#" class="LessonListing__image">
+            <img src="<%= image_url('lessons/show/aquacatan.jpg') %>" class="Image Image--lazy" />
+          </a>
+          <div class="LessonListing__content">
+            <a href="#" class="LessonListing__name LessonListing__name--collection LessonListing__name--collection--fab-tested">
+              <span>AquaCatan</span>
+            </a>
+            <div class="LessonListing__topline">
+              A variation on the popular catan game with only …
+            </div>
+            <div class="LessonListing__author">
+              <%= render partial: "components/user_badge", locals: { size: :tiny } %>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

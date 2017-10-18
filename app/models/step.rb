@@ -19,6 +19,12 @@
 
 class Step < ApplicationRecord
 
+  # TODO: add fabrication_equipment attribute as array
+  attr_accessor :fabrication_equipment
+
+  # TODO: add software attribute as array
+  attr_accessor :software
+
   # supporting files > supporting documents and media
 
   #supporting materials > design files

@@ -1,0 +1,44 @@
+<!-- sub navigation -->
+<div class="SubNavigation">
+
+  <div class="SubNavigation__content">
+
+    <div class="SubNavigation__items">
+
+      <%= active_link_to "Overview", lesson_path(id: @lesson_obj.id, section: :overview),
+        class: "SubNavigation__item",
+        class_active: "SubNavigation__item--active",
+        active: @section == :overview %>
+
+      <%= active_link_to "Standards", lesson_standards_path(lesson_id: @lesson_obj.id),
+        class: "SubNavigation__item",
+        class_active: "SubNavigation__item--active",
+        active: @section == :standards %>
+
+      <%= active_link_to "Steps", lesson_steps_path(lesson_id: @lesson_obj.id),
+        class: "SubNavigation__item",
+        class_active: "SubNavigation__item--active",
+        active: @section == :steps %>
+
+      <%= active_link_to "Outcomes", lesson_path(id: @lesson_obj.id, section: :outcomes),
+        class: "SubNavigation__item",
+        class_active: "SubNavigation__item--active",
+        active: @section == :outcomes %>
+
+      <%= active_link_to "Activity", lesson_activities_path(lesson_id: @lesson_obj.id),
+        class: "SubNavigation__item",
+        class_active: "SubNavigation__item--active",
+        active: @section == :activity %>
+
+    </div>
+
+    <div class="SubNavigation__actions">
+      <a href="" class="Button Button--small Button--transparent Button--icon Button--icon--like">Like</a>
+      <a href="" class="Button Button--small Button--transparent Button--icon Button--icon--fork">Fork</a>
+      <a href="" class="Button Button--small Button--transparent Button--icon Button--icon--check">I made this</a>
+      <%= link_to "Edit Lesson", edit_lesson_path(id: @lesson_obj.id), class: "Button Button--small Button--icon Button--icon--edit" %>
+    </div>
+
+  </div>
+
+</div>

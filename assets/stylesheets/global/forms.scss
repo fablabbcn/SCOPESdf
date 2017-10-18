@@ -1,10 +1,9 @@
 @mixin input-style {
+	background-color: #fff;
 	border-radius: 2px;
 	border: 1px solid $color-input-border;
-	padding-left: $gutter-width;
-	padding-right: $gutter-width;
+	padding: 16px $gutter-width;
 	width: 100%;
-	background-color: #fff;
 
 	&:hover {
     box-shadow:inset 0px 0px 0px 1px $color-highlight-primary;
@@ -113,7 +112,6 @@ input[type=week]
 {
 
 	&:not(.choices__input) {
-		height: 48px;
 		@include input-style;
 	}
 
@@ -218,8 +216,6 @@ select
 	background-image: url('images/icon-arrow-down-dark.svg');
 	background-repeat: no-repeat;
 	background-position: right 20px center;
-
-
 }
 
 select[multiple]

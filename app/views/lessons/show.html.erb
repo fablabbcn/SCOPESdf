@@ -1,36 +1,3 @@
-<%= render partial: "components/action_banner", locals: {
-  statement: "Share your lesson with other educators around the world!",
-  actions: [{
-    label: "Add a lesson",
-    path: new_lesson_path
-  }]
-  } %>
+<%= render partial: 'lessons/show_sub_nav' %>
 
-
-
-  <!-- sub navigation -->
-  <div class="SubNavigation">
-
-    <div class="SubNavigation__content">
-
-      <div class="SubNavigation__items">
-        <%= active_link_to "Overview", lesson_path(id: @lesson_obj.id, section: :overview), class: "SubNavigation__item", class_active: "SubNavigation__item--active", active: @section == 'overview' %>
-        <%= active_link_to "Standards", lesson_standards_path(lesson_id: @lesson_obj.id), class: "SubNavigation__item", class_active: "SubNavigation__item--active" %>
-        <%= active_link_to "Details", lesson_path(id: @lesson_obj.id, section: :details), class: "SubNavigation__item", class_active: "SubNavigation__item--active", active: @section == 'details' %>
-        <%= active_link_to "Instructions", lesson_steps_path(lesson_id: @lesson_obj.id), class: "SubNavigation__item", class_active: "SubNavigation__item--active" %>
-        <%= active_link_to "Outcomes", lesson_path(id: @lesson_obj.id, section: :outcomes), class: "SubNavigation__item", class_active: "SubNavigation__item--active", active: @secton == 'outcomes' %>
-      </div>
-
-      <div class="SubNavigation__track">
-        <div class="SubNavigation__status">
-          Essential information missing
-        </div>
-        <div class="Track">
-          <div class="Track__progress"><span>10%</span></div>
-          <div class="Track__base"></div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
+<%= render partial: "lessons/show/#{@section}" %>

@@ -1,0 +1,42 @@
+<%= field_set_tag 'How does the learning align to educational standards?<span>More info on SCOPESDF standards in Toolkit.</span>'.html_safe, class: 'Form__fieldset' do %>
+
+  <!-- lesson.standards -->
+  <div class="FormFieldGroups FormFieldGroups--multiple" data-values="<%= [ { standard_id: 1, descriptions: ['Descrption 1', 'Description 2', 'Descrption 3'] }, { standard_id: 1, descriptions: ['Descrption 1', 'Description 2', 'Descrption 3'] } ].to_json %>">
+
+    <div class="FormFieldGroup">
+
+      <div class="FormField FormField--required">
+
+        <div class="FormField__info">
+          <label class="FormField__label" for="lesson_standards__standard_id_1">Standard</label>
+          <div class="FormField__hint">Source and focus of this standard</div>
+        </div>
+
+        <div class="FormField__input FormField--multiple">
+          <select name="standards[name]" id="lesson_standards__standard_id_1" value="" required>
+              <%= options_for_select(@standards) %>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="FormField FormField--required">
+
+        <div class="FormField__info">
+          <label class="FormField__label" for="lesson_standards_description_1">Details</label>
+          <div class="FormField__hint">Add one or more</div>
+        </div>
+
+        <div class="FormField__input FormField--multiple">
+          <textarea name="standards[description][]" class="Input Input--multiple" placeholder="+ Add a new standard" id="lesson_standards_description_1"></textarea>
+        </div>
+
+      </div>
+
+    </div>
+
+    <button class="FormFieldGroups__add Button Button--secondary">Add a new standard</button>
+
+  </div>
+
+<% end %>
