@@ -2,7 +2,7 @@
 
 module.exports = LessonHeader;
 
-import Flickity from 'flickity'
+import Flickity from 'flickity-imagesloaded'
 
 function LessonHeader() {
 
@@ -20,10 +20,10 @@ function LessonHeader() {
     cellAlign: 'center',
     cellSelector: photoSelector,
     contain: true,
-    imagesLoaded: true,
     pageDots: false,
     prevNextButtons: false,
     wrapAround: true,
+		imagesLoaded: true,
     percentPosition: true,
   })
 

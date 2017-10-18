@@ -45,6 +45,11 @@
 
 }
 
+.Button--full {
+  width: 100%;
+  text-align: left;
+}
+
 .Button--outline.Button--light {
   border: 1px solid #fff;
 }
@@ -117,6 +122,11 @@
 
 .Button--icon--add {
   background-image: url('images/icon-add-dark.svg');
+}
+.Button--icon--file {
+  &.Button--outline {
+    background-image: url('images/icon-file-highlight.svg');
+  }
 }
 .Button--icon--document {
   background-image: url('images/icon-document-light.svg');

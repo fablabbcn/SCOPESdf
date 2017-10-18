@@ -1,0 +1,88 @@
+.LessonContent {
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+  padding-top: $gutter-width*3;
+}
+
+.LessonContent__columns {
+  display: flex;
+  max-width: $grid-width;
+  margin: 0 auto;
+}
+
+.LessonContent__section {
+  padding-bottom: $gutter-width*2;
+}
+
+.LessonContent__section--with-border {
+  border-bottom: 1px solid $color-border;
+  margin-bottom: $gutter-width;
+}
+
+.LessonContent__main {
+  width: 75%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding-right: $gutter-width*4;
+}
+
+.LessonContent__sidebar {
+  width: 25%;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.LessonContent__heading {
+  @include text-medium;
+  font-size: 16px;
+  color: $color-gray-mid;
+  margin-bottom: $gutter-width;
+}
+
+.LessonContent__quick_pitch {
+  @include text-medium;
+  font-size: 20px;
+  margin-bottom: $gutter-width;
+}
+
+.LessonContent__summary {
+  font-size: 20px;
+  margin-bottom: $gutter-width;
+}
+
+
+.LessonContent__objective {
+  padding: $gutter-width*1.5;
+  padding-left: $gutter-width*3.5;
+  background-image: url('images/icon-check-highlight-large.svg');
+  background-repeat: no-repeat;
+  background-position: 25px center;
+  font-size: 16px;
+  background-color: #F9FAFB;
+  margin-bottom: $gutter-width;
+}
+
+
+.LessonContent__stats {
+
+}
+
+.LessonContent__stat {
+  display: block;
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 24px;
+  font-size: 16px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.LessonContent__stat--likes {
+  background-image: url('images/icon-heart-mid.svg');
+}
+.LessonContent__stat--forks {
+  background-image: url('images/icon-fork-mid.svg');
+}
+.LessonContent__stat--completed {
+  background-image: url('images/icon-check-mid.svg');
+}
