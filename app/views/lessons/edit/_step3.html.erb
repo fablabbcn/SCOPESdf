@@ -6,11 +6,23 @@
     <div class="FormField FormField--required FormField--with-border">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_name">Grade range</label>
-        <div class="FormField__hint">Specify one or more</div>
+        <label class="FormField__label" for="lesson_name">Targeted Grade</label>
+        <div class="FormField__hint">Choose one or more of targeted grade (U.S.)</div>
       </div>
 
       <%= render partial: 'lessons/form/grade_range' %>
+
+    </div>
+
+    <!-- lesson.contexts -->
+    <div class="FormField FormField--with-border">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_contexts">Context</label>
+        <div class="FormField__hint">Where was this lesson first tested?</div>
+      </div>
+
+      <%= render partial: "lessons/form/contexts" %>
 
     </div>
 
@@ -19,7 +31,7 @@
 
       <div class="FormField__info">
         <label class="FormField__label" for="lesson_name">Subjects</label>
-        <div class="FormField__hint">Specify one or more</div>
+        <div class="FormField__hint">Choose one or more Subjects explored</div>
       </div>
 
       <div class="FormField__input">
@@ -35,27 +47,111 @@
 
     </div>
 
-    <!-- lesson.difficulty -->
-    <div class="FormField FormField--required FormField--with-border">
+    <!-- lesson.mastery -->
+    <div class="FormField FormField--with-border">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_name">Difficulty level</label>
-        <div class="FormField__hint">How hard is this lesson?</div>
+        <label class="FormField__label" for="lesson_mastery">Mastery Level</label>
+        <div class="FormField__hint">What is student and educator pre-requisite mastery or experience level?</div>
       </div>
 
-      <%= render partial: "lessons/form/difficulty" %>
+      <%= render partial: "lessons/form/mastery" %>
 
     </div>
 
-    <!-- lesson.context -->
-    <div class="FormField FormField--required FormField--with-border">
+  <% end %>
+
+  <%= field_set_tag 'What will we learn?', class: 'Form__fieldset' do %>
+
+    <!-- lesson.fabrication_tools -->
+    <div class="FormField FormField--required FormField--with-padding">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_name">Context</label>
-        <div class="FormField__hint">What kind of project is this?</div>
+        <label class="FormField__label" for="lesson_contexts">Digital Fabrication Tools</label>
+        <div class="FormField__hint">Which digital fabrication tools are explored in this lesson?</div>
       </div>
 
-      <%= render partial: "lessons/form/contexts" %>
+      <div class="FormField__input">
+        <div class="Checkboxes">
+          <% ['Hardware', 'Electrical', 'Design', 'CNC Milling', 'Software'].each_with_index do |tool, i| %>
+          <div class="Checkbox">
+            <input type="checkbox" class="Checkbox__input" name="lesson[fabrication_tools][]" value="<%= tool %>" id="lesson_fabrication_tools_<%= i %>" />
+            <label class="Checkbox__label" for="lesson_fabrication_tools_<%= i %>">
+              <%= tool %>
+            </label>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- lesson.other_fabrication_tools -->
+    <div class="FormField FormField--with-border">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_other_fabrication_tools">Others</label>
+        <div class="FormField__hint">Add any other tools here</div>
+      </div>
+
+      <div class="FormField__input">
+        <%= text_field(:lesson, :other_fabrication_tools, multiple: true, class: "Input--choices") %>
+      </div>
+
+    </div>
+
+    <!-- lesson.duration -->
+    <div class="FormField FormField--required FormField--with-padding">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_name">Total Lesson Time</label>
+      </div>
+
+      <div class="FormField__input">
+        <input type="text" name="lesson[duration]" class="Input" value="<%= @lesson_obj.duration %>" placeholder="Approximately" id="lesson_duration" />
+      </div>
+
+    </div>
+
+    <!-- lesson.key_concepts -->
+    <div class="FormField FormField--required FormField--with-padding">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_key_concepts_1">Key Concepts</label>
+        <div class="FormField__hint">Add one or more</div>
+      </div>
+
+      <div class="FormField__input FormField__input--multiple">
+        <input type="text" name="lesson[key_concepts][]" class="Input Input--multiple" data-values='<%= @lesson_obj.key_concepts.to_json %>' value="" placeholder="+ Add a new concept" id="lesson_key_concepts_1" />
+      </div>
+
+    </div>
+
+    <!-- lesson.key_vocabularies -->
+    <div class="FormField FormField--required FormField--with-padding">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_key_concepts_1">Key Vocabularies</label>
+        <div class="FormField__hint">Add one or more</div>
+      </div>
+
+      <div class="FormField__input FormField__input--multiple">
+        <input type="text" name="lesson[key_vocabularies][]" class="Input Input--multiple" data-values='<%= @lesson_obj.key_vocabularies.to_json %>' value="" placeholder="+ Add a new vocabulary" id="lesson_key_vocabularies_1" />
+      </div>
+
+    </div>
+
+    <!-- lesson.key_formulas -->
+    <div class="FormField FormField--required FormField--with-padding">
+
+      <div class="FormField__info">
+        <label class="FormField__label" for="lesson_key_concepts_1">Key Formulas</label>
+        <div class="FormField__hint">Add one or more</div>
+      </div>
+
+      <div class="FormField__input FormField__input--multiple">
+        <input type="text" name="lesson[key_formulas][]" class="Input Input--multiple" data-values='<%= @lesson_obj.key_formulas.to_json %>' value="" placeholder="+ Add a new formula" id="lesson_key_formulas_1" />
+      </div>
 
     </div>
 
@@ -78,7 +174,7 @@
 
       <div class="FormField__info">
         <label class="FormField__label" for="lesson_name">Tags</label>
-        <div class="FormField__hint">Enter, comma, separated, tags</div>
+        <div class="FormField__hint">Enter comma separated tags, to further identify or categorize the learning</div>
       </div>
 
       <div class="FormField__input">

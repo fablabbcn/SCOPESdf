@@ -34,6 +34,12 @@
 
   legend {
     @extend h3;
+    span {
+      font-size: 14px;
+      display: block;
+      color: $color-gray-mid;
+      padding-top: 4px;
+    }
   }
 
 }
@@ -52,6 +58,8 @@
 .Form__footer__content {
   margin: 0 auto;
   max-width: $form-width;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
   padding-bottom: $gutter-width*3;
   padding-top: $gutter-width*3;
   display: flex;
