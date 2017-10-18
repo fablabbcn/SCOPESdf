@@ -1,0 +1,85 @@
+.LessonDetails {
+  background-color: #F9FAFB;
+  padding-bottom: $gutter-width*3;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+  padding-top: $gutter-width*3;
+}
+
+.LessonDetails__content {
+  display: flex;
+  margin: 0 auto;
+  max-width: $grid-width;
+}
+
+.LessonDetails__column {
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 25%;
+}
+
+.LessonDetails__header {
+  @include text-medium;
+  color: $color-gray-mid;
+  font-size: 16px;
+  margin-bottom: $gutter-width;
+}
+
+.LessonDetails__range {
+  font-size: 24px;
+}
+
+
+.LessonDetails__subjects {
+
+}
+
+.LessonDetails__subject {
+  padding-left: $gutter-width*1.5;
+  font-size: 18px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  margin-bottom: 8px;
+}
+
+.LessonDetails__subject--art {
+  background-image: url('images/icon-arts-primary.svg');
+}
+.LessonDetails__subject--technology {
+  background-image: url('images/icon-technology-primary.svg');
+}
+
+
+.LessonDetails__masteries {
+  display: flex;
+}
+
+.LessonDetails__mastery {
+  width: 50%;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.LessonDetails__mastery__metric {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.LessonDetails__mastery__for {
+  font-size: 12px;
+  color: $color-gray-mid;
+}
+
+
+.LessonDetails__standards {
+
+}
+
+.LessonDetails__standard {
+  background-image: url('images/icon-info-mid.svg');
+  background-position: center left;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  margin-bottom: 5px;
+  padding-left: $gutter-width*1.5;
+}

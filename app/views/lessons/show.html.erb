@@ -1,3 +1,48 @@
 <%= render partial: 'lessons/show_sub_nav' %>
 
 <%= render partial: "lessons/show/#{@section}" %>
+
+<div class="LessonDetails">
+
+  <div class="LessonDetails__content">
+
+    <div class="LessonDetails__column">
+      <div class="LessonDetails__header">Teaching Range</div>
+      <div class="LessonDetails__range">
+        8th—12th Grade
+      </div>
+    </div>
+
+    <div class="LessonDetails__column">
+      <div class="LessonDetails__header">Subjects Covered</div>
+      <ul class="LessonDetails__subjects">
+        <li class="LessonDetails__subject LessonDetails__subject--art">Art</li>
+        <li class="LessonDetails__subject LessonDetails__subject--technology">Technology</li>
+      </ul>
+    </div>
+
+    <div class="LessonDetails__column">
+      <div class="LessonDetails__header">Mastery</div>
+      <div class="LessonDetails__masteries">
+        <div class="LessonDetails__mastery">
+          <div class="LessonDetails__mastery__metric">Difficult</div>
+          <div class="LessonDetails__mastery__for">For Teachers</div>
+        </div>
+        <div class="LessonDetails__mastery">
+          <div class="LessonDetails__mastery__metric">Moderate</div>
+          <div class="LessonDetails__mastery__for">For Students</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="LessonDetails__column">
+      <div class="LessonDetails__header">Alignment to Standards</div>
+      <ul class="LessonDetails__standards">
+        <li class="LessonDetails__standard">CCSS.ELA-LITERACY.RH.6-8.7</li>
+        <li class="LessonDetails__standard">CCSS.ELA-LITERACY.RH.9-10.4</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
