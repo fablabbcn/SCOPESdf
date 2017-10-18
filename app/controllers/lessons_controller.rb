@@ -101,8 +101,6 @@ class LessonsController < ApplicationController
 
 
     @collections = CollectionTag.all.to_a.map{|x| x.name.titleize}
-    @standards = Lesson.standards_list
-    @standards_array = @lesson_obj.standards_array
     @difficulty_helper = DifficultyLevel.form_helper
     @teaching_range_helper = TeachingRange.inputRange
 
