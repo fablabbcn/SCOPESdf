@@ -118,6 +118,46 @@ class LessonsController < ApplicationController
 
   end
 
+  def upload_file
+
+    # Dropzones submit the file here
+
+    # Fetch the lesson by the provided id
+    @lesson_obj = Lesson.find(params[:id])
+
+    # The submitted file: multipe files can be uploaded so this will be an array
+    file = params[:files]
+
+    # The attribute in which file should be stored (an array atribute)
+    # for example, 'assessment_criteria_files'
+    attribute = params[:attribute]
+
+    # TODO: add the file to the lesson via the attribute provided
+
+    # Return the attribute as json
+    render :json => @lesson_obj.send(attribute)
+
+  end
+
+  def delete_file
+
+    # Fetch the lesson by the provided id
+    @lesson_obj = Lesson.find(params[:id])
+
+    # The file name to be deleted
+    file_name = params[:file_name]
+
+    # The attribute from which file should be remove
+    # for example, 'assessment_criteria_files'
+    attribute = params[:attribute]
+
+    # TODO: remove the specified file and update the lesson
+
+    # Return the attribute as json
+    render :json => @lesson_obj.send(attribute)
+
+  end
+
   def publish
     # check to make sure current user is owner and make inactive
     # make sure passes validation
