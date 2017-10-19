@@ -94,8 +94,8 @@
         <div class="FormField__hint">Add any other tools here</div>
       </div>
 
-      <div class="FormField__input">
-        <%= text_field(:lesson, :other_fabrication_tools, multiple: true, class: "Input--choices") %>
+      <div class="FormField__input FormField__input--multiple">
+        <input type="text" name="lesson[other_fabrication_tools][]" class="Input Input--multiple" data-values='<%= @lesson_obj.other_fabrication_tools.to_json %>' value="" placeholder="+ Add a new tool" id="lesson_other_fabrication_tools_1" />
       </div>
 
     </div>
