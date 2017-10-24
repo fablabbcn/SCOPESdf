@@ -24,13 +24,17 @@ function FileUpload() {
 			thumbnailWidth: 80,
 		  thumbnailHeight: 80,
 			createImageThumbnails: false,
-			addRemoveLinks: true,
+			addRemoveLinks: false,
 			uploadMultiple: true,
 		  parallelUploads: 20,
-			paramName: $(fileUpload).data('paramname'),
+			paramName: 'files',
 			headers: {
 				'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
     	}
+		})
+
+		fileDropzone.on("success", function(file, responseText) {
+			console.log(responseText)
 		})
 
 		// Add the dropzone class

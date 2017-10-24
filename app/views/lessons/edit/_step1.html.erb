@@ -132,7 +132,7 @@
       </div>
 
       <div class="FormField__input">
-        <div class="FileUpload" data-url="<%= upload_file_for_lesson_path(@lesson_obj.id, :assessment_criteria_files) %>" data-paramname="assessment_criteria_files" id="assessment_criteria_files">
+        <div class="FileUpload" data-url="<%= upload_file_for_lesson_path(@lesson_obj.id, attribute: :assessment_criteria_files) %>" id="assessment_criteria_files">
           <div class="FileUpload__message">
             Drag & drop files here - or click to browse<br />.jpg, .png, .pdf
           </div>
