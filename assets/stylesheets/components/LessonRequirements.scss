@@ -1,0 +1,54 @@
+.LessonRequirements {
+  background-color: #F9FAFB;
+  padding-bottom: $gutter-width*2;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+  padding-top: $gutter-width*2;
+}
+
+.LessonRequirements__content {
+  display: flex;
+  margin: 0 auto;
+  max-width: $form-width;
+}
+
+.LessonRequirements__column {
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: (100%/3);
+  padding-right: $gutter-width*3;
+}
+
+.LessonRequirements__heading {
+  background-repeat: no-repeat;
+  background-position: center left;
+  padding-left: $gutter-width*1.5;
+  margin-bottom: $gutter-width;
+}
+
+.LessonRequirements__heading--materials {
+  background-image: url('images/icon-list-highlight.svg');
+}
+
+.LessonRequirements__heading--tools {
+  background-image: url('images/icon-tool-highlight.svg');
+}
+
+.LessonRequirements__heading--files {
+  background-image: url('images/icon-file-highlight.svg');
+}
+
+.LessonRequirements__list {
+  list-style: initial;
+  margin: initial;
+  padding: 0 0 0 24px;
+  font-size: 16px;
+}
+
+.LessonRequirements__list__item {
+  padding-left: 5px;
+  margin-bottom: 5px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
