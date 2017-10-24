@@ -19,14 +19,14 @@
 .Button--small {
   font-size: 14px;
   height: 45px;
-  line-height: 45px;
+  line-height: 44px;
   padding-left: $gutter-width;
   padding-right: $gutter-width;
 }
 
 .Button--large {
   height: 65px;
-  line-height: 65px;
+  line-height: 64px;
   padding-left: $gutter-width*2;
   padding-right: $gutter-width*2;
 }
@@ -75,9 +75,9 @@
 }
 
 .Button--dark {
-  color: #fff;
-  background-color: $color-main;
-  border-color: $color-main;
+  color: $color-main;
+  background-color: rgba($color-main, 0.25);
+  border-color: rgba($color-main, 0.25);
 }
 
 .Button--primary,
@@ -153,8 +153,14 @@
 .Button--icon--fork {
   background-image: url('images/icon-fork-blue.svg');
 }
+.Button--icon--download {
+  &.Button--active,
+  &.Button--primary {
+    background-image: url('images/icon-download-light.svg');
+  }
+}
 .Button--icon--locked {
-  background-image: url('images/icon-locked-dark.svg');
+  background-image: url('images/icon-lock-dark.svg');
 }
 .Button--icon--arts {
   &.Button--outline {

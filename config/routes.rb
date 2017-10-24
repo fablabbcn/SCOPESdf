@@ -10,11 +10,11 @@ Rails.application.routes.draw do
 
   resources :lessons do
     member do
-      get 'show' => 'lessons#show' # a dummy route to show dummy lesson
       delete :delete
       put :publish
       post :upload_file, as: :upload_file_for
       delete :delete_file, as: :delete_file_for
+      get 'show' => 'lessons#show', as: 'lesson_path' # a dummy route to show dummy lesson
     end
     resources :steps do
       post :upload_file

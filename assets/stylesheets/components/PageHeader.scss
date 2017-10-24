@@ -1,0 +1,50 @@
+.PageHeader {
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+  padding-top: $gutter-width*3;
+  padding-bottom: $gutter-width*3;
+}
+
+.PageHeader__content {
+  max-width: $form-width;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.PageHeader__title {
+
+}
+
+.PageHeader__heading {
+  @extend h2;
+}
+
+.PageHeader__sub {
+  font-size: 20px;
+  color: $color-gray-mid;
+  max-width: $form-width;
+  margin: 0 auto;
+}
+
+.PageHeader__indicators {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.PageHeader__indicator {
+  background-repeat: no-repeat;
+  padding-left: $gutter-width*1.5;
+  background-position: center left;
+  min-height: 20px;
+  margin-left: $gutter-width*2;
+}
+
+.PageHeader__indicator--time {
+  background-image: url('images/icon-time-mid.svg');
+}
+
+.PageHeader__indicator--steps {
+  background-image: url('images/icon-check-mid.svg');
+}
