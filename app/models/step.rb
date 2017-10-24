@@ -15,6 +15,7 @@
 #  step_number          :integer          not null
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  software             :string           default([]), is an Array
 #
 
 class Step < ApplicationRecord

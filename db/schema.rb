@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017113557) do
+ActiveRecord::Schema.define(version: 20171024155840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,9 @@ ActiveRecord::Schema.define(version: 20171017113557) do
     t.datetime "published_at"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.string   "key_concepts",              default: [],              array: true
+    t.string   "key_vocabularies",          default: [],              array: true
+    t.string   "key_formulas",              default: [],              array: true
     t.index ["name"], name: "index_lessons_on_name", using: :btree
     t.index ["original_lesson"], name: "index_lessons_on_original_lesson", using: :btree
     t.index ["state"], name: "index_lessons_on_state", using: :btree
@@ -185,6 +188,7 @@ ActiveRecord::Schema.define(version: 20171017113557) do
     t.integer  "step_number",                       null: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.string   "software",             default: [],              array: true
     t.index ["lesson_id"], name: "index_steps_on_lesson_id", using: :btree
   end
 
