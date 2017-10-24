@@ -18,6 +18,9 @@
 #  published_at              :datetime
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  key_concepts              :string           default([]), is an Array
+#  key_vocabularies          :string           default([]), is an Array
+#  key_formulas              :string           default([]), is an Array
 #
 
 class Lesson < ApplicationRecord
@@ -34,15 +37,6 @@ class Lesson < ApplicationRecord
 
   # TODO - duration needs to be added as a string
   attr_accessor :duration
-
-  # TODO - add key_concepts attribute; should be an array
-  attr_accessor :key_concepts
-
-  # TODO - add key_vocabularies attribute; should be an array
-  attr_accessor :key_vocabularies
-
-  # TODO - add key_formulas attribute; should be an array
-  attr_accessor :key_formulas
 
   # TODO - need to be able to associate lesson with fabrication tools, and allow
   # the user to be able to create their own, local to the lesson itself
