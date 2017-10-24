@@ -15,7 +15,7 @@
   "devDependencies": {},
   "dependencies": {
     "@shopify/draggable": "^1.0.0-beta.2",
-    "autoprefixer": "^7.1.5",
+    "autoprefixer": "^7.1.6",
     "autosize": "^4.0.0",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
