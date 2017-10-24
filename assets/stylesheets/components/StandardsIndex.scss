@@ -1,0 +1,31 @@
+.StandardsIndex {
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+}
+
+.StandardsIndex__standard {
+  max-width: $form-width;
+  margin: 0 auto;
+  border-bottom: 1px solid $color-border;
+  padding-bottom: $gutter-width*2;
+  margin-bottom: $gutter-width*2;
+}
+
+.StandardsIndex__heading {
+  margin-bottom: $gutter-width;
+}
+
+.StandardsIndex__descriptions {
+
+}
+
+.StandardsIndex__description {
+  background-image: url('images/icon-check-green.svg');
+  background-repeat: no-repeat;
+  background-position: left 2px;
+  padding-left: $gutter-width*3;
+  margin-bottom: $gutter-width*2;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

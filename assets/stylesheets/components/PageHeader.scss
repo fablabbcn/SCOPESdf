@@ -1,0 +1,19 @@
+.PageHeader {
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+  padding-top: $gutter-width*3;
+  padding-bottom: $gutter-width*2;
+}
+
+.PageHeader__heading {
+  max-width: $form-width;
+  margin: 0 auto;
+  @extend h2;
+}
+
+.PageHeader__sub {
+  font-size: 20px;
+  color: $color-gray-mid;
+  max-width: $form-width;
+  margin: 0 auto;
+}
