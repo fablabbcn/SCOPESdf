@@ -1,0 +1,38 @@
+.Slideshow__cells {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: $gutter-width;
+}
+
+.Slideshow__cell {
+  width: 100%;
+}
+
+.Slideshow__nav__cells {
+  margin-bottom: $gutter-width;
+
+  .flickity-prev-next-button {
+
+    &.previous {
+      left: 0;
+    }
+
+    &.next {
+      right: 0;
+    }
+
+  }
+
+}
+
+.Slideshow__nav__cell {
+  width: 90px;
+  height: 60px;
+  opacity: 0.75;
+  margin-left: $gutter-width/2;
+  margin-right: $gutter-width/2;
+}
+
+.Slideshow__nav__cell.is-nav-selected {
+  opacity: 1;
+}

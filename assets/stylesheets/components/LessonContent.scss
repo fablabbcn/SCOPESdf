@@ -84,31 +84,3 @@
   padding-left: $gutter-width/2;
   padding-right: $gutter-width/2;
 }
-
-
-.LessonContent__list {
-
-}
-
-.LessonContent__list__item {
-  font-size: 16px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-.LessonContent__stat {
-  display: block;
-  background-repeat: no-repeat;
-  background-position: left center;
-  padding-left: 24px;
-}
-
-.LessonContent__stat--likes {
-  background-image: url('images/icon-heart-mid.svg');
-}
-.LessonContent__stat--forks {
-  background-image: url('images/icon-fork-mid.svg');
-}
-.LessonContent__stat--completed {
-  background-image: url('images/icon-check-mid.svg');
-}

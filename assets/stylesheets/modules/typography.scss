@@ -22,6 +22,19 @@
     margin-bottom: $gutter-width;
   }
   ul {
-    list-style: disc inside none;
+    list-style: disc outside none;
+  }
+  ol {
+    list-style: decimal outside none;
+  }
+  ul,ol {
+    margin-left: $gutter-width*1.5;
+    margin-bottom: $gutter-width;
+    li {
+      margin-bottom: $gutter-width/4;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }
