@@ -8,3 +8,73 @@
     </div>
   </div>
 </div>
+
+
+<div class="Activities">
+
+  <!-- added photos -->
+  <div class="Activity Activity--images">
+
+    <div class="Activity__content">
+      <div class="Activity__icon"></div>
+      <div class="Activity__users">
+        <a href="#" class="Activity__user"><img src="<%= image_url('avatars/avatar2.jpg') %>" class="Image Image--lazy" /></a>
+      </div>
+      <div class="Activity__info">
+        <a href="/users/show">James Robinson</a> added 3 photos to <a href="/lessons/show">Settlers of Catan</a>
+      </div>
+      <div class="Activity__date">
+        <%= time_ago_in_words(3.minutes.ago) %> ago
+      </div>
+    </div>
+
+    <div class="Activity__images">
+    <% 4.times do |i| %>
+      <img src="<%= image_url("lessons/show/catan#{i+1}.jpg") %>"
+        data-sizes="auto"
+        data-srcset="<%= image_url("lessons/show/catan#{i+1}.jpg") %> 1x, <%= image_url("lessons/show/catan#{i+1}.jpg") %> 2x"
+        class="Image Image--lazy" />
+    <% end %>
+    </div>
+
+  </div>
+
+  <!-- liked -->
+  <div class="Activity Activity--likes">
+
+    <div class="Activity__content">
+      <div class="Activity__icon"></div>
+      <div class="Activity__users">
+        <a href="#" class="Activity__user"><img src="<%= image_url('avatars/avatar1.jpg') %>" class="Image Image--lazy" /></a>
+        <a href="#" class="Activity__user"><img src="<%= image_url('avatars/avatar2.jpg') %>" class="Image Image--lazy" /></a>
+        <a href="#" class="Activity__users__more"><span>+4</span></a>
+      </div>
+      <div class="Activity__info">
+        <a href="/users/show">James Robinson</a>, <a href="/users/show">Sarah Goldman</a> and 4 others liked <a href="/lessons/show">Settlers of Catan</a>
+      </div>
+      <div class="Activity__date">
+        <%= time_ago_in_words(4.hours.ago) %> ago
+      </div>
+    </div>
+
+  </div>
+
+  <!-- forked -->
+  <div class="Activity Activity--forked">
+
+    <div class="Activity__content">
+      <div class="Activity__icon"></div>
+      <div class="Activity__users">
+        <a href="#" class="Activity__user"><img src="<%= image_url('avatars/avatar1.jpg') %>" class="Image Image--lazy" /></a>
+      </div>
+      <div class="Activity__info">
+        <a href="/users/show">Lena James</a> forked <a href="/lessons/show">Settlers of Catan</a> to <a href="/lessons/show">AquaCatan</a>
+      </div>
+      <div class="Activity__date">
+        <%= time_ago_in_words(18.days.ago) %> ago
+      </div>
+    </div>
+
+  </div>
+
+</div>
