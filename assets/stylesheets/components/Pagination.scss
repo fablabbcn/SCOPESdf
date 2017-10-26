@@ -1,0 +1,61 @@
+.Pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: $gutter-width*3;
+  @include text-medium;
+  font-size: 16px;
+}
+
+.Pagination__page,
+.Pagination__next,
+.Pagination__prev {
+
+  a,span {
+    width: 36px;
+    height: 36px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &:hover {
+      background-color: $color-background;
+    }
+  }
+
+}
+
+.Pagination__page--gap {
+  width: 36px;
+  height: 36px;
+}
+
+.Pagination__page--current {
+  span {
+    border-color: $color-highlight-primary;
+  }
+}
+
+
+.Pagination__prev {
+  a {
+    background-image: url('images/direction-left-dark.svg');
+    span {
+      display: none;
+    }
+  }
+}
+
+
+.Pagination__next {
+  a {
+    background-image: url('images/direction-right-dark.svg');
+    span {
+      display: none;
+    }
+  }
+}

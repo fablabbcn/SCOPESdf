@@ -25,6 +25,9 @@ class LessonsController < ApplicationController
     # set difficulties
     @difficulty_helper = DifficultyLevel.form_helper
 
+    # Pagination stub, just so i can style the output - DH
+    @paginatable_array = Kaminari.paginate_array([*1..280]).page(params[:page]).per(12)
+
   end
 
   def show
@@ -38,7 +41,7 @@ class LessonsController < ApplicationController
     @section = params[:section].present? ? params[:section].to_sym : :overview
 
   end
-  
+
   def new
 
     # We only need to create a new empty lesson with an id here
