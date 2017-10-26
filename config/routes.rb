@@ -23,6 +23,14 @@ Rails.application.routes.draw do
     resources :standards
   end
 
+  resources :people do
+
+  end
+
+  resources :places do
+
+  end
+
   #get  'lessons/new' => 'lessons#new', as: :lesson_new
   # post 'lessons'            => 'lessons#create'#, as: :lesson_create
   #post 'lessons/new'            => 'lessons#new', as: :lesson_create
