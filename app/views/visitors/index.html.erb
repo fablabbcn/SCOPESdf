@@ -42,7 +42,8 @@
       <% 12.times do |i| %>
       <div class="Carousel__cell">
         <%= render partial: 'lessons/thumb', locals: {
-          lesson: Lesson.first
+          lesson: Lesson.first,
+          i: i
           } %>
       </div>
       <% end %>
