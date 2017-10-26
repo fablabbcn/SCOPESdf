@@ -53,7 +53,7 @@
     <% 24.times do |i| %>
     <div class="Grid__item">
 
-      <%= render partial: 'components/lesson_thumb', locals: {
+      <%= render partial: 'lessons/thumb', locals: {
         lesson: Lesson.first,
         i: i
         } %>
