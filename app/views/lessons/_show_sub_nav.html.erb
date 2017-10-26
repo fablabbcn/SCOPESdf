@@ -25,7 +25,7 @@
         class_active: "SubNavigation__item--active",
         active: @section == :outcomes %>
 
-      <%= active_link_to "Activity", lesson_activities_path(lesson_id: @lesson_obj.id),
+      <%= active_link_to "Activity", lesson_path(id: @lesson_obj.id, section: :activity),
         class: "SubNavigation__item",
         class_active: "SubNavigation__item--active",
         active: @section == :activity %>

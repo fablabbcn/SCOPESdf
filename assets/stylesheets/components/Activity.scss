@@ -1,0 +1,88 @@
+.Activity {
+  border-bottom: 1px solid $color-border-dark;
+  padding-bottom: $gutter-width*2;
+  padding-top: $gutter-width*2;
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.Activity__icon {
+  width: 24px;
+  height: 24px;
+  margin-right: $gutter-width;
+  flex-grow: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  .Activity--images & {
+    background-image: url('images/icon-image-primary.svg');
+  }
+  .Activity--likes & {
+    background-image: url('images/icon-heart-primary.svg');
+    background-position: 3px 6px;
+  }
+  .Activity--forked & {
+    background-image: url('images/icon-fork-primary.svg');
+    background-position: 3px 6px;
+  }
+}
+
+.Activity__content {
+
+  display: flex;
+  align-items: center;
+}
+
+.Activity__users {
+  display: flex;
+}
+
+.Activity__user {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #fff;
+  margin-right: -5px;
+}
+
+.Activity__users__more {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-highlight-primary;
+  border-radius: 50%;
+  span {
+    line-height: 1;
+    color: #fff;
+    font-size: 10px;
+
+  }
+}
+
+.Activity__info {
+  padding-left: $gutter-width/2;
+  a {
+    color: $color-highlight-primary;
+  }
+}
+
+.Activity__date {
+  margin-left: auto;
+  color: $color-gray-mid;
+}
+
+.Activity__images {
+  display: flex;
+  padding-top: $gutter-width;
+
+  .Image {
+    height: 55px;
+    width: auto;
+    margin-right: $gutter-width/2;
+  }
+
+}

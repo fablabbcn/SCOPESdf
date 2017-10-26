@@ -2,6 +2,7 @@ class LessonsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :show]
 
+  before_action :set_lesson, only: [:show, :activity]
   before_action :set_contexts, only: [:index, :edit]
   before_action :set_subjects, only: [:index, :edit]
   before_action :set_collections, only: [:index, :edit]
@@ -37,7 +38,7 @@ class LessonsController < ApplicationController
     @section = params[:section].present? ? params[:section].to_sym : :overview
 
   end
-
+  
   def new
 
     # We only need to create a new empty lesson with an id here
@@ -157,6 +158,10 @@ class LessonsController < ApplicationController
     render :json => @lesson_obj.send(attribute)
 
   end
+
+
+
+
 
   def publish
     # check to make sure current user is owner and make inactive
@@ -409,6 +414,10 @@ class LessonsController < ApplicationController
 
     def remove_file_params
       params.permit(:name, :attr)
+    end
+
+    def set_lesson
+      # The fetching of the lesson should be shared across methods
     end
 
     def set_collections

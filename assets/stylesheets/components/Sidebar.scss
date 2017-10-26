@@ -1,0 +1,56 @@
+.Sidebar__section {
+  padding-bottom: $gutter-width*2;
+}
+
+.Sidebar__section--with-border {
+  border-bottom: 1px solid $color-border;
+  margin-bottom: $gutter-width;
+}
+
+.Sidebar__heading {
+  @include text-medium;
+  font-size: 16px;
+  color: $color-gray-mid;
+  margin-bottom: $gutter-width;
+}
+
+.Sidebar__list {
+
+}
+
+.Sidebar__list__item {
+  font-size: 16px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.Sidebar__stat,
+.Sidebar__link {
+  display: block;
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 28px;
+}
+
+.Sidebar__link {
+  background-image: url('images/icon-link-mid.svg');
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.Sidebar__link--download {
+  background-image: url('images/icon-download-green.svg');
+}
+
+.Sidebar__stat--likes {
+  background-image: url('images/icon-heart-mid.svg');
+}
+.Sidebar__stat--duration {
+  background-image: url('images/icon-time-mid.svg');
+}
+.Sidebar__stat--forks {
+  background-image: url('images/icon-fork-mid.svg');
+}
+.Sidebar__stat--completed {
+  background-image: url('images/icon-check-mid.svg');
+}

@@ -27,6 +27,7 @@ import MultipleInputs	from "./components/MultipleInputs"
 import Slider	from "./components/Slider"
 import Textarea	from "./components/Textarea"
 import LessonHeader	from "./components/LessonHeader"
+import Slideshow	from "./components/Slideshow"
 
 var ScopesDF = {
 
@@ -63,6 +64,7 @@ var ScopesDF = {
 		Textarea()
 		FilterOverlay()
 		LessonHeader()
+		Slideshow()
 
 	}
 
