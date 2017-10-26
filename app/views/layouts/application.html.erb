@@ -18,8 +18,8 @@
 
 						<%= link_to "<span>ScopesDF</span>".html_safe, root_path, class: "Logo" %>
 
-						<form class="Search">
-							<input type="search" class="Search__input" />
+						<form class="Search" method="get" action="<%= search_path %>">
+							<input type="search" class="Search__input" name="q" value="<%= @query %>" />
 						</form>
 
 						<%= render 'components/navigation' %>
