@@ -91,9 +91,26 @@
   color: $color-gray-mid;
 }
 
-.LessonHeader__photos {
-  position: relative;
+.LessonHeader__slideshow {
   width: 50%;
+  position: relative;
+
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: 61.1428571%;
+  }
+
+}
+
+.LessonHeader__photos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
   opacity: 0;
   transition: opacity $default-duration $default-easing;
   &.flickity-enabled {
@@ -103,13 +120,17 @@
 
 .LessonHeader__photo {
   width: 100%;
+  img {
+    display: block;
+    width: 100%;
+  }
 }
 
 .LessonHeader__photos__action {
   width: 170px;
   position: absolute;
   bottom: $gutter-width;
-  z-index: 1000;
+  z-index: 100;
   left: 50%;
   margin-left: -(170px/2);
 }
@@ -118,7 +139,7 @@
   position: absolute;
   bottom: $gutter-width + 8px;
   left: $gutter-width;
-  z-index: 1000;
+  z-index: 100;
   background-color: #1D1D1D;
   color: #fff;
   border-radius: 20px;

@@ -1,0 +1,57 @@
+<div class="PageHeader">
+  <div class="PageHeader__content">
+    <div class="PageHeader__title">
+      <h1 class="PageHeader__heading">Settlers of Catan</h1>
+    </div>
+  </div>
+</div>
+
+<div class="Grid">
+
+  <div class="Grid__header">
+    <h3 class="Grid__heading">Expected outcomes</h3>
+  </div>
+
+  <div class="Grid__items Grid__items--border-bottom ">
+
+    <% 4.times do |i| %>
+    <div class="Grid__item">
+      <div class="Grid__image">
+        <img src="<%= image_url("lessons/show/catan#{i+1}.jpg") %>"
+          data-sizes="auto"
+          data-srcset="<%= image_url("lessons/show/catan#{i+1}.jpg") %> 1x, <%= image_url("lessons/show/catan#{i+1}.jpg") %> 2x"
+          class="Image Image--lazy" />
+      </div>
+      <div class="Grid__caption Grid__caption--image">
+        Photo caption <%= i %>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+
+</div>
+
+
+<div class="Grid">
+
+  <div class="Grid__header">
+    <h3 class="Grid__heading"><span class="Grid__heading__count">3</span> Forked Projects</h3>
+  </div>
+
+  <div class="Grid__items Grid__items--border-bottom ">
+
+    <% 3.times do |i| %>
+    <div class="Grid__item">
+
+      <%= render partial: 'components/lesson_thumb', locals: {
+        lesson: Lesson.first,
+        i: i
+        } %>
+
+    </div>
+    <% end %>
+
+  </div>
+
+</div>

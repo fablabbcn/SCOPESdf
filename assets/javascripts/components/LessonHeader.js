@@ -21,14 +21,14 @@ function LessonHeader() {
 
 	  // Init flickity for all carousels
 	  let flkty = new Flickity(photosSelector, {
-	    cellAlign: 'center',
+	    cellAlign: 'left',
 	    cellSelector: photoSelector,
 	    contain: true,
 	    pageDots: false,
 	    prevNextButtons: false,
 	    wrapAround: true,
 			imagesLoaded: true,
-	    percentPosition: true,
+	    percentPosition: false,
 	  })
 
 	  document.addEventListener("turbolinks:request-start", function() {

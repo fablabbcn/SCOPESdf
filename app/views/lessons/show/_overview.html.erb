@@ -37,16 +37,18 @@
 
   </div>
 
-  <div class="LessonHeader__photos">
+  <div class="LessonHeader__slideshow">
 
-    <% 4.times do |i| %>
-    <div class="LessonHeader__photo">
-      <img src="<%= image_url("lessons/show/catan#{i+1}.jpg") %>"
-        data-sizes="auto"
-        data-srcset="<%= image_url("lessons/show/catan#{i+1}.jpg") %> 1x, <%= image_url("lessons/show/catan#{i+1}.jpg") %> 2x"
-        class="Image Image--lazy" />
+    <div class="LessonHeader__photos">
+      <% 4.times do |i| %>
+      <div class="LessonHeader__photo">
+        <img src="<%= image_url("lessons/show/catan#{i+1}.jpg") %>"
+          data-sizes="auto"
+          data-srcset="<%= image_url("lessons/show/catan#{i+1}.jpg") %> 1x, <%= image_url("lessons/show/catan#{i+1}.jpg") %> 2x"
+          class="Image Image--lazy" />
+      </div>
+      <% end %>
     </div>
-    <% end %>
 
     <%= link_to "View more photos", lesson_path(section: :outcomes), class: "LessonHeader__photos__action Button Button--primary Button--small" %>
 

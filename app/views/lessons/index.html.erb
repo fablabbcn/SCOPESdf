@@ -48,15 +48,19 @@
 
 <div class="Grid">
 
-  <% 24.times do |i| %>
-  <div class="Grid__item">
+  <div class="Grid__items">
 
-    <%= render partial: 'components/lesson_thumb', locals: {
-      lesson: Lesson.first,
-      i: i
-      } %>
+    <% 24.times do |i| %>
+    <div class="Grid__item">
+
+      <%= render partial: 'components/lesson_thumb', locals: {
+        lesson: Lesson.first,
+        i: i
+        } %>
+
+    </div>
+    <% end %>
 
   </div>
-  <% end %>
 
 </div>
