@@ -21,7 +21,6 @@ Rails.application.routes.draw do
       delete :delete_file
     end
     resources :standards
-    resources :activities, only: [:index]
   end
 
   #get  'lessons/new' => 'lessons#new', as: :lesson_new
