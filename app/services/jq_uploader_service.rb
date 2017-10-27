@@ -11,7 +11,7 @@ class JqUploaderService
         "size" => carrier_item.size,
         "url" => carrier_item.url,
         "thumbnail_url" => carrier_item.url,
-        "delete_url" => "/lessons/#{lesson_id}/file/?name=#{name}&attr=#{symb}",
+        "delete_url" => "/lessons/#{lesson_id}/delete_file/?name=#{name}&attr=#{symb}",
         "delete_type" => "DELETE"
     }
     json_obj
@@ -25,7 +25,7 @@ class JqUploaderService
         "size" => carrier_item.size,
         "url" => carrier_item.url,
         "thumbnail_url" => carrier_item.url,
-        "delete_url" => "/lessons/#{lesson_id}/#{step_id}/file/?name=#{name}&attr=#{symb}",
+        "delete_url" => "/lessons/#{lesson_id}/#{step_id}/delete_file/?name=#{name}&attr=#{symb}",
         "delete_type" => "DELETE"
     }
     json_obj

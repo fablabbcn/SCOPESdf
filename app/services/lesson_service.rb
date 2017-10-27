@@ -70,11 +70,11 @@ class LessonService
 
     # acceptable types: assessment_criteria
     #file_params : {assessment_criteria_files: [], ...}
-    def add_file_by_type_to_id(id, file_params, calling_user)
+    def add_file_by_type_to_id(id, file_params)
       @lesson = Lesson.find(id)
-      return false unless @lesson.hasAuthor?(calling_user)
-
       #check https://github.com/dwilkie/carrierwave_direct
+
+      puts file_params.inspect
 
       url = file_params.each {|k,v|
         file_type = k.to_s

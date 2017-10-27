@@ -1,11 +1,14 @@
 class LessonsController < ApplicationController
 
-  before_action :authenticate_user!, except: [:index, :show]
+#  before_action :authenticate_user!, except: [:index, :show]
+  skip_before_action :verify_authenticity_token
 
   before_action :set_lesson, only: [:show, :activity]
   before_action :set_contexts, only: [:index, :edit]
   before_action :set_subjects, only: [:index, :edit]
   before_action :set_collections, only: [:index, :edit]
+
+
 
   def index
     # Using lessons#index for now as the public view of all lesson
@@ -119,7 +122,7 @@ class LessonsController < ApplicationController
 
   end
 
-  def upload_file
+  def upload_file_____________!
 
     # Dropzones submit the file here
 
@@ -129,9 +132,16 @@ class LessonsController < ApplicationController
     # The submitted file: multipe files can be uploaded so this will be an array
     file = params[:files]
 
+
     # The attribute in which file should be stored (an array atribute)
     # for example, 'assessment_criteria_files'
     attribute = params[:attribute]
+
+    files_hash = {}
+    files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
+    files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
+
+    LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash)
 
     # TODO: add the file to the lesson via the attribute provided
 
@@ -213,23 +223,35 @@ class LessonsController < ApplicationController
 
   end
 
-  def file_upload
+  def upload_file
     @lesson = Lesson.find(params[:id])
 
-    files_hash = {}
-    files_hash.merge!({assessment_criteria_files: file_params[:files]}) if file_params[:attr] == "assessment_criteria_files"
-    files_hash.merge!({outcome_files: file_params[:files]}) if file_params[:attr] == "outcome_files"
-    puts "uploading files"
-    puts files_hash.inspect
+    # TODO - AUTHORIZE USER!!!!!
+    puts params[:files]
+    # puts file_params.inspect
 
-    LessonService.add_file_by_type_to_id(@lesson.id, files_hash, User.first) ## THIS NEEDS TO FUCKING CHANGE!! TODO --
+    files = [params[:files]]
+    #files = file_params[:files]
+    # TODO - check to make sure you are uploading file in array
+
+    files_hash = {}
+    files_hash.merge!({assessment_criteria_files: files}) if params[:attr] == "assessment_criteria_files"
+    files_hash.merge!({outcome_files: files}) if file_params[:attr] == "outcome_files"
+    # puts "uploading files"
+    # puts files_hash.inspect
+
+    files_hash = {assessment_criteria_files: files}
+
+    #LessonService.add_file_by_type_to_id(@lesson.id, files_hash)
     @lesson.reload
 
     returning = []
+    puts files_hash.inspect
 
 
     if files_hash[:assessment_criteria_files].present?
-      uploaded_acf = file_params[:files].each{|x|
+      print "RUNNING"
+      uploaded_acf = files.each{|x|
         @lesson.find_carrier_wave_with_original_name(x.original_filename, :assessment_criteria)
       }
       for i in 0..uploaded_acf.count-1
@@ -238,7 +260,7 @@ class LessonsController < ApplicationController
         returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
       end
     elsif files_hash[:outcome_files].present?
-      uploaded_of = file_params[:files].each{|x|
+      uploaded_of = files.each{|x|
         @lesson.find_carrier_wave_with_original_name(x.original_filename, :outcome_files)
       }
       puts uploaded_of.count
@@ -409,7 +431,7 @@ class LessonsController < ApplicationController
     end
 
     def file_params # both lessons and steps
-      params.permit(:id, :attr, :step, :assessment_criteria_files => [], :outcome_files => [], :supporting_materials => [], :supporting_files => [], files: [])
+      params.permit(:attr, :assessment_criteria_files => [], :outcome_files => [], :supporting_materials => [], :supporting_files => [], :files => [])
     end
 
     def remove_file_params
