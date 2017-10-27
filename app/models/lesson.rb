@@ -301,19 +301,23 @@ class Lesson < ApplicationRecord
 
   def addFiles(file, sym)
     returnable = ""
-    # puts file
+    puts "FILE HERE THO"
+    puts file
+    puts sym
     case sym
       when :assessment_criteria
         puts "assessment saving"
         collection = self.assessment_criteria_files
+        collection ||= []
         collection += file
         self.assessment_criteria_files = collection
         self.save!
         self.reload
         returnable = self.assessment_criteria_files.map {|x| x.url}
       when :outcome
-        puts "assessment saving"
+        puts "outcome saving"
         collection = self.outcome_files
+        collection ||= []
         collection += file
         self.outcome_files = collection
         self.save!
