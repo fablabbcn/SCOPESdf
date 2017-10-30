@@ -67,3 +67,48 @@
   font-size: 18px;
   margin-bottom: $gutter-width * 2;
 }
+
+.Hero_sparkles {
+
+}
+
+.Hero__sparkles {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  .Sparkle {
+    &:nth-child(1) {
+      left: 10%;
+      top: 25%;
+      animation-duration: 7s;
+    }
+    &:nth-child(2) {
+      left: 50%;
+      top: 15%;
+      animation-duration: 8s;
+    }
+    &:nth-child(3) {
+      left: 90%;
+      top: 19%;
+      animation-duration: 6s;
+    }
+    &:nth-child(4) {
+      left: 5%;
+      top: 85%;
+      animation-duration: 9s;
+    }
+    &:nth-child(5) {
+      left: 54%;
+      top: 75%;
+      animation-duration: 5s;
+    }
+    &:nth-child(6) {
+      left: 76%;
+      top: 83%;
+      animation-duration: 10s;
+    }
+  }
+}
