@@ -23,7 +23,7 @@ class Standard < ApplicationRecord
   end
 
   def self.name_array
-    Standard.all.to_a.map{|x| x.name}
+    Standard.all.to_a.map{|x| x.name}.uniq
   end
 
   private

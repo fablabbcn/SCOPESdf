@@ -7,7 +7,7 @@
 #  topline                   :string           default(""), not null
 #  summary                   :string           default(""), not null
 #  learning_objectives       :string           is an Array
-#  description               :string           default(""), not null
+#  teacher_notes             :string           default(""), not null
 #  assessment_criteria       :string           default(""), not null
 #  assessment_criteria_files :string           default([]), is an Array
 #  further_readings          :string           is an Array
@@ -31,9 +31,6 @@ class Lesson < ApplicationRecord
 
   # TODO - added an attribute for grade_range
   attr_accessor :grade_range
-
-  # TODO - description to be renamed, or new attr to be added
-  attr_accessor :teacher_notes
 
   # TODO - duration needs to be added as a string
   attr_accessor :duration
@@ -304,19 +301,23 @@ class Lesson < ApplicationRecord
 
   def addFiles(file, sym)
     returnable = ""
-    # puts file
+    puts "FILE HERE THO"
+    puts file
+    puts sym
     case sym
       when :assessment_criteria
         puts "assessment saving"
         collection = self.assessment_criteria_files
+        collection ||= []
         collection += file
         self.assessment_criteria_files = collection
         self.save!
         self.reload
         returnable = self.assessment_criteria_files.map {|x| x.url}
       when :outcome
-        puts "assessment saving"
+        puts "outcome saving"
         collection = self.outcome_files
+        collection ||= []
         collection += file
         self.outcome_files = collection
         self.save!

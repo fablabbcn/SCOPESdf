@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024155840) do
+ActiveRecord::Schema.define(version: 20171027145547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20171024155840) do
     t.string   "topline",                   default: "", null: false
     t.string   "summary",                   default: "", null: false
     t.string   "learning_objectives",                                 array: true
-    t.string   "description",               default: "", null: false
+    t.string   "teacher_notes",             default: "", null: false
     t.string   "assessment_criteria",       default: "", null: false
     t.string   "assessment_criteria_files", default: [],              array: true
     t.string   "further_readings",                                    array: true
