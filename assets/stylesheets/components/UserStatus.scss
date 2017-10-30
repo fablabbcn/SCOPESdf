@@ -1,0 +1,30 @@
+.UserStatus {
+  display: flex;
+  align-items: center;
+  background-image: url('images/direction-down-mid.svg');
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding-right: $gutter-width*1.5;
+  padding-left: $gutter-width*2;
+}
+
+.UserStatus__image {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.UserStatus__text {
+  font-size: 12px;
+  @include text-medium;
+  padding-right: $gutter-width;
+}
+
+.UserStatus__name {
+
+}
+
+.UserStatus__role {
+  color: $color-gray-mid;
+}

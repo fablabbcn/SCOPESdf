@@ -14,7 +14,7 @@ export let state = {
 
 function FilterOverlay() {
 
-	console.log("-- FilterOverlay initialized", Config)
+	console.log("-- FilterOverlay initialized")
 
   $filterOverlay = $('.FilterOverlay')
 
