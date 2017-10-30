@@ -88,7 +88,7 @@ class LessonsController < ApplicationController
     files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
     files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
 
-    LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash, @current_user) # should not be user first
+    LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash) # should not be user first
     @lesson_obj.reload
 
 
@@ -252,7 +252,7 @@ class LessonsController < ApplicationController
     puts files_hash.inspect
 
 
-    if files_hash[:assessment_criteria_files].present?
+    if files_hash[:foreman start].present?
       print "RUNNING"
       uploaded_acf = files.each{|x|
         @lesson.find_carrier_wave_with_original_name(x.original_filename, :assessment_criteria)
