@@ -252,7 +252,7 @@ class LessonsController < ApplicationController
     puts files_hash.inspect
 
 
-    if files_hash[:foreman start].present?
+    if files_hash[:assessment_criteria_files].present?
       print "RUNNING"
       uploaded_acf = files.each{|x|
         @lesson.find_carrier_wave_with_original_name(x.original_filename, :assessment_criteria)
