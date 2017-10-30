@@ -11,9 +11,8 @@ function UserStatus() {
   const referenceElement = $('.UserStatus')[0]
 
   const instance = new Tooltip(referenceElement, {
-    title: "Hey there",
+    title: "User status",
     trigger: "click",
   });
-  instance.show()
 
 }
