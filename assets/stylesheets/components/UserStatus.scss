@@ -5,7 +5,8 @@
   background-repeat: no-repeat;
   background-position: right center;
   padding-right: $gutter-width*1.5;
-  padding-left: $gutter-width*2;
+  padding-left: $gutter-width*1.5;
+  cursor: pointer;
 }
 
 .UserStatus__image {
@@ -22,9 +23,25 @@
 }
 
 .UserStatus__name {
+  color: $color-gray-dark;
+
+  .Header--transparent & {
+    color: #fff;
+  }
 
 }
 
 .UserStatus__role {
   color: $color-gray-mid;
+
+}
+
+// only display the buttons fragment when it's in a tippy-popper
+.UserStatusButtons {
+  display: none;
+
+  .tippy-popper & {
+    display: block;
+  }
+
 }

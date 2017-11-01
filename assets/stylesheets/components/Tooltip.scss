@@ -1,116 +1,40 @@
 
-$pointer-size: 7px;
+@import '~tippy.js/dist/tippy.css';
 
-.tooltip {
+.tippy-tooltip {
+  padding: $gutter-width;
+}
+
+.tippy-tooltip.white-theme {
+  /* Your styling here. Example: */
+  background-color: #fff;
+  border: 1px solid #E2E2E2;
+  border-radius: 2px;
+  box-shadow: 0 0 80px 0 rgba(182,182,182,0.37);
+  color: $color-main;
+}
+
+.tippy-popper[x-placement^=bottom] .tippy-tooltip.white-theme [x-arrow] {
+  border-bottom: 9px solid #E2E2E2;
+  border-right: 9px solid transparent;
+  border-left: 9px solid transparent;
+  top: -9px;
+  margin: 0 9px;
+
+  &:after {
+    content: "";
+    display: block;
+    border-bottom: 7px solid #fff;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    top: 2px;
     position: absolute;
-    padding: 5px;
-    text-align: center;
-    background-color: #fff;
-    background: #FFFFFF;
-    border: 1px solid #E2E2E2;
-    box-shadow: 0 0 80px 0 rgba(182,182,182,0.37);
-    border-radius: 2px;
-}
-
-.tooltip .tooltip-arrow {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    position: absolute;
-    margin: $pointer-size;
-    border-color: #E2E2E2;
-    &:after {
-      content: "";
-      display: block;
-      position: absolute;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-color: #fff;
-    }
-}
-
-.tooltip[x-placement^="top"] {
-    margin-bottom: $pointer-size;
-}
-
-.tooltip[x-placement^="top"] .tooltip-arrow {
-    border-width: $pointer-size $pointer-size 0 $pointer-size;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    bottom: -$pointer-size;
-    left: calc(50% - $pointer-size);
-    margin-top: 0;
-    margin-bottom: 0;
+    left: -7px;
+  }
 
 }
 
-.tooltip[x-placement^="bottom"] {
-    margin-top: $pointer-size - 2px;
-}
 
-.tooltip[x-placement^="bottom"] .tooltip-arrow {
-    border-width: 0 $pointer-size $pointer-size $pointer-size;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    border-top-color: transparent;
-    top: -$pointer-size;
-    left: calc(50% - $pointer-size);
-    margin-top: 0;
-    margin-bottom: 0;
-    &:after {
-      border-width: 0 ($pointer-size - 2) ($pointer-size - 2);
-      border-left-color: transparent;
-      border-right-color: transparent;
-      border-top-color: transparent;
-      left: -($pointer-size - 2);
-      top: 2px;
-    }
-}
-
-.tooltip[x-placement^="right"] {
-    margin-left: $pointer-size;
-}
-
-.tooltip[x-placement^="right"] .tooltip-arrow {
-    border-width: $pointer-size $pointer-size $pointer-size 0;
-    border-left-color: transparent;
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-    left: -$pointer-size;
-    top: calc(50% - $pointer-size);
-    margin-left: 0;
-    margin-right: 0;
-    &:after {
-      border-width: ($pointer-size - 2) ($pointer-size - 2) ($pointer-size - 2) 0;
-      border-left-color: transparent;
-      border-top-color: transparent;
-      border-bottom-color: transparent;
-      right: -($pointer-size );
-      top: -($pointer-size - 2px);
-    }
-}
-
-.tooltip[x-placement^="left"] {
-    margin-right: $pointer-size;
-}
-
-.tooltip[x-placement^="left"] .tooltip-arrow {
-    border-width: $pointer-size 0 $pointer-size $pointer-size;
-    border-top-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    right: -$pointer-size;
-    top: calc(50% - $pointer-size);
-    margin-left: 0;
-    margin-right: 0;
-    &:after {
-      border-width: ($pointer-size - 2) 0 ($pointer-size - 2) ($pointer-size - 2);
-      border-top-color: transparent;
-      border-right-color: transparent;
-      border-bottom-color: transparent;
-      left: -($pointer-size );
-      top: -($pointer-size - 2px);
-    }
+.Tooltip {
+  cursor: help;
 }

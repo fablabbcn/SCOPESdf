@@ -1,6 +1,6 @@
 'use strict';
 
-import Tooltip from 'tooltip.js'
+import Tippy from 'tippy.js'
 
 module.exports = UserStatus;
 
@@ -8,11 +8,18 @@ function UserStatus() {
 
 	console.log("-- UserStatus initialized")
 
-  const referenceElement = $('.UserStatus')[0]
+  const $userStatus = $('.UserStatus')
+	const $userStatusButtons = $('.UserStatusButtons')
 
-  const instance = new Tooltip(referenceElement, {
-    title: "User status",
-    trigger: "click",
-  });
+  Tippy($userStatus[0], {
+		animateFill: false,
+		arrowSize: 'regular',
+		html: $userStatusButtons[0],
+		performance: true,
+		theme: 'white',
+		trigger: 'click',
+		arrow: true,
+		interactive: true,
+	})
 
 }

@@ -25,6 +25,7 @@
 						<%= render 'components/navigation' %>
 
 						<% if signed_in? %>
+
 							<a class="UserStatus">
 								<div class="UserStatus__text">
 									<div class="UserStatus__name"><%= current_user.name %></div>
@@ -34,6 +35,11 @@
 									<img src="<%= image_url('avatars/avatar2.jpg') %>" class="Image Image--lazy" />
 								</div>
 							</a>
+
+							<div class="UserStatusButtons">
+								<%= active_link_to 'Log out', destroy_user_session_path, method: :delete, class: "Button Button--small Button--primary" %>
+							</div>
+
 						<% else %>
 						<div class="Toolbar">
 							<%= active_link_to 'Log in', new_user_session_path, class: "Toolbar__tool Toolbar__tool--login Button" %>
