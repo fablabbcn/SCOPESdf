@@ -1,0 +1,40 @@
+
+@import '~tippy.js/dist/tippy.css';
+
+.tippy-tooltip {
+  padding: $gutter-width;
+}
+
+.tippy-tooltip.white-theme {
+  /* Your styling here. Example: */
+  background-color: #fff;
+  border: 1px solid #E2E2E2;
+  border-radius: 2px;
+  box-shadow: 0 0 80px 0 rgba(182,182,182,0.37);
+  color: $color-main;
+}
+
+.tippy-popper[x-placement^=bottom] .tippy-tooltip.white-theme [x-arrow] {
+  border-bottom: 9px solid #E2E2E2;
+  border-right: 9px solid transparent;
+  border-left: 9px solid transparent;
+  top: -9px;
+  margin: 0 9px;
+
+  &:after {
+    content: "";
+    display: block;
+    border-bottom: 7px solid #fff;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    top: 2px;
+    position: absolute;
+    left: -7px;
+  }
+
+}
+
+
+.Tooltip {
+  cursor: help;
+}

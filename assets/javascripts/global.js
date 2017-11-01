@@ -28,6 +28,8 @@ import Slider	from "./components/Slider"
 import Textarea	from "./components/Textarea"
 import LessonHeader	from "./components/LessonHeader"
 import Slideshow	from "./components/Slideshow"
+import UserStatus	from "./components/UserStatus"
+import Tooltips	from "./components/Tooltips"
 
 var ScopesDF = {
 
@@ -65,6 +67,8 @@ var ScopesDF = {
 		FilterOverlay()
 		LessonHeader()
 		Slideshow()
+		UserStatus()
+		Tooltips()
 
 	}
 

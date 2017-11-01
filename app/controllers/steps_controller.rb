@@ -105,7 +105,15 @@ class StepsController < ApplicationController
     end
 
     def step_params
-      params.fetch(:step, {})
+      params.fetch(:step).permit(
+        :name,
+        :duration,
+        :description,
+        materials: [],
+        fabrication_equipment: [],
+        software: [],
+        external_links: []
+      )
     end
 
 end

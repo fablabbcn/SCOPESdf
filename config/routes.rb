@@ -23,13 +23,11 @@ Rails.application.routes.draw do
     resources :standards
   end
 
-  resources :people do
+  resources :people
+  resources :places
 
-  end
+  get 'search' => 'search#index'
 
-  resources :places do
-
-  end
 
   #get  'lessons/new' => 'lessons#new', as: :lesson_new
   # post 'lessons'            => 'lessons#create'#, as: :lesson_create
@@ -74,7 +72,7 @@ Rails.application.routes.draw do
 
   get 'api/users/exists'   =>  'secured_api#user_presence'
 
-  get 'search/:entity', :to => 'search#main', as: :search
+  #get 'search/:entity', :to => 'search#main', as: :search
 
   # Static pages
   get 'enter' =>  'visitors#enter', as: :enter

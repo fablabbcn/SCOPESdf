@@ -1,0 +1,26 @@
+<!-- sub navigation -->
+<div class="SubNavigation">
+
+  <div class="SubNavigation__content">
+
+    <div class="SubNavigation__items">
+
+      <%= active_link_to "Overview", person_path(id: 1, section: :overview),
+        class: "SubNavigation__item",
+        class_active: "SubNavigation__item--active",
+        active: @section == :overview %>
+
+      <%= active_link_to "Activity", person_path(id: 1, section: :activity),
+        class: "SubNavigation__item",
+        class_active: "SubNavigation__item--active",
+        active: @section == :activity %>
+
+    </div>
+
+    <div class="SubNavigation__actions">
+      <%= link_to "Follow Daniel", '#', class: "Button Button--small Button--icon Button--icon--edit" %>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,32 @@
+@keyframes fadeSparkle {
+  0%,100% { opacity: 0.25 }
+  50% { opacity: 1 }
+}
+
+@keyframes moveInSparkle {
+  0% { transform: translateY(100px) }
+  100% { transform: translateY(0px) }
+}
+
+
+.Sparkles {
+
+}
+
+.Sparkle {
+  width: 12px;
+  height: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: 1001;
+  animation: fadeSparkle 8s ease-in-out infinite;
+}
+
+.Sparkle--primary {
+  background-image: url('images/sparkle-primary.svg');
+}
+
+.Sparkle--light {
+  background-image: url('images/sparkle-light.svg');
+}

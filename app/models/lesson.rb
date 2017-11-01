@@ -26,20 +26,6 @@
 class Lesson < ApplicationRecord
   enum state: [:hidden, :draft, :visible]
 
-  # TODO - added an attribute for other_users_emails as was missing
-  attr_accessor :other_users_emails
-
-  # TODO - added an attribute for grade_range
-  attr_accessor :grade_range
-
-  # TODO - duration needs to be added as a string
-  attr_accessor :duration
-
-  # TODO - need to be able to associate lesson with fabrication tools, and allow
-  # the user to be able to create their own, local to the lesson itself
-  attr_accessor :fabrication_tools
-  attr_accessor :other_fabrication_tools
-
   # TODO - validate publishing only when all content is set
 
   # TODO - api view sections for content loading

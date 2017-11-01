@@ -3,6 +3,13 @@ class SearchController < ApplicationController
   skip_before_filter :verify_authenticity_token # REMOVE THIS OBVIOUSLY
 
 
+  def index
+
+    @query = params[:q]
+
+  end
+
+
   ## Search
   # "GET" "http://localhost:3000/search/:entity"
   # filter is the attribute you want to search on.. currently set up for email and name on user

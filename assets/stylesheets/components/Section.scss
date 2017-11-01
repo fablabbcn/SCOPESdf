@@ -1,5 +1,5 @@
 .Section {
-
+  position: relative;
 }
 
 .Section--gray {
@@ -55,5 +55,85 @@
 
 .Section__content--secondary {
   font-size: 16px;
+
+}
+
+
+.Section__sparkles {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.Section__sparkles--surround {
+
+  .Sparkle {
+
+    &:nth-child(1) {
+      left: 24%;
+      top: 29%;
+      animation-duration: 7s;
+    }
+    &:nth-child(2) {
+      left: 18%;
+      top: 33%;
+      animation-duration: 8s;
+    }
+    &:nth-child(3) {
+      left: 17%;
+      top: 63%;
+      animation-duration: 6s;
+    }
+    &:nth-child(4) {
+      left: 15%;
+      top: 50%;
+      animation-duration: 9s;
+    }
+    &:nth-child(5) {
+      left: 18%;
+	     top: 44%;
+      animation-duration: 5s;
+    }
+    &:nth-child(6) {
+      left: 23%;
+      top: 77%;
+      animation-duration: 10s;
+    }
+
+    &:nth-child(7) {
+      right: 24%;
+      top: 29%;
+      animation-duration: 7s;
+    }
+    &:nth-child(8) {
+      right: 18%;
+      top: 33%;
+      animation-duration: 8s;
+    }
+    &:nth-child(9) {
+      right: 17%;
+      top: 63%;
+      animation-duration: 6s;
+    }
+    &:nth-child(10) {
+      right: 15%;
+      top: 50%;
+      animation-duration: 9s;
+    }
+    &:nth-child(11) {
+      right: 18%;
+	     top: 44%;
+      animation-duration: 5s;
+    }
+    &:nth-child(12) {
+      right: 23%;
+      top: 77%;
+      animation-duration: 10s;
+    }
+
+  }
 
 }
