@@ -1,12 +1,33 @@
 .Navigation {
 
+  .Header & {
+    @include tablet-portrait-and-up {
+      display: block;
+    }
+    @include below-tablet-portrait {
+      display: none;
+    }
+  }
+
+  .Footer & {
+    display: block;
+  }
+
 }
 
 .Navigation__items {
   display: flex;
   flex-direction: row;
-  margin-right: $gutter-width;
-  margin-left: $gutter-width;
+
+  @include above-tablet-landscape {
+    margin-right: $gutter-width;
+    margin-left: $gutter-width;
+  }
+
+  @include mobile-landscape-and-below {
+    justify-content: center;
+  }
+
 }
 
 .Navigation__item {
@@ -14,13 +35,23 @@
 }
 
 .Navigation__link {
-  margin-left: $gutter-width - 5px;
-  margin-right: $gutter-width - 5px;
-  padding-right: $gutter-width/4;
-  padding-left: $gutter-width/4;
   padding-top: 10px;
   padding-bottom: 4px;
   font-size: 16px;
+
+  @include above-tablet-landscape {
+    margin-left: $gutter-width - 5px;
+    margin-right: $gutter-width - 5px;
+    padding-right: $gutter-width/4;
+    padding-left: $gutter-width/4;
+  }
+
+  @include tablet-landscape-and-below {
+    margin-left: $gutter-width/2;
+    margin-right: $gutter-width/2;
+    padding-right: $gutter-width/4;
+    padding-left: $gutter-width/4;
+  }
 
   .Header--transparent & {
     color: #fff;

@@ -1,21 +1,39 @@
 .Logo {
-  display: block;
-  width: 150px;
-  height: 20px;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('logo.svg');
+  display: block;
+  flex-shrink: 0;
+
+  @include tablet-portrait-and-up {
+    height: 20px;
+    width: 150px;
+  }
+
+  @include below-tablet-portrait {
+    width: 31px;
+    height: 31px;
+  }
 
   span {
     display: none;
   }
 
   .Header--white & {
-    background-image: url('logo.svg');
+    @include tablet-portrait-and-up {
+      background-image: url('logo-large.svg');
+    }
+    @include below-tablet-portrait {
+      background-image: url('logo-small.svg');
+    }
   }
 
   .Header--transparent & {
-    background-image: url('logo-light.svg');
+    @include tablet-portrait-and-up {
+      background-image: url('logo-large-light.svg');
+    }
+    @include below-tablet-portrait {
+      background-image: url('logo-small-light.svg');
+    }
   }
 
 }

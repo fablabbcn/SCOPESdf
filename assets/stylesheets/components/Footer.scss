@@ -1,16 +1,34 @@
 .Footer {
   background-color: #fafafa;
-  padding-top: $gutter-width*4;
-  padding-bottom: $gutter-width*4;
   padding-left: $gutter-width;
   padding-right: $gutter-width;
+
+  @include above-mobile-landscape {
+    padding-top: $gutter-width*4;
+    padding-bottom: $gutter-width*4;
+  }
+
+  @include mobile-landscape-and-below {
+    padding-top: $gutter-width*2;
+    padding-bottom: $gutter-width*2;
+  }
+
 }
 
 .Footer__content {
   max-width: $form-width;
   margin: 0 auto;
   display: flex;
-  align-items: center;
+
+  @include above-mobile-landscape {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+  }
+
 }
 
 .Footer__logo-statement {
@@ -19,15 +37,49 @@
 }
 
 .Footer__logo {
-  margin-bottom: $gutter-width*1.5;
+  background-image: url('logo-large.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 150px;
+
+  @include above-mobile-landscape {
+    margin-bottom: $gutter-width*1.5;
+  }
+
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width;
+  }
+
+  span {
+    display: none;
+  }
+
 }
 
 .Footer__statement {
-  opacity: .31;
   font-size: 18px;
+  opacity: .31;
+
+  @include above-mobile-landscape {
+
+  }
+
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width;
+  }
+
 }
 
 .Footer__navigation {
-  margin-left: auto;
   font-size: 16px;
+
+  @include above-mobile-landscape {
+    margin-left: auto;
+  }
+
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width;
+  }
+
 }

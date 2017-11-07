@@ -16,8 +16,17 @@
 }
 
 .Section--with-padding {
-  padding-top: $gutter-width*4;
-  padding-bottom: $gutter-width*4;
+
+  @include above-mobile-landscape {
+    padding-top: $gutter-width*4;
+    padding-bottom: $gutter-width*4;
+  }
+
+  @include mobile-landscape-and-below {
+    padding-top: $gutter-width*2;
+    padding-bottom: $gutter-width*2;
+  }
+
 }
 
 .Section__actions {
@@ -28,18 +37,49 @@
   margin: 0 auto;
   display: flex;
   max-width: $content-width + ($gutter-width*2);
+
+  @include above-mobile-landscape {
+    flex-direction: row;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+  }
+
 }
 
 .Section__logos {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: $gutter-width*4;
+
+
+  @include above-mobile-landscape {
+    flex-direction: row;
+    padding-top: $gutter-width*4;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+    padding-top: $gutter-width*2;
+  }
+
 }
 
 .Section__logo {
-  margin-left: $gutter-width*2;
-  margin-right: $gutter-width*2;
+
+  @include above-mobile-landscape {
+    margin-left: $gutter-width*2;
+    margin-right: $gutter-width*2;
+  }
+
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
 }
 
 .Section__content {

@@ -1,10 +1,20 @@
 .SectionHeader {
   max-width: $content-width;
   margin: 0 auto;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
 }
-
+SectionHeader__main
 .SectionHeader--with-padding {
-  padding-bottom: $gutter-width*4;
+
+  @include above-mobile-landscape {
+    padding-bottom: $gutter-width*4;
+  }
+
+  @include mobile-landscape-and-below {
+    padding-bottom: $gutter-width*2;
+  }
+
 }
 
 .SectionHeader__main {

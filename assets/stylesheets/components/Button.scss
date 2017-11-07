@@ -32,11 +32,18 @@
 }
 
 .Button--extra-padding {
-  padding-left: $gutter-width*2;
-  padding-right: $gutter-width*2;
-  padding-top: $gutter-width/2;
-  padding-bottom: $gutter-width/2;
   height: auto;
+
+  @include above-mobile-landscape {
+    padding-left: $gutter-width*2;
+    padding-right: $gutter-width*2;
+    padding-top: $gutter-width/2;
+    padding-bottom: $gutter-width/2;
+  }
+
+  @include mobile-landscape-and-below {
+
+  }
 
   &.Button--icon {
     background-position: $gutter-width center;

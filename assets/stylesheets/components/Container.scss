@@ -1,8 +1,16 @@
 .Container {
-  padding-top: $header-height-desktop;
   flex: 1 0 auto;
   position: relative;
   z-index: 1;
+
+  @include tablet-portrait-and-up {
+    padding-top: $header-height-desktop;
+  }
+
+  @include below-tablet-portrait {
+    padding-top: $header-height-mobile;
+  }
+
 }
 
 // if the layout has a hero, ditch the padding

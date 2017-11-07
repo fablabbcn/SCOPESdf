@@ -1,4 +1,12 @@
 .SectionPanels {
   display: flex;
-  flex-direction: row;
+
+  @include above-mobile-landscape {
+    flex-direction: row;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+  }
+
 }

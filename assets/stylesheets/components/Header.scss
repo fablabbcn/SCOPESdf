@@ -6,12 +6,20 @@
   width: 100%;
   z-index: 101;
   padding: $gutter-width;
-  height: 100px;
   display: flex;
-  justify-content: center;
+
   will-change: transform;
   transition: all .24s ease-in-out;
   border-top: 8px solid $color-blue;
+
+  @include tablet-portrait-and-up {
+    height: $header-height-desktop;
+  }
+
+  @include below-tablet-portrait {
+    height: $header-height-mobile;
+  }
+
 }
 
 .Header--visibility-pinned {
@@ -27,6 +35,15 @@
   align-items: center;
   width: 100%;
   max-width: $grid-width;
+
+  @include tablet-portrait-and-up {
+    justify-content: center;
+  }
+
+  @include below-tablet-portrait {
+    justify-content: space-between;
+  }
+
 }
 
 .Header--white {

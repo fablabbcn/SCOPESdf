@@ -77,19 +77,44 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 h1 {
-	font-size: 48px;
 	line-height: 1.2;
 	font-weight: 600;
+
+	@include above-tablet-portrait {
+		font-size: 48px;
+	}
+
+	@include tablet-portrait-and-below {
+		font-size: 24px;
+	}
+
 }
 
 h2 {
-	font-size: 32px;
+
 	font-weight: 400;
+
+	@include above-mobile-landscape {
+		font-size: 32px;
+	}
+
+	@include mobile-landscape-and-below {
+		font-size: 24px;
+	}
+
 }
 
 h3 {
-	font-size: 24px;
 	@include text-medium;
+
+	@include above-mobile-landscape {
+		font-size: 24px;
+	}
+
+	@include mobile-landscape-and-below {
+		font-size: 20px;
+	}
+
 }
 
 h4 {

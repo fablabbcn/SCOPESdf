@@ -41,11 +41,15 @@
 							</div>
 
 						<% else %>
-						<div class="Toolbar">
-							<%= active_link_to 'Log in', new_user_session_path, class: "Toolbar__tool Toolbar__tool--login Button" %>
-							<%= active_link_to 'Register', new_user_registration_path, class: "Toolbar__tool Toolbar__tool--register Button" %>
-						</div>
+
+							<div class="Toolbar">
+								<%= active_link_to 'Log in', new_user_session_path, class: "Toolbar__tool Toolbar__tool--login Button" %>
+								<%= active_link_to 'Register', new_user_registration_path, class: "Toolbar__tool Toolbar__tool--register Button" %>
+							</div>
+
 						<% end %>
+
+						<button class="ToggleMenu"><span>Menu</span></button>
 
 					</div>
 
@@ -64,7 +68,7 @@
 
 				<div class="Footer__logo-statement">
 
-					<a href="#" class="Footer__logo Logo"><span>ScopesDF</span></a>
+					<a href="/" class="Footer__logo"><span>ScopesDF</span></a>
 
 					<div class="Footer__statement">
 						Connect & Share lesson plans<br />

@@ -1,6 +1,14 @@
 .Carousel {
-  padding-top: $gutter-width*4;
   padding-bottom: $gutter-width*2;
+
+  @include above-mobile-landscape {
+    padding-top: $gutter-width*4;
+  }
+
+  @include mobile-landscape-and-below {
+    padding-top: $gutter-width*2;
+  }
+
 }
 
 .Carousel__cells {
@@ -9,6 +17,15 @@
 }
 
 .Carousel__cell {
-  margin-left: 15px;
-  margin-right: 15px;
+
+  @include above-mobile-landscape {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  @include mobile-landscape-and-below {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
 }
