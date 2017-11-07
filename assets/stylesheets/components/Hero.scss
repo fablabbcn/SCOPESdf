@@ -49,9 +49,19 @@
   color: #fff;
   max-width: 1000px;
 
+  @include above-mobile-landscape {
+    padding-left: $gutter-width*2;
+    padding-right: $gutter-width*2;
+  }
+
   @include above-tablet-portrait {
     padding-left: $gutter-width*6;
     padding-right: $gutter-width*6;
+  }
+
+  @include mobile-landscape-and-below {
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
   }
 
 }

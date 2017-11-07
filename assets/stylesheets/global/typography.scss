@@ -80,11 +80,11 @@ h1 {
 	line-height: 1.2;
 	font-weight: 600;
 
-	@include above-tablet-portrait {
+	@include above-mobile-landscape {
 		font-size: 48px;
 	}
 
-	@include tablet-portrait-and-below {
+	@include mobile-landscape-and-below {
 		font-size: 24px;
 	}
 

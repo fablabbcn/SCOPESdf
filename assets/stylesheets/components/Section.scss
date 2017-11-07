@@ -111,66 +111,103 @@
 .Section__sparkles--surround {
 
   .Sparkle {
+    display: none;
 
     &:nth-child(1) {
-      left: 24%;
-      top: 29%;
       animation-duration: 7s;
+      @include above-mobile-landscape {
+        display: block;
+        left: 24%;
+        top: 29%;
+      }
     }
     &:nth-child(2) {
-      left: 18%;
-      top: 33%;
+      @include above-mobile-landscape {
+        display: block;
+        left: 18%;
+        top: 33%;
+      }
       animation-duration: 8s;
     }
     &:nth-child(3) {
-      left: 17%;
-      top: 63%;
+      @include above-mobile-landscape {
+        display: block;
+        left: 17%;
+        top: 63%;
+      }
       animation-duration: 6s;
     }
     &:nth-child(4) {
-      left: 15%;
-      top: 50%;
+      @include above-mobile-landscape {
+        display: block;
+        left: 15%;
+        top: 50%;
+      }
       animation-duration: 9s;
     }
     &:nth-child(5) {
-      left: 18%;
-	     top: 44%;
+      @include above-mobile-landscape {
+        display: block;
+        left: 18%;
+  	    top: 44%;
+       }
       animation-duration: 5s;
     }
     &:nth-child(6) {
-      left: 23%;
-      top: 77%;
+      @include above-mobile-landscape {
+        display: block;
+        left: 23%;
+        top: 77%;
+      }
       animation-duration: 10s;
     }
 
     &:nth-child(7) {
-      right: 24%;
-      top: 29%;
+      @include above-mobile-landscape {
+        display: block;
+        right: 24%;
+        top: 29%;
+      }
       animation-duration: 7s;
     }
     &:nth-child(8) {
-      right: 18%;
-      top: 33%;
+      @include above-mobile-landscape {
+        display: block;
+        right: 18%;
+        top: 33%;
+      }
       animation-duration: 8s;
     }
     &:nth-child(9) {
-      right: 17%;
-      top: 63%;
+      @include above-mobile-landscape {
+        display: block;
+        right: 17%;
+        top: 63%;
+      }
       animation-duration: 6s;
     }
     &:nth-child(10) {
-      right: 15%;
-      top: 50%;
+      @include above-mobile-landscape {
+        display: block;
+        right: 15%;
+        top: 50%;
+      }
       animation-duration: 9s;
     }
     &:nth-child(11) {
-      right: 18%;
-	     top: 44%;
+      @include above-mobile-landscape {
+        display: block;
+        right: 18%;
+	      top: 44%;
+      }
       animation-duration: 5s;
     }
     &:nth-child(12) {
-      right: 23%;
-      top: 77%;
+      @include above-mobile-landscape {
+        display: block;
+        right: 23%;
+        top: 77%;
+      }
       animation-duration: 10s;
     }
 

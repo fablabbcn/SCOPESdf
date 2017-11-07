@@ -7,7 +7,15 @@
 
   @include mobile-landscape-and-below {
     padding-top: $gutter-width*2;
+
+    // hide the prev/next buttons on mobile
+    .flickity-prev-next-button {
+      display: none;
+    }
+
   }
+
+
 
 }
 
