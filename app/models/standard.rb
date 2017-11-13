@@ -8,7 +8,8 @@
 #
 
 class Standard < ApplicationRecord
-  has_and_belongs_to_many :lessons
+  has_many :lessons_standards
+  has_many :lessons, through: :lessons_standards
 
   validates_uniqueness_of :name, :scope => :autocomplete
 

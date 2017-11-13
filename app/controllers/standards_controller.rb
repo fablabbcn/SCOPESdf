@@ -23,21 +23,23 @@ class StandardsController < ApplicationController
 
   def create
     @lesson = Lesson.find(params["lesson_id"])
-    @lesson.append_standards(standard_params)
+    s = Standard.where(name:standard_params[:name]).first
+    l = LessonsStandard.new(description: standard_params[:description], index: standard_params[:index])
+    l.lesson_id = @lesson.id
+    l.standard_id = s.id
+    l.save!
     redirect_to lesson_create_path(id: @lesson_obj.id, form_step:3)
   end
 
   def delete
     @lesson = Lesson.find(params["lesson_id"])
-    returnable = @lesson.delete_standards(delete_params)
-    # returning JSON because this should happen in AJAX
-    render :json => {deleted: returnable}
+    render :json => {deleted: @lesson.lessons_standards.where(index: standard_params[:index]).first.destroy!}
   end
 
   private
 
     def standard_params
-      params.require(:standards).permit(:name, description: [])
+      params.require(:standards).permit(:name, :description, :index)
     end
 
     def delete_params

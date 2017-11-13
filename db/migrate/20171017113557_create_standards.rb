@@ -5,7 +5,7 @@ class CreateStandards < ActiveRecord::Migration[5.0]
       t.string    :autocomplete, null: true
     end
 
-    create_table :lessons_standards, id: false do |t|
+    create_table :lessons_standards, id: :uuid,  default: "uuid_generate_v4()" do |t|
       t.uuid        :lesson_id, index: true, null: false
       t.uuid        :standard_id, index: true, null: false
       t.string     :description
