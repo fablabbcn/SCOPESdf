@@ -9,5 +9,7 @@
 #
 
 class LessonsStandard < ApplicationRecord
+  belongs_to :lesson
+  belongs_to :standard
 
 end

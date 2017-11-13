@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20171027145547) do
     t.index ["state"], name: "index_lessons_on_state", using: :btree
   end
 
-  create_table "lessons_standards", id: false, force: :cascade do |t|
+  create_table "lessons_standards", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid    "lesson_id",   null: false
     t.uuid    "standard_id", null: false
     t.string  "description"
