@@ -51,7 +51,7 @@ class StandardsController < ApplicationController
     end
 
   def set_standards
-    # @standards = Standard.all
-    @standards = Standard.name_array
+    @standards = Standard.all
+    #@standards = Standard.name_array 
   end
 end
