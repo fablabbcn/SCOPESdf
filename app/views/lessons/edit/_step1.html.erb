@@ -11,7 +11,8 @@
       </div>
 
       <div class="FormField__input">
-        <input type="text" name="lesson[name]" class="Input Input--large" value="<%= @lesson_obj.name %>" placeholder="Name your lesson" id="lesson_name" maxlength="50" required />
+        <input type="text" name="lesson[name]" class="Input Input--large" value="<%= @lesson_obj.name %>" id="lesson_name" maxlength="50" required
+          placeholder="Name your lesson" />
       </div>
 
     </div>
@@ -25,7 +26,8 @@
       </div>
 
       <div class="FormField__input">
-        <input type="text" name="lesson[topline]" class="Input" value="<%= @lesson_obj.topline %>" placeholder="How would you describe it in one sentence?" id="lesson_topline" maxlength="140" required />
+        <input type="text" name="lesson[topline]" class="Input" value="<%= @lesson_obj.topline %>" id="lesson_topline" maxlength="140" required
+          placeholder="How would you describe it in one sentence?" />
       </div>
 
     </div>
@@ -51,24 +53,6 @@
       </div>
 
     </div>
-
-  <% end %>
-
-  <%= field_set_tag nil, class: 'Form__fieldset Form__fieldset--with-border' do %>
-
-  <!-- lesson.authors -->
-  <div class="FormField FormField--required">
-
-    <div class="FormField__info">
-      <label class="FormField__label" for="lesson_other_users_emails_1">Creator and Collaborators</label>
-      <div class="FormField__hint">Enter one or more Contributors</div>
-    </div>
-
-    <div class="FormField__input FormField__input--multiple">
-      <input type="email" name="lesson[other_users_emails][]" class="Input Input--multiple" data-values='<%= @lesson_obj.other_users_emails.to_json %>' value="" placeholder="+ Add a new email address" id="lesson_other_users_emails_1" />
-    </div>
-
-  </div>
 
   <% end %>
 
@@ -154,7 +138,8 @@
       </div>
 
       <div class="FormField__input FormField__input--multiple">
-        <input type="url" name="lesson[further_readings][]" class="Input Input--multiple" data-values='<%= @lesson_obj.further_readings.to_json %>' value="" placeholder="+ Add a new URL" id="lesson_further_readings_1" />
+        <input type="url" data-parsley-type="url" name="lesson[further_readings][]" class="Input Input--multiple" data-values='<%= @lesson_obj.further_readings.to_json %>' 
+          value="" placeholder="+ Add a new URL" id="lesson_further_readings_1" />
       </div>
 
     </div>
