@@ -67,7 +67,7 @@
     <div class="FormField FormField--required FormField--with-padding">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_contexts">Digital Fabrication Tools</label>
+        <label class="FormField__label" for="lesson_contexts">Digital Fabrication</label>
         <div class="FormField__hint">Which digital fabrication tools are explored in this lesson?</div>
       </div>
 
@@ -86,20 +86,6 @@
 
     </div>
 
-    <!-- lesson.other_fabrication_tools -->
-    <div class="FormField FormField--with-border">
-
-      <div class="FormField__info">
-        <label class="FormField__label" for="lesson_other_fabrication_tools">Others</label>
-        <div class="FormField__hint">Add any other tools here</div>
-      </div>
-
-      <div class="FormField__input FormField__input--multiple">
-        <input type="text" name="lesson[other_fabrication_tools][]" class="Input Input--multiple" data-values='<%= @lesson_obj.other_fabrication_tools.to_json %>' value="" placeholder="+ Add a new tool" id="lesson_other_fabrication_tools_1" />
-      </div>
-
-    </div>
-
     <!-- lesson.duration -->
     <div class="FormField FormField--required FormField--with-padding">
 
@@ -108,7 +94,9 @@
       </div>
 
       <div class="FormField__input">
+        <% if @lesson_obj.attributes['duration'] %>
         <input type="text" name="lesson[duration]" class="Input" value="<%= @lesson_obj.duration %>" placeholder="Approximately" id="lesson_duration" />
+        <% end %>
       </div>
 
     </div>
