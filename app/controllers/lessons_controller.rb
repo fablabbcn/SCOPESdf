@@ -108,7 +108,8 @@ class LessonsController < ApplicationController
     #   Step.find_or_create_and_update(nil, params[:id], step_param, User.first).set_files(params)
 
 
-    @collections = CollectionTag.all.to_a.map{|x| x.name.titleize}
+    #@collections = CollectionTag.all.to_a.map{|x| x.name.titleize}
+    @collections = CollectionTag.all
     @difficulty_helper = DifficultyLevel.form_helper
     @teaching_range_helper = TeachingRange.inputRange
 
@@ -116,6 +117,8 @@ class LessonsController < ApplicationController
 
 
   def update
+
+    #raise params.to_yaml
 
     # Update the lesson
     @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
