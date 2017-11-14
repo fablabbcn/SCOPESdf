@@ -35,7 +35,7 @@
 
     </div>
 
-    <button class="FormFieldGroups__add Button Button--secondary">Add a new standard</button>
+    <%= link_to "Add a new standard", new_lesson_standard_path(lesson_id: @lesson_obj.id, form_step: params[:form_step]), class: "Button Button--secondary" %>
 
   </div>
 
