@@ -12,7 +12,7 @@
     <h3 class="Grid__heading">Expected outcomes</h3>
   </div>
 
-  <div class="Grid__items Grid__items--border-bottom ">
+  <div class="Grid__items Grid__items--border-bottom Grid__items--constrained-width">
 
     <% 4.times do |i| %>
     <div class="Grid__item">
@@ -32,25 +32,14 @@
 
 </div>
 
+<div class="LessonFooter">
 
-<div class="Grid">
+  <div class="LessonFooter__content">
 
-  <div class="Grid__header">
-    <h3 class="Grid__heading"><span class="Grid__heading__count">3</span> Forked Projects</h3>
-  </div>
-
-  <div class="Grid__items Grid__items--border-bottom ">
-
-    <% 3.times do |i| %>
-    <div class="Grid__item">
-
-      <%= render partial: 'lessons/thumb', locals: {
-        lesson: Lesson.first,
-        i: i
-        } %>
-
+    <div class="LessonFooter__actions">
+      <%= link_to "Back to Steps", lesson_steps_path(lesson_id: @lesson_obj.id), class: "LessonFooter__action LessonFooter__action--left Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left" %>
+      <%= link_to "View all Lessons", lessons_path, class: "LessonFooter__action LessonFooter__action--right Button Button--primary Button--small Button--icon Button--icon--rightleft Button--arrow--right" %>
     </div>
-    <% end %>
 
   </div>
 

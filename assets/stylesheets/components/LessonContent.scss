@@ -11,7 +11,7 @@
 
 .LessonContent__columns {
   display: flex;
-  max-width: $grid-width;
+  max-width: $content-width;
   margin: 0 auto;
 }
 
@@ -59,7 +59,6 @@
   margin-bottom: $gutter-width;
 }
 
-
 .LessonContent__objective {
   padding: $gutter-width*1.5;
   padding-left: $gutter-width*3.5;
@@ -70,7 +69,6 @@
   background-color: #F9FAFB;
   margin-bottom: $gutter-width;
 }
-
 
 .LessonContent__thumbnails {
   display: flex;
