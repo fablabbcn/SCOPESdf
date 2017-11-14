@@ -1,0 +1,47 @@
+<div class="Filter">
+
+  <div class="Filter__content">
+
+    <a href="" class="Filter__sort">
+      <div class="Filter__sort__label">
+        Sort by:
+      </div>
+      <div class="Filter__sort__selected">
+        Date registered
+      </div>
+    </a>
+
+    <a href="" class="Filter__filters">
+      <div class="Filter__filters__label">
+        Filter
+      </div>
+      <div class="Filter__filters__selected">
+        <span>2</span>
+      </div>
+    </a>
+
+  </div>
+
+</div>
+
+<%= render partial: "people/filter_overlay" %>
+
+<div class="List List--people">
+
+    <% 20.times do |i| %>
+    <a href="<%= person_path(i) %>" class="List__item">
+
+        <div class="List__avatar">
+            <img src="<%= image_url("avatars/avatar#{i.odd? ? 1 : 2}.jpg") %>" class="Image Image--lazy" />
+        </div>
+
+        <div class="List__name">
+            <%= Faker::Name.name %>
+        </div>
+
+    </a>
+    <% end %>
+
+</div>
+
+<%= paginate @paginatable_array %>

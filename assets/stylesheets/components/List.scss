@@ -1,0 +1,37 @@
+.List {
+    max-width: $content-width;
+    margin: 0 auto;
+    padding-top: $gutter-width*2;
+    padding-bottom: $gutter-width*2;
+}
+
+.List__item {
+    align-items: center;
+    background-image: url('images/direction-right-mid.svg');
+    background-position: right $gutter-width center;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid $color-border;
+    display: flex;
+    padding-bottom: ($gutter-width);
+    padding-top: ($gutter-width);
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+    &:hover {
+        background-color: $color-gray-verylight;
+    }
+    &:last-child {
+        border-bottom: 0;
+    }
+}
+
+.List__avatar {
+    width: 56px;
+    height: 56px;
+    margin-right: $gutter-width;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.List__name {
+    font-size: 18px;
+}

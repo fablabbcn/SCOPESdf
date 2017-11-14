@@ -2,6 +2,9 @@ class PeopleController < ApplicationController
 
   def index
 
+    # Pagination stub, just so i can style the output - DH
+    @paginatable_array = Kaminari.paginate_array([*1..280]).page(params[:page]).per(12)
+
   end
 
   def show

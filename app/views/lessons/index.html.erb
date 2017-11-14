@@ -15,7 +15,7 @@
         Sort by:
       </div>
       <div class="Filter__sort__selected">
-        Closest to me
+        Date created
       </div>
     </a>
 
@@ -27,16 +27,6 @@
         <span>2</span>
       </div>
     </a>
-
-    <div class="Filter__view">
-      <div class="Filter__view__label">
-        View as:
-      </div>
-      <div class="Filter__view__options">
-        <%= active_link_to "Thumbnails", lessons_path(request.query_parameters.merge({view: :thumbnails})), class: "Filter__view__option Filter__view__option--thumbnails", class_active: "Filter__view__option--active", active: params[:view] == 'thumbnails' || !params[:view].present? %>
-        <%= active_link_to "Map", lessons_path(request.query_parameters.merge({view: :map})), class: "Filter__view__option Filter__view__option--map", class_active: "Filter__view__option--active", active: params[:view] == 'map' %>
-      </div>
-    </div>
 
   </div>
 

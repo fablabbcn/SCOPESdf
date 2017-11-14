@@ -8,24 +8,6 @@
 
       <%= field_set_tag nil, class: 'Form__fieldset' do %>
 
-        <!-- distance -->
-        <div class="FormField FormField--with-border">
-
-          <div class="FormField__info">
-            <label class="FormField__label" for="lesson_name">Distance</label>
-          </div>
-
-          <div class="FormField__input">
-            <div class="Slider">
-              <div class="Slider__value"></div>
-              <div class="Slider__control" data-config="<%= { start: [0, 100], connect: true, step: 1, range: { min: 0, max: 800 }, unit: 'mi' }.to_json %>">
-                <input type="hidden" name="lesson[distance]" value="<%= params[:distance] %>" />
-              </div>
-            </div>
-          </div>
-
-        </div>
-
         <!-- collection -->
         <div class="FormField FormField--with-border">
 

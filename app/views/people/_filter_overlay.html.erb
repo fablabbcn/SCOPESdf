@@ -1,0 +1,23 @@
+<div class="FilterOverlay FilterOverlay--active">
+
+  <button class="FilterOverlay__close"><span>✕</span></button>
+
+  <div class="FilterOverlay__content">
+
+    <%= form_tag(people_path, method: :get, class: "Form") do %>
+
+      <%= field_set_tag nil, class: 'Form__fieldset' do %>
+
+        
+
+        <div class="Form__actions">
+          <button type="submit" class="Button Button--primary Button--right Button--icon Button--icon--check">Apply filters</button>
+        </div>
+
+      <% end %>
+
+    <% end %>
+
+  </div>
+
+</div>
