@@ -27,6 +27,10 @@ class Standard < ApplicationRecord
     Standard.all.to_a.map{|x| x.name}.uniq
   end
 
+  def to_s
+    name
+  end
+
   private
   def self.seed_values # TODO -- FINISH ADDING THIS!
     [
