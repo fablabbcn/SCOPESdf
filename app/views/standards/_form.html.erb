@@ -1,7 +1,7 @@
 <%= field_set_tag 'How does the learning align to educational standards?<span>More info on SCOPESDF standards in Toolkit.</span>'.html_safe, class: 'Form__fieldset' do %>
 
   <!-- lesson.standards -->
-  <div class="FormFieldGroups FormFieldGroups--multiple" data-values="<%= [ { standard_id: 1, descriptions: ['Descrption 1', 'Description 2', 'Descrption 3'] }, { standard_id: 1, descriptions: ['Descrption 1', 'Description 2', 'Descrption 3'] } ].to_json %>">
+  <div class="FormFieldGroups FormFieldGroups--multiple" data-values="<%= @standards.to_json %>">
 
     <div class="FormFieldGroup">
 
