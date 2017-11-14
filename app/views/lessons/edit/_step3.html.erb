@@ -138,12 +138,17 @@
     <div class="FormField FormField--required FormField--with-border">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_name">Collection</label>
+        <label class="FormField__label" for="lesson_collection_tag">Collection</label>
         <div class="FormField__hint">Does this belong to a collection?</div>
       </div>
 
       <div class="FormField__input">
-        <%= select(:lesson, :collection_tag, options_for_select(@collections)) %>
+        <select id="lesson_collection_tag" name="lesson[collection_tag]">
+          <option></option>
+          <% @collections.each do |collection| %>
+          <option value="<%= collection.id %>"><%= collection.name.titleize %></option>
+          <% end %>
+        </select>
       </div>
 
     </div>
