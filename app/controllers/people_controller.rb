@@ -9,6 +9,9 @@ class PeopleController < ApplicationController
 
   def show
 
+    # Person obj
+    @person_obj = User.first
+
     # Fetch any specified section and turn it into a sym, otherwise :overview
     @section = params[:section].present? ? params[:section].to_sym : :overview
 

@@ -12,7 +12,15 @@
 
 .Section--with-border {
   border-bottom: 1px solid $color-border;
-  margin-bottom: $gutter-width*4;
+
+  @include above-mobile-landscape {
+    margin-bottom: $gutter-width*4;
+  }
+
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width*2;
+  }
+
 }
 
 .Section--with-padding {
@@ -86,6 +94,17 @@
   margin: 0 auto;
   display: flex;
   max-width: $content-width;
+
+  @include above-mobile-landscape {
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+  }
+
+  @include mobile-landscape-and-below {
+    padding-left: $gutter-width*2;
+    padding-right: $gutter-width*2;
+  }
+  
 }
 
 .Section__content--primary {

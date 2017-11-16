@@ -524,4 +524,9 @@ class Lesson < ApplicationRecord
     return false
   end
 
+
+  def to_s
+    name.present? ? name : "Untitled Lesson"
+  end
+
 end

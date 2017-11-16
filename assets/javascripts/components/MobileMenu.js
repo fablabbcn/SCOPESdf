@@ -30,6 +30,8 @@ function MobileMenu() {
         return false
     })
 
-    
+    $('.MobileMenu__navigation__link').on('click', function(){
+        close()
+    })
 
 }
