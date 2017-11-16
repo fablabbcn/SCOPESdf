@@ -30,6 +30,7 @@ import LessonHeader	from "./components/LessonHeader"
 import Slideshow	from "./components/Slideshow"
 import UserStatus	from "./components/UserStatus"
 import Tooltips	from "./components/Tooltips"
+import MobileMenu	from "./components/MobileMenu"
 
 var ScopesDF = {
 
@@ -45,7 +46,7 @@ var ScopesDF = {
 		// Scripts that needs to be only run once
 		Images()
 		MobileDetect()
-    Webfonts()
+    	Webfonts()
 
 	},
 
@@ -58,17 +59,18 @@ var ScopesDF = {
 		Carousel()
 		Choices()
 		FileUpload()
+		FilterOverlay()
 		Form()
 		Header()
+		LessonHeader()
+		MobileMenu()
 		MultipleFieldGroups()
 		MultipleInputs()
 		Slider()
-		Textarea()
-		FilterOverlay()
-		LessonHeader()
 		Slideshow()
-		UserStatus()
+		Textarea()
 		Tooltips()
+		UserStatus()
 
 	}
 

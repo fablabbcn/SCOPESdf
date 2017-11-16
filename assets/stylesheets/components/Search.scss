@@ -10,6 +10,8 @@
 
   @include below-tablet-portrait {
     margin: 0 auto;
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
   }
 
 }

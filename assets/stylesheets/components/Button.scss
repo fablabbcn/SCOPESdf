@@ -72,6 +72,10 @@
   border-color: transparent;
 }
 
+.Button--border {
+  border: 1px solid $color-border-dark;
+}
+
 .Button--outline {
   background-color: transparent;
   border: 1px solid $color-border;
