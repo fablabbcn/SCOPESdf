@@ -209,13 +209,14 @@ textarea
 
 select
 {
+	-moz-appearance: none;
 	-webkit-appearance: none;
-  -moz-appearance: none;
-	height: 48px;
 	@include input-style;
+	padding: 0 $gutter-width; // reset the padding
 	background-image: url('images/icon-arrow-down-dark.svg');
-	background-repeat: no-repeat;
 	background-position: right 20px center;
+	background-repeat: no-repeat;
+	height: 48px;
 }
 
 select[multiple]

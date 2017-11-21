@@ -2,7 +2,8 @@
   <div class="Checkboxes">
     <% @contexts.each do |c| %>
     <div class="Checkbox">
-      <input type="checkbox" class="Checkbox__input" name="lesson[contexts][]" value="<%= c %>" id="lesson_contexts_<%= c.id %>" />
+      <input type="checkbox" class="Checkbox__input" name="lesson[contexts][]" value="<%= c.id %>" id="lesson_contexts_<%= c.id %>" 
+        <%= @lesson_obj.present? && @lesson_obj.context_ids.include?(c.id) ? 'checked' : nil %> />
       <label class="Checkbox__label" for="lesson_contexts_<%= c.id %>">
         <%= c.name.titleize %>
       </label>

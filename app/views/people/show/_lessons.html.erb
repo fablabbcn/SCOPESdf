@@ -1,0 +1,45 @@
+<div class="Grid">
+
+  <div class="Grid__header">
+    <h3 class="Grid__heading">Draft lessons</h3>
+  </div>
+
+  <div class="Grid__items Grid__items--border-bottom Grid__items--constrained-width">
+
+    <% 3.times do |i| %>
+    <div class="Grid__item">
+
+      <%= render partial: 'lessons/thumb', locals: {
+        lesson: Lesson.first,
+        i: i
+        } %>
+
+    </div>
+    <% end %>
+
+  </div>
+
+</div>
+
+<div class="Grid">
+
+  <div class="Grid__header">
+    <h3 class="Grid__heading">Published lessons</h3>
+  </div>
+
+  <div class="Grid__items Grid__items--border-bottom Grid__items--constrained-width">
+
+    <% 4.times do |i| %>
+    <div class="Grid__item">
+
+      <%= render partial: 'lessons/thumb', locals: {
+        lesson: Lesson.first,
+        i: i
+        } %>
+
+    </div>
+    <% end %>
+
+  </div>
+
+</div>

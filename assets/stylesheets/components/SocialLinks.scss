@@ -1,5 +1,14 @@
 .SocialLinks {
   display: flex;
+
+  @include above-mobile-landscape {
+
+  }
+
+  @include mobile-landscape-and-below {
+    justify-content: center;
+  }
+
 }
 
 .SocialLinks__link {

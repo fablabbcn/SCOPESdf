@@ -12,12 +12,29 @@
 
 .Section--with-border {
   border-bottom: 1px solid $color-border;
-  margin-bottom: $gutter-width*4;
+
+  @include above-mobile-landscape {
+    margin-bottom: $gutter-width*4;
+  }
+
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width*2;
+  }
+
 }
 
 .Section--with-padding {
-  padding-top: $gutter-width*4;
-  padding-bottom: $gutter-width*4;
+
+  @include above-mobile-landscape {
+    padding-top: $gutter-width*4;
+    padding-bottom: $gutter-width*4;
+  }
+
+  @include mobile-landscape-and-below {
+    padding-top: $gutter-width*2;
+    padding-bottom: $gutter-width*2;
+  }
+
 }
 
 .Section__actions {
@@ -28,24 +45,66 @@
   margin: 0 auto;
   display: flex;
   max-width: $content-width + ($gutter-width*2);
+
+  @include above-mobile-landscape {
+    flex-direction: row;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+  }
+
 }
 
 .Section__logos {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: $gutter-width*4;
+
+
+  @include above-mobile-landscape {
+    flex-direction: row;
+    padding-top: $gutter-width*4;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+    padding-top: $gutter-width*2;
+  }
+
 }
 
 .Section__logo {
-  margin-left: $gutter-width*2;
-  margin-right: $gutter-width*2;
+
+  @include above-mobile-landscape {
+    margin-left: $gutter-width*2;
+    margin-right: $gutter-width*2;
+  }
+
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
 }
 
 .Section__content {
   margin: 0 auto;
   display: flex;
   max-width: $content-width;
+
+  @include above-mobile-landscape {
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+  }
+
+  @include mobile-landscape-and-below {
+    padding-left: $gutter-width*2;
+    padding-right: $gutter-width*2;
+  }
+  
 }
 
 .Section__content--primary {
@@ -71,66 +130,103 @@
 .Section__sparkles--surround {
 
   .Sparkle {
+    display: none;
 
     &:nth-child(1) {
-      left: 24%;
-      top: 29%;
       animation-duration: 7s;
+      @include above-mobile-landscape {
+        display: block;
+        left: 24%;
+        top: 29%;
+      }
     }
     &:nth-child(2) {
-      left: 18%;
-      top: 33%;
+      @include above-mobile-landscape {
+        display: block;
+        left: 18%;
+        top: 33%;
+      }
       animation-duration: 8s;
     }
     &:nth-child(3) {
-      left: 17%;
-      top: 63%;
+      @include above-mobile-landscape {
+        display: block;
+        left: 17%;
+        top: 63%;
+      }
       animation-duration: 6s;
     }
     &:nth-child(4) {
-      left: 15%;
-      top: 50%;
+      @include above-mobile-landscape {
+        display: block;
+        left: 15%;
+        top: 50%;
+      }
       animation-duration: 9s;
     }
     &:nth-child(5) {
-      left: 18%;
-	     top: 44%;
+      @include above-mobile-landscape {
+        display: block;
+        left: 18%;
+  	    top: 44%;
+       }
       animation-duration: 5s;
     }
     &:nth-child(6) {
-      left: 23%;
-      top: 77%;
+      @include above-mobile-landscape {
+        display: block;
+        left: 23%;
+        top: 77%;
+      }
       animation-duration: 10s;
     }
 
     &:nth-child(7) {
-      right: 24%;
-      top: 29%;
+      @include above-mobile-landscape {
+        display: block;
+        right: 24%;
+        top: 29%;
+      }
       animation-duration: 7s;
     }
     &:nth-child(8) {
-      right: 18%;
-      top: 33%;
+      @include above-mobile-landscape {
+        display: block;
+        right: 18%;
+        top: 33%;
+      }
       animation-duration: 8s;
     }
     &:nth-child(9) {
-      right: 17%;
-      top: 63%;
+      @include above-mobile-landscape {
+        display: block;
+        right: 17%;
+        top: 63%;
+      }
       animation-duration: 6s;
     }
     &:nth-child(10) {
-      right: 15%;
-      top: 50%;
+      @include above-mobile-landscape {
+        display: block;
+        right: 15%;
+        top: 50%;
+      }
       animation-duration: 9s;
     }
     &:nth-child(11) {
-      right: 18%;
-	     top: 44%;
+      @include above-mobile-landscape {
+        display: block;
+        right: 18%;
+	      top: 44%;
+      }
       animation-duration: 5s;
     }
     &:nth-child(12) {
-      right: 23%;
-      top: 77%;
+      @include above-mobile-landscape {
+        display: block;
+        right: 23%;
+        top: 77%;
+      }
       animation-duration: 10s;
     }
 

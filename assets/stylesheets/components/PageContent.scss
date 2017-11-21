@@ -1,66 +1,65 @@
-.LessonContent {
+.PageContent {
   padding-left: $gutter-width;
   padding-right: $gutter-width;
   padding-top: $gutter-width*3;
 }
 
-.LesssonContent__text {
+.PageContent__text {
   @include body-text;
   margin-bottom: $gutter-width*2;
 }
 
-.LessonContent__columns {
+.PageContent__columns {
   display: flex;
-  max-width: $grid-width;
+  max-width: $content-width;
   margin: 0 auto;
 }
 
-.LessonContent__section {
+.PageContent__section {
   padding-bottom: $gutter-width*2;
 }
 
-.LessonContent__section--with-border {
+.PageContent__section--with-border {
   border-bottom: 1px solid $color-border;
   margin-bottom: $gutter-width;
 }
 
-.LessonContent__main {
+.PageContent__main {
   width: 75%;
   flex-grow: 0;
   flex-shrink: 0;
   padding-right: $gutter-width*8;
 }
 
-.LessonContent__sidebar {
+.PageContent__sidebar {
   width: 25%;
   flex-grow: 0;
   flex-shrink: 0;
 }
 
-.LessonContent__heading {
+.PageContent__heading {
   @include text-medium;
   font-size: 16px;
   color: $color-gray-mid;
   margin-bottom: $gutter-width;
 }
 
-.LessonContent__heading--minor {
+.PageContent__heading--minor {
   font-size: 12px;
 }
 
-.LessonContent__quick_pitch {
+.PageContent__quick_pitch {
   @include text-medium;
   font-size: 20px;
   margin-bottom: $gutter-width;
 }
 
-.LessonContent__summary {
+.PageContent__summary {
   font-size: 20px;
   margin-bottom: $gutter-width;
 }
 
-
-.LessonContent__objective {
+.PageContent__objective {
   padding: $gutter-width*1.5;
   padding-left: $gutter-width*3.5;
   background-image: url('images/icon-check-highlight-large.svg');
@@ -71,15 +70,14 @@
   margin-bottom: $gutter-width;
 }
 
-
-.LessonContent__thumbnails {
+.PageContent__thumbnails {
   display: flex;
   flex-wrap: nowrap;
   margin-left: -10px;
   margin-right: -10px;
 }
 
-.LessonContent__thumbnail {
+.PageContent__thumbnail {
   width: (100%/3);
   padding-left: $gutter-width/2;
   padding-right: $gutter-width/2;

@@ -33,5 +33,9 @@ class CollectionTag < ApplicationRecord
 
   end
 
+  def to_s
+    name
+  end
+
 
 end

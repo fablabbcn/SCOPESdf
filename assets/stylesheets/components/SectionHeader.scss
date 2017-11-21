@@ -1,10 +1,31 @@
 .SectionHeader {
   max-width: $content-width;
   margin: 0 auto;
-}
 
+  @include above-mobile-landscape {
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+  }
+
+  @include mobile-landscape-and-below {
+    padding-left: $gutter-width*2;
+    padding-right: $gutter-width*2;
+  }
+
+}
+SectionHeader__main {
+
+}
 .SectionHeader--with-padding {
-  padding-bottom: $gutter-width*4;
+
+  @include above-mobile-landscape {
+    padding-bottom: $gutter-width*4;
+  }
+
+  @include mobile-landscape-and-below {
+    padding-bottom: $gutter-width*2;
+  }
+
 }
 
 .SectionHeader__main {

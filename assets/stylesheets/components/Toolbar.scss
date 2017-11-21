@@ -1,5 +1,16 @@
+// Only show the toolbar on desktop; the same buttons will be in the mobie
+// menu
+
 .Toolbar {
-  display: flex;
+
+  @include tablet-portrait-and-up {
+    display: flex;
+  }
+
+  @include below-tablet-portrait {
+    display: none;
+  }
+
 }
 
 .Toolbar__tool {

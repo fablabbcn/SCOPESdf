@@ -1,23 +1,39 @@
 .Search {
-  margin-left: auto;
 
   .Header--transparent & {
     visibility: hidden;
   }
 
+  @include tablet-portrait-and-up {
+    margin-left: auto;
+  }
+
+  @include below-tablet-portrait {
+    margin: 0 auto;
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+  }
+
 }
 
 input[type=search].Search__input {
-  border: 1px solid $color-border;
-  height: 55px;
-  padding-left: $gutter-width;
-  padding-right: $gutter-width;
-  background-repeat: no-repeat;
-  background-position: left $gutter-width center;
   background-image: url('search-inactive.svg');
-  padding-left: $gutter-width*2.5;
-  width: 300px;
+  background-repeat: no-repeat;
+  border: 1px solid $color-border;
+  max-width: 300px;
+  padding-right: $gutter-width;
 
+  @include tablet-portrait-and-up {
+    background-position: left $gutter-width center;
+    height: 55px;
+    padding-left: $gutter-width*2.5;
+  }
+
+  @include below-tablet-portrait {
+    background-position: left $gutter-width/2 center;
+    height: 40px;
+    padding-left: $gutter-width*1.75;
+  }
 
   &:focus {
     background-image: url('search-active.svg');

@@ -7,6 +7,15 @@
   padding-right: $gutter-width*1.5;
   padding-left: $gutter-width*1.5;
   cursor: pointer;
+
+  @include above-mobile-landscape {
+    display: flex;
+  }
+
+  @include mobile-landscape-and-below {
+    display: none;
+  }
+
 }
 
 .UserStatus__image {

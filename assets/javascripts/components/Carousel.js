@@ -17,10 +17,11 @@ function Carousel(selector='.Carousel__cells') {
 
 	  // Init flickity for all carousels
 		let flkty = new Flickity( selector, {
-			cellSelector: '.Carousel__cell',
 			cellAlign: 'center',
+			cellSelector: '.Carousel__cell',
 			contain: true,
-			groupCells: true
+			groupCells: true,
+			wrapAround: true,
 		})
 
 		document.addEventListener("turbolinks:request-start", function() {

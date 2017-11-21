@@ -2,12 +2,11 @@
   padding-left: $gutter-width;
   padding-right: $gutter-width;
   padding-top: $gutter-width*3;
-
 }
 
 .Step__columns {
   display: flex;
-  max-width: $form-width;
+  max-width: $content-width;
   margin: 0 auto;
   border-bottom: 1px solid $color-border;
 }
@@ -23,7 +22,6 @@
   width: 25%;
   flex-grow: 0;
   flex-shrink: 0;
-
   font-size: 14px;
 }
 

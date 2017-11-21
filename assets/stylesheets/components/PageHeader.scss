@@ -6,10 +6,18 @@
 }
 
 .PageHeader__content {
-  max-width: $form-width;
+  max-width: $content-width;
   margin: 0 auto;
   display: flex;
   align-items: center;
+}
+
+.PageHeader__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: $gutter-width;
 }
 
 .PageHeader__title {
@@ -18,7 +26,13 @@
 
 .PageHeader__heading {
   @extend h2;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+
+  .PageHeader__title--small & {
+    font-size: 24px;
+    margin-bottom: 0;
+  }
+
 }
 
 .PageHeader__sub {
@@ -26,6 +40,11 @@
   color: $color-gray-mid;
   max-width: $form-width;
   margin: 0 auto;
+
+  .PageHeader__title--small & {
+    font-size: 16px;
+  }
+
 }
 
 .PageHeader__indicators {

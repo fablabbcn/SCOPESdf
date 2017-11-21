@@ -1,10 +1,18 @@
 .Proposition {
-  padding: $gutter-width*8.5 $gutter-width*8;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  @include above-tablet-portrait {
+    padding: $gutter-width*8.5 $gutter-width*8;
+  }
+
+  @include below-tablet-portrait {
+    padding: $gutter-width*3 $gutter-width*2;
+  }
+
 }
 
 .Proposition__sub {
@@ -14,6 +22,14 @@
 }
 
 .Proposition__main {
-  font-size: 24px;
   max-width: 720px;
+
+  @include above-tablet-portrait {
+    font-size: 24px;
+  }
+
+  @include below-tablet-portrait {
+    font-size: 20px;
+  }
+
 }

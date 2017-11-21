@@ -1,0 +1,86 @@
+.DetailsBanner {
+  background-color: #F9FAFB;
+  padding-bottom: $gutter-width*3;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+  padding-top: $gutter-width*3;
+}
+
+.DetailsBanner__content {
+  display: flex;
+  margin: 0 auto;
+  max-width: $content-width;
+}
+
+.DetailsBanner__column {
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 25%;
+}
+
+.DetailsBanner__header {
+  @include text-medium;
+  color: $color-gray-mid;
+  font-size: 16px;
+  margin-bottom: $gutter-width;
+}
+
+.DetailsBanner__range {
+  font-size: 24px;
+}
+
+.DetailsBanner__subjects {}
+
+.DetailsBanner__subject {
+  padding-left: $gutter-width*1.5;
+  font-size: 18px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  margin-bottom: 8px;
+}
+
+.DetailsBanner__subject--art {
+  background-image: url('images/icon-arts-primary.svg');
+}
+
+.DetailsBanner__subject--technology {
+  background-image: url('images/icon-technology-primary.svg');
+}
+
+.DetailsBanner__skills {}
+
+.DetailsBanner__skill {
+  margin-bottom: 8px;
+}
+
+.DetailsBanner__masteries {
+  display: flex;
+  padding-right: $gutter-width*2;
+}
+
+.DetailsBanner__mastery {
+  width: 50%;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.DetailsBanner__mastery__metric {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.DetailsBanner__mastery__for {
+  font-size: 12px;
+  color: $color-gray-mid;
+}
+
+.DetailsBanner__standards {}
+
+.DetailsBanner__standard {
+  background-image: url('images/icon-info-mid.svg');
+  background-position: center left;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  margin-bottom: 5px;
+  padding-left: $gutter-width*1.5;
+}

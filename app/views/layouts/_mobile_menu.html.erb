@@ -1,0 +1,106 @@
+<button class="ToggleMobileMenu"><span>Menu</span></button>
+
+<div class="MobileMenu">
+
+    <div class="MobileMenu__header">
+        <%= link_to "<span>ScopesDF</span>".html_safe, root_path, class: "MobileMenu__logo" %>
+        <button class="MobileMenu__close"><span>Close</span></button>
+    </div>
+
+    <div class="MobileMenu__content">
+
+        <% if signed_in? %>
+        <div class="MobileMenu__user">
+            <a class="MobileMenu__badge">
+                <div class="MobileMenu__badge__image">
+                    <img src="<%= image_url('avatars/avatar2.jpg') %>" class="Image Image--lazy" />
+                </div>
+                <div class="MobileMenu__badge__text">
+                    <div class="MobileMenu__badge__name"><%= current_user.name %></div>
+                    <div class="MobileMenu__badge__role">Teacher</div>
+                </div>
+            </a>
+            <div class="MobileMenu__user__actions">
+                <%= active_link_to '<span>Edit</span>'.html_safe, edit_user_registration_path, class: "MobileMenu__user__action MobileMenu__user__action--edit" %>
+                <%= active_link_to '<span>Log out</span>'.html_safe, destroy_user_session_path, method: :delete, class: "MobileMenu__user__action MobileMenu__user__action--logout" %>
+            </div>
+        </div>
+        <% else %>
+        <div class="MobileMenu__user__buttons">
+            <%= active_link_to 'Log in', new_user_session_path, class: "Button Button--small Button--border" %>
+            <%= active_link_to 'Register', new_user_registration_path, class: "Button Button--primary Button--small" %>
+        </div>
+        <% end %>
+
+        <ul class="MobileMenu__navigation">
+            <li class="MobileMenu__navigation__item">
+                <%= active_link_to 'Lessons', lessons_path, class: "MobileMenu__navigation__link", class_active: "MobileMenu__navigation__link--active" %>
+                <% if @lesson_obj.present? %>
+                <ul class="MobileMenu__subNavigation">
+                    <li class="MobileMenu__subNavigation__item">
+                        <%= active_link_to @lesson_obj, lesson_path(id: @lesson_obj.id, section: :overview),
+                            class: "MobileMenu__subNavigation__heading MobileMenu__subNavigation__heading--lesson",
+                            active: @section == :overview %>
+                    </li>
+                    <li class="MobileMenu__subNavigation__item">
+                        <%= active_link_to "Overview", lesson_path(id: @lesson_obj.id, section: :overview),
+                            class: "MobileMenu__subNavigation__link",
+                            class_active: "MobileMenu__subNavigation__link--active",
+                            active: @section == :overview %>
+                    </li>
+                    <li class="MobileMenu__subNavigation__item">
+                        <%= active_link_to "Standards", lesson_standards_path(lesson_id: @lesson_obj.id),
+                            class: "MobileMenu__subNavigation__link",
+                            class_active: "MobileMenu__subNavigation__link--active",
+                            active: @section == :standards %>
+                    </li>
+                    <li class="MobileMenu__subNavigation__item">
+                        <%= active_link_to "Steps", lesson_steps_path(lesson_id: @lesson_obj.id),
+                            class: "MobileMenu__subNavigation__link",
+                            class_active: "MobileMenu__subNavigation__link--active",
+                            active: @section == :steps %>
+                    </li>
+                    <li class="MobileMenu__subNavigation__item">
+                        <%= active_link_to "Outcomes", lesson_path(id: @lesson_obj.id, section: :outcomes),
+                            class: "MobileMenu__subNavigation__link",
+                            class_active: "MobileMenu__subNavigation__link--active",
+                            active: @section == :outcomes %>
+                    <li>
+                </ul>
+                <% end %>
+            </li>
+            <li class="MobileMenu__navigation__item">
+                <%= active_link_to 'People', people_path, class: "MobileMenu__navigation__link", class_active: "MobileMenu__navigation__link--active" %>
+                <% if @person_obj.present? %>
+                <ul class="MobileMenu__subNavigation">
+                    <li class="MobileMenu__subNavigation__item">
+                        <%= active_link_to @person_obj, person_path(id: @person_obj.id, section: :overview),
+                            class: "MobileMenu__subNavigation__heading MobileMenu__subNavigation__heading--user",
+                            active: @section == :overview %>
+                    </li>
+                    <li class="MobileMenu__subNavigation__item">
+                        <%= active_link_to "Overview", person_path(id: @person_obj.id, section: :overview),
+                            class: "MobileMenu__subNavigation__link",
+                            class_active: "MobileMenu__subNavigation__link--active",
+                            active: @section == :overview %>
+                    </li>
+                    <li class="MobileMenu__subNavigation__item">
+                        <%= active_link_to "Lessons", person_path(id: @person_obj.id, section: :lessons),
+                            class: "MobileMenu__subNavigation__link",
+                            class_active: "MobileMenu__subNavigation__link--active",
+                            active: @section == :lessons %>
+                    </li>
+                </ul>
+                <% end %>    
+            </li>
+            <li class="MobileMenu__navigation__item"><%= active_link_to 'Places', places_path, class: "MobileMenu__navigation__link", class_active: "MobileMenu__navigation__link--active" %></li>
+            <li class="MobileMenu__navigation__item"><%= active_link_to 'About', about_path, class: "MobileMenu__navigation__link MobileMenu__navigation__link MobileMenu__navigation__link--sub", class_active: "MobileMenu__navigation__link--active" %></li>
+        </ul>
+
+    </div>
+
+    <div class="MobileMenu__footer">
+
+    </div>
+
+</div>

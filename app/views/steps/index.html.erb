@@ -334,3 +334,16 @@
   </div>
 
 </div>
+
+<div class="LessonFooter">
+
+  <div class="LessonFooter__content">
+
+    <div class="LessonFooter__actions">
+      <%= link_to "Back to Standards", lesson_standards_path(lesson_id: @lesson_obj.id), class: "LessonFooter__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left" %>
+      <%= link_to "View Outcomes", lesson_path(id: @lesson_obj.id, section: :outcomes), class: "LessonFooter__action LessonFooter__action--right Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right" %>
+    </div>
+
+  </div>
+
+</div>

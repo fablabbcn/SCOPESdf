@@ -1,18 +1,67 @@
 .SectionPanel {
-  width: 50%;
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  min-height: 534px;
   background-color: #F9FAFB;
+
+  @include above-mobile-landscape {
+    width: 50%;
+    min-height: 534px;
+  }
+
+  @include mobile-landscape-and-below {
+    width: 100%;
+  }
+
 }
 
 .SectionPanel--left {
-  order: 1;
+
+  @include above-mobile-landscape {
+    order: 1;
+  }
+
+  @include mobile-landscape-and-below {
+
+  }
+
 }
 
 .SectionPanel--right {
-  order: 2;
+
+
+  @include above-mobile-landscape {
+    order: 2;
+  }
+
+  @include mobile-landscape-and-below {
+
+  }
+
+}
+
+.SectionPanel--image {
+
+  @include above-mobile-landscape {
+
+  }
+
+  @include mobile-landscape-and-below {
+    order: 1;
+  }
+
+}
+
+.SectionPanel--text {
+
+  @include above-mobile-landscape {
+
+  }
+
+  @include mobile-landscape-and-below {
+    order: 2;
+  }
+
 }
 
 .SectionPanel--color {
@@ -25,7 +74,15 @@
 }
 
 .SectionPanel__content {
-  padding: $gutter-width*4;
+
+  @include above-mobile-landscape {
+    padding: $gutter-width*4;
+  }
+
+  @include mobile-landscape-and-below {
+    padding: $gutter-width*3 $gutter-width*2;
+  }
+
 }
 
 .SectionPanel__heading {
@@ -34,8 +91,16 @@
 
 .SectionPanel__sub {
   margin-bottom: $gutter-width;
-  font-size: 18px;
-  @include text-medium;
+
+  @include above-mobile-landscape {
+    font-size: 18px;
+    @include text-medium;
+  }
+
+  @include mobile-landscape-and-below {
+    font-size: 16px;
+  }
+
 }
 
 .SectionPanel__description {
@@ -44,14 +109,34 @@
 }
 
 .SectionPanel__actions {
+  display: flex;
+  justify-content: flex-start;
+
+  @include above-mobile-landscape {
+
+  }
+
+  @include mobile-landscape-and-below {
+
+  }
 
 }
 
 .SectionPanel__image {
+  display: block;
   background-size: cover;
   background-position: center;
   height: 100%;
   width: 100%;
+
+  @include above-mobile-landscape {
+
+  }
+
+  @include mobile-landscape-and-below {
+    min-height: 320px;
+  }
+
 }
 
 .SectionPanel--text {

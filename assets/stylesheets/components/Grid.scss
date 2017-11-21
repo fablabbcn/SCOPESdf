@@ -9,7 +9,7 @@ $item-width: 270px;
 
 .Grid__heading {
   margin: 0 auto;
-  max-width: $form-width;
+  max-width: $content-width;
   margin-bottom: $gutter-width;
 }
 
@@ -20,10 +20,8 @@ $item-width: 270px;
 .Grid__items {
   display: flex;
   flex-wrap: wrap;
-
   margin: 0 auto;
   max-width: $form-width;
-
 
   /*
   margin: 0 auto;
@@ -50,6 +48,14 @@ $item-width: 270px;
   }
   */
 
+}
+
+.Grid__items--constrained-width {
+  max-width: $content-width;
+}
+
+.Grid__items--centered {
+  justify-content: center;
 }
 
 .Grid__items--border-bottom {

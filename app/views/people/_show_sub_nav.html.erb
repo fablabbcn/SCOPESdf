@@ -10,10 +10,10 @@
         class_active: "SubNavigation__item--active",
         active: @section == :overview %>
 
-      <%= active_link_to "Activity", person_path(id: 1, section: :activity),
+      <%= active_link_to "Lessons", person_path(id: 1, section: :lessons),
         class: "SubNavigation__item",
         class_active: "SubNavigation__item--active",
-        active: @section == :activity %>
+        active: @section == :lessons %>
 
     </div>
 

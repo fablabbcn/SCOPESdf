@@ -21,28 +21,49 @@
 }
 
 .Hero--full {
-  height: 90vh;
+  min-height: 90vh;
 }
 
 .Hero--narrow {
-  height: 60vh;
+  min-height: 75vh;
 }
 
 .Hero--align-left {
+
+  @include tablet-portrait-and-below {
+    text-align: center;
+    justify-content: center;
+  }
 
 }
 
 .Hero--align-center {
   text-align: center;
   justify-content: center;
+
 }
 
 .Hero__content {
-  padding-left: $gutter-width*6;
-  padding-right: $gutter-width*6;
+
   z-index: 2;
   color: #fff;
   max-width: 1000px;
+
+  @include above-mobile-landscape {
+    padding-left: $gutter-width*2;
+    padding-right: $gutter-width*2;
+  }
+
+  @include above-tablet-portrait {
+    padding-left: $gutter-width*6;
+    padding-right: $gutter-width*6;
+  }
+
+  @include mobile-landscape-and-below {
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+  }
+
 }
 
 .Hero__subheading {
@@ -53,19 +74,39 @@
 
 .Hero__primary {
   @extend h1;
+  @include text-medium;
   margin-bottom: $gutter-width;
   color: $color-highlight-secondary;
 }
 
 .Hero__secondary {
-  font-size: 23px;
   @include text-medium;
   margin-bottom: $gutter-width/2;
+
+  @include mobile-landscape-and-below {
+    font-size: 16px;
+  }
+
+  @include above-mobile-landscape {
+    font-size: 23px;
+  }
+
 }
 
 .Hero__tertiary {
-  font-size: 18px;
   margin-bottom: $gutter-width * 2;
+
+  @include mobile-landscape-and-below {
+    font-size: 16px;
+    br {
+      display: none;
+    }
+  }
+
+  @include above-mobile-landscape {
+    font-size: 18px;
+  }
+
 }
 
 .Hero_sparkles {

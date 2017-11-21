@@ -28,7 +28,7 @@ class StandardsController < ApplicationController
     l.lesson_id = @lesson.id
     l.standard_id = s.id
     l.save!
-    redirect_to lesson_create_path(id: @lesson_obj.id, form_step:3)
+    redirect_to edit_lesson_path(id: @lesson.id, form_step:3)
   end
 
   def delete
@@ -51,7 +51,7 @@ class StandardsController < ApplicationController
     end
 
   def set_standards
-    # @standards = Standard.all
-    @standards = Standard.name_array
+    @standards = Standard.all
+    #@standards = Standard.name_array 
   end
 end

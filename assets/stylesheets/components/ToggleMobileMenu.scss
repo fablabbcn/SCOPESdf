@@ -1,0 +1,28 @@
+.ToggleMobileMenu {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  .Header--transparent & {
+    background-image: url('images/menu-light.svg');
+  }
+
+  .Header--white & {
+    background-image: url('images/menu-dark.svg');
+  }
+
+  span {
+    display: none;
+  }
+
+  @include tablet-portrait-and-up {
+    display: none;
+  }
+
+  @include below-tablet-portrait {
+    display: block;
+  }
+
+}

@@ -1,30 +1,60 @@
 .Banner {
   background-color: $color-highlight-primary;
   color: #fff;
-  padding-bottom: $gutter-width*4;
-  padding-left: $gutter-width*4;
-  padding-right: $gutter-width*4;
-  padding-top: $gutter-width*4;
+
+  @include above-mobile-landscape {
+    padding: $gutter-width*4;
+  }
+
+  @include mobile-landscape-and-below {
+    padding: $gutter-width*2;
+  }
+
 }
 
 .Banner__content {
   max-width: $grid-width;
   margin: 0 auto;
   display: flex;
-  align-items: center;
+
+  @include above-mobile-landscape {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+  }
+
 }
 
 .Banner__primary {
-  width: (100%/3)*2;
   flex-grow: 0;
   flex-shrink: 0;
-  padding-right: $gutter-width*8;
+
+  @include above-mobile-landscape {
+    width: (100%/3)*2;
+    padding-right: $gutter-width*8;
+  }
+
+  @include mobile-landscape-and-below {
+
+  }
+
 }
 
 .Banner__secondary {
-  width: (100%/3);
   flex-grow: 0;
   flex-shrink: 0;
+
+  @include above-mobile-landscape {
+    width: (100%/3);
+  }
+
+  @include mobile-landscape-and-below {
+    width: 100%;
+  }
+
 }
 
 .Banner__title {
@@ -34,11 +64,28 @@
 }
 
 .Banner__description {
-  font-size: 20px;
+  @include text-medium;
+
+  @include above-mobile-landscape {
+    font-size: 20px;
+  }
+
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width*2;
+    font-size: 18px;
+  }
 
   a {
     color: #fff;
     @include text-medium;
+  }
+
+}
+
+.Banner__action {
+
+  @include mobile-landscape-and-below {
+    width: 100%;
   }
 
 }

@@ -1,0 +1,41 @@
+.PageFooter {
+    background-color: $color-gray-light;
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+}
+
+.PageFooter__content {
+    margin: 0 auto;
+    max-width: $content-width;
+    padding-bottom: $gutter-width*3;
+    padding-top: $gutter-width*3;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.PageFooter__heading {
+    font-size: 24px;
+    @include text-medium;
+    width: 50%;
+    span {
+        display: block;
+        font-size: 14px;
+        color: $color-gray-mid;
+    }
+}
+
+.PageFooter__actions {
+    display: flex;
+    width: 100%;
+}
+
+.PageFooter__action {
+    &:last-child {
+        margin-left: auto;
+    }
+}
+
+.PageFooter__actions--right {
+    margin-left: auto;
+}

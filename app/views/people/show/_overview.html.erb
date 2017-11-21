@@ -1,0 +1,106 @@
+<div class="DetailsBanner">
+
+    <div class="DetailsBanner__content">
+
+        <div class="DetailsBanner__column">
+            <div class="DetailsBanner__header">Subjects</div>
+            <ul class="DetailsBanner__subjects">
+                <li class="DetailsBanner__subject DetailsBanner__subject--art">Art</li>
+                <li class="DetailsBanner__subject DetailsBanner__subject--technology">Technology</li>
+            </ul>
+        </div>
+
+        <div class="DetailsBanner__column">
+            <div class="DetailsBanner__header">Skills</div>
+            <ul class="DetailsBanner__skills">
+                <li class="DetailsBanner__skill">Design</li>
+                <li class="DetailsBanner__skill">3D Printing</li>
+            </ul>
+        </div>
+
+        <div class="DetailsBanner__column">
+            <div class="DetailsBanner__header">Social Links</div>
+            <div class="DetailsBanner__socialLinks">
+                <a href="#" class="DetailsBanner__socialLink DetailsBanner__socialLink--website">Website</a>
+                <a href="#" class="DetailsBanner__socialLink DetailsBanner__socialLink--instagram">instagram</a>
+                <a href="#" class="DetailsBanner__socialLink DetailsBanner__socialLink--facebook">Facebook</a>
+                <a href="#" class="DetailsBanner__socialLink DetailsBanner__socialLink--twitter">Twitter</a>
+                <a href="#" class="DetailsBanner__socialLink DetailsBanner__socialLink--github">Github</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="PageContent">
+
+  <div class="PageContent__columns">
+
+    <div class="PageContent__main">
+
+      <!-- summary -->
+      <div class="PageContent__section">
+
+        <div class="PageContent__heading">Bio</div>
+
+        <div class="PageContent__summary">
+          Hiking addict, vegan, band member, reclaimed wood collector and brand builder. Doing at the sweet spot between aesthetics and intellectual purity to create not just a logo, but a feeling. I'm fueled by craft beer, hip-hop and tortilla chips.
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="PageContent__sidebar">
+
+      <div class="Sidebar">
+
+        <!-- tags -->
+        <div class="Sidebar__section Sidebar__section--with-border">
+
+          <div class="Sidebar__heading">
+            Tags
+          </div>
+
+          <div class="Tags">
+            <% ['3D', 'Innovation', 'Physics', '8th Grade', '9th Grade', '10th Grade', '11th Grade', 'Algebra'].each do |tag| %>
+              <a href="#" class="Tag">
+                <%= tag %>
+              </a>
+              <% end %>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="Grid">
+
+  <div class="Grid__header">
+    <h3 class="Grid__heading">24 Lessons</h3>
+  </div>
+
+  <div class="Grid__items Grid__items--border-bottom Grid__items--constrained-width">
+
+    <% 4.times do |i| %>
+    <div class="Grid__item">
+
+      <%= render partial: 'lessons/thumb', locals: {
+        lesson: Lesson.first,
+        i: i
+        } %>
+
+    </div>
+    <% end %>
+
+  </div>
+
+</div>
