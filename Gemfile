@@ -23,7 +23,7 @@ gem 'bootstrap-sass'
 gem 'haml'
 gem 'rails_utils'
 
-gem 'devise'
+gem 'devise', '~> 4.3.0'
 gem 'high_voltage'
 gem 'pundit'
 
