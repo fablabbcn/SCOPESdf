@@ -15,7 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    session[:sign_up_params].deep_merge(params[:sign_up])
+    session[:sign_up_params].deep_merge!(params[:sign_up])
 
     return previous_step_procedure if params[:previous_button]
     return next_step_procedure unless session[:registration_step] == REGISTRATION_STEPS.last

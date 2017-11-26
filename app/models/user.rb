@@ -204,7 +204,7 @@ class User < ApplicationRecord
     end
     true
   rescue => e
-    errors << additional_information: "#{method_name}: #{e.message}"
+    errors << { additional_information: "#{method_name}: #{e.message}" }
     false
   end
 
