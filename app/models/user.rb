@@ -194,37 +194,6 @@ class User < ApplicationRecord
     name
   end
 
-  # def skills=(skills_array)
-  #   setSkillsLevels(skills_array.map { |skill| { name: skill } })
-  # rescue => e
-  #   errors << { skills: e.message }
-  # end
-  #
-  # def skills
-  #   getSkillsLevels.map { |skill_level| skill_level[:name] }
-  # end
-  #
-  # %w(subjects involvements other_interests).each do |attribute|
-  #   define_method("#{attribute}=".to_sym) do |values_array|
-  #     begin
-  #       method_name = "set#{attribute.to_s.split('_').map(&:capitalize).join('')}"
-  #       send(method_name, value)
-  #     rescue => e
-  #       errors << { attribute.to_sym => "#{method_name}: #{e.message}" }
-  #     end
-  #   end
-  # end
-  #
-  # %w(subjects involvements other_interests).each do |attribute|
-  #   define_method("#{attribute}".to_sym) do
-  #     begin
-  #       send "get#{attribute.to_s.split('_').map(&:capitalize).join('')}"
-  #     rescue => e
-  #       errors << { attribute.to_sym => "#{method_name}: #{e.message}" }
-  #     end
-  #   end
-  # end
-
   # use setSkillsLevels, setOtherInterests, setSubjects, setInvolvements
   def add_other_information(hash)
     hash[:skills_levels] = hash[:skills].map { |sk| { name: sk } } if hash[:skills]
@@ -233,9 +202,10 @@ class User < ApplicationRecord
       method_name = "set#{key.to_s.split('_').map(&:capitalize).join('')}"
       send(method_name, value) if respond_to? method_name
     end
+    # raise 'do not save'
     true
   rescue => e
-    errors << { additional_information: "#{method_name}: #{e.message}" }
+    errors[:additional_information] << "#{method_name}: #{e.message}"
     false
   end
 

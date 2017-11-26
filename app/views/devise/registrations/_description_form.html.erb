@@ -1,0 +1,64 @@
+<h2>Tell us about yourself</h2>
+<!-- subjects involvements skills -->
+<% %w(subjects involvements skills).each do |collection| %>
+  <h3><%= collection.capitalize %></h3>
+  <% instance_variable_get("@#{collection}").each do |item| %>
+    <% if session[:sign_up_params][collection] %>
+      <% checked = session[:sign_up_params][collection].include? item %>
+    <% else %>
+      <% checked = false %>
+    <% end %>
+    <div class="field">
+      <%= check_box_tag "user[#{collection}][]", item, checked %>
+      <%= f.label item %><br />
+    </div>
+  <% end %>
+<% end%>
+<!-- involvemnts custom input -->
+<% custom_field_value = '' %>
+<% if session[:sign_up_params]['involvements'] %>
+  <% custom_field_value = (session[:sign_up_params]['involvements'] - @involvements).first %>
+<% end %>
+<%= text_field_tag 'user[involvements][]', custom_field_value %>
+<!-- end involvemnts custom input -->
+<!-- end subjects involvements skills -->
+
+<div class="field">
+  <%= f.label :other_interests %><br />
+  <%= text_field_tag 'user[other_interests]', session[:sign_up_params]['other_interests'] ? session[:sign_up_params]['other_interests'] : '' %>
+</div>
+
+<div class="field">
+  <%= f.label :bio %><br />
+  <%= text_area_tag 'user[bio]', session[:sign_up_params]['bio'] ? session[:sign_up_params]['bio'] : '' %>
+</div>
+
+<div class="field">
+  <%= f.label :social %><br />
+</div>
+<div class="field social-input">
+  <% session[:sign_up_params]['social'] ||= [''] %>
+  <% session[:sign_up_params]['social'].each do |item| %>
+    <%= text_field_tag 'user[social][]', item %>
+  <% end %>
+</div>
+<!-- add social link button -->
+<button type="button" class='Button Button--primary' id="add-social-link">+ Add new link</button>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#add-social-link').on('click', function(e) {
+      e.preventDefault();
+      $(".social-input:last").clone().appendTo(".social-input:last");
+      $(".social-input:last input").val('');
+    });
+  });
+</script>
+<!-- end add social link button -->
+
+<div class="actions">
+  <%= f.submit 'Edit account', name: 'previous_button', class: 'Button' %>
+</div>
+<div class="actions">
+  <%= f.submit 'Create account', class: 'Button Button--primary' %>
+</div>

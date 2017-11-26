@@ -1,0 +1,63 @@
+<h2>Account details</h2>
+
+<div class="field">
+  <%= f.label :name %><br />
+  <%= f.text_field :name, autofocus: true %>
+</div>
+
+<div class="field">
+  <%= f.label :email %><br />
+  <%= f.email_field :email %>
+</div>
+
+<div class="field">
+  <%= f.label :password %>
+  <% if @minimum_password_length %>
+  <em>(<%= @minimum_password_length %> characters minimum)</em>
+  <% end %><br />
+  <%= f.password_field :password, autocomplete: "off" %>
+</div>
+
+<div class="field">
+  <%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation, autocomplete: "off" %>
+</div>
+
+<div class="field">
+  <%= f.label :avatar %><br />
+  <%= f.text_field :avatar %>
+</div>
+
+<!-- location {longitude}{space}{latitude} -->
+<!-- e.g. London: "-0.118092 51.509865", Barcelona: "2.1734 41.3851" -->
+<!-- check out RegistrationsController#sign_up_params -->
+<div class="field">
+  <%= f.label :lonlat %><br />
+  <%= f.text_field :lonlat %>
+</div>
+
+<div class="field">
+  <%= f.label :address_line1 %><br />
+  <%= f.text_field :address_line1 %>
+</div>
+
+<div class="field">
+  <%= f.label :locality %><br />
+  <%= f.text_field :locality %>
+</div>
+
+<div class="field">
+  <%= f.label :post_code %><br />
+  <%= f.text_field :post_code %>
+</div>
+
+<div class="field">
+  <%= f.label :country %><br />
+  <%= f.text_field :country %>
+</div>
+
+<!-- end location -->
+
+<div class="actions">
+  <%= f.submit 'Add some details about yourself', class: 'Button Button--primary' %>
+</div>
