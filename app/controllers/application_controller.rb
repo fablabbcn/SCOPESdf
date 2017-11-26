@@ -14,8 +14,9 @@ class ApplicationController < ActionController::Base
 			devise_parameter_sanitizer.permit(:sign_up) do |user_params|
 		    user_params.permit :email, :password, :password_confirmation, :name,
 				 									 :avatar, :address_line1, :locality, :post_code,
-												   :country, involments: [], subjects: [], skills: [],
-													 :bio, social: [], :lonlat
+												   :country, :bio, :lonlat, involments: [],
+													 subjects: [], skills: [], social: [],
+													 other_interests: []
 		  end
       devise_parameter_sanitizer.permit(:account_update, keys: [:name])
     end

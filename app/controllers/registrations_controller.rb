@@ -13,14 +13,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    # add custom create logic here
-    puts "singing up"
-    puts params.inspect
-    puts sign_up_params.inspect
-    super
-    # after super we can then assign other data points to this guy
-    puts "current user below"
-    puts current_user.inspect
+    super { |resource| resource.add_other_information alternative_signup_params }
   end
 
   def update
@@ -28,11 +21,9 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
-    def sign_up_params
-      params.require(:user).permit(:display_name, :email, :password, :password_confirmation, :bio)
-    end
+
     def alternative_signup_params
-      params.permit(:randomField)
+      params.require(:sign_up).permit(:involments, :subjects, :skills)
     end
 
 end

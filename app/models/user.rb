@@ -194,6 +194,15 @@ class User < ApplicationRecord
     name
   end
 
+  def add_other_information(hash)
+    hash[:skills_levels] = hash[:skills].map { |skill| { name: skill } } if hash[:skills]
+
+    hash.except!(:skills).each_pair do |key, value|
+      method_name = "set#{key.to_s.split('_').map(&:capitalize).join('')}"
+      send(method_name, value) if respond_to? method_name
+    end
+  end
+
   private
 
 
