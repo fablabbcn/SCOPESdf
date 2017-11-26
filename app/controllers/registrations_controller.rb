@@ -15,20 +15,20 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    session[:sign_up_params].deep_merge!(params[:sign_up])
+    session[:sign_up_params].deep_merge!(params[:user])
 
-    return previous_step_procedure if params[:previous_button]
-    return next_step_procedure unless session[:registration_step] == REGISTRATION_STEPS.last
-
-    super do |resource|
-      break unless resource.persisted?
-      if resource.add_other_information alternative_signup_params
-        # clean no longer needed cookies & proceed
-        session[:sign_up_params] = session[:registration_step] = nil
-      else
-        resource.destroy!
-      end
-    end
+    # return previous_step_procedure if params[:previous_button]
+    # return next_step_procedure unless session[:registration_step] == REGISTRATION_STEPS.last
+    #
+    # super #do |resource|
+      # break unless resource.persisted?
+      # if resource.add_other_information alternative_signup_params
+      #   # clean no longer needed cookies & proceed
+      #   session[:sign_up_params] = session[:registration_step] = nil
+      # else
+      #   resource.destroy!
+      # end
+    # end
   end
 
   def update
@@ -60,14 +60,19 @@ class RegistrationsController < Devise::RegistrationsController
 
     # override devise's :sign_up_params grabbing session data instead
     def sign_up_params
-      session[:sign_up_params].slice :email, :password, :password_confirmation,
-                                     :name, :avatar, :address_line1, :locality,
-                                     :post_code, :country, :bio, :lonlat, :social
+      super.tap do |parameters|
+        break unless session[:sign_up_params][:lonlat]
+        parameters[:lonlat] = "POINT(#{session[:sign_up_params][:lonlat]})"
+      end
     end
 
     # params that cannot be used on user creation
     def alternative_signup_params
-      session[:sign_up_params].slice :involments, :subjects, :skills, :other_interests
+      session[:user].slice(:involments, :subjects, :skills,
+        :other_interests).tap do |parameters|
+          break unless session[:sign_up_params][:other_interests]
+          parameters[:other_interests] = session[:sign_up_params][:other_interests].split(',')
+        end
     end
 
 end
