@@ -196,7 +196,8 @@ class User < ApplicationRecord
 
   # use setSkillsLevels, setOtherInterests, setSubjects, setInvolvements
   def add_other_information(hash)
-    hash[:skills_levels] = hash[:skills].map { |sk| { name: sk } } if hash[:skills]
+    hash.each_value { |arr| arr.delete('') } # sanitize
+    # hash[:skills_levels] = hash[:skills].map { |sk| { name: sk, level: ?????? } } if hash[:skills]
     method_name = nil
     hash.except!(:skills).each_pair do |key, value|
       method_name = "set#{key.to_s.split('_').map(&:capitalize).join('')}"
