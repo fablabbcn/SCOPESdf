@@ -22,14 +22,14 @@ class RegistrationsController < Devise::RegistrationsController
     return next_step_procedure unless session[:registration_step] == REGISTRATION_STEPS.last
 
     super do |resource|
-      # if resource.persisted?
-      #   if resource.add_other_information alternative_signup_params
-      #     # clean no longer needed cookies & proceed
-      #     session[:sign_up_params] = session[:registration_step] = nil
-      #   else
-      #     resource.destroy!
-      #   end
-      # end
+      if resource.persisted?
+        if resource.add_other_information alternative_signup_params
+          # clean no longer needed cookies & proceed
+          session[:sign_up_params] = session[:registration_step] = nil
+        else
+          resource.destroy!
+        end
+      end
     end
   end
 
@@ -63,7 +63,7 @@ class RegistrationsController < Devise::RegistrationsController
     # override devise's :sign_up_params grabbing session data instead
     def sign_up_params
       session[:sign_up_params].symbolize_keys.slice(
-        :email, :password, :password_confirmation, :name, :avatar, :social
+        :email, :password, :password_confirmation, :name, :avatar, :social,
         :address_line1, :address_line2, :address_line3, :locality, :post_code,
         :country, :bio, :lonlat
       )
