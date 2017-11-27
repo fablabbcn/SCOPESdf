@@ -13,24 +13,26 @@
       <%= f.label item %><br />
     </div>
   <% end %>
+  <% if collection == 'involvements' %>
+    <!-- involvemnts custom input -->
+    <% custom_field_value = '' %>
+    <% if session[:sign_up_params]['involvements'] %>
+      <% custom_field_value = (session[:sign_up_params]['involvements'] - @involvements).first %>
+    <% end %>
+    <%= text_field_tag 'user[involvements][]', custom_field_value %>
+    <!-- end involvemnts custom input -->
+  <% end %>
 <% end%>
-<!-- involvemnts custom input -->
-<% custom_field_value = '' %>
-<% if session[:sign_up_params]['involvements'] %>
-  <% custom_field_value = (session[:sign_up_params]['involvements'] - @involvements).first %>
-<% end %>
-<%= text_field_tag 'user[involvements][]', custom_field_value %>
-<!-- end involvemnts custom input -->
 <!-- end subjects involvements skills -->
 
 <div class="field">
   <%= f.label :other_interests %><br />
-  <%= text_field_tag 'user[other_interests]', session[:sign_up_params]['other_interests'] ? session[:sign_up_params]['other_interests'] : '' %>
+  <%= text_field_tag 'user[other_interests]', session[:sign_up_params]['other_interests'] || '' %>
 </div>
 
 <div class="field">
   <%= f.label :bio %><br />
-  <%= text_area_tag 'user[bio]', session[:sign_up_params]['bio'] ? session[:sign_up_params]['bio'] : '' %>
+  <%= text_area_tag 'user[bio]', session[:sign_up_params]['bio'] || '' %>
 </div>
 
 <div class="field">
