@@ -62,8 +62,11 @@ class RegistrationsController < Devise::RegistrationsController
 
     # override devise's :sign_up_params grabbing session data instead
     def sign_up_params
-      session[:sign_up_params].symbolize_keys.except(:involvements, :subjects,
-        :skills, :other_interests)
+      session[:sign_up_params].symbolize_keys.slice(
+        :email, :password, :password_confirmation, :name, :avatar, :social
+        :address_line1, :address_line2, :address_line3, :locality, :post_code,
+        :country, :bio, :lonlat
+      )
     end
 
     # params that cannot be used on user creation
