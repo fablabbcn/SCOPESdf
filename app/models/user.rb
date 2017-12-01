@@ -36,10 +36,12 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
   after_initialize :set_default_role, :if => :new_record?
   before_create :set_default_notifications, :if => :new_record?
+  before_create :parse_lonlat
 
 
   mount_uploader :avatar, AvatarUploader
 
+  attr_accessible :avatar_cache
 
   def set_default_role
     self.role ||= :user
@@ -196,20 +198,27 @@ class User < ApplicationRecord
 
   # use setSkillsLevels, setOtherInterests, setSubjects, setInvolvements
   def add_other_information(hash)
-    hash.each_value { |arr| arr.delete('') } # sanitize
-    # hash[:skills_levels] = hash[:skills].map { |sk| { name: sk, level: ?????? } } if hash[:skills]
-    method_name = nil
-    hash.except!(:skills).each_pair do |key, value|
-      method_name = "set#{key.to_s.split('_').map(&:capitalize).join('')}"
-      send(method_name, value) if respond_to? method_name
+    hash.each_pair do |key, value|
+      case key
+      when :involvements
+        setInvolvements(value)
+      when :subjects
+        setSubjects(value)
+      when :other_interests
+        setOtherInterests(value)
+      # when :skills
+      #   setSkillsLevels(value.map { |sk| { name: sk, level: ?????? } })
+      end
     end
-    # raise 'do not save'
     true
   rescue => e
-    errors[:additional_information] << "#{method_name}: #{e.message}"
+    errors[:additional_information] << e.message
     false
   end
 
   private
 
+  def parse_lonlat
+    self.lonlat = "POINT(#{self.lonlat[0]} #{self.lonlat[1]})" if self.lonlat.is_a? Array
+  end
 end

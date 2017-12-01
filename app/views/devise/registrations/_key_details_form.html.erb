@@ -25,15 +25,17 @@
 
 <div class="field">
   <%= f.label :avatar %><br />
-  <%= f.text_field :avatar %>
+  <%= image_tag(resource.avatar_url) if resource.avatar? %> <!-- user feedback ? -->
+  <%= f.file_field :avatar %>
+  <%= f.hidden_field :avatar_cache %>
 </div>
 
 <!-- location {longitude}{space}{latitude} -->
 <!-- e.g. London: "-0.118092 51.509865", Barcelona: "2.1734 41.3851" -->
 <!-- check out RegistrationsController#sign_up_params -->
 <div class="field">
-  <%= f.label :lonlat %><br />
-  <%= f.text_field :lonlat %>
+  <%= hidden_field_tag 'user[lonlat][]', '', id: 'lon' %>
+  <%= hidden_field_tag 'user[lonlat][]', '', id: 'lat' %>
 </div>
 
 <div class="field">
