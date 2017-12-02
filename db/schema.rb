@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202141601) do
+ActiveRecord::Schema.define(version: 20171202150827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,19 +176,21 @@ ActiveRecord::Schema.define(version: 20171202141601) do
   end
 
   create_table "steps", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "lesson_id",                         null: false
-    t.string   "summary",                           null: false
-    t.integer  "duration",             default: 0,  null: false
-    t.string   "description",          default: "", null: false
-    t.string   "supporting_files",     default: [],              array: true
+    t.uuid     "lesson_id",                          null: false
+    t.string   "summary",                            null: false
+    t.integer  "duration",              default: 0,  null: false
+    t.string   "description",           default: "", null: false
+    t.string   "supporting_files",      default: [],              array: true
     t.json     "materials"
-    t.string   "tools",                                          array: true
-    t.string   "supporting_materials", default: [],              array: true
-    t.string   "external_links",                                 array: true
-    t.integer  "step_number",                       null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.string   "software",             default: [],              array: true
+    t.string   "tools",                                           array: true
+    t.string   "supporting_materials",  default: [],              array: true
+    t.string   "external_links",                                  array: true
+    t.integer  "step_number",                        null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "software",              default: [],              array: true
+    t.string   "fabrication_equipment", default: [],              array: true
+    t.string   "name"
     t.index ["lesson_id"], name: "index_steps_on_lesson_id", using: :btree
   end
 
