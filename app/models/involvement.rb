@@ -13,14 +13,16 @@ class Involvement < ApplicationRecord
 
   before_create :downcase_name, :if => :new_record?
 
+  STATIC_INVOLVEMENTS = ["classroom teacher", "maker / fabber", "youth",
+                         "cirriculum developer", "informal educator",
+                         "volunteer", "makerspace staff"]
+
   def downcase_name
     self.name = self.name.downcase
   end
 
   def self.seed
-    ["classroom teacher", "maker / fabber", "youth", "cirriculum developer", "informal educator", "volunteer", "makerspace staff"].map{ |i|
-      new(name: i).save
-    }
+    STATIC_INVOLVEMENTS.each { |involvement| create(name: involvement) }
   end
 
 end
