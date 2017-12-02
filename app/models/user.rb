@@ -41,8 +41,6 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  attr_accessible :avatar_cache
-
   def set_default_role
     self.role ||= :user
   end

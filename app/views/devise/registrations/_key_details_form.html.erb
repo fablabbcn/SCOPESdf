@@ -25,9 +25,8 @@
 
 <div class="field">
   <%= f.label :avatar %><br />
-  <%= image_tag(resource.avatar_url) if resource.avatar? %> <!-- user feedback ? -->
+  <%= image_tag(session[:sign_up_params]['avatar_cache']) if session[:sign_up_params]['avatar_cache'] %> <!-- user feedback ? -->
   <%= f.file_field :avatar %>
-  <%= f.hidden_field :avatar_cache %>
 </div>
 
 <!-- location {longitude}{space}{latitude} -->
