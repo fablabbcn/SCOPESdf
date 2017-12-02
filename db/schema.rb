@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202151434) do
+ActiveRecord::Schema.define(version: 20171202152102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20171202151434) do
     t.string   "key_concepts",              default: [],              array: true
     t.string   "key_vocabularies",          default: [],              array: true
     t.string   "key_formulas",              default: [],              array: true
+    t.string   "fabrication_tools",         default: [],              array: true
     t.index ["name"], name: "index_lessons_on_name", using: :btree
     t.index ["original_lesson"], name: "index_lessons_on_original_lesson", using: :btree
     t.index ["state"], name: "index_lessons_on_state", using: :btree
