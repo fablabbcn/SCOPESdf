@@ -15,19 +15,14 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    build_resource(sign_up_params)
-
     return previous_step if params[:previous_button]
     return next_step unless session[:registration_step] == REGISTRATION_STEPS.last
 
-    resource.avatar = retrieve_cached_avatar
-    resource.save
-
-    if resource.persisted?
-      resource.destroy! unless resource.add_other_information further_params
+    super do |resoruce|
+      if resource.persisted?
+        resource.add_other_information(further_params) ? clean_up : resource.destroy
+      end
     end
-
-    devise_create_procedure
   end
 
   def update
@@ -43,18 +38,16 @@ class RegistrationsController < Devise::RegistrationsController
 
     session[:sign_up_params] ||= {}
     session[:registration_step] ||= REGISTRATION_STEPS[0]
-    session[:uploader_cache_id] ||= SecureRandom.uuid
   end
 
   def update_sign_up_params
     return unless params[:user]
     session[:sign_up_params].deep_merge!(params[:user].except(:avatar))
-    upload_avatar if params[:user][:avatar]
+    cache_avatar if params[:user][:avatar]
   end
 
   def clean_up
-    session[:sign_up_params] = session[:registration_step] = session[:uploader_cache_id] = nil
-    CarrierWave.clean_cached_files! # only this only one
+    session[:sign_up_params] = session[:registration_step] = session[:avatar_cache_id] = nil
   end
 
   def previous_step
@@ -83,50 +76,32 @@ class RegistrationsController < Devise::RegistrationsController
       end
   end
 
-  # DEVISE OVERRIDEN METHODS
-  # devise-4.3.0/app/controllers/devise/registrations_controller.rb
-
   # override devise's :sign_up_params grabbing session data instead
   def sign_up_params
     session[:sign_up_params].symbolize_keys.slice(
       :email, :password, :password_confirmation, :name, :social,
       :address_line1, :address_line2, :address_line3, :locality, :post_code,
-      :country, :bio, :lonlat
-    )
-  end
-
-  def devise_create_procedure
-    if resource.persisted?
-      clean_up # added!
-      if resource.active_for_authentication?
-        set_flash_message! :notice, :signed_up
-        sign_up(resource_name, resource)
-        respond_with resource, location: after_sign_up_path_for(resource)
-      else
-        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
-        expire_data_after_sign_in!
-        respond_with resource, location: after_inactive_sign_up_path_for(resource)
-      end
-    else
-      clean_up_passwords resource
-      set_minimum_password_length
-      respond_with resource
+      :country, :bio, :lonlat, :avatar_cache
+    ).tap do |params|
+      params[:avatar] = retrieve_cached_avatar if action_name == 'create'
     end
   end
 
-  # AVATAR UPLOAD
+  # use CarrierWave's #cache! to temporarily store in server uploaded avatar
   def cache_avatar
     avatar_uploader.cache! params[:user][:avatar]
-    session[:sign_up_params][:avatar_cache] = avatar_uploader.cache_name
+    session[:sign_up_params]['avatar_cache'] = avatar_uploader.cache_name
   end
 
   def retrieve_cached_avatar
-    avatar_uploader.retrieve_from_cache! session[:sign_up_params][:avatar_cache]
+    return unless session[:sign_up_params]['avatar_cache']
+    avatar_uploader.retrieve_from_cache! session[:sign_up_params]['avatar_cache']
     avatar_uploader
   end
 
   def avatar_uploader
-    @uploader ||= AvatarUploader.new(cache_id: session[:uploader_cache_id])
+    session[:avatar_cache_id] ||= CarrierWave.generate_cache_id
+    @uploader ||= AvatarUploader.new_with_cache_id(session[:avatar_cache_id])
   end
 
 end
