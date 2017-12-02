@@ -2,20 +2,22 @@
 #
 # Table name: steps
 #
-#  id                   :uuid             not null, primary key
-#  lesson_id            :uuid             not null
-#  summary              :string           not null
-#  duration             :integer          default(0), not null
-#  description          :string           default(""), not null
-#  supporting_files     :string           default([]), is an Array
-#  materials            :json
-#  tools                :string           is an Array
-#  supporting_materials :string           default([]), is an Array
-#  external_links       :string           is an Array
-#  step_number          :integer          not null
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  software             :string           default([]), is an Array
+#  id                    :uuid             not null, primary key
+#  lesson_id             :uuid             not null
+#  summary               :string           not null
+#  duration              :integer          default(0), not null
+#  description           :string           default(""), not null
+#  images                :string           default([]), is an Array
+#  materials             :json
+#  tools                 :string           is an Array
+#  supporting_materials  :string           default([]), is an Array
+#  external_links        :string           is an Array
+#  step_number           :integer          not null
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  software              :string           default([]), is an Array
+#  fabrication_equipment :string           default([]), is an Array
+#  name                  :string
 #
 
 class Step < ApplicationRecord
@@ -29,6 +31,8 @@ class Step < ApplicationRecord
   #supporting materials > design files
 
   validates :lesson_id, presence: true
+  validates :name, presence: true
+
 
   before_create :check_step_number, :if => :new_record?
   def check_step_number

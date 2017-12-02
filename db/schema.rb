@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202150827) do
+ActiveRecord::Schema.define(version: 20171202151434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,7 +180,7 @@ ActiveRecord::Schema.define(version: 20171202150827) do
     t.string   "summary",                            null: false
     t.integer  "duration",              default: 0,  null: false
     t.string   "description",           default: "", null: false
-    t.string   "supporting_files",      default: [],              array: true
+    t.string   "images",                default: [],              array: true
     t.json     "materials"
     t.string   "tools",                                           array: true
     t.string   "supporting_materials",  default: [],              array: true
