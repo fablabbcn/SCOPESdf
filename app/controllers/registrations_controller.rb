@@ -18,7 +18,7 @@ class RegistrationsController < Devise::RegistrationsController
     return previous_step if params[:previous_button]
     return next_step unless session[:registration_step] == REGISTRATION_STEPS.last
 
-    super do |resoruce|
+    super do |resource|
       if resource.persisted?
         resource.add_other_information(further_params) ? clean_up : resource.destroy
       end
