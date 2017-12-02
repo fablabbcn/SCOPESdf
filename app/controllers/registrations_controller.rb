@@ -43,17 +43,18 @@ class RegistrationsController < Devise::RegistrationsController
 
     session[:sign_up_params] ||= {}
     session[:registration_step] ||= REGISTRATION_STEPS[0]
+    session[:uploader_cache_id] ||= SecureRandom.uuid
   end
 
   def update_sign_up_params
     return unless params[:user]
     session[:sign_up_params].deep_merge!(params[:user].except(:avatar))
-    upload_avatar unless params[:user][:avatar]
+    upload_avatar if params[:user][:avatar]
   end
 
   def clean_up
-    session[:sign_up_params] = session[:registration_step] = nil
-    CarrierWave.clean_cached_files!
+    session[:sign_up_params] = session[:registration_step] = session[:uploader_cache_id] = nil
+    CarrierWave.clean_cached_files! # only this only one
   end
 
   def previous_step
@@ -115,7 +116,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   # AVATAR UPLOAD
   def cache_avatar
-    session[:uploader_cache_id] = avatar_uploader.cache_id
     avatar_uploader.cache! params[:user][:avatar]
     session[:sign_up_params][:avatar_cache] = avatar_uploader.cache_name
   end
@@ -126,9 +126,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def avatar_uploader
-    @uploader ||= AvatarUploader.new
-    @uploader.cache_id = session[:uploader_cache_id] if session[:uploader_cache_id]
-    @uploader
+    @uploader ||= AvatarUploader.new(cache_id: session[:uploader_cache_id])
   end
 
 end
