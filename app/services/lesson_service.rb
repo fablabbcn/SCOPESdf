@@ -35,7 +35,7 @@ class LessonService
         standards = given.delete(:standards)
         teaching_range = given.delete(:grade_range)
         subjects = given.delete(:subjects)
-        difficulty_level = given.delete(:difficulty_level)
+        mastery_level = given.delete(:mastery_level)
         skills = given.delete(:skills)
         context = given.delete(:context)
         other_interests = given.delete(:tags)
@@ -47,7 +47,7 @@ class LessonService
           lesson: given,
           places: associated_places,
           standards: standards,
-          difficulty_level: difficulty_level,
+          mastery_level: mastery_level,
           skills: skills
       }
 
@@ -60,7 +60,7 @@ class LessonService
       @standards = given.delete(:standards)
       @teaching_range = given.delete(:grade_range)
       @subjects = given.delete(:subjects)
-      @difficulty_level = given.delete(:difficulty_level)
+      @mastery_level = given.delete(:mastery_level)
       @skills = given.delete(:skills)
       @context = given.delete(:context)
       @other_interests = given.delete(:tags)
@@ -173,9 +173,9 @@ class LessonService
     end
 
     def updateDifficultyLevel!
-      return unless @difficulty_level.present?
-      @lesson.removeDifficultyLevels # sanitize
-      @lesson.setDifficultyLevel(@difficulty_level)
+      return unless @mastery_level.present?
+      @lesson.removeMasteryLevels # sanitize
+      @lesson.setMasteryLevel(@mastery_level)
       @lesson.save!
       @lesson.reload
     end
