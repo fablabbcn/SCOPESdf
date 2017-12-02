@@ -521,7 +521,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to
-  activerecord-postgis-adapter
+  activerecord-postgis-adapter (~> 4.0.4)
   annotate
   better_errors
   binding_of_caller

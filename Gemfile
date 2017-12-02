@@ -3,7 +3,7 @@ ruby '2.3.4'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
 gem 'pg'
-gem 'activerecord-postgis-adapter'
+gem 'activerecord-postgis-adapter', '~> 4.0.4'
 
 gem 'puma', '~> 3.0'
 gem 'sass-rails'

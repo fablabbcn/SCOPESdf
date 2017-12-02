@@ -36,8 +36,7 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
   after_initialize :set_default_role, :if => :new_record?
   before_create :set_default_notifications, :if => :new_record?
-  before_create :parse_lonlat
-
+  before_validation :parse_lonlat, on: [:create, :update]
 
   mount_uploader :avatar, AvatarUploader
   attr_accessor :avatar_cache
@@ -218,6 +217,8 @@ class User < ApplicationRecord
   private
 
   def parse_lonlat
-    self.lonlat = "POINT(#{self.lonlat[0]} #{self.lonlat[1]})" if self.lonlat.is_a? Array
+    return unless self.lonlat.is_a?(Array)
+    factory = RGeo::Geographic.simple_mercator_factory
+    self.lonlat = factory.point(self.lonlat[0], self.lonlat[1])
   end
 end
