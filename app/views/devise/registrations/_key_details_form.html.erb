@@ -37,7 +37,9 @@
     <% lat = session[:sign_up_params]['lonlat'][1] %>
   <% end %>
   <!-- use hidden_field_tag instead -->
+  <%= label_tag 'lon' %><br />
   <%= text_field_tag 'user[lonlat][]', lon, id: 'lon' %>
+  <%= label_tag 'lat' %><br />
   <%= text_field_tag 'user[lonlat][]', lat, id: 'lat' %>
 </div>
 
