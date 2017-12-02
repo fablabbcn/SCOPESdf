@@ -29,12 +29,16 @@
   <%= f.file_field :avatar %>
 </div>
 
-<!-- location {longitude}{space}{latitude} -->
-<!-- e.g. London: "-0.118092 51.509865", Barcelona: "2.1734 41.3851" -->
-<!-- check out RegistrationsController#sign_up_params -->
+
 <div class="field">
-  <%= hidden_field_tag 'user[lonlat][]', '', id: 'lon' %>
-  <%= hidden_field_tag 'user[lonlat][]', '', id: 'lat' %>
+  <% lon = lat = '' %>
+  <% if session[:sign_up_params]['lonlat'] %>
+    <% lon = session[:sign_up_params]['lonlat'][0] %>
+    <% lat = session[:sign_up_params]['lonlat'][1] %>
+  <% end %>
+  <!-- use hidden_field_tag instead -->
+  <%= text_field_tag 'user[lonlat][]', lon, id: 'lon' %>
+  <%= text_field_tag 'user[lonlat][]', lat, id: 'lat' %>
 </div>
 
 <div class="field">
