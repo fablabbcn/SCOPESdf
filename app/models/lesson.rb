@@ -127,6 +127,12 @@ class Lesson < ApplicationRecord
       self.lesson_tags << LessonTag.new(taggable: s)
     }
   end
+  def setSubjects_id(id_array)
+    id_array.map {|n|
+      s = Subject.find(n)
+      self.lesson_tags << LessonTag.new(taggable: s)
+    }
+  end
   def subjects
     self.lesson_tags.where(taggable_type: "Subject").map {|x| y = x.taggable; y.name}
   end

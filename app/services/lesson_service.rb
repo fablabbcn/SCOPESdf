@@ -169,7 +169,7 @@ class LessonService
     def updateSubjects!
       return unless @subjects.present?
       @lesson.removeSubjects # sanitize
-      @lesson.setSubjects(@subjects)
+      @lesson.setSubjects_id(@subjects)
       @lesson.save! 
       @lesson.reload
     end
