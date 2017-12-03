@@ -24,7 +24,6 @@ class LessonService
       updateDifficultyLevel!
       updateSkills!
       updateContext!
-      updateOtherInterests!
       updateCollectionTag!
       updateTags!
       @lesson
@@ -65,7 +64,6 @@ class LessonService
 
       @skills = given.delete(:skills)
       @context = given.delete(:contexts)
-      # @other_interests = given.delete(:tags)
       @collection = given.delete(:collection_tag)
       @generic_tags = given.delete(:tags)
 
@@ -207,14 +205,6 @@ class LessonService
       return unless @context.present?
       @lesson.removeContext # sanitize
       @lesson.setContext_id(@context)
-      @lesson.save!
-      @lesson.reload
-    end
-
-    def updateOtherInterests!
-      return unless @other_interests.present?
-      @lesson.removeOtherInterest # sanitize
-      @lesson.setOtherInterests(@other_interests)
       @lesson.save!
       @lesson.reload
     end

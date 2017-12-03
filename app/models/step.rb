@@ -31,7 +31,6 @@ class Step < ApplicationRecord
   #supporting materials > design files
 
   validates :lesson_id, presence: true
-  validates :name, presence: true
 
 
   before_create :check_step_number, :if => :new_record?

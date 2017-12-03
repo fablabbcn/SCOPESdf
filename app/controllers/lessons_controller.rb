@@ -78,7 +78,19 @@ class LessonsController < ApplicationController
 
     # If the form step is 4, i.e. steps, we redirect to edit the first step created
     # when the lesson itself was created
-    # redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @lesson_obj.steps.first.id, form_step: @form_step) if @form_step == 4
+    if @form_step == 4
+      @steps = @lesson_obj.steps.order(:created_at).to_a
+      unless @steps.present?
+        @lesson_obj.steps << Step.new(summary: "")
+        @lesson_obj.save!
+        puts @lesson_obj.steps
+        @steps = @lesson_obj.steps.to_a
+      end
+      @steps_array = @steps.map{|s| s.id}
+
+      redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @lesson_obj.steps.first.id, form_step: @form_step)
+    end
+
 
 
 
