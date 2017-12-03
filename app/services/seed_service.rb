@@ -2,7 +2,7 @@ class SeedService
   class << self
     def essentials
       TeachingRange.seed
-      DifficultyLevel.seed
+      MasteryLevel.seed
       Subject.seed
       Involvement.seed
       Skill.seed
@@ -624,7 +624,7 @@ Place the push buttons in the rectangular slots on the playing field (created in
               grade_range: {start: 10, end: 13},
               subjects:
                   ["technology", "science", "engineering"],
-              difficulty_level:
+              mastery_level:
                   {student: "3", educator: "3"},
               skills: [
                   {name: "CAD Design", level: "2"},

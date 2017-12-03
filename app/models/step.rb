@@ -60,11 +60,11 @@ class Step < ApplicationRecord
   end
 
 
-  mount_uploaders :supporting_files, SupportingFileUploader
+  mount_uploaders :images, SupportingFileUploader
   mount_uploaders :supporting_materials, SupportingFileUploader
   def set_files(files)
     puts files.inspect
-    self.supporting_files = files[:supporting_files] if files[:supporting_files].present?
+    self.images = files[:images] if files[:images].present?
     self.supporting_materials = files[:supporting_materials] if files[:supporting_materials].present?
     save!
     reload
@@ -220,7 +220,7 @@ class Step < ApplicationRecord
 
   def files_destroy_all
     removeFiles(:supporting_materials)
-    removeFiles(:supporting_files)
+    removeFiles(:images)
   end
 
   def find_carrier_wave_with_original_name(og_name, sym)

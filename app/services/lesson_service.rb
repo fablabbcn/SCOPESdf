@@ -29,26 +29,26 @@ class LessonService
       @lesson
     end
     def prepParams(usr, given)
-      if given
-        other_users = given.delete(:other_users_emails)
-        associated_places = given.delete(:associated_places_ids)
-        standards = given.delete(:standards)
-        teaching_range = given.delete(:grade_range)
-        subjects = given.delete(:subjects)
-        mastery_level = given.delete(:mastery_level)
-        skills = given.delete(:skills)
-        context = given.delete(:context)
-        other_interests = given.delete(:tags)
-        collection = given.delete(:collection_tag)
-      end
+      # if given
+      #   other_users = given.delete(:other_users_emails)
+      #   associated_places = given.delete(:associated_places_ids)
+      #   standards = given.delete(:standards)
+      #   teaching_range = given.delete(:grade_range)
+      #   subjects = given.delete(:subjects)
+      #   mastery_level = given.delete(:mastery_level)
+      #   skills = given.delete(:skills)
+      #   context = given.delete(:contexts)
+      #   other_interests = given.delete(:tags)
+      #   collection = given.delete(:collection_tag)
+      # end
 
 
       params = {
           lesson: given,
-          places: associated_places,
-          standards: standards,
-          mastery_level: mastery_level,
-          skills: skills
+          # places: associated_places,
+          # standards: standards,
+          # mastery_level: mastery_level,
+          # skills: skills
       }
 
       # puts skills.inspect
@@ -62,9 +62,11 @@ class LessonService
       @subjects = given.delete(:subjects)
       @mastery_level = given.delete(:mastery_level)
       @skills = given.delete(:skills)
-      @context = given.delete(:context)
+      @context = given.delete(:contexts)
       @other_interests = given.delete(:tags)
       @collection = given.delete(:collection_tag)
+
+
     end
 
 
@@ -191,7 +193,7 @@ class LessonService
     def updateContext!
       return unless @context.present?
       @lesson.removeContext # sanitize
-      @lesson.setContext(@context)
+      @lesson.setContext_id(@context)
       @lesson.save!
       @lesson.reload
     end

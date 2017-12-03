@@ -218,6 +218,12 @@ class Lesson < ApplicationRecord
       self.lesson_tags << LessonTag.new(taggable: c)
     }
   end
+  def setContext_id(id_array)
+    id_array.map {|n|
+      c = Context.find(n)
+      self.lesson_tags << LessonTag.new(taggable: c)
+    }
+  end
   def context
     self.lesson_tags.where(taggable_type: "Context").map {|x| y = x.taggable; y.name}
   end
