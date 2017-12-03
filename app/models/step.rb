@@ -10,7 +10,7 @@
 #  images                :string           default([]), is an Array
 #  materials             :json
 #  tools                 :string           is an Array
-#  supporting_materials  :string           default([]), is an Array
+#  design_files          :string           default([]), is an Array
 #  external_links        :string           is an Array
 #  step_number           :integer          not null
 #  created_at            :datetime         not null
@@ -22,22 +22,12 @@
 
 class Step < ApplicationRecord
 
-  # TODO: add fabrication_equipment attribute as array
-  attr_accessor :fabrication_equipment
-
-
-  # supporting files > supporting documents and media
-
-  #supporting materials > design files
-
   validates :lesson_id, presence: true
-
 
   before_create :check_step_number, :if => :new_record?
   def check_step_number
     self.step_number ||= self.lesson.steps.count + 1
   end
-
 
 
   def lesson
@@ -60,11 +50,11 @@ class Step < ApplicationRecord
 
 
   mount_uploaders :images, SupportingFileUploader
-  mount_uploaders :supporting_materials, SupportingFileUploader
+  mount_uploaders :design_files, SupportingFileUploader
   def set_files(files)
     puts files.inspect
     self.images = files[:images] if files[:images].present?
-    self.supporting_materials = files[:supporting_materials] if files[:supporting_materials].present?
+    self.design_files = files[:design_files] if files[:design_files].present?
     save!
     reload
   end
@@ -134,14 +124,14 @@ class Step < ApplicationRecord
     returnable =""
     # puts file
     case sym
-      when :supporting_materials
-        puts "supporting_materials saving"
-        collection = self.supporting_materials
+      when :design_files
+        puts "design_files saving"
+        collection = self.design_files
         collection += file
-        self.supporting_materials = collection
+        self.design_files = collection
         self.save!
         self.reload
-        returnable = self.supporting_materials.map {|x| x.url}
+        returnable = self.design_files.map {|x| x.url}
       when :supporting_files
         puts "supporting_files saving"
         collection = self.supporting_files
@@ -157,8 +147,8 @@ class Step < ApplicationRecord
   def removeFiles(sym)
     returnable = false
     case sym
-      when :supporting_materials
-        self.remove_supporting_materials!
+      when :design_files
+        self.remove_design_files!
         self.save!
         returnable = true
       when :supporting_files
@@ -176,23 +166,23 @@ class Step < ApplicationRecord
     name.gsub!(" ", "_")
     returnable = false
     case sym
-      when :supporting_materials
+      when :design_files
         index = nil
-        self.supporting_materials.each_with_index {|x, i|
+        self.design_files.each_with_index {|x, i|
           if (x.path.split("/").last.include?(name))
             index = i
           end
         }
         # puts index
-        remain_files = self.supporting_materials # copy the array
+        remain_files = self.design_files # copy the array
         deleted_file = remain_files.delete_at(index) # delete the target image
         deleted_file.try(:remove!) # delete image from S3
         if remain_files.empty?
-          self.removeFiles(:supporting_materials)
+          self.removeFiles(:design_files)
         else
-          self.supporting_materials = remain_files # re-assign back
+          self.design_files = remain_files # re-assign back
         end
-        self.supporting_materials_will_change!
+        self.design_files_will_change!
         self.save!; self.reload
         returnable = true
       when :supporting_files
@@ -218,7 +208,7 @@ class Step < ApplicationRecord
   end
 
   def files_destroy_all
-    removeFiles(:supporting_materials)
+    removeFiles(:design_files)
     removeFiles(:images)
   end
 
@@ -234,9 +224,9 @@ class Step < ApplicationRecord
           end
         }
         indexes
-      when :supporting_materials
+      when :design_files
         indexes = []
-        self.supporting_materials.each_with_index {|x, i|
+        self.design_files.each_with_index {|x, i|
           if x.path.split("/").last.include?(og_name)
             indexes.append(i)
           end
