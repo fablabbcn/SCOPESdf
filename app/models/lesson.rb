@@ -163,7 +163,7 @@ class Lesson < ApplicationRecord
     self.lesson_tags << LessonTag.new(taggable: educator)
   end
 
-  def getMasteryLevel
+  def  masteryLevels
     self.lesson_tags.where(taggable_type: "MasteryLevel").map {|x| y = x.taggable; {metric: y.metric, level: y.level}}
   end
 

@@ -109,8 +109,17 @@ class LessonsController < ApplicationController
 
     #print params.inspect
 
+    print params.inspect
     print "lesson_params hereeeeee"
     print lesson_params.inspect
+
+
+
+    # mastery_level = {student: lesson_params.delete(:mastery_level_students), educator: lesson_params.delete(:mastery_level_teachers)} if lesson_params[:mastery_level_students].present? && lesson_params[:mastery_level_teachers].present?
+    #
+    # print "mastery:"
+    # print mastery_level
+
 
     # Update the lesson
     @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
@@ -415,7 +424,7 @@ class LessonsController < ApplicationController
   private
 
     def lesson_params
-      params.require(:lesson).permit(:name, :topline, :summary, :teacher_notes, :assessment_criteria, :state, :collection_tag, other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids: [], standards: [:name, descriptions: []], grade_range: [:start, :end], subjects: [], mastery_level: [:student, :educator], skills: [:name, :level], contexts: [], tags: [])
+      params.require(:lesson).permit(:name, :topline, :summary, :teacher_notes, :assessment_criteria, :state, :collection_tag, :mastery_level_students, :mastery_level_teachers, other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids: [], standards: [:name, descriptions: []], grade_range: [:start, :end], subjects: [], skills: [:name, :level], contexts: [], tags: [])
     end
 
     def step_params

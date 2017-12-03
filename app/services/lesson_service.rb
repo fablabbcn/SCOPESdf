@@ -54,17 +54,28 @@ class LessonService
       # puts skills.inspect
 
       @calling_user = usr
-      @lesson_params = params[:lesson]
       @other_authors = given.delete(:other_users_emails)
       @places = given.delete(:associated_places_ids)
       @standards = given.delete(:standards)
       @teaching_range = given.delete(:grade_range)
       @subjects = given.delete(:subjects)
-      @mastery_level = given.delete(:mastery_level)
+
+      @mastery_level = {student: given.delete(:mastery_level_students), educator: given.delete(:mastery_level_teachers)} if given[:mastery_level_students].present? && given[:mastery_level_teachers].present?
+
       @skills = given.delete(:skills)
       @context = given.delete(:contexts)
       @other_interests = given.delete(:tags)
       @collection = given.delete(:collection_tag)
+
+      params = {
+          lesson: given,
+          # places: associated_places,
+          # standards: standards,
+          # mastery_level: mastery_level,
+          # skills: skills
+      }
+      @lesson_params = params[:lesson]
+
 
 
     end
