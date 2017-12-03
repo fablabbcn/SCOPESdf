@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027145547) do
+ActiveRecord::Schema.define(version: 20171203165748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,11 +39,9 @@ ActiveRecord::Schema.define(version: 20171027145547) do
     t.index ["name"], name: "index_contexts_on_name", using: :btree
   end
 
-  create_table "difficulty_levels", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.integer "level",  default: 0, null: false
-    t.integer "metric", default: 0, null: false
-    t.index ["level"], name: "index_difficulty_levels_on_level", using: :btree
-    t.index ["metric"], name: "index_difficulty_levels_on_metric", using: :btree
+  create_table "generic_tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.index ["name"], name: "index_generic_tags_on_name", using: :btree
   end
 
   create_table "invited_users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -92,6 +90,7 @@ ActiveRecord::Schema.define(version: 20171027145547) do
     t.string   "key_concepts",              default: [],              array: true
     t.string   "key_vocabularies",          default: [],              array: true
     t.string   "key_formulas",              default: [],              array: true
+    t.string   "fabrication_tools",         default: [],              array: true
     t.index ["name"], name: "index_lessons_on_name", using: :btree
     t.index ["original_lesson"], name: "index_lessons_on_original_lesson", using: :btree
     t.index ["state"], name: "index_lessons_on_state", using: :btree
@@ -113,6 +112,13 @@ ActiveRecord::Schema.define(version: 20171027145547) do
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_likes_on_lesson_id", using: :btree
     t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
+  end
+
+  create_table "mastery_levels", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.integer "level",  default: 0, null: false
+    t.integer "metric", default: 0, null: false
+    t.index ["level"], name: "index_mastery_levels_on_level", using: :btree
+    t.index ["metric"], name: "index_mastery_levels_on_metric", using: :btree
   end
 
   create_table "org_tags", force: :cascade do |t|
@@ -176,19 +182,21 @@ ActiveRecord::Schema.define(version: 20171027145547) do
   end
 
   create_table "steps", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid     "lesson_id",                         null: false
-    t.string   "summary",                           null: false
-    t.integer  "duration",             default: 0,  null: false
-    t.string   "description",          default: "", null: false
-    t.string   "supporting_files",     default: [],              array: true
+    t.uuid     "lesson_id",                          null: false
+    t.string   "summary",                            null: false
+    t.integer  "duration",              default: 0,  null: false
+    t.string   "description",           default: "", null: false
+    t.string   "images",                default: [],              array: true
     t.json     "materials"
-    t.string   "tools",                                          array: true
-    t.string   "supporting_materials", default: [],              array: true
-    t.string   "external_links",                                 array: true
-    t.integer  "step_number",                       null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.string   "software",             default: [],              array: true
+    t.string   "tools",                                           array: true
+    t.string   "design_files",          default: [],              array: true
+    t.string   "external_links",                                  array: true
+    t.integer  "step_number",                        null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "software",              default: [],              array: true
+    t.string   "fabrication_equipment", default: [],              array: true
+    t.string   "name"
     t.index ["lesson_id"], name: "index_steps_on_lesson_id", using: :btree
   end
 
