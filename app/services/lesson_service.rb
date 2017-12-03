@@ -26,6 +26,7 @@ class LessonService
       updateContext!
       updateOtherInterests!
       updateCollectionTag!
+      updateTags!
       @lesson
     end
     def prepParams(usr, given)
@@ -64,8 +65,9 @@ class LessonService
 
       @skills = given.delete(:skills)
       @context = given.delete(:contexts)
-      @other_interests = given.delete(:tags)
+      # @other_interests = given.delete(:tags)
       @collection = given.delete(:collection_tag)
+      @generic_tags = given.delete(:tags)
 
       params = {
           lesson: given,
@@ -221,6 +223,14 @@ class LessonService
       return unless @collection.present?
       @lesson.removeCollectionTags # sanitize
       @lesson.setCollectionTag(@collection)
+      @lesson.save!
+      @lesson.reload
+    end
+
+    def updateTags!
+      return unless @generic_tags.present?
+      @lesson.removeTags # sanitize
+      @lesson.setTags(@generic_tags)
       @lesson.save!
       @lesson.reload
     end

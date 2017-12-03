@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202152102) do
+ActiveRecord::Schema.define(version: 20171203151749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,11 @@ ActiveRecord::Schema.define(version: 20171202152102) do
   create_table "contexts", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name", null: false
     t.index ["name"], name: "index_contexts_on_name", using: :btree
+  end
+
+  create_table "generic_tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.index ["name"], name: "index_generic_tags_on_name", using: :btree
   end
 
   create_table "invited_users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

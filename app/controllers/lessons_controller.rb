@@ -109,13 +109,16 @@ class LessonsController < ApplicationController
 
     #print params.inspect
 
-    print params.inspect
-    print "lesson_params hereeeeee"
-    print lesson_params.inspect
+    puts params.inspect
+    puts "lesson_params hereeeeee"
+    puts lesson_params.inspect
 
+    puts lesson_params[:tags]
 
     # Update the lesson
     @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
+    # @lesson_obj.setTags(lesson_params[:tags])
+    # puts @lesson_obj.tags
 
     # Redirect to the next step
     redirect_to edit_lesson_path(id: @lesson_obj.id, form_step: params[:form_step])

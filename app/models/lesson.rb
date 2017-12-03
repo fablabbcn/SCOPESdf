@@ -21,6 +21,7 @@
 #  key_concepts              :string           default([]), is an Array
 #  key_vocabularies          :string           default([]), is an Array
 #  key_formulas              :string           default([]), is an Array
+#  fabrication_tools         :string           default([]), is an Array
 #
 
 class Lesson < ApplicationRecord
@@ -268,6 +269,20 @@ class Lesson < ApplicationRecord
 
   def removeCollectionTags
     self.lesson_tags.where(taggable_type: "CollectionTag").destroy_all
+  end
+
+  # Generic Tags
+  def setTags(string_array)
+    string_array.map {|n|
+      gt = GenericTag.find_or_create_by(name: n.downcase)
+      self.lesson_tags << LessonTag.new(taggable: gt)
+    }
+  end
+  def tags
+    self.lesson_tags.where(taggable_type: "GenericTag").map {|x| y = x.taggable; y.name}
+  end
+  def removeTags
+    self.lesson_tags.where(taggable_type: "GenericTag").destroy_all
   end
 
 
