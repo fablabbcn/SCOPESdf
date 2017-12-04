@@ -11,7 +11,7 @@
           <%= distance_of_time_in_words(step.duration * 60) %>
         </div>
         <div class="EditList__title">
-          Title attribute for step required
+          <%= step.name %>
         </div>
         <%= link_to "Edit step", edit_lesson_step_path(id: step.id, lesson_id: @lesson_obj.id, form_step: @form_step), class: 'EditList__edit' %>
         <% if @lesson_obj.steps.count >= 2 %>
