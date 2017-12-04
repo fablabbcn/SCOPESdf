@@ -195,9 +195,10 @@ class LessonsController < ApplicationController
 
   def delete
 
-    lesson = Lesson.find(params[:id]).hidden!
+    lesson = Lesson.find(params[:id])
+    lesson.hidden!
 
-    redirect_to edit_lesson_path(id: lesson.id)
+    redirect_to lessons_path
 
   end
 
