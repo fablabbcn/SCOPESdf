@@ -61,16 +61,15 @@ class StepsController < ApplicationController
   end
 
   def update
+
     respond_to do |format|
+      
       puts step_params.inspect
 
-      # # TODO - duration fails because no slider...
       filtred_params = step_params
-      # filtred_params.delete(:duration)
-      # @step_obj.duration = 0
 
       if @step_obj.update(filtred_params)
-        format.html { redirect_to @step_obj, notice: 'Step was successfully updated.' }
+        format.html { redirect_to edit_lesson_step_path(@lesson_obj, @step_obj), notice: 'Step was successfully updated.' }
         format.json { render :show, status: :ok, location: @step_obj }
       else
         format.html { render :edit }
@@ -109,6 +108,10 @@ class StepsController < ApplicationController
 
     def set_step
       @step_obj = Step.find_by_id(params[:id])
+    end
+
+    def set_lesson
+      @lesson_obj = Lesson.find(params[:lesson_id])
     end
 
     def step_params
