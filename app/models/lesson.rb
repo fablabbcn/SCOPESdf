@@ -161,7 +161,7 @@ class Lesson < ApplicationRecord
     self.lesson_tags << LessonTag.new(taggable: educator)
   end
 
-  def  masteryLevels
+  def masteryLevels
     self.lesson_tags.where(taggable_type: "MasteryLevel").map {|x| y = x.taggable; {metric: y.metric, level: y.level}}
   end
 
@@ -169,17 +169,17 @@ class Lesson < ApplicationRecord
     self.lesson_tags.where(taggable_type: "MasteryLevel").destroy_all
   end
 
-  def student_mastery(passed_value)
+  def student_mastery(passed_value = nil)
     self.setMasteryLevel({student: passed_value}) if passed_value
     student = {}
-    self.getMasteryLevel.map {|x| student = x if x[:metric] == "students"}
+    self.masteryLevels.map {|x| student = x if x[:metric] == "students"}
     return student
   end
 
-  def educator_mastery(passed_value)
+  def educator_mastery(passed_value = nil)
     self.setMasteryLevel({educator: passed_value}) if passed_value
     educator = {}
-    self.getMasteryLevel.map {|x| educator = x if x[:metric] == "educator"}
+    self.masteryLevels.map {|x| educator = x if x[:metric] == "educator"}
     return educator
   end
 
@@ -525,7 +525,7 @@ class Lesson < ApplicationRecord
         #     (self.standards.present? && self.standards["standards"].present? && self.standards["standards"].count > 0 && self.standards["standards"].first["name"].present? && self.standards["standards"].first["descriptions"].present?),
 
         subjects: self.getSubjects.present?,
-        mastery_level: self.getMasteryLevel.present? && self.getMasteryLevel.count == 2,
+        mastery_level: self.masteryLevels.present? && self.masteryLevels.count == 2,
 
         steps: self.steps.present? && self.steps.first.summary.present? && self.steps.first.description.present?
     }
