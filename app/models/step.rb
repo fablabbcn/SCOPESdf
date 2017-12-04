@@ -29,6 +29,11 @@ class Step < ApplicationRecord
     self.step_number ||= self.lesson.steps.count + 1
   end
 
+  before_save do
+    self.software = self.software.reject { |x| x.empty? } if self.software.present?
+    self.fabrication_equipment = self.fabrication_equipment.reject { |x| x.empty? } if self.fabrication_equipment.present?
+  end
+
 
   def lesson
     Lesson.find(self.lesson_id)

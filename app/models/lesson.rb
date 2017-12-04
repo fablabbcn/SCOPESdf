@@ -40,6 +40,13 @@ class Lesson < ApplicationRecord
     self.state = 0
   end
 
+  before_save do
+    self.key_concepts = self.key_concepts.reject { |x| x.empty? } if self.key_concepts.present?
+    self.key_vocabularies = self.key_vocabularies.reject { |x| x.empty? } if self.key_vocabularies.present?
+    self.key_formulas =  self.key_formulas.reject { |x| x.empty? } if self.key_formulas.present?
+    self.fabrication_tools = self.fabrication_tools.reject { |x| x.empty? } if self.fabrication_tools.present?
+  end
+
 
   #   validates :organization_exists
   def organization_exists # TODO - validate existece of organization from lesson_tags
@@ -98,7 +105,7 @@ class Lesson < ApplicationRecord
   end
 
 
-  def teaching_range(start_range, end_range)
+  def teaching_range(start_range = nil, end_range = nil)
     if start_range.present? & end_range.present?
       self.lesson_tags.where(taggable_type: "TeachingRange").map {|x| x.destroy} #sanitize
       TeachingRange.setRangesForLesson(self.id, start_range, end_range)
@@ -161,7 +168,7 @@ class Lesson < ApplicationRecord
     self.lesson_tags << LessonTag.new(taggable: educator)
   end
 
-  def  masteryLevels
+  def masteryLevels
     self.lesson_tags.where(taggable_type: "MasteryLevel").map {|x| y = x.taggable; {metric: y.metric, level: y.level}}
   end
 
@@ -169,17 +176,17 @@ class Lesson < ApplicationRecord
     self.lesson_tags.where(taggable_type: "MasteryLevel").destroy_all
   end
 
-  def student_mastery(passed_value)
+  def student_mastery(passed_value = nil)
     self.setMasteryLevel({student: passed_value}) if passed_value
     student = {}
-    self.getMasteryLevel.map {|x| student = x if x[:metric] == "students"}
+    self.masteryLevels.map {|x| student = x if x[:metric] == "students"}
     return student
   end
 
-  def educator_mastery(passed_value)
+  def educator_mastery(passed_value = nil)
     self.setMasteryLevel({educator: passed_value}) if passed_value
     educator = {}
-    self.getMasteryLevel.map {|x| educator = x if x[:metric] == "educator"}
+    self.masteryLevels.map {|x| educator = x if x[:metric] == "educator"}
     return educator
   end
 
@@ -448,7 +455,7 @@ class Lesson < ApplicationRecord
     }
   end
 
-  def totalDuration
+  def duration
     sum = 0
     self.steps.map {|x| sum += x.duration}
     sum
@@ -525,7 +532,7 @@ class Lesson < ApplicationRecord
         #     (self.standards.present? && self.standards["standards"].present? && self.standards["standards"].count > 0 && self.standards["standards"].first["name"].present? && self.standards["standards"].first["descriptions"].present?),
 
         subjects: self.getSubjects.present?,
-        mastery_level: self.getMasteryLevel.present? && self.getMasteryLevel.count == 2,
+        mastery_level: self.masteryLevels.present? && self.masteryLevels.count == 2,
 
         steps: self.steps.present? && self.steps.first.summary.present? && self.steps.first.description.present?
     }
