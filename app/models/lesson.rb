@@ -448,7 +448,7 @@ class Lesson < ApplicationRecord
     }
   end
 
-  def totalDuration
+  def duration
     sum = 0
     self.steps.map {|x| sum += x.duration}
     sum
