@@ -8,7 +8,7 @@
     </div>
 
     <div class="FormField__input">
-      <input type="text" name="step[name]" class="Input Input--large" required />
+      <input type="text" name="step[name]" class="Input Input--large" value="<%= @step_obj.name %>" required />
     </div>
 
   </div>
@@ -24,7 +24,7 @@
       <div class="Slider">
         <div class="Slider__value"></div>
         <div class="Slider__control" data-config="<%= { start: 0, step: 10, connect: [true, false], range: { min: 0, max: 420 }, unit: 'mins' }.to_json %>">
-          <input type="hidden" name="step[duration]" value="" />
+          <input type="hidden" name="step[duration]" value="<%= @step_obj.duration %>" />
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="FormField__input">
-      <textarea id="step_description" name="step[description]" required></textarea>
+      <textarea id="step_description" name="step[description]" required><%= @step_obj.description %></textarea>
     </div>
 
   </div>
@@ -115,7 +115,7 @@
     </div>
 
     <div class="FormField__input FormField__input--multiple">
-      <input type="text" name="step[software][]" class="Input Input--multiple" placeholder="+ Add a new item" id="step_software" data-values="<%= @step_obj.software.to_json %>" />
+      <input type="text" name="step[software][]" class="Input Input--multiple" placeholder="+ Add a new item" id="step_software_1" data-values="<%= @step_obj.software.to_json %>" />
     </div>
 
   </div>
@@ -151,7 +151,7 @@
     </div>
 
     <div class="FormField__input FormField__input--multiple">
-      <input type="url" name="step[external_links][]" class="Input Input--multiple" data-values='' value="" placeholder="+ Add a new URL" id="step_external_links_1" />
+      <input type="url" name="step[external_links][]" class="Input Input--multiple" value="" placeholder="+ Add a new URL" id="step_external_links_1" data-values="<%= @step_obj.external_links.to_json %>" />
     </div>
 
   </div>
