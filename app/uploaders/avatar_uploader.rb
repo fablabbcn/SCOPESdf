@@ -5,6 +5,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # initialize with custom cache_id without override initialize
   def self.new_with_cache_id(id)
+    CarrierWave.clean_cached_files!(60 * 60) # clean 1 hour old cached files
     instance = new
     instance.instance_variable_set(:@cache_id, id)
     instance
