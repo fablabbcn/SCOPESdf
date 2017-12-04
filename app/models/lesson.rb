@@ -98,7 +98,7 @@ class Lesson < ApplicationRecord
   end
 
 
-  def teaching_range(start_range, end_range)
+  def teaching_range(start_range = nil, end_range = nil)
     if start_range.present? & end_range.present?
       self.lesson_tags.where(taggable_type: "TeachingRange").map {|x| x.destroy} #sanitize
       TeachingRange.setRangesForLesson(self.id, start_range, end_range)
