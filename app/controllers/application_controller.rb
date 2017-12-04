@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # Include turbolinks redirection methods
 	include Turbolinks::Redirection
 
-  protect_from_forgery with: :exception
+  protect_from_forgery prepend: true, with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   include Pundit
@@ -15,7 +15,11 @@ class ApplicationController < ActionController::Base
   protected
 
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+			devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+		    user_params.permit :email, :password, :password_confirmation, :name,
+				 									 :avatar, :avatar_cache, :address_line1, :locality, :post_code,
+												   :country, :bio, :lonlat, social: []
+		  end
       devise_parameter_sanitizer.permit(:account_update, keys: [:name])
     end
 

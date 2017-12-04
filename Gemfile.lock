@@ -89,7 +89,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carrierwave (1.1.0)
+    carrierwave (1.2.1)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
@@ -523,7 +523,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to
-  activerecord-postgis-adapter
+  activerecord-postgis-adapter (~> 4.0.4)
   annotate
   better_errors
   binding_of_caller
@@ -532,10 +532,10 @@ DEPENDENCIES
   breakpoint
   byebug
   capybara
-  carrierwave (~> 1.0)
+  carrierwave (~> 1.2.1)
   coffee-rails (~> 4.2)
   database_cleaner
-  devise
+  devise (~> 4.3.0)
   dotenv-rails
   dropzonejs-rails
   erb2haml
@@ -583,4 +583,4 @@ RUBY VERSION
    ruby 2.3.4p301
 
 BUNDLED WITH
-   1.15.4
+   1.16.0
