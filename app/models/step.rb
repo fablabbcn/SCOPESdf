@@ -29,11 +29,8 @@ class Step < ApplicationRecord
     self.step_number ||= self.lesson.steps.count + 1
   end
 
-
-  def lesson
-    Lesson.find(self.lesson_id)
-  end
-
+  belongs_to :lesson
+  
   def previous_step
     Step.where(lesson_id: lesson_id, step_number: step_number-1).first
   end
