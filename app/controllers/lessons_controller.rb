@@ -69,6 +69,7 @@ class LessonsController < ApplicationController
     @form_step = params[:form_step].present? ? params[:form_step].to_i : 1
     @lesson_obj = Lesson.find(params[:id])
 
+    @fabrication_tools = ['Hardware', 'Electrical', 'Design', 'CNC Milling', 'Software'] # TODO this should probably be stored elsewhere, should probably be a separate model
 
     #pundit --
     authorize @lesson_obj, :update?
