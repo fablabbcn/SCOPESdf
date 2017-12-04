@@ -40,6 +40,13 @@ class Lesson < ApplicationRecord
     self.state = 0
   end
 
+  before_save do
+    self.key_concepts = self.key_concepts.reject { |x| x.empty? } if self.key_concepts.present?
+    self.key_vocabularies = self.key_vocabularies.reject { |x| x.empty? } if self.key_vocabularies.present?
+    self.key_formulas =  self.key_formulas.reject { |x| x.empty? } if self.key_formulas.present?
+    self.fabrication_tools = self.fabrication_tools.reject { |x| x.empty? } if self.fabrication_tools.present?
+  end
+
 
   #   validates :organization_exists
   def organization_exists # TODO - validate existece of organization from lesson_tags
