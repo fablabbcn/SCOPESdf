@@ -63,9 +63,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # remove public/uploads/temp/{avatar_cache_id}
   def clean_cached_files(*args)
-    return unless model && model.respond_to?(:avatar_cache) && model.avatar_cache
-    return unless File.directory?(File.dirname Rails.public_path.join(cache_dir, model.avatar_cache))
-    FileUtils.rm_rf File.dirname(Rails.public_path.join(cache_dir, model.avatar_cache))
+    return unless model && model.respond_to?(:avatar_cache) && !model.avatar_cache.blank?
+    model_cache_dir = File.dirname Rails.public_path.join(cache_dir, model.avatar_cache)
+    return unless File.directory?(model_cache_dir)
+    FileUtils.rm_rf(model_cache_dir) unless model_cache_dir == Rails.public_path.join(cache_dir)
   end
 
 end
