@@ -39,7 +39,10 @@ function Slider() {
 	      }
 	    },
       range: config.range
-    })
+		})
+		
+		// Set the initial value, as per the hidden element
+		$control[0].noUiSlider.set($input.val())
 
 		// On slide update, set the value of the nexted hidden input
     $control[0].noUiSlider.on('update', (values, handle) => {
