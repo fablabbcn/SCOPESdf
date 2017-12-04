@@ -38,8 +38,12 @@
     </div>
 
     <div class="SubNavigation__track">
-      <div class="SubNavigation__status">
-        Essential information missing
+      <div class="SubNavigation__status SubNavigation__status--locked">
+        <% #if @lesson_obj.publishable? TODO: status, but errors right now %>
+
+        <% #else %>
+          Essential information missing
+        <% #end %>
       </div>
       <div class="Track">
         <div class="Track__progress"><span>10%</span></div>

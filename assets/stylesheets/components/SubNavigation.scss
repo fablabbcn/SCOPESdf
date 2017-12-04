@@ -1,68 +1,81 @@
-.SubNavigation {
-  background-color: #F9FAFB;
-  padding-left: $gutter-width/2;
-  padding-right: $gutter-width/2;
 
-}
 
-.SubNavigation__content {
-  width: 100%;
-  max-width: $grid-width;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-}
 
-.SubNavigation__items {
-  display: flex;
-  max-width: $grid-width;
-}
+@include above-mobile-landscape {
 
-.SubNavigation__item {
-  padding-top: $gutter-width;
-  padding-bottom: $gutter-width;
-  padding-left: $gutter-width;
-  padding-right: $gutter-width;
-  border-bottom: 4px solid transparent;
-  margin-right: $gutter-width/2;
-  background-repeat: no-repeat;
-  background-position: 10px center;
-
-}
-
-.SubNavigation__item--icon {
-  padding-left: $gutter-width*1.75;
-}
-
-.SubNavigation__item--icon--ellipsis {
-  background-image: url('images/icon-ellipsis-mid.svg');
-}
-.SubNavigation__item--icon--edit {
-  &.SubNavigation__item--active {
-    background-image: url('images/icon-edit-highlight.svg');
+  .SubNavigation {
+    background-color: #F9FAFB;
+    padding-left: $gutter-width/2;
+    padding-right: $gutter-width/2;
   }
-}
 
-.SubNavigation__item--active {
-  border-bottom: 4px solid $color-highlight-primary;
-}
+  .SubNavigation__content {
+    width: 100%;
+    max-width: $grid-width;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+  }
 
-.SubNavigation__track {
-  margin-left: auto;
-  height: 36px;
-}
+  .SubNavigation__items {
+    display: flex;
+    max-width: $grid-width;
+  }
 
-.SubNavigation__status {
-  font-size: 14px;
-  @include text-medium;
-  margin-bottom: 4px;
-}
+  .SubNavigation__item {
+    padding-top: $gutter-width;
+    padding-bottom: $gutter-width;
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+    border-bottom: 4px solid transparent;
+    margin-right: $gutter-width/2;
+    background-repeat: no-repeat;
+    background-position: 10px center;
 
-.SubNavigation__actions {
-  display: flex;
-  margin-left: auto;
-}
+  }
 
-.SubNavigation__action {
-  
+  .SubNavigation__item--icon {
+    padding-left: $gutter-width*1.75;
+  }
+
+  .SubNavigation__item--icon--ellipsis {
+    background-image: url('images/icon-ellipsis-mid.svg');
+  }
+  .SubNavigation__item--icon--edit {
+    &.SubNavigation__item--active {
+      background-image: url('images/icon-edit-highlight.svg');
+    }
+  }
+
+  .SubNavigation__item--active {
+    border-bottom: 4px solid $color-highlight-primary;
+  }
+
+  .SubNavigation__track {
+    margin-left: auto;
+    height: 36px;
+  }
+
+  .SubNavigation__status {
+    font-size: 13px;
+    @include text-medium;
+    margin-bottom: 8px;
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding-left: 14px;
+  }
+
+  .SubNavigation__status--locked {
+    background-image: url('images/icon-lock-dark-small.svg');
+  }
+
+  .SubNavigation__actions {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .SubNavigation__action {
+    
+  }
+
 }
