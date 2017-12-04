@@ -9,8 +9,8 @@
     <div class="RadioButtons__inputs">
       <% @difficulty_helper[:students].each_with_index do |dl, i| %>
         <div class="RadioButton">
-          <input type="radio" class="RadioButton__input" name="lesson[mastery_level_students]" value="<%= dl[:value] %>" id="lesson_mastery_level_students_<%= i %>">
-          <label class="RadioButton__label Button Button--small Button--extra-padding Button--outline" for="lesson_mastery_level_students_<%= i %>"><%= dl[:name] %></label>
+          <input type="radio" class="RadioButton__input" name="lesson[student_mastery]" value="<%= dl[:value] %>" id="lesson_student_mastery_<%= i %>">
+          <label class="RadioButton__label Button Button--small Button--extra-padding Button--outline" for="lesson_student_mastery_<%= i %>"><%= dl[:name] %></label>
         </div>
       <% end %>
     </div>
@@ -23,8 +23,8 @@
     <div class="RadioButtons__inputs">
       <% @difficulty_helper[:teachers].each_with_index do |dl, i| %>
         <div class="RadioButton">
-          <input type="radio" class="RadioButton__input" name="lesson[mastery_level_teachers]" value="<%= dl[:value] %>" id="lesson_mastery_level_teachers_<%= i %>">
-          <label class="RadioButton__label Button Button--small Button--extra-padding Button--outline" for="lesson_mastery_level_teachers_<%= i %>"><%= dl[:name] %></label>
+          <input type="radio" class="RadioButton__input" name="lesson[educator_mastery]" value="<%= dl[:value] %>" id="lesson_educator_mastery_<%= i %>">
+          <label class="RadioButton__label Button Button--small Button--extra-padding Button--outline" for="lesson_educator_mastery_<%= i %>"><%= dl[:name] %></label>
         </div>
       <% end %>
     </div>
