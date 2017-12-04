@@ -71,7 +71,7 @@ class LessonsController < ApplicationController
 
 
     #pundit --
-    authorize @lesson_obj, :update? # TODO: this keeps erroring for me - DH
+    authorize @lesson_obj, :update?
 
     # If the form step is 2, i.e. standards, we redirect to create the first standard
     redirect_to new_lesson_standard_path(lesson_id: @lesson_obj.id, form_step: @form_step) if @form_step == 2
