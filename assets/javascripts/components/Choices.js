@@ -1,14 +1,8 @@
 'use strict';
 
-module.exports = Choices;
-
 import ChoicesJs from 'choices.js'
 
-/**
- * Initializes choices.js component(s)
- * @returns {element} element
- */
-function Choices() {
+export default function Choices() {
 
 	console.log("-- Choices initialized")
 

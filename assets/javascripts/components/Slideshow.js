@@ -1,10 +1,8 @@
 'use strict';
 
-module.exports = Slideshow;
-
 import Flickity from 'flickity-as-nav-for'
 
-function Slideshow() {
+export default function Slideshow() {
 
 	console.log("-- Slideshow initialized")
 

@@ -1,14 +1,8 @@
 'use strict';
 
-module.exports = Form;
-
 import Parsley from 'parsleyjs';
 
-/**
- * Initializes forms
- * @returns {element} element
- */
-function Form() {
+export default function Form() {
 
 	console.log("-- Form initialized")
 

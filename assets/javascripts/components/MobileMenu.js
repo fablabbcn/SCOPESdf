@@ -1,8 +1,6 @@
 'use strict';
 
-module.exports = MobileMenu;
-
-function MobileMenu() {
+export default function MobileMenu() {
 
 	console.log("-- MobileMenu initialized")
 

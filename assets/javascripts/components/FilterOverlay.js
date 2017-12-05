@@ -1,7 +1,5 @@
 'use strict';
 
-module.exports = FilterOverlay;
-
 import Velocity from "velocity-animate"
 import * as Config from "../config"
 
@@ -12,7 +10,7 @@ export let state = {
   isOpen: false
 }
 
-function FilterOverlay() {
+export default function FilterOverlay() {
 
 	console.log("-- FilterOverlay initialized")
 

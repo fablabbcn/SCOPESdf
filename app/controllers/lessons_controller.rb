@@ -8,8 +8,6 @@ class LessonsController < ApplicationController
   before_action :set_subjects, only: [:index, :edit]
   before_action :set_collections, only: [:index, :edit]
 
-
-
   def index
     # Using lessons#index for now as the public view of all lesson
     # No authentication heres

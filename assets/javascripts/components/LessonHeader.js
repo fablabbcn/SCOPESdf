@@ -1,10 +1,8 @@
 'use strict';
 
-module.exports = LessonHeader;
-
 import Flickity from 'flickity-imagesloaded'
 
-function LessonHeader() {
+export default function LessonHeader() {
 
 	console.log("-- LessonHeader initialized")
 

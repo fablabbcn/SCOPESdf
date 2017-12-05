@@ -1,10 +1,10 @@
 <div class="FormField__input">
+  <% if @lesson_obj.attributes['teaching_range'] %>
   <div class="Slider">
     <div class="Slider__value"></div>
-    <% if @lesson_obj.attributes['teaching_range'] %>
     <div class="Slider__control" data-config="<%= { start: @lesson_obj.teaching_range.present? ? @lesson_obj.teaching_range.to_a : [3,5], connect: true, step: 1, range: { min: -1, max: 12 }, unit: 'ordinal' }.to_json %>">
       <input type="hidden" name="lesson[teaching_range]" value="<%= @lesson_obj.teaching_range %>" />
     </div>
-    <% end %>
   </div>
+  <% end %>
 </div>

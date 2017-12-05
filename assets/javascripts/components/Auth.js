@@ -1,16 +1,10 @@
 'use strict';
 
-module.exports = Auth;
-
 let $auth
 let $footer
 let $header
 
-/**
- * Initializes the auth container
- * @returns {element} auth element
- */
-function Auth() {
+export default function Auth() {
 
 	console.log("-- Auth initialized")
 

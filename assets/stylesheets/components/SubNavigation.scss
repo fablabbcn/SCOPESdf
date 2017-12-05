@@ -1,25 +1,112 @@
 
-
-
-@include above-mobile-landscape {
-
-  .SubNavigation {
-    background-color: #F9FAFB;
+.SubNavigation {
+  background-color: #F9FAFB;
+  
+  @include above-mobile-landscape {
     padding-left: $gutter-width/2;
     padding-right: $gutter-width/2;
   }
 
-  .SubNavigation__content {
-    width: 100%;
-    max-width: $grid-width;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
+}
+
+.SubNavigation__content {
+  width: 100%;
+  max-width: $grid-width;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+
+  @include above-mobile-landscape {
+    flex-direction: row;
   }
 
-  .SubNavigation__items {
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+  }
+
+}
+
+/* SubNavigation__nav and SubNavigation__dots
+-------------------------------------------------------------- */
+
+// both components only shown on mobile
+
+.SubNavigation__nav {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  top: 50%;
+  margin-top: -10px;
+
+  @include above-mobile-landscape {
+    display: none;
+  }
+
+  @include mobile-landscape-and-below {
+    display: block;
+  }
+
+  span {
+    display: none;
+  }
+
+}
+
+.SubNavigation__nav--prev {
+  left: $gutter-width;
+  background-image: url('images/direction-left-dark.svg');
+}
+
+.SubNavigation__nav--next {
+  right: $gutter-width;
+  background-image: url('images/direction-right-dark.svg');
+}
+
+.SubNavigation__dots {
+  position: absolute;
+  bottom: $gutter-width;
+  display: flex;
+  
+  @include above-mobile-landscape {
+    display: none;
+  }
+
+  @include mobile-landscape-and-below {
     display: flex;
+  }
+
+}
+
+.SubNavigation__dot {
+  width: 4px;
+  height: 4px;
+  text-indent: -999em;
+  border-radius: 50%;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+a.SubNavigation__dot {
+  background-color: $color-gray-mid;
+}
+
+span.SubNavigation__dot {
+  background-color: $color-main;
+}
+
+/* SubNavigation__items
+-------------------------------------------------------------- */
+
+// above mobile landscape, show items side by side
+
+@include above-mobile-landscape {
+
+  .SubNavigation__items {
     max-width: $grid-width;
+    display: flex;
+    position: relative;
   }
 
   .SubNavigation__item {
@@ -32,6 +119,10 @@
     background-repeat: no-repeat;
     background-position: 10px center;
 
+  }
+
+  .SubNavigation__item--active {
+    border-bottom: 4px solid $color-highlight-primary;
   }
 
   .SubNavigation__item--icon {
@@ -47,35 +138,77 @@
     }
   }
 
-  .SubNavigation__item--active {
+}
+
+// for mobile, just show the currently active one
+
+@include mobile-landscape-and-below {
+
+  .SubNavigation__items {
+    order: 2;
+    padding: 30px 20px 40px 20px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
     border-bottom: 4px solid $color-highlight-primary;
   }
 
-  .SubNavigation__track {
+  .SubNavigation__item {
+    display: none;
+  }
+
+  .SubNavigation__item--active {
+    display: block;
+  }
+
+}
+
+/* SubNavigation__track
+-------------------------------------------------------------- */
+
+.SubNavigation__track {
+
+  @include above-mobile-landscape {
     margin-left: auto;
     height: 36px;
   }
 
-  .SubNavigation__status {
-    font-size: 13px;
-    @include text-medium;
-    margin-bottom: 8px;
-    background-position: left center;
-    background-repeat: no-repeat;
-    padding-left: 14px;
-  }
-
-  .SubNavigation__status--locked {
-    background-image: url('images/icon-lock-dark-small.svg');
-  }
-
-  .SubNavigation__actions {
+  @include mobile-landscape-and-below {
+    width: 100%;
+    order: 1;
+    padding: $gutter-width;
+    background-color: #fff;
     display: flex;
-    margin-left: auto;
+    align-items: center;
   }
 
-  .SubNavigation__action {
-    
+}
+
+.SubNavigation__status {
+  font-size: 14px;
+  @include text-medium;
+  margin-bottom: 8px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 16px;
+
+  @include mobile-landscape-and-below {
+    display: none;
   }
 
+}
+
+.SubNavigation__status--locked {
+  background-image: url('images/icon-lock-dark-small.svg');
+}
+
+.SubNavigation__actions {
+  display: flex;
+  margin-left: auto;
+}
+
+.SubNavigation__action {
+  
 }

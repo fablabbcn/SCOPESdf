@@ -34,6 +34,9 @@ class StepsController < ApplicationController
 
   def edit
 
+    # Assign the @form_step var, casting as integer instead of a string
+    @form_step = params[:form_step].present? ? params[:form_step].to_i : 1
+
     # If the step isn't found, return to index
     unless @step_obj.present?
       redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @lesson_obj.steps.first.id)

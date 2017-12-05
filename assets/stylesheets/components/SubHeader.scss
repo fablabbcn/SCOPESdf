@@ -1,6 +1,14 @@
 .SubHeader {
   background-color: $color-highlight-primary;
-  padding: $gutter-width;
+
+  @include above-mobile-landscape {
+    padding: $gutter-width;
+  }
+
+  @include mobile-landscape-and-below {
+    padding: $gutter-width*1.5 $gutter-width;
+  }
+
 }
 
 .SubHeader__content {
@@ -17,7 +25,15 @@
 
 .SubHeader__tools {
   margin-left: auto;
-  display: flex;
+  
+  @include above-mobile-landscape {
+    display: flex;
+  }
+
+  @include mobile-landscape-and-below {
+    display: none;
+  }
+
 }
 
 .SubHeader__tool {

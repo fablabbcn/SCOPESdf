@@ -1,14 +1,8 @@
 'use strict';
 
-module.exports = MultipleInputs;
-
 import {Sortable} from '@shopify/draggable';
 
-/**
- * Initializes multiple inputs
- * @returns {element} element
- */
-function MultipleInputs() {
+export default function MultipleInputs() {
 
 	console.log("-- MultipleInputs initialized")
 

@@ -5,6 +5,8 @@
 
     <div class="SubNavigation__items">
 
+      <!-- TODO: show the completed class if the section is completed: @lesson_obj.publishable?(:section) not working -->
+
       <%= active_link_to "Overview", edit_lesson_path(id: @lesson_obj.id, form_step:1),
         class: "SubNavigation__item SubNavigation__item--icon",
         class_active: "SubNavigation__item--icon--edit SubNavigation__item--active",
@@ -35,6 +37,15 @@
         class_inactive: "SubNavigation__item--icon--ellipsis",
         active: @form_step == 5 %>
 
+      <%= @form_step > 1 ? link_to(content_tag(:span, "Prev"), edit_lesson_path(id: @lesson_obj.id, form_step: @form_step - 1 ), class: "SubNavigation__nav SubNavigation__nav--prev") : nil %>
+      <%= @form_step < 5 ? link_to(content_tag(:span, "Next"), edit_lesson_path(id: @lesson_obj.id, form_step: @form_step + 1 ), class: "SubNavigation__nav SubNavigation__nav--next") : nil %>
+
+      <div class="SubNavigation__dots">
+        <% (1..5).each do |i| %>
+        <%= @form_step != i ? link_to("•", edit_lesson_path(id: @lesson_obj.id, form_step: i ), class: "SubNavigation__dot") : content_tag(:span, "•", class: "SubNavigation__dot") %>
+        <% end %>
+      </div>
+
     </div>
 
     <div class="SubNavigation__track">
@@ -46,7 +57,7 @@
         <% #end %>
       </div>
       <div class="Track">
-        <div class="Track__progress"><span>10%</span></div>
+        <div class="Track__progress Track__progress--0"><span></span></div>
         <div class="Track__base"></div>
       </div>
     </div>

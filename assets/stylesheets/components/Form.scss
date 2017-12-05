@@ -65,25 +65,43 @@
 .Form__footer__content {
   margin: 0 auto;
   max-width: $form-width;
-  padding-left: $gutter-width;
-  padding-right: $gutter-width;
-  padding-bottom: $gutter-width*3;
-  padding-top: $gutter-width*3;
   display: flex;
-  align-items: center;
   width: 100%;
+
+  @include above-mobile-landscape {
+    flex-direction: row;
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+    padding-bottom: $gutter-width*3;
+    padding-top: $gutter-width*3;
+    align-items: center;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+    padding-bottom: $gutter-width*2;
+    padding-top: $gutter-width*2;
+    justify-content: center;
+  }
+
 }
 
 .Form__footer__heading {
   font-size: 24px;
   @include text-medium;
-  width: 50%;
+  
+  @include above-mobile-landscape {
+    width: 50%;
+  }
+
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width;
+  }
 
   span {
     display: block;
     font-size: 14px;
     color: $color-gray-mid;
-
   }
 
 }
@@ -91,12 +109,29 @@
 .Form__footer__actions {
   display: flex;
   width: 100%;
+
+  @include above-mobile-landscape {
+    flex-direction: row;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+  }
+
 }
 
 .Form__footer__action {
-  &:last-child {
-    margin-left: auto;
+
+  @include above-mobile-landscape {
+    &:last-child {
+      margin-left: auto;
+    }
   }
+
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width;
+  }
+
 }
 
 .Form__footer__actions--right {

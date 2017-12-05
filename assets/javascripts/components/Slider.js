@@ -1,16 +1,10 @@
 'use strict';
 
-module.exports = Slider;
-
 import noUiSlider from 'nouislider'
 import wNumb from 'wnumb'
 import { getOrdinal } from '../helpers'
 
-/**
- * Initializes multislider component(s)
- * @returns {element} auth element
- */
-function Slider() {
+export default function Slider() {
 
 	console.log("-- Slider initialized")
 
