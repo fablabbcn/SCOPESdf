@@ -167,7 +167,7 @@ class User < ApplicationRecord
   def setSkillsLevels(hash_array) # [{:name, :level}]
     hash_array.each do |h|
       skill = Skill.find_or_create_by(name: h[:name].downcase)
-      skill.skill_tags << skill.skill_tags.create(taggable: self, level: h[:level] || 0 )
+      self.skill_tags << skill.skill_tags.create(taggable: self, level: h[:level] || 0 )
     end
   end
   def getSkillsLevels
