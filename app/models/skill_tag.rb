@@ -18,7 +18,6 @@ class SkillTag < ApplicationRecord
   validates :taggable_id, presence: true
   validates :taggable_type, presence: true
   validates :skill_id, presence: true
-  validates :level, presence: true
 
   validates_uniqueness_of :taggable_id, :scope => [:taggable_type, :skill_id]
 
