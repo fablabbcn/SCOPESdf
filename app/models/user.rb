@@ -204,8 +204,8 @@ class User < ApplicationRecord
         setSubjects(value)
       when :other_interests
         setOtherInterests(value)
-      # when :skills
-      #   setSkillsLevels(value.map { |sk| { name: sk, level: ?????? } })
+      when :skills
+        setSkillsLevels(value.map { |sk| { name: sk } })
       end
     end
     true
