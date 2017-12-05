@@ -1,0 +1,70 @@
+<h2>Account details</h2>
+
+<div class="field">
+  <%= f.label :name %><br />
+  <%= f.text_field :name, autofocus: true %>
+</div>
+
+<div class="field">
+  <%= f.label :email %><br />
+  <%= f.email_field :email %>
+</div>
+
+<div class="field">
+  <%= f.label :password %>
+  <% if @minimum_password_length %>
+  <em>(<%= @minimum_password_length %> characters minimum)</em>
+  <% end %><br />
+  <%= f.password_field :password, autocomplete: "off" %>
+</div>
+
+<div class="field">
+  <%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation, autocomplete: "off" %>
+</div>
+
+<div class="field">
+  <%= f.label :avatar %><br />
+  <%= image_tag(session[:sign_up_params]['avatar_cache']) if session[:sign_up_params]['avatar_cache'] %> <!-- user feedback ? -->
+  <%= f.file_field :avatar %>
+</div>
+
+
+<div class="field">
+  <% lon = lat = '' %>
+  <% if session[:sign_up_params]['lonlat'] %>
+    <% lon = session[:sign_up_params]['lonlat'][0] %>
+    <% lat = session[:sign_up_params]['lonlat'][1] %>
+  <% end %>
+  <!-- use hidden_field_tag instead -->
+  <%= label_tag 'lon' %><br />
+  <%= text_field_tag 'user[lonlat][]', lon, id: 'lon' %>
+  <%= label_tag 'lat' %><br />
+  <%= text_field_tag 'user[lonlat][]', lat, id: 'lat' %>
+</div>
+
+<div class="field">
+  <%= f.label :address_line1 %><br />
+  <%= f.text_field :address_line1 %>
+</div>
+
+<div class="field">
+  <%= f.label :locality %><br />
+  <%= f.text_field :locality %>
+</div>
+
+<div class="field">
+  <%= f.label :post_code %><br />
+  <%= f.text_field :post_code %>
+</div>
+
+<div class="field">
+  <%= f.label :country %><br />
+  <%= f.text_field :country %>
+</div>
+
+<!-- end location -->
+
+<div class="actions">
+  <%= f.submit 'Add some details about yourself', class: 'Button Button--primary' %>
+</div>

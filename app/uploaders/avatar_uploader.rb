@@ -1,5 +1,16 @@
 class AvatarUploader < CarrierWave::Uploader::Base
 
+  # remove cached tempfiles straight after :store
+  after :store, :clean_cached_files
+
+  # initialize with custom cache_id without override initialize
+  def self.new_with_cache_id(id)
+    CarrierWave.clean_cached_files!(60 * 60) # clean 1 hour old cached files
+    instance = new
+    instance.instance_variable_set(:@cache_id, id)
+    instance
+  end
+
   # TODO - resize and make thumbs?? read docs
 
   # Include RMagick or MiniMagick support:
@@ -47,5 +58,15 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  private
+
+  # remove public/uploads/temp/{avatar_cache_id}
+  def clean_cached_files(*args)
+    return unless model && model.respond_to?(:avatar_cache) && !model.avatar_cache.blank?
+    model_cache_dir = File.dirname Rails.public_path.join(cache_dir, model.avatar_cache)
+    return unless File.directory?(model_cache_dir)
+    FileUtils.rm_rf(model_cache_dir) unless model_cache_dir == Rails.public_path.join(cache_dir)
+  end
 
 end
