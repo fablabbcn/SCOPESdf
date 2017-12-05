@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20171203165748) do
-=======
 ActiveRecord::Schema.define(version: 20171205163159) do
->>>>>>> skill_tags level: default 0 & validate presence
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,11 +107,6 @@ ActiveRecord::Schema.define(version: 20171205163159) do
     t.index ["name"], name: "index_contexts_on_name", using: :btree
   end
 
-<<<<<<< HEAD
-  create_table "generic_tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string "name", null: false
-    t.index ["name"], name: "index_generic_tags_on_name", using: :btree
-=======
   create_table "county", primary_key: "cntyidfp", id: :string, limit: 5, force: :cascade do |t|
     t.serial   "gid",                                                    null: false
     t.string   "statefp",  limit: 2
@@ -181,14 +172,6 @@ ActiveRecord::Schema.define(version: 20171205163159) do
     t.geometry "the_geom", limit: {:srid=>4269, :type=>"multi_polygon"}
     t.index ["gid"], name: "uidx_cousub_gid", unique: true, using: :btree
     t.index ["the_geom"], name: "tige_cousub_the_geom_gist", using: :gist
-  end
-
-  create_table "difficulty_levels", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.integer "level",  default: 0, null: false
-    t.integer "metric", default: 0, null: false
-    t.index ["level"], name: "index_difficulty_levels_on_level", using: :btree
-    t.index ["metric"], name: "index_difficulty_levels_on_metric", using: :btree
->>>>>>> skill_tags level: default 0 & validate presence
   end
 
   create_table "direction_lookup", primary_key: "name", id: :string, limit: 20, force: :cascade do |t|
@@ -334,6 +317,11 @@ ActiveRecord::Schema.define(version: 20171205163159) do
     t.index ["tlid", "statefp"], name: "idx_tiger_featnames_tlid_statefp", using: :btree
   end
 
+  create_table "generic_tags", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.index ["name"], name: "index_generic_tags_on_name", using: :btree
+  end
+
   create_table "geocode_settings", primary_key: "name", id: :text, force: :cascade do |t|
     t.text "setting"
     t.text "unit"
@@ -418,13 +406,6 @@ ActiveRecord::Schema.define(version: 20171205163159) do
     t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
   end
 
-<<<<<<< HEAD
-  create_table "mastery_levels", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.integer "level",  default: 0, null: false
-    t.integer "metric", default: 0, null: false
-    t.index ["level"], name: "index_mastery_levels_on_level", using: :btree
-    t.index ["metric"], name: "index_mastery_levels_on_metric", using: :btree
-=======
   create_table "loader_lookuptables", primary_key: "lookup_name", id: :text, force: :cascade do |t|
     t.integer "process_order",                   default: 1000,  null: false
     t.text    "table_name"
@@ -458,7 +439,13 @@ ActiveRecord::Schema.define(version: 20171205163159) do
     t.text "staging_fold"
     t.text "data_schema"
     t.text "staging_schema"
->>>>>>> skill_tags level: default 0 & validate presence
+  end
+
+  create_table "mastery_levels", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.integer "level",  default: 0, null: false
+    t.integer "metric", default: 0, null: false
+    t.index ["level"], name: "index_mastery_levels_on_level", using: :btree
+    t.index ["metric"], name: "index_mastery_levels_on_metric", using: :btree
   end
 
   create_table "org_tags", force: :cascade do |t|
