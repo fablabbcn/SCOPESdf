@@ -33,6 +33,7 @@ import Textarea	from "./components/Textarea"
 import Tooltips	from "./components/Tooltips"
 import UserStatus	from "./components/UserStatus"
 import SubNavigation	from "./components/SubNavigation"
+import Alert	from "./components/Alert"
 
 var ScopesDF = {
 
@@ -57,6 +58,7 @@ var ScopesDF = {
 
 		ExternalLinks()
 
+		Alert()
 		Auth()
 		Carousel()
 		Choices()
