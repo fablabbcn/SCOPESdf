@@ -8,14 +8,20 @@
           Step <%= index + 1 %>
         </div>
         <div class="EditList__duration">
+          <% if step.duration > 0 %>
           <%= distance_of_time_in_words(step.duration * 60) %>
+          <% end %>
         </div>
         <div class="EditList__title">
           <%= step.name %>
         </div>
-        <%= link_to "Edit step", edit_lesson_step_path(id: step.id, lesson_id: @lesson_obj.id, form_step: @form_step), class: 'EditList__edit' %>
+        <% if step != @step_obj %>
+          <%= link_to "Edit step", edit_lesson_step_path(id: step.id, lesson_id: @lesson_obj.id, form_step: @form_step), class: 'EditList__edit' %>
+        <% else %>
+          <%= link_to "Editing", edit_lesson_step_path(id: step.id, lesson_id: @lesson_obj.id, form_step: @form_step), class: 'EditList__edit EditList__edit--active' %>
+        <% end %>
         <% if @lesson_obj.steps.count >= 2 %>
-        <%= link_to '<span>Remove</span>'.html_safe, lesson_step_path(id: step.id, lesson_id: @lesson_obj.id, form_step: @form_step), method: :delete, confirm: "Are you sure?", class: 'EditList__remove' %>
+          <%= link_to '<span>Remove</span>'.html_safe, lesson_step_path(id: step.id, lesson_id: @lesson_obj.id, form_step: @form_step), method: :delete, confirm: "Are you sure?", class: 'EditList__remove' %>
         <% end %>
       </div>
     </li>
