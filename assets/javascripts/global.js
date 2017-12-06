@@ -32,6 +32,7 @@ import SubHeader	from "./components/SubHeader"
 import Textarea	from "./components/Textarea"
 import Tooltips	from "./components/Tooltips"
 import UserStatus	from "./components/UserStatus"
+import SubNavigation	from "./components/SubNavigation"
 
 var ScopesDF = {
 
@@ -73,6 +74,7 @@ var ScopesDF = {
 		Textarea()
 		Tooltips()
 		UserStatus()
+		SubNavigation()
 
 	}
 
