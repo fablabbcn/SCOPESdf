@@ -22,6 +22,9 @@
 
 class Step < ApplicationRecord
 
+  # Determines whether a new step should be set up after saving
+  attribute :new_after_save, :boolean
+
   validates :lesson_id, presence: true
 
   before_create :check_step_number, :if => :new_record?
