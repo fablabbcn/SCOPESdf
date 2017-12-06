@@ -64,6 +64,10 @@
 
 }
 
+.EditList__edit--active {
+  color: $color-highlight-primary;
+}
+
 .EditList__remove {
   background-image: url('images/icon-trash-dark.svg');
   background-position: center;
