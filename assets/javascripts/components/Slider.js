@@ -22,7 +22,8 @@ export default function Slider() {
 		// Create the slider
     noUiSlider.create($control[0], {
       start: config.start,
-      connect: config.connect,
+			connect: config.connect,
+			animate: false,
       step: config.step,
       format: {
 	      to: ( value ) => {
