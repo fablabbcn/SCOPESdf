@@ -20,11 +20,6 @@ export default function Auth() {
 
 }
 
-/**
- * Sets the height of the auth container to the viewport minus header and footer
- * @param {string} header element
- * @returns {element} header element
- */
 function setHeight() {
 
 
