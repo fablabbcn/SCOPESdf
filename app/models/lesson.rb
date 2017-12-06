@@ -549,8 +549,7 @@ class Lesson < ApplicationRecord
           formulas: self.key_formulas.present?,
           tags: self.tags.present?
         },
-        instructions:{ steps: false}, # TODO - needs updating with steps!
-        outcomes: { outcomes: false}
+        instructions:{ steps: false} # TODO - needs updating with steps!
     }
   end
 
