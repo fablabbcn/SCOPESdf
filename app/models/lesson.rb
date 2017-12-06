@@ -116,10 +116,10 @@ class Lesson < ApplicationRecord
   def removeTeachingRange
     self.lesson_tags.where(taggable_type: "TeachingRange").destroy_all
   end
-  def getTeachingRange_formatted
+  def teaching_range_formatted
     range = {}
-    if getTeachingRange.present?
-      range = getTeachingRange
+    if teaching_range.present?
+      range = teaching_range
       range = {range_start: TeachingRange.format(range[:range_start].gsub("start_", "")), range_end: TeachingRange.format(range[:range_end].gsub("end_", ""))}
     end
     range
