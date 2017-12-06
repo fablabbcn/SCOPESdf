@@ -34,6 +34,8 @@ class StepsController < ApplicationController
 
   def edit
 
+    puts params
+
     # Assign the @form_step var, casting as integer instead of a string
     @form_step = params[:form_step].present? ? params[:form_step].to_i : 1
 
@@ -49,36 +51,27 @@ class StepsController < ApplicationController
 
     @step_obj = Step.new(step_params)
 
-    # TODO: if create param is set, we need to redirect to new
-
-    respond_to do |format|
-      if @step_obj.save
-        format.html { redirect_to @step_obj, notice: 'Step was successfully created.' }
-        format.json { render :show, status: :created, location: @step_obj }
-      else
-        format.html { render :new }
-        format.json { render json: @step_obj.errors, status: :unprocessable_entity }
-      end
+    if @step_obj.save
+      redirect_to @step_obj, notice: nil # don't show a message to the user
+    else
+      render :new
     end
 
   end
 
   def update
 
-    respond_to do |format|
-      
-      puts step_params.inspect
+    puts step_params.inspect
 
-      filtred_params = step_params
+    # Determine whether to just show the just-saved step, or create a new one
+    redirection = step_params[:new_after_save] == 'true' ? new_lesson_step_path(lesson_id: @lesson_obj.id) : edit_lesson_step_path(@lesson_obj, @step_obj) 
 
-      if @step_obj.update(filtred_params)
-        format.html { redirect_to edit_lesson_step_path(@lesson_obj, @step_obj), notice: 'Step was successfully updated.' }
-        format.json { render :show, status: :ok, location: @step_obj }
-      else
-        format.html { render :edit }
-        format.json { render json: @step_obj.errors, status: :unprocessable_entity }
-      end
+    if @step_obj.update(step_params)
+      redirect_to redirection, notice: 'Your step was successfully updated.'
+    else
+      render :edit
     end
+
   end
 
   def destroy
@@ -96,12 +89,12 @@ class StepsController < ApplicationController
       @step_obj.destroy
 
       # Redirect to the lessons first step
-      redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @lesson_obj.steps.first.id), notice: 'Step was deleted.'
+      redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @lesson_obj.steps.first.id), notice: 'Your step was deleted.'
 
     else
 
       # Don't destroy the step, return to edit
-      redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @step_obj.id), notice: 'A lesson needs at least one step'
+      redirect_to edit_lesson_step_path(lesson_id: @lesson_obj.id, id: @step_obj.id), notice: 'A lesson needs at least one step.'
 
     end
 
@@ -122,6 +115,7 @@ class StepsController < ApplicationController
         :name,
         :duration,
         :description,
+        :new_after_save,
         materials: [],
         fabrication_equipment: [],
         software: [],
