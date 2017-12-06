@@ -17,9 +17,9 @@ export default function Form() {
 
 	// if we hit a save and create new button, we need to toggle the create hidden
 	// field
-	$('.FormField__action--create').on('click', function(){
-		$('input[name="create"]').val(true)
-		return false
+	$('.FormField__action--new').on('click', (ev) => {
+		//ev.preventDefault()
+		$('input[name*="new_after_save"]').val(true)
 	})
 
 }
