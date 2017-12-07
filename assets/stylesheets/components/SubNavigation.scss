@@ -132,6 +132,9 @@ span.SubNavigation__dot {
   .SubNavigation__item--icon--ellipsis {
     background-image: url('images/icon-ellipsis-mid.svg');
   }
+  .SubNavigation__item--icon--completed {
+    background-image: url('images/icon-check-highlight.svg');
+  }
   .SubNavigation__item--icon--edit {
     &.SubNavigation__item--active {
       background-image: url('images/icon-edit-highlight.svg');
