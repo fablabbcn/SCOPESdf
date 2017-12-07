@@ -61,6 +61,8 @@ export default function Slider() {
 
 				valueString = `${value0} — ${value1}`
 
+				// Set the value of the hidden input
+				$input.val(`{ start: ${values[0]}, end: ${values[1]} }`)
 
 			} else {
 
@@ -75,10 +77,10 @@ export default function Slider() {
 
 				valueString = `${value0}`
 
-			}
+				// Set the value of the hidden input
+				$input.val(values)
 
-			// Set the value of the hidden input
-			$input.val(values)
+			}
 
 			// Set the html in the value container
 			$value.html(valueString)
