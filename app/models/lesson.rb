@@ -41,10 +41,10 @@ class Lesson < ApplicationRecord
   end
 
   before_save do
-    self.key_concepts = self.key_concepts.reject { |x| x.empty? } if self.key_concepts.present?
-    self.key_vocabularies = self.key_vocabularies.reject { |x| x.empty? } if self.key_vocabularies.present?
-    self.key_formulas =  self.key_formulas.reject { |x| x.empty? } if self.key_formulas.present?
-    self.fabrication_tools = self.fabrication_tools.reject { |x| x.empty? } if self.fabrication_tools.present?
+    self.key_concepts = self.key_concepts.reject {|x| x.empty?} if self.key_concepts.present?
+    self.key_vocabularies = self.key_vocabularies.reject {|x| x.empty?} if self.key_vocabularies.present?
+    self.key_formulas = self.key_formulas.reject {|x| x.empty?} if self.key_formulas.present?
+    self.fabrication_tools = self.fabrication_tools.reject {|x| x.empty?} if self.fabrication_tools.present?
   end
 
 
@@ -59,7 +59,6 @@ class Lesson < ApplicationRecord
 
   has_many :lessons_standards
   has_many :standards, through: :lessons_standards
-
 
 
   # TODO - search for filter on lesson_tags
@@ -113,13 +112,15 @@ class Lesson < ApplicationRecord
     range = self.lesson_tags.where(taggable_type: "TeachingRange").first
     {range_start: range.taggable.range_start, range_end: range.taggable.range_end} if range.present? && range.taggable.present?
   end
+
   def removeTeachingRange
     self.lesson_tags.where(taggable_type: "TeachingRange").destroy_all
   end
-  def getTeachingRange_formatted
+
+  def teaching_range_formatted
     range = {}
-    if getTeachingRange.present?
-      range = getTeachingRange
+    if teaching_range.present?
+      range = teaching_range
       range = {range_start: TeachingRange.format(range[:range_start].gsub("start_", "")), range_end: TeachingRange.format(range[:range_end].gsub("end_", ""))}
     end
     range
@@ -132,21 +133,26 @@ class Lesson < ApplicationRecord
       self.lesson_tags << LessonTag.new(taggable: s)
     }
   end
+
   def setSubjects_id(id_array)
     id_array.map {|n|
       s = Subject.find(n)
       self.lesson_tags << LessonTag.new(taggable: s)
     }
   end
+
   def subjects
     self.lesson_tags.where(taggable_type: "Subject").map {|x| y = x.taggable; y.name}
   end
+
   def subject_ids
     self.lesson_tags.where(taggable_type: "Subject").map {|x| y = x.taggable; y.id}
   end
+
   def removeSubject(string)
     self.lesson_tags.where(taggable_type: "Subject").map {|x| y = x.taggable; x.destroy if string.downcase == y.name}
   end
+
   def removeSubjects
     self.lesson_tags.where(taggable_type: "Subject").destroy_all
   end
@@ -229,18 +235,22 @@ class Lesson < ApplicationRecord
       self.lesson_tags << LessonTag.new(taggable: c)
     }
   end
+
   def setContext_id(id_array)
     id_array.map {|n|
       c = Context.find(n)
       self.lesson_tags << LessonTag.new(taggable: c)
     }
   end
+
   def context
     self.lesson_tags.where(taggable_type: "Context").map {|x| y = x.taggable; y.name}
   end
+
   def context_ids
     self.lesson_tags.where(taggable_type: "Context").map {|x| y = x.taggable; y.id}
   end
+
   def removeContext
     self.lesson_tags.where(taggable_type: "Context").destroy_all
   end
@@ -282,9 +292,11 @@ class Lesson < ApplicationRecord
       self.lesson_tags << LessonTag.new(taggable: gt)
     }
   end
+
   def tags
     self.lesson_tags.where(taggable_type: "GenericTag").map {|x| y = x.taggable; y.name}
   end
+
   def removeTags
     self.lesson_tags.where(taggable_type: "GenericTag").destroy_all
   end
@@ -462,36 +474,36 @@ class Lesson < ApplicationRecord
   end
 
 
-
-
   def standards_array
     self.standards["standards"] if self.standards.present?
   end
+
   def append_standards(standard)
-    if self.standards_array.select{|h| h["name"] == standard["name"]}.count > 0
+    if self.standards_array.select {|h| h["name"] == standard["name"]}.count > 0
       return false
     end
     standards = self.standards_array
     standards.append(standard)
     self.override_standards(standards)
   end
+
   def delete_standards(name)
     standards = self.standards_array
-    standards.reject!{|s| s["name"] == name }
-    returnable = ( self.standards_array.count == standards.count)
+    standards.reject! {|s| s["name"] == name}
+    returnable = (self.standards_array.count == standards.count)
     self.override_standards(standards)
     !returnable
   end
+
   def sanitize_standards!
     self.standards = {standards: []}
     self.save!
   end
+
   def override_standards(given)
     self.standards = {standards: given}
     self.save
   end
-
-
 
 
   def stats
@@ -516,33 +528,45 @@ class Lesson < ApplicationRecord
 
 
   def publishable_values
-    check_against = {
-        name: self.name.present?,
-        topline: self.topline.present?,
-        authors: self.authors.present?,
-        # organizations: self.getOrgs.present?,
+    {
+      overview: {
+        title: self.name.present?,
+        quick_pitch: self.topline.present?,
+        summary: self.summary.present?,
         learning_objectives: self.learning_objectives.present?,
-        description: self.description.present?,
-        # assessment_criteria: self.assessment_criteria.present?,
-        # further_readings: self.further_readings.present?,
-
-        # TODO - add standards
-
-        # standards:
-        #     (self.standards.present? && self.standards["standards"].present? && self.standards["standards"].count > 0 && self.standards["standards"].first["name"].present? && self.standards["standards"].first["descriptions"].present?),
-
-        subjects: self.getSubjects.present?,
-        mastery_level: self.masteryLevels.present? && self.masteryLevels.count == 2,
-
-        steps: self.steps.present? && self.steps.first.summary.present? && self.steps.first.description.present?
+        teacher_notes: self.teacher_notes.present?,
+        assessment_criteria: self.assessment_criteria.present?
+      },
+      standards:{
+        standards: self.standards.present? # TODO - needs updating with form!
+      },
+        details: {
+          teaching_range: self.teaching_range.present? && self.teaching_range[:range_start].present? && self.teaching_range[:range_end].present?,
+          subjects: self.subjects.present?,
+          fabrication_tools: self.fabrication_tools.present?,
+          concepts: self.key_concepts.present?,
+          vocabularies: self.key_vocabularies.present?,
+          formulas: self.key_formulas.present?,
+          tags: self.tags.present?
+        },
+        instructions:{ steps: false}, # TODO - needs updating with steps!
+        outcomes: { outcomes: true}
     }
   end
 
-  def publishable?
+  def publishable?(section = nil)
     ready = true
-    self.publishable_values.each {|k, v|
-      ready = v && ready
-    }
+    unless section # if no param
+      self.publishable_values.each {|k, v|
+        v.each {|k1, v1|
+          ready = v1 && ready
+        }
+      }
+    else # if param
+      self.publishable_values[section].each{|k,v|
+        ready = v && ready
+      }
+    end
     ready
   end
 
