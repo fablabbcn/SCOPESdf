@@ -3,7 +3,7 @@ ruby '2.3.4'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
 gem 'pg'
-gem 'activerecord-postgis-adapter'
+gem 'activerecord-postgis-adapter', '~> 4.0.4'
 
 gem 'puma', '~> 3.0'
 gem 'sass-rails'
@@ -23,7 +23,7 @@ gem 'bootstrap-sass'
 gem 'haml'
 gem 'rails_utils'
 
-gem 'devise'
+gem 'devise', '~> 4.3.0'
 gem 'high_voltage'
 gem 'pundit'
 
@@ -32,7 +32,7 @@ gem 'option'
 
 gem 'rb-readline'
 
-gem 'carrierwave', '~> 1.0' # file form
+gem 'carrierwave', '~> 1.2.1' # file form
 gem 'fog'
 gem 'fog-aws'
 

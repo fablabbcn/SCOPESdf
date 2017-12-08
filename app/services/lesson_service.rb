@@ -24,7 +24,6 @@ class LessonService
       updateDifficultyLevel!
       updateSkills!
       updateContext!
-      updateCollectionTag!
       updateTags!
       @lesson
     end

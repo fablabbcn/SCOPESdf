@@ -36,10 +36,10 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
   after_initialize :set_default_role, :if => :new_record?
   before_create :set_default_notifications, :if => :new_record?
-
+  before_validation :parse_lonlat, on: [:create, :update]
 
   mount_uploader :avatar, AvatarUploader
-
+  attr_accessor :avatar_cache
 
   def set_default_role
     self.role ||= :user
@@ -165,10 +165,10 @@ class User < ApplicationRecord
 
 
   def setSkillsLevels(hash_array) # [{:name, :level}]
-    hash_array.map{ |h|
+    hash_array.each do |h|
       skill = Skill.find_or_create_by(name: h[:name].downcase)
-      skill.skill_tags << SkillTag.new(taggable: self, level: h[:level])
-    }
+      self.skill_tags << skill.skill_tags.create(taggable: self, level: h[:level] || 0 )
+    end
   end
   def getSkillsLevels
     SkillTag.where(taggable_type: "User", taggable_id: self.id).map{|x| y = x.skill; {name: y.name, level: x.level}}
@@ -194,8 +194,31 @@ class User < ApplicationRecord
     name
   end
 
+  # use setSkillsLevels, setOtherInterests, setSubjects, setInvolvements
+  def add_other_information(hash)
+    hash.each_pair do |key, value|
+      case key
+      when :involvements
+        setInvolvements(value)
+      when :subjects
+        setSubjects(value)
+      when :other_interests
+        setOtherInterests(value)
+      when :skills
+        setSkillsLevels(value.map { |sk| { name: sk } })
+      end
+    end
+    true
+  rescue => e
+    errors[:additional_information] << e.message
+    false
+  end
+
   private
 
-
-
+  def parse_lonlat
+    return unless self.lonlat.is_a?(Array)
+    factory = RGeo::Geographic.simple_mercator_factory
+    self.lonlat = factory.point(self.lonlat[0], self.lonlat[1])
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203165748) do
+ActiveRecord::Schema.define(version: 20171205163159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,10 +161,10 @@ ActiveRecord::Schema.define(version: 20171203165748) do
   end
 
   create_table "skill_tags", force: :cascade do |t|
-    t.uuid    "taggable_id",   null: false
-    t.string  "taggable_type", null: false
-    t.integer "skill_id",      null: false
-    t.integer "level",         null: false
+    t.uuid    "taggable_id",               null: false
+    t.string  "taggable_type",             null: false
+    t.integer "skill_id",                  null: false
+    t.integer "level",         default: 0, null: false
     t.index ["level"], name: "index_skill_tags_on_level", using: :btree
     t.index ["skill_id"], name: "index_skill_tags_on_skill_id", using: :btree
     t.index ["taggable_type", "taggable_id"], name: "index_skill_tags_on_taggable_type_and_taggable_id", using: :btree
