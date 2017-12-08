@@ -133,54 +133,63 @@ class LessonsController < ApplicationController
 
   end
 
-  def upload_file_____________!
+  def upload_file
+    @lesson = Lesson.find(params[:id])
+    # puts params.inspect
+    #
+    # # TODO - AUTHORIZE USER!!!!!
+    puts params[:files].inspect
+    # puts file_params.inspect
 
-    # Dropzones submit the file here
-
-    # Fetch the lesson by the provided id
-    @lesson_obj = Lesson.find(params[:id])
-
-    # The submitted file: multipe files can be uploaded so this will be an array
-    file = params[:files]
-
-
-    # The attribute in which file should be stored (an array atribute)
-    # for example, 'assessment_criteria_files'
-    attribute = params[:attribute]
-
+    # puts "BELOW ME BITCH\n\n\n"
+    files = params[:files]
     files_hash = {}
-    files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
-    files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
+    files_hash.merge!({assessment_criteria_files: files}) ## CHECK WITH OTHERS
+    returning = []
 
-    LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash)
+    files_hash[:assessment_criteria_files].map{|k,v|
+      @lesson.addFiles(v, :assessment_criteria)
+    }
+    @lesson.save!
 
-    # TODO: add the file to the lesson via the attribute provided
 
-    # Return the attribute as json
-    render :json => @lesson_obj.send(attribute)
+    if files_hash[:assessment_criteria_files].present?
+      for i in 0..files_hash.count-1
+        @lesson.reload
+        x = @lesson.assessment_criteria_files[i]
+        puts JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria")
+        returning.append( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
+      end
+    elsif files_hash[:outcome_files].present?
+      for i in 0..files_hash.count-1
+        @lesson.reload
+        x = @lesson.outcome_files[i]
+        returning.append(JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
+      end
+    end
 
+
+    respond_to do |format|
+      format.html {
+        render :json => returning,
+               :content_type => 'text/html',
+               :layout => false
+      }
+      format.json {
+        render :json => { :files => returning }
+      }
+    end
   end
 
   def delete_file
-
-    # Fetch the lesson by the provided id
     @lesson_obj = Lesson.find(params[:id])
-
-    # The file name to be deleted
-    file_name = params[:file_name]
-
-    # The attribute from which file should be remove
-    # for example, 'assessment_criteria_files'
-    attribute = params[:attribute]
-
-    # TODO: remove the specified file and update the lesson
-
+    puts params.inspect
+    file_name = params[:name]
+    attribute = params[:attr]
+    @lesson_obj.removeFileWithName(attribute.to_sym,file_name)
     # Return the attribute as json
     render :json => @lesson_obj.send(attribute)
-
   end
-
-
 
   def publish
     # check to make sure current user is owner and make inactive
@@ -230,67 +239,6 @@ class LessonsController < ApplicationController
 
   def draft
 
-  end
-
-  def upload_file
-    @lesson = Lesson.find(params[:id])
-
-    # TODO - AUTHORIZE USER!!!!!
-    puts params[:files]
-    # puts file_params.inspect
-
-    files = [params[:files]]
-    #files = file_params[:files]
-    # TODO - check to make sure you are uploading file in array
-
-    files_hash = {}
-    files_hash.merge!({assessment_criteria_files: files}) if params[:attr] == "assessment_criteria_files"
-    files_hash.merge!({outcome_files: files}) if file_params[:attr] == "outcome_files"
-    # puts "uploading files"
-    # puts files_hash.inspect
-
-    files_hash = {assessment_criteria_files: files}
-
-    #LessonService.add_file_by_type_to_id(@lesson.id, files_hash)
-    @lesson.reload
-
-    returning = []
-    puts files_hash.inspect
-
-
-    if files_hash[:assessment_criteria_files].present?
-      print "RUNNING"
-      uploaded_acf = files.each{|x|
-        @lesson.find_carrier_wave_with_original_name(x.original_filename, :assessment_criteria)
-      }
-      for i in 0..uploaded_acf.count-1
-        x = @lesson.assessment_criteria_files[i]
-        @lesson.reload
-        returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
-      end
-    elsif files_hash[:outcome_files].present?
-      uploaded_of = files.each{|x|
-        @lesson.find_carrier_wave_with_original_name(x.original_filename, :outcome_files)
-      }
-      puts uploaded_of.count
-      for i in 0..uploaded_of.count-1
-        @lesson.reload
-        x = @lesson.outcome_files[i]
-        returning.append (JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
-      end
-    end
-
-
-    respond_to do |format|
-      format.html {
-        render :json => returning.to_json,
-               :content_type => 'text/html',
-               :layout => false
-      }
-      format.json {
-        render :json => { :files => returning }
-      }
-    end
   end
 
   def file_upload_load

@@ -340,7 +340,8 @@ class Lesson < ApplicationRecord
         puts "assessment saving"
         collection = self.assessment_criteria_files
         collection ||= []
-        collection += file
+        collection += [file]
+        puts "current collection", collection
         self.assessment_criteria_files = collection
         self.save!
         self.reload
@@ -349,7 +350,7 @@ class Lesson < ApplicationRecord
         puts "outcome saving"
         collection = self.outcome_files
         collection ||= []
-        collection += file
+        collection += [file]
         self.outcome_files = collection
         self.save!
         self.reload
@@ -386,6 +387,7 @@ class Lesson < ApplicationRecord
         }
         # puts index
         remain_files = self.assessment_criteria_files # copy the array
+        return unless index
         deleted_file = remain_files.delete_at(index) # delete the target image
         deleted_file.try(:remove!) # delete image from S3
         if remain_files.empty?
@@ -404,9 +406,9 @@ class Lesson < ApplicationRecord
           end
         }
         # puts index
-
         remain_files = self.outcome_files # copy the array
         deleted_file = remain_files.delete_at(index) # delete the target image
+        return unless index
         deleted_file.try(:remove!) # delete image from S3
         if remain_files.empty?
           self.removeFiles(:outcome)
