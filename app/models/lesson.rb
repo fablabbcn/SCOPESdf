@@ -327,7 +327,7 @@ class Lesson < ApplicationRecord
 
 
   mount_uploaders :assessment_criteria_files, SupportingFileUploader
-  mount_uploaders :outcome_files, SupportingFileUploader
+  mount_uploaders :outcome_files, ImageFileUploader
 
 
   def addFiles(file, sym)

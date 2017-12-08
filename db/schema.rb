@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205163159) do
+ActiveRecord::Schema.define(version: 20171208220745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -187,7 +187,6 @@ ActiveRecord::Schema.define(version: 20171205163159) do
     t.integer  "duration",              default: 0,  null: false
     t.string   "description",           default: "", null: false
     t.string   "images",                default: [],              array: true
-    t.json     "materials"
     t.string   "tools",                                           array: true
     t.string   "design_files",          default: [],              array: true
     t.string   "external_links",                                  array: true
@@ -197,6 +196,7 @@ ActiveRecord::Schema.define(version: 20171205163159) do
     t.string   "software",              default: [],              array: true
     t.string   "fabrication_equipment", default: [],              array: true
     t.string   "name"
+    t.string   "materials",             default: [],              array: true
     t.index ["lesson_id"], name: "index_steps_on_lesson_id", using: :btree
   end
 

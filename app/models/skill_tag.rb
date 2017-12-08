@@ -6,7 +6,7 @@
 #  taggable_id   :uuid             not null
 #  taggable_type :string           not null
 #  skill_id      :integer          not null
-#  level         :integer          not null
+#  level         :integer          default(0), not null
 #
 
 class SkillTag < ApplicationRecord

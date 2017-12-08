@@ -8,7 +8,6 @@
 #  duration              :integer          default(0), not null
 #  description           :string           default(""), not null
 #  images                :string           default([]), is an Array
-#  materials             :json
 #  tools                 :string           is an Array
 #  design_files          :string           default([]), is an Array
 #  external_links        :string           is an Array
@@ -18,6 +17,7 @@
 #  software              :string           default([]), is an Array
 #  fabrication_equipment :string           default([]), is an Array
 #  name                  :string
+#  materials             :string           default([]), is an Array
 #
 
 class Step < ApplicationRecord
@@ -32,6 +32,8 @@ class Step < ApplicationRecord
   before_save do
     self.software = self.software.reject { |x| x.empty? } if self.software.present?
     self.fabrication_equipment = self.fabrication_equipment.reject { |x| x.empty? } if self.fabrication_equipment.present?
+    self.materials = self.materials.reject { |x| x.empty? } if self.materials.present?
+
   end
 
 

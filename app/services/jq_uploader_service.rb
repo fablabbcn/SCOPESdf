@@ -17,6 +17,8 @@ class JqUploaderService
     json_obj
   end
 
+
+
   def self.convert_to_jq_upload_step(carrier_item, lesson_id, step_id, symb)
     name = carrier_item.path.split("/").last
     thumbnail =  carrier_item.url.to_s

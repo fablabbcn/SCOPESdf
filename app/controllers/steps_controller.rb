@@ -64,6 +64,8 @@ class StepsController < ApplicationController
     respond_to do |format|
       puts step_params.inspect
 
+      puts "stes upating here thoughhh"
+
       # # TODO - duration fails because no slider...
       filtred_params = step_params
       # filtred_params.delete(:duration)
@@ -116,6 +118,7 @@ class StepsController < ApplicationController
         :name,
         :duration,
         :description,
+        :summary,
         materials: [],
         fabrication_equipment: [],
         software: [],
