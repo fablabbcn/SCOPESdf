@@ -186,9 +186,9 @@ class LessonsController < ApplicationController
     puts params.inspect
     file_name = params[:name]
     attribute = params[:attr]
-    @lesson_obj.removeFileWithName(attribute.to_sym,file_name)
+    state = @lesson_obj.removeFileWithName(attribute.to_sym,file_name)
     # Return the attribute as json
-    render :json => @lesson_obj.send(attribute)
+    render :json => {deleted: state}
   end
 
   def publish
