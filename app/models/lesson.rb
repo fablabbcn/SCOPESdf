@@ -407,8 +407,8 @@ class Lesson < ApplicationRecord
         }
         # puts index
         remain_files = self.outcome_files # copy the array
-        deleted_file = remain_files.delete_at(index) # delete the target image
         return unless index
+        deleted_file = remain_files.delete_at(index) # delete the target image
         deleted_file.try(:remove!) # delete image from S3
         if remain_files.empty?
           self.removeFiles(:outcome)

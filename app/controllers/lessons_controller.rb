@@ -135,25 +135,29 @@ class LessonsController < ApplicationController
 
   def upload_file
     @lesson = Lesson.find(params[:id])
-    # puts params.inspect
+     puts params.inspect
     #
     # # TODO - AUTHORIZE USER!!!!!
     puts params[:files].inspect
-    # puts file_params.inspect
+     puts file_params.inspect
 
-    # puts "BELOW ME BITCH\n\n\n"
+     puts "BELOW ME BITCH\n\n\n"
     files = params[:files]
     files_hash = {}
-    files_hash.merge!({assessment_criteria_files: files}) ## CHECK WITH OTHERS
+    puts "br"
+    puts files_hash
+    files_hash.merge!({assessment_criteria_files: files}) if params[:attr] == "assessment_criteria_files"
+    files_hash.merge!({outcome_files: files}) if params[:attr] == "outcome_files"
     returning = []
 
-    files_hash[:assessment_criteria_files].map{|k,v|
-      @lesson.addFiles(v, :assessment_criteria)
-    }
-    @lesson.save!
-
+    # @lesson.addFiles( files_hash[:outcome_files][0], :outcome_files)
 
     if files_hash[:assessment_criteria_files].present?
+      files_hash[:assessment_criteria_files].map{|k,v|
+        @lesson.addFiles(v, :assessment_criteria)
+      }
+      @lesson.save!
+
       for i in 0..files_hash.count-1
         @lesson.reload
         x = @lesson.assessment_criteria_files[i]
@@ -161,9 +165,15 @@ class LessonsController < ApplicationController
         returning.append( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
       end
     elsif files_hash[:outcome_files].present?
+      puts "handing outcome files here\n\n\n\n\n"
+      files_hash[:outcome_files].map{|k,v|
+        @lesson.addFiles(v, :outcome)
+      }
+      @lesson.save!
       for i in 0..files_hash.count-1
         @lesson.reload
         x = @lesson.outcome_files[i]
+        puts JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome")
         returning.append(JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
       end
     end
