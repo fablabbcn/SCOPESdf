@@ -8,7 +8,6 @@
 #  duration              :integer          default(0), not null
 #  description           :string           default(""), not null
 #  images                :string           default([]), is an Array
-#  materials             :json
 #  tools                 :string           is an Array
 #  design_files          :string           default([]), is an Array
 #  external_links        :string           is an Array
@@ -18,6 +17,7 @@
 #  software              :string           default([]), is an Array
 #  fabrication_equipment :string           default([]), is an Array
 #  name                  :string
+#  materials             :string           default([]), is an Array
 #
 
 class Step < ApplicationRecord
@@ -32,6 +32,8 @@ class Step < ApplicationRecord
   before_save do
     self.software = self.software.reject { |x| x.empty? } if self.software.present?
     self.fabrication_equipment = self.fabrication_equipment.reject { |x| x.empty? } if self.fabrication_equipment.present?
+    self.materials = self.materials.reject { |x| x.empty? } if self.materials.present?
+
   end
 
 
@@ -124,27 +126,28 @@ class Step < ApplicationRecord
 
 
 
-
   def addFiles(file, sym)
     returnable =""
-    # puts file
+    puts "FILE HERE THO"
+    puts file
+    puts sym
     case sym
       when :design_files
         puts "design_files saving"
         collection = self.design_files
-        collection += file
+        collection += [file]
         self.design_files = collection
         self.save!
         self.reload
         returnable = self.design_files.map {|x| x.url}
-      when :supporting_files
-        puts "supporting_files saving"
-        collection = self.supporting_files
-        collection += file
-        self.supporting_files = collection
+      when :images
+        puts "images saving"
+        collection = self.images
+        collection += [file]
+        self.images = collection
         self.save!
         self.reload
-        returnable = self.supporting_files.map {|x| x.url}
+        returnable = self.images.map {|x| x.url}
     end
     returnable
   end
@@ -156,16 +159,13 @@ class Step < ApplicationRecord
         self.remove_design_files!
         self.save!
         returnable = true
-      when :supporting_files
-        self.remove_supporting_files!
+      when :images
+        self.remove_images!
         self.save!
         returnable = true
     end
     returnable
   end
-
-  #~~~~~~~~~~
-
 
   def removeFileWithName(sym, name)
     name.gsub!(" ", "_")
@@ -180,6 +180,7 @@ class Step < ApplicationRecord
         }
         # puts index
         remain_files = self.design_files # copy the array
+        return unless index
         deleted_file = remain_files.delete_at(index) # delete the target image
         deleted_file.try(:remove!) # delete image from S3
         if remain_files.empty?
@@ -190,22 +191,23 @@ class Step < ApplicationRecord
         self.design_files_will_change!
         self.save!; self.reload
         returnable = true
-      when :supporting_files
+      when :images
         index = nil
-        self.supporting_files.each_with_index {|x, i|
+        self.images.each_with_index {|x, i|
           if (x.path.split("/").last.include?(name))
             index = i
           end
         }
-        remain_files = self.supporting_files # copy the array
+        remain_files = self.images # copy the array
+        return unless index
         deleted_file = remain_files.delete_at(index) # delete the target image
         deleted_file.try(:remove!) # delete image from S3
         if remain_files.empty?
-          self.removeFiles(:supporting_files)
+          self.removeFiles(:images)
         else
-          self.supporting_files = remain_files # re-assign back
+          self.images = remain_files # re-assign back
         end
-        self.supporting_files_will_change!
+        self.images_will_change!
         self.save!; self.reload
         returnable = true
     end
@@ -221,9 +223,9 @@ class Step < ApplicationRecord
     og_name.gsub!(" ", "_")
     self.reload
     case sym
-      when :supporting_files
+      when :images
         indexes = []
-        self.supporting_files.each_with_index {|x, i|
+        self.images.each_with_index {|x, i|
           if x.path.split("/").last.include?(og_name)
             indexes.append(i)
           end
