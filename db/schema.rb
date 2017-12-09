@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171209151747) do
+ActiveRecord::Schema.define(version: 20171209153937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,8 +177,8 @@ ActiveRecord::Schema.define(version: 20171209151747) do
   end
 
   create_table "standards", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string "name",         null: false
-    t.string "autocomplete"
+    t.string "name",                      null: false
+    t.string "autocomplete", default: [],              array: true
     t.index ["name"], name: "index_standards_on_name", using: :btree
   end
 
