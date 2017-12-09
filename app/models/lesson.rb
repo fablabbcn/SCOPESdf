@@ -22,6 +22,7 @@
 #  key_vocabularies          :string           default([]), is an Array
 #  key_formulas              :string           default([]), is an Array
 #  fabrication_tools         :string           default([]), is an Array
+#  duration                  :string
 #
 
 class Lesson < ApplicationRecord
@@ -48,10 +49,10 @@ class Lesson < ApplicationRecord
   end
 
 
-  #   validates :organization_exists
-  def organization_exists # TODO - validate existece of organization from lesson_tags
-    # not saved yet... so checking against query doesn't work *
-  end
+  # #   validates :organization_exists
+  # def organization_exists # TODO - validate existece of organization from lesson_tags
+  #   # not saved yet... so checking against query doesn't work *
+  # end
 
 
   has_many :steps, dependent: :destroy

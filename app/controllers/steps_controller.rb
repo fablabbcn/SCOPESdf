@@ -2,9 +2,9 @@ class StepsController < ApplicationController
 
   # Steps are children of lessons. This controller handles the CRUD of a step,
   # but must always have a lesson id provided.
-  skip_before_action :verify_authenticity_token
+  #skip_before_action :verify_authenticity_token
 
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_lesson, only: [:index, :new, :show, :edit, :update, :destroy]
   before_action :set_step, only: [:show, :edit, :update, :destroy]
 

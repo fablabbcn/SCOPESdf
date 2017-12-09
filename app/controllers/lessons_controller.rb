@@ -1,13 +1,13 @@
 class LessonsController < ApplicationController
 
-#  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, only: [:edit, :update, :delete_file, :upload_file]
   #skip_before_action :verify_authenticity_token
 
   before_action :set_lesson, only: [:show, :activity]
   before_action :set_contexts, only: [:index, :edit]
   before_action :set_subjects, only: [:index, :edit]
   before_action :set_collections, only: [:index, :edit]
-
+  before_action :set_fabrication_tools, only: [:index, :edit]
 
 
   def index
@@ -121,9 +121,9 @@ class LessonsController < ApplicationController
 
     #print params.inspect
 
-    puts params.inspect
-    puts "lesson_params hereeeeee"
-    puts lesson_params.inspect
+    # puts params.inspect
+    # puts "lesson_params hereeeeee"
+    # puts lesson_params.inspect
 
     # Update the lesson
     @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
@@ -386,7 +386,7 @@ class LessonsController < ApplicationController
   private
 
     def lesson_params
-      params.require(:lesson).permit(:name, :topline, :summary, :teacher_notes, :assessment_criteria, :state, :collection_tag, :mastery_level_students, :mastery_level_teachers, other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids: [], standards: [:name, descriptions: []], teaching_range: [:start, :end], subjects: [], fabrication_tools: [], key_concepts: [], key_vocabularies: [], key_formulas: [], skills: [:name, :level], contexts: [], tags: [])
+      params.require(:lesson).permit(:name, :topline, :summary, :teacher_notes, :assessment_criteria, :state, :collection_tag, :duration, :mastery_level_students, :mastery_level_teachers, other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids: [], standards: [:name, descriptions: []], teaching_range: [:start, :end], subjects: [], fabrication_tools: [], key_concepts: [], key_vocabularies: [], key_formulas: [], skills: [:name, :level], contexts: [], tags: [])
     end
 
     def step_params
@@ -419,6 +419,10 @@ class LessonsController < ApplicationController
 
     def set_subjects
       @subjects = Subject.all
+    end
+
+    def set_fabrication_tools
+      @fabrication_tools = ['Hardware', 'Electrical', 'Design', 'CNC Milling', 'Software']
     end
 
 end
