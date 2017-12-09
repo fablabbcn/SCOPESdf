@@ -18,7 +18,6 @@ class JqUploaderService
   end
 
 
-
   def self.convert_to_jq_upload_step(carrier_item, lesson_id, step_id, symb)
     name = carrier_item.path.split("/").last
     thumbnail =  carrier_item.url.to_s
@@ -27,7 +26,7 @@ class JqUploaderService
         "size" => carrier_item.size,
         "url" => carrier_item.url,
         "thumbnail_url" => carrier_item.url,
-        "delete_url" => "/lessons/#{lesson_id}/#{step_id}/delete_file/?name=#{name}&attr=#{symb}",
+        "delete_url" => "/lessons/#{lesson_id}/steps/#{step_id}/delete_file/?name=#{name}&attr=#{symb}",
         "delete_type" => "DELETE"
     }
     json_obj

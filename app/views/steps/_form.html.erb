@@ -8,7 +8,7 @@
     </div>
 
     <div class="FormField__input">
-      <input type="text" name="step[name]" class="Input Input--large" required />
+      <input type="text" name="step[name]" value="<%= @step_obj.name %>" class="Input Input--large" required />
     </div>
 
   </div>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="FormField__input">
-      <textarea id="step_description" name="step[description]" required></textarea>
+      <textarea id="step_description" name="step[description]"  required> <%= @step_obj.description %> </textarea>
     </div>
 
   </div>
@@ -59,7 +59,7 @@
     </div>
 
     <div class="FormField__input">
-      <div class="FileUpload" data-url="/" data-paramname="step[supporting_files]" id="step_supporting_files_1">
+      <div class="FileUpload" data-url="<%= lesson_step_upload_file_path(@lesson_obj.id, @step_obj.id, attr: :images) %>" id="step_supporting_files_1">
         <div class="FileUpload__message">
           Drag & drop files here - or click to browse<br />.jpg, .png, .pdf
         </div>

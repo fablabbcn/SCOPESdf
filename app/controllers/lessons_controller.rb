@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
 
 #  before_action :authenticate_user!, except: [:index, :show]
-  skip_before_action :verify_authenticity_token
+  #skip_before_action :verify_authenticity_token
 
   before_action :set_lesson, only: [:show, :activity]
   before_action :set_contexts, only: [:index, :edit]
