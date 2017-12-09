@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root to: 'visitors#index'
 
-  devise_for :users, :controllers => {sessions: 'sessions', registrations: 'registrations'} # CSRF_forgery makes this fail :3
+  devise_for :users, controllers: {
+    sessions: 'sessions', registrations: 'registrations', passwords: 'passwords'
+  } # CSRF_forgery makes this fail :3
 
   resources :users
 
@@ -17,10 +19,8 @@ Rails.application.routes.draw do
       get 'show' => 'lessons#show', as: 'lesson_path' # a dummy route to show dummy lesson
     end
     resources :steps do
-      member do
-        post :upload_file, as: :upload_file_for
-        delete :delete_file, as: :delete_file_for
-      end
+      post :upload_file, as: :upload_file
+      delete :delete_file, as: :delete_file
     end
     resources :standards
   end

@@ -59,7 +59,7 @@
     </div>
 
     <div class="FormField__input">
-      <div class="FileUpload" data-url="<%= upload_file_for_lesson_step_path(@lesson_obj.id, @step_obj.id, attr: :images) %>" data-paramname="step[images]" id="step_images_1">
+      <div class="FileUpload" data-url="<%= lesson_step_upload_file_path(@lesson_obj.id, @step_obj.id, attr: :images) %>" id="step_supporting_files_1">
         <div class="FileUpload__message">
           Drag & drop files here - or click to browse<br />.jpg, .png, .pdf
         </div>
@@ -131,7 +131,7 @@
     </div>
 
     <div class="FormField__input">
-      <div class="FileUpload" data-url="<%= upload_file_for_lesson_step_path(@lesson_obj.id, @step_obj.id, attr: :design_files) %>"  data-paramname="step[design_files]" id="step_design_files">
+      <div class="FileUpload" data-url="<%= lesson_step_upload_file_path(@lesson_obj.id, @step_obj.id, attr: :design_files) %>" id="step_design_files">
         <div class="FileUpload__message">
           Drag & drop files here - or click to browse<br />.jpg, .png, .pdf
         </div>

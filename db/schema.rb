@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203165748) do
+ActiveRecord::Schema.define(version: 20171209153937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20171203165748) do
     t.string   "key_vocabularies",          default: [],              array: true
     t.string   "key_formulas",              default: [],              array: true
     t.string   "fabrication_tools",         default: [],              array: true
+    t.string   "duration"
     t.index ["name"], name: "index_lessons_on_name", using: :btree
     t.index ["original_lesson"], name: "index_lessons_on_original_lesson", using: :btree
     t.index ["state"], name: "index_lessons_on_state", using: :btree
@@ -161,10 +162,10 @@ ActiveRecord::Schema.define(version: 20171203165748) do
   end
 
   create_table "skill_tags", force: :cascade do |t|
-    t.uuid    "taggable_id",   null: false
-    t.string  "taggable_type", null: false
-    t.integer "skill_id",      null: false
-    t.integer "level",         null: false
+    t.uuid    "taggable_id",               null: false
+    t.string  "taggable_type",             null: false
+    t.integer "skill_id",                  null: false
+    t.integer "level",         default: 0, null: false
     t.index ["level"], name: "index_skill_tags_on_level", using: :btree
     t.index ["skill_id"], name: "index_skill_tags_on_skill_id", using: :btree
     t.index ["taggable_type", "taggable_id"], name: "index_skill_tags_on_taggable_type_and_taggable_id", using: :btree
@@ -176,8 +177,8 @@ ActiveRecord::Schema.define(version: 20171203165748) do
   end
 
   create_table "standards", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string "name",         null: false
-    t.string "autocomplete"
+    t.string "name",                      null: false
+    t.string "autocomplete", default: [],              array: true
     t.index ["name"], name: "index_standards_on_name", using: :btree
   end
 
@@ -187,7 +188,6 @@ ActiveRecord::Schema.define(version: 20171203165748) do
     t.integer  "duration",              default: 0,  null: false
     t.string   "description",           default: "", null: false
     t.string   "images",                default: [],              array: true
-    t.json     "materials"
     t.string   "tools",                                           array: true
     t.string   "design_files",          default: [],              array: true
     t.string   "external_links",                                  array: true
@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(version: 20171203165748) do
     t.string   "software",              default: [],              array: true
     t.string   "fabrication_equipment", default: [],              array: true
     t.string   "name"
+    t.string   "materials",             default: [],              array: true
     t.index ["lesson_id"], name: "index_steps_on_lesson_id", using: :btree
   end
 

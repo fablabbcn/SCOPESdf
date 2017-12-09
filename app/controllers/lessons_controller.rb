@@ -1,12 +1,13 @@
 class LessonsController < ApplicationController
 
-#  before_action :authenticate_user!, except: [:index, :show]
-  skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!, only: [:edit, :update, :delete_file, :upload_file]
+  #skip_before_action :verify_authenticity_token
 
   before_action :set_lesson, only: [:show, :activity]
   before_action :set_contexts, only: [:index, :edit]
   before_action :set_subjects, only: [:index, :edit]
   before_action :set_collections, only: [:index, :edit]
+  before_action :set_fabrication_tools, only: [:index, :edit]
 
   def index
     # Using lessons#index for now as the public view of all lesson
@@ -120,70 +121,85 @@ class LessonsController < ApplicationController
 
     #print params.inspect
 
-    puts params.inspect
-    puts "lesson_params hereeeeee"
-    puts lesson_params.inspect
-
-    puts lesson_params[:tags]
+    # puts params.inspect
+    # puts "lesson_params hereeeeee"
+    # puts lesson_params.inspect
 
     # Update the lesson
     @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
-    # @lesson_obj.setTags(lesson_params[:tags])
-    # puts @lesson_obj.tags
 
     # Redirect to the next step
     redirect_to edit_lesson_path(id: @lesson_obj.id, form_step: params[:form_step])
 
   end
 
-  def upload_file_____________!
+  def upload_file
+    @lesson = Lesson.find(params[:id])
+     puts params.inspect
+    #
+    # # TODO - AUTHORIZE USER!!!!!
+    puts params[:files].inspect
+     puts file_params.inspect
 
-    # Dropzones submit the file here
-
-    # Fetch the lesson by the provided id
-    @lesson_obj = Lesson.find(params[:id])
-
-    # The submitted file: multipe files can be uploaded so this will be an array
-    file = params[:files]
-
-
-    # The attribute in which file should be stored (an array atribute)
-    # for example, 'assessment_criteria_files'
-    attribute = params[:attribute]
-
+     puts "BELOW ME BITCH\n\n\n"
+    files = params[:files]
     files_hash = {}
-    files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
-    files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
+    puts "br"
+    puts files_hash
+    files_hash.merge!({assessment_criteria_files: files}) if params[:attr] == "assessment_criteria_files"
+    files_hash.merge!({outcome_files: files}) if params[:attr] == "outcome_files"
+    returning = []
 
-    LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash)
+    # @lesson.addFiles( files_hash[:outcome_files][0], :outcome_files)
 
-    # TODO: add the file to the lesson via the attribute provided
+    if files_hash[:assessment_criteria_files].present?
+      files_hash[:assessment_criteria_files].map{|k,v|
+        @lesson.addFiles(v, :assessment_criteria)
+      }
+      @lesson.save!
 
-    # Return the attribute as json
-    render :json => @lesson_obj.send(attribute)
+      for i in 0..files_hash.count-1
+        @lesson.reload
+        x = @lesson.assessment_criteria_files[i]
+        puts JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria")
+        returning.append( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
+      end
+    elsif files_hash[:outcome_files].present?
+      puts "handing outcome files here\n\n\n\n\n"
+      files_hash[:outcome_files].map{|k,v|
+        @lesson.addFiles(v, :outcome)
+      }
+      @lesson.save!
+      for i in 0..files_hash.count-1
+        @lesson.reload
+        x = @lesson.outcome_files[i]
+        puts JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome")
+        returning.append(JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
+      end
+    end
 
+
+    respond_to do |format|
+      format.html {
+        render :json => returning,
+               :content_type => 'text/html',
+               :layout => false
+      }
+      format.json {
+        render :json => { :files => returning }
+      }
+    end
   end
 
   def delete_file
-
-    # Fetch the lesson by the provided id
     @lesson_obj = Lesson.find(params[:id])
-
-    # The file name to be deleted
-    file_name = params[:file_name]
-
-    # The attribute from which file should be remove
-    # for example, 'assessment_criteria_files'
-    attribute = params[:attribute]
-
-    # TODO: remove the specified file and update the lesson
-
+    puts params.inspect
+    file_name = params[:name]
+    attribute = params[:attr]
+    state = @lesson_obj.removeFileWithName(attribute.to_sym,file_name)
     # Return the attribute as json
-    render :json => @lesson_obj.send(attribute)
-
+    render :json => {deleted: state}
   end
-
-
 
   def publish
     # check to make sure current user is owner and make inactive
@@ -234,67 +250,6 @@ class LessonsController < ApplicationController
 
   def draft
 
-  end
-
-  def upload_file
-    @lesson = Lesson.find(params[:id])
-
-    # TODO - AUTHORIZE USER!!!!!
-    puts params[:files]
-    # puts file_params.inspect
-
-    files = [params[:files]]
-    #files = file_params[:files]
-    # TODO - check to make sure you are uploading file in array
-
-    files_hash = {}
-    files_hash.merge!({assessment_criteria_files: files}) if params[:attr] == "assessment_criteria_files"
-    files_hash.merge!({outcome_files: files}) if file_params[:attr] == "outcome_files"
-    # puts "uploading files"
-    # puts files_hash.inspect
-
-    files_hash = {assessment_criteria_files: files}
-
-    #LessonService.add_file_by_type_to_id(@lesson.id, files_hash)
-    @lesson.reload
-
-    returning = []
-    puts files_hash.inspect
-
-
-    if files_hash[:assessment_criteria_files].present?
-      print "RUNNING"
-      uploaded_acf = files.each{|x|
-        @lesson.find_carrier_wave_with_original_name(x.original_filename, :assessment_criteria)
-      }
-      for i in 0..uploaded_acf.count-1
-        x = @lesson.assessment_criteria_files[i]
-        @lesson.reload
-        returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
-      end
-    elsif files_hash[:outcome_files].present?
-      uploaded_of = files.each{|x|
-        @lesson.find_carrier_wave_with_original_name(x.original_filename, :outcome_files)
-      }
-      puts uploaded_of.count
-      for i in 0..uploaded_of.count-1
-        @lesson.reload
-        x = @lesson.outcome_files[i]
-        returning.append (JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
-      end
-    end
-
-
-    respond_to do |format|
-      format.html {
-        render :json => returning.to_json,
-               :content_type => 'text/html',
-               :layout => false
-      }
-      format.json {
-        render :json => { :files => returning }
-      }
-    end
   end
 
   def file_upload_load
@@ -432,7 +387,7 @@ class LessonsController < ApplicationController
   private
 
     def lesson_params
-      params.require(:lesson).permit(:name, :topline, :summary, :teacher_notes, :assessment_criteria, :state, :collection_tag, :student_mastery, :educator_mastery, other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids: [], standards: [:name, descriptions: []], grade_range: [:start, :end], subjects: [], fabrication_tools: [], key_concepts: [], key_vocabularies: [], key_formulas: [], skills: [:name, :level], contexts: [], tags: [])
+      params.require(:lesson).permit(:name, :topline, :summary, :teacher_notes, :assessment_criteria, :state, :collection_tag, :duration, :mastery_level_students, :mastery_level_teachers, other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids: [], standards: [:name, descriptions: []], teaching_range: [:start, :end], subjects: [], fabrication_tools: [], key_concepts: [], key_vocabularies: [], key_formulas: [], skills: [:name, :level], contexts: [], tags: [])
     end
 
     def step_params
@@ -465,6 +420,10 @@ class LessonsController < ApplicationController
 
     def set_subjects
       @subjects = Subject.all
+    end
+
+    def set_fabrication_tools
+      @fabrication_tools = ['Hardware', 'Electrical', 'Design', 'CNC Milling', 'Software']
     end
 
 end

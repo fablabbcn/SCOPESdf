@@ -22,6 +22,7 @@
 #  key_vocabularies          :string           default([]), is an Array
 #  key_formulas              :string           default([]), is an Array
 #  fabrication_tools         :string           default([]), is an Array
+#  duration                  :string
 #
 
 class Lesson < ApplicationRecord
@@ -48,10 +49,10 @@ class Lesson < ApplicationRecord
   end
 
 
-  #   validates :organization_exists
-  def organization_exists # TODO - validate existece of organization from lesson_tags
-    # not saved yet... so checking against query doesn't work *
-  end
+  # #   validates :organization_exists
+  # def organization_exists # TODO - validate existece of organization from lesson_tags
+  #   # not saved yet... so checking against query doesn't work *
+  # end
 
 
   has_many :steps, -> { order(created_at: :asc) }, dependent: :destroy
@@ -327,29 +328,30 @@ class Lesson < ApplicationRecord
 
 
   mount_uploaders :assessment_criteria_files, SupportingFileUploader
-  mount_uploaders :outcome_files, SupportingFileUploader
+  mount_uploaders :outcome_files, ImageFileUploader
 
 
   def addFiles(file, sym)
     returnable = ""
-    puts "FILE HERE THO"
-    puts file
-    puts sym
+    # puts "FILE HERE THO"
+    # puts file
+    # puts sym
     case sym
       when :assessment_criteria
         puts "assessment saving"
         collection = self.assessment_criteria_files
         collection ||= []
-        collection += file
+        collection += [file]
+        # puts "current collection", collection
         self.assessment_criteria_files = collection
         self.save!
         self.reload
         returnable = self.assessment_criteria_files.map {|x| x.url}
       when :outcome
-        puts "outcome saving"
+        # puts "outcome saving"
         collection = self.outcome_files
         collection ||= []
-        collection += file
+        collection += [file]
         self.outcome_files = collection
         self.save!
         self.reload
@@ -386,6 +388,7 @@ class Lesson < ApplicationRecord
         }
         # puts index
         remain_files = self.assessment_criteria_files # copy the array
+        return unless index
         deleted_file = remain_files.delete_at(index) # delete the target image
         deleted_file.try(:remove!) # delete image from S3
         if remain_files.empty?
@@ -404,8 +407,8 @@ class Lesson < ApplicationRecord
           end
         }
         # puts index
-
         remain_files = self.outcome_files # copy the array
+        return unless index
         deleted_file = remain_files.delete_at(index) # delete the target image
         deleted_file.try(:remove!) # delete image from S3
         if remain_files.empty?
