@@ -94,11 +94,9 @@ class StepsController < ApplicationController
     puts "br"
     puts files_hash
     files_hash.merge!({images: files}) if file_params[:attr] == "images"
-    # files_hash.merge!({outcome_files: files}) if params[:attr] == "outcome_files"
+    files_hash.merge!({design_files: files}) if params[:attr] == "design_files"
     returning = []
-    #
-    # # @lesson.addFiles( files_hash[:outcome_files][0], :outcome_files)
-    #
+
     if files_hash[:images].present?
       files_hash[:images].map {|k, v|
         @step_obj.addFiles(v, :images)
@@ -110,18 +108,17 @@ class StepsController < ApplicationController
         puts JqUploaderService.convert_to_jq_upload_step(x, params[:lesson_id], @step_obj.id, "images")
         returning.append(JqUploaderService.convert_to_jq_upload_step(x, params[:lesson_id], @step_obj.id, "images"))
       end
-    elsif files_hash[:outcome_files].present?
-      # puts "handing outcome files here\n\n\n\n\n"
-      # files_hash[:outcome_files].map{|k,v|
-      #   @lesson.addFiles(v, :outcome)
-      # }
-      # @lesson.save!
-      # for i in 0..files_hash.count-1
-      #   @lesson.reload
-      #   x = @lesson.outcome_files[i]
-      #   puts JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome")
-      #   returning.append(JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
-      #end
+    elsif files_hash[:design_files].present?
+      files_hash[:design_files].map {|k, v|
+        @step_obj.addFiles(v, :design_files)
+      }
+      @step_obj.save!
+      @step_obj.reload
+      for i in 0..files_hash.count-1
+        x = @step_obj.design_files[i]
+        puts JqUploaderService.convert_to_jq_upload_step(x, params[:lesson_id], @step_obj.id, "design_files")
+        returning.append(JqUploaderService.convert_to_jq_upload_step(x, params[:lesson_id], @step_obj.id, "design_files"))
+      end
     end
 
 

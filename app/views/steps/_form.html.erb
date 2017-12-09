@@ -131,7 +131,7 @@
     </div>
 
     <div class="FormField__input">
-      <div class="FileUpload" data-url="/" data-paramname="step[design_files]" id="step_design_files">
+      <div class="FileUpload" data-url="<%= lesson_step_upload_file_path(@lesson_obj.id, @step_obj.id, attr: :design_files) %>" id="step_design_files">
         <div class="FileUpload__message">
           Drag & drop files here - or click to browse<br />.jpg, .png, .pdf
         </div>
