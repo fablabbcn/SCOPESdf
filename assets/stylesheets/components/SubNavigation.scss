@@ -1,7 +1,11 @@
+
 .SubNavigation {
   background-color: #F9FAFB;
-  padding-left: $gutter-width/2;
-  padding-right: $gutter-width/2;
+  
+  @include above-mobile-landscape {
+    padding-left: $gutter-width/2;
+    padding-right: $gutter-width/2;
+  }
 
 }
 
@@ -11,51 +15,235 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
+
+  @include above-mobile-landscape {
+    flex-direction: row;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+  }
+
 }
 
-.SubNavigation__items {
-  display: flex;
-  max-width: $grid-width;
-}
+/* SubNavigation__nav and SubNavigation__dots
+-------------------------------------------------------------- */
 
-.SubNavigation__item {
-  padding-top: $gutter-width;
-  padding-bottom: $gutter-width;
-  padding-left: $gutter-width;
-  padding-right: $gutter-width;
-  border-bottom: 4px solid transparent;
-  margin-right: $gutter-width/2;
+// both components only shown on mobile
+
+.SubNavigation__nav {
+  position: absolute;
+  width: 20px;
+  height: 20px;
   background-repeat: no-repeat;
-  background-position: 10px center;
+  background-position: center;
+  top: 50%;
+  margin-top: -10px;
+
+  @include above-mobile-landscape {
+    display: none;
+  }
+
+  @include mobile-landscape-and-below {
+    display: block;
+  }
+
+  span {
+    display: none;
+  }
 
 }
 
-.SubNavigation__item--icon {
-  padding-left: $gutter-width*1.75;
+.SubNavigation__nav--prev {
+  left: $gutter-width;
+  background-image: url('images/direction-left-dark.svg');
 }
 
-.SubNavigation__item--icon--ellipsis {
-  background-image: url('images/icon-ellipsis-mid.svg');
+.SubNavigation__nav--next {
+  right: $gutter-width;
+  background-image: url('images/direction-right-dark.svg');
 }
-.SubNavigation__item--icon--edit {
-  &.SubNavigation__item--active {
-    background-image: url('images/icon-edit-highlight.svg');
+
+.SubNavigation__dots {
+  position: absolute;
+  bottom: $gutter-width;
+  display: flex;
+  
+  @include above-mobile-landscape {
+    display: none;
+  }
+
+  @include mobile-landscape-and-below {
+    display: flex;
+  }
+
+}
+
+.SubNavigation__dot {
+  width: 4px;
+  height: 4px;
+  text-indent: -999em;
+  border-radius: 50%;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+a.SubNavigation__dot {
+  background-color: $color-gray-mid;
+}
+
+span.SubNavigation__dot {
+  background-color: $color-main;
+}
+
+/* SubNavigation__items
+-------------------------------------------------------------- */
+
+// above mobile landscape, show items side by side
+
+@include above-mobile-landscape {
+
+  .SubNavigation__items {
+    max-width: $grid-width;
+    display: flex;
+    position: relative;
+  }
+
+  .SubNavigation__item {
+    padding-top: $gutter-width;
+    padding-bottom: $gutter-width;
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+    border-bottom: 4px solid transparent;
+    margin-right: $gutter-width/2;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+
+  }
+
+  .SubNavigation__item--active {
+    border-bottom: 4px solid $color-highlight-primary;
+  }
+
+  .SubNavigation__item--icon {
+    padding-left: $gutter-width*1.75;
+  }
+
+  .SubNavigation__item--icon--ellipsis {
+    background-image: url('images/icon-ellipsis-mid.svg');
+  }
+  .SubNavigation__item--icon--completed {
+    background-image: url('images/icon-check-highlight.svg');
+  }
+  .SubNavigation__item--icon--edit {
+    &.SubNavigation__item--active {
+      background-image: url('images/icon-edit-highlight.svg');
+    }
+  }
+
+}
+
+// for mobile, just show the currently active one
+
+@include mobile-landscape-and-below {
+
+  .SubNavigation__items {
+    order: 2;
+    padding: 30px 20px 40px 20px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    border-bottom: 4px solid $color-highlight-primary;
+  }
+
+  .SubNavigation__item {
+    display: none;
+  }
+
+  .SubNavigation__item--active {
+    display: block;
+  }
+
+}
+
+/* SubNavigation__track
+-------------------------------------------------------------- */
+
+.SubNavigation__track {
+  position: relative;
+  cursor: help;
+
+  @include above-mobile-landscape {
+    margin-left: auto;
+    height: 36px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  @include mobile-landscape-and-below {
+    align-items: center;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    display: flex;
+    order: 1;
+    padding-bottom: $gutter-width;
+    padding-left: $gutter-width*2.5;
+    padding-right: $gutter-width*2.5;
+    padding-top: $gutter-width;
+    width: 100%;
+  }
+
+  &:after {
+    background-image: url('images/icon-arrow-down-dark.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    content: "";
+    display: block;
+    height: 9px;
+    position: absolute;
+    right: 3px;
+    top: 6px;
+    width: 12px;
+  }
+
+}
+
+.SubNavigation__track--locked {
+  @include mobile-landscape-and-below {
+    background-image: url('images/icon-lock-dark.svg');
+    background-position: $gutter-width 12px;
   }
 }
 
-.SubNavigation__item--active {
-  border-bottom: 4px solid $color-highlight-primary;
-}
-
-.SubNavigation__track {
-  margin-left: auto;
-  height: 36px;
+.SubNavigation__track--publishable {
+  @include mobile-landscape-and-below {
+    background-image: url('images/icon-check-dark.svg');
+    background-position: $gutter-width;
+  }
 }
 
 .SubNavigation__status {
   font-size: 14px;
   @include text-medium;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 16px;
+
+  @include mobile-landscape-and-below {
+    display: none;
+  }
+
+}
+
+.SubNavigation__track--locked .SubNavigation__status {
+  background-image: url('images/icon-lock-dark-small.svg');
+}
+
+.SubNavigation__track--publishable .SubNavigation__status {
+  background-image: url('images/icon-check-dark-small.svg');
 }
 
 .SubNavigation__actions {
@@ -65,4 +253,61 @@
 
 .SubNavigation__action {
   
+}
+
+/* SubNavigation__trackContent
+-------------------------------------------------------------- */
+
+// this appears in a popover when clicking on the track status
+
+.SubNavigation__trackContent {
+  display: none;
+  text-align: left;
+  max-width: 405px;
+
+  .tippy-popper & {
+    display: block;
+  }
+
+}
+
+.SubNavigation__trackContent__header {
+  padding: $gutter-width $gutter-width*1.5;
+  font-size: 14px;
+  border-bottom: 1px solid $color-border;
+}
+
+.SubNavigation__trackContent__heading {
+  margin-bottom: 4px;
+}
+
+.SubNavigation__trackContent__steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.SubNavigation__trackContent__completion {
+  color: $color-gray-mid;
+  span {
+    color: $color-main;
+  }
+}
+
+.SubNavigation__trackContent__step {
+  padding: $gutter-width $gutter-width*1.5 $gutter-width $gutter-width*3.5;
+  background-repeat: no-repeat;
+  background-position: $gutter-width*1.5 center; 
+  background-color: $color-gray-verylight;
+  border-bottom: 1px solid $color-border;
+  &:hover {
+    background-color: $color-gray-light;
+  }
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.SubNavigation__trackContent__step--completed {
+  background-image: url('images/icon-check-highlight.svg');
+  text-decoration: line-through;
 }

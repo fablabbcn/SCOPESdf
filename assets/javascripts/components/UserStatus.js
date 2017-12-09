@@ -2,9 +2,7 @@
 
 import Tippy from 'tippy.js'
 
-module.exports = UserStatus;
-
-function UserStatus() {
+export default function UserStatus() {
 
 	console.log("-- UserStatus initialized")
 

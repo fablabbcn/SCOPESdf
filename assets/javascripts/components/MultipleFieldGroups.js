@@ -1,15 +1,9 @@
 'use strict';
 
-module.exports = MutipleFieldGroups;
-
 import {Sortable} from '@shopify/draggable';
 import MultipleInputs from './MultipleInputs'
 
-/**
- * Initializes multiple field groups
- * @returns {element} element
- */
-function MutipleFieldGroups() {
+export default function MutipleFieldGroups() {
 
 	console.log("-- MutipleFieldGroups initialized")
 

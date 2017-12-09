@@ -1,14 +1,8 @@
 'use strict';
 
-module.exports = FileUpload;
-
 import Dropzone from 'dropzone'
 
-/**
- * Initializes choices.js component(s)
- * @returns {element} element
- */
-function FileUpload() {
+export default function FileUpload() {
 
 	console.log("-- FileUpload initialized")
 

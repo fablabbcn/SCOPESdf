@@ -45,18 +45,18 @@
 
         </div>
 
-        <!-- grade_range -->
+        <!-- teaching_range -->
         <div class="FormField FormField--with-border">
 
           <div class="FormField__info">
-            <label class="FormField__label" for="lesson_grade_range">Grade range</label>
+            <label class="FormField__label" for="lesson_teaching_range">Teaching range</label>
           </div>
 
           <div class="FormField__input">
             <div class="Slider">
               <div class="Slider__value"></div>
               <div class="Slider__control" data-config="<%= { start: [3,5], connect: true, step: 1, range: { min: -1, max: 12 }, unit: 'ordinal' }.to_json %>">
-                <input type="hidden" name="lesson[grade_range]" value="<%= params[:grade_range] %>" />
+                <input type="hidden" name="lesson[teaching_range]" value="<%= params[:teaching_range] %>" />
               </div>
             </div>
           </div>

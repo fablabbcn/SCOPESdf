@@ -1,16 +1,10 @@
 'use strict';
 
-module.exports = Auth;
-
 let $auth
 let $footer
 let $header
 
-/**
- * Initializes the auth container
- * @returns {element} auth element
- */
-function Auth() {
+export default function Auth() {
 
 	console.log("-- Auth initialized")
 
@@ -26,11 +20,6 @@ function Auth() {
 
 }
 
-/**
- * Sets the height of the auth container to the viewport minus header and footer
- * @param {string} header element
- * @returns {element} header element
- */
 function setHeight() {
 
 

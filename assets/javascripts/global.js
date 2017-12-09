@@ -22,15 +22,18 @@ import FileUpload	from "./components/FileUpload"
 import FilterOverlay	from "./components/FilterOverlay"
 import Form	from "./components/Form"
 import Header	from "./components/Header"
+import LessonHeader	from "./components/LessonHeader"
+import MobileMenu	from "./components/MobileMenu"
 import MultipleFieldGroups	from "./components/MultipleFieldGroups"
 import MultipleInputs	from "./components/MultipleInputs"
 import Slider	from "./components/Slider"
-import Textarea	from "./components/Textarea"
-import LessonHeader	from "./components/LessonHeader"
 import Slideshow	from "./components/Slideshow"
-import UserStatus	from "./components/UserStatus"
+import SubHeader	from "./components/SubHeader"
+import Textarea	from "./components/Textarea"
 import Tooltips	from "./components/Tooltips"
-import MobileMenu	from "./components/MobileMenu"
+import UserStatus	from "./components/UserStatus"
+import SubNavigation	from "./components/SubNavigation"
+import Alert	from "./components/Alert"
 
 var ScopesDF = {
 
@@ -55,6 +58,7 @@ var ScopesDF = {
 
 		ExternalLinks()
 
+		Alert()
 		Auth()
 		Carousel()
 		Choices()
@@ -68,9 +72,11 @@ var ScopesDF = {
 		MultipleInputs()
 		Slider()
 		Slideshow()
+		SubHeader()
 		Textarea()
 		Tooltips()
 		UserStatus()
+		SubNavigation()
 
 	}
 

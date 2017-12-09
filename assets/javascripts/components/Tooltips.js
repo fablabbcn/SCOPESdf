@@ -2,9 +2,7 @@
 
 import Tippy from 'tippy.js'
 
-module.exports = Tooltips;
-
-function Tooltips() {
+export default function Tooltips() {
 
 	console.log("-- Tooltips initialized")
 

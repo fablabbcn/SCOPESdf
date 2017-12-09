@@ -9,7 +9,6 @@ class LessonsController < ApplicationController
   before_action :set_collections, only: [:index, :edit]
   before_action :set_fabrication_tools, only: [:index, :edit]
 
-
   def index
     # Using lessons#index for now as the public view of all lesson
     # No authentication heres
@@ -69,9 +68,10 @@ class LessonsController < ApplicationController
     @form_step = params[:form_step].present? ? params[:form_step].to_i : 1
     @lesson_obj = Lesson.find(params[:id])
 
+    @fabrication_tools = ['Hardware', 'Electrical', 'Design', 'CNC Milling', 'Software'] # TODO this should probably be stored elsewhere, should probably be a separate model
 
     #pundit --
-    authorize @lesson_obj, :update? # TODO: this keeps erroring for me - DH
+    authorize @lesson_obj, :update?
 
     # If the form step is 2, i.e. standards, we redirect to create the first standard
     redirect_to new_lesson_standard_path(lesson_id: @lesson_obj.id, form_step: @form_step) if @form_step == 2
@@ -209,9 +209,10 @@ class LessonsController < ApplicationController
 
   def delete
 
-    lesson = Lesson.find(params[:id]).hidden!
+    lesson = Lesson.find(params[:id])
+    lesson.hidden!
 
-    redirect_to edit_lesson_path(id: lesson.id)
+    redirect_to lessons_path
 
   end
 

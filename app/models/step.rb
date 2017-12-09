@@ -22,6 +22,9 @@
 
 class Step < ApplicationRecord
 
+  # Determines whether a new step should be set up after saving
+  attribute :new_after_save, :boolean
+
   validates :lesson_id, presence: true
 
   before_create :check_step_number, :if => :new_record?
@@ -36,11 +39,8 @@ class Step < ApplicationRecord
 
   end
 
-
-  def lesson
-    Lesson.find(self.lesson_id)
-  end
-
+  belongs_to :lesson
+  
   def previous_step
     Step.where(lesson_id: lesson_id, step_number: step_number-1).first
   end

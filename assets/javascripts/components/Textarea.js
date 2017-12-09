@@ -1,14 +1,8 @@
 'use strict';
 
-module.exports = Textarea;
-
 import Autosize from 'autosize'
 
-/**
- * Initializes textareas
- * @returns {element} element
- */
-function Textarea() {
+export default function Textarea() {
 
 	console.log("-- Textarea initialized")
 

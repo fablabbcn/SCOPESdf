@@ -1,17 +1,11 @@
 'use strict';
 
-module.exports = Header;
-
 import Headroom from "headroom.js"
 
 let $header
 let $hero
 
-/**
- * Initializes the header
- * @returns {element} header element
- */
-function Header() {
+export default function Header() {
 
 	console.log("-- Header initialized")
 
@@ -31,11 +25,6 @@ function Header() {
 
 }
 
-/**
- * Initializes headroom.js for the header
- * @param {string} header element
- * @returns {Object} headroom object
- */
 function initHeadroom(header=$header[0]) {
 
   let headroom  = new Headroom(header, {
@@ -57,12 +46,6 @@ function initHeadroom(header=$header[0]) {
 
 }
 
-/**
- * Sets whether the header should have transparent class, depending if there's
- * a hero element
- * @param {string} header element
- * @returns {element} header
- */
 function setStyleClass($header=$header, $hero=$('.Hero')) {
 
 	if ($hero.length > 0) {
@@ -83,10 +66,6 @@ function setStyleClass($header=$header, $hero=$('.Hero')) {
 
 }
 
-/**
- * Trigger setStyleClass when the user scrolls
- * @returns {element} header
- */
 function setStyleClassOnScroll() {
 
   $(window).on('scroll', function(){

@@ -55,7 +55,7 @@ class Lesson < ApplicationRecord
   # end
 
 
-  has_many :steps, dependent: :destroy
+  has_many :steps, -> { order(created_at: :asc) }, dependent: :destroy
   has_many :lesson_tags, dependent: :destroy
 
   has_many :lessons_standards

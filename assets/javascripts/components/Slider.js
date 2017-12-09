@@ -1,16 +1,10 @@
 'use strict';
 
-module.exports = Slider;
-
 import noUiSlider from 'nouislider'
 import wNumb from 'wnumb'
 import { getOrdinal } from '../helpers'
 
-/**
- * Initializes multislider component(s)
- * @returns {element} auth element
- */
-function Slider() {
+export default function Slider() {
 
 	console.log("-- Slider initialized")
 
@@ -28,7 +22,8 @@ function Slider() {
 		// Create the slider
     noUiSlider.create($control[0], {
       start: config.start,
-      connect: config.connect,
+			connect: config.connect,
+			animate: false,
       step: config.step,
       format: {
 	      to: ( value ) => {
@@ -39,7 +34,10 @@ function Slider() {
 	      }
 	    },
       range: config.range
-    })
+		})
+		
+		// Set the initial value, as per the hidden element
+		$control[0].noUiSlider.set($input.val())
 
 		// On slide update, set the value of the nexted hidden input
     $control[0].noUiSlider.on('update', (values, handle) => {
@@ -63,6 +61,8 @@ function Slider() {
 
 				valueString = `${value0} — ${value1}`
 
+				// Set the value of the hidden input
+				$input.val(`{ start: ${values[0]}, end: ${values[1]} }`)
 
 			} else {
 
@@ -77,10 +77,10 @@ function Slider() {
 
 				valueString = `${value0}`
 
-			}
+				// Set the value of the hidden input
+				$input.val(values)
 
-			// Set the value of the hidden input
-			$input.val(values)
+			}
 
 			// Set the html in the value container
 			$value.html(valueString)

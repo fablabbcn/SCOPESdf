@@ -5,46 +5,104 @@
 
     <div class="SubNavigation__items">
 
+      <!-- TODO: show the completed class if the section is completed: @lesson_obj.publishable?(:section) not working -->
+
       <%= active_link_to "Overview", edit_lesson_path(id: @lesson_obj.id, form_step:1),
         class: "SubNavigation__item SubNavigation__item--icon",
         class_active: "SubNavigation__item--icon--edit SubNavigation__item--active",
-        class_inactive: "SubNavigation__item--icon--ellipsis",
+        class_inactive: @lesson_obj.publishable?(:overview) ? "SubNavigation__item--icon--completed" : "SubNavigation__item--icon--ellipsis",
         active: @form_step == 1 %>
 
       <%= active_link_to "Standards", edit_lesson_path(id: @lesson_obj.id, form_step:2),
         class: "SubNavigation__item SubNavigation__item--icon",
         class_active: "SubNavigation__item--icon--edit SubNavigation__item--active",
-        class_inactive: "SubNavigation__item--icon--ellipsis",
+        class_inactive: @lesson_obj.publishable?(:standards) ? "SubNavigation__item--icon--completed" : "SubNavigation__item--icon--ellipsis",
         active: @form_step == 2 %>
 
       <%= active_link_to "Details", edit_lesson_path(id: @lesson_obj.id, form_step:3),
         class: "SubNavigation__item SubNavigation__item--icon",
         class_active: "SubNavigation__item--icon--edit SubNavigation__item--active",
-        class_inactive: "SubNavigation__item--icon--ellipsis",
+        class_inactive: @lesson_obj.publishable?(:details) ? "SubNavigation__item--icon--completed" : "SubNavigation__item--icon--ellipsis",
         active: @form_step == 3 %>
 
       <%= active_link_to "Instructions", edit_lesson_path(id: @lesson_obj.id, form_step:4),
         class: "SubNavigation__item SubNavigation__item--icon",
         class_active: "SubNavigation__item--icon--edit SubNavigation__item--active",
-        class_inactive: "SubNavigation__item--icon--ellipsis",
+        class_inactive: @lesson_obj.publishable?(:instructions) ? "SubNavigation__item--icon--completed" : "SubNavigation__item--icon--ellipsis",
         active: @form_step == 4 || @step_obj.present? %>
 
       <%= active_link_to "Outcomes", edit_lesson_path(id: @lesson_obj.id, form_step:5),
         class: "SubNavigation__item SubNavigation__item--icon",
         class_active: "SubNavigation__item--icon--edit SubNavigation__item--active",
-        class_inactive: "SubNavigation__item--icon--ellipsis",
+        class_inactive: @lesson_obj.publishable?(:outcomes) ? "SubNavigation__item--icon--completed" : "SubNavigation__item--icon--ellipsis",
         active: @form_step == 5 %>
+
+      <%= @form_step > 1 ? link_to(content_tag(:span, "Prev"), edit_lesson_path(id: @lesson_obj.id, form_step: @form_step - 1 ), class: "SubNavigation__nav SubNavigation__nav--prev") : nil %>
+      <%= @form_step < 5 ? link_to(content_tag(:span, "Next"), edit_lesson_path(id: @lesson_obj.id, form_step: @form_step + 1 ), class: "SubNavigation__nav SubNavigation__nav--next") : nil %>
+
+      <div class="SubNavigation__dots">
+        <% (1..5).each do |i| %>
+        <%= @form_step != i ? link_to("•", edit_lesson_path(id: @lesson_obj.id, form_step: i ), class: "SubNavigation__dot") : content_tag(:span, "•", class: "SubNavigation__dot") %>
+        <% end %>
+      </div>
 
     </div>
 
-    <div class="SubNavigation__track">
+    <div class="SubNavigation__track <%= @lesson_obj.publishable? ? 'SubNavigation__track--publishable' : 'SubNavigation__track--locked' %>%">
       <div class="SubNavigation__status">
-        Essential information missing
+        <% if @lesson_obj.publishable? %>
+          Well done, ready to publish!
+        <% else %>
+          Essential information missing
+        <% end %>
       </div>
       <div class="Track">
-        <div class="Track__progress"><span>10%</span></div>
+        <div class="Track__progress Track__progress--0"><span></span></div>
         <div class="Track__base"></div>
       </div>
+    </div>
+
+    <div class="SubNavigation__trackContent">
+
+      <div class="SubNavigation__trackContent__header">
+      
+        <h5 class="SubNavigation__trackContent__heading">How to submit a lesson</h5>
+
+        <p>Complete the following steps to be able to submit a great lesson.</p>
+
+        <div class="SubNavigation__trackContent__completion">
+          <span>1</span> / 5 steps completed
+        </div>
+
+      </div>
+
+      <div class="SubNavigation__trackContent__steps">
+        <%= active_link_to "Add basic details", edit_lesson_path(id: @lesson_obj.id, form_step:1),
+          class: "SubNavigation__trackContent__step",
+          class_active: "SubNavigation__trackContent__step--completed",
+          active: @lesson_obj.publishable?(:overview) %>
+
+        <%= active_link_to "Add some standards", edit_lesson_path(id: @lesson_obj.id, form_step:2),
+          class: "SubNavigation__trackContent__step",
+          class_active: "SubNavigation__trackContent__step--completed",
+          active: @lesson_obj.publishable?(:standards) %>
+
+        <%= active_link_to "Add further details", edit_lesson_path(id: @lesson_obj.id, form_step:3),
+          class: "SubNavigation__trackContent__step",
+          class_active: "SubNavigation__trackContent__step--completed",
+          active: @lesson_obj.publishable?(:details) %>
+
+        <%= active_link_to "List the instructions", edit_lesson_path(id: @lesson_obj.id, form_step:4),
+          class: "SubNavigation__trackContent__step",
+          class_active: "SubNavigation__trackContent__step--completed",
+          active: @lesson_obj.publishable?(:instructions) %>
+
+        <%= active_link_to "Add the outcomes", edit_lesson_path(id: @lesson_obj.id, form_step:5),
+          class: "SubNavigation__trackContent__step",
+          class_active: "SubNavigation__trackContent__step--completed",
+          active: @lesson_obj.publishable?(:outcomes) %>
+      </div>
+
     </div>
 
   </div>

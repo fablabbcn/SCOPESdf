@@ -2,7 +2,7 @@
 
   <%= field_set_tag 'Who is this for?', class: 'Form__fieldset' do %>
 
-    <!-- lesson.grade_range -->
+    <!-- lesson.teaching_range -->
     <div class="FormField FormField--required FormField--with-border">
 
       <div class="FormField__info">
@@ -10,7 +10,7 @@
         <div class="FormField__hint">Choose one or more of targeted grade (U.S.)</div>
       </div>
 
-      <%= render partial: 'lessons/form/grade_range' %>
+      <%= render partial: 'lessons/form/teaching_range' %>
 
     </div>
 
@@ -64,9 +64,9 @@
 
       <div class="FormField__input">
         <div class="Checkboxes">
-          <% ['Hardware', 'Electrical', 'Design', 'CNC Milling', 'Software'].each_with_index do |tool, i| %>
+          <% @fabrication_tools.each_with_index do |tool, i| %>
           <div class="Checkbox">
-            <input type="checkbox" class="Checkbox__input" name="lesson[fabrication_tools][]" value="<%= tool %>" id="lesson_fabrication_tools_<%= i %>" />
+            <input type="checkbox" class="Checkbox__input" name="lesson[fabrication_tools][]" value="<%= tool %>" id="lesson_fabrication_tools_<%= i %>" <%= @lesson_obj.fabrication_tools.include?(tool) ? :checked : nil %> />
             <label class="Checkbox__label" for="lesson_fabrication_tools_<%= i %>">
               <%= tool %>
             </label>
@@ -135,7 +135,7 @@
     </div>
 
     <!-- lesson.collection -->
-    <div class="FormField FormField--required FormField--with-border">
+    <div class="FormField FormField--with-border">
 
       <div class="FormField__info">
         <label class="FormField__label" for="lesson_collection_tag">Collection</label>

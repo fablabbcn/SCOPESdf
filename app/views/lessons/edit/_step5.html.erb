@@ -13,8 +13,7 @@
       </div>
 
       <div class="FormField__input">
-        <div class="FileUpload" data-url="<%= upload_file_for_lesson_path(@lesson_obj.id, attr: :outcome_files) %>" id="lesson_outcome_files">
-
+        <div class="FileUpload" data-url="<%= upload_file_for_lesson_path(@lesson_obj.id, attr: :outcome_files) %>" data-paramname="lesson[outcome_files]" id="lesson_outcome_files">
           <div class="FileUpload__message">
             Drag & drop files here - or click to browse<br />.jpg, .png, .pdf
           </div>
