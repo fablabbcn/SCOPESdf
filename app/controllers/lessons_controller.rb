@@ -119,7 +119,7 @@ class LessonsController < ApplicationController
 
     #raise params.to_yaml
 
-    #print params.inspect
+    print params.inspect
 
     # puts params.inspect
     # puts "lesson_params hereeeeee"

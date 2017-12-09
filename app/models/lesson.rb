@@ -277,8 +277,15 @@ class Lesson < ApplicationRecord
     ct = CollectionTag.where(name: string.downcase).first
     self.lesson_tags << LessonTag.new(taggable: ct)
   end
+  def setCollectionTag_id(id)
+    ct = CollectionTag.find(id)
+    self.lesson_tags << LessonTag.new(taggable: ct)
+  end
 
-  def getCollectionTags
+  def collection_tag
+    self.lesson_tags.where(taggable_type: "CollectionTag").map {|x| y = x.taggable; y.id}
+  end
+  def collection_tag_names
     self.lesson_tags.where(taggable_type: "CollectionTag").map {|x| y = x.taggable; y.name}
   end
 
