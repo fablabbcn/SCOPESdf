@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171209153937) do
+ActiveRecord::Schema.define(version: 20171211153155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,10 +98,10 @@ ActiveRecord::Schema.define(version: 20171209153937) do
   end
 
   create_table "lessons_standards", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid    "lesson_id",   null: false
-    t.uuid    "standard_id", null: false
-    t.string  "description"
+    t.uuid    "lesson_id",                null: false
+    t.uuid    "standard_id",              null: false
     t.integer "index"
+    t.string  "description", default: [],              array: true
     t.index ["lesson_id"], name: "index_lessons_standards_on_lesson_id", using: :btree
     t.index ["standard_id"], name: "index_lessons_standards_on_standard_id", using: :btree
   end
