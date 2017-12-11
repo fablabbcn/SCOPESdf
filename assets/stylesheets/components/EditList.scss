@@ -10,6 +10,19 @@
   padding-right: $gutter-width;
 }
 
+.EditList__heading__sub {
+  margin: 0 auto;
+  margin-bottom: $gutter-width;
+  max-width: $form-width;
+  padding-left: $gutter-width;
+  padding-right: $gutter-width;
+
+  font-size: 14px;
+  display: block;
+  color: $color-gray-mid;
+}
+
+
 .EditList__items {
   display: flex;
   flex-direction: column;
