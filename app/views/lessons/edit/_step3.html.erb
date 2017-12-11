@@ -81,13 +81,11 @@
     <div class="FormField FormField--required FormField--with-padding">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_name">Total Lesson Time</label>
+        <label class="FormField__label" for="lesson_duration">Total Lesson Time</label>
       </div>
 
       <div class="FormField__input">
-        <% if @lesson_obj.attributes['duration'] %>
         <input type="text" name="lesson[duration]" class="Input" value="<%= @lesson_obj.duration %>" placeholder="Approximately" id="lesson_duration" />
-        <% end %>
       </div>
 
     </div>
@@ -146,7 +144,7 @@
         <select id="lesson_collection_tag" name="lesson[collection_tag]">
           <option></option>
           <% @collections.each do |collection| %>
-          <option value="<%= collection.id %>"><%= collection.name.titleize %></option>
+          <option value="<%= collection.id %>" <%= @lesson_obj.collection_tag == collection ? 'selected' : nil %>><%= collection.name.titleize %></option>
           <% end %>
         </select>
       </div>
@@ -162,7 +160,7 @@
       </div>
 
       <div class="FormField__input">
-        <%= text_field(:lesson, :tags, multiple: true, class: "Input--choices") %>
+        <input type="text" class="Input--choices" autocomplete="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Enter a tag..." data-items="" name="lesson[tags][]">
       </div>
 
     </div>
