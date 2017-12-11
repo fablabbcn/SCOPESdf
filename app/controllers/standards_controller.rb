@@ -4,7 +4,7 @@ class StandardsController < ApplicationController
   before_action :authenticate_user!
   # TODO - PUT PUNDIT
 
-  before_action :set_lesson, only: [:index, :new, :show, :edit, :update, :destroy]
+  before_action :set_lesson, only: [:index, :new, :show, :create, :edit, :update, :destroy]
   before_action :set_standards, only: [:new, :edit]
   before_action :set_lessons_standard, only: [:show, :edit, :update, :destroy]
 
@@ -16,6 +16,8 @@ class StandardsController < ApplicationController
   end
 
   def new
+
+    @lessons_standard_obj = LessonsStandard.new(lesson: @lesson_obj)
 
     # Assign the @form_step var, casting as integer instead of a string
     @form_step = params[:form_step].present? ? params[:form_step].to_i : 1
@@ -30,13 +32,26 @@ class StandardsController < ApplicationController
   end
 
   def create
-    @lesson = Lesson.find(params["lesson_id"])
-    s = Standard.where(name: standard_params[:name]).first
-    l = LessonsStandard.new(description: standard_params[:description], index: standard_params[:index])
-    l.lesson_id = @lesson.id
-    l.standard_id = s.id
-    l.save!
-    redirect_to edit_lesson_path(id: @lesson.id, form_step: 3)
+
+    @lessons_standard_obj = LessonsStandard.new(lessons_standards_params)
+    @lessons_standard_obj.lesson = @lesson_obj
+
+    if @lessons_standard_obj.save
+      redirect_to redirection, notice: "Your standard was successfully created."
+    else
+      render :new
+    end
+
+  end
+
+  def update
+
+    if @lessons_standard_obj.update(lessons_standards_params)
+      redirect_to redirection, notice: 'Your standard information was successfully updated.'
+    else
+      render :edit
+    end
+
   end
 
   def destroy
@@ -57,21 +72,22 @@ class StandardsController < ApplicationController
 
   private
 
-    def standard_params
-      params.require(:standards).permit(:name, :description, :index)
-    end
-
-    def delete_params
-      params.require(:name)
+    def lessons_standards_params
+      params.fetch(:lessons_standards).permit(:standard_id, :new_after_save, description: [])
     end
 
     def set_lessons_standard
       @lessons_standard_obj = LessonsStandard.includes(:standard).find_by(id: params[:id])
     end
 
+    def redirection
+      # Determine whether to just show the just-saved step, or create a new one
+      redirection = lessons_standards_params[:new_after_save] == 'true' ? new_lesson_standard_path(lesson_id: @lesson_obj.id) : edit_lesson_standard_path(@lesson_obj, @lessons_standard_obj) 
+    end
+
     def set_standards
-      @standards = Standard.all
-      #@standards = Standard.name_array
+      # Exclude any standards that have already been associated with this lesson
+      @standards = @lesson_obj.standards.exists? ? Standard.where("id NOT IN (?)", @lesson_obj.standards.ids).all : Standard.all
     end
 
 end

@@ -1,21 +1,24 @@
 <%= field_set_tag nil, class: 'Form__fieldset' do %>
 
   <!-- lesson.standards -->
-  <div class="FormFieldGroups FormFieldGroups--multiple" data-values="<%= @standards.to_json %>">
+  <div class="FormFieldGroups FormFieldGroups--multiple">
 
     <div class="FormFieldGroup">
 
       <div class="FormField FormField--required">
 
         <div class="FormField__info">
-          <label class="FormField__label" for="lesson_standards__standard_id_1">Standard</label>
+          <label class="FormField__label" for="lessons_standards_standard_id">Standard</label>
           <div class="FormField__hint">Source and focus of this standard</div>
         </div>
 
-        <div class="FormField__input FormField--multiple">
-          <select name="standards[name]" id="lesson_standards__standard_id_1" required>
+        <div class="FormField__input">
+          <select name="lessons_standards[standard_id]" id="lessons_standards_standard_id" required>
+              <% unless @lessons_standard_obj.new_record? %>
+              <option value="<%= @lessons_standard_obj.standard.id %>" data-autocomplete='<%= @lessons_standard_obj.standard.autocomplete.to_json %>' selected><%= @lessons_standard_obj.standard %></option>
+              <% end %>
               <% @standards.each do |standard| %>
-              <option value="<%= standard.id %>" <%= @lessons_standard_obj.present? ? (standard == @lessons_standard_obj.standard ? 'selected' : nil) : nil %>><%= standard %></option>
+              <option value="<%= standard.id %>" data-autocomplete='<%= standard.autocomplete.to_json %>' <%= @lessons_standard_obj.present? ? (standard == @lessons_standard_obj.standard ? 'selected' : nil) : nil %>><%= standard %></option>
               <% end %>
           </select>
         </div>
@@ -25,12 +28,12 @@
       <div class="FormField FormField--required">
 
         <div class="FormField__info">
-          <label class="FormField__label" for="lesson_standards_description_1">Details</label>
+          <label class="FormField__label" for="lessons_standards_description">Details</label>
           <div class="FormField__hint">Add one or more</div>
         </div>
 
-        <div class="FormField__input FormField--multiple" data-values="<%= @lessons_standards_obj.present? ? @lessons_standards_obj.description.to_json : nil %>">
-          <textarea name="standards[description][]" class="Input Input--multiple" placeholder="+ Add a new standard" id="lesson_standards_description_1"></textarea>
+        <div class="FormField__input FormField--multiple">
+          <textarea name="lessons_standards[description][]" class="Input Input--multiple Input--autocomplete" placeholder="+ Add a new standard" id="lessons_standards_description_1"  data-values="<%= @lessons_standard_obj.present? ? @lessons_standard_obj.description.to_json : nil %>"></textarea>
         </div>
 
       </div>
@@ -39,7 +42,7 @@
 
    <div class="FormField__actions">
     <button type="submit" class="Button Button--secondary FormField__action">Save standard</button>
-    <input name="standards[new_after_save]" type="hidden" value="false" />
+    <input name="lessons_standards[new_after_save]" type="hidden" value="false" />
     <button type="submit" class="Button Button--secondary FormField__action FormField__action--new">Save and add a new standard</button>
   </div>
 

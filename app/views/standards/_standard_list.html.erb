@@ -24,5 +24,8 @@
 	</li>
 	<% end %>
   </ul>
+  <div class="EditList__actions">
+    <%= link_to "+ Add a new standard", new_lesson_standard_path(lesson_id: @lesson_obj.id, form_step: @form_step) %>
+  </div>
 
 </div>

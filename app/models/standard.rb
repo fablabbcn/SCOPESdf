@@ -8,6 +8,7 @@
 #
 
 class Standard < ApplicationRecord
+  
   has_many :lessons_standards
   has_many :lessons, through: :lessons_standards
 

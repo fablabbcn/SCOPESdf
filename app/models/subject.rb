@@ -7,9 +7,9 @@
 #
 
 class Subject < ApplicationRecord
+
   has_many :lesson_tags, as: :taggable
   has_many :user_tags, as: :taggable
-
 
   validates_uniqueness_of :name
 
