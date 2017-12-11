@@ -1,4 +1,4 @@
-<%= field_set_tag 'How does the learning align to educational standards?<span>More info on SCOPESDF standards in Toolkit.</span>'.html_safe, class: 'Form__fieldset' do %>
+<%= field_set_tag nil, class: 'Form__fieldset' do %>
 
   <!-- lesson.standards -->
   <div class="FormFieldGroups FormFieldGroups--multiple" data-values="<%= @standards.to_json %>">
@@ -13,8 +13,10 @@
         </div>
 
         <div class="FormField__input FormField--multiple">
-          <select name="standards[name]" id="lesson_standards__standard_id_1" value="" required>
-              <%= options_for_select(@standards) %>
+          <select name="standards[name]" id="lesson_standards__standard_id_1" required>
+              <% @standards.each do |standard| %>
+              <option value="<%= standard.id %>" <%= @lessons_standard_obj.present? ? (standard == @lessons_standard_obj.standard ? 'selected' : nil) : nil %>><%= standard %></option>
+              <% end %>
           </select>
         </div>
 
@@ -27,7 +29,7 @@
           <div class="FormField__hint">Add one or more</div>
         </div>
 
-        <div class="FormField__input FormField--multiple">
+        <div class="FormField__input FormField--multiple" data-values="<%= @lessons_standards_obj.present? ? @lessons_standards_obj.description.to_json : nil %>">
           <textarea name="standards[description][]" class="Input Input--multiple" placeholder="+ Add a new standard" id="lesson_standards_description_1"></textarea>
         </div>
 
@@ -35,7 +37,11 @@
 
     </div>
 
-    <%= link_to "Add a new standard", new_lesson_standard_path(lesson_id: @lesson_obj.id, form_step: params[:form_step]), class: "Button Button--secondary" %>
+   <div class="FormField__actions">
+    <button type="submit" class="Button Button--secondary FormField__action">Save standard</button>
+    <input name="standards[new_after_save]" type="hidden" value="false" />
+    <button type="submit" class="Button Button--secondary FormField__action FormField__action--new">Save and add a new standard</button>
+  </div>
 
   </div>
 

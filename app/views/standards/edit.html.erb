@@ -1,0 +1,25 @@
+<%= render partial: 'lessons/sub_header' %>
+
+<%= render partial: 'lessons/edit_sub_nav' %>
+
+<%= render partial: 'standards/standard_list' %>
+
+<%= form_tag(lesson_standard_path(lesson_id: @lesson_obj.id, id: @lessons_standard_obj.id, form_step:2), method: :patch, class: "Form") do %>
+
+  <%= render partial: "standards/form" %>
+
+  <div class="Form__footer">
+
+    <div class="Form__footer__content">
+
+      <div class="Form__footer__actions">
+        <a href="#" class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left">Back to Overview</a>
+        <button class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right">Add some Details</button>
+      </div>
+
+    </div>
+
+  </div>
+
+<% end %>
+

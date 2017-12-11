@@ -2,6 +2,8 @@
 
 <%= render partial: 'lessons/edit_sub_nav' %>
 
+<%= render partial: 'standards/standard_list' %>
+
 <%= form_tag(lesson_standards_path(lesson_id: @lesson_obj.id, form_step:2), method: :post, multipart: true, class: "Form") do %>
 
   <%= render partial: "standards/form" %>
@@ -20,3 +22,4 @@
   </div>
 
 <% end %>
+
