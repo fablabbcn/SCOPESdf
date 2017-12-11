@@ -55,6 +55,8 @@ group :development do
   gem 'foreman'
   gem 'erb2haml'
   gem 'binding_of_caller'
+  gem 'rubocop-github'
+  gem 'rubocop'
 end
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -76,3 +78,4 @@ end
 # Frontend - added by Howells
 gem 'active_link_to'
 gem 'turbolinks', require: false
+
