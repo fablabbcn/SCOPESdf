@@ -5,8 +5,8 @@
 #  id          :uuid             not null, primary key
 #  lesson_id   :uuid             not null
 #  standard_id :uuid             not null
-#  description :string
 #  index       :integer
+#  description :string           default([]), is an Array
 #
 
 class LessonsStandard < ApplicationRecord
