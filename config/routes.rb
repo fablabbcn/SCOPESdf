@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     sessions: 'sessions', registrations: 'registrations', passwords: 'passwords'
   } # CSRF_forgery makes this fail :3
 
-  resources :users
+  resources :useirs
 
   # -- Lessons
 

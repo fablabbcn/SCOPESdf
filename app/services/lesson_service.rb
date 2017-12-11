@@ -25,6 +25,7 @@ class LessonService
       updateSkills!
       updateContext!
       updateTags!
+      updateCollectionTag!
       @lesson
     end
     def prepParams(usr, given)
@@ -211,7 +212,7 @@ class LessonService
     def updateCollectionTag!
       return unless @collection.present?
       @lesson.removeCollectionTags # sanitize
-      @lesson.setCollectionTag(@collection)
+      @lesson.setCollectionTag_id(@collection)
       @lesson.save!
       @lesson.reload
     end
