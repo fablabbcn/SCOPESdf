@@ -310,6 +310,9 @@ class Lesson < ApplicationRecord
   def collection_tag
     self.lesson_tags.where(taggable_type: "CollectionTag").map {|x| y = x.taggable; y.id}
   end
+  def collection_tag=(ct)
+    setCollectionTag_id(ct.id)
+  end
   def collection_tag_names
     self.lesson_tags.where(taggable_type: "CollectionTag").map {|x| y = x.taggable; y.name}
   end
