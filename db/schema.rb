@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171211153155) do
+ActiveRecord::Schema.define(version: 20171212150848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 20171211153155) do
 
   create_table "steps", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid     "lesson_id",                          null: false
-    t.string   "summary",                            null: false
+    t.string   "summary"
     t.integer  "duration",              default: 0,  null: false
     t.string   "description",           default: "", null: false
     t.string   "images",                default: [],              array: true
