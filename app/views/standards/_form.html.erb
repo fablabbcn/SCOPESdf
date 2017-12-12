@@ -1,20 +1,25 @@
-<%= field_set_tag 'How does the learning align to educational standards?<span>More info on SCOPESDF standards in Toolkit.</span>'.html_safe, class: 'Form__fieldset' do %>
+<%= field_set_tag nil, class: 'Form__fieldset' do %>
 
   <!-- lesson.standards -->
-  <div class="FormFieldGroups FormFieldGroups--multiple" data-values="<%= @standards.to_json %>">
+  <div class="FormFieldGroups FormFieldGroups--multiple">
 
     <div class="FormFieldGroup">
 
       <div class="FormField FormField--required">
 
         <div class="FormField__info">
-          <label class="FormField__label" for="lesson_standards__standard_id_1">Standard</label>
+          <label class="FormField__label" for="lessons_standards_standard_id">Standard</label>
           <div class="FormField__hint">Source and focus of this standard</div>
         </div>
 
-        <div class="FormField__input FormField--multiple">
-          <select name="standards[name]" id="lesson_standards__standard_id_1" value="" required>
-              <%= options_for_select(@standards) %>
+        <div class="FormField__input">
+          <select name="lessons_standards[standard_id]" id="lessons_standards_standard_id" required>
+              <% unless @lessons_standard_obj.new_record? %>
+              <option value="<%= @lessons_standard_obj.standard.id %>" data-autocomplete='<%= @lessons_standard_obj.standard.autocomplete.to_json %>' selected><%= @lessons_standard_obj.standard %></option>
+              <% end %>
+              <% @standards.each do |standard| %>
+              <option value="<%= standard.id %>" data-autocomplete='<%= standard.autocomplete.to_json %>' <%= @lessons_standard_obj.present? ? (standard == @lessons_standard_obj.standard ? 'selected' : nil) : nil %>><%= standard %></option>
+              <% end %>
           </select>
         </div>
 
@@ -23,19 +28,23 @@
       <div class="FormField FormField--required">
 
         <div class="FormField__info">
-          <label class="FormField__label" for="lesson_standards_description_1">Details</label>
+          <label class="FormField__label" for="lessons_standards_description">Details</label>
           <div class="FormField__hint">Add one or more</div>
         </div>
 
         <div class="FormField__input FormField--multiple">
-          <textarea name="standards[description][]" class="Input Input--multiple" placeholder="+ Add a new standard" id="lesson_standards_description_1"></textarea>
+          <textarea name="lessons_standards[description][]" class="Input Input--multiple Input--autocomplete" placeholder="+ Add a new standard" id="lessons_standards_description_1"  data-values="<%= @lessons_standard_obj.present? ? @lessons_standard_obj.description.to_json : nil %>"></textarea>
         </div>
 
       </div>
 
     </div>
 
-    <%= link_to "Add a new standard", new_lesson_standard_path(lesson_id: @lesson_obj.id, form_step: params[:form_step]), class: "Button Button--secondary" %>
+   <div class="FormField__actions">
+    <button type="submit" class="Button Button--secondary FormField__action">Save standard</button>
+    <input name="lessons_standards[new_after_save]" type="hidden" value="false" />
+    <button type="submit" class="Button Button--secondary FormField__action FormField__action--new">Save and add a new standard</button>
+  </div>
 
   </div>
 

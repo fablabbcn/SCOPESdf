@@ -6,8 +6,8 @@
     <div class="FormField FormField--required FormField--with-border">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_name">Targeted Grade</label>
-        <div class="FormField__hint">Choose one or more of targeted grade (U.S.)</div>
+        <label class="FormField__label" for="lesson_teaching_range">Teaching Range</label>
+        <div class="FormField__hint">Choose a teaching range (U.S.)</div>
       </div>
 
       <%= render partial: 'lessons/form/teaching_range' %>
@@ -30,7 +30,7 @@
     <div class="FormField FormField--required FormField--with-border">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_name">Subjects</label>
+        <label class="FormField__label" for="lesson_subjects">Subjects</label>
         <div class="FormField__hint">Choose one or more Subjects explored</div>
       </div>
 
@@ -58,7 +58,7 @@
     <div class="FormField FormField--required FormField--with-padding">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_contexts">Digital Fabrication</label>
+        <label class="FormField__label" for="lesson_fabrication_tools">Digital Fabrication</label>
         <div class="FormField__hint">Which digital fabrication tools are explored in this lesson?</div>
       </div>
 
@@ -81,13 +81,11 @@
     <div class="FormField FormField--required FormField--with-padding">
 
       <div class="FormField__info">
-        <label class="FormField__label" for="lesson_name">Total Lesson Time</label>
+        <label class="FormField__label" for="lesson_duration">Total Lesson Time</label>
       </div>
 
       <div class="FormField__input">
-        <% if @lesson_obj.attributes['duration'] %>
         <input type="text" name="lesson[duration]" class="Input" value="<%= @lesson_obj.duration %>" placeholder="Approximately" id="lesson_duration" />
-        <% end %>
       </div>
 
     </div>
@@ -142,14 +140,7 @@
         <div class="FormField__hint">Does this belong to a collection?</div>
       </div>
 
-      <div class="FormField__input">
-        <select id="lesson_collection_tag" name="lesson[collection_tag]">
-          <option></option>
-          <% @collections.each do |collection| %>
-          <option value="<%= collection.id %>"><%= collection.name.titleize %></option>
-          <% end %>
-        </select>
-      </div>
+      <%= render partial: "lessons/form/collection" %>
 
     </div>
 
@@ -162,7 +153,7 @@
       </div>
 
       <div class="FormField__input">
-        <%= text_field(:lesson, :tags, multiple: true, class: "Input--choices") %>
+        <input type="text" class="Input--choices" autocomplete="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Enter a tag..." data-items="" name="lesson[tags][]">
       </div>
 
     </div>

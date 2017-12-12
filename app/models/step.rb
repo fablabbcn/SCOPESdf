@@ -25,17 +25,15 @@ class Step < ApplicationRecord
   # Determines whether a new step should be set up after saving
   attribute :new_after_save, :boolean
 
-  validates :lesson_id, presence: true
-
   before_create :check_step_number, :if => :new_record?
   def check_step_number
     self.step_number ||= self.lesson.steps.count + 1
   end
 
   before_save do
-    self.software = self.software.reject{|x| x.empty? || x == " "} if self.software.present?
-    self.fabrication_equipment = self.fabrication_equipment.reject{|x| x.empty? || x == " "} if self.fabrication_equipment.present?
-    self.materials = self.materials.reject{|x| x.empty? || x == " "} if self.materials.present?
+    self.software = self.software.reject { |x| x.empty? } if self.software.present?
+    self.fabrication_equipment = self.fabrication_equipment.reject { |x| x.empty? } if self.fabrication_equipment.present?
+    self.materials = self.materials.reject { |x| x.empty? } if self.materials.present?
   end
 
   belongs_to :lesson

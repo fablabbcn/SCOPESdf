@@ -13,7 +13,9 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  	align-items: center;
+  align-items: center;
+  padding-left: $gutter-width*2;
+  padding-right: $gutter-width*2;
 }
 
 .LessonHeader__collection {
@@ -31,8 +33,7 @@
 }
 
 .LessonHeader__collection--fab-tested {
-  background-image: url('images/collection-fab-tested.svg');
-
+  background-image: url("images/collection-fab-tested.svg");
 }
 
 .LessonHeader__heading {
@@ -43,7 +44,6 @@
 .LessonHeader__topline {
   font-size: 20px;
   color: $color-gray-dark;
-
 }
 
 .LessonHeader__author {
@@ -94,14 +94,14 @@
 .LessonHeader__slideshow {
   width: 50%;
   position: relative;
+  overflow: hidden;
 
   &:before {
     display: block;
     content: "";
     width: 100%;
-    padding-top: 61.1428571%;
+    padding-top: 75%;
   }
-
 }
 
 .LessonHeader__photos {
@@ -140,7 +140,7 @@
   bottom: $gutter-width + 8px;
   left: $gutter-width;
   z-index: 100;
-  background-color: #1D1D1D;
+  background-color: #1d1d1d;
   color: #fff;
   border-radius: 20px;
   padding: 10px 12px;

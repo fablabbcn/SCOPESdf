@@ -4,7 +4,7 @@ class StepsController < ApplicationController
   # but must always have a lesson id provided.
   #skip_before_action :verify_authenticity_token
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_lesson, only: [:index, :new, :show, :edit, :update, :destroy]
   before_action :set_step, only: [:show, :edit, :update, :destroy]
 

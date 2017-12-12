@@ -1,0 +1,8 @@
+<div class="FormField__input">
+	<select id="lesson_collection_tag" name="lesson[collection_tag]">
+		<option></option>
+		<% @collections.each do |collection| %>
+		<option value="<%= collection.id %>" <%= @lesson_obj.present? && @lesson_obj.collection_tag == collection ? 'selected' : nil %>><%= collection.name.titleize %></option>
+		<% end %>
+	</select>
+</div>

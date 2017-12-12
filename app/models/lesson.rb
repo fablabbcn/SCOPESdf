@@ -61,6 +61,8 @@ class Lesson < ApplicationRecord
   has_many :lessons_standards
   has_many :standards, through: :lessons_standards
 
+  accepts_nested_attributes_for :steps, allow_destroy: true
+  accepts_nested_attributes_for :lessons_standards, allow_destroy: true
 
   # TODO - search for filter on lesson_tags
 

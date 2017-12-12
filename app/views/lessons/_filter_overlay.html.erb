@@ -15,13 +15,7 @@
             <label class="FormField__label" for="lesson_name">Collection</label>
           </div>
 
-          <div class="FormField__input">
-            <select name="collection">
-              <% @collections.each do |collection| %>
-              <option value="<%= collection.id %>"><%= collection.name.titleize %></option>
-              <% end %>
-            </select>
-          </div>
+          <%= render partial: "lessons/form/collection" %>
 
         </div>
 

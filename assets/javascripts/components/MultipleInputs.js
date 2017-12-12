@@ -1,5 +1,5 @@
 'use strict';
-
+import { register as RegisterAutocomplete } from './StandardAutocomplete'
 import {Sortable} from '@shopify/draggable';
 
 export default function MultipleInputs() {
@@ -21,6 +21,9 @@ export default function MultipleInputs() {
 
     // Handle new inputs
     handleAddNewValue(input)
+
+    // Init atocomplete if needs be
+   RegisterAutocomplete(input);
 
   })
 
@@ -107,6 +110,9 @@ function createNewInput(sourceInput, value) {
   // Strip the input of its id, initial data, and placeholder, don't need them anymore
   $(clonedInput).removeAttr('id').removeAttr('data-values').removeAttr('placeholder')
 
+   // Init atocomplete if needs be
+   RegisterAutocomplete(clonedInput[0]);
+
   // Create a wrapper for the cloned input
   let $wrapper = $(`<div class="FormField__multipleinput">
 		<button class="FormField__multipleinput__remove"><span>Remove</span></button>
@@ -125,5 +131,6 @@ function createNewInput(sourceInput, value) {
   // Add it before the initial field, wrapped in a container
   $(sourceInput).before($wrappedInput)
 
+ 
 
 }

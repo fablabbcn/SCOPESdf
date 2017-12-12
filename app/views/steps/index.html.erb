@@ -3,14 +3,14 @@
 <div class="PageHeader">
   <div class="PageHeader__content">
     <div class="PageHeader__title">
-      <h1 class="PageHeader__heading">Settlers of Catan</h1>
+      <h1 class="PageHeader__heading"><%= @lesson_obj.name %></h1>
     </div>
     <div class="PageHeader__indicators">
       <div class="PageHeader__indicator PageHeader__indicator--time">
-        1.5 hours
+        <%= @lesson_obj.duration %>
       </div>
       <div class="PageHeader__indicator PageHeader__indicator--steps">
-        3 steps
+        <%= @lesson_obj.steps.count %> steps
       </div>
     </div>
   </div>
@@ -24,29 +24,36 @@
 
       <h4 class="Requirements__heading Requirements__heading--materials">Materials needed</h4>
 
+      <!-- TODO: this would best be served as a method on the lesson model -->
       <ul class="Requirements__list">
-        <li class="Requirements__list__item">1x - Computer/Chromebooks access (or iPad for Printshop)</li>
-        <li class="Requirements__list__item">Camera or scanner access</li>
-        <li class="Requirements__list__item">TinkerCad accounts</li>
-        <li class="Requirements__list__item">Handouts per student and extras printed</li>
-        <li class="Requirements__list__item">1x - Computer/Chromebooks access (or iPad for Printshop)</li>
-        <li class="Requirements__list__item">TinkerCad accounts</li>
+        <% @lesson_obj.steps.each do |step| %>
+          <% step.materials.each do |material| %>
+            <li class="Requirements__list__item"><%= material %></li>
+          <% end %>
+        <% end %>
       </ul>
 
     </div>
 
     <div class="Requirements__column">
 
-      <h4 class="Requirements__heading Requirements__heading--tools">Tools needed</h4>
+      <h4 class="Requirements__heading Requirements__heading--tools">Software & Equipment needed</h4>
 
+      <!-- TODO: this double looping best be served as a method on the lesson model -->
       <ul class="Requirements__list">
-        <li class="Requirements__list__item">3D Printer</li>
-        <li class="Requirements__list__item">TinkerCAD</li>
-        <li class="Requirements__list__item">AdobeIllustrator (or similar)</li>
+        <% @lesson_obj.steps.each do |step| %>
+          <% step.software.each do |software_package| %>
+            <li class="Requirements__list__item"><%= software_package %></li>
+          <% end %>
+          <% step.fabrication_equipment.each do |tool| %>
+            <li class="Requirements__list__item"><%= tool %></li>
+          <% end %>
+        <% end %>
       </ul>
 
     </div>
 
+    <!-- TODO: no functionality to combine all files into one downloadable -->
     <div class="Requirements__column">
 
       <h4 class="Requirements__heading Requirements__heading--files">Project files</h4>
@@ -59,108 +66,30 @@
 
 </div>
 
-<!-- step 1 -->
+<% @lesson_obj.steps.each_with_index do |step, i| %>
+<!-- step <%= i %> -->
 <div class="Step">
 
   <div class="Step__columns">
 
     <div class="Step__main">
 
-      <div class="Step__number">Step 1</div>
+      <div class="Step__number">Step <%= i+1 %></div>
 
-      <h3 class="Step__main__heading">Introduction Lesson</h3>
-
-      <div class="Step__text">
-
-        <p>Have your students research the different biomes either in pairs or alone. And ask these questions:</p>
-
-        <ul>
-          <li>What defines the biomes?</li>
-          <li>Where are these biomes located?</li>
-          <li>What makes each biome difficult to live in?</li>
-          <li>What resources are abundant in each of the biomes?</li>
-        </ul>
-
-        <p>Have an open discussion about the resources your students use daily. A resource is a supply from which benefit is produced.</p>
-
-        <ul>
-          <li>Have the students write down their favorite resource, and have them explain why.</li>
-          <li>Have the students research which resources come from which biomes.</li>
-          <li>What makes each biome difficult to live in?</li>
-          <li>The students should research how people use these biomes.</li>
-        </ul>
-
-      </div>
-
-    </div>
-
-    <div class="Step__sidebar">
-
-      <div class="Sidebar">
-
-        <div class="Sidebar__section Sidebar__section--with-border">
-
-          <div class="Sidebar__heading">
-            Duration
-          </div>
-
-          <ul class="Sidebar__list">
-            <li class="Sidebar__list__item">
-              <div class="Sidebar__stat Sidebar__stat--duration">10 minutes</div>
-            </li>
-          </ul>
-
-        </div>
-
-        <div class="Sidebar__section">
-
-          <div class="Sidebar__heading">
-            External Links
-          </div>
-
-          <ul class="Sidebar__list">
-            <li class="Sidebar__list__item">
-              <a href="#" class="Sidebar__link">YouTube - Settlers of Catan (An explanation)</a>
-            </li>
-          </ul>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- step 2 -->
-<div class="Step">
-
-  <div class="Step__columns">
-
-    <div class="Step__main">
-
-      <div class="Step__number">Step 2</div>
-
-      <h3 class="Step__main__heading">Design Water Tile</h3>
+      <h3 class="Step__main__heading"><%= step.name %></h3>
 
       <div class="Step__text">
 
-        <p>Students draw within the circle and include the cut out shape along multiple edges</p>
+        <%= markdown(step.description) %>
 
-        <ul>
-          <li>See how creative students can be without going outside the circle size</li>
-          <li>The design needs to fit within the circle for the tinkercad sizing step!</li>
-        </ul>
-
+        <% if step.images.present? %>
         <div class="Slideshow">
 
           <div class="Slideshow__cells">
 
-            <% 7.times do |i| %>
+            <% step.images.each do |image| %>
             <div class="Slideshow__cell">
-              <img src="https://source.unsplash.com/random/700x470??computer,equipment,material&<%= i %>" />
+              <img src="<%= image.url(:medium) %>" srcset="<%= image.url(:medium) %> 1x, <%= image.url(:medium2x) %> 2x" class="Image Image--lazy" />
             </div>
             <% end %>
 
@@ -168,15 +97,16 @@
 
           <div class="Slideshow__nav__cells">
 
-            <% 7.times do |i| %>
+            <% step.images.each do |image| %>
             <div class="Slideshow__nav__cell">
-              <img src="https://source.unsplash.com/random/700x470??computer,equipment,material&<%= i %>" />
+              <img src="<%= image.url(:thumbnail) %>" srcset="<%= image.url(:thumbnail) %> 1x, <%= image.url(:thumbnail2x) %> 2x" class="Image Image--lazy" />
             </div>
             <% end %>
 
           </div>
 
         </div>
+        <% end %>
 
       </div>
 
@@ -188,32 +118,39 @@
 
         <div class="Sidebar__section Sidebar__section--with-border">
 
+          <% if step.duration > 0 %>
           <div class="Sidebar__heading">
             Duration
           </div>
 
           <ul class="Sidebar__list">
             <li class="Sidebar__list__item">
-              <div class="Sidebar__stat Sidebar__stat--duration">1.2 hours</div>
+              <div class="Sidebar__stat Sidebar__stat--duration"><%= distance_of_time_in_words(step.duration*60) %></div>
             </li>
           </ul>
 
         </div>
+        <% end %>
 
+        <% if step.design_files.present? %>
         <div class="Sidebar__section">
 
           <div class="Sidebar__heading">
-            Project Files
+            Design Files
           </div>
 
           <ul class="Sidebar__list">
             <li class="Sidebar__list__item">
-              <a href="#" class="Sidebar__link Sidebar__link--download">WaterTile.sls</a>
+              <% step.design_files.each do |file| %>
+                <%= link_to file.file.filename, file.url, class: "Sidebar__link Sidebar__link--download" %>
+              <% end %>
             </li>
           </ul>
 
         </div>
+        <% end %>
 
+        <% if step.materials.present? %>
         <div class="Sidebar__section">
 
           <div class="Sidebar__heading">
@@ -221,30 +158,31 @@
           </div>
 
           <ul class="Sidebar__list">
-            <li class="Sidebar__list__item">Computer/Chromebooks access (or iPad for Printshop)</li>
-            <li class="Sidebar__list__item">Camera or scanner access</li>
-            <li class="Sidebar__list__item">TinkerCad accounts</li>
-            <li class="Sidebar__list__item">Handouts per student and extras printed</li>
-            <li class="Sidebar__list__item">Cardboard</li>
-            <li class="Sidebar__list__item">Pencils</li>
+            <% step.materials.each do |material| %>
+            <li class="Sidebar__list__item"><%= material %></li>
+            <% end %>
           </ul>
 
         </div>
+        <% end %>
 
+        <% if step.fabrication_equipment.present? %>
         <div class="Sidebar__section">
 
           <div class="Sidebar__heading">
-            Tools needed for this step
+            Fabrication equipment needed for this step
           </div>
 
           <ul class="Sidebar__list">
-            <li class="Sidebar__list__item">3D Printer</li>
-            <li class="Sidebar__list__item">TinkerCAD</li>
-            <li class="Sidebar__list__item">AdobeIllustrator (or similar)</li>
+            <% step.fabrication_equipment.each do |tool| %>
+            <li class="Sidebar__list__item"><%= tool %></li>
+            <% end %>
           </ul>
 
         </div>
+        <% end %>
 
+        <% if step.external_links.present? %>
         <div class="Sidebar__section">
 
           <div class="Sidebar__heading">
@@ -252,80 +190,15 @@
           </div>
 
           <ul class="Sidebar__list">
+            <% step.external_links.each do |link| %>
             <li class="Sidebar__list__item">
-              <a href="#" class="Sidebar__link">Youtube : Using the Extruding machine</a>
+              <a href="<%= link %>" class="Sidebar__link"><%= link %></a>
             </li>
+            <% end %>
           </ul>
 
         </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- step 3 -->
-  <div class="Step">
-
-    <div class="Step__columns">
-
-      <div class="Step__main">
-
-        <div class="Step__number">Step 3</div>
-
-        <h3 class="Step__main__heading">Assessment</h3>
-
-        <div class="Step__text">
-
-          <p>Have your students research the different biomes either in pairs or alone. And ask these questions:</p>
-
-          <ol>
-            <li>What are the benefits of modeling small, separate pieces for printing?</li>
-            <li>What tools do you use to build objects in Tinkercad?</li>
-            <li>What are the strengths and weaknesses of Tinkercad?</li>
-            <li>How do you navigate in Tinkercad?</li>
-            <li>When building the mountain tiles, why was it important to use the Hole tool to cut off the base of the tile?</li>
-            <li>What are the benefits of plating multiple prints at a time?</li>
-          </ol>
-
-        </div>
-
-      </div>
-
-      <div class="Step__sidebar">
-
-        <div class="Sidebar">
-
-          <div class="Sidebar__section Sidebar__section--with-border">
-
-            <div class="Sidebar__heading">
-              Duration
-            </div>
-
-            <ul class="Sidebar__list">
-              <li class="Sidebar__list__item">
-                <div class="Sidebar__stat Sidebar__stat--duration">10 minutes</div>
-              </li>
-            </ul>
-
-          </div>
-
-          <div class="Sidebar__section">
-
-            <div class="Sidebar__heading">
-              Tools needed for this step
-            </div>
-
-            <ul class="Sidebar__list">
-              <li class="Sidebar__list__item">3D Printer</li>
-              <li class="Sidebar__list__item">TinkerCAD</li>
-              <li class="Sidebar__list__item">AdobeIllustrator (or similar)</li>
-            </ul>
-
-          </div>
-
-        </div>
+        <% end %>
 
       </div>
 
@@ -334,14 +207,15 @@
   </div>
 
 </div>
+<% end %>
 
-<div class="LessonFooter">
+<div class="LessonFPageFooterooter">
 
-  <div class="LessonFooter__content">
+  <div class="PageFooter__content">
 
-    <div class="LessonFooter__actions">
-      <%= link_to "Back to Standards", lesson_standards_path(lesson_id: @lesson_obj.id), class: "LessonFooter__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left" %>
-      <%= link_to "View Outcomes", lesson_path(id: @lesson_obj.id, section: :outcomes), class: "LessonFooter__action LessonFooter__action--right Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right" %>
+    <div class="PageFooter__actions">
+      <%= link_to "Back to Standards", lesson_standards_path(lesson_id: @lesson_obj.id), class: "PageFooter__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left" %>
+      <%= link_to "View Outcomes", lesson_path(id: @lesson_obj.id, section: :outcomes), class: "PageFooter__action PageFooter__action--right Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right" %>
     </div>
 
   </div>

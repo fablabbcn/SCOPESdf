@@ -34,6 +34,8 @@ import Tooltips	from "./components/Tooltips"
 import UserStatus	from "./components/UserStatus"
 import SubNavigation	from "./components/SubNavigation"
 import Alert	from "./components/Alert"
+import StandardAutocomplete	from "./components/StandardAutocomplete"
+
 
 var ScopesDF = {
 
@@ -77,6 +79,7 @@ var ScopesDF = {
 		Tooltips()
 		UserStatus()
 		SubNavigation()
+		StandardAutocomplete()
 
 	}
 

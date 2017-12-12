@@ -1,0 +1,21 @@
+.textcomplete-dropdown {
+	background-color: white;
+	border: 1px solid #ddd;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border: 1px solid $color-border;
+	max-width: 420px;
+}
+
+.textcomplete-item {
+	cursor: pointer;
+	border-bottom: 1px solid $color-border;
+	padding: 15px 20px;
+	display: block;
+	&:hover {
+		a {
+			color: $color-main;
+		}
+	}
+}

@@ -9,26 +9,28 @@
       </div>
 
       <h1 class="LessonHeader__heading">
-        Settlers of Catan
+        <%= @lesson_obj.name %>
       </h1>
 
       <div class="LessonHeader__topline">
-        Make Your Own Country with Tinkercad
+        <%= @lesson_obj.topline %>
       </div>
 
-      <a href="#" class="LessonHeader__author LessonHeader__author--verified">
+      <% @lesson_obj.authors.each do |author| %>
+      <%= link_to author, class: "LessonHeader__author" do %>
         <div class="LessonHeader__author__avatars">
           <div class="LessonHeader__author__person">
             <img src="<%= image_url('avatars/avatar1.jpg') %>" class="Image Image--lazy" />
           </div>
         </div>
         <div class="LessonHeader__author__name">
-          Claudia Sanchez Munoz
+          <%= author %>
         </div>
         <div class="LessonHeader__author__roleplace">
-          Teacher
+          <%= author.role %>
         </div>
-      </a>
+      <% end %>
+      <% end %>
 
     </div>
 
@@ -37,12 +39,11 @@
   <div class="LessonHeader__slideshow">
 
     <div class="LessonHeader__photos">
-      <% 4.times do |i| %>
+      <% @lesson_obj.outcome_files.each do |file| %>
         <div class="LessonHeader__photo">
-          <img src="<%= image_url("lessons/show/catan#{i+1}.jpg ") %>" data-sizes="auto" data-srcset="<%= image_url("lessons/show/catan#{i+1}.jpg
-            ") %> 1x, <%= image_url("lessons/show/catan#{i+1}.jpg ") %> 2x" class="Image Image--lazy" />
+          <img src="<%= file.url(:medium) %>" data-sizes="auto" data-srcset="<%= file.url(:medium) %> 1x, <%= file.url(:medium2x) %> 2x" class="Image Image--lazy" />
         </div>
-        <% end %>
+      <% end %>
     </div>
 
     <%= link_to "View more photos", lesson_path(section: :outcomes), class: "LessonHeader__photos__action Button Button--primary Button--small" %>
@@ -63,27 +64,29 @@
     <div class="DetailsBanner__column">
       <div class="DetailsBanner__header">Teaching Range</div>
       <div class="DetailsBanner__range">
-        8th—12th Grade
+        8th—12th Grade <!-- TODO: once lesson.teaching_range attr works -->
       </div>
     </div>
 
     <div class="DetailsBanner__column">
       <div class="DetailsBanner__header">Subjects Covered</div>
       <ul class="DetailsBanner__subjects">
-        <li class="DetailsBanner__subject DetailsBanner__subject--art">Art</li>
-        <li class="DetailsBanner__subject DetailsBanner__subject--technology">Technology</li>
+        <% @lesson_obj.subjects.each do |subject| %>
+        <li class="DetailsBanner__subject DetailsBanner__subject--<%= subject.name %>%"><%= subject.name.titleize %></li>
+        <% end %>
       </ul>
     </div>
 
+  <!-- TODO: need to translate @lesson_obj.eductor/student_mastery into a "Difficult", "Easy", etc -->
     <div class="DetailsBanner__column">
       <div class="DetailsBanner__header">Mastery</div>
       <div class="DetailsBanner__masteries">
         <div class="DetailsBanner__mastery">
-          <div class="DetailsBanner__mastery__metric">Difficult</div>
+          <div class="DetailsBanner__mastery__metric"><%= @lesson_obj.educator_mastery %></div>
           <div class="DetailsBanner__mastery__for">For Teachers</div>
         </div>
         <div class="DetailsBanner__mastery">
-          <div class="DetailsBanner__mastery__metric">Moderate</div>
+          <div class="DetailsBanner__mastery__metric"><%= @lesson_obj.student_mastery %></div>
           <div class="DetailsBanner__mastery__for">For Students</div>
         </div>
       </div>
@@ -92,8 +95,9 @@
     <div class="DetailsBanner__column">
       <div class="DetailsBanner__header">Alignment to Standards</div>
       <ul class="DetailsBanner__standards">
-        <li class="DetailsBanner__standard Tooltip" title="Determine the meaning of words and phrases as they are used in a text, including vocabulary describing political, social, or economic aspects of history/social science.">CCSS.ELA-LITERACY.RH.6-8.7</li>
-        <li class="DetailsBanner__standard">CCSS.ELA-LITERACY.RH.9-10.4</li>
+        <% @lesson_obj.lessons_standards.each do |lessons_standard| %>
+            <li class="DetailsBanner__standard Tooltip" title="<%= lessons_standard.description.join("<br><br>") %>"><%= lessons_standard.standard %></li>
+        <% end %>
       </ul>
     </div>
 
@@ -114,13 +118,11 @@
         <div class="PageContent__heading">Summary</div>
 
         <div class="PageContent__quick_pitch">
-          This project, focuses on creating geographical tiles using primitive shapes in Tinkercad.
+          <%= @lesson_obj.topline %>
         </div>
 
         <div class="PageContent__summary">
-          In this project, your students will learn how to use a free program called Tinkercad. Using Tinkercad students will design
-          basic geographical tiles to represent various environments. When the tiles are combined, students can create a
-          country and learn about geography and colonialism.
+          <%= @lesson_obj.summary %>
         </div>
 
       </div>
@@ -130,13 +132,11 @@
 
         <div class="PageContent__heading">Objectives</div>
 
+        <% @lesson_obj.learning_objectives.each do |objective| %>
         <div class="PageContent__objective">
-          Explore the history of colonialism, research the geography of different regions
+          <%= objective %>
         </div>
-
-        <div class="PageContent__objective">
-          Understand the importance of natural resources, learn basic principles of economics (supply and demand)
-        </div>
+        <% end %>
 
       </div>
 
@@ -147,12 +147,11 @@
 
         <div class="PageContent__thumbnails">
 
-          <% 3.times do |i| %>
-            <a href="#" class="PageContent__thumbnail">
-              <img src="<%= image_url("lessons/show/catan#{i+1}.jpg ") %>" data-sizes="auto" data-srcset="<%= image_url("lessons/show/catan#{i+1}.jpg
-                ") %> 1x, <%= image_url("lessons/show/catan#{i+1}.jpg ") %> 2x" class="Image Image--lazy" />
-            </a>
+          <% @lesson_obj.outcome_files.each do |file| %>
+            <%= link_to lesson_path(section: :outcomes), class: "PageContent__thumbnail" do %>
+              <img src="<%= file.url(:thumbnail) %>" data-sizes="auto" data-srcset="<%= file.url(:thumbnail) %> 1x, <%= file.url(:thumbnail2x) %> 2x" class="Image Image--lazy" />
             <% end %>
+          <% end %>
 
         </div>
 
@@ -165,26 +164,16 @@
 
         <div class="PageContent__text">
 
-          <p>
-            Your students should know the following things:
-          </p>
-
-          <ul>
-            <li>What are the benefits of modeling small, separate pieces for printing?</li>
-            <li>What tools do you use to build objects in Tinkercad?</li>
-            <li>What are the strengths and weaknesses of Tinkercad?</li>
-            <li>How do you navigate in Tinkercad?</li>
-            <li>When building the mountain tiles, why was it important to use the Hole tool to cut off the base of the tile?</li>
-            <li>What are the benefits of plating multiple prints at a time?</li>
-          </ul>
+          <!-- TODO: lesson view design calls for bulleted list, but form design is a textarea -->
+          <%= simple_format(@lesson_obj.assessment_criteria) %>
 
         </div>
 
         <div class="PageContent__heading PageContent__heading--minor">Supporting files</div>
 
-        <a href="#" class="Button Button--outline Button--small Button--icon Button--icon--file">SettlersCatanAssessment.pdf</a>
-
-        <a href="#" class="Button Button--outline Button--small Button--icon Button--icon--file">Quiz.pdf</a>
+        <% @lesson_obj.assessment_criteria_files.each do |file| %>
+        <a href="<%= file.url %>" class="Button Button--outline Button--small Button--icon Button--icon--file Button--margin-bottom"><%= file.file.filename %></a>
+        <% end %>
 
       </div>
 
@@ -197,6 +186,7 @@
         <!-- files -->
         <div class="Sidebar__section Sidebar__section--with-border">
 
+          <!-- TODO: this field is not on the lesson model -->
           <div class="Sidebar__heading">
             Download Lesson Plan
           </div>
@@ -211,6 +201,8 @@
           <div class="Sidebar__heading">
             Stats
           </div>
+
+          <!-- TODO: no stats available yet -->
 
           <ul class="Sidebar__list">
             <li class="Sidebar__list__item">
@@ -234,13 +226,17 @@
           </div>
 
           <ul class="Sidebar__list">
-            <li class="Sidebar__list__item">Publish date: 21 Aug 2017</li>
-            <li class="Sidebar__list__item">Last updated: 28 Aug 2017</li>
+            <% if @lesson_obj.published_at.present? %>
+            <li class="Sidebar__list__item">Publish date: <%= @lesson_obj.published_at.strftime("%d %b %Y") %></li>
+            <% end %>
+            <li class="Sidebar__list__item">Last updated: <%= @lesson_obj.updated_at.strftime("%d %b %Y") %></li>
           </ul>
 
         </div>
 
         <!-- forked -->
+        <!-- TODO: forking functionaly, descoped -->
+        <!--
         <div class="Sidebar__section Sidebar__section--with-border">
 
           <div class="Sidebar__heading">
@@ -267,18 +263,24 @@
           </div>
 
         </div>
+        -->
 
-        <!-- contributors -->
+        <% if @lesson_obj.authors.present? %>
+        <!-- authors -->
         <div class="Sidebar__section Sidebar__section--with-border">
 
           <div class="Sidebar__heading">
-            Contributors
+            Authors
           </div>
 
-          <%= render partial: "components/user_badge", locals: { size: :medium } %>
+          <% @lesson_obj.authors.each do |author| %>
+            <%= render partial: "components/user_badge", locals: { user: author, size: :medium } %>
+          <% end %>
 
         </div>
+        <% end %>
 
+        <% if @lesson_obj.tags.present? %>
         <!-- tags -->
         <div class="Sidebar__section Sidebar__section--with-border">
 
@@ -287,14 +289,13 @@
           </div>
 
           <div class="Tags">
-            <% ['3D', 'Innovation', 'Physics', '8th Grade', '9th Grade', '10th Grade', '11th Grade', 'Algebra'].each do |tag| %>
-              <a href="#" class="Tag">
-                <%= tag %>
-              </a>
-              <% end %>
+            <% @lesson_obj.tags.each do |tag| %>
+              <%= link_to tag, lessons_path(tag: tag), class: "Tag" %>
+            <% end %>
           </div>
 
         </div>
+        <% end %>
 
       </div>
 

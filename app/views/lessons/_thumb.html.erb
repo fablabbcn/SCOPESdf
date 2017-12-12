@@ -1,15 +1,17 @@
 <div class="Thumb">
 
-  <a href="/lessons/show" class="Thumb__image">
-    <img src="https://source.unsplash.com/270x202/?<%= i %>" srcset="https://source.unsplash.com/270x202/?<%= i %> 1x, https://source.unsplash.com/540x404/?<%= i %> 2x" class="Image Image--lazy" />
-  </a>
+  <%= link_to lesson_path(lesson), class: "Thumb__image" do %>
+    <% if lesson.outcome_files.present? %>
+    <img src="<%= lesson.outcome_files.first.url(:thumbnail) %>" srcset="<%= lesson.outcome_files.first.url(:thumbnail) %> 1x, <%= lesson.outcome_files.first.url(:thumbnail2x) %> 2x" class="Image Image--lazy" />
+    <% end %>
+  <% end %>
 
   <div class="Thumb__content">
 
-    <a href="/lessons/show" class="Thumb__title">Title</a>
+    <%= link_to lesson.name, lesson_path(lesson), class: "Thumb__title" %>
 
     <div class="Thumb__description">
-      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+      <%= lesson.topline %>
     </div>
 
   </div>
