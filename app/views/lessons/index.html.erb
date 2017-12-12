@@ -38,11 +38,11 @@
 
   <div class="Grid__items Grid__items--centered">
 
-    <% 24.times do |i| %>
+    <% @lessons.each_with_index do |lesson, i| %>
     <div class="Grid__item">
 
       <%= render partial: 'lessons/thumb', locals: {
-        lesson: Lesson.first,
+        lesson: lesson,
         i: i
         } %>
 
@@ -53,4 +53,4 @@
 
 </div>
 
-<%= paginate @paginatable_array %>
+<%= paginate @lessons %>

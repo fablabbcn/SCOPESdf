@@ -14,17 +14,20 @@
 
   <div class="Grid__items Grid__items--border-bottom Grid__items--constrained-width">
 
-    <% 4.times do |i| %>
+    <% @lesson_obj.outcome_files.each_with_index do |file, i| %>
     <div class="Grid__item">
       <div class="Grid__image">
-        <img src="<%= image_url("lessons/show/catan#{i+1}.jpg") %>"
+        <img src="<%= file.url(:thumbnail) %>"
           data-sizes="auto"
-          data-srcset="<%= image_url("lessons/show/catan#{i+1}.jpg") %> 1x, <%= image_url("lessons/show/catan#{i+1}.jpg") %> 2x"
+          data-srcset="<%= file.url(:thumbnail) %> 1x, <%= file.url(:thumbnail2x) %> 2x"
           class="Image Image--lazy" />
       </div>
+      <!-- TODO: no functionality to have captions against images - descoped -->
+      <!--
       <div class="Grid__caption Grid__caption--image">
         Photo caption <%= i %>
       </div>
+      -->
     </div>
     <% end %>
 
@@ -32,13 +35,13 @@
 
 </div>
 
-<div class="LessonFooter">
+<div class="PageFooter">
 
-  <div class="LessonFooter__content">
+  <div class="PageFooter__content">
 
-    <div class="LessonFooter__actions">
-      <%= link_to "Back to Steps", lesson_steps_path(lesson_id: @lesson_obj.id), class: "LessonFooter__action LessonFooter__action--left Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left" %>
-      <%= link_to "View all Lessons", lessons_path, class: "LessonFooter__action LessonFooter__action--right Button Button--primary Button--small Button--icon Button--icon--rightleft Button--arrow--right" %>
+    <div class="PageFooter__actions">
+      <%= link_to "Back to Steps", lesson_steps_path(lesson_id: @lesson_obj.id), class: "PageFooter__action PageFooter__action--left Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left" %>
+      <%= link_to "View all Lessons", lessons_path, class: "PageFooter__action PageFooter__action--right Button Button--primary Button--small Button--icon Button--icon--rightleft Button--arrow--right" %>
     </div>
 
   </div>
