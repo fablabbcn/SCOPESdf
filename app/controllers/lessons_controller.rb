@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class LessonsController < ApplicationController
 
   before_action :authenticate_user!, only: [:edit, :update, :delete_file, :upload_file]
@@ -34,10 +35,7 @@ class LessonsController < ApplicationController
 
   def show
 
-    # TODO: just finding/creating a dummy lesson now just to be able to show the templates
-    #@lesson = Lesson.includes(:steps).find(params[:id])
-    @lesson_obj = LessonService.find_or_create_and_update(params[:id], nil, current_user)
-    @lesson_obj.steps << Step.new(summary: "")
+    @lesson_obj = Lesson.includes(:steps).find(params[:id])
 
     # Fetch any specified section and turn it into a sym, otherwise :overview
     @section = params[:section].present? ? params[:section].to_sym : :overview
@@ -68,8 +66,6 @@ class LessonsController < ApplicationController
     @form_step = params[:form_step].present? ? params[:form_step].to_i : 1
     @lesson_obj = Lesson.find(params[:id])
 
-    @fabrication_tools = ['Hardware', 'Electrical', 'Design', 'CNC Milling', 'Software'] # TODO this should probably be stored elsewhere, should probably be a separate model
-
     #pundit --
     authorize @lesson_obj, :update?
 
@@ -98,8 +94,8 @@ class LessonsController < ApplicationController
       @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, @current_user)
     end
     files_hash = {}
-    files_hash.merge!({assessment_criteria_files: params[:assessment_criteria_files]}) if params[:assessment_criteria_files].present?
-    files_hash.merge!({outcome_files: params[:outcome_files]}) if params[:outcome_files].present?
+    files_hash[:assessment_criteria_files] = params[:assessment_criteria_files] if params[:assessment_criteria_files].present?
+    files_hash[:outcome_files] = params[:outcome_files] if params[:outcome_files].present?
 
     LessonService.add_file_by_type_to_id(@lesson_obj.id, files_hash) # should not be user first
     @lesson_obj.reload
@@ -146,14 +142,14 @@ class LessonsController < ApplicationController
     files_hash = {}
     puts "br"
     puts files_hash
-    files_hash.merge!({assessment_criteria_files: files}) if params[:attr] == "assessment_criteria_files"
-    files_hash.merge!({outcome_files: files}) if params[:attr] == "outcome_files"
+    files_hash[:assessment_criteria_files] = files if params[:attr] == "assessment_criteria_files"
+    files_hash[:outcome_files] = files if params[:attr] == "outcome_files"
     returning = []
 
     # @lesson.addFiles( files_hash[:outcome_files][0], :outcome_files)
 
     if files_hash[:assessment_criteria_files].present?
-      files_hash[:assessment_criteria_files].map{|k,v|
+      files_hash[:assessment_criteria_files].map{|k, v|
         @lesson.addFiles(v, :assessment_criteria)
       }
       @lesson.save!
@@ -162,11 +158,11 @@ class LessonsController < ApplicationController
         @lesson.reload
         x = @lesson.assessment_criteria_files[i]
         puts JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria")
-        returning.append( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
+        returning.append(JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria"))
       end
     elsif files_hash[:outcome_files].present?
       puts "handing outcome files here\n\n\n\n\n"
-      files_hash[:outcome_files].map{|k,v|
+      files_hash[:outcome_files].map{|k, v|
         @lesson.addFiles(v, :outcome)
       }
       @lesson.save!
@@ -174,19 +170,19 @@ class LessonsController < ApplicationController
         @lesson.reload
         x = @lesson.outcome_files[i]
         puts JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome")
-        returning.append(JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
+        returning.append(JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome"))
       end
     end
 
 
     respond_to do |format|
       format.html {
-        render :json => returning,
-               :content_type => 'text/html',
-               :layout => false
+        render json: returning,
+               content_type: "text/html",
+               layout: false
       }
       format.json {
-        render :json => { :files => returning }
+        render json: { files: returning }
       }
     end
   end
@@ -196,15 +192,15 @@ class LessonsController < ApplicationController
     puts params.inspect
     file_name = params[:name]
     attribute = params[:attr]
-    state = @lesson_obj.removeFileWithName(attribute.to_sym,file_name)
+    state = @lesson_obj.removeFileWithName(attribute.to_sym, file_name)
     # Return the attribute as json
-    render :json => {deleted: state}
+    render json: {deleted: state}
   end
 
   def publish
     # check to make sure current user is owner and make inactive
     # make sure passes validation
-    render :json => {success: Lesson.find(params[:id]).publish!}, :status => 200
+    render json: {success: Lesson.find(params[:id]).publish!}, status: 200
   end
 
   def delete
@@ -221,12 +217,12 @@ class LessonsController < ApplicationController
     id = nil
     id = step_param[:id] if step_param[:id].present? # updates
     @step = Step.find_or_create_and_update(id, params[:id], step_param, User.first).set_files(params) # should not be user first
-    render :json => {success: "OKEY", lesson: @step.id}, :status => 200
+    render json: {success: "OKEY", lesson: @step.id}, status: 200
   end
 
   def delete_step
     r = Step.delete_and_update_sibilings(params[:step_id], params[:id], User.first) # should not be user first
-    render :json => {success: r}, :status => 200
+    render json: {success: r}, status: 200
   end
 
   # ~~~~~~~~~~~~~~~
@@ -240,12 +236,12 @@ class LessonsController < ApplicationController
       Step.find_or_create_and_update(id, params[:id], s, User.first).id # should not be user first
     }
     ids = Lesson.find(params[:id]).steps.order(:created_at).map{|x| x.id}
-    render :json => {ids: ids}, :status => 200
+    render json: {ids: ids}, status: 200
   end
   def remove_step
     Step.delete_and_update_sibilings(step_param[:id], params[:id], User.first) # should not be user first
     ids = Lesson.find(params[:id]).steps.order(:created_at).map{|x| x.id}
-    render :json => {ids: ids}, :status => 200
+    render json: {ids: ids}, status: 200
   end
 
   def draft
@@ -257,23 +253,23 @@ class LessonsController < ApplicationController
     returning = []
     if file_params[:attr] == "assessment_criteria_files"
         @lesson.assessment_criteria_files.map{|x|
-          returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria") )
+          returning.push(JqUploaderService.convert_to_jq_upload(x, @lesson.id, "assessment_criteria"))
         }
     elsif
       file_params[:attr] == "outcome_files"
         @lesson.outcome_files.map{|x|
-          returning.push( JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome") )
+          returning.push(JqUploaderService.convert_to_jq_upload(x, @lesson.id, "outcome"))
         }
     end
 
     respond_to do |format|
       format.html {
-        render :json => returning.to_json,
-               :content_type => 'text/html',
-               :layout => false
+        render json: returning.to_json,
+               content_type: "text/html",
+               layout: false
       }
       format.json {
-        render :json => { files: returning }, status: :created, location: @Uploaded
+        render json: { files: returning }, status: :created, location: @Uploaded
       }
     end
   end
@@ -284,7 +280,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     status = @lesson.removeFileWithName(remove_file_params[:attr].to_sym, remove_file_params[:name])
     puts "finished for delete"
-    render :json => {status: status}, location: @Uploaded
+    render json: {status: status}, location: @Uploaded
   end
 
 
@@ -298,12 +294,12 @@ class LessonsController < ApplicationController
 
     if file_params[:attr] == "supporting_files"
       @step.supporting_files.map{|x|
-        returning.push( JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_files") )
+        returning.push(JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_files"))
       }
     elsif
     file_params[:attr] == "supporting_materials"
       @step.supporting_materials.map{|x|
-        returning.push( JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_materials") )
+        returning.push(JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_materials"))
       }
     end
 
@@ -312,12 +308,12 @@ class LessonsController < ApplicationController
 
     respond_to do |format|
       format.html {
-        render :json => returning.to_json,
-               :content_type => 'text/html',
-               :layout => false
+        render json: returning.to_json,
+               content_type: "text/html",
+               layout: false
       }
       format.json {
-        render :json => { files: returning }, status: :created, location: @Uploaded
+        render json: { files: returning }, status: :created, location: @Uploaded
       }
     end
   end
@@ -329,8 +325,8 @@ class LessonsController < ApplicationController
     puts file_params.inspect
 
     files_hash = {}
-    files_hash.merge!({supporting_files: file_params[:files]}) if file_params[:attr] == "supporting_files"
-    files_hash.merge!({supporting_materials: file_params[:files]}) if file_params[:attr] == "supporting_materials"
+    files_hash[:supporting_files] = file_params[:files] if file_params[:attr] == "supporting_files"
+    files_hash[:supporting_materials] = file_params[:files] if file_params[:attr] == "supporting_materials"
 
     puts files_hash.inspect
 
@@ -347,7 +343,7 @@ class LessonsController < ApplicationController
       for i in 0..uploaded_sF.count-1
         @step.reload
         x = @step.supporting_files[i]
-        returning.push( JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_files") )
+        returning.push(JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_files"))
       end
     elsif files_hash[:supporting_materials].present?
       uploaded_of = file_params[:files].each{|x|
@@ -357,18 +353,18 @@ class LessonsController < ApplicationController
       for i in 0..uploaded_of.count-1
         @step.reload
         x = @step.supporting_materials[i]
-        returning.push( JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_materials") )
+        returning.push(JqUploaderService.convert_to_jq_upload_step(x, @lesson.id, @step.id, "supporting_materials"))
       end
     end
 
     respond_to do |format|
       format.html {
-        render :json => returning.to_json,
-               :content_type => 'text/html',
-               :layout => false
+        render json: returning.to_json,
+               content_type: "text/html",
+               layout: false
       }
       format.json {
-        render :json => { :files => returning }
+        render json: { files: returning }
       }
     end
   end
@@ -381,7 +377,7 @@ class LessonsController < ApplicationController
     @step = @lesson.steps.find(params[:step])
     status = @step.removeFileWithName(remove_file_params[:attr].to_sym, remove_file_params[:name])
     puts "finished for delete"
-    render :json => {status: status}, location: @Uploaded
+    render json: {status: status}, location: @Uploaded
   end
 
   private
@@ -391,15 +387,15 @@ class LessonsController < ApplicationController
     end
 
     def step_params
-      params.permit(steps: [:id, :name, :summary, :duration, :description, :supporting_images => [], :materials => [:number, :name], :tools => [], :supporting_material => [], :external_links => []]) #TODO - supporting materials vs materials... add materials
+      params.permit(steps: [:id, :name, :summary, :duration, :description, supporting_images: [], materials: [:number, :name], tools: [], supporting_material: [], external_links: []]) #TODO - supporting materials vs materials... add materials
     end
 
     def step_param
-      params.require(:step).permit(:id, :summary, :duration, materials: [:number, :name], tools: [], external_links:[])
+      params.require(:step).permit(:id, :summary, :duration, materials: [:number, :name], tools: [], external_links: [])
     end
 
     def file_params # both lessons and steps
-      params.permit(:attr, :assessment_criteria_files => [], :outcome_files => [], :supporting_materials => [], :supporting_files => [], :files => [])
+      params.permit(:attr, assessment_criteria_files: [], outcome_files: [], supporting_materials: [], supporting_files: [], files: [])
     end
 
     def remove_file_params
@@ -423,7 +419,7 @@ class LessonsController < ApplicationController
     end
 
     def set_fabrication_tools
-      @fabrication_tools = ['Hardware', 'Electrical', 'Design', 'CNC Milling', 'Software']
+      @fabrication_tools = ["Hardware", "Electrical", "Design", "CNC Milling", "Software"]
     end
 
 end
