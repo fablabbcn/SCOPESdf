@@ -477,11 +477,6 @@ class Lesson < ApplicationRecord
     }
   end
 
-  def duration
-    sum = 0
-    self.steps.map {|x| sum += x.duration}
-    sum
-  end
 
 
   def standards_array
