@@ -23,8 +23,8 @@ namespace :lessons do
 
 		lesson.contexts = Context.offset(rand(Context.count)).limit(rand(1..2))
 		lesson.subjects = Subject.offset(rand(Subject.count)).limit(rand(1..2))
-		#lesson.student_mastery = rand(0..2)
-		#lesson.educator_mastery = rand(0..2)
+		lesson.student_mastery = rand(0..2)
+		lesson.educator_mastery = rand(0..2)
 		lesson.fabrication_tools = ["Hardware", "Electrical", "Design", "CNC Milling", "Software"].sample(2)
 		lesson.duration = "About #{rand(1..5)} hours"
 		lesson.key_concepts = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]

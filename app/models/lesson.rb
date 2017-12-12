@@ -200,12 +200,18 @@ class Lesson < ApplicationRecord
     self.masteryLevels.map {|x| student = x if x[:metric] == "students"}
     return student
   end
+  def student_mastery=(val)
+    student_mastery(val)
+  end
 
   def educator_mastery(passed_value = nil)
     self.setMasteryLevel({educator: passed_value}) if passed_value
     educator = {}
     self.masteryLevels.map {|x| educator = x if x[:metric] == "educator"}
     return educator
+  end
+  def educator_mastery=(val)
+    educator_mastery(val)
   end
 
 
