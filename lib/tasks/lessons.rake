@@ -19,7 +19,7 @@ namespace :lessons do
 		lesson.remote_assessment_criteria_files_urls = ["https://source.unsplash.com/1080x808/?#{i}", "https://source.unsplash.com/1080x808/?#{i+1}", "https://source.unsplash.com/1080x808/?#{i+2}"]
 		lesson.further_readings = [Faker::Internet.url, Faker::Internet.url, Faker::Internet.url]
 
-		#lesson.teaching_range = { start: rand(1..3), end: rand(4..6) }
+		lesson.teaching_range = { start: rand(1..3), end: rand(4..6) }
 
 		#lesson.contexts = Context.offset(rand(Context.count)).limit(rand(1..2))
 		#lesson.subjects = Subject.offset(rand(Subject.count)).limit(rand(1..2))
