@@ -5,6 +5,12 @@
   border-radius: 2px;
   box-shadow: 0;
   transition: box-shadow .24s ease-in-out;
+  position: relative;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	flex-basis: auto;
+	flex-shrink: 0;
 
   &:hover {
     box-shadow: 0 0 20px 0 #E2E2E2;
@@ -36,4 +42,5 @@
 .Thumb__footer {
   padding: $gutter-width;
   padding-top: 0;
+  margin-top: auto;
 }

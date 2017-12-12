@@ -16,6 +16,10 @@
   white-space: nowrap;
 }
 
+.Button--margin-bottom {
+  margin-bottom: $gutter-width/2;
+}
+
 .Button--small {
   font-size: 14px;
   height: 45px;
