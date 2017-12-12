@@ -18,4 +18,8 @@ class LessonsStandard < ApplicationRecord
   # Determines whether a new standard should be set up after saving
   attribute :new_after_save, :boolean
 
+  before_save do
+    self.description = self.description.reject {|x| x.empty?} if self.description.present?
+  end
+
 end

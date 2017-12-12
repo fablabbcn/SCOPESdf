@@ -42,10 +42,10 @@ class Lesson < ApplicationRecord
   end
 
   before_save do
-    self.key_concepts = self.key_concepts.reject {|x| x.empty?} if self.key_concepts.present?
-    self.key_vocabularies = self.key_vocabularies.reject {|x| x.empty?} if self.key_vocabularies.present?
-    self.key_formulas = self.key_formulas.reject {|x| x.empty?} if self.key_formulas.present?
-    self.fabrication_tools = self.fabrication_tools.reject {|x| x.empty?} if self.fabrication_tools.present?
+    self.key_concepts = self.key_concepts.reject{|x| x.empty? || x == " "} if self.key_concepts.present?
+    self.key_vocabularies = self.key_vocabularies.reject{|x| x.empty? || x == " "} if self.key_vocabularies.present?
+    self.key_formulas = self.key_formulas.reject{|x| x.empty? || x == " "} if self.key_formulas.present?
+    self.fabrication_tools = self.fabrication_tools.reject{|x| x.empty? || x == " "} if self.fabrication_tools.present?
   end
 
 
@@ -479,11 +479,6 @@ class Lesson < ApplicationRecord
     }
   end
 
-  def duration
-    sum = 0
-    self.steps.map {|x| sum += x.duration}
-    sum
-  end
 
 
   def standards_array
