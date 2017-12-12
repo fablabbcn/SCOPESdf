@@ -113,6 +113,9 @@ class Lesson < ApplicationRecord
     range = self.lesson_tags.where(taggable_type: "TeachingRange").first
     {range_start: range.taggable.range_start, range_end: range.taggable.range_end} if range.present? && range.taggable.present?
   end
+  def teaching_range=(hash)
+    teaching_range(hash[:start], hash[:end])
+  end
 
   def removeTeachingRange
     self.lesson_tags.where(taggable_type: "TeachingRange").destroy_all
@@ -276,6 +279,9 @@ class Lesson < ApplicationRecord
   def setCollectionTag(string)
     ct = CollectionTag.where(name: string.downcase).first
     self.lesson_tags << LessonTag.new(taggable: ct)
+  end
+  def colletion_tag=(val)
+
   end
   def setCollectionTag_id(id)
     ct = CollectionTag.find(id)
