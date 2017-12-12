@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class StandardsController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   # TODO - PUT PUNDIT
 
   before_action :set_lesson, only: [:index, :new, :show, :create, :edit, :update, :destroy]
