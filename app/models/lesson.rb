@@ -150,6 +150,12 @@ class Lesson < ApplicationRecord
   def subjects
     self.lesson_tags.where(taggable_type: "Subject").map {|x| y = x.taggable; y.name}
   end
+  def subjects=(s)
+    s = s.to_a
+    list = s.map{|ss| ss.id}
+    setSubjects_id(list)
+  end
+
 
   def subject_ids
     self.lesson_tags.where(taggable_type: "Subject").map {|x| y = x.taggable; y.id}
