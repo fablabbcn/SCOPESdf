@@ -33,10 +33,9 @@ class Step < ApplicationRecord
   end
 
   before_save do
-    self.software = self.software.reject { |x| x.empty? } if self.software.present?
-    self.fabrication_equipment = self.fabrication_equipment.reject { |x| x.empty? } if self.fabrication_equipment.present?
-    self.materials = self.materials.reject { |x| x.empty? } if self.materials.present?
-
+    self.software = self.software.reject{|x| x.empty? || x == " "} if self.software.present?
+    self.fabrication_equipment = self.fabrication_equipment.reject{|x| x.empty? || x == " "} if self.fabrication_equipment.present?
+    self.materials = self.materials.reject{|x| x.empty? || x == " "} if self.materials.present?
   end
 
   belongs_to :lesson

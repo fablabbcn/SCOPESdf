@@ -42,10 +42,10 @@ class Lesson < ApplicationRecord
   end
 
   before_save do
-    self.key_concepts = self.key_concepts.reject {|x| x.empty?} if self.key_concepts.present?
-    self.key_vocabularies = self.key_vocabularies.reject {|x| x.empty?} if self.key_vocabularies.present?
-    self.key_formulas = self.key_formulas.reject {|x| x.empty?} if self.key_formulas.present?
-    self.fabrication_tools = self.fabrication_tools.reject {|x| x.empty?} if self.fabrication_tools.present?
+    self.key_concepts = self.key_concepts.reject{|x| x.empty? || x == " "} if self.key_concepts.present?
+    self.key_vocabularies = self.key_vocabularies.reject{|x| x.empty? || x == " "} if self.key_vocabularies.present?
+    self.key_formulas = self.key_formulas.reject{|x| x.empty? || x == " "} if self.key_formulas.present?
+    self.fabrication_tools = self.fabrication_tools.reject{|x| x.empty? || x == " "} if self.fabrication_tools.present?
   end
 
 
@@ -112,6 +112,9 @@ class Lesson < ApplicationRecord
     end
     range = self.lesson_tags.where(taggable_type: "TeachingRange").first
     {range_start: range.taggable.range_start, range_end: range.taggable.range_end} if range.present? && range.taggable.present?
+  end
+  def teaching_range=(hash)
+    teaching_range(hash[:start], hash[:end])
   end
 
   def removeTeachingRange
@@ -277,8 +280,18 @@ class Lesson < ApplicationRecord
     ct = CollectionTag.where(name: string.downcase).first
     self.lesson_tags << LessonTag.new(taggable: ct)
   end
+  def colletion_tag=(val)
 
-  def getCollectionTags
+  end
+  def setCollectionTag_id(id)
+    ct = CollectionTag.find(id)
+    self.lesson_tags << LessonTag.new(taggable: ct)
+  end
+
+  def collection_tag
+    self.lesson_tags.where(taggable_type: "CollectionTag").map {|x| y = x.taggable; y.id}
+  end
+  def collection_tag_names
     self.lesson_tags.where(taggable_type: "CollectionTag").map {|x| y = x.taggable; y.name}
   end
 
@@ -470,11 +483,6 @@ class Lesson < ApplicationRecord
     }
   end
 
-  def duration
-    sum = 0
-    self.steps.map {|x| sum += x.duration}
-    sum
-  end
 
 
   def standards_array

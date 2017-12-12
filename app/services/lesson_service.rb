@@ -25,6 +25,7 @@ class LessonService
       updateSkills!
       updateContext!
       updateTags!
+      updateCollectionTag!
       @lesson
     end
     def prepParams(usr, given)
@@ -211,7 +212,7 @@ class LessonService
     def updateCollectionTag!
       return unless @collection.present?
       @lesson.removeCollectionTags # sanitize
-      @lesson.setCollectionTag(@collection)
+      @lesson.setCollectionTag_id(@collection)
       @lesson.save!
       @lesson.reload
     end
@@ -219,7 +220,8 @@ class LessonService
     def updateTags!
       return unless @generic_tags.present?
       @lesson.removeTags # sanitize
-      @generic_tags = @generic_tags.reject { |x| x.empty? }
+      @generic_tags = @generic_tags.split(", ")
+      @generic_tags = @generic_tags.reject{|x| x.empty? || x == " "}
       @lesson.setTags(@generic_tags)
       @lesson.save!
       @lesson.reload
