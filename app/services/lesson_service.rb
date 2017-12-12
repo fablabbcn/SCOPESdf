@@ -220,6 +220,7 @@ class LessonService
     def updateTags!
       return unless @generic_tags.present?
       @lesson.removeTags # sanitize
+
       @generic_tags = @generic_tags.reject { |x| x.empty? }
       @lesson.setTags(@generic_tags)
       @lesson.save!
