@@ -150,6 +150,12 @@ class Lesson < ApplicationRecord
   def subjects
     self.lesson_tags.where(taggable_type: "Subject").map {|x| y = x.taggable; y.name}
   end
+  def subjects=(s)
+    s = s.to_a
+    list = s.map{|ss| ss.id}
+    setSubjects_id(list)
+  end
+
 
   def subject_ids
     self.lesson_tags.where(taggable_type: "Subject").map {|x| y = x.taggable; y.id}
@@ -194,12 +200,18 @@ class Lesson < ApplicationRecord
     self.masteryLevels.map {|x| student = x if x[:metric] == "students"}
     return student
   end
+  def student_mastery=(val)
+    student_mastery(val)
+  end
 
   def educator_mastery(passed_value = nil)
     self.setMasteryLevel({educator: passed_value}) if passed_value
     educator = {}
     self.masteryLevels.map {|x| educator = x if x[:metric] == "educator"}
     return educator
+  end
+  def educator_mastery=(val)
+    educator_mastery(val)
   end
 
 
@@ -248,6 +260,11 @@ class Lesson < ApplicationRecord
       self.lesson_tags << LessonTag.new(taggable: c)
     }
   end
+  def contexts=(c)
+    c = c.to_a
+    list = c.map{|cc| cc.id}
+    setContext_id(list)
+  end
 
   def context
     self.lesson_tags.where(taggable_type: "Context").map {|x| y = x.taggable; y.name}
@@ -293,6 +310,9 @@ class Lesson < ApplicationRecord
   def collection_tag
     self.lesson_tags.where(taggable_type: "CollectionTag").map {|x| y = x.taggable; y.id}
   end
+  def collection_tag=(ct)
+    setCollectionTag_id(ct.id)
+  end
   def collection_tag_names
     self.lesson_tags.where(taggable_type: "CollectionTag").map {|x| y = x.taggable; y.name}
   end
@@ -312,7 +332,9 @@ class Lesson < ApplicationRecord
   def tags
     self.lesson_tags.where(taggable_type: "GenericTag").map {|x| y = x.taggable; y.name}
   end
-
+  def tags=(string_array)
+    setTags(string_array)
+  end
   def removeTags
     self.lesson_tags.where(taggable_type: "GenericTag").destroy_all
   end

@@ -4,7 +4,7 @@
 #
 #  id                    :uuid             not null, primary key
 #  lesson_id             :uuid             not null
-#  summary               :string           not null
+#  summary               :string
 #  duration              :integer          default(0), not null
 #  description           :string           default(""), not null
 #  images                :string           default([]), is an Array

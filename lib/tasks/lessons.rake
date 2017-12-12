@@ -19,19 +19,19 @@ namespace :lessons do
 		lesson.remote_assessment_criteria_files_urls = ["https://source.unsplash.com/1080x808/?#{i}", "https://source.unsplash.com/1080x808/?#{i+1}", "https://source.unsplash.com/1080x808/?#{i+2}"]
 		lesson.further_readings = [Faker::Internet.url, Faker::Internet.url, Faker::Internet.url]
 
-		#lesson.teaching_range = { start: rand(1..3), end: rand(4..6) }
+		lesson.teaching_range = { start: rand(1..3), end: rand(4..6) }
 
-		#lesson.contexts = Context.offset(rand(Context.count)).limit(rand(1..2))
-		#lesson.subjects = Subject.offset(rand(Subject.count)).limit(rand(1..2))
-		#lesson.student_mastery = rand(0..2)
-		#lesson.educator_mastery = rand(0..2)
+		lesson.contexts = Context.offset(rand(Context.count)).limit(rand(1..2))
+		lesson.subjects = Subject.offset(rand(Subject.count)).limit(rand(1..2))
+		lesson.student_mastery = rand(0..2)
+		lesson.educator_mastery = rand(0..2)
 		lesson.fabrication_tools = ["Hardware", "Electrical", "Design", "CNC Milling", "Software"].sample(2)
 		lesson.duration = "About #{rand(1..5)} hours"
 		lesson.key_concepts = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
 		lesson.key_vocabularies = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
 		lesson.key_formulas = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
-		#lesson.collection_tag = CollectionTag.offset(rand(CollectionTag.count)).first
-		#lesson.tags = Faker::Lorem.words(rand(1..6))
+		lesson.collection_tag = CollectionTag.offset(rand(CollectionTag.count)).first
+		lesson.tags = Faker::Lorem.words(rand(1..6))
 
 		lesson.remote_outcome_files_urls = ["https://source.unsplash.com/1080x808/?#{i}", "https://source.unsplash.com/1080x808/?#{i+1}", "https://source.unsplash.com/1080x808/?#{i+2}"]
 
