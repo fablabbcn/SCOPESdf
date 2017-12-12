@@ -332,7 +332,9 @@ class Lesson < ApplicationRecord
   def tags
     self.lesson_tags.where(taggable_type: "GenericTag").map {|x| y = x.taggable; y.name}
   end
-
+  def tags=(string_array)
+    setTags(string_array)
+  end
   def removeTags
     self.lesson_tags.where(taggable_type: "GenericTag").destroy_all
   end
