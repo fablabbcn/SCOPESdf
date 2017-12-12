@@ -57,6 +57,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'rubocop-github'
   gem 'rubocop'
+  gem 'faker'
 end
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -78,4 +79,4 @@ end
 # Frontend - added by Howells
 gem 'active_link_to'
 gem 'turbolinks', require: false
-
+gem 'redcarpet'
