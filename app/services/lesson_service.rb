@@ -221,7 +221,7 @@ class LessonService
       return unless @generic_tags.present?
       @lesson.removeTags # sanitize
       @generic_tags = @generic_tags.split(", ")
-      @generic_tags = @generic_tags.reject { |x| x.empty? }
+      @generic_tags = @generic_tags.reject{|x| x.empty? || x == " "}
       @lesson.setTags(@generic_tags)
       @lesson.save!
       @lesson.reload
