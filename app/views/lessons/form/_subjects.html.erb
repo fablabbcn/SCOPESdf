@@ -2,7 +2,7 @@
     <div class="CheckboxButtons">
         <% @subjects.each do |s| %>
         <div class="CheckboxButton">
-        <input type="checkbox" class="CheckboxButton__input" name="lesson[subjects][]" value="<%= s.id %>" <%= @lesson_obj.subjects.include?(s.name) ? 'checked' : nil %> id="lesson__subjects__<%= s.id %>" />
+        <input type="checkbox" class="CheckboxButton__input" name="lesson[subjects][]" value="<%= s.id %>" <%= @lesson_obj.subjects.include?(s.name) ? 'checked' : nil %> id="lesson__subjects__<%= s.id %>" data-parsley-multiple="subjects" data-parsley-required="true" data-parsley-mincheck="1" data-parsley-errors-container=".CheckboxButtons" />
         <label class="CheckboxButton__label Button Button--outline Button--small Button--extra-padding Button--icon Button--icon--<%= s.name %>" for="lesson__subjects__<%= s.id %>"><%= s.name.titleize %></label>
         </div>
         <% end %>

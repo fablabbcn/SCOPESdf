@@ -62,18 +62,7 @@
         <div class="FormField__hint">Which digital fabrication tools are explored in this lesson?</div>
       </div>
 
-      <div class="FormField__input">
-        <div class="Checkboxes">
-          <% @fabrication_tools.each_with_index do |tool, i| %>
-          <div class="Checkbox">
-            <input type="checkbox" class="Checkbox__input" name="lesson[fabrication_tools][]" value="<%= tool %>" id="lesson_fabrication_tools_<%= i %>" <%= @lesson_obj.fabrication_tools.include?(tool) ? :checked : nil %> />
-            <label class="Checkbox__label" for="lesson_fabrication_tools_<%= i %>">
-              <%= tool %>
-            </label>
-          </div>
-          <% end %>
-        </div>
-      </div>
+      <%= render partial: "lessons/form/fabrication_tools" %>
 
     </div>
 

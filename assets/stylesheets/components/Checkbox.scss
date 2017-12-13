@@ -7,6 +7,10 @@
 
 }
 
+.Checkboxes .FormField__errors {
+  flex-basis: 100%;
+}
+
 .Checkbox__input {
   visibility: hidden;
   height: 0;
