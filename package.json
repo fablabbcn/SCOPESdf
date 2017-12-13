@@ -2,11 +2,11 @@
   "name": "scopesdf",
   "scripts": {
     "ds_store": "find . -name '.DS_Store' -type f -delete",
-    "clean": "npm run ds_store && rimraf public/assets",
-    "watch": "npm run clean && WEBPACK_CONFIG_TYPE='watch' webpack --progress --colors",
-    "build": "npm run clean && WEBPACK_CONFIG_TYPE='build' webpack -p --progress --colors",
-    "launch": "npm run clean && WEBPACK_CONFIG_TYPE='launch' webpack -p --progress --colors",
-    "postinstall": "echo \"postinstall running\" && npm run build"
+    "clean": "yarn ds_store && rimraf public/assets",
+    "watch": "yarn clean && WEBPACK_CONFIG_TYPE='watch' webpack --progress --colors",
+    "build": "yarn clean && WEBPACK_CONFIG_TYPE='build' webpack -p --progress --colors",
+    "launch": "yarn clean && WEBPACK_CONFIG_TYPE='launch' webpack -p --progress --colors",
+    "postinstall": "echo \"postinstall running\" && yarn build"
   },
   "repository": {
     "type": "git",
