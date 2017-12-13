@@ -31,13 +31,11 @@ namespace :lessons do
 		lesson.key_vocabularies = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
 		lesson.key_formulas = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
 		lesson.collection_tag = CollectionTag.offset(rand(CollectionTag.count)).first
-		lesson.tags = Faker::Lorem.words(rand(1..6))
+		lesson.tags = "each, of, these, should, be split, at the, comma"
 
 		lesson.remote_outcome_files_urls = ["https://source.unsplash.com/1080x808/?#{i}", "https://source.unsplash.com/1080x808/?#{i+1}", "https://source.unsplash.com/1080x808/?#{i+2}"]
 
-		# THIS SHOULD BE lesson.authors << User
-		# Tried this but just errored "lesson tags is invalid"
-		#lesson.addAuthor(User.offset(rand(User.count)).first.id)
+		lesson.authors << User.offset(rand(User.count)).limit(1)
 
 		# Generate 2 standards
 		2.times do |i_standard|
@@ -61,7 +59,6 @@ namespace :lessons do
 			step.remote_images_urls = ["https://source.unsplash.com/1080x808/?#{i_step}", "https://source.unsplash.com/1080x808/?#{i_step+1}", "https://source.unsplash.com/1080x808/?#{i_step+2}"]
 			step.remote_design_files_urls = ["https://source.unsplash.com/1080x808/?#{i_step}", "https://source.unsplash.com/1080x808/?#{i_step+1}", "https://source.unsplash.com/1080x808/?#{i_step+2}"]
 			step.materials = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
-			#step.tools = # ISN'T REQUIRED CAN BE REMOVED
 			step.fabrication_equipment = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
 			step.software = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
 			step.external_links = [Faker::Internet.url, Faker::Internet.url, Faker::Internet.url]
