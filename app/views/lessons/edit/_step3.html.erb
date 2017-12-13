@@ -85,7 +85,7 @@
       </div>
 
       <div class="FormField__input">
-        <input type="text" name="lesson[duration]" class="Input" value="<%= @lesson_obj.duration %>" placeholder="Approximately" id="lesson_duration" />
+        <input type="text" name="lesson[duration]" class="Input" value="<%= @lesson_obj.duration %>" placeholder="Approximately" id="lesson_duration" required />
       </div>
 
     </div>
@@ -99,7 +99,7 @@
       </div>
 
       <div class="FormField__input FormField__input--multiple">
-        <input type="text" name="lesson[key_concepts][]" class="Input Input--multiple" data-values='<%= @lesson_obj.key_concepts.to_json %>' value="" placeholder="+ Add a new concept" id="lesson_key_concepts_1" />
+        <input type="text" name="lesson[key_concepts][]" class="Input Input--multiple" data-values='<%= @lesson_obj.key_concepts.to_json %>' value="" placeholder="+ Add a new concept" id="lesson_key_concepts_1" required />
       </div>
 
     </div>
@@ -113,7 +113,7 @@
       </div>
 
       <div class="FormField__input FormField__input--multiple">
-        <input type="text" name="lesson[key_vocabularies][]" class="Input Input--multiple" data-values='<%= @lesson_obj.key_vocabularies.to_json %>' value="" placeholder="+ Add a new vocabulary" id="lesson_key_vocabularies_1" />
+        <input type="text" name="lesson[key_vocabularies][]" class="Input Input--multiple" data-values='<%= @lesson_obj.key_vocabularies.to_json %>' value="" placeholder="+ Add a new vocabulary" id="lesson_key_vocabularies_1" required />
       </div>
 
     </div>
@@ -127,7 +127,7 @@
       </div>
 
       <div class="FormField__input FormField__input--multiple">
-        <input type="text" name="lesson[key_formulas][]" class="Input Input--multiple" data-values='<%= @lesson_obj.key_formulas.to_json %>' value="" placeholder="+ Add a new formula" id="lesson_key_formulas_1" />
+        <input type="text" name="lesson[key_formulas][]" class="Input Input--multiple" data-values='<%= @lesson_obj.key_formulas.to_json %>' value="" placeholder="+ Add a new formula" id="lesson_key_formulas_1" required />
       </div>
 
     </div>
@@ -153,7 +153,7 @@
       </div>
 
       <div class="FormField__input">
-        <input type="text" class="Input--choices" autocomplete="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Enter a tag..." data-items="" name="lesson[tags]">
+        <input type="text" class="Input--choices" autocomplete="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Enter a tag..." data-items="" name="lesson[tags]" required>
       </div>
 
     </div>
