@@ -27,18 +27,24 @@ export default function MultipleInputs() {
 
 function handleAddNewValue(input) {
   $(input).on("keydown", function(ev) {
-    // if the return key is pressed, create another input from the value entered
-    if (event.which == 13 || event.keyCode == 13) {
-      ev.preventDefault(); // don't submit the form
-      let value = $(input).val();
-      if (value) {
-        createNewInput(input, $(input).val());
-        $(input).val(null);
+
+    // Don't do this for existing values
+    if (!$(input).hasClass('Input--existing')) {
+
+      // if the return key is pressed, create another input from the value entered
+      if (event.which == 13 || event.keyCode == 13) {
+        // don't submit the form
+        ev.preventDefault(); 
+        // fetch the value and create a new input
+        let value = $(input).val();
+        if (value) createNewInput(input, $(input).val());
       }
+
+      // If we now have at least one multiple input we no longer need the required attr
+      if ($(input).attr("required")) $(input).attr("required", false);
+
     }
 
-    // If we now have at least one multiple input we no longer need the required attr
-    if ($(input).attr("required")) $(input).attr("required", false);
   });
 }
 
@@ -85,17 +91,16 @@ function initInitialValues(input) {
   });
 }
 
-function removeInput(input) {}
-
 function createNewInput(sourceInput, value) {
   // clone the input
-  let clonedInput = $(sourceInput).clone();
+  let clonedInput = $(sourceInput).clone(true).off();
 
   // Set the cloned input's value
   $(clonedInput).val(value);
 
   // Strip the input of its id, initial data, and placeholder, don't need them anymore
   $(clonedInput)
+    .addClass('Input--existing')
     .removeAttr("id")
     .removeAttr("data-values")
     .removeAttr("placeholder");
@@ -109,15 +114,21 @@ function createNewInput(sourceInput, value) {
 		<button class="FormField__multipleinput__handle"><span>Sort</span></button>
 	</div>`);
 
-  // Attached a click event to remove button
-  $wrapper.on("click", ".FormField__multipleinput__remove", function() {
-    $wrapper.remove();
-    return false;
-  });
-
   // Wrap the element
   let $wrappedInput = $wrapper.append($(clonedInput));
 
   // Add it before the initial field, wrapped in a container
   $(sourceInput).before($wrappedInput);
+
+  // Attached a click event to remove button
+  $wrappedInput.on("keydown", function(ev) {
+    if (event.which == 13 || event.keyCode == 13) ev.preventDefault()
+  })
+  $wrappedInput.find('.FormField__multipleinput__remove').on("click", function(ev) {
+    ev.preventDefault()
+    $wrappedInput.remove();
+  })
+
+  $(sourceInput).val(null)
+
 }

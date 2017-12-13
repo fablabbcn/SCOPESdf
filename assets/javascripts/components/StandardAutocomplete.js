@@ -22,26 +22,32 @@ function setAutocompleteSentences() {
 }
 
 export function register(textarea) {
-  var editor = new Textarea(textarea);
-  var textcomplete = new Textcomplete(editor);
 
-  let sentenceStrategy = {
-    id: "sentence",
-    match: /(^|\s)([\sA-Za-z,;'"\\s]*)/,
-    search: function(term, callback) {
-      callback(
-        autocompleteSentences.filter(function(sentence) {
-          return sentence.toLowerCase().startsWith(term.toLowerCase());
-        })
-      );
-    },
-    template: function(sentence) {
-      return sentence;
-    },
-    replace: function(sentence) {
-      return sentence;
-    }
-  };
+  if (window.autocompleteSentences) {
 
-  textcomplete.register([sentenceStrategy]);
+    var editor = new Textarea(textarea);
+    var textcomplete = new Textcomplete(editor);
+
+    let sentenceStrategy = {
+      id: "sentence",
+      match: /(^|\s)([\sA-Za-z,;'"\\s]*)/,
+      search: function(term, callback) {
+        callback(
+          autocompleteSentences.filter(function(sentence) {
+            return sentence.toLowerCase().startsWith(term.toLowerCase());
+          })
+        );
+      },
+      template: function(sentence) {
+        return sentence;
+      },
+      replace: function(sentence) {
+        return sentence;
+      }
+    };
+
+    textcomplete.register([sentenceStrategy]);
+
+  }
+
 }
