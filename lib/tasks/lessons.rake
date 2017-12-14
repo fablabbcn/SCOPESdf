@@ -31,7 +31,7 @@ namespace :lessons do
 		lesson.key_vocabularies = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
 		lesson.key_formulas = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
 		lesson.collection_tag = CollectionTag.offset(rand(CollectionTag.count)).first
-		lesson.tags = Faker::Lorem.words(rand(1..6))
+		lesson.tags = (Faker::Lorem.words(rand(1..6)).join(", "))
 
 		lesson.remote_outcome_files_urls = ["https://source.unsplash.com/1080x808/?#{i}", "https://source.unsplash.com/1080x808/?#{i+1}", "https://source.unsplash.com/1080x808/?#{i+2}"]
 
