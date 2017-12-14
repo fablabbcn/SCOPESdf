@@ -41,14 +41,15 @@
     <div class="SectionHeader__sub"><%= CopyService.home[:projects][:sub].gsub(/\n/, '<br>').html_safe %></div>
   </div>
 
+  <% if @lessons.present? %>
   <div class="Carousel">
 
     <div class="Carousel__cells">
 
-      <% 12.times do |i| %>
+      <% @lessons.each_with_index do |lesson, i| %>
       <div class="Carousel__cell">
         <%= render partial: 'lessons/thumb', locals: {
-          lesson: Lesson.first,
+          lesson: lesson,
           i: i
           } %>
       </div>
@@ -57,6 +58,7 @@
     </div>
 
   </div>
+  <% end %>
 
   <div class="Section__actions">
     <%= link_to CopyService.home[:projects][:action].gsub(/\n/, '<br>').html_safe, lessons_path, class: "Button Button--secondary" %>

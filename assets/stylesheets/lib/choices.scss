@@ -33,3 +33,13 @@ $choices-border-radius-item: 2px;
   border-left: 0;
   padding-left: 30px;
 }
+
+.choices__inner {
+  display: flex;
+  flex-direction: column;
+  
+  .FormField__errors {
+    order: 2;
+  }
+  
+}

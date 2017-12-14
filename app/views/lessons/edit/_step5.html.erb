@@ -13,11 +13,18 @@
       </div>
 
       <div class="FormField__input">
-        <div class="FileUpload" data-url="<%= upload_file_for_lesson_path(@lesson_obj.id, attr: :outcome_files) %>" data-paramname="lesson[outcome_files]" id="lesson_outcome_files">
-          <div class="FileUpload__message">
-            Drag & drop files here - or click to browse<br />.jpg, .png, .pdf
-          </div>
+        <div class="dropzone" data-url="<%= upload_file_for_lesson_path(@lesson_obj.id, attr: :outcome_files) %>" id="outcome_files">
         </div>
+
+        <div class="FormUploads">
+          <% @lesson_obj.outcome_files.each do |file| %>
+            <div class="FormUploads__file FormUploads__file--<%= file.file.extension %>">
+              <%= link_to file.file.filename, file.url, class: "FormUploads__link" %>
+              <%= link_to "✕", delete_file_for_lesson_path(@lesson_obj.id, attr: :outcome_files, name: file.file.filename), method: :delete, class: "FormUploads__delete" %>
+            </div>
+          <% end %>
+        </div>
+
       </div>
 
     </div>
