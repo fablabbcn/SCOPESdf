@@ -18,6 +18,6 @@ class LessonTag < ApplicationRecord
   validates :taggable_type, presence: true
   validates :lesson_id, presence: true
 
-  validates_uniqueness_of :taggable_id, :scope => [:taggable_type, :lesson_id]
+  #validates_uniqueness_of :taggable_id, :scope => [:taggable_type, :lesson_id]
 
 end

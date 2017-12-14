@@ -268,7 +268,7 @@ class Lesson < ApplicationRecord
     setContext_id(list)
   end
 
-  def context
+  def contexts
     self.lesson_tags.where(taggable_type: "Context").map {|x| y = x.taggable; y.name}
   end
 
