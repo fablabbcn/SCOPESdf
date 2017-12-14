@@ -9,7 +9,7 @@
 class Context < ApplicationRecord
   has_many :lesson_tags, as: :taggable
 
-  validates_uniqueness_of :name
+  #validates_uniqueness_of :name
 
   before_create :downcase_name, :if => :new_record?
 

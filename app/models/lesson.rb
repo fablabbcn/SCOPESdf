@@ -110,7 +110,9 @@ class Lesson < ApplicationRecord
   def teaching_range(start_range = nil, end_range = nil)
     if start_range.present? & end_range.present?
       self.lesson_tags.where(taggable_type: "TeachingRange").map {|x| x.destroy} #sanitize
-      TeachingRange.setRangesForLesson(self.id, start_range, end_range)
+      r = TeachingRange.where(range_start:(start_range) , range_end:(end_range)).first
+      LessonTag.new(taggable: r)
+      self.lesson_tags << LessonTag.new(taggable: r)
     end
     range = self.lesson_tags.where(taggable_type: "TeachingRange").first
     {range_start: range.taggable.range_start, range_end: range.taggable.range_end} if range.present? && range.taggable.present?
@@ -266,7 +268,7 @@ class Lesson < ApplicationRecord
     setContext_id(list)
   end
 
-  def context
+  def contexts
     self.lesson_tags.where(taggable_type: "Context").map {|x| y = x.taggable; y.name}
   end
 
@@ -333,7 +335,7 @@ class Lesson < ApplicationRecord
     self.lesson_tags.where(taggable_type: "GenericTag").map {|x| y = x.taggable; y.name}
   end
   def tags=(string_array)
-    setTags(string_array)
+    setTags(string_array.split(", ").reject{|x| x.empty? || x == " "})
   end
   def removeTags
     self.lesson_tags.where(taggable_type: "GenericTag").destroy_all

@@ -6,11 +6,15 @@ namespace :lessons do
 	require 'faker'
 
 	# Creates test lessons
-	20.times do |i|
+	2.times do |i|
 
 		lesson = Lesson.new
 
 		lesson.name = Faker::Book.title
+
+		lesson.save! #so we have lesson.id
+
+
 		lesson.topline = Faker::Lorem.paragraph(1)
 		lesson.summary = Faker::Lorem.paragraph(3)
 		lesson.learning_objectives = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
@@ -21,8 +25,8 @@ namespace :lessons do
 
 		lesson.teaching_range = { start: rand(1..3), end: rand(4..6) }
 
-		lesson.contexts = Context.offset(rand(Context.count)).limit(rand(1..2))
-		lesson.subjects = Subject.offset(rand(Subject.count)).limit(rand(1..2))
+		lesson.contexts = Context.offset(rand(Context.count)).limit(rand(1..2)).to_a
+		lesson.subjects = Subject.offset(rand(Subject.count)).limit(rand(1..2)).to_a
 		lesson.student_mastery = rand(0..2)
 		lesson.educator_mastery = rand(0..2)
 		lesson.fabrication_tools = ["Hardware", "Electrical", "Design", "CNC Milling", "Software"].sample(2)
@@ -31,7 +35,7 @@ namespace :lessons do
 		lesson.key_vocabularies = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
 		lesson.key_formulas = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
 		lesson.collection_tag = CollectionTag.offset(rand(CollectionTag.count)).first
-		lesson.tags = Faker::Lorem.words(rand(1..6))
+		lesson.tags = (Faker::Lorem.words(rand(1..6)).join(", "))
 
 		lesson.remote_outcome_files_urls = ["https://source.unsplash.com/1080x808/?#{i}", "https://source.unsplash.com/1080x808/?#{i+1}", "https://source.unsplash.com/1080x808/?#{i+2}"]
 
@@ -70,6 +74,7 @@ namespace :lessons do
 
 		end
 
+    puts lesson.inspect
 		lesson.save!
 
 		# TODO: need to be able to publish a lesson; this doesn't seem to work

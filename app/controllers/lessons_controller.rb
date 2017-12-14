@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class LessonsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:edit, :update, :delete_file, :upload_file]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :delete_file, :upload_file]
   #skip_before_action :verify_authenticity_token
 
   before_action :set_lesson, only: [:show, :activity]
