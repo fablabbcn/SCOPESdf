@@ -10,14 +10,27 @@
   max-width: $grid-width;
   padding-top: $gutter-width*1.5;
   padding-bottom: $gutter-width*1.5;
-  align-items: center;
+
+  @include above-mobile-landscape {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+  }
 
 }
 
 .ActionBanner__statement {
   font-size: 20px;
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width;
+  }
 }
 
 .ActionBanner__actions {
-  margin-left: auto;
+  @include above-mobile-landscape {
+    margin-left: auto;
+  }
 }

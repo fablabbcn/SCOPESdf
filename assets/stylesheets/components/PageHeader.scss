@@ -35,10 +35,28 @@
   height: 64px;
   border-radius: 50%;
   overflow: hidden;
-  margin-right: $gutter-width;
+
+  @include above-mobile-landscape {
+    margin-right: $gutter-width;
+  }
+
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width/2;
+  }
+
 }
 
 .PageHeader__title {
+
+  @include above-mobile-landscape {
+    
+  }
+
+  @include mobile-landscape-and-below {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
 }
 

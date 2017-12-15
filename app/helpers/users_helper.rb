@@ -1,8 +1,8 @@
-module LessonsHelper
+module UsersHelper
 	
-	def next_lesson_section(current_section = :overview)
+	def next_person_section(current_section = :overview)
 		is_next = false
-		@lesson_sections.each do |section, path|
+		@person_sections.each do |section, path|
 			if is_next
 				return path 
 			end
@@ -12,9 +12,9 @@ module LessonsHelper
 		end
 	end
 
-	def prev_lesson_section(current_section = :overview)
+	def prev_person_section(current_section = :overview)
 		is_prev = false
-		@lesson_sections.reverse_each do |section, path|
+		@person_sections.reverse_each do |section, path|
 			if is_prev
 				return path 
 			end

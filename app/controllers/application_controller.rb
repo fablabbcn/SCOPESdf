@@ -37,6 +37,12 @@ class ApplicationController < ActionController::Base
       }
     end
 
+    def set_person_sections
+      @person_sections = {
+        overview: person_path(@person_obj.id, section: :overview),
+        lessons: person_path(@person_obj.id, section: :lessons)
+      }
+    end
     
 
   private
