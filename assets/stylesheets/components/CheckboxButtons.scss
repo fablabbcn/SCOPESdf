@@ -1,10 +1,21 @@
 .CheckboxButtons {
   display: flex;
   flex-wrap: wrap;
+  
 }
 
 .CheckboxButton {
-  margin-right: $gutter-width;
+  
+  @include above-mobile-landscape {
+    margin-right: $gutter-width;
+    margin-bottom: $gutter-width;
+  }
+
+  @include mobile-landscape-and-below {
+    margin-right: $gutter-width/2;
+    margin-bottom: $gutter-width/2;
+  }
+
 }
 
 .CheckboxButton__label {

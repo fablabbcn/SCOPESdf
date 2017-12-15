@@ -5,6 +5,10 @@
 
 .Checkbox {
 
+  @include mobile-landscape-and-below {
+    width: 50%;
+  }
+
 }
 
 .Checkboxes .FormField__errors {
