@@ -3,81 +3,80 @@ namespace :lessons do
 
   task seed: :environment do
 
-	require 'faker'
+  require "faker"
 
-	# Creates test lessons
-	2.times do |i|
+  # Creates test lessons
+  1.times do |i|
 
-		lesson = Lesson.new
+    lesson = Lesson.new
 
-		lesson.name = Faker::Book.title
+    lesson.name = Faker::Book.title
 
-		lesson.save! #so we have lesson.id
+    lesson.save! #so we have lesson.id
 
+    lesson.topline = Faker::Lorem.paragraph(1)
+    lesson.summary = Faker::Lorem.paragraph(3)
+    lesson.learning_objectives = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
+    lesson.teacher_notes = Faker::Lorem.paragraph(3)
+    lesson.assessment_criteria = Faker::Lorem.paragraph(3)
+    lesson.remote_assessment_criteria_files_urls = ["https://source.unsplash.com/1080x808/?#{i}", "https://source.unsplash.com/1080x808/?#{i+1}", "https://source.unsplash.com/1080x808/?#{i+2}"]
+    lesson.further_readings = [Faker::Internet.url, Faker::Internet.url, Faker::Internet.url]
 
-		lesson.topline = Faker::Lorem.paragraph(1)
-		lesson.summary = Faker::Lorem.paragraph(3)
-		lesson.learning_objectives = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
-		lesson.teacher_notes = Faker::Lorem.paragraph(3)
-		lesson.assessment_criteria = Faker::Lorem.paragraph(3)
-		lesson.remote_assessment_criteria_files_urls = ["https://source.unsplash.com/1080x808/?#{i}", "https://source.unsplash.com/1080x808/?#{i+1}", "https://source.unsplash.com/1080x808/?#{i+2}"]
-		lesson.further_readings = [Faker::Internet.url, Faker::Internet.url, Faker::Internet.url]
+    lesson.teaching_range = { start: rand(1..3), end: rand(4..6) }
 
-		lesson.teaching_range = { start: rand(1..3), end: rand(4..6) }
+    #lesson.contexts = Context.offset(rand(Context.count)).limit(rand(1..2)).to_a
+    #lesson.subjects = Subject.offset(rand(Subject.count)).limit(rand(1..2)).to_a
+    #lesson.student_mastery = rand(0..2)
+    #lesson.educator_mastery = rand(0..2)
+    lesson.fabrication_tools = ["Hardware", "Electrical", "Design", "CNC Milling", "Software"].sample(2)
+    lesson.duration = "About #{rand(1..5)} hours"
+    lesson.key_concepts = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
+    lesson.key_vocabularies = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
+    lesson.key_formulas = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
+    lesson.collection_tag = CollectionTag.offset(rand(CollectionTag.count)).first
+    lesson.tags = (Faker::Lorem.words(rand(1..6)).join(", "))
 
-		lesson.contexts = Context.offset(rand(Context.count)).limit(rand(1..2)).to_a
-		lesson.subjects = Subject.offset(rand(Subject.count)).limit(rand(1..2)).to_a
-		lesson.student_mastery = rand(0..2)
-		lesson.educator_mastery = rand(0..2)
-		lesson.fabrication_tools = ["Hardware", "Electrical", "Design", "CNC Milling", "Software"].sample(2)
-		lesson.duration = "About #{rand(1..5)} hours"
-		lesson.key_concepts = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
-		lesson.key_vocabularies = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
-		lesson.key_formulas = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
-		lesson.collection_tag = CollectionTag.offset(rand(CollectionTag.count)).first
-		lesson.tags = (Faker::Lorem.words(rand(1..6)).join(", "))
+    lesson.remote_outcome_files_urls = ["https://source.unsplash.com/1080x808/?#{i}", "https://source.unsplash.com/1080x808/?#{i+1}", "https://source.unsplash.com/1080x808/?#{i+2}"]
 
-		lesson.remote_outcome_files_urls = ["https://source.unsplash.com/1080x808/?#{i}", "https://source.unsplash.com/1080x808/?#{i+1}", "https://source.unsplash.com/1080x808/?#{i+2}"]
+    lesson.authors << User.offset(rand(User.count)).limit(1)
 
-		lesson.authors << User.offset(rand(User.count)).limit(1)
+    # Generate standards
+    rand(1..3).times do |i_standard|
 
-		# Generate 2 standards
-		2.times do |i_standard|
+      lesson_standard = LessonsStandard.new
+      lesson_standard.standard = Standard.offset(rand(Standard.count)).first
+      lesson_standard.description = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
 
-			lesson_standard = LessonsStandard.new
-			lesson_standard.standard = Standard.offset(rand(Standard.count)).first
-			lesson_standard.description = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
+      lesson.lessons_standards << lesson_standard
 
-			lesson.lessons_standards << lesson_standard
+    end
 
-		end
+    # Generate steps
+    rand(1..5).times do |i_step|
 
-		# Generate 3 steps
-		3.times do |i_step|
+      step = Step.new
+      step.name = Faker::Lorem.sentence(1)
+      step.duration = rand(60..120)
+      step.description = Faker::Lorem.paragraph(3)
+      step.summary = Faker::Lorem.paragraph(3) ## SHOULDN'T BE NEEDED BUT IS A NON-NULL ATTR
+      step.remote_images_urls = ["https://source.unsplash.com/1080x808/?#{i_step}", "https://source.unsplash.com/1080x808/?#{i_step+1}", "https://source.unsplash.com/1080x808/?#{i_step+2}"]
+      step.remote_design_files_urls = ["https://source.unsplash.com/1080x808/?#{i_step}", "https://source.unsplash.com/1080x808/?#{i_step+1}", "https://source.unsplash.com/1080x808/?#{i_step+2}"]
+      step.materials = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
+      step.fabrication_equipment = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
+      step.software = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
+      step.external_links = [Faker::Internet.url, Faker::Internet.url, Faker::Internet.url]
 
-			step = Step.new
-			step.name = Faker::Lorem.sentence(1)
-			step.duration = rand(60..120)
-			step.description = Faker::Lorem.paragraph(3)
-			step.summary = Faker::Lorem.paragraph(3) ## SHOULDN'T BE NEEDED BUT IS A NON-NULL ATTR
-			step.remote_images_urls = ["https://source.unsplash.com/1080x808/?#{i_step}", "https://source.unsplash.com/1080x808/?#{i_step+1}", "https://source.unsplash.com/1080x808/?#{i_step+2}"]
-			step.remote_design_files_urls = ["https://source.unsplash.com/1080x808/?#{i_step}", "https://source.unsplash.com/1080x808/?#{i_step+1}", "https://source.unsplash.com/1080x808/?#{i_step+2}"]
-			step.materials = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
-			step.fabrication_equipment = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
-			step.software = [Faker::Lorem.sentence, Faker::Lorem.sentence, Faker::Lorem.sentence]
-			step.external_links = [Faker::Internet.url, Faker::Internet.url, Faker::Internet.url]
+      lesson.steps << step
 
-			lesson.steps << step
-
-		end
+    end
 
     puts lesson.inspect
-		lesson.save!
+    lesson.save!
 
-		# TODO: need to be able to publish a lesson; this doesn't seem to work
-		lesson.publish! 
+    # TODO: need to be able to publish a lesson; this doesn't seem to work
+    lesson.publish!
 
-	end
+  end
 
   end
 
