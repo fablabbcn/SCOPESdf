@@ -13,6 +13,15 @@
   display: flex;
   max-width: $content-width;
   margin: 0 auto;
+
+  @include above-mobile-landscape {
+    flex-direction: row;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+  }
+
 }
 
 .PageContent__section {
@@ -25,16 +34,32 @@
 }
 
 .PageContent__main {
-  width: 75%;
   flex-grow: 0;
   flex-shrink: 0;
-  padding-right: $gutter-width*8;
+
+  @include above-mobile-landscape {
+    width: 75%;
+    padding-right: $gutter-width*8;
+  }
+
+  @include mobile-landscape-and-below {
+    width: 100%;
+  }
+
 }
 
 .PageContent__sidebar {
-  width: 25%;
   flex-grow: 0;
   flex-shrink: 0;
+
+  @include above-mobile-landscape {
+    width: 25%;
+  }
+
+  @include mobile-landscape-and-below {
+    width: 100%;
+  }
+
 }
 
 .PageContent__heading {

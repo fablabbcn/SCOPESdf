@@ -25,6 +25,15 @@
         class_active: "SubNavigation__item--active",
         active: @section == :outcomes %>
 
+      <%= prev_lesson_section(@section).present? ? link_to(content_tag(:span, "Prev"), prev_lesson_section(@section), class: "SubNavigation__nav SubNavigation__nav--prev") : nil %>
+      <%= next_lesson_section(@section).present? ? link_to(content_tag(:span, "Next"), next_lesson_section(@section), class: "SubNavigation__nav SubNavigation__nav--next") : nil %>
+
+      <div class="SubNavigation__dots">
+        <% @lesson_sections.each do |name, path| %>
+        <%= name != @section ? link_to("•", path, class: "SubNavigation__dot") : content_tag(:span, "•", class: "SubNavigation__dot") %>
+        <% end %>
+      </div>
+
     </div>
 
     <div class="SubNavigation__actions">

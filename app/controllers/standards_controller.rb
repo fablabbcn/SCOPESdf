@@ -10,6 +10,8 @@ class StandardsController < ApplicationController
 
   def index
 
+    set_lesson_sections
+
     # Specify section as standards for use in sub nav
     @section = :standards
 

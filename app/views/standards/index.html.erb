@@ -35,13 +35,13 @@
 
 </div>
 
-<div class="LessonFooter">
+<div class="PageFooter">
 
-  <div class="LessonFooter__content">
+  <div class="PageFooter__content">
 
-    <div class="LessonFooter__actions">
-      <%= link_to "Back to Overview", lesson_path(id: @lesson_obj.id), class: "LessonFooter__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left" %>
-      <%= link_to "Step by Step", lesson_steps_path(lesson_id: @lesson_obj.id), class: "LessonFooter__action LessonFooter__action--right Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right" %>
+    <div class="PageFooter__actions">
+      <%= link_to "Back to Overview", lesson_path(id: @lesson_obj.id), class: "PageFooter__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left" %>
+      <%= link_to "Step by Step", lesson_steps_path(lesson_id: @lesson_obj.id), class: "PageFooter__action PageFooter__action--right Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right" %>
     </div>
 
   </div>

@@ -12,12 +12,15 @@ class StepsController < ApplicationController
 
     @steps = Step.all
 
+    set_lesson_sections
+
     # Specify section as steps for use in sub nav
     @section = :steps
 
   end
 
   def show
+    
 
   end
 
