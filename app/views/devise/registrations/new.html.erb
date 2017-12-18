@@ -1,27 +1,8 @@
-<div class="Auth">
+<%= render partial: 'sub_header' %>
 
-  <div class="Auth__header" style="background-image: url('https://unsplash.it/1600/800?random')">
-    <h1 class="Auth__header__heading">Register your interest</h1>
-  </div>
+<%= render partial: 'new_sub_nav' %>
 
-  <div class="Auth__form">
-
-    <%= render partial: 'devise/shared/nav' %>
-
-    <div class="FormHeader">
-      <h3 class="FormHeader__heading">The project is still in beta mode but will be open for sign up very soon.</h3>
-      <div class="FormHeader__description">
-        Fill in your details below and we’ll invite you as soon as it’s ready!
-      </div>
-    </div>
-
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), multiple: true) do |f| %>
-      <%= devise_error_messages! %>
-      <%= render "#{session[:registration_step]}_form", f: f %>
-    <% end %>
-
-    <%= render "devise/shared/links" %>
-
-  </div>
-
-</div>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), multiple: true, html: { class: "Form" }) do |f| %>
+  <%= devise_error_messages! %>
+  <%= render "#{session[:registration_step]}_form", f: f %>
+<% end %>
