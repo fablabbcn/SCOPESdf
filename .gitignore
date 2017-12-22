@@ -19,7 +19,7 @@
 db/*.sqlite3
 /db/*.sqlite3-journal
 /log/*
-/tmp/*
+/tmp/
 
 /public/uploads/tmp/*
 /public/supporting_files/*
