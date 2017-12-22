@@ -37,6 +37,10 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  margin-bottom: $gutter-width/2;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 .Sidebar__link--download {
   background-image: url('images/icon-download-green.svg');

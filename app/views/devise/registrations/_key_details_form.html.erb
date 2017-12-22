@@ -1,42 +1,88 @@
-<h2>Account details</h2>
+<%= field_set_tag 'Account Details', class: 'Form__fieldset' do %>
 
-<div class="field">
-  <%= f.label :name %><br />
-  <%= f.text_field :name, autofocus: true %>
+<!-- user.name -->
+<div class="FormField FormField--required">
+
+  <div class="FormField__info">
+    <label class="FormField__label" for="user_name">Name</label>
+    <div class="FormField__hint">This one is easy</div>
+  </div>
+
+  <div class="FormField__input">
+    <input type="text" name="user[name]" class="Input" value="<%= resource.name %>" id="user_name" maxlength="50" required />
+  </div>
+
 </div>
 
-<div class="field">
-  <%= f.label :email %><br />
-  <%= f.email_field :email %>
+<!-- user.email -->
+<div class="FormField FormField--required FormField--with-border">
+
+  <div class="FormField__info">
+    <label class="FormField__label" for="user_email">Email</label>
+    <div class="FormField__hint">Preferably your educational email</div>
+  </div>
+
+  <div class="FormField__input">
+    <input type="email" name="user[email]" class="Input" value="<%= resource.email %>" id="user_email" required />
+  </div>
+
 </div>
 
-<div class="field">
-  <%= f.label :password %>
-  <% if @minimum_password_length %>
-  <em>(<%= @minimum_password_length %> characters minimum)</em>
-  <% end %><br />
-  <%= f.password_field :password, autocomplete: "off" %>
+<!-- user.password -->
+<div class="FormField FormField--required">
+
+  <div class="FormField__info">
+    <label class="FormField__label" for="user_password">Password</label>
+    <div class="FormField__hint">Try to make it as secure as possible</div>
+  </div>
+
+  <div class="FormField__input">
+    <input type="password" name="user[password]" class="Input" value="" id="user_password" required />
+  </div>
+
 </div>
 
-<div class="field">
-  <%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation, autocomplete: "off" %>
+<!-- user.password_confirmation -->
+<div class="FormField FormField--required">
+
+  <div class="FormField__info">
+    <label class="FormField__label" for="user_password_confirmation">Confirm Password</label>
+    <div class="FormField__hint">Just to make sure...</div>
+  </div>
+
+  <div class="FormField__input">
+    <input type="password" name="user[password_confirmation]" class="Input" value="" id="user_password_confirmation" required data-parsley-equalto="#user_password" />
+  </div>
+
 </div>
 
-<div class="field">
-  <%= f.label :avatar %><br />
-  <%= image_tag(session[:sign_up_params]['avatar_cache']) if session[:sign_up_params]['avatar_cache'] %> <!-- user feedback ? -->
-  <%= f.file_field :avatar %>
+<!-- user.avatar -->
+<div class="FormField">
+
+  <div class="FormField__info">
+    <label class="FormField__label" for="user_avatar">Avatar</label>
+    <div class="FormField__hint"></div>
+  </div>
+
+  <div class="FormField__input FormField__input--image">
+    <%= image_tag(session[:sign_up_params]['avatar_cache']) if session[:sign_up_params]['avatar_cache'] %>
+    <input type="file" name="user[avatar]" class="Input" value="" id="user_avatar" />
+  </div>
+
 </div>
 
 
+<% end %>
+
+<!-- TODO: need to create the location widget -->
+
+<!--
 <div class="field">
   <% lon = lat = '' %>
   <% if session[:sign_up_params]['lonlat'] %>
     <% lon = session[:sign_up_params]['lonlat'][0] %>
     <% lat = session[:sign_up_params]['lonlat'][1] %>
   <% end %>
-  <!-- use hidden_field_tag instead -->
   <%= label_tag 'lon' %><br />
   <%= text_field_tag 'user[lonlat][]', lon, id: 'lon' %>
   <%= label_tag 'lat' %><br />
@@ -62,9 +108,20 @@
   <%= f.label :country %><br />
   <%= f.text_field :country %>
 </div>
+-->
 
-<!-- end location -->
+<div class="Form__footer">
 
-<div class="actions">
-  <%= f.submit 'Add some details about yourself', class: 'Button Button--primary' %>
+  <div class="Form__footer__content">
+
+    <div class="Form__footer__heading">
+      Next up...
+    </div>
+
+    <div class="Form__footer__actions Form__footer__actions--right">
+      <button class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right">Add some details about yourself</button>
+    </div>
+
+  </div>
+
 </div>

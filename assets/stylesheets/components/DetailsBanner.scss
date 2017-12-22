@@ -10,12 +10,33 @@
   display: flex;
   margin: 0 auto;
   max-width: $content-width;
+
+  @include above-mobile-landscape {
+    flex-direction: row;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+  }
+
 }
 
 .DetailsBanner__column {
   flex-grow: 0;
   flex-shrink: 0;
-  width: 25%;
+
+  @include above-mobile-landscape {
+    width: 25%;
+  }
+
+  @include mobile-landscape-and-below {
+    width: 100%;
+    margin-bottom: $gutter-width*2;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
 }
 
 .DetailsBanner__header {
@@ -62,6 +83,7 @@
   width: 50%;
   flex-shrink: 0;
   flex-grow: 0;
+  
 }
 
 .DetailsBanner__mastery__metric {
@@ -83,4 +105,38 @@
   font-size: 16px;
   margin-bottom: 5px;
   padding-left: $gutter-width*1.5;
+}
+
+.DetailsBanner__socialLinks {
+  display: flex;
+  align-items: center;
+}
+
+.DetailsBanner__socialLink {
+  width: 16px;
+  height: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: $gutter-width;
+
+  span {
+    display: none;
+  }
+
+}
+
+.DetailsBanner__socialLink--website {
+  background-image: url('images/icon-globe-mid-small.svg');
+}
+.DetailsBanner__socialLink--instagram {
+  background-image: url('images/icon-instagram-mid-small.svg');
+}
+.DetailsBanner__socialLink--facebook {
+  background-image: url('images/icon-facebook-mid-small.svg');
+}
+.DetailsBanner__socialLink--twitter {
+  background-image: url('images/icon-twitter-mid-small.svg');
+}
+.DetailsBanner__socialLink--github {
+  background-image: url('images/icon-github-mid-small.svg');
 }

@@ -142,7 +142,7 @@
       </div>
 
       <div class="FormField__input">
-        <input type="text" class="Input--choices" autocomplete="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Enter a tag..." data-items="" name="lesson[tags]" required>
+        <input type="text" class="Input--choices" autocomplete="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Enter a tag..." data-items="" name="lesson[tags]" value="<%= @lesson_obj.tags.join(', ') %>" required>
       </div>
 
     </div>

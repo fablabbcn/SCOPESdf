@@ -1,66 +1,129 @@
-<h2>Tell us about yourself</h2>
-<!-- subjects involvements skills -->
-<% %w(subjects involvements skills).each do |collection| %>
-  <h3><%= collection.capitalize %></h3>
-  <% instance_variable_get("@#{collection}").each do |item| %>
-    <% if session[:sign_up_params][collection] %>
-      <% checked = session[:sign_up_params][collection].include? item %>
-    <% else %>
-      <% checked = false %>
-    <% end %>
-    <div class="field">
-      <%= check_box_tag "user[#{collection}][]", item, checked %>
-      <%= f.label item %><br />
+<%= field_set_tag 'Tell us about yourself', class: 'Form__fieldset' do %>
+
+  <!-- user.involvements -->
+  <div class="FormField FormField--with-border">
+
+    <div class="FormField__info">
+      <label class="FormField__label" for="lesson_contexts">Involvements</label>
+      <div class="FormField__hint">Choose one or more</div>
     </div>
-  <% end %>
-  <% if collection == 'involvements' %>
-    <!-- involvemnts custom input -->
-    <% custom_field_value = '' %>
-    <% if session[:sign_up_params]['involvements'] %>
-      <% custom_field_value = (session[:sign_up_params]['involvements'] - @involvements).first %>
-    <% end %>
-    <%= text_field_tag 'user[involvements][]', custom_field_value %>
-    <!-- end involvemnts custom input -->
-  <% end %>
-<% end%>
-<!-- end subjects involvements skills -->
 
-<div class="field">
-  <%= f.label :other_interests %><br />
-  <%= text_field_tag 'user[other_interests]', session[:sign_up_params]['other_interests'] || '' %>
-</div>
+    <div class="FormField__input">
+      <div class="Checkboxes">
+        <% @involvements.each do |involvement| %>
+        <div class="Checkbox">
+          <input type="checkbox" class="Checkbox__input" name="user[involvements][]" value="<%= involvement %>" id="user_involvements_<%= involvement.parameterize %>" <%= session[:sign_up_params]['involvements'] && session[:sign_up_params]['involvements'].include?(involvement) ? 'checked' : nil %> />
+          <label class="Checkbox__label" for="user_involvements_<%= involvement.parameterize %>">
+            <%= involvement %>
+          </label>
+        </div>
+        <% end %>
+      </div>
+    </div>
 
-<div class="field">
-  <%= f.label :bio %><br />
-  <%= text_area_tag 'user[bio]', session[:sign_up_params]['bio'] || '' %>
-</div>
+  </div>
 
-<div class="field">
-  <%= f.label :social %><br />
-</div>
-<div class="field social-input">
-  <% session[:sign_up_params]['social'] ||= [''] %>
-  <% session[:sign_up_params]['social'].each do |item| %>
-    <%= text_field_tag 'user[social][]', item %>
-  <% end %>
-</div>
-<!-- add social link button -->
-<button type="button" class='Button Button--primary' id="add-social-link">+ Add new link</button>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#add-social-link').on('click', function(e) {
-      e.preventDefault();
-      $(".social-input:last").clone().appendTo(".social-input:last");
-      $(".social-input:last input").val('');
-    });
-  });
-</script>
-<!-- end add social link button -->
+  <!-- user.subjects -->
+  <div class="FormField">
 
-<div class="actions">
-  <%= f.submit 'Edit account', name: 'previous_button', class: 'Button' %>
-</div>
-<div class="actions">
-  <%= f.submit 'Create account', class: 'Button Button--primary' %>
+    <div class="FormField__info">
+      <label class="FormField__label" for="lesson_subjects">Subjects</label>
+      <div class="FormField__hint">Choose one or more</div>
+    </div>
+
+    <div class="FormField__input">
+      <div class="CheckboxButtons">
+          <% @subjects.each do |subject| %>
+          <div class="CheckboxButton">
+          <input type="checkbox" class="CheckboxButton__input" name="user[subjects][]" value="<%= subject.parameterize %>" <%= session[:sign_up_params]['subjects'] && session[:sign_up_params]['subjects'].include?(subject) ? 'checked' : nil %> id="user__subjects__<%= subject.parameterize %>" />
+          <label class="CheckboxButton__label Button Button--outline Button--small Button--extra-padding Button--icon Button--icon--<%= subject.parameterize %>" for="user__subjects__<%= subject.parameterize %>"><%= subject %></label>
+          </div>
+          <% end %>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- user.other_interests -->
+  <div class="FormField FormField--with-border">
+
+    <div class="FormField__info">
+      <label class="FormField__label" for="user_other_interests">Other interests</label>
+      <div class="FormField__hint">Enter comma separated tags</div>
+    </div>
+
+    <div class="FormField__input">
+      <input type="text" name="user[other_interests]" class="Input" value="<%= session[:sign_up_params]['other_interests'] %>" id="user_other_interests" />
+    </div>
+
+  </div>
+
+  <!-- user.skills -->
+  <div class="FormField FormField--with-border">
+
+    <div class="FormField__info">
+      <label class="FormField__label" for="user_skills">Skills</label>
+      <div class="FormField__hint">Choose one or more</div>
+    </div>
+
+    <div class="FormField__input">
+      <div class="Checkboxes">
+        <% @skills.each do |skill| %>
+        <div class="Checkbox">
+          <input type="checkbox" class="Checkbox__input" name="user[skills][]" value="<%= skill %>" id="user_skills_<%= skill.parameterize %>" <%= session[:sign_up_params]['skills'] && session[:sign_up_params]['skills'].include?(slkill) ? 'checked' : nil %> />
+          <label class="Checkbox__label" for="user_skills_<%= skill.parameterize %>">
+            <%= skill %>
+          </label>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- user.bio -->
+  <div class="FormField FormField--required">
+
+    <div class="FormField__info">
+      <label class="FormField__label" for="user_bio">Short Bio</label>
+      <div class="FormField__hint">
+        <p>Keep it short and snappy</p>
+      </div>
+    </div>
+
+    <div class="FormField__input">
+      <textarea class="Input Input--textarea Input--autosize" rows="5" name="user[bio]" id="user_bio" required><%= resource.bio %></textarea>
+    </div>
+
+  </div>
+
+  <!-- user.other_links -->
+  <div class="FormField">
+
+    <div class="FormField__info">
+      <label class="FormField__label" for="lesson_further_readings_1">Other links</label>
+      <div class="FormField__hint">Where else can we find you online</div>
+    </div>
+
+    <div class="FormField__input FormField__input--multiple">
+      <input type="url" data-parsley-type="url" name="user[other_links][]" class="Input Input--multiple" data-values='<%= session[:sign_up_params]['social'].to_json %>' 
+        value="" placeholder="+ Add a new URL" id="user_other_links_1" />
+    </div>
+
+  </div>
+
+<% end %>
+
+
+<div class="Form__footer">
+
+  <div class="Form__footer__content">
+
+    <div class="Form__footer__actions">
+      <%= f.submit 'Edit account', name: 'previous_button', class: 'Form__footer__action Button Button--primary Button--small Button--icon Button--arrow--left' %>
+      <button class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--check">Create account</button>
+    </div>
+
+  </div>
+
 </div>

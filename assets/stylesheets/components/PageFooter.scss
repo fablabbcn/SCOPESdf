@@ -12,30 +12,77 @@
     display: flex;
     align-items: center;
     width: 100%;
+
+    @include above-mobile-landscape {
+        flex-direction: row;
+    }
+
+    @include mobile-landscape-and-below {
+        flex-direction: column;
+    }
+
 }
 
 .PageFooter__heading {
     font-size: 24px;
     @include text-medium;
-    width: 50%;
+
+    @include above-mobile-landscape {
+        width: 50%;
+    }
+
+    @include mobile-landscape-and-below {
+        width: 100%;
+        margin-bottom: $gutter-width;
+    }
+    
     span {
         display: block;
         font-size: 14px;
         color: $color-gray-mid;
     }
+
 }
 
 .PageFooter__actions {
     display: flex;
     width: 100%;
+
+    @include above-mobile-landscape {
+        flex-direction: row;
+    }
+
+    @include mobile-landscape-and-below {
+        flex-direction: column;
+    }
+
 }
 
 .PageFooter__action {
-    &:last-child {
-        margin-left: auto;
+    
+    @include above-mobile-landscape {
+        &:last-child {
+            margin-left: auto;
+        }
     }
+
+    @include mobile-landscape-and-below {
+        margin-bottom: $gutter-width;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
 }
 
 .PageFooter__actions--right {
-    margin-left: auto;
+    
+    @include above-mobile-landscape {
+        margin-left: auto;
+    }
+
+    @include mobile-landscape-and-below {
+        
+    }
+
 }

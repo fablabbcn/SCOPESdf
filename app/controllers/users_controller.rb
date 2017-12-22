@@ -1,6 +1,9 @@
+# frozen_string_literal: true
 class UsersController < ApplicationController
+
   before_action :authenticate_user!
   after_action :verify_authorized
+  
 
 
   def index
@@ -9,17 +12,20 @@ class UsersController < ApplicationController
   end
 
   def show
+
     @user = User.find(params[:id])
+
     authorize @user
+
   end
 
   def update
     @user = User.find(params[:id])
     authorize @user
     if @user.update_attributes(secure_params)
-      redirect_to users_path, :notice => "User updated."
+      redirect_to users_path, notice: "User updated."
     else
-      redirect_to users_path, :alert => "Unable to update user."
+      redirect_to users_path, alert: "Unable to update user."
     end
   end
 
@@ -27,7 +33,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     authorize user
     user.destroy
-    redirect_to users_path, :notice => "User deleted."
+    redirect_to users_path, notice: "User deleted."
   end
 
 
@@ -38,7 +44,7 @@ class UsersController < ApplicationController
   def affiliate_organization_id
     authorize User              # todo - needs testing
     response = @user.addOrgId?(params[:organization_id])
-    render :json => {status: response}, :status => 200
+    render json: {status: response}, status: 200
   end
 
 

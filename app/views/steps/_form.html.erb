@@ -66,7 +66,7 @@
         <% @step_obj.images.each do |file| %>
           <div class="FormUploads__file FormUploads__file--<%= file.file.extension %>">
             <%= link_to file.file.filename, file.url, class: "FormUploads__link" %>
-            <%= link_to "✕", lesson_step_delete_file_path(@lesson_obj.id, @step_obj.id, attr: :images, name: file.file.filename), method: :delete, class: "FormUploads__delete" %>
+            <%= link_to "✕", lesson_step_delete_file_path(@lesson_obj.id, @step_obj.id, attr: :images, name: file.file.filename), class: "FormUploads__delete" %>
           </div>
         <% end %>
       </div>
@@ -145,7 +145,7 @@
         <% @step_obj.design_files.each do |file| %>
           <div class="FormUploads__file FormUploads__file--<%= file.file.extension %>">
             <%= link_to file.file.filename, file.url, class: "FormUploads__link" %>
-            <%= link_to "✕", lesson_step_delete_file_path(@lesson_obj.id, @step_obj.id, attr: :design_files, name: file.file.filename), method: :delete, class: "FormUploads__delete" %>
+            <%= link_to "✕", lesson_step_delete_file_path(@lesson_obj.id, @step_obj.id, attr: :design_files, name: file.file.filename), class: "FormUploads__delete" %>
           </div>
         <% end %>
       </div>

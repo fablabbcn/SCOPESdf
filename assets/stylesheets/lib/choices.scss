@@ -36,10 +36,14 @@ $choices-border-radius-item: 2px;
 
 .choices__inner {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   
   .FormField__errors {
+    padding-left: $gutter-width;
     order: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
 }

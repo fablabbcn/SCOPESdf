@@ -1,19 +1,8 @@
 <div class="Auth">
 
-  <div class="Auth__header" style="background-image: url('https://unsplash.it/1600/800?random')">
-    <h1 class="Auth__header__heading">Log into SCOPES-DF</h1>
-  </div>
-
   <div class="Auth__form">
 
     <%= render partial: 'devise/shared/nav' %>
-
-    <div class="FormHeader">
-      <h3 class="FormHeader__heading">Got your account details?</h3>
-      <div class="FormHeader__description">
-        Log in below for access to SCOPES-DF
-      </div>
-    </div>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'Form' }) do |f| %>
 

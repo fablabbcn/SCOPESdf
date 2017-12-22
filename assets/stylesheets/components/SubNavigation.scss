@@ -248,7 +248,17 @@ span.SubNavigation__dot {
 
 .SubNavigation__actions {
   display: flex;
-  margin-left: auto;
+
+  @include above-mobile-landscape {
+    margin-left: auto;
+  }
+
+  @include mobile-landscape-and-below {
+    order: 2;
+    justify-content: center;
+    padding: $gutter-width;
+  }
+
 }
 
 .SubNavigation__action {

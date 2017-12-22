@@ -72,7 +72,7 @@
       <div class="DetailsBanner__header">Subjects Covered</div>
       <ul class="DetailsBanner__subjects">
         <% @lesson_obj.subjects.each do |subject| %>
-        <li class="DetailsBanner__subject DetailsBanner__subject--<%= subject.name %>%"><%= subject.name.titleize %></li>
+        <li class="DetailsBanner__subject DetailsBanner__subject--<%= subject %>"><%= subject.titleize %></li>
         <% end %>
       </ul>
     </div>
@@ -127,6 +127,7 @@
 
       </div>
 
+      <% if @lesson_obj.learning_objectives.present? %>
       <!-- objectives -->
       <div class="PageContent__section">
 
@@ -139,6 +140,7 @@
         <% end %>
 
       </div>
+      <% end %>
 
       <!-- outcomes -->
       <div class="PageContent__section">

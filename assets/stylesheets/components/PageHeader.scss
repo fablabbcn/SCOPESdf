@@ -1,8 +1,17 @@
 .PageHeader {
   padding-left: $gutter-width;
   padding-right: $gutter-width;
-  padding-top: $gutter-width*3;
-  padding-bottom: $gutter-width*3;
+  
+  @include above-mobile-landscape {
+    padding-top: $gutter-width*3;
+    padding-bottom: $gutter-width*3;
+  }
+
+  @include mobile-landscape-and-below {
+    padding-top: $gutter-width*2;
+    padding-bottom: $gutter-width*2;
+  }
+
 }
 
 .PageHeader__content {
@@ -10,6 +19,15 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
+
+  @include above-mobile-landscape {
+    flex-direction: row;
+  }
+
+  @include mobile-landscape-and-below {
+    flex-direction: column;
+  }
+
 }
 
 .PageHeader__avatar {
@@ -17,16 +35,41 @@
   height: 64px;
   border-radius: 50%;
   overflow: hidden;
-  margin-right: $gutter-width;
+
+  @include above-mobile-landscape {
+    margin-right: $gutter-width;
+  }
+
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width/2;
+  }
+
 }
 
 .PageHeader__title {
+
+  @include above-mobile-landscape {
+    
+  }
+
+  @include mobile-landscape-and-below {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
 }
 
 .PageHeader__heading {
   @extend h2;
-  margin-bottom: 4px;
+
+  @include above-mobile-landscape {
+    margin-bottom: 4px;
+  }
+
+  @include mobile-landscape-and-below {
+    margin-bottom: $gutter-width;
+  }
 
   .PageHeader__title--small & {
     font-size: 24px;
@@ -48,9 +91,18 @@
 }
 
 .PageHeader__indicators {
-  margin-left: auto;
   display: flex;
   align-items: center;
+
+  @include above-mobile-landscape {
+    margin-left: auto;
+  }
+
+  @include mobile-landscape-and-below {
+    width: 100%;
+    justify-content: center;
+  }
+
 }
 
 .PageHeader__indicator {
@@ -59,6 +111,11 @@
   background-position: center left;
   min-height: 20px;
   margin-left: $gutter-width*2;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
 }
 
 .PageHeader__indicator--time {
