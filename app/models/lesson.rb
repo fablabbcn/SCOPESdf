@@ -118,7 +118,13 @@ class Lesson < ApplicationRecord
     {range_start: range.taggable.range_start, range_end: range.taggable.range_end} if range.present? && range.taggable.present?
   end
   def teaching_range=(hash)
-    teaching_range(hash[:start], hash[:end])
+    puts "TRANSHERE"
+    hash = eval(hash) if hash.is_a?(String)
+    puts hash.inspect
+    puts hash[":start"]
+    puts hash["start"]
+    puts hash[:start]
+    teaching_range(hash[:start].to_i + 1, hash[:end].to_i + 1)
   end
 
   def removeTeachingRange
@@ -132,6 +138,9 @@ class Lesson < ApplicationRecord
       range = {range_start: TeachingRange.format(range[:range_start].gsub("start_", "")), range_end: TeachingRange.format(range[:range_end].gsub("end_", ""))}
     end
     range
+  end
+  def teaching_range_plain_array
+    self.teaching_range_formatted.map{|k,v| x = v[0]; TeachingRange.translate(x)-1}
   end
 
 
