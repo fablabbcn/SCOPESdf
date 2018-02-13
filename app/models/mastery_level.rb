@@ -60,5 +60,16 @@ class MasteryLevel < ApplicationRecord
     }
   end
 
+  def self.form_value(val)
+      case val.downcase
+        when "easy"
+          0
+        when "medium"
+          1
+        when "hard"
+          2
+      end
+  end
+
 
 end

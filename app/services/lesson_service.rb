@@ -60,7 +60,7 @@ class LessonService
       @teaching_range = given.delete(:grade_range)
       @subjects = given.delete(:subjects)
 
-      @mastery_level = {student: given.delete(:mastery_level_students), educator: given.delete(:mastery_level_teachers)} if given[:mastery_level_students].present? && given[:mastery_level_teachers].present?
+      @mastery_level = {student: given.delete(:student_mastery), educator: given.delete(:educator_mastery)} if given[:student_mastery].present? && given[:educator_mastery].present?
 
       @skills = given.delete(:skills)
       @context = given.delete(:contexts)

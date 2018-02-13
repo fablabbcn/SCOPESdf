@@ -257,7 +257,7 @@ class LessonsController < ApplicationController
   private
 
     def lesson_params
-      params.require(:lesson).permit(:name, :topline, :summary, :tags, :teacher_notes, :assessment_criteria, :state, :collection_tag, :duration, :mastery_level_students, :mastery_level_teachers, :teaching_range,other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids: [], standards: [:name, descriptions: []], subjects: [], fabrication_tools: [], key_concepts: [], key_vocabularies: [], key_formulas: [], skills: [:name, :level], contexts: [])
+      params.require(:lesson).permit(:name, :topline, :summary, :tags, :teacher_notes, :assessment_criteria, :state, :collection_tag, :duration, :student_mastery, :educator_mastery, :teaching_range,other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids: [], standards: [:name, descriptions: []], subjects: [], fabrication_tools: [], key_concepts: [], key_vocabularies: [], key_formulas: [], skills: [:name, :level], contexts: [])
     end
 
     def step_params

@@ -118,12 +118,7 @@ class Lesson < ApplicationRecord
     {range_start: range.taggable.range_start, range_end: range.taggable.range_end} if range.present? && range.taggable.present?
   end
   def teaching_range=(hash)
-    puts "TRANSHERE"
-    hash = eval(hash) if hash.is_a?(String)
-    puts hash.inspect
-    puts hash[":start"]
-    puts hash["start"]
-    puts hash[:start]
+    hash = eval(hash) if hash.is_a?(String) # params are submitted as string.. conversion if necessary
     teaching_range(hash[:start].to_i + 1, hash[:end].to_i + 1)
   end
 
@@ -214,6 +209,9 @@ class Lesson < ApplicationRecord
   def student_mastery=(val)
     student_mastery(val)
   end
+  def student_mastery_formatted
+    MasteryLevel.form_value(self.student_mastery[:level]) if self.student_mastery[:level].present?
+  end
 
   def educator_mastery(passed_value = nil)
     self.setMasteryLevel({educator: passed_value}) if passed_value
@@ -223,6 +221,9 @@ class Lesson < ApplicationRecord
   end
   def educator_mastery=(val)
     educator_mastery(val)
+  end
+  def educator_mastery_formatted
+    MasteryLevel.form_value(self.educator_mastery[:level]) if self.educator_mastery[:level].present?
   end
 
 
