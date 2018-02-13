@@ -348,7 +348,7 @@ class Lesson < ApplicationRecord
     self.lesson_tags.where(taggable_type: "GenericTag").map {|x| y = x.taggable; y.name}
   end
   def tags=(string_array)
-    setTags(string_array.split(", ").reject{|x| x.empty? || x == " "})
+    setTags(string_array.split(',').reject{|x| x.empty? || x == " "})
   end
   def removeTags
     self.lesson_tags.where(taggable_type: "GenericTag").destroy_all

@@ -36,6 +36,8 @@ class CollectionTag < ApplicationRecord
   def to_s
     name
   end
-
+  def to_s_cap
+    to_s.titleize
+  end
 
 end
