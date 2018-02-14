@@ -34,6 +34,7 @@ class Step < ApplicationRecord
     self.software = self.software.reject { |x| x.empty? } if self.software.present?
     self.fabrication_equipment = self.fabrication_equipment.reject { |x| x.empty? } if self.fabrication_equipment.present?
     self.materials = self.materials.reject { |x| x.empty? } if self.materials.present?
+    self.external_links = self.external_links.reject { |x| x.empty? } if self.external_links.present?
   end
 
   belongs_to :lesson

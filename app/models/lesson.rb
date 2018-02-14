@@ -599,7 +599,7 @@ class Lesson < ApplicationRecord
           formulas: self.key_formulas.present?,
           tags: self.tags.present?
         },
-        instructions:{ steps: false}, # TODO - needs updating with steps!
+        instructions:{ steps: self.steps.present?}, # TODO - needs updating with steps!
         outcomes: { outcomes: true}
     }
   end
@@ -618,6 +618,16 @@ class Lesson < ApplicationRecord
       }
     end
     ready
+  end
+
+  def publishable_count
+    self.publishable_values.select{|k, v|
+      ready = true
+      v.each {|k1, v1|
+        ready = v1 && ready
+      }
+      k.to_s unless !ready
+    }.count
   end
 
   def publish!

@@ -13,8 +13,9 @@
     <div class="Form__footer__content">
 
       <div class="Form__footer__actions">
-        <a href="#" class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left">Back to Details</a>
-        <button class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right">Add some Outcomes</button>
+        <%= link_to "Back to Details", edit_lesson_path(id: @lesson_obj.id, form_step: 3), class: 'Form__footer__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left' %>
+
+        <%= link_to "Add some Outcomes", edit_lesson_path(id: @lesson_obj.id, form_step: 5), class: 'Form__footer__action Button Button--primary Button--small Button--icon Button--icon--right Button--arrow--right' %>
       </div>
 
     </div>

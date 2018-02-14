@@ -55,7 +55,7 @@
         <% end %>
       </div>
       <div class="Track">
-        <div class="Track__progress Track__progress--0"><span></span></div>
+        <div class='<%= "Track__progress Track__progress--#{@lesson_obj.publishable_count * 20}" %>'><span></span></div>
         <div class="Track__base"></div>
       </div>
     </div>
@@ -69,7 +69,9 @@
         <p>Complete the following steps to be able to submit a great lesson.</p>
 
         <div class="SubNavigation__trackContent__completion">
-          <span>1</span> / 5 steps completed
+          <span>
+            <%= @lesson_obj.publishable_count %>
+          </span> / 5 steps completed
         </div>
 
       </div>
