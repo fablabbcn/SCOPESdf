@@ -1,6 +1,6 @@
 class LessonsPublicController < ApplicationController
   #~~~~~~~~~~~
-  # Public, no need dto check if authorized
+  # Public, no need to check if authorized
   #~~~~~~~~~~~
 
   def show

@@ -38,7 +38,7 @@ class StepsController < ApplicationController
 
   def edit
 
-    puts params
+    #puts params
 
     # Assign the @form_step var, casting as integer instead of a string
     @form_step = params[:form_step].present? ? params[:form_step].to_i : 1

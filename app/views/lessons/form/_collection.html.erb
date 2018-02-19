@@ -5,5 +5,4 @@
 		<option value="<%= collection.id %>" <%= @lesson_obj.present? && @lesson_obj.collection_tag.first == collection ? 'selected' : nil %>><%= collection.name.titleize %></option>
 		<% end %>
 	</select>
-	<!--<%=select_tag( "lesson[collection_tag]", options_from_collection_for_select(@collections, "id", "to_s_cap"), id:"lesson_collection_tag", selected: @lesson_obj.collection_tag.first, include_blank: true )%>-->
 </div>

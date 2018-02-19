@@ -39,14 +39,14 @@
   <div class="Grid__items Grid__items--centered">
 
     <% @lessons.each_with_index do |lesson, i| %>
-    <div class="Grid__item">
+        <div class="Grid__item">
 
-      <%= render partial: 'lessons/thumb', locals: {
-        lesson: lesson,
-        i: i
-        } %>
+          <%= render partial: 'lessons/thumb', locals: {
+              lesson: lesson,
+              i: i
+          } %>
 
-    </div>
+        </div>
     <% end %>
 
   </div>

@@ -64,7 +64,7 @@
     <div class="DetailsBanner__column">
       <div class="DetailsBanner__header">Teaching Range</div>
       <div class="DetailsBanner__range">
-        8th—12th Grade <!-- TODO: once lesson.teaching_range attr works -->
+        <%= "#{@lesson_obj.teaching_range_formatted[:range_start]} - #{@lesson_obj.teaching_range_formatted[:range_end]} Grade"%>
       </div>
     </div>
 
@@ -77,16 +77,17 @@
       </ul>
     </div>
 
-  <!-- TODO: need to translate @lesson_obj.eductor/student_mastery into a "Difficult", "Easy", etc -->
     <div class="DetailsBanner__column">
       <div class="DetailsBanner__header">Mastery</div>
       <div class="DetailsBanner__masteries">
         <div class="DetailsBanner__mastery">
-          <div class="DetailsBanner__mastery__metric"><%= @lesson_obj.educator_mastery %></div>
+          <div class="DetailsBanner__mastery__metric"><%= @lesson_obj.educator_mastery[:level].titleize
+          %></div>
           <div class="DetailsBanner__mastery__for">For Teachers</div>
         </div>
         <div class="DetailsBanner__mastery">
-          <div class="DetailsBanner__mastery__metric"><%= @lesson_obj.student_mastery %></div>
+          <div class="DetailsBanner__mastery__metric"><%= @lesson_obj.student_mastery[:level].titleize
+          %></div>
           <div class="DetailsBanner__mastery__for">For Students</div>
         </div>
       </div>
@@ -189,9 +190,9 @@
         <div class="Sidebar__section Sidebar__section--with-border">
 
           <!-- TODO: this field is not on the lesson model -->
-          <div class="Sidebar__heading">
-            Download Lesson Plan
-          </div>
+          <!--<div class="Sidebar__heading">-->
+            <!--Download Lesson Plan-->
+          <!--</div>-->
 
           <a href="#" class="Button Button--outline Button--small Button--icon Button--icon--file Button--extra-padding Button--full">CatanLessonPlan.pdf</a>
 
@@ -206,17 +207,17 @@
 
           <!-- TODO: no stats available yet -->
 
-          <ul class="Sidebar__list">
-            <li class="Sidebar__list__item">
-              <a href="#" class="Sidebar__stat Sidebar__stat--likes">82 Likes</a>
-            </li>
-            <li class="Sidebar__list__item">
-              <a href="#" class="Sidebar__stat Sidebar__stat--forks">6 Forks</a>
-            </li>
-            <li class="Sidebar__list__item">
-              <a href="#" class="Sidebar__stat Sidebar__stat--completed">51 Completed</a>
-            </li>
-          </ul>
+          <!--<ul class="Sidebar__list">-->
+            <!--<li class="Sidebar__list__item">-->
+              <!--<a href="#" class="Sidebar__stat Sidebar__stat&#45;&#45;likes">82 Likes</a>-->
+            <!--</li>-->
+            <!--<li class="Sidebar__list__item">-->
+              <!--<a href="#" class="Sidebar__stat Sidebar__stat&#45;&#45;forks">6 Forks</a>-->
+            <!--</li>-->
+            <!--<li class="Sidebar__list__item">-->
+              <!--<a href="#" class="Sidebar__stat Sidebar__stat&#45;&#45;completed">51 Completed</a>-->
+            <!--</li>-->
+          <!--</ul>-->
 
         </div>
 

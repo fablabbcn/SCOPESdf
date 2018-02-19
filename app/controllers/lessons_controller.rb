@@ -18,7 +18,7 @@ class LessonsController < ApplicationController
     @page = params[:page] || 1
 
     # Fetch lessons
-    @lessons = Lesson.includes(:steps).page(@page)
+    @lessons = Lesson.includes(:steps).visible.page(@page)
 
     # TODO: use filters
 
@@ -62,8 +62,8 @@ class LessonsController < ApplicationController
 
   def edit
 
-    puts "edit here"
-    puts params.inspect
+    # puts "edit here"
+    # puts params.inspect
 
     @current_user = current_user
 
