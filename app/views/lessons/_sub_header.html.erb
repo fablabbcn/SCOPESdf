@@ -11,7 +11,9 @@
       <button class="SubHeader__tool SubHeader__tool--draft Button Button--small Button--icon Button--icon--document Button--outline Button--light">Save as Draft</button>
 
       <!-- TODO: Button--disabled class is dependent on @lesson_obj.publishable? function working, erroring right now -->
-      <%= active_link_to "Publish Lessson", publish_lesson_path(id: @lesson_obj.id, method: :put), class: "SubHeader__tool SubHeader__tool--publish Button Button--small Button--icon Button--icon--locked Button--dark Button--disabled" %>
+      <%= active_link_to "Publish Lessson", publish_lesson_path(id: @lesson_obj.id), method: :put, class: "SubHeader__tool SubHeader__tool--publish Button Button--small Button--icon #{@lesson_obj.publishable? ? "Button--icon--check" : "Button--icon--locked Button--disabled"}" %>
+
+
 
     </div>
 

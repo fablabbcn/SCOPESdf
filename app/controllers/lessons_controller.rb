@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class LessonsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :edit, :update, :delete_file, :upload_file]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :delete_file, :upload_file, :publish]
   #skip_before_action :verify_authenticity_token
 
   before_action :set_lesson, only: [:show, :activity]
@@ -116,14 +116,7 @@ class LessonsController < ApplicationController
   def update
 
     #raise params.to_yaml
-
-    # print params.inspect
-
-    puts params.inspect
-
-
-    puts "lesson_params hereeeeee"
-    puts lesson_params.inspect
+    # puts lesson_params.inspect
 
     # Update the lesson
     @lesson_obj = LessonService.find_or_create_and_update(params[:id], lesson_params, User.first)
@@ -132,6 +125,7 @@ class LessonsController < ApplicationController
     redirect_to edit_lesson_path(id: @lesson_obj.id, form_step: params[:form_step])
 
   end
+
 
   def upload_file
     @lesson = Lesson.find(params[:id])
@@ -202,9 +196,12 @@ class LessonsController < ApplicationController
   end
 
   def publish
-    # check to make sure current user is owner and make inactive
-    # make sure passes validation
-    render json: {success: Lesson.find(params[:id]).publish!}, status: 200
+    @lesson_obj = Lesson.find(params[:id])
+    if @lesson_obj.publishable? &&  @lesson_obj.publish!
+      redirect_to lesson_path_lesson_path(id: @lesson_obj.id), notice: 'Your lesson is published!'
+    else
+      redirect_to edit_lesson_path(id: @lesson_obj.id, form_step: 5), notice: 'Your lesson is not ready, check what\'s missing below!'
+    end
   end
 
   def delete

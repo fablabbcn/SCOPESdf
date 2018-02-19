@@ -36,9 +36,10 @@
     <div class="Form__footer__content">
 
       <div class="Form__footer__actions">
-        <%= link_to "Back to Instructions", edit_lesson_path(id: @lesson_obj.id, form_step: 4), class: 'Form__footer__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--lef' %>
+        <%= link_to "Back to Instructions", edit_lesson_path(id: @lesson_obj.id, form_step: 4), class: 'Form__footer__action Button Button--primary Button--small Button--icon Button--icon--left Button--arrow--left' %>
 
-        <button class="Form__footer__action Button Button--primary Button--small Button--icon Button--icon--check">Publish Lesson</button>
+        <%= link_to "Publish Lesson", publish_lesson_path(id: @lesson_obj.id), method: :put, class: "Form__footer__action Button Button--primary Button--small Button--icon #{@lesson_obj.publishable? ? "Button--icon--check" : "Button--icon--locked Button--disabled"}" %>
+        <!--<button class="Form__footer__action Button Button&#45;&#45;primary Button&#45;&#45;small Button&#45;&#45;icon Button&#45;&#45;icon&#45;&#45;check">Publish Lesson</button>-->
       </div>
 
     </div>
