@@ -72,12 +72,12 @@ class Lesson < ApplicationRecord
     self.lesson_tags << LessonTag.new(taggable: u)
   end
 
-  def getAuthors_id
-    self.lesson_tags.where(taggable_type: "User").map {|x| y = x.taggable; y.id}
+  def authors_id
+    self.lesson_tags.where(taggable_type: "User").order(created_at: :asc).map {|x| y = x.taggable; y.id}
   end
 
   def authors
-    self.lesson_tags.where(taggable_type: "User").map {|x| y = x.taggable; y}
+    self.lesson_tags.where(taggable_type: "User").order(created_at: :asc).map {|x| y = x.taggable; y}
   end
 
   def removeAuthor(user_uuid)
@@ -161,8 +161,6 @@ class Lesson < ApplicationRecord
     list = s.map{|ss| ss.id}
     setSubjects_id(list)
   end
-
-
   def subject_ids
     self.lesson_tags.where(taggable_type: "Subject").map {|x| y = x.taggable; y.id}
   end
@@ -174,6 +172,7 @@ class Lesson < ApplicationRecord
   def removeSubjects
     self.lesson_tags.where(taggable_type: "Subject").destroy_all
   end
+
 
 
   def setMasteryLevel(obj_hash)
@@ -335,6 +334,7 @@ class Lesson < ApplicationRecord
   def removeCollectionTags
     self.lesson_tags.where(taggable_type: "CollectionTag").destroy_all
   end
+
 
   # Generic Tags
   def setTags(string_array)

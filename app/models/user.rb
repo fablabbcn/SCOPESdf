@@ -46,7 +46,7 @@ class User < ApplicationRecord
   end
 
   def set_default_notifications # SAVE USER before messing with settings
-    self.settings ||= {contact: { notifications: true, emails: true}, projects: {sort: "date_published"}, newsfeed:{ notifications: true, updated: true, likes: true}}
+    self.settings ||= {contact: { notifications: true, emails: true}, projects: {sort: "dat_published"}, newsfeed:{ notifications: true, updated: true, likes: true}}
   end
 
 

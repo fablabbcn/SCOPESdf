@@ -1,8 +1,8 @@
 <a href="#" class="UserBadge UserBadge--<%= size %>">
   <img src="https://pbs.twimg.com/profile_images/476990389392777217/HilNvfjz_400x400.jpeg"  srcset="https://pbs.twimg.com/profile_images/476990389392777217/HilNvfjz_400x400.jpeg" class="UserBadge__avatar Image Image--lazy" />
   <div class="UserBadge__info">
-    <div class="UserBadge__name">Daniel Howells</div>
-    <div class="UserBadge__role">Director</div>
-    <div class="UserBadge__organisation">Howells—Studio</div>
+    <div class="UserBadge__name"><%= author.name %></div>
+    <div class="UserBadge__role"><%= author.getInvolvements.first %></div>
+    <div class="UserBadge__organisation">TODO---</div>
   </div>
 </a>

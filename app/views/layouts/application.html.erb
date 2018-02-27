@@ -29,7 +29,7 @@
 							<a class="UserStatus">
 								<div class="UserStatus__text">
 									<div class="UserStatus__name"><%= current_user.name %></div>
-									<div class="UserStatus__role">Teacher</div>
+									<div class="UserStatus__role"><%= current_user.getInvolvements.first %></div>
 								</div>
 								<div class="UserStatus__image">
 									<img src="<%= image_url('avatars/avatar2.jpg') %>" class="Image Image--lazy" />

@@ -3,7 +3,7 @@ javascript sets the hidden input when the sliders move. This needs to be made dy
 <div class="FormField__input">
   <div class="Slider">
     <div class="Slider__value"></div>
-    <div class="Slider__control" data-config="<%= { start: @lesson_obj.teaching_range.present? ? @lesson_obj.teaching_range_plain_array : [3,5], connect: true, step: 1, range: { min: -1, max: 12 }, unit: 'ordinal' }.to_json %>">
+    <div class="Slider__control" data-config="<%= { start: @lesson_obj.teaching_range.present? ? @lesson_obj.teaching_range_plain_array : [-1,12], connect: true, step: 1, range: { min: -1, max: 12 }, unit: 'ordinal' }.to_json %>">
       <input type="hidden" name="lesson[teaching_range]" value="{ start: 1, end: 6 }" />
     </div>
   </div>

@@ -17,11 +17,29 @@ class LessonsController < ApplicationController
     # Fetch the page number, otherwise 1
     @page = params[:page] || 1
 
-    # Fetch lessons
-    @lessons = Lesson.includes(:steps).visible.page(@page)
+    param = filter_params[:lesson]
 
-    # TODO: use filters
 
+    @lessons = Lesson.includes(:steps).visible
+
+    @lessons = @lessons.joins(:lesson_tags).where(lesson_tags: {taggable_type: "CollectionTag"}).where(lesson_tags: {taggable: param[:collection_tag]}) if param[:collection_tag].present?
+
+    param[:subjects].map{|x|
+      @lessons = @lessons.joins(:lesson_tags).where(lesson_tags: {taggable_type: "Subject"}).where(lesson_tags: {taggable: x})
+    } if param[:subjects].present?
+
+    param[:contexts].map{|x|
+      @lessons = @lessons.joins(:lesson_tags).where(lesson_tags: {taggable_type: "Subject"}).where(lesson_tags: {taggable: x})
+    } if param[:contexts].present?
+
+    if param[:teaching_range].present?
+      lower = param[:teaching_range][:start]
+      higher = param[:teaching_range][:end]
+      t = TeachingRange.where(range_start: lower+1).where(range_end: higher+1)
+      @lessons = @lessons.joins(:lesson_tags).where(lesson_tags: {taggable_type: "TeachingRange"}).where(lesson_tags: {taggable: t.id})
+    end
+
+    @lessons = @lessons.page(@page)
     # Fetch subjects
     @filter_subjects = [] # TODO: turn subject param into array to check against
 
@@ -34,7 +52,6 @@ class LessonsController < ApplicationController
   end
 
   def show
-
     @lesson_obj = Lesson.includes(:steps).find(params[:id])
 
     set_lesson_sections
@@ -135,7 +152,6 @@ class LessonsController < ApplicationController
     # puts params[:files].inspect
     #  puts file_params.inspect
     #
-    #  puts "BELOW ME BITCH\n\n\n"
     files = params[:files]
     files_hash = {}
     # puts "br"
@@ -255,6 +271,10 @@ class LessonsController < ApplicationController
 
     def lesson_params
       params.require(:lesson).permit(:name, :topline, :summary, :tags, :teacher_notes, :assessment_criteria, :state, :collection_tag, :duration, :student_mastery, :educator_mastery, :teaching_range,other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids: [], standards: [:name, descriptions: []], subjects: [], fabrication_tools: [], key_concepts: [], key_vocabularies: [], key_formulas: [], skills: [:name, :level], contexts: [])
+    end
+
+    def filter_params
+      params.permit(lesson: [:name, :topline, :summary, :tags, :teacher_notes, :assessment_criteria, :state, :collection_tag, :duration, :student_mastery, :educator_mastery, :teaching_range,other_users_emails: [], learning_objectives: [], further_readings: [], outcome_links: [], associated_places_ids: [], standards: [:name, descriptions: []], subjects: [], fabrication_tools: [], key_concepts: [], key_vocabularies: [], key_formulas: [], skills: [:name, :level], contexts: []])
     end
 
     def step_params
